@@ -12,11 +12,11 @@
 		"astro": "astro",
 		"lint": "eslint .",
 		"check": "astro check",
-		"map": "node scripts/simple-file-mapper.cjs",
-		"css": "node scripts/css-builder/index.cjs",
-		"css-docs": "node scripts/css-builder/index.cjs --docs",
-		"css-components": "node scripts/css-builder/index.cjs --components",
-		"css-all": "node scripts/css-builder/index.cjs --all"
+		"map": "node src/css-builder/scripts/simple-file-mapper.cjs",
+		"css": "node src/css-builder/scripts/index.cjs",
+		"css-docs": "node src/css-builder/scripts//index.cjs --docs",
+		"css-components": "node src/css-builder/scripts/index.cjs --components",
+		"css-all": "node src/css-builder/scripts/index.cjs --all"
 	},
 	"dependencies": {
 		"@astrojs/react": "^4.2.3",

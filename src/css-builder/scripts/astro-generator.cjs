@@ -1,7 +1,7 @@
 // astro-generator.cjs - Astroコンポーネントを生成するモジュール
 const path = require('path')
-const config = require('@/css-builder/scripts/config.cjs')
-const { logger, fileUtils, stringUtils } = require('@/css-builder/scripts/utils.cjs')
+const config = require('./config.cjs')
+const { logger, fileUtils, stringUtils } = require('./utils.cjs')
 
 /**
  * Astroコンポーネント生成モジュール
