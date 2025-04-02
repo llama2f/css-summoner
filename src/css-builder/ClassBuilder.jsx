@@ -1,5 +1,5 @@
 // src/css-builder/ClassBuilder.jsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 // import './styles.css' // スタイルシートをインポート
 
 // 独自フック
@@ -49,8 +49,8 @@ const ClassBuilder = () => {
 	// CSS変数エディタの表示状態
 	const [showCssVarEditor, setShowCssVarEditor] = useState(true)
 
-	// ツールチップを表示する
-	const showTooltip = (e, text) => {
+	// ツールチップを表示する（メモ化）
+	const showTooltip = useCallback((e, text) => {
 		if (!e || !text) {
 			setTooltipVisible(false)
 			return
@@ -63,10 +63,21 @@ const ClassBuilder = () => {
 		const x = e.clientX + 10
 		const y = e.clientY + 10
 		setTooltipPosition({ x, y })
-	}
+	}, [setTooltipText, setTooltipVisible, setTooltipPosition]) // 依存する状態更新関数をメモ化
 
-	// コンポーネント固有のサイズオプションを取得
-	const getSizeOptions = () => {
+	// コンポーネントタイプのベース名を抽出する関数
+	const getBaseComponentType = useCallback((type) => {
+		// 'heading'で始まるがハイフンが含まれる場合（例: heading-casual）
+		if (type.startsWith('heading') && type.includes('-')) {
+			return 'heading'
+		}
+
+		const parts = type.split('-')
+		return parts[0] // 最初の部分を返す
+	}, []) // 依存配列が空なので再作成されない
+
+	// サイズオプションのメモ化
+	const sizeOptionsValue = useMemo(() => {
 		// コンポーネントタイプのベース名を取得
 		const baseType = getBaseComponentType(state.componentType)
 
@@ -77,10 +88,13 @@ const ClassBuilder = () => {
 
 		// コンポーネント特化のサイズがない場合は共通サイズを返す
 		return sizes.common || []
-	}
+	}, [state.componentType, getBaseComponentType]) // componentTypeが変更された時のみ再計算
 
-	// コンポーネント固有の角丸オプションを取得
-	const getBorderRadiusOptions = () => {
+	// 元の関数インターフェイスを維持
+	const getSizeOptions = () => sizeOptionsValue
+
+	// 角丸オプションのメモ化
+	const borderRadiusOptionsValue = useMemo(() => {
 		// コンポーネントタイプのベース名を取得
 		const baseType = getBaseComponentType(state.componentType)
 
@@ -91,38 +105,27 @@ const ClassBuilder = () => {
 
 		// コンポーネント特化の角丸がない場合は共通角丸を返す
 		return borderRadiusOptions.common || []
-	}
+	}, [state.componentType, getBaseComponentType]) // componentTypeが変更された時のみ再計算
+
+	// 元の関数インターフェイスを維持
+	const getBorderRadiusOptions = () => borderRadiusOptionsValue
 
 	// コンポーネント固有のモディファイアを取得
-	// コンポーネントタイプのベース名を抽出する関数
-	const getBaseComponentType = (type) => {
-		// 'heading'で始まるがハイフンが含まれる場合（例: heading-casual）
-		if (type.startsWith('heading') && type.includes('-')) {
-			return 'heading'
-		}
 
-		const parts = type.split('-')
-		return parts[0] // 最初の部分を返す
-	}
-
-	const getModifierOptions = () => {
+	// モディファイアオプションのメモ化
+	const modifierOptionsValue = useMemo(() => {
 		// ベースコンポーネントタイプを取得
 		const baseType = getBaseComponentType(state.componentType)
-
-		/* console.log(
-			'コンポーネントタイプ:',
-			state.componentType,
-			'ベースタイプ:',
-			baseType
-		)
-		console.log('利用可能なモディファイア:', modifiers[baseType] || []) */
 
 		// ベースタイプに対応するモディファイアを取得
 		const componentModifiers = modifiers[baseType] || []
 
 		// 共通モディファイアと結合して返す
 		return [...(modifiers.common || []), ...componentModifiers]
-	}
+	}, [state.componentType, getBaseComponentType]) // componentTypeが変更された時のみ再計算
+
+	// 元の関数インターフェイスを維持
+	const getModifierOptions = () => modifierOptionsValue
 
 	// 常にログ確認
 	/* useEffect(() => {
@@ -267,7 +270,7 @@ const ClassBuilder = () => {
 					{/* CSS変数エディタボタン */}
 					<div className='flex justify-end mb-2'>
 						<button
-							onClick={() => setShowCssVarEditor(!showCssVarEditor)}
+							onClick={() => setShowCssVarEditor(prev => !prev)}
 							className='button-css-edit btn-primary btn-xs btn-animate-down'
 						>
 							{showCssVarEditor
@@ -336,4 +339,5 @@ const ClassBuilder = () => {
 	)
 }
 
+// 最適化されたClassBuilderをエクスポート
 export default ClassBuilder

@@ -1,7 +1,7 @@
 // components/selectors/SizeSelector.jsx
 // サイズ選択のUI - 直接ボタン形式に変更
 
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 
 /**
  * サイズを選択するセレクター
@@ -15,14 +15,16 @@ const SizeSelector = ({ sizes = [], selectedSize, onSelect }) => {
 	if (!sizes || sizes.length === 0) {
 		return null
 	}
-	// デフォルトを削除し、medium を初期値として扱う
-	const allOptions = [...sizes].filter((option) => option.value !== '')
+	// デフォルトを削除し、medium を初期値として扱う（メモ化）
+	const allOptions = useMemo(() => {
+		return [...sizes].filter((option) => option.value !== '')
+	}, [sizes]) // sizesが変更された時のみ再計算
 
-	// 選択時のスクロールを防止する関数
-	const handleSelect = (e, value) => {
+	// 選択時のスクロールを防止する関数（メモ化）
+	const handleSelect = useCallback((e, value) => {
 		e.preventDefault() // デフォルト動作を防止
 		onSelect(value) // 選択コールバック
-	}
+	}, [onSelect]) // onSelectが変更されたときのみ再作成
 
 	return (
 		<div>
@@ -44,4 +46,5 @@ const SizeSelector = ({ sizes = [], selectedSize, onSelect }) => {
 	)
 }
 
-export default SizeSelector
+// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
+export default React.memo(SizeSelector)

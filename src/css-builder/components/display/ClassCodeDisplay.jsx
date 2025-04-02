@@ -1,7 +1,7 @@
 // components/display/ClassCodeDisplay.jsx
 // クラスコードの表示
 
-import React, { useState } from 'react'
+import React, { useState, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { getComponentHtmlTemplate } from '@/css-builder/templates/componentFactory.jsx'
 
@@ -20,8 +20,8 @@ const ClassCodeDisplay = ({
 }) => {
 	const [copySuccess, setCopySuccess] = useState('')
 
-	// クラス文字列をクリップボードにコピーする
-	const copyToClipboard = (text) => {
+	// クラス文字列をクリップボードにコピーする（メモ化）
+	const copyToClipboard = useCallback((text) => {
 		navigator.clipboard
 			.writeText(text)
 			.then(() => {
@@ -32,13 +32,15 @@ const ClassCodeDisplay = ({
 				setCopySuccess('コピーに失敗しました')
 				setTimeout(() => setCopySuccess(''), 2000)
 			})
-	}
+	}, [setCopySuccess]) // setCopySuccessが変更されることはないが、念のため依存配列に含める
 
-	// テンプレートからHTML文字列を取得
-	const htmlString = getComponentHtmlTemplate(componentType, {
-		classString,
-		selectedModifiers,
-	})
+	// テンプレートからHTML文字列を取得（メモ化）
+	const htmlString = useMemo(() => {
+		return getComponentHtmlTemplate(componentType, {
+			classString,
+			selectedModifiers,
+		})
+	}, [componentType, classString, selectedModifiers]) // 依存する値が変更された時のみ再計算
 
 	return (
 		<div className='mt-6 space-y-4'>
@@ -90,4 +92,5 @@ ClassCodeDisplay.defaultProps = {
 	selectedModifiers: [],
 }
 
-export default ClassCodeDisplay
+// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
+export default React.memo(ClassCodeDisplay)

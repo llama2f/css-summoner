@@ -1,5 +1,5 @@
 // hooks/useClassBuilder.jsx
-import { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, useCallback } from 'react'
 import { componentVariants, baseClasses } from '@/css-builder/autoClassMappings.js'
 import { combineClasses } from '@/css-builder/templates/handlers/common'
 
@@ -129,24 +129,43 @@ export const useClassBuilder = () => {
 		state.additionalClasses,
 	])
 
-	// コンポーネントタイプとバリアントの変更を直接ディスパッチ
+	// コンポーネントタイプとバリアントの変更を直接ディスパッチ（すべてメモ化）
 	const actions = {
-		setComponentType: (type) =>
+		setComponentType: useCallback((type) =>
 			dispatch({ type: ACTIONS.SET_COMPONENT_TYPE, payload: type }),
-		setComponentVariant: (variant) =>
+		[dispatch]),
+		
+		setComponentVariant: useCallback((variant) =>
 			dispatch({ type: ACTIONS.SET_COMPONENT_VARIANT, payload: variant }),
-		setSize: (size) => dispatch({ type: ACTIONS.SET_SIZE, payload: size }),
-		setBorderRadius: (radius) =>
+		[dispatch]),
+		
+		setSize: useCallback((size) =>
+			dispatch({ type: ACTIONS.SET_SIZE, payload: size }),
+		[dispatch]),
+		
+		setBorderRadius: useCallback((radius) =>
 			dispatch({ type: ACTIONS.SET_BORDER_RADIUS, payload: radius }),
-		toggleModifier: (modifier) =>
+		[dispatch]),
+		
+		toggleModifier: useCallback((modifier) =>
 			dispatch({ type: ACTIONS.TOGGLE_MODIFIER, payload: modifier }),
-		setAdditionalClasses: (classes) =>
+		[dispatch]),
+		
+		setAdditionalClasses: useCallback((classes) =>
 			dispatch({ type: ACTIONS.SET_ADDITIONAL_CLASSES, payload: classes }),
-		toggleSpecialClass: (specialClass) =>
+		[dispatch]),
+		
+		toggleSpecialClass: useCallback((specialClass) =>
 			dispatch({ type: ACTIONS.TOGGLE_SPECIAL_CLASS, payload: specialClass }),
-		setPreviewBg: (bg) =>
+		[dispatch]),
+		
+		setPreviewBg: useCallback((bg) =>
 			dispatch({ type: ACTIONS.SET_PREVIEW_BG, payload: bg }),
-		resetSettings: () => dispatch({ type: ACTIONS.RESET_SETTINGS }),
+		[dispatch]),
+		
+		resetSettings: useCallback(() =>
+			dispatch({ type: ACTIONS.RESET_SETTINGS }),
+		[dispatch])
 	}
 
 	return { state, actions }

@@ -1,7 +1,7 @@
 // components/preview/ClassPreview.jsx
 // クラスのプレビュー表示
 
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { getComponentReactTemplate } from '@/css-builder/templates/componentFactory.jsx'
 import { combineClasses } from '@/css-builder/templates/handlers/common.jsx'
@@ -30,24 +30,36 @@ const ClassPreview = ({
 	previewBg,
 	baseClass,
 }) => {
-	// すべてのクラスを結合
-	const combinedClasses = combineClasses({
+	// すべてのクラスを結合（メモ化）
+	const combinedClasses = useMemo(() => {
+		return combineClasses({
+			baseClass,
+			variant: componentVariant,
+			size,
+			radius: borderRadius,
+			modifiers: selectedModifiers,
+			specialClasses: selectedSpecialClasses,
+			additional: additionalClasses
+		});
+	}, [
 		baseClass,
-		variant: componentVariant,
+		componentVariant,
 		size,
-		radius: borderRadius,
-		modifiers: selectedModifiers,
-		specialClasses: selectedSpecialClasses,
-		additional: additionalClasses
-	});
-
-	// テンプレートからReactコンポーネントを取得
-	const reactElement = getComponentReactTemplate(componentType, {
-		classString: combinedClasses,
+		borderRadius,
 		selectedModifiers,
-		baseClass,
-		forPreview: true,
-	})
+		selectedSpecialClasses,
+		additionalClasses
+	]); // 依存する値が変更された時のみ再計算
+
+	// テンプレートからReactコンポーネントを取得（メモ化）
+	const reactElement = useMemo(() => {
+		return getComponentReactTemplate(componentType, {
+			classString: combinedClasses,
+			selectedModifiers,
+			baseClass,
+			forPreview: true,
+		});
+	}, [componentType, combinedClasses, selectedModifiers, baseClass]); // 依存する値が変更された時のみ再計算
 
 	return (
 		<div
@@ -91,4 +103,5 @@ ClassPreview.defaultProps = {
 	componentVariant: '',
 }
 
-export default ClassPreview
+// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
+export default React.memo(ClassPreview)

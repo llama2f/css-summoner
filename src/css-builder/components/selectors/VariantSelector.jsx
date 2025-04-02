@@ -1,7 +1,7 @@
 // components/selectors/VariantSelector.jsx
 // バリアント選択のUI - ラジオボタン/ラベルを直接ボタンに変更
 
-import React from 'react'
+import React, { useCallback } from 'react'
 
 /**
  * コンポーネントバリアントを選択するセレクター
@@ -24,11 +24,11 @@ const VariantSelector = ({
 		return null
 	}
 
-	// 選択時のスクロールを防止する関数
-	const handleSelect = (e, value) => {
+	// 選択時のスクロールを防止する関数（メモ化）
+	const handleSelect = useCallback((e, value) => {
 		e.preventDefault() // デフォルト動作を防止
 		onSelect(value) // 選択コールバック
-	}
+	}, [onSelect]) // onSelectが変更されたときのみ再作成
 
 	return (
 		<div>
@@ -53,4 +53,5 @@ const VariantSelector = ({
 	)
 }
 
-export default VariantSelector
+// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
+export default React.memo(VariantSelector)

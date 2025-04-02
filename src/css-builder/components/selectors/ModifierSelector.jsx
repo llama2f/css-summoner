@@ -1,7 +1,7 @@
 // components/selectors/ModifierSelector.jsx
 // モディファイア選択のUI
 
-import React from 'react'
+import React, { useCallback } from 'react'
 
 /**
  * モディファイアを選択するセレクター
@@ -50,4 +50,5 @@ const ModifierSelector = ({
 	)
 }
 
-export default ModifierSelector
+// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
+export default React.memo(ModifierSelector)
