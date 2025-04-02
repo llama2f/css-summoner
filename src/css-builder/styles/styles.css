@@ -1,5 +1,6 @@
 @import '../../styles/global.css';
 
+@import './all-components.css'
 @import './class-builder.css';
 @import './builder.css';
 
