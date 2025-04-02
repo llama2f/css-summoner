@@ -1,0 +1,113 @@
+@layer base {
+	:root {
+		/* 見出し用変数 - カスタマイズ可能 */
+		--heading-font-family: var(--font, sans-serif);
+
+		/* 余白 */
+		--heading-margin-top: 2rem;
+		--heading-margin-bottom: 1.5rem;
+		--heading-padding-x: 1rem;
+		--heading-padding-y: 0.5rem;
+
+		/* 境界線 */
+		--heading-border-width: 4px;
+		--heading-border-radius: 0.25rem;
+
+		/* フォントサイズ (レスポンシブ) */
+		--heading-font-size-xl: clamp(1.5rem, 5vw, 2rem);
+		--heading-font-size-lg: clamp(1.25rem, 4vw, 1.75rem);
+		--heading-font-size-md: clamp(1.125rem, 3vw, 1.5rem);
+		--heading-font-size-sm: clamp(1rem, 2vw, 1.25rem);
+
+		/* ニュートラルカラー*/
+		--heading-neutral-color: var(--neutral-dark, #242424);
+		--heading-neutral-bg: var(--neutral-light, #fafafa);
+
+		/* フォーマル・カテゴリー */
+		--heading-formal-color: var(--primary-dark, #1a568e);
+		--heading-formal-bg: var(--primary-light, #e5edf5);
+		--heading-formal-border: var(--primary-dark, #1a568e);
+
+		/* カジュアル・カテゴリー */
+		--heading-casual-color: var(--secondary-dark, #436322);
+		--heading-casual-bg: var(--secondary-light, #edf0e9);
+		--heading-casual-border: var(--secondary, #95c75d);
+
+		/* テクニカル・カテゴリー */
+		--heading-technical-color: var(--neutral-dark, #242424);
+		--heading-technical-bg: var(--neutral-light, #fafafa);
+		--heading-technical-border: var(--neutral, #e4e4e4);
+
+		/* アクセント・カテゴリー */
+		--heading-accent-color: var(--accent-dark, #8b5752);
+		--heading-accent-bg: var(--accent-light, #f5e6e0);
+		--heading-accent-border: var(--accent, #ef6428);
+	}
+
+	/* ダークモード用の変数 */
+	:root.dark {
+		--heading-formal-color: var(--primary-light, #e5edf5);
+		--heading-formal-bg: rgba(26, 86, 142, 0.2);
+		--heading-casual-color: var(--secondary-light, #edf0e9);
+		--heading-casual-bg: rgba(67, 99, 34, 0.2);
+		--heading-technical-color: var(--neutral-light, #fafafa);
+		--heading-technical-bg: rgba(36, 36, 36, 0.2);
+		--heading-accent-color: var(--accent-light, #f5e6e0);
+		--heading-accent-bg: rgba(139, 87, 82, 0.2);
+	}
+
+	/* 印刷用スタイル */
+	@media print {
+		:root {
+			--heading-font-size-xl: 18pt;
+			--heading-font-size-lg: 16pt;
+			--heading-font-size-md: 14pt;
+			--heading-font-size-sm: 12pt;
+
+			--heading-margin-top: 16pt;
+			--heading-margin-bottom: 8pt;
+			--heading-padding-x: 0;
+			--heading-padding-y: 4pt;
+
+			/* 印刷時は背景色を薄く、境界線をはっきりと */
+			--heading-formal-bg: transparent;
+			--heading-casual-bg: transparent;
+			--heading-technical-bg: transparent;
+			--heading-accent-bg: transparent;
+
+			--heading-border-width: 1pt;
+		}
+	}
+	
+	/* 
+	 * @component: heading
+	 * @variant: base
+	 * @description: すべての見出しに共通する基本スタイル。見出しに一貫性を持たせます。
+	 * @category: typography
+	 * @example: <h2 class="heading-base">基本的な見出し</h2>
+	 */
+	.heading-base {
+		@apply font-bold tracking-wide leading-relaxed break-words;
+		margin-top: var(--heading-margin-top);
+		margin-bottom: var(--heading-margin-bottom);
+		font-family: var(--heading-font-family);
+	}
+
+	/* サイズバリエーション(手動追加) */
+
+	.heading-xl {
+		font-size: var(--heading-font-size-xl);
+	}
+
+	.heading-lg {
+		font-size: var(--heading-font-size-lg);
+	}
+
+	.heading-md {
+		font-size: var(--heading-font-size-md);
+	}
+
+	.heading-sm {
+		font-size: var(--heading-font-size-sm);
+	}
+}

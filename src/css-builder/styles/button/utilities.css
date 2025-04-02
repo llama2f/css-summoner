@@ -1,0 +1,105 @@
+@layer utilities {
+	.btn-shadow {
+		box-shadow: var(--btn-shadow-md);
+	}
+
+	.btn-shadow:hover {
+		box-shadow:
+			0 6px 10px -2px rgba(0, 0, 0, 0.15),
+			0 3px 6px -1px rgba(0, 0, 0, 0.1);
+	}
+
+	.btn-full {
+		@apply w-full;
+	}
+
+	.btn-animate-up {
+		transition: transform 0.2s ease;
+	}
+
+	.btn-animate-up:hover {
+		transform: translateY(-3px);
+	}
+	.btn-animate-down {
+		transition: transform 0.2s ease;
+	}
+
+	.btn-animate-down:hover {
+		transform: translateY(3px);
+	}
+
+	.btn-animate-pulse {
+		transition: transform 0.2s ease;
+	}
+
+	.btn-animate-pulse:hover {
+		animation: pulse 1.5s infinite;
+	}
+
+	@keyframes pulse {
+		0% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.05);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+
+	/* ----- アイコン配置 ----- */
+
+	.btn-icon-left {
+		@apply inline-flex items-center;
+	}
+
+	.btn-icon-left > svg,
+	.btn-icon-left > img,
+	.btn-icon-left > .icon {
+		@apply mr-2;
+	}
+
+	.btn-icon-right {
+		@apply inline-flex items-center;
+	}
+
+	.btn-icon-right > svg,
+	.btn-icon-right > img,
+	.btn-icon-right > .icon {
+		@apply ml-2;
+	}
+
+	.btn-icon-only {
+		@apply inline-flex items-center justify-center;
+		aspect-ratio: 1 / 1;
+		padding: 0.5em;
+	}
+
+	.btn-icon-only > svg,
+	.btn-icon-only > img,
+	.btn-icon-only > .icon {
+		@apply m-0;
+	}
+}
+
+/* 印刷時のアニメーション無効化 */
+@media print {
+	.btn-animate-up,
+	.btn-animate-pulse {
+		transform: none !important;
+		animation: none !important;
+	}
+
+	.btn-shadow {
+		box-shadow: none !important;
+	}
+
+	.btn-gradient-primary,
+	.btn-gradient-secondary,
+	.btn-gradient-accent {
+		background: transparent !important;
+		color: var(--neutral-dark, #242424) !important;
+		border: var(--btn-border-width) solid currentColor !important;
+	}
+}

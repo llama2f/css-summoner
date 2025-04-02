@@ -1,0 +1,25 @@
+/* 
+ * button/index.css
+ * ボタン用スタイルコレクション
+ * 
+ * 機能:
+ * - 用途別のボタンスタイル (primary, secondary, accent, etc.)
+ * - バリエーション豊富なボタンデザイン (solid, outline, ghost, etc.)
+ * - サイズバリエーション
+ * - アイコン対応
+ * - レスポンシブ対応
+ * - CSS変数によるカスタマイズ性
+ * - ホバー/フォーカス/アクティブステート対応
+ * - 印刷用スタイル
+ * 
+ * 使用例:
+ * <button class="btn-primary">標準ボタン</button>
+ * <a class="btn-outline-secondary btn-lg">大きめリンクボタン</a>
+ */
+@import './base.css';
+@import './variants.css';
+@import './utilities.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

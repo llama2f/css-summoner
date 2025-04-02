@@ -1,0 +1,35 @@
+@layer base {
+  :root {
+    /* フォーム要素の基本変数 */
+    --form-font-family: var(--font, sans-serif);
+    --form-border-radius: 0.375rem;
+    --form-border-width: 1px;
+    --form-padding-x: 0.75rem;
+    --form-padding-y: 0.5rem;
+    --form-font-size: 1rem;
+    --form-line-height: 1.5;
+    
+    /* カラー変数 - プロジェクト固有の色合いを反映 */
+    --form-bg: var(--neutral-light, #fafafa);
+    --form-text: var(--neutral-dark, #242424);
+    --form-border: var(--neutral, #e4e4e4);
+    --form-focus-ring: rgba(var(--primary-rgb), 0.25);
+    --form-placeholder: rgba(var(--neutral-dark-rgb), 0.5);
+    --form-disabled-bg: rgba(var(--neutral-rgb), 0.2);
+    --form-disabled-text: rgba(var(--neutral-dark-rgb), 0.6);
+    
+    /* バリデーションカラー */
+    --form-valid: var(--success, #0b6a81);
+    --form-invalid: var(--error, #c03831);
+  }
+
+  /* ダークモード */
+  :root.dark {
+    --form-bg: var(--neutral-dark, #242424);
+    --form-text: var(--neutral-light, #fafafa);
+    --form-border: rgba(var(--neutral-light-rgb), 0.2);
+    --form-placeholder: rgba(var(--neutral-light-rgb), 0.5);
+    --form-disabled-bg: rgba(var(--neutral-rgb), 0.1);
+    --form-disabled-text: rgba(var(--neutral-light-rgb), 0.4);
+  }
+}

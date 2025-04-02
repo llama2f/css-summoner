@@ -1,0 +1,416 @@
+@layer components {
+	/* 
+	 * @component: img
+	 * @variant: container
+	 * @description: 画像コンテナの基本スタイル。すべての画像要素の親要素に適用します。
+	 * @category: media
+	 * @example: <figure class="img-container">
+	 *   <img src="image.jpg" alt="説明" />
+	 * </figure>
+	 */
+	.img-container {
+		@apply relative w-full my-6 overflow-hidden;
+		max-width: 100%;
+	}
+
+	/* 基本的な画像スタイル */
+	.img-container img {
+		@apply w-full h-auto block;
+	}
+
+	/* ----- 角丸バリエーション ----- */
+
+	/* 
+	 * @component: img
+	 * @variant: rounded-sm
+	 * @description: 小さい角丸を適用した画像スタイル。控えめな角丸が必要な場合に使用します。
+	 * @category: media
+	 * @example: <figure class="img-container img-rounded-sm">
+	 *   <img src="image.jpg" alt="小さい角丸画像" />
+	 * </figure>
+	 */
+	.img-rounded-sm {
+		border-radius: var(--img-border-radius-sm);
+	}
+	.img-rounded-sm img {
+		border-radius: var(--img-border-radius-sm);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: rounded
+	 * @description: 標準的な角丸を適用した画像スタイル。一般的に使用する角丸スタイルです。
+	 * @category: media
+	 * @example: <figure class="img-container img-rounded">
+	 *   <img src="image.jpg" alt="角丸画像" />
+	 * </figure>
+	 */
+	.img-rounded {
+		border-radius: var(--img-border-radius-md);
+	}
+	.img-rounded img {
+		border-radius: var(--img-border-radius-md);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: rounded-lg
+	 * @description: 大きい角丸を適用した画像スタイル。より強調された角丸が必要な場合に使用します。
+	 * @category: media
+	 * @example: <figure class="img-container img-rounded-lg">
+	 *   <img src="image.jpg" alt="大きい角丸画像" />
+	 * </figure>
+	 */
+	.img-rounded-lg {
+		border-radius: var(--img-border-radius-lg);
+	}
+	.img-rounded-lg img {
+		border-radius: var(--img-border-radius-lg);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: circle
+	 * @description: 円形に切り抜いた画像スタイル。プロフィール画像やアイコンに適しています。
+	 * @category: media
+	 * @example: <figure class="img-container img-circle">
+	 *   <img src="profile.jpg" alt="プロフィール画像" />
+	 * </figure>
+	 */
+	.img-circle {
+		@apply overflow-hidden;
+		border-radius: 50%;
+	}
+	.img-circle img {
+		border-radius: 50%;
+	}
+
+	/* ----- 影バリエーション ----- */
+
+	/* 
+	 * @component: img
+	 * @variant: shadow-sm
+	 * @description: 小さな影を適用した画像スタイル。控えめな立体感を与えます。
+	 * @category: media
+	 * @example: <figure class="img-container img-shadow-sm">
+	 *   <img src="image.jpg" alt="小さい影付き画像" />
+	 * </figure>
+	 */
+	.img-shadow-sm {
+		box-shadow: var(--img-shadow-sm);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: shadow
+	 * @description: 標準的な影を適用した画像スタイル。一般的に使用する影の強さです。
+	 * @category: media
+	 * @example: <figure class="img-container img-shadow">
+	 *   <img src="image.jpg" alt="影付き画像" />
+	 * </figure>
+	 */
+	.img-shadow {
+		box-shadow: var(--img-shadow-md);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: shadow-lg
+	 * @description: 大きな影を適用した画像スタイル。強い立体感を与え、目立たせます。
+	 * @category: media
+	 * @example: <figure class="img-container img-shadow-lg">
+	 *   <img src="image.jpg" alt="大きい影付き画像" />
+	 * </figure>
+	 */
+	.img-shadow-lg {
+		box-shadow: var(--img-shadow-lg);
+	}
+
+	/* ----- ボーダーバリエーション ----- */
+
+	/* 
+	 * @component: img
+	 * @variant: border
+	 * @description: 標準的なボーダーを適用した画像スタイル。画像に枠線を追加します。
+	 * @category: media
+	 * @example: <figure class="img-container img-border">
+	 *   <img src="image.jpg" alt="ボーダー付き画像" />
+	 * </figure>
+	 */
+	.img-border {
+		border: var(--img-border-width) solid var(--img-border-color);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: border-primary
+	 * @description: プライマリカラーのボーダーを適用した画像スタイル。主要なコンテンツの画像に使用します。
+	 * @category: media
+	 * @example: <figure class="img-container img-border-primary">
+	 *   <img src="image.jpg" alt="プライマリボーダー画像" />
+	 * </figure>
+	 */
+	.img-border-primary {
+		border: var(--img-border-width) solid var(--primary-dark, #1a568e);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: border-secondary
+	 * @description: セカンダリカラーのボーダーを適用した画像スタイル。補助的なコンテンツの画像に使用します。
+	 * @category: media
+	 * @example: <figure class="img-container img-border-secondary">
+	 *   <img src="image.jpg" alt="セカンダリボーダー画像" />
+	 * </figure>
+	 */
+	.img-border-secondary {
+		border: var(--img-border-width) solid var(--secondary, #95c75d);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: border-accent
+	 * @description: アクセントカラーのボーダーを適用した画像スタイル。注目させたいコンテンツの画像に使用します。
+	 * @category: media
+	 * @example: <figure class="img-container img-border-accent">
+	 *   <img src="image.jpg" alt="アクセントボーダー画像" />
+	 * </figure>
+	 */
+	.img-border-accent {
+		border: var(--img-border-width) solid var(--accent, #ef6428);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: border-double
+	 * @description: 二重ボーダーを適用した画像スタイル。特別感を出したい画像に使用します。
+	 * @category: media
+	 * @example: <figure class="img-container img-border-double">
+	 *   <img src="image.jpg" alt="二重ボーダー画像" />
+	 * </figure>
+	 */
+	.img-border-double {
+		box-shadow:
+			0 0 0 4px var(--neutral-light, #fafafa),
+			0 0 0 5px var(--img-border-color);
+	}
+
+	/* ----- キャプションスタイル ----- */
+
+	/* 
+	 * @component: img
+	 * @variant: caption
+	 * @description: 画像の下部にキャプションを表示するスタイル。figcaption要素と組み合わせて使用します。
+	 * @category: media
+	 * @example: <figure class="img-container">
+	 *   <img src="image.jpg" alt="画像説明" />
+	 *   <figcaption>画像のキャプション</figcaption>
+	 * </figure>
+	 */
+	.img-container figcaption {
+		@apply w-full text-center mt-2 text-neutral-dark;
+		font-size: var(--img-caption-font-size);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: caption-overlay
+	 * @description: 画像の上にキャプションをオーバーレイ表示するスタイル。画像の視認性を維持しながら説明を追加します。
+	 * @category: media
+	 * @example: <figure class="img-container img-caption-overlay">
+	 *   <img src="image.jpg" alt="画像説明" />
+	 *   <figcaption>オーバーレイキャプション</figcaption>
+	 * </figure>
+	 */
+	.img-caption-overlay {
+		position: relative;
+	}
+	.img-caption-overlay figcaption {
+		@apply absolute bottom-0 left-0 right-0 m-0 px-4 py-2;
+		background-color: var(--img-caption-bg);
+		color: var(--img-caption-color);
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: caption-hover
+	 * @description: ホバー時にのみキャプションを表示するスタイル。ユーザーが画像にマウスを乗せた時に追加情報を表示します。
+	 * @category: media
+	 * @example: <figure class="img-container img-caption-hover">
+	 *   <img src="image.jpg" alt="画像説明" />
+	 *   <figcaption>ホバー時に表示されるキャプション</figcaption>
+	 * </figure>
+	 */
+	.img-caption-hover figcaption {
+		@apply absolute bottom-0 left-0 right-0 m-0 px-4 py-2 opacity-0 transition-opacity duration-300;
+		background-color: var(--img-caption-bg);
+		color: var(--img-caption-color);
+	}
+	.img-caption-hover:hover figcaption {
+		@apply opacity-100;
+	}
+
+	/* ----- サイズとアスペクト比 ----- */
+
+	/* 
+	 * @component: img
+	 * @variant: w-full
+	 * @description: 画像を親要素の幅いっぱいに表示するスタイル。レスポンシブなレイアウトに適しています。
+	 * @category: media
+	 * @example: <figure class="img-container img-w-full">
+	 *   <img src="image.jpg" alt="幅いっぱいの画像" />
+	 * </figure>
+	 */
+	.img-w-full {
+		@apply w-full;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: w-3/4
+	 * @description: 画像を親要素の幅の3/4サイズで中央揃えにするスタイル。
+	 * @category: media
+	 * @example: <figure class="img-container img-w-3/4">
+	 *   <img src="image.jpg" alt="幅3/4の画像" />
+	 * </figure>
+	 */
+	.img-w-3\/4 {
+		@apply w-3/4 mx-auto;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: w-1/2
+	 * @description: 画像を親要素の幅の1/2サイズで中央揃えにするスタイル。
+	 * @category: media
+	 * @example: <figure class="img-container img-w-1/2">
+	 *   <img src="image.jpg" alt="幅1/2の画像" />
+	 * </figure>
+	 */
+	.img-w-1\/2 {
+		@apply w-1/2 mx-auto;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: w-1/3
+	 * @description: 画像を親要素の幅の1/3サイズで中央揃えにするスタイル。
+	 * @category: media
+	 * @example: <figure class="img-container img-w-1/3">
+	 *   <img src="image.jpg" alt="幅1/3の画像" />
+	 * </figure>
+	 */
+	.img-w-1\/3 {
+		@apply w-1/3 mx-auto;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: w-1/4
+	 * @description: 画像を親要素の幅の1/4サイズで中央揃えにするスタイル。
+	 * @category: media
+	 * @example: <figure class="img-container img-w-1/4">
+	 *   <img src="image.jpg" alt="幅1/4の画像" />
+	 * </figure>
+	 */
+	.img-w-1\/4 {
+		@apply w-1/4 mx-auto;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: aspect-square
+	 * @description: 画像を正方形（1:1）のアスペクト比で表示するスタイル。プロフィール画像やグリッドレイアウトに適しています。
+	 * @category: media
+	 * @example: <figure class="img-container img-aspect-square">
+	 *   <img src="image.jpg" alt="正方形画像" />
+	 * </figure>
+	 */
+	.img-aspect-square {
+		@apply aspect-square;
+	}
+	.img-aspect-square img {
+		@apply object-cover h-full;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: aspect-video
+	 * @description: 画像をビデオ（16:9）のアスペクト比で表示するスタイル。横長のコンテンツやメディア表示に適しています。
+	 * @category: media
+	 * @example: <figure class="img-container img-aspect-video">
+	 *   <img src="image.jpg" alt="ビデオ比率画像" />
+	 * </figure>
+	 */
+	.img-aspect-video {
+		@apply aspect-video;
+	}
+	.img-aspect-video img {
+		@apply object-cover h-full;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: aspect-portrait
+	 * @description: 画像をポートレート（3:4）のアスペクト比で表示するスタイル。縦長のコンテンツに適しています。
+	 * @category: media
+	 * @example: <figure class="img-container img-aspect-portrait">
+	 *   <img src="image.jpg" alt="ポートレート比率画像" />
+	 * </figure>
+	 */
+	.img-aspect-portrait {
+		@apply aspect-[3/4];
+	}
+	.img-aspect-portrait img {
+		@apply object-cover h-full;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: grid
+	 * @description: 複数の画像をグリッドレイアウトで表示するコンテナ。ギャラリーやポートフォリオの表示に適しています。
+	 * @category: media
+	 * @example: <div class="img-grid">
+	 *   <figure class="img-container"><img src="image1.jpg" alt="画像1" /></figure>
+	 *   <figure class="img-container"><img src="image2.jpg" alt="画像2" /></figure>
+	 *   <figure class="img-container"><img src="image3.jpg" alt="画像3" /></figure>
+	 * </div>
+	 */
+	.img-grid {
+		@apply grid gap-4 my-6;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	}
+	.img-grid .img-container {
+		@apply my-0;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: float-left
+	 * @description: 画像を左側に配置し、テキストを右側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。
+	 * @category: media
+	 * @example: <figure class="img-container img-float-left">
+	 *   <img src="image.jpg" alt="左配置画像" />
+	 * </figure>
+	 * <p>この文章は画像の右側に回り込みます...</p>
+	 */
+	.img-float-left {
+		@apply float-left mr-6 mb-2;
+		max-width: 50%;
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: float-right
+	 * @description: 画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。
+	 * @category: media
+	 * @example: <figure class="img-container img-float-right">
+	 *   <img src="image.jpg" alt="右配置画像" />
+	 * </figure>
+	 * <p>この文章は画像の左側に回り込みます...</p>
+	 */
+	.img-float-right {
+		@apply float-right ml-6 mb-2;
+		max-width: 50%;
+	}
+}

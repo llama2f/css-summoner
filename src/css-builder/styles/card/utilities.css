@@ -1,0 +1,13 @@
+@layer utilities {
+  /* 印刷時の調整 */
+  @media print {
+    .card {
+      box-shadow: none !important;
+      border: 1px solid #000 !important;
+    }
+    
+    .card-hover:hover {
+      transform: none;
+    }
+  }
+}

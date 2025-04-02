@@ -1,0 +1,27 @@
+@layer base {
+  :root {
+    /* カード用変数 - shadcn UIとの互換性を考慮 */
+    --card-font-family: var(--font, sans-serif);
+    
+    /* 余白とサイズ */
+    --card-padding: 1.25rem;
+    --card-margin: 1.5rem;
+    --card-border-radius: 0.375rem;
+    --card-border-width: 1px;
+    
+    /* カラー変数 */
+    --card-bg: var(--neutral-light, #fafafa);
+    --card-text: var(--neutral-dark, #242424);
+    --card-border: var(--neutral, #e4e4e4);
+    --card-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --card-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --card-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* ダークモード */
+  :root.dark {
+    --card-bg: var(--neutral-dark, #242424);
+    --card-text: var(--neutral-light, #fafafa);
+    --card-border: rgba(var(--neutral-light-rgb), 0.2);
+  }
+}

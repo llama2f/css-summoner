@@ -1,0 +1,22 @@
+/* 
+ * text/index.css
+ * テキスト装飾スタイルコレクション
+ * 
+ * 機能:
+ * - 様々なテキスト装飾（マーカー、アンダーライン、強調など）
+ * - CSS変数によるカスタマイズ性
+ * - テーマカラーシステムとの統合
+ * - 印刷時の対応
+ * 
+ * 使用例:
+ * <span class="text-marker-primary">マーカー付きテキスト</span>
+ * <span class="text-underline-wavy">波線下線テキスト</span>
+ * <p class="text-highlight-accent">強調されたテキスト</p>
+ */
+@import './base.css';
+@import './variants.css';
+@import './utilities.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

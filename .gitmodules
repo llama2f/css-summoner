@@ -1,0 +1,3 @@
+[submodule "lib/astro-components"]
+	path = lib/astro-components
+	url = https://github.com/llama2f/astro-components.git

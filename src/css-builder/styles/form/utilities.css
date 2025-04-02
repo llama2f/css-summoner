@@ -1,0 +1,16 @@
+@layer utilities {
+  /* 印刷時のスタイル調整 */
+  @media print {
+    .form-input,
+    .form-select,
+    .form-textarea {
+      border-color: #000;
+      background-color: transparent;
+    }
+    
+    .form-checkbox,
+    .form-radio {
+      border-color: #000;
+    }
+  }
+}

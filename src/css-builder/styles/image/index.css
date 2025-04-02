@@ -1,0 +1,25 @@
+/* 
+ * image/index.css
+ * 画像表示用スタイルコレクション
+ * 
+ * 機能:
+ * - 様々な画像表示スタイル（角丸、シャドウ、ボーダーなど）
+ * - アスペクト比の制御
+ * - レスポンシブ対応
+ * - キャプション表示オプション
+ * - フィルター効果
+ * - 印刷用スタイル
+ * 
+ * 使用例:
+ * <figure class="img-rounded img-shadow">
+ *   <img src="image.jpg" alt="サンプル画像" />
+ *   <figcaption>画像キャプション</figcaption>
+ * </figure>
+ */
+@import './base.css';
+@import './variants.css';
+@import './utilities.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

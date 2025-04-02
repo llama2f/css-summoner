@@ -1,0 +1,30 @@
+{
+	"extends": "astro/tsconfigs/base",
+	"include": [".astro/types.d.ts", "**/*"],
+	"exclude": ["dist", "node_modules"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"paths": {
+			"@components/*": ["src/components/*"],
+			"@layouts/*": ["src/layouts/*"],
+			"@styles/*": ["src/styles/*"],
+			"@config/*": ["src/config/*"],
+			"@data/*": ["src/data/*"],
+			"@utils/*": ["src/utils/*"],
+			"@scripts/*": ["src/scripts/*"],
+			"@assets/*": ["src/assets/*"],
+			"@images/*": ["src/assets/images/*"],
+			"@projects/*": ["src/projects/*"],
+			"@design/*": ["src/design/*"],
+			"@/*": ["./src/*"],
+			"@@/*": ["./*"]
+		},
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true
+	}
+}

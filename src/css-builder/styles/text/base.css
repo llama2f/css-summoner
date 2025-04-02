@@ -1,0 +1,49 @@
+@layer base {
+	:root {
+		/* テキスト装飾の基本変数 */
+		--text-font-family: var(--font, sans-serif);
+
+		/* マーカー関連 */
+		--text-marker-thickness: 0.5em;
+		--text-marker-opacity: 0.3;
+
+		/* アンダーライン関連 */
+		--text-underline-thickness: 2px;
+		--text-underline-offset: 0.2em;
+
+		/* ハイライト関連 */
+		--text-highlight-padding-x: 0.25em;
+		--text-highlight-padding-y: 0.1em;
+		--text-highlight-opacity: 0.15;
+
+		/* カラーパレット（リファレンス用） */
+		--primary-ref: var(--primary, #70974e);
+		--primary-dark-ref: var(--primary-dark, #2a3a2b);
+		--primary-light-ref: var(--primary-light, #dae2d9);
+
+		--secondary-ref: var(--secondary, #79472e);
+		--secondary-dark-ref: var(--secondary-dark, #3f3938);
+		--secondary-light-ref: var(--secondary-light, #d0c9c1);
+
+		--accent-ref: var(--accent, #e3621c);
+		--accent-dark-ref: var(--accent-dark, #77320d);
+		--accent-light-ref: var(--accent-light, #f5e6e0);
+
+		--neutral-ref: var(--neutral, #c3c1bb);
+		--neutral-dark-ref: var(--neutral-dark, #362e2b);
+		--neutral-light-ref: var(--neutral-light, #f5f4f0);
+	}
+
+	/* ダークモード */
+	:root.dark {
+		--text-highlight-opacity: 0.25;
+	}
+
+	/* 印刷時 */
+	@media print {
+		:root {
+			--text-marker-opacity: 0.2;
+			--text-underline-thickness: 0.75px;
+		}
+	}
+}

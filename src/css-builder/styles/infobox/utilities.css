@@ -1,0 +1,9 @@
+@layer utilities {
+	/* 印刷時のページブレイク防止 */
+	@media print {
+		.infobox-base {
+			page-break-inside: avoid;
+			break-inside: avoid;
+		}
+	}
+}

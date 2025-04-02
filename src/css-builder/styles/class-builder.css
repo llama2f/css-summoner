@@ -1,0 +1,102 @@
+/* 
+ * class-builder.css
+ * カスタムクラスビルダー用スタイル
+ */
+
+.class-builder-option {
+  @apply inline-flex px-2.5 py-1 text-sm rounded border border-neutral bg-white hover:bg-neutral-100 cursor-pointer transition-colors;
+}
+
+.class-builder-option.selected {
+  @apply bg-primary-light !border-primary text-primary-dark;
+}
+
+.class-builder-component-btn {
+  @apply px-3 py-1.5 text-sm rounded border border-neutral cursor-pointer transition-colors;
+}
+
+.class-builder-component-btn.selected {
+  @apply bg-primary text-white;
+}
+
+.class-builder-component-btn:not(.selected) {
+  @apply bg-white hover:bg-neutral-100;
+}
+
+.class-builder-copy-btn {
+  @apply text-xs bg-primary px-2 py-0.5 rounded text-white hover:bg-primary-dark cursor-pointer transition-colors;
+}
+
+.class-builder-preview-area {
+  @apply min-h-[200px] w-full p-6 rounded flex items-center justify-center mb-6;
+}
+
+.class-builder-code-area {
+  @apply p-4 bg-neutral-dark text-neutral-light rounded-md mb-4 font-mono text-sm overflow-x-auto;
+}
+
+.class-builder-preview-option {
+  @apply px-2 py-1 text-xs rounded border border-neutral cursor-pointer transition-colors;
+}
+
+.class-builder-preview-option.selected {
+  @apply bg-primary-light !border-primary text-primary-dark;
+}
+
+/* プレビューカード用 */
+.preview-card {
+  @apply p-4 rounded;
+}
+
+/* プレビューバッジ用 */
+.preview-badge {
+  @apply px-2 py-1 inline-flex items-center rounded font-semibold;
+}
+
+/* プレビューパネル用 */
+.preview-panel {
+  @apply w-full;
+}
+
+/* テーマクラス（theme.tsの簡易版） */
+.theme-light {
+  @apply bg-neutral-light text-neutral-dark;
+}
+
+.theme-dark {
+  @apply bg-neutral-dark text-neutral-light;
+}
+
+.theme-primary {
+  @apply bg-primary text-white;
+}
+
+.theme-secondary {
+  @apply bg-secondary text-white;
+}
+
+.theme-transparent {
+  @apply bg-transparent text-neutral-dark;
+}
+
+/* メディアクエリ対応 */
+@media (max-width: 640px) {
+  .class-builder-option {
+    @apply text-xs px-2 py-0.5;
+  }
+  
+  .class-builder-preview-area {
+    @apply min-h-[150px] p-4;
+  }
+}
+
+/* 印刷対応 */
+@media print {
+  .class-builder-preview-area {
+    @apply border border-black;
+  }
+  
+  .class-builder-code-area {
+    @apply bg-white text-black border border-black;
+  }
+}

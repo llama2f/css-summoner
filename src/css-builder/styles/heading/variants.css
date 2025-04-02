@@ -1,0 +1,207 @@
+@layer components {
+	/* === フォーマル/ビジネス向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-primary
+	 * @description: 左側に太いボーダーを持つビジネス向け見出し。公式文書や企業サイトに最適です。
+	 * @category: typography
+	 * @example: <h2 class="heading-formal-primary">プライマリフォーマル見出し</h2>
+	 */
+	.heading-formal-primary {
+		@apply heading-base rounded-r;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		padding-left: calc(var(--heading-padding-x) + var(--heading-border-width));
+		border-left: var(--heading-border-width) solid var(--heading-formal-border);
+		background-color: var(--heading-formal-bg);
+		color: var(--heading-formal-color);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-underline
+	 * @description: 下線付きのフォーマルな見出し。清潔で簡潔なビジネス文書に適しています。
+	 * @category: typography
+	 * @example: <h2 class="heading-formal-underline">下線付きフォーマル見出し</h2>
+	 */
+	.heading-formal-underline {
+		@apply heading-base;
+		padding-bottom: var(--heading-padding-y);
+		border-bottom: 2px solid var(--heading-formal-border);
+		color: var(--heading-formal-color);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-full
+	 * @description: 背景色が全体に適用されたフォーマルな見出し。重要なセクションを強調します。
+	 * @category: typography
+	 * @example: <h2 class="heading-formal-full">フルバックグラウンド見出し</h2>
+	 */
+	.heading-formal-full {
+		@apply heading-base rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		background-color: var(--heading-formal-color);
+		color: var(--heading-neutral-bg);
+	}
+
+	/* === カジュアル向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-dotted
+	 * @description: ドット下線付きのカジュアルな見出し。親しみやすく柔らかい印象を与えます。
+	 * @category: typography
+	 * @example: <h2 class="heading-casual-dotted">ドット下線カジュアル見出し</h2>
+	 */
+	.heading-casual-dotted {
+		@apply heading-base;
+		padding-bottom: var(--heading-padding-y);
+		border-bottom: 2px dotted var(--heading-casual-border);
+		color: var(--heading-casual-color);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-badge
+	 * @description: バッジスタイルのカジュアルな見出し。特別なセクションやポイントを強調します。
+	 * @category: typography
+	 * @example: <h2 class="heading-casual-badge">バッジスタイル見出し</h2>
+	 */
+	.heading-casual-badge {
+		@apply heading-base inline-block rounded-full;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		background-color: var(--heading-casual-bg);
+		color: var(--heading-casual-color);
+		border: 2px solid var(--heading-casual-border);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-wavy
+	 * @description: 波線下線付きのカジュアルな見出し。遊び心のあるデザインに適しています。
+	 * @category: typography
+	 * @example: <h2 class="heading-casual-wavy">波線下線カジュアル見出し</h2>
+	 */
+	.heading-casual-wavy {
+		@apply heading-base;
+		padding-bottom: var(--heading-padding-y);
+		text-decoration: underline wavy var(--heading-casual-border);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 6px;
+		color: var(--heading-casual-color);
+	}
+
+	/* === テクニカル向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: technical-code
+	 * @description: コード風の技術的な見出し。開発者向けドキュメントや技術記事に最適です。
+	 * @category: typography
+	 * @example: <h2 class="heading-technical-code">コード風見出し</h2>
+	 */
+	.heading-technical-code {
+		@apply heading-base font-mono rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		background-color: var(--heading-technical-bg);
+		color: var(--heading-technical-color);
+		border: 1px solid var(--heading-technical-border);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: technical-tag
+	 * @description: HTMLタグ風の技術的な見出し。ウェブ関連のコンテンツに適しています。
+	 * @category: typography
+	 * @example: <h2 class="heading-technical-tag">タグ風見出し</h2>
+	 */
+	.heading-technical-tag {
+		@apply heading-base;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		color: var(--heading-technical-color);
+		position: relative;
+	}
+
+	.heading-technical-tag::before {
+		content: '</>';
+		@apply font-mono text-sm pr-2 opacity-70;
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: technical-bracket
+	 * @description: 角括弧付きの技術的な見出し。構造化されたコンテンツに適しています。
+	 * @category: typography
+	 * @example: <h2 class="heading-technical-bracket">角括弧付き見出し</h2>
+	 */
+	.heading-technical-bracket {
+		@apply heading-base;
+		color: var(--heading-technical-color);
+	}
+
+	.heading-technical-bracket::before {
+		content: '[ ';
+		color: var(--heading-technical-border);
+	}
+
+	.heading-technical-bracket::after {
+		content: ' ]';
+		color: var(--heading-technical-border);
+	}
+
+	/* === アクセント向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: accent-gradient
+	 * @description: グラデーション背景の強調見出し。注目を集めるセクションに使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-accent-gradient">グラデーション見出し</h2>
+	 */
+	.heading-accent-gradient {
+		@apply heading-base rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		background: linear-gradient(
+			to right,
+			var(--heading-accent-border),
+			transparent
+		);
+		color: var(--heading-accent-color);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: accent-border
+	 * @description: 強調されたボーダーを持つ見出し。重要なセクションを示します。
+	 * @category: typography
+	 * @example: <h2 class="heading-accent-border">強調ボーダー見出し</h2>
+	 */
+	.heading-accent-border {
+		@apply heading-base;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		border-left: var(--heading-border-width) solid var(--heading-accent-border);
+		border-bottom: 2px solid var(--heading-accent-border);
+		color: var(--heading-accent-color);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: accent-stripe
+	 * @description: ストライプ背景の強調見出し。ユニークで目立つセクションに使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-accent-stripe">ストライプ背景見出し</h2>
+	 */
+	.heading-accent-stripe {
+		@apply heading-base relative rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		color: var(--heading-accent-color);
+		background-image: repeating-linear-gradient(
+			-45deg,
+			var(--heading-accent-bg),
+			var(--heading-accent-bg) 3px,
+			transparent 3px,
+			transparent 6px
+		);
+	}
+}

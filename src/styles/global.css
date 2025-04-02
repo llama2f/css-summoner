@@ -1,0 +1,128 @@
+/* グローバル変数の定義 */
+:root {
+	--primary: #47791b;
+	--primary-rgb: 71, 121, 27;
+	--primary-light: #dae2d9;
+	--primary-light-rgb: 218, 226, 217;
+	--primary-dark: #2e5230;
+	--primary-dark-rgb: 42, 58, 43;
+
+	--secondary: #a04c22;
+	--secondary-rgb: 121, 71, 46;
+	--secondary-light: #d0c9c1;
+	--secondary-light-rgb: 208, 201, 193;
+	--secondary-dark: #693a30;
+	--secondary-dark-rgb: 63, 57, 56;
+
+	--neutral: #c3c1bb;
+	--neutral-rgb: 195, 193, 187;
+	--neutral-light: #f5f4f0;
+	--neutral-light-rgb: 245, 244, 240;
+	--neutral-dark: #362e2b;
+	--neutral-dark-rgb: 54, 46, 43;
+
+	--accent: #a83610;
+	--accent-rgb: 227, 98, 28;
+	--accent-light: #f5e6e0;
+	--accent-light-rgb: 245, 230, 224;
+	--accent-dark: #572911;
+	--accent-dark-rgb: rgb(87, 41, 17);
+
+	--success: #0b6a81;
+	--success-rgb: rgb(11, 106, 129);
+	--warning: #eb7f56;
+	--warning-rgb: 235, 127, 86;
+	--error: #c03831;
+	--error-rgb: rgb(192, 56, 49);
+
+	/* hero フォルダ内のパターン背景 */
+	--bg-hero-bank-note: url('/images/patterns/hero/bank-note.svg');
+	--bg-hero-stripes: url('/images/patterns/hero/stripes.svg');
+	--bg-hero-brick-wall: url('/images/patterns/hero/brick-wall.svg');
+	--bg-hero-bubbles: url('/images/patterns/hero/bubbles.svg');
+	--bg-hero-leaf: url('/images/patterns/hero/leaf.svg');
+	--bg-hero-polka-dots: url('/images/patterns/hero/polka-dots.svg');
+	--bg-hero-diagonal-lines: url('/images/patterns/hero/diagonal-lines.svg');
+	--bg-hero-texture: url('/images/patterns/hero/texture.svg');
+	--bg-hero-endless-clouds: url('/images/patterns/hero/endless-clouds.svg');
+	--bg-hero-graph-paper: url('/images/patterns/hero/graph-paper.svg');
+	--bg-hero-diagonal-stripes: url('/images/patterns/hero/diagonal-stripes.svg');
+	--bg-hero-plus: url('/images/patterns/hero/plus.svg');
+
+	/* subtle フォルダ内のパターン背景 */
+	--bg-subtle-gravel: url('/images/patterns/subtle/gravel.webp');
+	--bg-subtle-worn-dots: url('/images/patterns/subtle/worn_dots.png');
+	--bg-subtle-naturalwhite: url('/images/patterns/subtle/naturalwhite.webp');
+	--bg-subtle-45degree-fabric: url('/images/patterns/subtle/45degreee_fabric.webp');
+	--bg-subtle-tree-bark: url('/images/patterns/subtle/tree_bark.png');
+	--bg-subtle-geometric-leaves: url('/images/patterns/subtle/geometric-leaves.webp');
+}
+
+:root.dark {
+	--neutral-light: #362e2b;
+	--neutral-light-rgb: 54, 46, 43;
+	--neutral-dark: #f5f4f0;
+	--neutral-dark-rgb: 245, 244, 240;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		font-feature-settings: 'pkna' 1;
+		overflow-wrap: break-word;
+		line-break: strict;
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
+
+		@apply text-[16px] md:text-[16px] lg:text-[18px] overflow-x-hidden;
+	}
+
+	body {
+		font-family: var(--font);
+		font-feature-settings: 'pkna' 1;
+		line-height: 1.75;
+		letter-spacing: 0.03em;
+		overflow-wrap: break-word;
+		line-break: strict;
+		text-size-adjust: 100%;
+
+		@apply bg-neutral-light text-base text-neutral-dark;
+	}
+
+	a:not([class*='no-default']) {
+		@apply text-primary-dark transition-colors;
+	}
+
+	a:not([class*='no-default']):hover {
+		@apply text-primary transition-colors;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-medium;
+	}
+	h2,
+	h3,
+	h4 {
+		@apply font-bold leading-loose tracking-wide;
+	}
+
+	pre {
+		max-height: 600px;
+	}
+
+	hr {
+		@apply my-6;
+	}
+}
+
+@layer components {
+	/* 共通コンポーネントスタイル */
+}

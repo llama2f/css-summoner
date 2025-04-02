@@ -1,0 +1,21 @@
+/* 
+ * heading/index.css
+ * 見出し用スタイルコレクション - 強化版
+ * 
+ * 機能:
+ * - カテゴリ別の見出しスタイル
+ * - CSS変数によるカスタマイズ性
+ * - レスポンシブ対応の強化
+ * - 印刷用スタイル
+ * 
+ * 使用例:
+ * <h2 class="heading-formal-primary">見出しタイトル</h2>
+ * <h3 class="heading-casual-accent">サブ見出し</h3>
+ */
+@import './base.css';
+@import './variants.css';
+@import './utilities.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
