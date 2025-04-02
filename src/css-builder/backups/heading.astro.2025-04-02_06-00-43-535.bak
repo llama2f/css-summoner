@@ -5,20 +5,22 @@
  * このファイルは自動生成されています。直接編集せず、元のCSSファイル、scripts/css-builder/astro-generator.cjsを編集してください。
  * ソース: heading/index.css
  */
-import Layout from '@layouts/Layout.astro'
-import Menu from '@layouts/Menu.astro'
+import DocLayout from '@layouts/DocLayout.astro';
+import Menu from '@projects/core/DocMenu.astro'
 
 // スタイルシートのインポート
-import '@stylesCss/styles.css'
+
+import '@design/css-builder/styles/all-components.css'
+import '@design/css-builder/styles/styles.css'
 ---
 
-<Layout pageTitle="Heading コンポーネント" desc="Headingのスタイルとバリエーション">
+<DocLayout pageTitle="Heading コンポーネント" desc="Headingのスタイルとバリエーション">
   <div class="content-width py-8">
     <p class="text-lg mb-8">
       すべての見出しに共通する基本スタイル。見出しに一貫性を持たせます。
     </p>
 		 <div class="mt-4">
-      <a href="/" class="text-primary hover:text-primary-dark">
+      <a href="/docs/class-builder" class="text-primary hover:text-primary-dark">
         ← カスタムクラスビルダーに戻る
       </a>
     </div>
@@ -207,9 +209,9 @@ import '@stylesCss/styles.css'
     </div>
     <Menu />
     <div class="mt-4">
-      <a href="/" class="text-primary hover:text-primary-dark">
+      <a href="/docs/class-builder" class="text-primary hover:text-primary-dark">
         ← カスタムクラスビルダーに戻る
       </a>
     </div>
   </div>
-</Layout>
+</DocLayout>

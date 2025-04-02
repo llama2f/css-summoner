@@ -1,4 +1,5 @@
 /* グローバル変数の定義 */
+@layer base {
 :root {
 	--primary: #47791b;
 	--primary-rgb: 71, 121, 27;
@@ -65,11 +66,7 @@
 	--neutral-dark-rgb: 245, 244, 240;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-@layer base {
 	html {
 		font-feature-settings: 'pkna' 1;
 		overflow-wrap: break-word;
@@ -121,8 +118,4 @@
 	hr {
 		@apply my-6;
 	}
-}
-
-@layer components {
-	/* 共通コンポーネントスタイル */
 }

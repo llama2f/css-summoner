@@ -1,6 +1,6 @@
 {
 	"extends": "astro/tsconfigs/base",
-	"include": [".astro/types.d.ts", "**/*"],
+	"include": [".astro/types.d.ts", "**/*", ".postcss.config.mjs"],
 	"exclude": ["dist", "node_modules"],
 	"compilerOptions": {
 		"baseUrl": ".",
@@ -10,6 +10,7 @@
 			"@components/*": ["src/css-builder/components/*"],
 			"@layouts/*": ["src/css-builder/layouts/*"],
 			"@styles/*": ["src/styles/*"],
+			"@stylesCss/*": ["src/css-builder/styles/*"],
 			"@config/*": ["src/css-builder/config/*"],
 			"@data/*": ["src/css-builder/data/*"],
 			"@scripts/*": ["src/css-builder/scripts/*"],

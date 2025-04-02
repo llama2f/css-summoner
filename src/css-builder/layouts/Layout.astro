@@ -5,6 +5,10 @@ export interface Props {
 }
 
 const { title = 'title', desc = 'description' } = Astro.props
+
+// スタイルシートのインポート
+import '@stylesCss/styles.css'
+import '@stylesCss/all-components.css'
 ---
 
 <!doctype html>

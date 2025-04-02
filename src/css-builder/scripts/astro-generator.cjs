@@ -147,22 +147,20 @@ const astroGenerator = {
  * このファイルは自動生成されています。直接編集せず、元のCSSファイル、scripts/css-builder/astro-generator.cjsを編集してください。
  * ソース: ${sourceFiles.join(', ')}
  */
-import DocLayout from '@layouts/DocLayout.astro';
-import Menu from '@projects/core/DocMenu.astro'
+import Layout from '@layouts/Layout.astro'
+import Menu from '@layouts/Menu.astro'
 
 // スタイルシートのインポート
-
-import '@design/css-builder/styles/all-components.css'
-import '@design/css-builder/styles/styles.css'
+import '@stylesCss/styles.css'
 ---
 
-<DocLayout pageTitle="${componentLabel} コンポーネント" desc="${componentLabel}のスタイルとバリエーション">
+<Layout pageTitle="${componentLabel} コンポーネント" desc="${componentLabel}のスタイルとバリエーション">
   <div class="content-width py-8">
     <p class="text-lg mb-8">
       ${baseClass ? baseClass.description : ''}
     </p>
 		 <div class="mt-4">
-      <a href="/docs/class-builder" class="text-primary hover:text-primary-dark">
+      <a href="/" class="text-primary hover:text-primary-dark">
         ← カスタムクラスビルダーに戻る
       </a>
     </div>
@@ -199,12 +197,12 @@ import '@design/css-builder/styles/styles.css'
     </div>
     <Menu />
     <div class="mt-4">
-      <a href="/docs/class-builder" class="text-primary hover:text-primary-dark">
+      <a href="/" class="text-primary hover:text-primary-dark">
         ← カスタムクラスビルダーに戻る
       </a>
     </div>
   </div>
-</DocLayout>
+</Layout>
 `
 
 			// ドキュメント用の上書き設定を使用

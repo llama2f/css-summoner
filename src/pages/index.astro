@@ -1,10 +1,7 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import ClassBuilder from '@/css-builder/ClassBuilder.jsx'
-import MenuDoc from '@layouts/Menu.astro'
-
-// スタイルシートのインポート
-import '@design/css-builder/styles/styles.css'
+import Menu from '@layouts/Menu.astro'
 ---
 
 <Layout title='クラスビルダー' desc='custom css builder'>
@@ -34,7 +31,7 @@ import '@design/css-builder/styles/styles.css'
 			</ol>
 		</div>
 
-		<MenuDoc />
+		<Menu />
 
 		<div class='mt-10 p-4 bg-neutral-light rounded-lg text-sm'>
 			<h3 class='font-bold mb-2'>参照スタイルシート</h3>

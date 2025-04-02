@@ -9,7 +9,7 @@ import Layout from '@layouts/Layout.astro'
 import Menu from '@layouts/Menu.astro'
 
 // スタイルシートのインポート
-import '@stylesCss/styles.css'
+import '@design/css-builder/styles/styles.css'
 ---
 
 <Layout pageTitle="Button コンポーネント" desc="Buttonのスタイルとバリエーション">

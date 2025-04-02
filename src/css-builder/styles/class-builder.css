@@ -3,6 +3,8 @@
  * カスタムクラスビルダー用スタイル
  */
 
+ @layer components{
+
 .class-builder-option {
   @apply inline-flex px-2.5 py-1 text-sm rounded border border-neutral bg-white hover:bg-neutral-100 cursor-pointer transition-colors;
 }
@@ -99,4 +101,5 @@
   .class-builder-code-area {
     @apply bg-white text-black border border-black;
   }
+}
 }
