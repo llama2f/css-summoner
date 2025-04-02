@@ -324,13 +324,13 @@ const CssVarEditor = ({ onClose }) => {
 				<div className='flex gap-2'>
 					<button
 						onClick={() => setIsExpanded(!isExpanded)}
-						className='text-sm bg-white bg-opacity-20 hover:bg-opacity-30 px-2 py-1 rounded'
+						className='text-sm bg-white/20 hover:bg-white/30 px-2 py-1 rounded'
 					>
 						{isExpanded ? '折りたたむ' : '展開する'}
 					</button>
 					<button
 						onClick={onClose}
-						className='text-sm bg-white bg-opacity-20 hover:bg-opacity-30 px-2 py-1 rounded'
+						className='text-sm bg-white/20 hover:bg-white/30 px-2 py-1 rounded'
 					>
 						閉じる
 					</button>

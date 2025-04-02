@@ -246,7 +246,7 @@
   }
 
   .card-horizontal .card-image {
-    @apply w-full md:w-1/3 flex-shrink-0;
+    @apply w-full md:w-1/3 shrink-0;
   }
 
   .card-horizontal .card-image img {

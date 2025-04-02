@@ -65,9 +65,7 @@
 	--neutral-dark-rgb: 245, 244, 240;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
 	html {

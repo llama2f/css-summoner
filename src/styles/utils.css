@@ -1,5 +1,4 @@
-@tailwind utilities;
-
+@import "tailwindcss";
 @layer utilities {
 	.abs-center {
 		position: absolute;
