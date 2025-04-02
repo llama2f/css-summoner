@@ -25,6 +25,10 @@
 		@apply text-left justify-start;
 	}
 
+	.selector-button:hover{
+		background-color: var(--primary-light)!important;
+	}
+
 	.selector-button::after {
 		content: '';
 		position: absolute;

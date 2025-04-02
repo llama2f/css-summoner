@@ -9,6 +9,8 @@ const { title = 'title', desc = 'description' } = Astro.props
 // スタイルシートのインポート
 import '@stylesCss/styles.css'
 import '@stylesCss/all-components.css'
+
+const mainClass = 'container mx-auto px-global max-w-screen-2xl'
 ---
 
 <!doctype html>
@@ -20,6 +22,10 @@ import '@stylesCss/all-components.css'
 		<meta name='description' content={desc} />
 	</head>
 	<body>
-		<slot />
+		<header>header-aria</header>
+		<main class={mainClass}>
+			<slot />
+		</main>
+		<footer>footer-aria</footer>
 	</body>
 </html>

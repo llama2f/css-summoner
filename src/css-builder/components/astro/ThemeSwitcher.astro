@@ -1,0 +1,104 @@
+---
+import ToggleSwitch from '@components/common/button/ToggleSwitch.astro'
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
+import { faMoon } from '@fortawesome/free-solid-svg-icons'
+import type { Theme } from '@components/utils/theme'
+import { classesToString } from '@components/utils/theme'
+
+export interface Props {
+	/** コンポーネントの位置を指定するTailwindクラス */
+	position?: string
+	/** テーマ設定 */
+	theme?: Theme
+	/** 追加のクラス */
+	addClass?: string
+	/** 背景色 */
+	bgColor?: string
+	/** アイコン定義 */
+	icon?: IconDefinition
+	/** カスタムアイコンクラス */
+	iconClass?: string[]
+}
+
+const {
+	position = 'fixed right-20 lg:right-4 top-5 z-[50]',
+	theme,
+	addClass,
+	bgColor, //dark:bg-secondary-light
+	icon = faMoon,
+	iconClass,
+} = Astro.props as Props
+
+// 位置とコンテナスタイルのクラス
+const containerClasses = {
+	[position]: !!position,
+}
+
+// コンテナのクラス文字列生成
+const containerClass =
+	classesToString(containerClasses) + (addClass ? ` ${addClass}` : '')
+---
+
+<!-- fixed right-16 lg:right-2 top-5 -->
+<div class={` ${containerClass}`}>
+	<ToggleSwitch
+		id='theme-toggle'
+		label='ダークモード'
+		hideLabel
+		theme={theme}
+		icon={icon}
+		iconClass={iconClass}
+		bgColor={bgColor}
+	/>
+</div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const themeToggle = document.getElementById('theme-toggle')
+		if (!themeToggle) return
+
+		// LocalStorageの設定を確認
+		const savedTheme = localStorage.getItem('theme')
+
+		// システム設定の検出
+		const prefersDark = window.matchMedia(
+			'(prefers-color-scheme: dark)'
+		).matches
+
+		// 優先順位: LocalStorage > システム設定
+		let isDarkMode
+
+		if (savedTheme) {
+			// ユーザーが明示的に設定した場合
+			isDarkMode = savedTheme === 'dark'
+		} else {
+			// 設定がない場合はシステム設定に従う
+			isDarkMode = prefersDark
+			// 初期値としてシステム設定を保存
+			localStorage.setItem('theme', isDarkMode ? 'dark' : 'light')
+		}
+
+		// DOMに反映
+		document.documentElement.classList.toggle('dark', isDarkMode)
+		themeToggle.setAttribute('aria-pressed', isDarkMode ? 'true' : 'false')
+
+		// トグル処理
+		themeToggle.addEventListener('click', () => {
+			const newIsDark = themeToggle.getAttribute('aria-pressed') === 'true'
+			document.documentElement.classList.toggle('dark', newIsDark)
+			localStorage.setItem('theme', newIsDark ? 'dark' : 'light')
+		})
+
+		// システム設定の変更を監視（オプション）
+		window
+			.matchMedia('(prefers-color-scheme: dark)')
+			.addEventListener('change', (e) => {
+				// LocalStorageに明示的な設定がない場合のみ自動変更
+				if (!localStorage.getItem('theme')) {
+					const newIsDark = e.matches
+					document.documentElement.classList.toggle('dark', newIsDark)
+					themeToggle.setAttribute('aria-pressed', newIsDark ? 'true' : 'false')
+				}
+			})
+	})
+</script>
