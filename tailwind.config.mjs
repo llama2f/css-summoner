@@ -176,7 +176,6 @@ export default {
 	},
 	plugins: [
 		require('@tailwindcss/typography'),
-		require('tailwind-hamburgers'),
 		require('tailwindcss-animate'),
 	],
 }
