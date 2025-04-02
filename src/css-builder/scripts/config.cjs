@@ -63,15 +63,15 @@ function checkPathExists(pathToCheck, description) {
  */
 const paths = {
 	// ソースディレクトリ
-	stylesDir: resolveProjectPath('src/design/css-builder/styles/'),
+	stylesDir: resolveProjectPath('src/css-builder/styles/'),
 
 	// 出力ディレクトリ
 	output: {
-		cssBuilder: resolveProjectPath('src/design/css-builder/'),
-		types: resolveProjectPath('src/design/css-builder/types/'), // 型定義
-		docs: resolveProjectPath('src/pages/docs/css/'), // ドキュメント作成先
-		components: resolveProjectPath('src/design/css-builder/dist/components/'), // Astroコンポーネントは安全な場所に生成
-		backups: resolveProjectPath('src/design/css-builder/backups/'),
+		cssBuilder: resolveProjectPath('src/css-builder/'),
+		types: resolveProjectPath('src/css-builder/types/'), // 型定義
+		docs: resolveProjectPath('src/pages/css-builder/'), // ドキュメント作成先
+		components: resolveProjectPath('src/css-builder/dist/components/'), // Astroコンポーネントは安全な場所に生成
+		backups: resolveProjectPath('src/css-builder/backups/'),
 	},
 
 	// ファイル名

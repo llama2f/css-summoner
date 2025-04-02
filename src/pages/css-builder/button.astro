@@ -1,0 +1,329 @@
+---
+/**
+ * Button コンポーネント
+ * 
+ * このファイルは自動生成されています。直接編集せず、元のCSSファイル、scripts/css-builder/astro-generator.cjsを編集してください。
+ * ソース: button/index.css
+ */
+import DocLayout from '@layouts/DocLayout.astro';
+import Menu from '@projects/core/DocMenu.astro'
+
+// スタイルシートのインポート
+
+import '@design/css-builder/styles/all-components.css'
+import '@design/css-builder/styles/styles.css'
+---
+
+<DocLayout pageTitle="Button コンポーネント" desc="Buttonのスタイルとバリエーション">
+  <div class="content-width py-8">
+    <p class="text-lg mb-8">
+      すべてのボタンの基本スタイル。インタラクティブ要素に必要な共通のスタイルとレイアウトを提供します。
+    </p>
+		 <div class="mt-4">
+      <a href="/docs/class-builder" class="text-primary hover:text-primary-dark">
+        ← カスタムクラスビルダーに戻る
+      </a>
+    </div>
+    <Menu />
+   
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">variant</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Primary</h3>
+          <p class="text-sm text-neutral-600 mb-4">プライマリカラーを使用した重要なアクション用ボタン。サイト内の主要なアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-primary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-primary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Secondary</h3>
+          <p class="text-sm text-neutral-600 mb-4">セカンダリカラーを使用した補助的なアクション用ボタン。補足的なアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-secondary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-secondary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Accent</h3>
+          <p class="text-sm text-neutral-600 mb-4">アクセントカラーを使用した強調アクション用ボタン。注目させたいアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-accent">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-accent</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Neutral</h3>
+          <p class="text-sm text-neutral-600 mb-4">ニュートラルカラーを使用した汎用ボタン。一般的なアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-neutral">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-neutral</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Light</h3>
+          <p class="text-sm text-neutral-600 mb-4">明るい背景色のボタン。暗い背景上で使用するのに適しています。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-light">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-light</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Dark</h3>
+          <p class="text-sm text-neutral-600 mb-4">暗い背景色のボタン。明るい背景上で使用するのに適しています。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-dark">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-dark</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Outline Primary</h3>
+          <p class="text-sm text-neutral-600 mb-4">プライマリカラーのアウトラインボタン。控えめだが重要なアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-outline-primary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-outline-primary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Outline Secondary</h3>
+          <p class="text-sm text-neutral-600 mb-4">セカンダリカラーのアウトラインボタン。補助的なアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-outline-secondary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-outline-secondary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Outline Accent</h3>
+          <p class="text-sm text-neutral-600 mb-4">アクセントカラーのアウトラインボタン。強調したいが控えめにしたいアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-outline-accent">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-outline-accent</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Outline Neutral</h3>
+          <p class="text-sm text-neutral-600 mb-4">ニュートラルカラーのアウトラインボタン。一般的な二次的アクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-outline-neutral">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-outline-neutral</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Ghost Primary</h3>
+          <p class="text-sm text-neutral-600 mb-4">プライマリカラーのゴーストボタン。最小限の視覚的影響でアクションを提供します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-ghost-primary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-ghost-primary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Ghost Secondary</h3>
+          <p class="text-sm text-neutral-600 mb-4">セカンダリカラーのゴーストボタン。目立たない補助的なアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-ghost-secondary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-ghost-secondary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Ghost Accent</h3>
+          <p class="text-sm text-neutral-600 mb-4">アクセントカラーのゴーストボタン。控えめながら注目を集めるアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-ghost-accent">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-ghost-accent</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Ghost Neutral</h3>
+          <p class="text-sm text-neutral-600 mb-4">ニュートラルカラーのゴーストボタン。最も控えめなアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-ghost-neutral">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-ghost-neutral</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Gradient Primary</h3>
+          <p class="text-sm text-neutral-600 mb-4">プライマリカラーのグラデーションを使用したボタン。高級感のあるアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-gradient-primary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-gradient-primary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Gradient Secondary</h3>
+          <p class="text-sm text-neutral-600 mb-4">セカンダリカラーのグラデーションを使用したボタン。補助的な主要アクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-gradient-secondary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-gradient-secondary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Gradient Accent</h3>
+          <p class="text-sm text-neutral-600 mb-4">アクセントカラーのグラデーションを使用したボタン。注目を集めるアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-gradient-accent">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-gradient-accent</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Link Primary</h3>
+          <p class="text-sm text-neutral-600 mb-4">プライマリカラーを使用したリンク風ボタン。インラインのテキストリンクのようなアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-link-primary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-link-primary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Link Secondary</h3>
+          <p class="text-sm text-neutral-600 mb-4">セカンダリカラーを使用したリンク風ボタン。補助的なインラインリンクのようなアクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-link-secondary">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-link-secondary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Link Accent</h3>
+          <p class="text-sm text-neutral-600 mb-4">アクセントカラーを使用したリンク風ボタン。注目させたいインラインリンクに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <button class="btn-base btn-link-accent">ボタンテキスト</button>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">btn-link-accent</code>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">使用例</h2>
+      <div class="bg-neutral-50 p-6 rounded-lg">
+        <pre class="text-sm overflow-x-auto"><button class="btn-base btn-primary">プライマリボタン</button>
+
+<button class="btn-base btn-secondary">セカンダリボタン</button>
+
+<button class="btn-base btn-accent">アクセントボタン</button>
+
+<button class="btn-base btn-neutral">ニュートラルボタン</button>
+
+<button class="btn-base btn-light">ライトボタン</button>
+
+<button class="btn-base btn-dark">ダークボタン</button>
+
+<button class="btn-base btn-outline-primary">プライマリアウトラインボタン</button>
+
+<button class="btn-base btn-outline-secondary">セカンダリアウトラインボタン</button>
+
+<button class="btn-base btn-outline-accent">アクセントアウトラインボタン</button>
+
+<button class="btn-base btn-outline-neutral">ニュートラルアウトラインボタン</button>
+
+<button class="btn-base btn-ghost-primary">プライマリゴーストボタン</button>
+
+<button class="btn-base btn-ghost-secondary">セカンダリゴーストボタン</button>
+
+<button class="btn-base btn-ghost-accent">アクセントゴーストボタン</button>
+
+<button class="btn-base btn-ghost-neutral">ニュートラルゴーストボタン</button>
+
+<button class="btn-base btn-gradient-primary">グラデーションプライマリボタン</button>
+
+<button class="btn-base btn-gradient-secondary">グラデーションセカンダリボタン</button>
+
+<button class="btn-base btn-gradient-accent">グラデーションアクセントボタン</button>
+
+<button class="btn-base btn-link-primary">プライマリリンクボタン</button>
+
+<button class="btn-base btn-link-secondary">セカンダリリンクボタン</button>
+
+<button class="btn-base btn-link-accent">アクセントリンクボタン</button>
+
+<button class="btn-base btn-primary">ボタン</button></pre>
+      </div>
+    </div>
+    <Menu />
+    <div class="mt-4">
+      <a href="/docs/class-builder" class="text-primary hover:text-primary-dark">
+        ← カスタムクラスビルダーに戻る
+      </a>
+    </div>
+  </div>
+</DocLayout>

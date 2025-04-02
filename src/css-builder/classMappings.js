@@ -1,6 +1,6 @@
-// クラスマッピングのインデックスファイル - 自動生成 2025-04-02T01:19:46.409Z
-import { componentTypes, baseClasses, componentVariants, classDescriptions } from '@/css-builder/autoClassMappings';
-import { sizes, borderRadiusOptions, modifiers, specialClasses } from '@/css-builder/classMappingsConfig';
+// クラスマッピングのインデックスファイル - 自動生成 2025-04-02T05:49:18.521Z
+import { componentTypes, baseClasses, componentVariants, classDescriptions } from './autoClassMappings';
+import { sizes, borderRadiusOptions, modifiers, specialClasses } from './classMappingsConfig';
 
 export {
   componentTypes,
