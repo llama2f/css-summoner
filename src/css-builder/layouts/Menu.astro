@@ -1,0 +1,52 @@
+---
+const pages = Object.values(
+	import.meta.glob('../../pages/docs/css/*.astro', { eager: true })
+)
+
+const menuItems = Object.values(pages).filter((item) => {
+	const fileName = item.url.split('/').pop()
+	return !fileName.startsWith('_')
+})
+---
+
+<h3 class='text-lg font-bold'>ドキュメントメニュー</h3>
+<nav class='docs-menu'>
+	<ul class='text-sm flex flex-wrap gap-2'>
+		{
+			menuItems.map((item) => {
+				const fileName = item.url.split('/').pop().replace('.astro', '')
+				return (
+					<li>
+						<a href={item.url} class='btn-outline-neutral btn-xs'>
+							{fileName}
+						</a>
+					</li>
+				)
+			})
+		}
+	</ul>
+	<style>
+		.docs-menu {
+			padding: 1rem;
+		}
+
+		.docs-menu ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.docs-menu a {
+			color: #333;
+			text-decoration: none;
+			padding: 0.2rem;
+			display: block;
+			border-radius: 4px;
+			transition: background-color 0.2s;
+		}
+
+		.docs-menu a:hover {
+			background-color: #f0f0f0;
+		}
+	</style>
+</nav>

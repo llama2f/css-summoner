@@ -1,0 +1,21 @@
+---
+export interface Props {
+	title: string
+	desc: string
+}
+
+const { title = 'title', desc = 'description' } = Astro.props
+---
+
+<!doctype html>
+<html lang='ja'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<title>{title}</title>
+		<meta name='description' content={desc} />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
