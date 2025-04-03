@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-03T13:01:12.390Z
+// 自動生成されたコード - 2025-04-03T12:50:34.626Z
 export const componentTypes = [
   {
     "value": "card",
@@ -63,7 +63,8 @@ export const baseClasses = {
   "heading": "heading-base",
   "card": "card",
   "button-group": "btn-group",
-  "button": "btn-base"
+  "button": "btn-base",
+  "badge": "badge-base"
 };
 
 export const componentVariants = {
@@ -857,7 +858,8 @@ export const classDescriptions = {
   "badge-shadow-md": "Mediumサイズの影",
   "badge-shadow-lg": "Largeサイズの影",
   "badge-icon-only": "アイコンのみ表示する場合の調整用クラス（パディング調整などに使用）",
-  "badge-icon-spacing": "バッジ内のアイコンとテキストの間にスペースを追加"
+  "badge-icon-spacing": "バッジ内のアイコンとテキストの間にスペースを追加",
+  "badge-base": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。"
 };
 
 // componentExamples もエクスポートすると便利かもしれない
@@ -1672,6 +1674,11 @@ export const componentExamples = {
       "variant": "icon-spacing",
       "className": "badge-icon-spacing",
       "example": "<span class=\"badge-base badge-primary\"><i class=\"fa fa-star badge-icon-spacing\"></i>テキスト</span>"
+    },
+    {
+      "variant": "base",
+      "className": "badge-base",
+      "example": "<span class=\"badge-base badge-primary\">バッジ</span>"
     }
   ]
 };

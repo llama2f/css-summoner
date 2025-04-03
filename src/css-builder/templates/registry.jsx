@@ -9,6 +9,7 @@ import { headingPatternHandler } from './handlers/headingHandlers'
 import {  formHandlers } from './handlers/formHandlers'
 import { imagePatternHandler } from './handlers/imageHandlers'
 import { textPatternHandler } from './handlers/textHandlers'
+import { badgeHandlers } from './handlers/badgeHandlers'
 
 /**
  * コンポーネントレジストリ
@@ -23,6 +24,7 @@ const componentRegistry = {
     ...cardHandlers,
     ...infoboxHandlers,
     ...formHandlers,
+    ...badgeHandlers
   },
 
   // パターンハンドラー
