@@ -130,7 +130,11 @@
 	}
 
 	.btn-dark:hover {
-		background-color: var(--btn-dark-hover-bg);
+		background-color: color-mix(
+			in srgb,
+			var(--btn-dark-hover-bg),
+			transparent calc(100% - var(--btn-hover-opacity) * 100%)
+		);
 		color: var(--btn-dark-hover-text);
 	}
 
@@ -235,6 +239,10 @@
 		background-color: transparent;
 		color: var(--btn-neutral-text);
 		border-color: var(--btn-neutral-border);
+	}
+
+	.dark .btn-outline-neutral {
+		color: var(--btn-neutral-bg);
 	}
 
 	.btn-outline-neutral:hover {
@@ -347,26 +355,22 @@
 	 */
 	.btn-ghost-neutral {
 		background-color: transparent;
-		color: var(--btn-neutral-text);
+		color: var(--btn-ghost-text);
 		border-color: transparent;
 	}
 
 	.btn-ghost-neutral:hover {
 		background-color: color-mix(
 			in srgb,
-			var(--btn-neutral-bg),
+			var(--btn-ghost-bg),
 			transparent calc(100% - var(--btn-ghost-hover-opacity) * 100%)
 		);
 	}
 
 	.btn-ghost-neutral:active {
-		background-color: color-mix(
-			in srgb,
-			var(--btn-neutral-bg),
-			transparent 90%
-		);
+		background-color: color-mix(in srgb, var(--btn-ghost-bg), transparent 90%);
 	}
-	
+
 	/* ----- ボタングループ ----- */
 
 	/* 
@@ -404,15 +408,19 @@
 	 * </div>
 	 */
 	.btn-group-vertical {
-		@apply inline-flex flex-col;
+		@apply inline-flex flex-col rounded-none;
 	}
 
 	.btn-group-vertical > .btn-base:not(:last-child) {
-		@apply rounded-b-none border-b-0;
+		@apply rounded-t rounded-b-none border-b-0;
 	}
 
 	.btn-group-vertical > .btn-base:not(:first-child) {
 		@apply rounded-t-none;
+	}
+
+	.btn-group-vertical > .btn-base:last-child {
+		@apply rounded-b;
 	}
 
 	/* ----- グラデーションボタン ----- */
@@ -555,23 +563,5 @@
 	.btn-link-accent:hover {
 		color: var(--btn-accent-hover-bg);
 		text-decoration: underline;
-	}
-
-	/* ----- 形状バリエーション(手動追加) ----- */
-	.btn-base {
-		&.btn-rounded-sm {
-			border-radius: var(--btn-border-radius-sm);
-		}
-
-		&.btn-rounded-lg {
-			border-radius: var(--btn-border-radius-lg);
-		}
-		&.btn-rounded-full {
-			border-radius: var(--btn-border-radius-full);
-		}
-
-		&.btn-square {
-			border-radius: 0;
-		}
 	}
 }

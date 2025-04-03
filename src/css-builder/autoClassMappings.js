@@ -1,44 +1,14 @@
-// 自動生成されたコード - 2025-04-02T06:05:08.249Z
+// 自動生成されたコード - 2025-04-03T04:53:45.329Z
 export const componentTypes = [
   {
-    "value": "text-marker",
-    "label": "Text Marker",
-    "category": "typography"
-  },
-  {
-    "value": "text-underline",
-    "label": "Text Underline",
-    "category": "typography"
-  },
-  {
-    "value": "text-quote",
-    "label": "Text Quote",
-    "category": "typography"
-  },
-  {
-    "value": "infobox",
-    "label": "Infobox",
-    "category": "notification"
-  },
-  {
-    "value": "img",
-    "label": "Img",
-    "category": "media"
-  },
-  {
-    "value": "heading",
-    "label": "Heading",
-    "category": "typography"
+    "value": "card",
+    "label": "Card",
+    "category": "container"
   },
   {
     "value": "form",
     "label": "Form",
     "category": "form-controls"
-  },
-  {
-    "value": "card",
-    "label": "Card",
-    "category": "container"
   },
   {
     "value": "button",
@@ -49,6 +19,36 @@ export const componentTypes = [
     "value": "button-group",
     "label": "Button Group",
     "category": "interactive"
+  },
+  {
+    "value": "img",
+    "label": "Img",
+    "category": "media"
+  },
+  {
+    "value": "infobox",
+    "label": "Infobox",
+    "category": "notification"
+  },
+  {
+    "value": "heading",
+    "label": "Heading",
+    "category": "typography"
+  },
+  {
+    "value": "text-marker",
+    "label": "Text Marker",
+    "category": "typography"
+  },
+  {
+    "value": "text-quote",
+    "label": "Text Quote",
+    "category": "typography"
+  },
+  {
+    "value": "text-underline",
+    "label": "Text Underline",
+    "category": "typography"
   }
 ];
 
@@ -64,54 +64,66 @@ export const baseClasses = {
 export const componentVariants = {
   "text-marker": [
     {
-      "value": "text-marker-primary",
-      "label": "Primary"
-    },
-    {
-      "value": "text-marker-secondary",
-      "label": "Secondary"
-    },
-    {
       "value": "text-marker-accent",
       "label": "Accent"
-    },
-    {
-      "value": "text-marker-neutral",
-      "label": "Neutral"
-    },
-    {
-      "value": "text-marker-primary-full",
-      "label": "Primary Full"
-    },
-    {
-      "value": "text-marker-secondary-full",
-      "label": "Secondary Full"
     },
     {
       "value": "text-marker-accent-full",
       "label": "Accent Full"
     },
     {
+      "value": "text-marker-double-primary",
+      "label": "Double Primary"
+    },
+    {
+      "value": "text-marker-neutral",
+      "label": "Neutral"
+    },
+    {
       "value": "text-marker-neutral-full",
       "label": "Neutral Full"
     },
     {
-      "value": "text-marker-stripe-primary",
-      "label": "Stripe Primary"
+      "value": "text-marker-primary",
+      "label": "Primary"
+    },
+    {
+      "value": "text-marker-primary-full",
+      "label": "Primary Full"
+    },
+    {
+      "value": "text-marker-secondary",
+      "label": "Secondary"
+    },
+    {
+      "value": "text-marker-secondary-full",
+      "label": "Secondary Full"
     },
     {
       "value": "text-marker-stripe-accent",
       "label": "Stripe Accent"
     },
     {
-      "value": "text-marker-double-primary",
-      "label": "Double Primary"
+      "value": "text-marker-stripe-primary",
+      "label": "Stripe Primary"
+    },
+    {
+      "value": "text-marker-stripe-secondary",
+      "label": "Stripe Secondary"
     }
   ],
   "text-underline": [
     {
-      "value": "text-underline-solid",
-      "label": "Solid"
+      "value": "text-underline-accent",
+      "label": "Accent"
+    },
+    {
+      "value": "text-underline-dashed",
+      "label": "Dashed"
+    },
+    {
+      "value": "text-underline-dotted",
+      "label": "Dotted"
     },
     {
       "value": "text-underline-primary",
@@ -122,27 +134,23 @@ export const componentVariants = {
       "label": "Secondary"
     },
     {
-      "value": "text-underline-accent",
-      "label": "Accent"
-    },
-    {
-      "value": "text-underline-dotted",
-      "label": "Dotted"
-    },
-    {
-      "value": "text-underline-dashed",
-      "label": "Dashed"
-    },
-    {
-      "value": "text-underline-wavy",
-      "label": "Wavy"
+      "value": "text-underline-solid",
+      "label": "Solid"
     },
     {
       "value": "text-underline-thick",
       "label": "Thick"
+    },
+    {
+      "value": "text-underline-wavy",
+      "label": "Wavy"
     }
   ],
   "text-quote": [
+    {
+      "value": "text-quote-accent",
+      "label": "Accent"
+    },
     {
       "value": "text-quote-primary",
       "label": "Primary"
@@ -150,32 +158,28 @@ export const componentVariants = {
     {
       "value": "text-quote-secondary",
       "label": "Secondary"
-    },
-    {
-      "value": "text-quote-accent",
-      "label": "Accent"
     }
   ],
   "infobox": [
     {
-      "value": "infobox-with-icon",
-      "label": "With Icon"
+      "value": "infobox-bordered",
+      "label": "Bordered"
     },
     {
-      "value": "infobox-info",
-      "label": "Info"
-    },
-    {
-      "value": "infobox-success",
-      "label": "Success"
-    },
-    {
-      "value": "infobox-warning",
-      "label": "Warning"
+      "value": "infobox-compact",
+      "label": "Compact"
     },
     {
       "value": "infobox-error",
       "label": "Error"
+    },
+    {
+      "value": "infobox-icon",
+      "label": "Icon"
+    },
+    {
+      "value": "infobox-info",
+      "label": "Info"
     },
     {
       "value": "infobox-note",
@@ -186,10 +190,6 @@ export const componentVariants = {
       "label": "Outline"
     },
     {
-      "value": "infobox-bordered",
-      "label": "Bordered"
-    },
-    {
       "value": "infobox-shadow",
       "label": "Shadow"
     },
@@ -198,102 +198,26 @@ export const componentVariants = {
       "label": "Square"
     },
     {
-      "value": "infobox-icon",
-      "label": "Icon"
+      "value": "infobox-success",
+      "label": "Success"
     },
     {
       "value": "infobox-title",
       "label": "Title"
     },
     {
-      "value": "infobox-compact",
-      "label": "Compact"
+      "value": "infobox-warning",
+      "label": "Warning"
+    },
+    {
+      "value": "infobox-with-icon",
+      "label": "With Icon"
     }
   ],
   "img": [
     {
-      "value": "img-container",
-      "label": "Container"
-    },
-    {
-      "value": "img-rounded-sm",
-      "label": "Rounded Sm"
-    },
-    {
-      "value": "img-rounded",
-      "label": "Rounded"
-    },
-    {
-      "value": "img-rounded-lg",
-      "label": "Rounded Lg"
-    },
-    {
-      "value": "img-circle",
-      "label": "Circle"
-    },
-    {
-      "value": "img-shadow-sm",
-      "label": "Shadow Sm"
-    },
-    {
-      "value": "img-shadow",
-      "label": "Shadow"
-    },
-    {
-      "value": "img-shadow-lg",
-      "label": "Shadow Lg"
-    },
-    {
-      "value": "img-border",
-      "label": "Border"
-    },
-    {
-      "value": "img-border-primary",
-      "label": "Border Primary"
-    },
-    {
-      "value": "img-border-secondary",
-      "label": "Border Secondary"
-    },
-    {
-      "value": "img-border-accent",
-      "label": "Border Accent"
-    },
-    {
-      "value": "img-border-double",
-      "label": "Border Double"
-    },
-    {
-      "value": "img-caption-overlay",
-      "label": "Caption"
-    },
-    {
-      "value": "img-caption-overlay",
-      "label": "Caption Overlay"
-    },
-    {
-      "value": "img-w-full",
-      "label": "Caption Hover"
-    },
-    {
-      "value": "img-w-full",
-      "label": "W Full"
-    },
-    {
-      "value": "img-aspect-square",
-      "label": "W 3/4"
-    },
-    {
-      "value": "img-aspect-square",
-      "label": "W 1/2"
-    },
-    {
-      "value": "img-aspect-square",
-      "label": "W 1/3"
-    },
-    {
-      "value": "img-aspect-square",
-      "label": "W 1/4"
+      "value": "img-aspect-portrait",
+      "label": "Aspect Portrait"
     },
     {
       "value": "img-aspect-square",
@@ -304,12 +228,48 @@ export const componentVariants = {
       "label": "Aspect Video"
     },
     {
-      "value": "img-aspect-portrait",
-      "label": "Aspect Portrait"
+      "value": "img-border",
+      "label": "Border"
     },
     {
-      "value": "img-grid",
-      "label": "Grid"
+      "value": "img-border-accent",
+      "label": "Border Accent"
+    },
+    {
+      "value": "img-border-double",
+      "label": "Border Double"
+    },
+    {
+      "value": "img-border-primary",
+      "label": "Border Primary"
+    },
+    {
+      "value": "img-border-secondary",
+      "label": "Border Secondary"
+    },
+    {
+      "value": "img-brightness-high",
+      "label": "Brightness High"
+    },
+    {
+      "value": "img-brightness-low",
+      "label": "Brightness Low"
+    },
+    {
+      "value": "img-caption-overlay",
+      "label": "Caption Overlay"
+    },
+    {
+      "value": "img-circle",
+      "label": "Circle"
+    },
+    {
+      "value": "img-container",
+      "label": "Container"
+    },
+    {
+      "value": "img-contrast-high",
+      "label": "Contrast High"
     },
     {
       "value": "img-float-left",
@@ -320,10 +280,6 @@ export const componentVariants = {
       "label": "Float Right"
     },
     {
-      "value": "img-zoom-hover",
-      "label": "Zoom Hover"
-    },
-    {
       "value": "img-grayscale",
       "label": "Grayscale"
     },
@@ -332,23 +288,75 @@ export const componentVariants = {
       "label": "Grayscale Hover"
     },
     {
+      "value": "img-grid",
+      "label": "Grid"
+    },
+    {
+      "value": "img-rounded",
+      "label": "Rounded"
+    },
+    {
+      "value": "img-rounded-lg",
+      "label": "Rounded Lg"
+    },
+    {
+      "value": "img-rounded-sm",
+      "label": "Rounded Sm"
+    },
+    {
       "value": "img-sepia",
       "label": "Sepia"
     },
     {
-      "value": "img-brightness-low",
-      "label": "Brightness Low"
+      "value": "img-shadow",
+      "label": "Shadow"
     },
     {
-      "value": "img-brightness-high",
-      "label": "Brightness High"
+      "value": "img-shadow-lg",
+      "label": "Shadow Lg"
     },
     {
-      "value": "img-contrast-high",
-      "label": "Contrast High"
+      "value": "img-shadow-sm",
+      "label": "Shadow Sm"
+    },
+    {
+      "value": "img-w-full",
+      "label": "W Full"
+    },
+    {
+      "value": "img-zoom-hover",
+      "label": "Zoom Hover"
     }
   ],
   "heading": [
+    {
+      "value": "heading-accent-border",
+      "label": "Accent Border"
+    },
+    {
+      "value": "heading-accent-gradient",
+      "label": "Accent Gradient"
+    },
+    {
+      "value": "heading-accent-stripe",
+      "label": "Accent Stripe"
+    },
+    {
+      "value": "heading-casual-badge",
+      "label": "Casual Badge"
+    },
+    {
+      "value": "heading-casual-dotted",
+      "label": "Casual Dotted"
+    },
+    {
+      "value": "heading-casual-wavy",
+      "label": "Casual Wavy"
+    },
+    {
+      "value": "heading-formal-full",
+      "label": "Formal Full"
+    },
     {
       "value": "heading-formal-primary",
       "label": "Formal Primary"
@@ -358,20 +366,8 @@ export const componentVariants = {
       "label": "Formal Underline"
     },
     {
-      "value": "heading-formal-full",
-      "label": "Formal Full"
-    },
-    {
-      "value": "heading-casual-dotted",
-      "label": "Casual Dotted"
-    },
-    {
-      "value": "heading-casual-badge",
-      "label": "Casual Badge"
-    },
-    {
-      "value": "heading-casual-wavy",
-      "label": "Casual Wavy"
+      "value": "heading-technical-bracket",
+      "label": "Technical Bracket"
     },
     {
       "value": "heading-technical-code",
@@ -380,44 +376,32 @@ export const componentVariants = {
     {
       "value": "heading-technical-tag",
       "label": "Technical Tag"
-    },
-    {
-      "value": "heading-technical-bracket",
-      "label": "Technical Bracket"
-    },
-    {
-      "value": "heading-accent-gradient",
-      "label": "Accent Gradient"
-    },
-    {
-      "value": "heading-accent-border",
-      "label": "Accent Border"
-    },
-    {
-      "value": "heading-accent-stripe",
-      "label": "Accent Stripe"
     }
   ],
   "form": [
-    {
-      "value": "form-input",
-      "label": "Input"
-    },
-    {
-      "value": "form-textarea",
-      "label": "Textarea"
-    },
-    {
-      "value": "form-select",
-      "label": "Select"
-    },
     {
       "value": "form-checkbox",
       "label": "Checkbox"
     },
     {
+      "value": "form-feedback",
+      "label": "Feedback"
+    },
+    {
+      "value": "form-input",
+      "label": "Input"
+    },
+    {
       "value": "form-radio",
       "label": "Radio"
+    },
+    {
+      "value": "form-search",
+      "label": "Search"
+    },
+    {
+      "value": "form-select",
+      "label": "Select"
     },
     {
       "value": "form-switch",
@@ -432,58 +416,42 @@ export const componentVariants = {
       "label": "Switch Label"
     },
     {
-      "value": "is-valid",
-      "label": "Valid"
-    },
-    {
-      "value": "is-invalid",
-      "label": "Invalid"
-    },
-    {
-      "value": "form-feedback",
-      "label": "Feedback"
-    },
-    {
-      "value": "form-search",
-      "label": "Search"
+      "value": "form-textarea",
+      "label": "Textarea"
     }
   ],
   "card": [
     {
+      "value": "card-accent",
+      "label": "Accent"
+    },
+    {
+      "value": "card-actions",
+      "label": "Actions"
+    },
+    {
       "value": "card-body",
       "label": "Body"
-    },
-    {
-      "value": "card-header",
-      "label": "Header"
-    },
-    {
-      "value": "card-footer",
-      "label": "Footer"
-    },
-    {
-      "value": "card-title",
-      "label": "Title"
-    },
-    {
-      "value": "card-subtitle",
-      "label": "Subtitle"
     },
     {
       "value": "card-bordered",
       "label": "Bordered"
     },
     {
-      "value": "card-shadow-sm",
-      "label": "Shadow Sm"
+      "value": "card-footer",
+      "label": "Footer"
     },
     {
-      "value": "card-shadow",
-      "label": "Shadow"
+      "value": "card-header",
+      "label": "Header"
     },
     {
-      "value": "card-shadow-lg",
-      "label": "Shadow Lg"
+      "value": "card-horizontal",
+      "label": "Horizontal"
+    },
+    {
+      "value": "card-hover",
+      "label": "Hover"
     },
     {
       "value": "card-primary",
@@ -494,74 +462,34 @@ export const componentVariants = {
       "label": "Secondary"
     },
     {
-      "value": "card-accent",
-      "label": "Accent"
+      "value": "card-shadow",
+      "label": "Shadow"
     },
     {
-      "value": "card-hover",
-      "label": "Hover"
+      "value": "card-shadow-lg",
+      "label": "Shadow Lg"
     },
     {
-      "value": "card-body",
-      "label": "Compact"
+      "value": "card-shadow-sm",
+      "label": "Shadow Sm"
     },
     {
-      "value": "card-horizontal",
-      "label": "Horizontal"
+      "value": "card-subtitle",
+      "label": "Subtitle"
     },
     {
-      "value": "card-actions",
-      "label": "Actions"
+      "value": "card-title",
+      "label": "Title"
     }
   ],
   "button": [
-    {
-      "value": "btn-primary",
-      "label": "Primary"
-    },
-    {
-      "value": "btn-secondary",
-      "label": "Secondary"
-    },
     {
       "value": "btn-accent",
       "label": "Accent"
     },
     {
-      "value": "btn-neutral",
-      "label": "Neutral"
-    },
-    {
-      "value": "btn-light",
-      "label": "Light"
-    },
-    {
       "value": "btn-dark",
       "label": "Dark"
-    },
-    {
-      "value": "btn-outline-primary",
-      "label": "Outline Primary"
-    },
-    {
-      "value": "btn-outline-secondary",
-      "label": "Outline Secondary"
-    },
-    {
-      "value": "btn-outline-accent",
-      "label": "Outline Accent"
-    },
-    {
-      "value": "btn-outline-neutral",
-      "label": "Outline Neutral"
-    },
-    {
-      "value": "btn-ghost-primary",
-      "label": "Ghost Primary"
-    },
-    {
-      "value": "btn-ghost-secondary",
-      "label": "Ghost Secondary"
     },
     {
       "value": "btn-ghost-accent",
@@ -572,6 +500,18 @@ export const componentVariants = {
       "label": "Ghost Neutral"
     },
     {
+      "value": "btn-ghost-primary",
+      "label": "Ghost Primary"
+    },
+    {
+      "value": "btn-ghost-secondary",
+      "label": "Ghost Secondary"
+    },
+    {
+      "value": "btn-gradient-accent",
+      "label": "Gradient Accent"
+    },
+    {
       "value": "btn-gradient-primary",
       "label": "Gradient Primary"
     },
@@ -580,8 +520,12 @@ export const componentVariants = {
       "label": "Gradient Secondary"
     },
     {
-      "value": "btn-gradient-accent",
-      "label": "Gradient Accent"
+      "value": "btn-light",
+      "label": "Light"
+    },
+    {
+      "value": "btn-link-accent",
+      "label": "Link Accent"
     },
     {
       "value": "btn-link-primary",
@@ -592,8 +536,32 @@ export const componentVariants = {
       "label": "Link Secondary"
     },
     {
-      "value": "btn-link-accent",
-      "label": "Link Accent"
+      "value": "btn-neutral",
+      "label": "Neutral"
+    },
+    {
+      "value": "btn-outline-accent",
+      "label": "Outline Accent"
+    },
+    {
+      "value": "btn-outline-neutral",
+      "label": "Outline Neutral"
+    },
+    {
+      "value": "btn-outline-primary",
+      "label": "Outline Primary"
+    },
+    {
+      "value": "btn-outline-secondary",
+      "label": "Outline Secondary"
+    },
+    {
+      "value": "btn-primary",
+      "label": "Primary"
+    },
+    {
+      "value": "btn-secondary",
+      "label": "Secondary"
     }
   ],
   "button-group": [
@@ -627,6 +595,7 @@ export const classDescriptions = {
   "text-quote-accent": "引用テキストにアクセントカラーの左側ボーダーを適用します",
   "text-marker-stripe-primary": "プライマリカラーのストライプパターンでテキスト下部をマーカーします",
   "text-marker-stripe-accent": "アクセントカラーのストライプパターンでテキスト下部をマーカーします",
+  "text-marker-stripe-secondary": "アクセントカラーのストライプパターンでテキスト下部をマーカーします",
   "text-marker-double-primary": "プライマリカラーの二重マーカー効果を適用します",
   "infobox-with-icon": "アイコン付きの情報ボックス。視覚的な手がかりを追加します。",
   "infobox-info": "一般的な情報を表示するボックス。通常の通知やメッセージに使用します。",
@@ -691,12 +660,10 @@ export const classDescriptions = {
   "form-switch": "トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。",
   "form-switch-input": "トグルスイッチの入力要素。実際のチェックボックスですが非表示にします。",
   "form-switch-label": "トグルスイッチの表示部分。スイッチの見た目を形成します。",
-  "is-valid": "入力が有効である場合のスタイル。フォームバリデーション時に使用します。",
-  "is-invalid": "入力が無効である場合のスタイル。フォームバリデーション時に使用します。",
   "form-feedback": "フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。",
   "form-search": "検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。",
   "card": "基本的なカードスタイル。情報をグループ化して表示するために使用されます。shadcn UIと互換性があります。",
-  "card-body": "内部の余白が小さいコンパクトなカード。スペースを節約したい場合に使用します。",
+  "card-body": "カードの主要コンテンツ部分。カード内の主たる情報を表示します。",
   "card-header": "カードのヘッダー部分。タイトルや概要情報を表示します。",
   "card-footer": "カードのフッター部分。アクションボタンや補足情報を表示します。",
   "card-title": "カードのタイトル要素。主見出しとして使用します。",
@@ -734,4 +701,668 @@ export const classDescriptions = {
   "btn-link-secondary": "セカンダリカラーを使用したリンク風ボタン。補助的なインラインリンクのようなアクションに使用します。",
   "btn-link-accent": "アクセントカラーを使用したリンク風ボタン。注目させたいインラインリンクに使用します。",
   "btn-base": "すべてのボタンの基本スタイル。インタラクティブ要素に必要な共通のスタイルとレイアウトを提供します。"
+};
+
+// componentExamples もエクスポートすると便利かもしれない
+export const componentExamples = {
+  "text-marker": [
+    {
+      "variant": "primary",
+      "className": "text-marker-primary",
+      "example": "<span class=\"text-marker-primary\">プライマリカラーマーカー</span>"
+    },
+    {
+      "variant": "secondary",
+      "className": "text-marker-secondary",
+      "example": "<span class=\"text-marker-secondary\">セカンダリカラーマーカー</span>"
+    },
+    {
+      "variant": "accent",
+      "className": "text-marker-accent",
+      "example": "<span class=\"text-marker-accent\">アクセントカラーマーカー</span>"
+    },
+    {
+      "variant": "neutral",
+      "className": "text-marker-neutral",
+      "example": "<span class=\"text-marker-neutral\">ニュートラルカラーマーカー</span>"
+    },
+    {
+      "variant": "primary-full",
+      "className": "text-marker-primary-full",
+      "example": "<span class=\"text-marker-primary-full\">全面プライマリカラーマーカー</span>"
+    },
+    {
+      "variant": "secondary-full",
+      "className": "text-marker-secondary-full",
+      "example": "<span class=\"text-marker-secondary-full\">全面セカンダリカラーマーカー</span>"
+    },
+    {
+      "variant": "accent-full",
+      "className": "text-marker-accent-full",
+      "example": "<span class=\"text-marker-accent-full\">全面アクセントカラーマーカー</span>"
+    },
+    {
+      "variant": "neutral-full",
+      "className": "text-marker-neutral-full",
+      "example": "<span class=\"text-marker-neutral-full\">全面ニュートラルカラーマーカー</span>"
+    },
+    {
+      "variant": "stripe-primary",
+      "className": "text-marker-stripe-primary",
+      "example": "<span class=\"text-marker-stripe-primary\">ストライプマーカー</span>"
+    },
+    {
+      "variant": "stripe-accent",
+      "className": "text-marker-stripe-accent",
+      "example": "<span class=\"text-marker-stripe-accent\">アクセントストライプマーカー</span>"
+    },
+    {
+      "variant": "stripe-secondary",
+      "className": "text-marker-stripe-secondary",
+      "example": "<span class=\"text-marker-stripe-secondary\">アクセントストライプマーカー</span>"
+    },
+    {
+      "variant": "double-primary",
+      "className": "text-marker-double-primary",
+      "example": "<span class=\"text-marker-double-primary\">二重マーカーテキスト</span>"
+    }
+  ],
+  "text-underline": [
+    {
+      "variant": "solid",
+      "className": "text-underline-solid",
+      "example": "<span class=\"text-underline-solid\">実線下線テキスト</span>"
+    },
+    {
+      "variant": "primary",
+      "className": "text-underline-primary",
+      "example": "<span class=\"text-underline-primary\">プライマリカラー下線</span>"
+    },
+    {
+      "variant": "secondary",
+      "className": "text-underline-secondary",
+      "example": "<span class=\"text-underline-secondary\">セカンダリカラー下線</span>"
+    },
+    {
+      "variant": "accent",
+      "className": "text-underline-accent",
+      "example": "<span class=\"text-underline-accent\">アクセントカラー下線</span>"
+    },
+    {
+      "variant": "dotted",
+      "className": "text-underline-dotted",
+      "example": "<span class=\"text-underline-dotted\">ドット下線テキスト</span>"
+    },
+    {
+      "variant": "dashed",
+      "className": "text-underline-dashed",
+      "example": "<span class=\"text-underline-dashed\">破線下線テキスト</span>"
+    },
+    {
+      "variant": "wavy",
+      "className": "text-underline-wavy",
+      "example": "<span class=\"text-underline-wavy\">波線下線テキスト</span>"
+    },
+    {
+      "variant": "thick",
+      "className": "text-underline-thick",
+      "example": "<span class=\"text-underline-thick\">太線下線テキスト</span>"
+    }
+  ],
+  "text-quote": [
+    {
+      "variant": "base",
+      "className": "text-quote",
+      "example": "<p class=\"text-quote\">引用テキストの例です</p>"
+    },
+    {
+      "variant": "primary",
+      "className": "text-quote-primary",
+      "example": "<p class=\"text-quote-primary\">プライマリカラー引用テキスト</p>"
+    },
+    {
+      "variant": "secondary",
+      "className": "text-quote-secondary",
+      "example": "<p class=\"text-quote-secondary\">セカンダリカラー引用テキスト</p>"
+    },
+    {
+      "variant": "accent",
+      "className": "text-quote-accent",
+      "example": "<p class=\"text-quote-accent\">アクセントカラー引用テキスト</p>"
+    }
+  ],
+  "infobox": [
+    {
+      "variant": "with-icon",
+      "className": "infobox-with-icon",
+      "example": "<div class=\"infobox-info infobox-with-icon\">\n<span class=\"infobox-icon\">\n<svg>...</svg>\n</span>\nアイコン付き情報ボックス\n</div>"
+    },
+    {
+      "variant": "info",
+      "className": "infobox-info",
+      "example": "<div class=\"infobox-info\">\n情報: このサービスは24時間利用可能です。\n</div>"
+    },
+    {
+      "variant": "success",
+      "className": "infobox-success",
+      "example": "<div class=\"infobox-success\">\n成功: データの保存が完了しました。\n</div>"
+    },
+    {
+      "variant": "warning",
+      "className": "infobox-warning",
+      "example": "<div class=\"infobox-warning\">\n警告: このアクションは取り消せません。\n</div>"
+    },
+    {
+      "variant": "error",
+      "className": "infobox-error",
+      "example": "<div class=\"infobox-error\">\nエラー: ファイルの上传に失敗しました。\n</div>"
+    },
+    {
+      "variant": "note",
+      "className": "infobox-note",
+      "example": "<div class=\"infobox-note\">\nメモ: 詳細については資料を参照してください。\n</div>"
+    },
+    {
+      "variant": "outline",
+      "className": "infobox-outline",
+      "example": "<div class=\"infobox-info infobox-outline\">\n枠線のみの情報ボックス\n</div>"
+    },
+    {
+      "variant": "bordered",
+      "className": "infobox-bordered",
+      "example": "<div class=\"infobox-info infobox-bordered\">\n枠線付きの情報ボックス\n</div>"
+    },
+    {
+      "variant": "shadow",
+      "className": "infobox-shadow",
+      "example": "<div class=\"infobox-info infobox-shadow\">\n影付きの情報ボックス\n</div>"
+    },
+    {
+      "variant": "square",
+      "className": "infobox-square",
+      "example": "<div class=\"infobox-info infobox-square\">\n角丸なしの情報ボックス\n</div>"
+    },
+    {
+      "variant": "icon",
+      "className": "infobox-icon",
+      "example": "<div class=\"infobox-info infobox-with-icon\">\n<span class=\"infobox-icon\">\n<svg>...</svg>\n</span>\nアイコン付き情報ボックス\n</div>"
+    },
+    {
+      "variant": "title",
+      "className": "infobox-title",
+      "example": "<div class=\"infobox-info\"><h4 class=\"infobox-title\">重要なお知らせ</h4><p>システムメンテナンスのお知らせです。</p></div>"
+    },
+    {
+      "variant": "compact",
+      "className": "infobox-compact",
+      "example": "<div class=\"infobox-info infobox-compact\">\nコンパクトサイズの情報ボックス\n</div>"
+    },
+    {
+      "variant": "base",
+      "className": "infobox-base",
+      "example": "<div class=\"infobox-base\">基本的な情報ボックス</div>"
+    }
+  ],
+  "img": [
+    {
+      "variant": "container",
+      "className": "img-container",
+      "example": "<figure class=\"img-container\">\n<img src=\"image.jpg\" alt=\"説明\" />\n</figure>"
+    },
+    {
+      "variant": "rounded-sm",
+      "className": "img-rounded-sm",
+      "example": "<figure class=\"img-container img-rounded-sm\">\n<img src=\"image.jpg\" alt=\"小さい角丸画像\" />\n</figure>"
+    },
+    {
+      "variant": "rounded",
+      "className": "img-rounded",
+      "example": "<figure class=\"img-container img-rounded\">\n<img src=\"image.jpg\" alt=\"角丸画像\" />\n</figure>"
+    },
+    {
+      "variant": "rounded-lg",
+      "className": "img-rounded-lg",
+      "example": "<figure class=\"img-container img-rounded-lg\">\n<img src=\"image.jpg\" alt=\"大きい角丸画像\" />\n</figure>"
+    },
+    {
+      "variant": "circle",
+      "className": "img-circle",
+      "example": "<figure class=\"img-container img-circle\">\n<img src=\"profile.jpg\" alt=\"プロフィール画像\" />\n</figure>"
+    },
+    {
+      "variant": "shadow-sm",
+      "className": "img-shadow-sm",
+      "example": "<figure class=\"img-container img-shadow-sm\">\n<img src=\"image.jpg\" alt=\"小さい影付き画像\" />\n</figure>"
+    },
+    {
+      "variant": "shadow",
+      "className": "img-shadow",
+      "example": "<figure class=\"img-container img-shadow\">\n<img src=\"image.jpg\" alt=\"影付き画像\" />\n</figure>"
+    },
+    {
+      "variant": "shadow-lg",
+      "className": "img-shadow-lg",
+      "example": "<figure class=\"img-container img-shadow-lg\">\n<img src=\"image.jpg\" alt=\"大きい影付き画像\" />\n</figure>"
+    },
+    {
+      "variant": "border",
+      "className": "img-border",
+      "example": "<figure class=\"img-container img-border\">\n<img src=\"image.jpg\" alt=\"ボーダー付き画像\" />\n</figure>"
+    },
+    {
+      "variant": "border-primary",
+      "className": "img-border-primary",
+      "example": "<figure class=\"img-container img-border-primary\">\n<img src=\"image.jpg\" alt=\"プライマリボーダー画像\" />\n</figure>"
+    },
+    {
+      "variant": "border-secondary",
+      "className": "img-border-secondary",
+      "example": "<figure class=\"img-container img-border-secondary\">\n<img src=\"image.jpg\" alt=\"セカンダリボーダー画像\" />\n</figure>"
+    },
+    {
+      "variant": "border-accent",
+      "className": "img-border-accent",
+      "example": "<figure class=\"img-container img-border-accent\">\n<img src=\"image.jpg\" alt=\"アクセントボーダー画像\" />\n</figure>"
+    },
+    {
+      "variant": "border-double",
+      "className": "img-border-double",
+      "example": "<figure class=\"img-container img-border-double\">\n<img src=\"image.jpg\" alt=\"二重ボーダー画像\" />\n</figure>"
+    },
+    {
+      "variant": "caption-overlay",
+      "className": "img-caption-overlay",
+      "example": "<figure class=\"img-container img-caption-overlay\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>"
+    },
+    {
+      "variant": "w-full",
+      "className": "img-w-full",
+      "example": "<figure class=\"img-container img-w-full\">\n<img src=\"image.jpg\" alt=\"幅いっぱいの画像\" />\n</figure>"
+    },
+    {
+      "variant": "aspect-square",
+      "className": "img-aspect-square",
+      "example": "<figure class=\"img-container img-aspect-square\">\n<img src=\"image.jpg\" alt=\"正方形画像\" />\n</figure>"
+    },
+    {
+      "variant": "aspect-video",
+      "className": "img-aspect-video",
+      "example": "<figure class=\"img-container img-aspect-video\">\n<img src=\"image.jpg\" alt=\"ビデオ比率画像\" />\n</figure>"
+    },
+    {
+      "variant": "aspect-portrait",
+      "className": "img-aspect-portrait",
+      "example": "<figure class=\"img-container img-aspect-portrait\">\n<img src=\"image.jpg\" alt=\"ポートレート比率画像\" />\n</figure>"
+    },
+    {
+      "variant": "grid",
+      "className": "img-grid",
+      "example": "<div class=\"img-grid\">\n<figure class=\"img-container\"><img src=\"image1.jpg\" alt=\"画像1\" /></figure>\n<figure class=\"img-container\"><img src=\"image2.jpg\" alt=\"画像2\" /></figure>\n<figure class=\"img-container\"><img src=\"image3.jpg\" alt=\"画像3\" /></figure>\n</div>"
+    },
+    {
+      "variant": "float-left",
+      "className": "img-float-left",
+      "example": "<figure class=\"img-container img-float-left\">\n<img src=\"image.jpg\" alt=\"左配置画像\" />\n</figure>\n<p>この文章は画像の右側に回り込みます...</p>"
+    },
+    {
+      "variant": "float-right",
+      "className": "img-float-right",
+      "example": "<figure class=\"img-container img-float-right\">\n<img src=\"image.jpg\" alt=\"右配置画像\" />\n</figure>\n<p>この文章は画像の左側に回り込みます...</p>"
+    },
+    {
+      "variant": "zoom-hover",
+      "className": "img-zoom-hover",
+      "example": "<figure class=\"img-container img-zoom-hover\">\n<img src=\"image.jpg\" alt=\"ホバーでズームする画像\" />\n</figure>"
+    },
+    {
+      "variant": "grayscale",
+      "className": "img-grayscale",
+      "example": "<figure class=\"img-container img-grayscale\">\n<img src=\"image.jpg\" alt=\"グレースケール画像\" />\n</figure>"
+    },
+    {
+      "variant": "grayscale-hover",
+      "className": "img-grayscale-hover",
+      "example": "<figure class=\"img-container img-grayscale-hover\">\n<img src=\"image.jpg\" alt=\"ホバーでカラーになる画像\" />\n</figure>"
+    },
+    {
+      "variant": "sepia",
+      "className": "img-sepia",
+      "example": "<figure class=\"img-container img-sepia\">\n<img src=\"image.jpg\" alt=\"セピア調画像\" />\n</figure>"
+    },
+    {
+      "variant": "brightness-low",
+      "className": "img-brightness-low",
+      "example": "<figure class=\"img-container img-brightness-low\">\n<img src=\"image.jpg\" alt=\"暗めの画像\" />\n</figure>"
+    },
+    {
+      "variant": "brightness-high",
+      "className": "img-brightness-high",
+      "example": "<figure class=\"img-container img-brightness-high\">\n<img src=\"image.jpg\" alt=\"明るめの画像\" />\n</figure>"
+    },
+    {
+      "variant": "contrast-high",
+      "className": "img-contrast-high",
+      "example": "<figure class=\"img-container img-contrast-high\">\n<img src=\"image.jpg\" alt=\"高コントラスト画像\" />\n</figure>"
+    }
+  ],
+  "heading": [
+    {
+      "variant": "formal-primary",
+      "className": "heading-formal-primary",
+      "example": "<h2 class=\"heading-formal-primary\">プライマリフォーマル見出し</h2>"
+    },
+    {
+      "variant": "formal-underline",
+      "className": "heading-formal-underline",
+      "example": "<h2 class=\"heading-formal-underline\">下線付きフォーマル見出し</h2>"
+    },
+    {
+      "variant": "formal-full",
+      "className": "heading-formal-full",
+      "example": "<h2 class=\"heading-formal-full\">フルバックグラウンド見出し</h2>"
+    },
+    {
+      "variant": "casual-dotted",
+      "className": "heading-casual-dotted",
+      "example": "<h2 class=\"heading-casual-dotted\">ドット下線カジュアル見出し</h2>"
+    },
+    {
+      "variant": "casual-badge",
+      "className": "heading-casual-badge",
+      "example": "<h2 class=\"heading-casual-badge\">バッジスタイル見出し</h2>"
+    },
+    {
+      "variant": "casual-wavy",
+      "className": "heading-casual-wavy",
+      "example": "<h2 class=\"heading-casual-wavy\">波線下線カジュアル見出し</h2>"
+    },
+    {
+      "variant": "technical-code",
+      "className": "heading-technical-code",
+      "example": "<h2 class=\"heading-technical-code\">コード風見出し</h2>"
+    },
+    {
+      "variant": "technical-tag",
+      "className": "heading-technical-tag",
+      "example": "<h2 class=\"heading-technical-tag\">タグ風見出し</h2>"
+    },
+    {
+      "variant": "technical-bracket",
+      "className": "heading-technical-bracket",
+      "example": "<h2 class=\"heading-technical-bracket\">角括弧付き見出し</h2>"
+    },
+    {
+      "variant": "accent-gradient",
+      "className": "heading-accent-gradient",
+      "example": "<h2 class=\"heading-accent-gradient\">グラデーション見出し</h2>"
+    },
+    {
+      "variant": "accent-border",
+      "className": "heading-accent-border",
+      "example": "<h2 class=\"heading-accent-border\">強調ボーダー見出し</h2>"
+    },
+    {
+      "variant": "accent-stripe",
+      "className": "heading-accent-stripe",
+      "example": "<h2 class=\"heading-accent-stripe\">ストライプ背景見出し</h2>"
+    },
+    {
+      "variant": "base",
+      "className": "heading-base",
+      "example": "<h2 class=\"heading-base\">基本的な見出し</h2>"
+    }
+  ],
+  "form": [
+    {
+      "variant": "input",
+      "className": "form-input",
+      "example": "<input type=\"text\" class=\"form-input\" placeholder=\"入力してください\">"
+    },
+    {
+      "variant": "textarea",
+      "className": "form-textarea",
+      "example": "<textarea class=\"form-textarea\" placeholder=\"ご質問やご意見をお書きください\"></textarea>"
+    },
+    {
+      "variant": "select",
+      "className": "form-select",
+      "example": "<select class=\"form-select\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>"
+    },
+    {
+      "variant": "checkbox",
+      "className": "form-checkbox",
+      "example": "<input type=\"checkbox\" class=\"form-checkbox\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>"
+    },
+    {
+      "variant": "radio",
+      "className": "form-radio",
+      "example": "<input type=\"radio\" class=\"form-radio\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>"
+    },
+    {
+      "variant": "switch",
+      "className": "form-switch",
+      "example": "<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label\" for=\"darkmode\"></label>\n</div>"
+    },
+    {
+      "variant": "switch-input",
+      "className": "form-switch-input",
+      "example": "<input type=\"checkbox\" class=\"form-switch-input\" id=\"switch\">"
+    },
+    {
+      "variant": "switch-label",
+      "className": "form-switch-label",
+      "example": "<label class=\"form-switch-label\" for=\"switch\"></label>"
+    },
+    {
+      "variant": "feedback",
+      "className": "form-feedback",
+      "example": "<div class=\"form-feedback is-valid\">入力内容は有効です</div>\n<div class=\"form-feedback is-invalid\">必須項目です</div>"
+    },
+    {
+      "variant": "search",
+      "className": "form-search",
+      "example": "<input type=\"search\" class=\"form-input form-search\" placeholder=\"検索...\">"
+    }
+  ],
+  "card": [
+    {
+      "variant": "base",
+      "className": "card",
+      "example": "<div class=\"card\">\n<div class=\"card-body\">シンプルなカードの内容</div>\n</div>"
+    },
+    {
+      "variant": "body",
+      "className": "card-body",
+      "example": "<div class=\"card\">\n<div class=\"card-body\">カードの内容</div>\n</div>"
+    },
+    {
+      "variant": "header",
+      "className": "card-header",
+      "example": "<div class=\"card\">\n<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n</div>\n<div class=\"card-body\">カードの内容</div>\n</div>"
+    },
+    {
+      "variant": "footer",
+      "className": "card-footer",
+      "example": "<div class=\"card\">\n<div class=\"card-body\">カードの内容</div>\n<div class=\"card-footer\">\n<button class=\"btn-base btn-primary\">確認</button>\n</div>\n</div>"
+    },
+    {
+      "variant": "title",
+      "className": "card-title",
+      "example": "<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n</div>"
+    },
+    {
+      "variant": "subtitle",
+      "className": "card-subtitle",
+      "example": "<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n<p class=\"card-subtitle\">補足情報</p>\n</div>"
+    },
+    {
+      "variant": "bordered",
+      "className": "card-bordered",
+      "example": "<div class=\"card card-bordered\">\n<div class=\"card-body\">枠線付きカード</div>\n</div>"
+    },
+    {
+      "variant": "shadow-sm",
+      "className": "card-shadow-sm",
+      "example": "<div class=\"card card-shadow-sm\">\n<div class=\"card-body\">小さな影付きカード</div>\n</div>"
+    },
+    {
+      "variant": "shadow",
+      "className": "card-shadow",
+      "example": "<div class=\"card card-shadow\">\n<div class=\"card-body\">影付きカード</div>\n</div>"
+    },
+    {
+      "variant": "shadow-lg",
+      "className": "card-shadow-lg",
+      "example": "<div class=\"card card-shadow-lg\">\n<div class=\"card-body\">大きな影付きカード</div>\n</div>"
+    },
+    {
+      "variant": "primary",
+      "className": "card-primary",
+      "example": "<div class=\"card card-primary\">\n<div class=\"card-body\">プライマリカラーカード</div>\n</div>"
+    },
+    {
+      "variant": "secondary",
+      "className": "card-secondary",
+      "example": "<div class=\"card card-secondary\">\n<div class=\"card-body\">セカンダリカラーカード</div>\n</div>"
+    },
+    {
+      "variant": "accent",
+      "className": "card-accent",
+      "example": "<div class=\"card card-accent\">\n<div class=\"card-body\">アクセントカラーカード</div>\n</div>"
+    },
+    {
+      "variant": "hover",
+      "className": "card-hover",
+      "example": "<div class=\"card card-hover\">\n<div class=\"card-body\">ホバーで浮き上がるカード</div>\n</div>"
+    },
+    {
+      "variant": "horizontal",
+      "className": "card-horizontal",
+      "example": "<div class=\"card card-horizontal\">\n<div class=\"card-image\"><img src=\"example.jpg\" alt=\"例\" /></div>\n<div class=\"card-body\">横並びレイアウトのカード</div>\n</div>"
+    },
+    {
+      "variant": "actions",
+      "className": "card-actions",
+      "example": "<div class=\"card\">\n<div class=\"card-body\">カードの内容</div>\n<div class=\"card-actions\">\n<button class=\"btn-base btn-primary\">確認</button>\n<button class=\"btn-base btn-outline-neutral\">キャンセル</button>\n</div>\n</div>"
+    }
+  ],
+  "button": [
+    {
+      "variant": "primary",
+      "className": "btn-primary",
+      "example": "<button class=\"btn-base btn-primary\">プライマリボタン</button>"
+    },
+    {
+      "variant": "secondary",
+      "className": "btn-secondary",
+      "example": "<button class=\"btn-base btn-secondary\">セカンダリボタン</button>"
+    },
+    {
+      "variant": "accent",
+      "className": "btn-accent",
+      "example": "<button class=\"btn-base btn-accent\">アクセントボタン</button>"
+    },
+    {
+      "variant": "neutral",
+      "className": "btn-neutral",
+      "example": "<button class=\"btn-base btn-neutral\">ニュートラルボタン</button>"
+    },
+    {
+      "variant": "light",
+      "className": "btn-light",
+      "example": "<button class=\"btn-base btn-light\">ライトボタン</button>"
+    },
+    {
+      "variant": "dark",
+      "className": "btn-dark",
+      "example": "<button class=\"btn-base btn-dark\">ダークボタン</button>"
+    },
+    {
+      "variant": "outline-primary",
+      "className": "btn-outline-primary",
+      "example": "<button class=\"btn-base btn-outline-primary\">プライマリアウトラインボタン</button>"
+    },
+    {
+      "variant": "outline-secondary",
+      "className": "btn-outline-secondary",
+      "example": "<button class=\"btn-base btn-outline-secondary\">セカンダリアウトラインボタン</button>"
+    },
+    {
+      "variant": "outline-accent",
+      "className": "btn-outline-accent",
+      "example": "<button class=\"btn-base btn-outline-accent\">アクセントアウトラインボタン</button>"
+    },
+    {
+      "variant": "outline-neutral",
+      "className": "btn-outline-neutral",
+      "example": "<button class=\"btn-base btn-outline-neutral\">ニュートラルアウトラインボタン</button>"
+    },
+    {
+      "variant": "ghost-primary",
+      "className": "btn-ghost-primary",
+      "example": "<button class=\"btn-base btn-ghost-primary\">プライマリゴーストボタン</button>"
+    },
+    {
+      "variant": "ghost-secondary",
+      "className": "btn-ghost-secondary",
+      "example": "<button class=\"btn-base btn-ghost-secondary\">セカンダリゴーストボタン</button>"
+    },
+    {
+      "variant": "ghost-accent",
+      "className": "btn-ghost-accent",
+      "example": "<button class=\"btn-base btn-ghost-accent\">アクセントゴーストボタン</button>"
+    },
+    {
+      "variant": "ghost-neutral",
+      "className": "btn-ghost-neutral",
+      "example": "<button class=\"btn-base btn-ghost-neutral\">ニュートラルゴーストボタン</button>"
+    },
+    {
+      "variant": "gradient-primary",
+      "className": "btn-gradient-primary",
+      "example": "<button class=\"btn-base btn-gradient-primary\">グラデーションプライマリボタン</button>"
+    },
+    {
+      "variant": "gradient-secondary",
+      "className": "btn-gradient-secondary",
+      "example": "<button class=\"btn-base btn-gradient-secondary\">グラデーションセカンダリボタン</button>"
+    },
+    {
+      "variant": "gradient-accent",
+      "className": "btn-gradient-accent",
+      "example": "<button class=\"btn-base btn-gradient-accent\">グラデーションアクセントボタン</button>"
+    },
+    {
+      "variant": "link-primary",
+      "className": "btn-link-primary",
+      "example": "<button class=\"btn-base btn-link-primary\">プライマリリンクボタン</button>"
+    },
+    {
+      "variant": "link-secondary",
+      "className": "btn-link-secondary",
+      "example": "<button class=\"btn-base btn-link-secondary\">セカンダリリンクボタン</button>"
+    },
+    {
+      "variant": "link-accent",
+      "className": "btn-link-accent",
+      "example": "<button class=\"btn-base btn-link-accent\">アクセントリンクボタン</button>"
+    },
+    {
+      "variant": "base",
+      "className": "btn-base",
+      "example": "<button class=\"btn-base btn-primary\">ボタン</button>"
+    }
+  ],
+  "button-group": [
+    {
+      "variant": "base",
+      "className": "btn-group",
+      "example": "<div class=\"btn-group\">\n<button class=\"btn-base btn-primary\">左</button>\n<button class=\"btn-base btn-primary\">中央</button>\n<button class=\"btn-base btn-primary\">右</button>\n</div>"
+    },
+    {
+      "variant": "vertical",
+      "className": "btn-group-vertical",
+      "example": "<div class=\"btn-group-vertical\">\n<button class=\"btn-base btn-primary\">上</button>\n<button class=\"btn-base btn-primary\">中央</button>\n<button class=\"btn-base btn-primary\">下</button>\n</div>"
+    }
+  ]
 };

@@ -38,6 +38,10 @@ import {
  * 視覚的にプレビューしながら組み合わせられる
  */
 const ClassBuilder = () => {
+	
+
+	
+
 	// カスタムフックを使用して状態管理
 	const { state, actions } = useClassBuilder()
 
@@ -219,52 +223,56 @@ const ClassBuilder = () => {
 
 				{/* 右側: プレビューと生成コード */}
 				<div className='panel-preview'>
-					{/* 背景色設定 */}
-					<div className='flex flex-wrap items-center gap-4 pb-2 border-b'>
-						<span className='text-sm font-medium'>背景:</span>
-						<div className='flex gap-2'>
-							<button
-								onClick={() => actions.setPreviewBg('bg-transparent')}
-								className={`w-6 h-6 rounded-full border border-dashed ${state.previewBg === 'bg-transparent' ? 'ring-2 ring-primary' : ''}`}
-								aria-label='透過背景'
-								title='透過背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-white')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-white' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: 'white' }}
-								aria-label='白背景'
-								title='白背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-neutral-200')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-neutral-200' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: '#e5e5e5' }}
-								aria-label='グレー背景'
-								title='グレー背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-neutral-800')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-neutral-800' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: '#262626' }}
-								aria-label='黒背景'
-								title='黒背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-primary-light')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-primary-light' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: 'var(--primary-light)' }}
-								aria-label='プライマリライト背景'
-								title='プライマリライト背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-secondary-light')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-secondary-light' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: 'var(--secondary-light)' }}
-								aria-label='セカンダリライト背景'
-								title='セカンダリライト背景'
-							></button>
+					{/* 上部コントロール: 背景色設定とテーマ切り替え */}
+					<div className='flex flex-wrap items-center justify-between gap-4 pb-2 border-b'>
+						{/* 背景色設定 */}
+						<div className='flex items-center gap-2'>
+							<span className='text-sm font-medium'>背景:</span>
+							<div className='flex gap-1'>
+								<button
+									onClick={() => actions.setPreviewBg('bg-transparent')}
+									className={`w-5 h-5 rounded-full border border-dashed ${state.previewBg === 'bg-transparent' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									aria-label='透過背景'
+									title='透過背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-white')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-white' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: 'white' }}
+									aria-label='白背景'
+									title='白背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-neutral-200')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-neutral-200' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: '#e5e5e5' }}
+									aria-label='グレー背景'
+									title='グレー背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-neutral-800')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-neutral-800' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: '#262626' }}
+									aria-label='黒背景'
+									title='黒背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-primary-light')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-primary-light' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: 'var(--primary-light)' }}
+									aria-label='プライマリライト背景'
+									title='プライマリライト背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-secondary-light')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-secondary-light' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: 'var(--secondary-light)' }}
+									aria-label='セカンダリライト背景'
+									title='セカンダリライト背景'
+								></button>
+							</div>
 						</div>
+						
 					</div>
 
 					{/* CSS変数エディタボタン */}

@@ -47,7 +47,7 @@ const ClassCodeDisplay = ({
 			<div>
 				<h3 className='label-config label-generated-class'>生成されたクラス</h3>
 				<div className='flex items-center gap-2'>
-					<div className='bg-neutral-100 p-3 rounded font-mono text-sm overflow-x-auto flex-grow'>
+					<div className='code-aria p-3 rounded  text-sm overflow-x-auto flex-grow'>
 						{classString || '<クラスを選択してください>'}
 					</div>
 					<button
@@ -74,7 +74,7 @@ const ClassCodeDisplay = ({
 				</button>
 			</div>
 
-			<div className='bg-neutral-100 p-3 rounded font-mono text-sm overflow-x-auto'>
+			<div className='code-aria p-3 rounded  text-sm overflow-x-auto'>
 				<pre>{htmlString}</pre>
 			</div>
 		</div>

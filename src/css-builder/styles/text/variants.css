@@ -14,11 +14,12 @@
 	.text-marker-primary {
 		background-image: linear-gradient(
 			transparent 60%,
-			rgba(var(--primary-rgb), var(--text-marker-opacity)) 40%
+			var(--marker-primary-bg) 40%
 		);
 		background-size: 100% 100%;
 		background-position: 0 0;
 		background-repeat: no-repeat;
+		@apply bg-opacity-40;
 	}
 
 	/* 
@@ -31,7 +32,7 @@
 	.text-marker-secondary {
 		background-image: linear-gradient(
 			transparent 60%,
-			rgba(var(--secondary-rgb), var(--text-marker-opacity)) 40%
+			var(--marker-secondary-bg) 40%
 		);
 		background-size: 100% 100%;
 		background-position: 0 0;
@@ -48,7 +49,7 @@
 	.text-marker-accent {
 		background-image: linear-gradient(
 			transparent 60%,
-			rgba(var(--accent-rgb), var(--text-marker-opacity)) 40%
+			var(--marker-accent-bg) 40%
 		);
 		background-size: 100% 100%;
 		background-position: 0 0;
@@ -65,7 +66,7 @@
 	.text-marker-neutral {
 		background-image: linear-gradient(
 			transparent 60%,
-			rgba(var(--neutral-rgb), var(--text-marker-opacity)) 40%
+			var(--marker-neutral-bg) 40%
 		);
 		background-size: 100% 100%;
 		background-position: 0 0;
@@ -80,7 +81,7 @@
    * @example: <span class="text-marker-primary-full">全面プライマリカラーマーカー</span>
    */
 	.text-marker-primary-full {
-		background-color: rgba(var(--primary-rgb), var(--text-marker-opacity));
+		background-color: var(--marker-primary-bg);
 	}
 
 	/* 
@@ -91,7 +92,7 @@
    * @example: <span class="text-marker-secondary-full">全面セカンダリカラーマーカー</span>
    */
 	.text-marker-secondary-full {
-		background-color: rgba(var(--secondary-rgb), var(--text-marker-opacity));
+		background-color: var(--marker-secondary-bg);
 	}
 
 	/* 
@@ -102,7 +103,7 @@
    * @example: <span class="text-marker-accent-full">全面アクセントカラーマーカー</span>
    */
 	.text-marker-accent-full {
-		background-color: rgba(var(--accent-rgb), var(--text-marker-opacity));
+		background-color: var(--marker-accent-bg);
 	}
 
 	/* 
@@ -113,7 +114,7 @@
    * @example: <span class="text-marker-neutral-full">全面ニュートラルカラーマーカー</span>
    */
 	.text-marker-neutral-full {
-		background-color: rgba(var(--neutral-rgb), var(--text-marker-opacity));
+		background-color: var(--marker-neutral-bg);
 	}
 
 	/* 
@@ -296,8 +297,8 @@
 			-45deg,
 			transparent 0,
 			transparent 2px,
-			rgba(var(--primary-rgb), var(--text-marker-opacity)) 2px,
-			rgba(var(--primary-rgb), var(--text-marker-opacity)) 4px
+			var(--marker-primary-bg) 2px,
+			var(--marker-primary-bg) 4px
 		);
 		background-repeat: no-repeat;
 		background-position: left bottom;
@@ -317,8 +318,29 @@
 			-45deg,
 			transparent 0,
 			transparent 2px,
-			rgba(var(--accent-rgb), var(--text-marker-opacity)) 2px,
-			rgba(var(--accent-rgb), var(--text-marker-opacity)) 4px
+			var(--marker-accent-bg) 2px,
+			var(--marker-accent-bg) 4px
+		);
+		background-repeat: no-repeat;
+		background-position: left bottom;
+		background-size: 100% 10px;
+		padding-bottom: 4px;
+	}
+
+	/* 
+   * @component: text-marker
+   * @variant: stripe-secondary
+   * @description: アクセントカラーのストライプパターンでテキスト下部をマーカーします
+   * @category: typography
+   * @example: <span class="text-marker-stripe-secondary">アクセントストライプマーカー</span>
+   */
+	.text-marker-stripe-secondary {
+		background-image: repeating-linear-gradient(
+			-45deg,
+			transparent 0,
+			transparent 2px,
+			var(--marker-secondary-bg) 2px,
+			var(--marker-secondary-bg) 4px
 		);
 		background-repeat: no-repeat;
 		background-position: left bottom;
@@ -337,14 +359,11 @@
 		background-image:
 			linear-gradient(
 				transparent 40%,
-				rgba(var(--primary-rgb), calc(var(--text-marker-opacity) * 0.7)) 40%,
-				rgba(var(--primary-rgb), calc(var(--text-marker-opacity) * 0.7)) 60%,
+				var(--marker-primary-bg) 40%,
+				var(--marker-primary-bg) 60%,
 				transparent 60%
 			),
-			linear-gradient(
-				transparent 80%,
-				rgba(var(--primary-rgb), var(--text-marker-opacity)) 80%
-			);
+			linear-gradient(transparent 80%, var(--marker-primary-bg) 80%);
 		background-size: 100% 100%;
 		background-position: 0 0;
 		background-repeat: no-repeat;

@@ -1,3 +1,31 @@
+/* ダークモード用の変数 (レイヤー外) */
+@layer base {
+	:root.dark {
+		--btn-light-border: var(--neutral, #e4e4e4);
+		--btn-light-hover-bg: var(--neutral, #e4e4e4);
+		--btn-light-hover-text: var(--neutral-dark, #242424);
+
+		--btn-dark-border: var(--neutral-light, #fafafa);
+		--btn-dark-hover-bg: var(--neutral, #242424);
+		--btn-dark-hover-text: var(--neutral-light, #fafafa);
+
+		--btn-neutral-bg: var(--neutral, #242424);
+		--btn-neutral-text: var(--neutral-dark, #fafafa);
+		--btn-neutral-border: var(--neutral, #242424);
+		--btn-neutral-hover-bg: var(--neutral-light, #fafafa);
+		--btn-neutral-hover-text: var(--neutral-dark, #242424);
+
+		--btn-ghost-text: var(--neutral-light, #242424);
+		--btn-ghost-hover-bg: var(--neutral, #242424);
+		--btn-ghost-hover-text: var(--neutral-light, #fafafa);
+		--btn-ghost-active-bg: var(--neutral, #242424);
+		--btn-ghost-active-text: var(--neutral-light, #fafafa);
+
+		--btn-hover-opacity: 0.1;
+		--btn-outline-hover-opacity: 0.2;
+		--btn-ghost-hover-opacity: 0.1;
+	}
+}
 @layer base {
 	:root {
 		/* ボタン用変数 - カスタマイズ可能 */
@@ -78,9 +106,16 @@
 		--btn-dark-active-bg: var(--neutral, #e4e4e4);
 		--btn-dark-active-text: var(--neutral-dark, #242424);
 
+		--btn-ghost-bg: transparent;
+		--btn-ghost-text: var(--neutral-dark, #242424);
+		--btn-ghost-hover-bg: var(--neutral-dark, #242424);
+		--btn-ghost-hover-text: var(--neutral-light, #fafafa);
+		--btn-ghost-active-bg: var(--neutral-dark, #242424);
+		--btn-ghost-active-text: var(--neutral-light, #fafafa);
+
 		/* 透明度 */
 		--btn-outline-hover-opacity: 0.1;
-		--btn-ghost-hover-opacity: 0.05;
+		--btn-ghost-hover-opacity: 0.4;
 		--btn-disabled-opacity: 0.6;
 
 		/* アニメーション */
@@ -88,24 +123,6 @@
 		--btn-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 		--btn-shadow-md:
 			0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-	}
-
-	/* ダークモード用の変数 */
-	:root.dark {
-		--btn-light-bg: var(--neutral-dark, #242424);
-		--btn-light-text: var(--neutral-light, #fafafa);
-		--btn-light-border: var(--neutral, #e4e4e4);
-		--btn-light-hover-bg: var(--neutral, #e4e4e4);
-		--btn-light-hover-text: var(--neutral-dark, #242424);
-
-		--btn-dark-bg: var(--neutral-light, #fafafa);
-		--btn-dark-text: var(--neutral-dark, #242424);
-		--btn-dark-border: var(--neutral-light, #fafafa);
-		--btn-dark-hover-bg: var(--neutral-dark, #242424);
-		--btn-dark-hover-text: var(--neutral-light, #fafafa);
-
-		--btn-outline-hover-opacity: 0.2;
-		--btn-ghost-hover-opacity: 0.1;
 	}
 
 	/* 印刷用スタイル */
@@ -132,7 +149,7 @@
 			--btn-shadow-md: none;
 		}
 	}
-	
+
 	/* 
 	 * @component: button
 	 * @variant: base
@@ -149,6 +166,7 @@
 		border-width: var(--btn-border-width);
 		border-style: solid;
 		border-radius: var(--btn-border-radius);
+		transition-duration: var(--btn-transition-duration);
 	}
 
 	/* 無効状態 */
@@ -162,32 +180,5 @@
 	/* フォーカス状態の共通スタイル */
 	.btn-base:focus-visible {
 		@apply outline-none ring-2 ring-offset-2 ring-primary;
-	}
-
-	/* ----- サイズバリエーション（手動設定） ----- */
-
-	.btn-xs {
-		font-size: var(--btn-font-size-xs);
-		padding: var(--btn-padding-y-xs) var(--btn-padding-x-xs);
-	}
-
-	.btn-sm {
-		font-size: var(--btn-font-size-sm);
-		padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
-	}
-
-	.btn-md {
-		font-size: var(--btn-font-size-md);
-		padding: var(--btn-padding-y-md) var(--btn-padding-x-md);
-	}
-
-	.btn-lg {
-		font-size: var(--btn-font-size-lg);
-		padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
-	}
-
-	.btn-xl {
-		font-size: var(--btn-font-size-xl);
-		padding: var(--btn-padding-y-xl) var(--btn-padding-x-xl);
 	}
 }

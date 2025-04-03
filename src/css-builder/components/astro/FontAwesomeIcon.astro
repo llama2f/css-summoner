@@ -1,0 +1,147 @@
+---
+/**
+ * @component FontAwesomeIcon
+ * @description Font Awesome アイコンを表示するためのコンポーネント
+ *
+ * @example 基本的な使用方法
+ * ```astro
+ * // FontAwesomeアイコンのインポート
+ * import { faUser, faHouse } from '@fortawesome/free-solid-svg-icons';
+ * import { faUser as farUser } from '@fortawesome/free-regular-svg-icons';
+ *
+ * // iconプロパティにアイコンオブジェクトを直接渡す
+ * <FontAwesomeIcon icon={faUser} />
+ * <FontAwesomeIcon icon={farUser} />
+ * ```
+ *
+ * @example サイズやスタイルのカスタマイズ
+ * ```astro
+ * import { faStar } from '@fortawesome/free-solid-svg-icons';
+ *
+ * // サイズの変更とクラスの追加
+ * <FontAwesomeIcon
+ *   icon={faStar}
+ *   params={{
+ *     classes: ['text-primary', 'w-8', 'h-8']
+ *   }}
+ * />
+ *
+ * // 変形の適用
+ * import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+ *
+ * <FontAwesomeIcon
+ *   icon={faArrowRight}
+ *   params={{
+ *     transform: { rotate: 90 }
+ *   }}
+ * />
+ * ```
+ *
+ * @example アクセシビリティ属性の設定
+ * ```astro
+ * import { faBell } from '@fortawesome/free-solid-svg-icons';
+ *
+ * // params.attributesを使用してアイコン内のSVG要素に属性を適用
+ * <FontAwesomeIcon
+ *   icon={faBell}
+ *   params={{
+ *     attributes: {
+ *       'aria-label': 'お知らせ',
+ *       'aria-hidden': 'false',
+ *       'role': 'img'
+ *     }
+ *   }}
+ * />
+ * ```
+ *
+ * @example DIVでラップする場合
+ * ```astro
+ * import { faStar } from '@fortawesome/free-solid-svg-icons';
+ *
+ * <FontAwesomeIcon
+ *   icon={faStar}
+ *   params={{ classes: ['text-yellow-500'] }}
+ *   wrap={{
+ *     addClass: 'p-2 bg-gray-100 rounded',
+ *     addId: 'favorite-icon'
+ *   }}
+ * />
+ * ```
+ *
+ * @note 注意点
+ * - iconプロパティには Font Awesome からインポートしたアイコンオブジェクト(faXxx)を渡します
+ * - デフォルトでは aria-hidden="true" が適用されています
+ * - アクセシビリティ属性はparams.attributesオブジェクト内で設定してください
+ */
+
+import '@fortawesome/fontawesome-svg-core/styles.css'
+
+import {
+	icon,
+	type IconLookup,
+	type IconName,
+	type IconParams,
+} from '@fortawesome/fontawesome-svg-core'
+
+export interface FontAwesomeIconProps {
+	/**
+	 * FontAwesomeアイコンオブジェクト
+	 * @example
+	 * import { faUser } from '@fortawesome/free-solid-svg-icons';
+	 * <FontAwesomeIcon icon={faUser} />
+	 */
+	icon: IconName | IconLookup
+
+	/**
+	 * アイコンのパラメータ（サイズ、色、変形など）
+	 * @see IconParams from @fortawesome/fontawesome-svg-core
+	 * - title: アイコンのタイトル (アクセシビリティ)
+	 * - titleId: タイトル要素のID
+	 * - classes: CSSクラス名（文字列または配列）
+	 * - attributes: SVG要素に適用されるHTML属性（aria-*属性などを含む）
+	 * - styles: インラインスタイル
+	 * - transform: サイズ、位置、回転などの変形
+	 * - symbol: シンボルとして使用する場合のID
+	 * - mask: マスクアイコン
+	 * - maskId: マスクID
+	 */
+	params?: IconParams
+
+	/**
+	 * アイコンをdiv要素でラップする設定
+	 */
+	wrap?: {
+		/** ラッパー要素のタグ名 (デフォルト: 'div') */
+		tag?: string
+		addClass?: string
+		addId?: string
+		attributes?: Record<string, string | number | boolean> // 追加
+	}
+}
+
+// Propsの型定義をインターフェースに合わせる
+type Props = FontAwesomeIconProps
+
+const { wrap } = Astro.props
+
+// この時点でparams.attributesがSVG要素に適用される
+const { html } = icon(Astro.props.icon, Astro.props.params) || {
+	html: '<svg role="img" aria-label="icon not found" class="w-0 h-0"></svg>',
+}
+
+// ラッパー要素のタグ名（デフォルトは 'div'）
+const WrapTag = wrap?.tag || 'div'
+---
+
+{
+	wrap ? (
+		<Fragment>
+			{/* @ts-ignore - Astroの型チェックの制限を回避 */}
+			<WrapTag class={wrap.addClass} id={wrap.addId} {...wrap.attributes}>
+				<Fragment set:html={html} />
+			</WrapTag>
+		</Fragment>
+	) : (
+		<Fragment set:html={html} />
+	)
+}

@@ -6,9 +6,9 @@ export interface Props {
 
 const { title = 'title', desc = 'description' } = Astro.props
 
+import ThemeSwitcher from '@components/astro/ThemeSwitcher.astro'
 // スタイルシートのインポート
 import '@stylesCss/styles.css'
-//import '@stylesCss/all-components.css'
 
 const mainClass = 'container mx-auto px-global max-w-screen-2xl'
 ---
@@ -22,7 +22,10 @@ const mainClass = 'container mx-auto px-global max-w-screen-2xl'
 		<meta name='description' content={desc} />
 	</head>
 	<body>
-		<header>header-aria</header>
+		<header>
+			header-aria
+			<ThemeSwitcher />
+		</header>
 		<main class={mainClass}>
 			<slot />
 		</main>

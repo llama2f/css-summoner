@@ -1,12 +1,8 @@
 ---
-import FontAwesomeIcon from '@components/utils/FontAwesomeIcon.astro'
+import FontAwesomeIcon from './FontAwesomeIcon.astro'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 import type { IconDefinition } from '@fortawesome/free-solid-svg-icons'
-import {
-	classesToString,
-	getThemeClasses,
-	type Theme,
-} from '@components/utils/theme'
+import { classesToString, getThemeClasses, type Theme } from './theme'
 
 export interface Props {
 	/** スイッチのラベル */

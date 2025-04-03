@@ -1,5 +1,11 @@
 @layer base {
 	:root {
+		/* カラー関連 */
+		--marker-primary-bg: var(--primary-light, #70974e);
+		--marker-secondary-bg: var(--secondary-light, #d0c9c1);
+		--marker-accent-bg: var(--accent-light, #f5e6e0);
+		--marker-neutral-bg: var(--neutral, #f0f0f0);
+
 		/* テキスト装飾の基本変数 */
 		--text-font-family: var(--font, sans-serif);
 
@@ -36,7 +42,10 @@
 
 	/* ダークモード */
 	:root.dark {
-		--text-highlight-opacity: 0.25;
+		--marker-primary-bg: var(--primary-dark, #2a3a2b);
+		--marker-secondary-bg: var(--secondary-dark, #3f3938);
+		--marker-accent-bg: var(--accent-dark, #77320d);
+		--marker-text-highlight-opacity: 0.25;
 	}
 
 	/* 印刷時 */
