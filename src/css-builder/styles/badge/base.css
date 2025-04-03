@@ -8,7 +8,37 @@
  * @example: <span class="badge-base badge-primary">バッジ</span>
  */
 @layer base {
+	:root {
+		/* Badge Colors */
+		--color-badge-primary: var(--primary);
+		--color-badge-primary-foreground: var(--neutral-light);
+		--color-badge-secondary: var(--secondary);
+		--color-badge-secondary-foreground: var(--neutral-light);
+		--color-badge-accent: var(--accent);
+		--color-badge-accent-foreground: var(--neutral-light);
+		--color-badge-neutral: var(--neutral-light);
+		--color-badge-neutral-foreground: var(--neutral-dark);
+		--color-badge-success: #16a34a; /* green-600 */
+		--color-badge-success-foreground: var(--neutral-light);
+		--color-badge-warning: #ca8a04; /* yellow-600 */
+		--color-badge-warning-foreground: var(--neutral-light);
+		--color-badge-error: #dc2626; /* red-600 */
+		--color-badge-error-foreground: var(--neutral-light);
+	}
 	.badge-base {
-		@apply inline-flex items-center justify-center font-medium transition-colors duration-200 rounded; /* デフォルトは少し角丸 */
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 500; /* font-medium */
+		font-size: 0.875rem; /* font-size-sm */
+		line-height: 1;
+		border-radius: 0.375rem; /* radius-sm */
+		padding: 0.25em 0.65em;
+		transition:
+			color 150ms ease-in-out,
+			background-color 150ms ease-in-out,
+			border-color 150ms ease-in-out;
+		color: var(--color-foreground); /* デフォルトの文字色 */
+		border: 1px solid transparent; /* アウトライン用に枠線を確保 */
 	}
 }

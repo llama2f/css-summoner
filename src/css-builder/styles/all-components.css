@@ -5,4 +5,5 @@
 @import './image/index.css';
 @import './infobox/index.css';
 @import './text/index.css';
-@import './badge/index.css'; /* 新しいbadgeコンポーネントのインポートを追加 */
+@import './badge/index.css';
+@import './tooltip/index.css';

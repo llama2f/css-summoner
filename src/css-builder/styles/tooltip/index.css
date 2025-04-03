@@ -1,0 +1,20 @@
+/* 
+ * tooltip/index.css
+ * ツールチップ用スタイルコレクション
+ * 
+ * 機能:
+ * - 用途別のツールチップスタイル (default, info, success, warning, error)
+ * - 様々な方向のツールチップ (上、下、左、右)
+ * - サイズバリエーション (sm, md, lg)
+ * - 表示アニメーション (fade, scale)
+ * - レスポンシブ対応
+ * - CSS変数によるカスタマイズ性
+ * - 印刷用スタイル
+ * 
+ * 使用例:
+ * <span class="tooltip-base tooltip-default" data-tooltip="これはツールチップです">ホバーしてください</span>
+ * <span class="tooltip-base tooltip-info tooltip-bottom" data-tooltip="下向きツールチップ">位置指定ツールチップ</span>
+ */
+@import './base.css';
+@import './variants.css';
+@import './utilities.css';

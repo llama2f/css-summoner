@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-03T16:25:08.764Z
+// 自動生成されたコード - 2025-04-03T13:01:12.390Z
 export const componentTypes = [
   {
     "value": "card",
@@ -8,11 +8,6 @@ export const componentTypes = [
   {
     "value": "badge",
     "label": "Badge",
-    "category": "display"
-  },
-  {
-    "value": "tooltip",
-    "label": "Tooltip",
     "category": "display"
   },
   {
@@ -63,7 +58,6 @@ export const componentTypes = [
 ];
 
 export const baseClasses = {
-  "tooltip": "tooltip-base",
   "text-quote": "text-quote",
   "infobox": "infobox-base",
   "heading": "heading-base",
@@ -73,48 +67,6 @@ export const baseClasses = {
 };
 
 export const componentVariants = {
-  "tooltip": [
-    {
-      "value": "tooltip-default",
-      "label": "Default"
-    },
-    {
-      "value": "tooltip-error",
-      "label": "Error"
-    },
-    {
-      "value": "tooltip-info",
-      "label": "Info"
-    },
-    {
-      "value": "tooltip-outline-default",
-      "label": "Outline Default"
-    },
-    {
-      "value": "tooltip-outline-error",
-      "label": "Outline Error"
-    },
-    {
-      "value": "tooltip-outline-info",
-      "label": "Outline Info"
-    },
-    {
-      "value": "tooltip-outline-success",
-      "label": "Outline Success"
-    },
-    {
-      "value": "tooltip-outline-warning",
-      "label": "Outline Warning"
-    },
-    {
-      "value": "tooltip-success",
-      "label": "Success"
-    },
-    {
-      "value": "tooltip-warning",
-      "label": "Warning"
-    }
-  ],
   "text-marker": [
     {
       "value": "text-marker-accent",
@@ -661,6 +613,22 @@ export const componentVariants = {
       "label": "Error Outlined"
     },
     {
+      "value": "badge-icon-only",
+      "label": "Icon Only"
+    },
+    {
+      "value": "badge-icon-spacing",
+      "label": "Icon Spacing"
+    },
+    {
+      "value": "badge-lg",
+      "label": "Lg"
+    },
+    {
+      "value": "badge-md",
+      "label": "Md"
+    },
+    {
       "value": "badge-neutral",
       "label": "Neutral"
     },
@@ -677,12 +645,36 @@ export const componentVariants = {
       "label": "Primary Outlined"
     },
     {
+      "value": "badge-rounded-full",
+      "label": "Rounded Full"
+    },
+    {
       "value": "badge-secondary",
       "label": "Secondary"
     },
     {
       "value": "badge-secondary-outlined",
       "label": "Secondary Outlined"
+    },
+    {
+      "value": "badge-shadow-lg",
+      "label": "Shadow Lg"
+    },
+    {
+      "value": "badge-shadow-md",
+      "label": "Shadow Md"
+    },
+    {
+      "value": "badge-shadow-sm",
+      "label": "Shadow Sm"
+    },
+    {
+      "value": "badge-shadow-xs",
+      "label": "Shadow Xs"
+    },
+    {
+      "value": "badge-sm",
+      "label": "Sm"
     },
     {
       "value": "badge-success",
@@ -699,22 +691,15 @@ export const componentVariants = {
     {
       "value": "badge-warning-outlined",
       "label": "Warning Outlined"
+    },
+    {
+      "value": "badge-xs",
+      "label": "Xs"
     }
   ]
 };
 
 export const classDescriptions = {
-  "tooltip-default": "デフォルトスタイルのツールチップ。一般的な追加情報の表示に使用します。",
-  "tooltip-info": "情報を示すスタイルのツールチップ。補足情報の表示に使用します。",
-  "tooltip-success": "成功を示すスタイルのツールチップ。ポジティブなメッセージの表示に使用します。",
-  "tooltip-warning": "警告を示すスタイルのツールチップ。注意喚起のメッセージに使用します。",
-  "tooltip-error": "エラーを示すスタイルのツールチップ。エラーメッセージの表示に使用します。",
-  "tooltip-outline-default": "枠線スタイルのデフォルトツールチップ。より控えめな表示に使用します。",
-  "tooltip-outline-info": "枠線スタイルの情報ツールチップ。控えめな補足情報の表示に使用します。",
-  "tooltip-outline-success": "枠線スタイルの成功ツールチップ。控えめなポジティブメッセージに使用します。",
-  "tooltip-outline-warning": "枠線スタイルの警告ツールチップ。控えめな注意喚起に使用します。",
-  "tooltip-outline-error": "枠線スタイルのエラーツールチップ。控えめなエラーメッセージに使用します。",
-  "tooltip-base": "ツールチップの基本スタイル。ホバーすると表示される追加情報を提供します。data-tooltip属性にツールチップのテキストを設定します。",
   "text-marker-primary": "プライマリカラーでテキストの背景下部に蛍光ペン風のマーカー効果を適用します",
   "text-marker-secondary": "セカンダリカラーでテキストの背景下部に蛍光ペン風のマーカー効果を適用します",
   "text-marker-accent": "アクセントカラーでテキストの背景下部に蛍光ペン風のマーカー効果を適用します",
@@ -861,68 +846,22 @@ export const classDescriptions = {
   "badge-neutral-outlined": "ニュートラルカラーのバッジ（アウトライン）",
   "badge-success-outlined": "成功を示す緑色のバッジ（アウトライン）",
   "badge-warning-outlined": "警告を示す黄色いバッジ（アウトライン）",
-  "badge-error-outlined": "エラーを示す赤色のバッジ（アウトライン）"
+  "badge-error-outlined": "エラーを示す赤色のバッジ（アウトライン）",
+  "badge-xs": "XSサイズのバッジ",
+  "badge-sm": "Smallサイズのバッジ",
+  "badge-md": "Mediumサイズのバッジ (デフォルトサイズ)",
+  "badge-lg": "Largeサイズのバッジ",
+  "badge-rounded-full": "円形のバッジ",
+  "badge-shadow-xs": "XSサイズの影",
+  "badge-shadow-sm": "Smallサイズの影",
+  "badge-shadow-md": "Mediumサイズの影",
+  "badge-shadow-lg": "Largeサイズの影",
+  "badge-icon-only": "アイコンのみ表示する場合の調整用クラス（パディング調整などに使用）",
+  "badge-icon-spacing": "バッジ内のアイコンとテキストの間にスペースを追加"
 };
 
 // componentExamples もエクスポートすると便利かもしれない
 export const componentExamples = {
-  "tooltip": [
-    {
-      "variant": "default",
-      "className": "tooltip-default",
-      "example": "<span class=\"tooltip-base tooltip-default\" data-tooltip=\"これは標準のツールチップです\">ホバーしてください</span>"
-    },
-    {
-      "variant": "info",
-      "className": "tooltip-info",
-      "example": "<span class=\"tooltip-base tooltip-info\" data-tooltip=\"情報: これは重要な情報です\">ホバーしてください</span>"
-    },
-    {
-      "variant": "success",
-      "className": "tooltip-success",
-      "example": "<span class=\"tooltip-base tooltip-success\" data-tooltip=\"成功: タスクが完了しました\">ホバーしてください</span>"
-    },
-    {
-      "variant": "warning",
-      "className": "tooltip-warning",
-      "example": "<span class=\"tooltip-base tooltip-warning\" data-tooltip=\"警告: この操作は取り消せません\">ホバーしてください</span>"
-    },
-    {
-      "variant": "error",
-      "className": "tooltip-error",
-      "example": "<span class=\"tooltip-base tooltip-error\" data-tooltip=\"エラー: 入力が不正です\">ホバーしてください</span>"
-    },
-    {
-      "variant": "outline-default",
-      "className": "tooltip-outline-default",
-      "example": "<span class=\"tooltip-base tooltip-outline-default\" data-tooltip=\"これはアウトラインツールチップです\">ホバーしてください</span>"
-    },
-    {
-      "variant": "outline-info",
-      "className": "tooltip-outline-info",
-      "example": "<span class=\"tooltip-base tooltip-outline-info\" data-tooltip=\"情報: これは重要な情報です\">ホバーしてください</span>"
-    },
-    {
-      "variant": "outline-success",
-      "className": "tooltip-outline-success",
-      "example": "<span class=\"tooltip-base tooltip-outline-success\" data-tooltip=\"成功: タスクが完了しました\">ホバーしてください</span>"
-    },
-    {
-      "variant": "outline-warning",
-      "className": "tooltip-outline-warning",
-      "example": "<span class=\"tooltip-base tooltip-outline-warning\" data-tooltip=\"警告: この操作は取り消せません\">ホバーしてください</span>"
-    },
-    {
-      "variant": "outline-error",
-      "className": "tooltip-outline-error",
-      "example": "<span class=\"tooltip-base tooltip-outline-error\" data-tooltip=\"エラー: 入力が不正です\">ホバーしてください</span>"
-    },
-    {
-      "variant": "base",
-      "className": "tooltip-base",
-      "example": "<span class=\"tooltip-base\" data-tooltip=\"これはツールチップです\">ホバーしてください</span>"
-    }
-  ],
   "text-marker": [
     {
       "variant": "primary",
@@ -1678,6 +1617,61 @@ export const componentExamples = {
       "variant": "error-outlined",
       "className": "badge-error-outlined",
       "example": "<span class=\"badge-base badge-error-outlined\">エラー</span>"
+    },
+    {
+      "variant": "xs",
+      "className": "badge-xs",
+      "example": "<span class=\"badge-base badge-primary badge-xs\">XS</span>"
+    },
+    {
+      "variant": "sm",
+      "className": "badge-sm",
+      "example": "<span class=\"badge-base badge-primary badge-sm\">Small</span>"
+    },
+    {
+      "variant": "md",
+      "className": "badge-md",
+      "example": "<span class=\"badge-base badge-primary badge-md\">Medium</span>"
+    },
+    {
+      "variant": "lg",
+      "className": "badge-lg",
+      "example": "<span class=\"badge-base badge-primary badge-lg\">Large</span>"
+    },
+    {
+      "variant": "rounded-full",
+      "className": "badge-rounded-full",
+      "example": "<span class=\"badge-base badge-primary badge-rounded-full\">●</span>"
+    },
+    {
+      "variant": "shadow-xs",
+      "className": "badge-shadow-xs",
+      "example": "<span class=\"badge-base badge-primary badge-xs badge-shadow-xs\">XS Shadow</span>"
+    },
+    {
+      "variant": "shadow-sm",
+      "className": "badge-shadow-sm",
+      "example": "<span class=\"badge-base badge-primary badge-sm badge-shadow-sm\">SM Shadow</span>"
+    },
+    {
+      "variant": "shadow-md",
+      "className": "badge-shadow-md",
+      "example": "<span class=\"badge-base badge-primary badge-md badge-shadow-md\">MD Shadow</span>"
+    },
+    {
+      "variant": "shadow-lg",
+      "className": "badge-shadow-lg",
+      "example": "<span class=\"badge-base badge-primary badge-lg badge-shadow-lg\">LG Shadow</span>"
+    },
+    {
+      "variant": "icon-only",
+      "className": "badge-icon-only",
+      "example": "<span class=\"badge-base badge-primary badge-icon-only badge-sm\"><i class=\"fa fa-star\"></i></span>"
+    },
+    {
+      "variant": "icon-spacing",
+      "className": "badge-icon-spacing",
+      "example": "<span class=\"badge-base badge-primary\"><i class=\"fa fa-star badge-icon-spacing\"></i>テキスト</span>"
     }
   ]
 };

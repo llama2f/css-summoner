@@ -11,7 +11,8 @@
    * @example: <span class="badge-base badge-primary">プライマリ</span>
    */
 	.badge-primary {
-		@apply bg-primary text-neutral-light;
+		background-color: var(--color-badge-primary);
+		color: var(--color-badge-primary-foreground);
 	}
 
 	/*
@@ -22,7 +23,8 @@
    * @example: <span class="badge-base badge-secondary">セカンダリ</span>
    */
 	.badge-secondary {
-		@apply bg-secondary text-neutral-light;
+		background-color: var(--color-badge-secondary);
+		color: var(--color-badge-secondary-foreground);
 	}
 
 	/*
@@ -33,7 +35,8 @@
    * @example: <span class="badge-base badge-accent">アクセント</span>
    */
 	.badge-accent {
-		@apply bg-accent text-neutral-light;
+		background-color: var(--color-badge-accent);
+		color: var(--color-badge-accent-foreground);
 	}
 
 	/*
@@ -44,7 +47,8 @@
    * @example: <span class="badge-base badge-neutral">ニュートラル</span>
    */
 	.badge-neutral {
-		@apply bg-neutral-light text-neutral-dark;
+		background-color: var(--color-badge-neutral);
+		color: var(--color-badge-neutral-foreground);
 	}
 
 	/*
@@ -55,7 +59,8 @@
    * @example: <span class="badge-base badge-success">成功</span>
    */
 	.badge-success {
-		@apply bg-green-600 text-neutral-light;
+		background-color: var(--color-badge-success);
+		color: var(--color-badge-success-foreground);
 	}
 
 	/*
@@ -66,7 +71,8 @@
    * @example: <span class="badge-base badge-warning">警告</span>
    */
 	.badge-warning {
-		@apply bg-yellow-600 text-neutral-light;
+		background-color: var(--color-badge-warning);
+		color: var(--color-badge-warning-foreground);
 	}
 
 	/*
@@ -77,7 +83,8 @@
    * @example: <span class="badge-base badge-error">エラー</span>
    */
 	.badge-error {
-		@apply bg-red-600 text-neutral-light;
+		background-color: var(--color-badge-error);
+		color: var(--color-badge-error-foreground);
 	}
 
 	/* --- アウトラインバリアント --- */
@@ -90,7 +97,9 @@
    * @example: <span class="badge-base badge-primary-outlined">プライマリ</span>
    */
 	.badge-primary-outlined {
-		@apply border border-primary-dark text-primary-dark bg-transparent; /* 背景を透明に */
+		border-color: var(--color-badge-primary);
+		color: var(--color-badge-primary);
+		background-color: transparent;
 	}
 
 	/*
@@ -101,7 +110,9 @@
    * @example: <span class="badge-base badge-secondary-outlined">セカンダリ</span>
    */
 	.badge-secondary-outlined {
-		@apply border border-secondary-dark text-secondary-dark bg-transparent;
+		border-color: var(--color-badge-secondary);
+		color: var(--color-badge-secondary);
+		background-color: transparent;
 	}
 
 	/*
@@ -112,7 +123,9 @@
    * @example: <span class="badge-base badge-accent-outlined">アクセント</span>
    */
 	.badge-accent-outlined {
-		@apply border border-accent text-accent bg-transparent;
+		border-color: var(--color-badge-accent);
+		color: var(--color-badge-accent);
+		background-color: transparent;
 	}
 
 	/*
@@ -123,7 +136,9 @@
    * @example: <span class="badge-base badge-neutral-outlined">ニュートラル</span>
    */
 	.badge-neutral-outlined {
-		@apply border border-neutral-dark text-neutral-dark bg-transparent;
+		border-color: var(--color-badge-neutral-foreground);
+		color: var(--color-badge-neutral-foreground);
+		background-color: transparent;
 	}
 
 	/*
@@ -134,7 +149,9 @@
    * @example: <span class="badge-base badge-success-outlined">成功</span>
    */
 	.badge-success-outlined {
-		@apply border border-green-600 text-green-600 bg-transparent;
+		border-color: var(--color-badge-success);
+		color: var(--color-badge-success);
+		background-color: transparent;
 	}
 
 	/*
@@ -145,7 +162,9 @@
    * @example: <span class="badge-base badge-warning-outlined">警告</span>
    */
 	.badge-warning-outlined {
-		@apply border border-yellow-600 text-yellow-600 bg-transparent;
+		border-color: var(--color-badge-warning);
+		color: var(--color-badge-warning);
+		background-color: transparent;
 	}
 
 	/*
@@ -156,6 +175,8 @@
    * @example: <span class="badge-base badge-error-outlined">エラー</span>
    */
 	.badge-error-outlined {
-		@apply border border-red-600 text-red-600 bg-transparent;
+		border-color: var(--color-badge-error);
+		color: var(--color-badge-error);
+		background-color: transparent;
 	}
 }

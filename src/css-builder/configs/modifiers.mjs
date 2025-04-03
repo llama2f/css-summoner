@@ -184,6 +184,55 @@ export const modifiers = {
 		},
 	],
 
+	// バッジ専用のモディファイア
+	badge: [
+		{
+			value: 'badge-tooltip', // ツールチップ基本クラス
+			label: 'ツールチップ',
+			description: 'バッジをツールチップ風にします（矢印の位置と色は別途指定）',
+		},
+		{
+			value: 'badge-tooltip-bottom', // CSSクラス名に合わせる
+			label: '矢印下',
+			description: 'ツールチップの矢印を下向きにします',
+		},
+		{
+			value: 'badge-tooltip-top', // CSSクラス名に合わせる
+			label: '矢印上',
+			description: 'ツールチップの矢印を上向きにします',
+		},
+		{
+			value: 'badge-tooltip-left', // CSSクラス名に合わせる
+			label: '矢印左',
+			description: 'ツールチップの矢印を左向きにします',
+		},
+		{
+			value: 'badge-tooltip-right', // CSSクラス名に合わせる
+			label: '矢印右',
+			description: 'ツールチップの矢印を右向きにします',
+		},
+		// 矢印の色に関するモディファイアも必要に応じて追加できますが、
+		// utilities.css でバリアントと位置の組み合わせで定義したため、
+		// ここでは位置のみをモディファイアとして定義します。
+		// 色はバリアントクラスと位置クラスの組み合わせで適用されます。
+		{
+			value: 'badge-icon-only', // アイコンのみクラス
+			label: 'アイコンのみ',
+			description: 'アイコンのみを表示します',
+		},
+		{
+			value: 'badge-icon-spacing', // アイコンスペーシングクラス
+			label: 'アイコン間隔',
+			description: 'アイコンとテキストの間に間隔を追加します',
+		},
+		{
+			value: 'badge-rounded-full', // 角丸クラス
+			label: '完全な円',
+			description: 'バッジを完全な円にします',
+		},
+		// 影関連は common にあるため、ここでは不要
+	],
+
 	// インフォボックス専用のモディファイア
 	infobox: [
 		{
