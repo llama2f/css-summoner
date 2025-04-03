@@ -1,0 +1,4 @@
+/* src/css-builder/styles/badge/index.css */
+@import './base.css';
+@import './variants.css';
+@import './utilities.css';

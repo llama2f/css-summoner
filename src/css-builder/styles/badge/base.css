@@ -1,0 +1,14 @@
+/* src/css-builder/styles/badge/base.css */
+
+/*
+ * @component: badge
+ * @variant: base
+ * @description: すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。
+ * @category: display
+ * @example: <span class="badge-base badge-primary">バッジ</span>
+ */
+@layer base {
+	.badge-base {
+		@apply inline-flex items-center justify-center font-medium transition-colors duration-200 rounded; /* デフォルトは少し角丸 */
+	}
+}

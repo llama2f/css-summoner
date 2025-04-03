@@ -1,0 +1,161 @@
+/* src/css-builder/styles/badge/variants.css */
+
+@layer components {
+	/* --- 塗りつぶしバリアント --- */
+
+	/*
+   * @component: badge
+   * @variant: primary
+   * @description: プライマリカラーのバッジ（塗りつぶし）
+   * @category: display
+   * @example: <span class="badge-base badge-primary">プライマリ</span>
+   */
+	.badge-primary {
+		@apply bg-primary text-neutral-light;
+	}
+
+	/*
+   * @component: badge
+   * @variant: secondary
+   * @description: セカンダリカラーのバッジ（塗りつぶし）
+   * @category: display
+   * @example: <span class="badge-base badge-secondary">セカンダリ</span>
+   */
+	.badge-secondary {
+		@apply bg-secondary text-neutral-light;
+	}
+
+	/*
+   * @component: badge
+   * @variant: accent
+   * @description: アクセントカラーのバッジ（塗りつぶし）
+   * @category: display
+   * @example: <span class="badge-base badge-accent">アクセント</span>
+   */
+	.badge-accent {
+		@apply bg-accent text-neutral-light;
+	}
+
+	/*
+   * @component: badge
+   * @variant: neutral
+   * @description: ニュートラルカラーのバッジ（塗りつぶし）
+   * @category: display
+   * @example: <span class="badge-base badge-neutral">ニュートラル</span>
+   */
+	.badge-neutral {
+		@apply bg-neutral-light text-neutral-dark;
+	}
+
+	/*
+   * @component: badge
+   * @variant: success
+   * @description: 成功を示す緑色のバッジ（塗りつぶし）
+   * @category: display
+   * @example: <span class="badge-base badge-success">成功</span>
+   */
+	.badge-success {
+		@apply bg-green-600 text-neutral-light;
+	}
+
+	/*
+   * @component: badge
+   * @variant: warning
+   * @description: 警告を示す黄色いバッジ（塗りつぶし）
+   * @category: display
+   * @example: <span class="badge-base badge-warning">警告</span>
+   */
+	.badge-warning {
+		@apply bg-yellow-600 text-neutral-light;
+	}
+
+	/*
+   * @component: badge
+   * @variant: error
+   * @description: エラーを示す赤色のバッジ（塗りつぶし）
+   * @category: display
+   * @example: <span class="badge-base badge-error">エラー</span>
+   */
+	.badge-error {
+		@apply bg-red-600 text-neutral-light;
+	}
+
+	/* --- アウトラインバリアント --- */
+
+	/*
+   * @component: badge
+   * @variant: primary-outlined
+   * @description: プライマリカラーのバッジ（アウトライン）
+   * @category: display
+   * @example: <span class="badge-base badge-primary-outlined">プライマリ</span>
+   */
+	.badge-primary-outlined {
+		@apply border border-primary-dark text-primary-dark bg-transparent; /* 背景を透明に */
+	}
+
+	/*
+   * @component: badge
+   * @variant: secondary-outlined
+   * @description: セカンダリカラーのバッジ（アウトライン）
+   * @category: display
+   * @example: <span class="badge-base badge-secondary-outlined">セカンダリ</span>
+   */
+	.badge-secondary-outlined {
+		@apply border border-secondary-dark text-secondary-dark bg-transparent;
+	}
+
+	/*
+   * @component: badge
+   * @variant: accent-outlined
+   * @description: アクセントカラーのバッジ（アウトライン）
+   * @category: display
+   * @example: <span class="badge-base badge-accent-outlined">アクセント</span>
+   */
+	.badge-accent-outlined {
+		@apply border border-accent text-accent bg-transparent;
+	}
+
+	/*
+   * @component: badge
+   * @variant: neutral-outlined
+   * @description: ニュートラルカラーのバッジ（アウトライン）
+   * @category: display
+   * @example: <span class="badge-base badge-neutral-outlined">ニュートラル</span>
+   */
+	.badge-neutral-outlined {
+		@apply border border-neutral-dark text-neutral-dark bg-transparent;
+	}
+
+	/*
+   * @component: badge
+   * @variant: success-outlined
+   * @description: 成功を示す緑色のバッジ（アウトライン）
+   * @category: display
+   * @example: <span class="badge-base badge-success-outlined">成功</span>
+   */
+	.badge-success-outlined {
+		@apply border border-green-600 text-green-600 bg-transparent;
+	}
+
+	/*
+   * @component: badge
+   * @variant: warning-outlined
+   * @description: 警告を示す黄色いバッジ（アウトライン）
+   * @category: display
+   * @example: <span class="badge-base badge-warning-outlined">警告</span>
+   */
+	.badge-warning-outlined {
+		@apply border border-yellow-600 text-yellow-600 bg-transparent;
+	}
+
+	/*
+   * @component: badge
+   * @variant: error-outlined
+   * @description: エラーを示す赤色のバッジ（アウトライン）
+   * @category: display
+   * @example: <span class="badge-base badge-error-outlined">エラー</span>
+   */
+	.badge-error-outlined {
+		@apply border border-red-600 text-red-600 bg-transparent;
+	}
+}

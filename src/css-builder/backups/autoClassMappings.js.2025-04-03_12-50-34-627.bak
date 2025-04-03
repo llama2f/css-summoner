@@ -1,14 +1,9 @@
-// 自動生成されたコード - 2025-04-03T12:50:34.626Z
+// 自動生成されたコード - 2025-04-03T10:08:59.994Z
 export const componentTypes = [
   {
     "value": "card",
     "label": "Card",
     "category": "container"
-  },
-  {
-    "value": "badge",
-    "label": "Badge",
-    "category": "display"
   },
   {
     "value": "form",
@@ -63,8 +58,7 @@ export const baseClasses = {
   "heading": "heading-base",
   "card": "card",
   "button-group": "btn-group",
-  "button": "btn-base",
-  "badge": "badge-base"
+  "button": "btn-base"
 };
 
 export const componentVariants = {
@@ -340,8 +334,16 @@ export const componentVariants = {
       "label": "Accent Border"
     },
     {
+      "value": "heading-accent-glow",
+      "label": "Accent Glow"
+    },
+    {
       "value": "heading-accent-gradient",
       "label": "Accent Gradient"
+    },
+    {
+      "value": "heading-accent-shadow",
+      "label": "Accent Shadow"
     },
     {
       "value": "heading-accent-stripe",
@@ -392,6 +394,10 @@ export const componentVariants = {
       "label": "Japanesque Brush"
     },
     {
+      "value": "heading-japanesque-pattern",
+      "label": "Japanesque Pattern"
+    },
+    {
       "value": "heading-japanesque-vertical",
       "label": "Japanesque Vertical"
     },
@@ -422,6 +428,10 @@ export const componentVariants = {
     {
       "value": "heading-technical-tag",
       "label": "Technical Tag"
+    },
+    {
+      "value": "heading-technical-terminal",
+      "label": "Technical Terminal"
     }
   ],
   "form": [
@@ -595,108 +605,6 @@ export const componentVariants = {
       "value": "btn-group-vertical",
       "label": "Vertical"
     }
-  ],
-  "badge": [
-    {
-      "value": "badge-accent",
-      "label": "Accent"
-    },
-    {
-      "value": "badge-accent-outlined",
-      "label": "Accent Outlined"
-    },
-    {
-      "value": "badge-error",
-      "label": "Error"
-    },
-    {
-      "value": "badge-error-outlined",
-      "label": "Error Outlined"
-    },
-    {
-      "value": "badge-icon-only",
-      "label": "Icon Only"
-    },
-    {
-      "value": "badge-icon-spacing",
-      "label": "Icon Spacing"
-    },
-    {
-      "value": "badge-lg",
-      "label": "Lg"
-    },
-    {
-      "value": "badge-md",
-      "label": "Md"
-    },
-    {
-      "value": "badge-neutral",
-      "label": "Neutral"
-    },
-    {
-      "value": "badge-neutral-outlined",
-      "label": "Neutral Outlined"
-    },
-    {
-      "value": "badge-primary",
-      "label": "Primary"
-    },
-    {
-      "value": "badge-primary-outlined",
-      "label": "Primary Outlined"
-    },
-    {
-      "value": "badge-rounded-full",
-      "label": "Rounded Full"
-    },
-    {
-      "value": "badge-secondary",
-      "label": "Secondary"
-    },
-    {
-      "value": "badge-secondary-outlined",
-      "label": "Secondary Outlined"
-    },
-    {
-      "value": "badge-shadow-lg",
-      "label": "Shadow Lg"
-    },
-    {
-      "value": "badge-shadow-md",
-      "label": "Shadow Md"
-    },
-    {
-      "value": "badge-shadow-sm",
-      "label": "Shadow Sm"
-    },
-    {
-      "value": "badge-shadow-xs",
-      "label": "Shadow Xs"
-    },
-    {
-      "value": "badge-sm",
-      "label": "Sm"
-    },
-    {
-      "value": "badge-success",
-      "label": "Success"
-    },
-    {
-      "value": "badge-success-outlined",
-      "label": "Success Outlined"
-    },
-    {
-      "value": "badge-warning",
-      "label": "Warning"
-    },
-    {
-      "value": "badge-warning-outlined",
-      "label": "Warning Outlined"
-    },
-    {
-      "value": "badge-xs",
-      "label": "Xs"
-    }
   ]
 };
 
@@ -784,11 +692,15 @@ export const classDescriptions = {
   "heading-modern-oversized": "大きめのフォントと薄い色使いが特徴の現代的な見出し。",
   "heading-japanesque-brush": "筆文字風の和風見出し。日本的なコンテンツに最適です。",
   "heading-japanesque-vertical": "縦書きレイアウトの和風見出し。伝統的な日本のデザインに適しています。",
+  "heading-japanesque-pattern": "和柄をアクセントに使った見出し。日本的なテイストを加えます。",
   "heading-formal-boxed": "四方をボーダーで囲んだビジネス向け見出し。重要な情報を枠で強調します。",
   "heading-formal-double": "二重下線のフォーマルな見出し。格式高い文書やレポートに適しています。",
   "heading-casual-handwritten": "手書き風フォントを使用したカジュアルな見出し。親しみやすい印象を与えます。",
   "heading-casual-highlight": "マーカーでハイライトしたような見出し。重要なポイントを強調します。",
+  "heading-technical-terminal": "ターミナル/コンソール風の技術的な見出し。コマンドラインや開発者向けコンテンツに適しています。",
   "heading-technical-comment": "コードコメント風の技術的な見出し。プログラミング関連のドキュメントに最適です。",
+  "heading-accent-shadow": "立体的な影付きの強調見出し。存在感のあるセクション見出しに適しています。",
+  "heading-accent-glow": "光る効果を持ったアクセント見出し。重要な情報や特別な注目点に使用します。",
   "heading-base": "すべての見出しに共通する基本スタイル。見出しに一貫性を持たせます。",
   "form-input": "テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。",
   "form-textarea": "複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。",
@@ -833,33 +745,7 @@ export const classDescriptions = {
   "btn-link-primary": "プライマリカラーを使用したリンク風ボタン。インラインのテキストリンクのようなアクションに使用します。",
   "btn-link-secondary": "セカンダリカラーを使用したリンク風ボタン。補助的なインラインリンクのようなアクションに使用します。",
   "btn-link-accent": "アクセントカラーを使用したリンク風ボタン。注目させたいインラインリンクに使用します。",
-  "btn-base": "すべてのボタンの基本スタイル。インタラクティブ要素に必要な共通のスタイルとレイアウトを提供します。",
-  "badge-primary": "プライマリカラーのバッジ（塗りつぶし）",
-  "badge-secondary": "セカンダリカラーのバッジ（塗りつぶし）",
-  "badge-accent": "アクセントカラーのバッジ（塗りつぶし）",
-  "badge-neutral": "ニュートラルカラーのバッジ（塗りつぶし）",
-  "badge-success": "成功を示す緑色のバッジ（塗りつぶし）",
-  "badge-warning": "警告を示す黄色いバッジ（塗りつぶし）",
-  "badge-error": "エラーを示す赤色のバッジ（塗りつぶし）",
-  "badge-primary-outlined": "プライマリカラーのバッジ（アウトライン）",
-  "badge-secondary-outlined": "セカンダリカラーのバッジ（アウトライン）",
-  "badge-accent-outlined": "アクセントカラーのバッジ（アウトライン）",
-  "badge-neutral-outlined": "ニュートラルカラーのバッジ（アウトライン）",
-  "badge-success-outlined": "成功を示す緑色のバッジ（アウトライン）",
-  "badge-warning-outlined": "警告を示す黄色いバッジ（アウトライン）",
-  "badge-error-outlined": "エラーを示す赤色のバッジ（アウトライン）",
-  "badge-xs": "XSサイズのバッジ",
-  "badge-sm": "Smallサイズのバッジ",
-  "badge-md": "Mediumサイズのバッジ (デフォルトサイズ)",
-  "badge-lg": "Largeサイズのバッジ",
-  "badge-rounded-full": "円形のバッジ",
-  "badge-shadow-xs": "XSサイズの影",
-  "badge-shadow-sm": "Smallサイズの影",
-  "badge-shadow-md": "Mediumサイズの影",
-  "badge-shadow-lg": "Largeサイズの影",
-  "badge-icon-only": "アイコンのみ表示する場合の調整用クラス（パディング調整などに使用）",
-  "badge-icon-spacing": "バッジ内のアイコンとテキストの間にスペースを追加",
-  "badge-base": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。"
+  "btn-base": "すべてのボタンの基本スタイル。インタラクティブ要素に必要な共通のスタイルとレイアウトを提供します。"
 };
 
 // componentExamples もエクスポートすると便利かもしれない
@@ -1291,6 +1177,11 @@ export const componentExamples = {
       "example": "<h2 class=\"heading-japanesque-vertical\">縦書き見出し</h2>"
     },
     {
+      "variant": "japanesque-pattern",
+      "className": "heading-japanesque-pattern",
+      "example": "<h2 class=\"heading-japanesque-pattern\">和柄アクセント見出し</h2>"
+    },
+    {
       "variant": "formal-boxed",
       "className": "heading-formal-boxed",
       "example": "<h2 class=\"heading-formal-boxed\">囲み枠付き見出し</h2>"
@@ -1311,9 +1202,24 @@ export const componentExamples = {
       "example": "<h2 class=\"heading-casual-highlight\">ハイライト見出し</h2>"
     },
     {
+      "variant": "technical-terminal",
+      "className": "heading-technical-terminal",
+      "example": "<h2 class=\"heading-technical-terminal\">ターミナル風見出し</h2>"
+    },
+    {
       "variant": "technical-comment",
       "className": "heading-technical-comment",
       "example": "<h2 class=\"heading-technical-comment\">コメント風見出し</h2>"
+    },
+    {
+      "variant": "accent-shadow",
+      "className": "heading-accent-shadow",
+      "example": "<h2 class=\"heading-accent-shadow\">影付き見出し</h2>"
+    },
+    {
+      "variant": "accent-glow",
+      "className": "heading-accent-glow",
+      "example": "<h2 class=\"heading-accent-glow\">輝く見出し</h2>"
     },
     {
       "variant": "base",
@@ -1547,138 +1453,6 @@ export const componentExamples = {
       "variant": "vertical",
       "className": "btn-group-vertical",
       "example": "<div class=\"btn-group-vertical\">\n<button class=\"btn-base btn-primary\">上</button>\n<button class=\"btn-base btn-primary\">中央</button>\n<button class=\"btn-base btn-primary\">下</button>\n</div>"
-    }
-  ],
-  "badge": [
-    {
-      "variant": "primary",
-      "className": "badge-primary",
-      "example": "<span class=\"badge-base badge-primary\">プライマリ</span>"
-    },
-    {
-      "variant": "secondary",
-      "className": "badge-secondary",
-      "example": "<span class=\"badge-base badge-secondary\">セカンダリ</span>"
-    },
-    {
-      "variant": "accent",
-      "className": "badge-accent",
-      "example": "<span class=\"badge-base badge-accent\">アクセント</span>"
-    },
-    {
-      "variant": "neutral",
-      "className": "badge-neutral",
-      "example": "<span class=\"badge-base badge-neutral\">ニュートラル</span>"
-    },
-    {
-      "variant": "success",
-      "className": "badge-success",
-      "example": "<span class=\"badge-base badge-success\">成功</span>"
-    },
-    {
-      "variant": "warning",
-      "className": "badge-warning",
-      "example": "<span class=\"badge-base badge-warning\">警告</span>"
-    },
-    {
-      "variant": "error",
-      "className": "badge-error",
-      "example": "<span class=\"badge-base badge-error\">エラー</span>"
-    },
-    {
-      "variant": "primary-outlined",
-      "className": "badge-primary-outlined",
-      "example": "<span class=\"badge-base badge-primary-outlined\">プライマリ</span>"
-    },
-    {
-      "variant": "secondary-outlined",
-      "className": "badge-secondary-outlined",
-      "example": "<span class=\"badge-base badge-secondary-outlined\">セカンダリ</span>"
-    },
-    {
-      "variant": "accent-outlined",
-      "className": "badge-accent-outlined",
-      "example": "<span class=\"badge-base badge-accent-outlined\">アクセント</span>"
-    },
-    {
-      "variant": "neutral-outlined",
-      "className": "badge-neutral-outlined",
-      "example": "<span class=\"badge-base badge-neutral-outlined\">ニュートラル</span>"
-    },
-    {
-      "variant": "success-outlined",
-      "className": "badge-success-outlined",
-      "example": "<span class=\"badge-base badge-success-outlined\">成功</span>"
-    },
-    {
-      "variant": "warning-outlined",
-      "className": "badge-warning-outlined",
-      "example": "<span class=\"badge-base badge-warning-outlined\">警告</span>"
-    },
-    {
-      "variant": "error-outlined",
-      "className": "badge-error-outlined",
-      "example": "<span class=\"badge-base badge-error-outlined\">エラー</span>"
-    },
-    {
-      "variant": "xs",
-      "className": "badge-xs",
-      "example": "<span class=\"badge-base badge-primary badge-xs\">XS</span>"
-    },
-    {
-      "variant": "sm",
-      "className": "badge-sm",
-      "example": "<span class=\"badge-base badge-primary badge-sm\">Small</span>"
-    },
-    {
-      "variant": "md",
-      "className": "badge-md",
-      "example": "<span class=\"badge-base badge-primary badge-md\">Medium</span>"
-    },
-    {
-      "variant": "lg",
-      "className": "badge-lg",
-      "example": "<span class=\"badge-base badge-primary badge-lg\">Large</span>"
-    },
-    {
-      "variant": "rounded-full",
-      "className": "badge-rounded-full",
-      "example": "<span class=\"badge-base badge-primary badge-rounded-full\">●</span>"
-    },
-    {
-      "variant": "shadow-xs",
-      "className": "badge-shadow-xs",
-      "example": "<span class=\"badge-base badge-primary badge-xs badge-shadow-xs\">XS Shadow</span>"
-    },
-    {
-      "variant": "shadow-sm",
-      "className": "badge-shadow-sm",
-      "example": "<span class=\"badge-base badge-primary badge-sm badge-shadow-sm\">SM Shadow</span>"
-    },
-    {
-      "variant": "shadow-md",
-      "className": "badge-shadow-md",
-      "example": "<span class=\"badge-base badge-primary badge-md badge-shadow-md\">MD Shadow</span>"
-    },
-    {
-      "variant": "shadow-lg",
-      "className": "badge-shadow-lg",
-      "example": "<span class=\"badge-base badge-primary badge-lg badge-shadow-lg\">LG Shadow</span>"
-    },
-    {
-      "variant": "icon-only",
-      "className": "badge-icon-only",
-      "example": "<span class=\"badge-base badge-primary badge-icon-only badge-sm\"><i class=\"fa fa-star\"></i></span>"
-    },
-    {
-      "variant": "icon-spacing",
-      "className": "badge-icon-spacing",
-      "example": "<span class=\"badge-base badge-primary\"><i class=\"fa fa-star badge-icon-spacing\"></i>テキスト</span>"
-    },
-    {
-      "variant": "base",
-      "className": "badge-base",
-      "example": "<span class=\"badge-base badge-primary\">バッジ</span>"
     }
   ]
 };
