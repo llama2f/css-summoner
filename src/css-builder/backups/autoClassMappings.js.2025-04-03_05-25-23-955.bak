@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-03T05:35:54.119Z
+// 自動生成されたコード - 2025-04-03T05:24:04.263Z
 export const componentTypes = [
   {
     "value": "card",
@@ -431,23 +431,15 @@ export const componentVariants = {
     },
     {
       "value": "card-body",
-      "label": "Card Body"
-    },
-    {
-      "value": "card-header",
-      "label": "Card Header"
-    },
-    {
-      "value": "card-subtitle",
-      "label": "Card Subtitle"
-    },
-    {
-      "value": "card-title",
-      "label": "Card Title"
+      "label": "Body"
     },
     {
       "value": "card-footer",
       "label": "Footer"
+    },
+    {
+      "value": "card-header",
+      "label": "Header"
     },
     {
       "value": "card-horizontal",
@@ -460,6 +452,14 @@ export const componentVariants = {
     {
       "value": "card-secondary",
       "label": "Secondary"
+    },
+    {
+      "value": "card-subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "value": "card-title",
+      "label": "Title"
     }
   ],
   "button": [
@@ -1146,12 +1146,12 @@ export const componentExamples = {
       "example": "<div class=\"card\">\n<div class=\"card-body\">シンプルなカードの内容</div>\n</div>"
     },
     {
-      "variant": "card-body",
+      "variant": "body",
       "className": "card-body",
       "example": "<div class=\"card\">\n<div class=\"card-body\">カードの内容</div>\n</div>"
     },
     {
-      "variant": "card-header",
+      "variant": "header",
       "className": "card-header",
       "example": "<div class=\"card\">\n<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n</div>\n<div class=\"card-body\">カードの内容</div>\n</div>"
     },
@@ -1161,12 +1161,12 @@ export const componentExamples = {
       "example": "<div class=\"card\">\n<div class=\"card-body\">カードの内容</div>\n<div class=\"card-footer\">\n<button class=\"btn-base btn-primary\">確認</button>\n</div>\n</div>"
     },
     {
-      "variant": "card-title",
+      "variant": "title",
       "className": "card-title",
       "example": "<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n</div>"
     },
     {
-      "variant": "card-subtitle",
+      "variant": "subtitle",
       "className": "card-subtitle",
       "example": "<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n<p class=\"card-subtitle\">補足情報</p>\n</div>"
     },

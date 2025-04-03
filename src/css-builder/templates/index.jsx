@@ -25,7 +25,10 @@ export const getComponentTemplate = (componentType, options = {}) => {
  * @returns {React.ReactElement} - Reactエレメント
  */
 export const getComponentReactTemplate = (componentType, options = {}) => {
+  console.log('[index.jsx] getComponentReactTemplate called with:', componentType, options); // デバッグログ追加
+  console.log('[index.jsx] Registry object:', registry); // デバッグログ追加
   const { reactElement } = generateTemplate(componentType, options, registry)
+  console.log('[index.jsx] generateTemplate returned:', reactElement); // デバッグログ追加
   return reactElement
 }
 

@@ -44,6 +44,24 @@ export const sizes = {
 		{ value: 'form-lg', label: 'Large' },
 		{ value: 'form-xl', label: 'XL' },
 	],
-}
 
+	// インフォボックス専用のサイズクラス
+	infobox: [
+		{ value: 'text-xs', label: 'XS' },
+		{ value: 'text-sm', label: 'Small' },
+		{ value: 'text-md', label: 'Medium' },
+		{ value: 'text-lg', label: 'Large' },
+		{ value: 'text-xl', label: 'XL' },
+	],
+
+	// カード専用のサイズクラス
+	card: [
+		{ value: 'text-xs', label: 'XS' },
+		{ value: 'text-sm', label: 'Small' },
+		{ value: 'text-md', label: 'Medium' },
+		{ value: 'text-lg', label: 'Large' },
+		{ value: 'text-xl', label: 'XL' },
+	]
+}
+	
 export default sizes

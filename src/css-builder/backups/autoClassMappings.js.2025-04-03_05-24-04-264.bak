@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-03T05:35:54.119Z
+// 自動生成されたコード - 2025-04-03T05:23:23.010Z
 export const componentTypes = [
   {
     "value": "card",
@@ -431,23 +431,15 @@ export const componentVariants = {
     },
     {
       "value": "card-body",
-      "label": "Card Body"
-    },
-    {
-      "value": "card-header",
-      "label": "Card Header"
-    },
-    {
-      "value": "card-subtitle",
-      "label": "Card Subtitle"
-    },
-    {
-      "value": "card-title",
-      "label": "Card Title"
+      "label": "Body"
     },
     {
       "value": "card-footer",
       "label": "Footer"
+    },
+    {
+      "value": "card-header",
+      "label": "Header"
     },
     {
       "value": "card-horizontal",
@@ -460,6 +452,26 @@ export const componentVariants = {
     {
       "value": "card-secondary",
       "label": "Secondary"
+    },
+    {
+      "value": "card-shadow",
+      "label": "Shadow"
+    },
+    {
+      "value": "card-shadow-lg",
+      "label": "Shadow Lg"
+    },
+    {
+      "value": "card-shadow-sm",
+      "label": "Shadow Sm"
+    },
+    {
+      "value": "card-subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "value": "card-title",
+      "label": "Title"
     }
   ],
   "button": [
@@ -648,6 +660,9 @@ export const classDescriptions = {
   "card-footer": "カードのフッター部分。アクションボタンや補足情報を表示します。",
   "card-title": "カードのタイトル要素。主見出しとして使用します。",
   "card-subtitle": "カードのサブタイトル要素。補足的な見出しとして使用します。",
+  "card-shadow-sm": "小さな影のあるカードスタイル。わずかな立体感を与えます。",
+  "card-shadow": "標準的な影のあるカードスタイル。適度な立体感を与えます。",
+  "card-shadow-lg": "大きな影のあるカードスタイル。強い立体感を与え、注目を集めます。",
   "card-primary": "プライマリカラーでアクセントを付けたカード。主要なコンテンツに使用します。",
   "card-secondary": "セカンダリカラーでアクセントを付けたカード。補助的なコンテンツに使用します。",
   "card-accent": "アクセントカラーでアクセントを付けたカード。注目を集めたいコンテンツに使用します。",
@@ -1146,12 +1161,12 @@ export const componentExamples = {
       "example": "<div class=\"card\">\n<div class=\"card-body\">シンプルなカードの内容</div>\n</div>"
     },
     {
-      "variant": "card-body",
+      "variant": "body",
       "className": "card-body",
       "example": "<div class=\"card\">\n<div class=\"card-body\">カードの内容</div>\n</div>"
     },
     {
-      "variant": "card-header",
+      "variant": "header",
       "className": "card-header",
       "example": "<div class=\"card\">\n<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n</div>\n<div class=\"card-body\">カードの内容</div>\n</div>"
     },
@@ -1161,14 +1176,29 @@ export const componentExamples = {
       "example": "<div class=\"card\">\n<div class=\"card-body\">カードの内容</div>\n<div class=\"card-footer\">\n<button class=\"btn-base btn-primary\">確認</button>\n</div>\n</div>"
     },
     {
-      "variant": "card-title",
+      "variant": "title",
       "className": "card-title",
       "example": "<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n</div>"
     },
     {
-      "variant": "card-subtitle",
+      "variant": "subtitle",
       "className": "card-subtitle",
       "example": "<div class=\"card-header\">\n<h3 class=\"card-title\">カードタイトル</h3>\n<p class=\"card-subtitle\">補足情報</p>\n</div>"
+    },
+    {
+      "variant": "shadow-sm",
+      "className": "card-shadow-sm",
+      "example": "<div class=\"card card-shadow-sm\">\n<div class=\"card-body\">小さな影付きカード</div>\n</div>"
+    },
+    {
+      "variant": "shadow",
+      "className": "card-shadow",
+      "example": "<div class=\"card card-shadow\">\n<div class=\"card-body\">影付きカード</div>\n</div>"
+    },
+    {
+      "variant": "shadow-lg",
+      "className": "card-shadow-lg",
+      "example": "<div class=\"card card-shadow-lg\">\n<div class=\"card-body\">大きな影付きカード</div>\n</div>"
     },
     {
       "variant": "primary",

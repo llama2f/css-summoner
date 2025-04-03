@@ -17,11 +17,6 @@ export const modifiers = {
 	// ボタン専用のモディファイア
 	button: [
 		{
-			value: 'btn-shadow',
-			label: '影付き',
-			description: 'ボタンに影を付けます',
-		},
-		{
 			value: 'btn-full',
 			label: '幅100%',
 			description: '親要素の幅いっぱいに広がります',
@@ -61,19 +56,19 @@ export const modifiers = {
 	// カード専用のモディファイア
 	card: [
 		{
-			value: 'card-shadow-sm',
-			label: '弱い影',
-			description: 'カードに弱い影を付けます',
+			value: 'card-bordered',
+			label: '枠線付き',
+			description: '境界線のあるカードスタイル。視覚的な区切りを強調します。',
 		},
 		{
-			value: 'card-shadow',
-			label: '標準の影',
-			description: 'カードに標準的な影を付けます',
+			value: 'card-hover',
+			label: 'ホバー効果',
+			description: 'ホバー時に浮き上がる効果のあるカード。インタラクティブ性を高めます。',
 		},
 		{
-			value: 'card-shadow-lg',
-			label: '強い影',
-			description: 'カードに強い影を付けます',
+			value: 'card-compact',
+			label: 'コンパクト',
+			description: '内部の余白が小さいコンパクトなカード。スペースを節約したい場合に使用します。',
 		},
 	],
 
@@ -86,7 +81,7 @@ export const modifiers = {
 		},
 		{
 			value: 'heading-animated',
-			label: 'アニメーション',
+			label: '下線アニメーション',
 			description: 'ホバー時のアニメーション効果',
 		},
 	],
@@ -202,11 +197,6 @@ export const modifiers = {
 			description: '標準の枠線を追加',
 		},
 		{ value: 'infobox-shadow', label: '影付き', description: '影を追加' },
-		{
-			value: 'infobox-square',
-			label: '角丸なし',
-			description: '角を丸くしない設定',
-		},
 		{
 			value: 'infobox-with-icon',
 			label: 'アイコン付き',
