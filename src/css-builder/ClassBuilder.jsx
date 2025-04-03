@@ -44,6 +44,7 @@ const ClassBuilder = () => {
 
 	// カスタムフックを使用して状態管理
 	const { state, actions } = useClassBuilder()
+	 
 
 	// ツールチップの表示状態
 	const [tooltipText, setTooltipText] = useState('')

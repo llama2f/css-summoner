@@ -72,19 +72,41 @@ export const generateTemplate = (componentType, options = {}, registry) => {
 	// 結果を所得
 	let result
 
-	// 1. 直接登録されたハンドラーがあればそれを使用
+	// より汎用的なバリアント処理
+	// 1. バリアントが指定されている場合
+	if (options.variant) {
+		// バリアントに直接対応するハンドラーがある場合
+		if (registry.components[options.variant]) {
+		 
+			result = registry.components[options.variant](mergedOptions);
+			return decorateWithBaseClass(result, options.baseClass);
+		} 
+		
+		// 2. バリアントが指定され、親コンポーネントがある場合
+		// 例: card-title -> cardのハンドラーで処理
+		const parentComponentType = options.variant.split('-')[0];
+		if (parentComponentType && registry.components[parentComponentType]) {
+			 
+			// 一時的にcomponentTypeを親に変更し、バリアント情報を渡す
+			const parentOptions = { ...mergedOptions, isVariant: true, variantType: options.variant };
+			result = registry.components[parentComponentType](parentOptions);
+			return decorateWithBaseClass(result, options.baseClass);
+		}
+	}
+
+	// 3. 直接登録されたハンドラーがあればそれを使用
 	if (registry.components[componentType]) {
+		 
 		result = registry.components[componentType](mergedOptions)
 	} else {
 		// 2. パターンハンドラーを検索
 		const patternHandler = findPatternHandler(componentType, registry.patterns)
 		if (patternHandler) {
+			 
 			result = patternHandler(mergedOptions)
 		} else {
 			// 3. 未登録ならデフォルトテンプレートを返す
-			console.log(
-				`未登録コンポーネント "${componentType}" にデフォルトテンプレートを適用しました`
-			)
+		 
 			result = createDefaultTemplate(componentType, options.classString || '')
 		}
 	}

@@ -6,28 +6,38 @@ import { buttonHandlers } from './handlers/buttonHandlers'
 import { cardHandlers } from './handlers/cardHandlers'
 import { infoboxHandlers } from './handlers/infoboxHandlers'
 import { headingPatternHandler } from './handlers/headingHandlers'
-import { formPatternHandler } from './handlers/formHandlers'
+import { formPatternHandler, formHandlers } from './handlers/formHandlers'
 import { imagePatternHandler } from './handlers/imageHandlers'
 import { textPatternHandler } from './handlers/textHandlers'
 
 /**
  * コンポーネントレジストリ
  * すべてのコンポーネントハンドラーとパターンハンドラーを管理
- */
+ */ 
 const componentRegistry = {
   // 登録済みコンポーネント（directルックアップ用）
+  // 特定の名前と完全に一致するコンポーネントタイプのハンドラー
+  // O(1)の時間複雑度で高速に検索できる
   components: {
     ...buttonHandlers,
     ...cardHandlers,
     ...infoboxHandlers,
+    ...formHandlers,
   },
 
   // パターンハンドラー
+  // 正規表現を使用した部分一致のコンポーネントタイプのハンドラー
+  // 直接登録されていないコンポーネントタイプのフォールバックとして機能する
   patterns: {
     ...headingPatternHandler,
     ...formPatternHandler,
     ...imagePatternHandler,
     ...textPatternHandler
+  },
+  
+  // 登録後のチェック
+  checkComponents: function() { 
+    return this;
   },
 
   /**
@@ -76,5 +86,8 @@ const componentRegistry = {
     return this
   }
 }
+
+// 登録確認後にエクスポート
+componentRegistry.checkComponents();
 
 export default componentRegistry

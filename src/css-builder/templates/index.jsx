@@ -25,10 +25,9 @@ export const getComponentTemplate = (componentType, options = {}) => {
  * @returns {React.ReactElement} - Reactエレメント
  */
 export const getComponentReactTemplate = (componentType, options = {}) => {
-  console.log('[index.jsx] getComponentReactTemplate called with:', componentType, options); // デバッグログ追加
-  console.log('[index.jsx] Registry object:', registry); // デバッグログ追加
+ 
   const { reactElement } = generateTemplate(componentType, options, registry)
-  console.log('[index.jsx] generateTemplate returned:', reactElement); // デバッグログ追加
+ 
   return reactElement
 }
 
@@ -40,8 +39,12 @@ export const getComponentReactTemplate = (componentType, options = {}) => {
  * @returns {string} - HTML文字列
  */
 export const getComponentHtmlTemplate = (componentType, options = {}) => {
-  const { htmlString } = generateTemplate(componentType, options, registry)
-  return htmlString
+  
+  
+  // HTML生成は通常のgenerateTemplateを使用する
+  // バリアント情報は、templateEngineが適切に処理する
+  const { htmlString } = generateTemplate(componentType, options, registry);
+  return htmlString;
 }
 
 /**

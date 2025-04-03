@@ -58,8 +58,10 @@ const ClassPreview = ({
 			selectedModifiers,
 			baseClass,
 			forPreview: true,
+			// バリアント情報を明示的に渡す
+			variant: componentVariant
 		});
-	}, [componentType, combinedClasses, selectedModifiers, baseClass]); // 依存する値が変更された時のみ再計算
+	}, [componentType, combinedClasses, selectedModifiers, baseClass, componentVariant]); // 依存値にcomponentVariantを追加
 
 	return (
 		<div

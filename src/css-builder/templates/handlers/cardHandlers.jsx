@@ -124,3 +124,4 @@ export const cardHandlers = {
   'card-title': cardTitleHandler,
   'card-horizontal': cardHorizontalHandler
 }
+ 

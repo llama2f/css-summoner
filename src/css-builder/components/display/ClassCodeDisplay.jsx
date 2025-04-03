@@ -36,10 +36,26 @@ const ClassCodeDisplay = ({
 
 	// テンプレートからHTML文字列を取得（メモ化）
 	const htmlString = useMemo(() => {
-		return getComponentHtmlTemplate(componentType, {
-			classString,
-			selectedModifiers,
-		})
+	 
+		try {
+			// componentTypeが'card'で、classStringに'card-title'が含まれている場合の特別処理
+			const classTokens = classString.split(' ');
+			const variant = classTokens.find(c => 
+				c === 'card-title' || c === 'card-horizontal' || 
+				c === 'card-header' || c === 'card-footer' || 
+				c === 'card-subtitle' || c === 'card-actions'
+			);
+			
+			 
+			return getComponentHtmlTemplate(componentType, {
+				classString,
+				selectedModifiers,
+				variant // バリアント情報を渡す
+			});
+		} catch (error) {
+			console.error(`[ClassCodeDisplay] Error getting HTML template:`, error);
+			return `<!-- Error generating HTML template -->`;
+		}
 	}, [componentType, classString, selectedModifiers]) // 依存する値が変更された時のみ再計算
 
 	return (
