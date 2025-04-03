@@ -1,3 +1,84 @@
+/**
+ * 直接ハンドラーとパターンハンドラーを生成するファクトリー
+ * @param {Object} handlersMap - コンポーネントタイプとハンドラーのマッピング
+ * @param {Object} [options] - オプション
+ * @param {Object} [options.customPatterns] - カスタムパターン
+ * @returns {Object} {components, patterns} オブジェクト
+ */
+export const createComponentHandlers = (handlersMap, options = {}) => {
+  const { customPatterns = {} } = options;
+  
+  // 直接的な名前に対応するハンドラー
+  const components = { ...handlersMap };
+  
+  // パターンマッチング用ハンドラー
+  const patterns = { ...customPatterns };
+  
+  // 各コンポーネントタイプをパターンとしても登録
+  Object.entries(handlersMap).forEach(([type, handler]) => {
+    const exactPattern = `^${type}`;
+    // カスタムパターンに存在しない場合のみ登録
+    if (!patterns[exactPattern]) {
+      patterns[exactPattern] = handler;
+    }
+    
+    // プレフィックスパターンも登録（例: 'form-'で始まるもの全て）
+    const prefix = type.split('-')[0];
+    const prefixPattern = `^${prefix}-`;
+    if (prefix && prefix !== type && !patterns[prefixPattern]) {
+      patterns[prefixPattern] = components[prefix] || handler;
+    }
+  });
+  
+  return { components, patterns };
+};
+/**
+ * ハンドラーオプションを標準化するユーティリティ
+ * @param {Object} options - 元のオプション
+ * @returns {Object} 標準化されたオプション
+ */
+export const normalizeOptions = (options = {}) => {
+  const {
+    componentType = '',
+    classString = '',
+    variant = '',
+    isVariant = false,
+    variantType = '',
+    baseClass = '',
+    forPreview = false,
+    selectedModifiers = [],
+    ...rest
+  } = options;
+  
+  // 実際に使用するコンポーネントタイプを決定
+  // バリアントとして呼び出された場合はvariantTypeを優先
+  const actualType = isVariant && variantType ? variantType : componentType;
+  
+  return {
+    componentType,   // 元のコンポーネントタイプ
+    actualType,      // 実際に使用するタイプ
+    classString,     // クラス文字列
+    variant,         // バリアント名
+    isVariant,       // バリアントとして呼び出されたか
+    variantType,     // バリアントタイプ
+    baseClass,       // ベースクラス
+    forPreview,      // プレビュー用か
+    selectedModifiers, // 選択されたモディファイア
+    ...rest          // その他の全てのオプション
+  };
+};
+
+/**
+ * ハンドラー関数を作成するユーティリティ
+ * @param {Function} renderFn - レンダリング関数
+ * @returns {Function} 標準化されたハンドラー関数
+ */
+export const createHandler = (renderFn) => {
+  return (options) => {
+    const normalizedOptions = normalizeOptions(options);
+    return renderFn(normalizedOptions);
+  };
+};
 // handlers/common.jsx
 // 共通ユーティリティと定数
 

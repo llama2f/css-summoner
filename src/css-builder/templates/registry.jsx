@@ -6,7 +6,7 @@ import { buttonHandlers } from './handlers/buttonHandlers'
 import { cardHandlers } from './handlers/cardHandlers'
 import { infoboxHandlers } from './handlers/infoboxHandlers'
 import { headingPatternHandler } from './handlers/headingHandlers'
-import { formPatternHandler, formHandlers } from './handlers/formHandlers'
+import {  formHandlers } from './handlers/formHandlers'
 import { imagePatternHandler } from './handlers/imageHandlers'
 import { textPatternHandler } from './handlers/textHandlers'
 
@@ -30,7 +30,6 @@ const componentRegistry = {
   // 直接登録されていないコンポーネントタイプのフォールバックとして機能する
   patterns: {
     ...headingPatternHandler,
-    ...formPatternHandler,
     ...imagePatternHandler,
     ...textPatternHandler
   },

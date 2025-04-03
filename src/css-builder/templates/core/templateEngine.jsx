@@ -69,46 +69,75 @@ export const generateTemplate = (componentType, options = {}, registry) => {
 		componentType,
 	}
 
-	// 結果を所得
+	// 結果を格納する変数
 	let result
 
-	// より汎用的なバリアント処理
-	// 1. バリアントが指定されている場合
-	if (options.variant) {
-		// バリアントに直接対応するハンドラーがある場合
-		if (registry.components[options.variant]) {
-		 
-			result = registry.components[options.variant](mergedOptions);
-			return decorateWithBaseClass(result, options.baseClass);
-		} 
-		
-		// 2. バリアントが指定され、親コンポーネントがある場合
-		// 例: card-title -> cardのハンドラーで処理
-		const parentComponentType = options.variant.split('-')[0];
-		if (parentComponentType && registry.components[parentComponentType]) {
-			 
-			// 一時的にcomponentTypeを親に変更し、バリアント情報を渡す
-			const parentOptions = { ...mergedOptions, isVariant: true, variantType: options.variant };
-			result = registry.components[parentComponentType](parentOptions);
-			return decorateWithBaseClass(result, options.baseClass);
+	/**
+	 * 適切なハンドラーを検索する関数
+	 * 検索順序：
+	 * 1. 指定されたバリアントに対応する直接ハンドラー
+	 * 2. バリアントの親コンポーネントハンドラー
+	 * 3. 指定されたコンポーネントタイプの直接ハンドラー
+	 * 4. パターンマッチングで検索するハンドラー
+	 * 
+	 * @returns {{handler: Function, options: Object}|null} ハンドラーとオプション、またはnull
+	 */
+	const findHandler = () => {
+		// 1. バリアントに直接対応するハンドラーを探す
+		if (options.variant && registry.components[options.variant]) {
+			console.log(`[templateEngine] Using variant handler for: ${options.variant}`)
+			return {
+				handler: registry.components[options.variant],
+				options: mergedOptions
+			}
 		}
-	}
-
-	// 3. 直接登録されたハンドラーがあればそれを使用
-	if (registry.components[componentType]) {
-		 
-		result = registry.components[componentType](mergedOptions)
-	} else {
-		// 2. パターンハンドラーを検索
+		
+		// 2. 親コンポーネントハンドラーでバリアントを処理
+		if (options.variant) {
+			const parentType = options.variant.split('-')[0]
+			if (parentType && registry.components[parentType]) {
+				console.log(`[templateEngine] Using parent component handler for variant: ${parentType}/${options.variant}`)
+				return {
+					handler: registry.components[parentType],
+					options: { ...mergedOptions, isVariant: true, variantType: options.variant }
+				}
+			}
+		}
+		
+		// 3. 直接登録されたハンドラーがあればそれを使用
+		if (registry.components[componentType]) {
+			// console.log(`[templateEngine] Using direct handler for: ${componentType}`)
+			return {
+				handler: registry.components[componentType],
+				options: mergedOptions
+			}
+		}
+		
+		// 4. パターンマッチングで検索
 		const patternHandler = findPatternHandler(componentType, registry.patterns)
 		if (patternHandler) {
-			 
-			result = patternHandler(mergedOptions)
-		} else {
-			// 3. 未登録ならデフォルトテンプレートを返す
-		 
-			result = createDefaultTemplate(componentType, options.classString || '')
+			console.log(`[templateEngine] Using pattern handler for: ${componentType}`)
+			return {
+				handler: patternHandler,
+				options: mergedOptions
+			}
 		}
+		
+		// 適切なハンドラーが見つからなかった
+		console.log(`[templateEngine] No handler found for: ${componentType}`)
+		return null
+	}
+
+	// ハンドラーを検索して実行
+	const handlerInfo = findHandler()
+	
+	if (handlerInfo) {
+		// 見つかったハンドラーを実行
+		result = handlerInfo.handler(handlerInfo.options)
+	} else {
+		// ハンドラーがない場合はデフォルトテンプレート
+		console.log(`[templateEngine] Using default template for: ${componentType}`)
+		result = createDefaultTemplate(componentType, options.classString || '')
 	}
 
 	// 必要に応じてベースクラスを適用するデコレーター
