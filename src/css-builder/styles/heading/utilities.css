@@ -18,6 +18,24 @@
 		@apply w-full;
 	}
 
+	/* サイズバリエーション(手動追加) */
+
+	.heading-xl {
+		font-size: var(--heading-font-size-xl);
+	}
+
+	.heading-lg {
+		font-size: var(--heading-font-size-lg);
+	}
+
+	.heading-md {
+		font-size: var(--heading-font-size-md);
+	}
+
+	.heading-sm {
+		font-size: var(--heading-font-size-sm);
+	}
+
 	/* 印刷時のページブレイク防止 */
 	@media print {
 		h1,

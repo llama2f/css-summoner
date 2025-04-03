@@ -167,7 +167,7 @@
 			var(--heading-accent-border),
 			transparent
 		);
-		color: var(--heading-accent-color);
+		color: var(--heading-neutral-bg);
 	}
 
 	/* 
@@ -203,5 +203,222 @@
 			transparent 3px,
 			transparent 6px
 		);
+	}
+
+	/* === モダン/ミニマル向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: modern-minimal
+	 * @description: 余白と細い線のみで構成されたミニマルでシンプルな見出し。
+	 * @category: typography
+	 * @example: <h2 class="heading-modern-minimal">ミニマルな見出し</h2>
+	 */
+	.heading-modern-minimal {
+		@apply heading-base;
+		padding: var(--heading-padding-y) 0;
+		border-bottom: 1px solid var(--heading-modern-border);
+		color: var(--heading-modern-color);
+		font-weight: 500;
+		letter-spacing: 0.05em;
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: modern-split
+	 * @description: 2色に分かれたモダンな見出し。視覚的な分割線を持ちます。
+	 * @category: typography
+	 * @example: <h2 class="heading-modern-split">分割デザインの見出し</h2>
+	 */
+	.heading-modern-split {
+		@apply heading-base relative;
+		padding: var(--heading-padding-y) 0;
+		color: var(--heading-modern-color);
+		overflow: hidden;
+	}
+
+	.heading-modern-split::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 3px;
+		background: linear-gradient(
+			to right,
+			var(--heading-modern-border) 0%,
+			var(--heading-modern-border) 50%,
+			var(--heading-accent-border) 50%,
+			var(--heading-accent-border) 100%
+		);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: modern-oversized
+	 * @description: 大きめのフォントと薄い色使いが特徴の現代的な見出し。
+	 * @category: typography
+	 * @example: <h2 class="heading-modern-oversized">オーバーサイズ見出し</h2>
+	 */
+	.heading-modern-oversized {
+		@apply heading-base;
+		font-size: calc(var(--heading-font-size-xl) * 1.25);
+		color: var(--heading-modern-color);
+		opacity: 0.85;
+		font-weight: 300;
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+	}
+
+	/* === 和風/和モダン向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: japanesque-brush
+	 * @description: 筆文字風の和風見出し。日本的なコンテンツに最適です。
+	 * @category: typography
+	 * @example: <h2 class="heading-japanesque-brush">筆文字風見出し</h2>
+	 */
+	.heading-japanesque-brush {
+		@apply heading-base;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		color: var(--heading-japanesque-color);
+		font-family: var(--font-ja-mincho, serif);
+		position: relative;
+	}
+
+	.heading-japanesque-brush::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: linear-gradient(
+			to right,
+			var(--heading-japanesque-border),
+			var(--heading-japanesque-border) 70%,
+			transparent
+		);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: japanesque-vertical
+	 * @description: 縦書きレイアウトの和風見出し。伝統的な日本のデザインに適しています。
+	 * @category: typography
+	 * @example: <h2 class="heading-japanesque-vertical">縦書き見出し</h2>
+	 */
+	.heading-japanesque-vertical {
+		@apply heading-base;
+		writing-mode: vertical-rl;
+		text-orientation: upright;
+		padding: var(--heading-padding-x) var(--heading-padding-y);
+		color: var(--heading-japanesque-color);
+		font-family: var(--font-ja-mincho, serif);
+		height: calc(var(--heading-font-size-lg) * 5);
+		line-height: 1.7;
+		margin-left: auto;
+		margin-right: auto;
+		border-left: 1px solid var(--heading-japanesque-border);
+	}
+
+	/* === 既存カテゴリへの追加バリエーション === */
+
+	/* フォーマル追加バリエーション */
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-boxed
+	 * @description: 四方をボーダーで囲んだビジネス向け見出し。重要な情報を枠で強調します。
+	 * @category: typography
+	 * @example: <h2 class="heading-formal-boxed">囲み枠付き見出し</h2>
+	 */
+	.heading-formal-boxed {
+		@apply heading-base rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		border: 1px solid var(--heading-formal-border);
+		color: var(--heading-formal-color);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-double
+	 * @description: 二重下線のフォーマルな見出し。格式高い文書やレポートに適しています。
+	 * @category: typography
+	 * @example: <h2 class="heading-formal-double">二重下線見出し</h2>
+	 */
+	.heading-formal-double {
+		@apply heading-base;
+		padding-bottom: var(--heading-padding-y);
+		border-bottom: 1px solid var(--heading-formal-border);
+		position: relative;
+		color: var(--heading-formal-color);
+	}
+
+	.heading-formal-double::after {
+		content: '';
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background-color: var(--heading-formal-border);
+	}
+
+	/* カジュアル追加バリエーション */
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-handwritten
+	 * @description: 手書き風フォントを使用したカジュアルな見出し。親しみやすい印象を与えます。
+	 * @category: typography
+	 * @example: <h2 class="heading-casual-handwritten">手書き風見出し</h2>
+	 */
+	.heading-casual-handwritten {
+		@apply heading-base;
+		font-family: var(--font-handwritten, cursive);
+		color: var(--heading-casual-color);
+		transform: rotate(-1deg);
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-highlight
+	 * @description: マーカーでハイライトしたような見出し。重要なポイントを強調します。
+	 * @category: typography
+	 * @example: <h2 class="heading-casual-highlight">ハイライト見出し</h2>
+	 */
+	.heading-casual-highlight {
+		@apply heading-base inline;
+		padding: 0.2em 0;
+		color: var(--heading-casual-color);
+		background: linear-gradient(
+			transparent 60%,
+			var(--heading-casual-border) 60%
+		);
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: technical-comment
+	 * @description: コードコメント風の技術的な見出し。プログラミング関連のドキュメントに最適です。
+	 * @category: typography
+	 * @example: <h2 class="heading-technical-comment">コメント風見出し</h2>
+	 */
+	.heading-technical-comment {
+		@apply heading-base font-mono;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		color: var(--heading-technical-color);
+		position: relative;
+	}
+
+	.heading-technical-comment::before {
+		content: '// ';
+		color: var(--heading-technical-border);
+		letter-spacing: 0.01em;
 	}
 }

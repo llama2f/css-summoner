@@ -42,10 +42,25 @@
 		--heading-accent-color: var(--accent-dark, #8b5752);
 		--heading-accent-bg: var(--accent-light, #f5e6e0);
 		--heading-accent-border: var(--accent, #ef6428);
+
+		/* モダン・カテゴリー */
+		--heading-modern-color: var(--tertiary-dark, #6e5773);
+		--heading-modern-bg: var(--tertiary-light, #f0eef1);
+		--heading-modern-border: var(--tertiary, #b39dbc);
+
+		/* 和風・カテゴリー */
+		--heading-japanesque-color: var(--accent2-dark, #99582a);
+		--heading-japanesque-bg: var(--accent2-light, #f6e9dd);
+		--heading-japanesque-border: var(--accent2, #c17a43);
+
+		/* 日本語フォント設定 */
+		--font-ja-mincho: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+		--font-handwritten: 'Comic Sans MS', 'Segoe Print', cursive;
 	}
 
 	/* ダークモード用の変数 */
 	:root.dark {
+		--heading-neutral-bg: var(--neutral-dark, #242424);
 		--heading-formal-color: var(--primary-light, #e5edf5);
 		--heading-formal-bg: rgba(26, 86, 142, 0.2);
 		--heading-casual-color: var(--secondary-light, #edf0e9);
@@ -78,7 +93,7 @@
 			--heading-border-width: 1pt;
 		}
 	}
-	
+
 	/* 
 	 * @component: heading
 	 * @variant: base
@@ -91,23 +106,5 @@
 		margin-top: var(--heading-margin-top);
 		margin-bottom: var(--heading-margin-bottom);
 		font-family: var(--heading-font-family);
-	}
-
-	/* サイズバリエーション(手動追加) */
-
-	.heading-xl {
-		font-size: var(--heading-font-size-xl);
-	}
-
-	.heading-lg {
-		font-size: var(--heading-font-size-lg);
-	}
-
-	.heading-md {
-		font-size: var(--heading-font-size-md);
-	}
-
-	.heading-sm {
-		font-size: var(--heading-font-size-sm);
 	}
 }
