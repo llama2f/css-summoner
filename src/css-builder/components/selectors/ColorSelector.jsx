@@ -36,17 +36,17 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 
 	return (
 		<div className='color-selector mb-6'>
-			<h2 className='label-config label-colors'>Color</h2>
+			<h2 className='label-config label-colors '>Color</h2>
 
 			{/* 色選択オプション */}
 			<div className='color-selector-container'>
 				{colors.map((color) => (
 					<button
 						key={color.value}
-						className={`p-2 border rounded flex items-center gap-2 ${
+						className={`p-2  rounded flex items-center gap-2 ${
 							selectedColor === color.value
-								? 'border-primary bg-primary-light/20'
-								: 'border-neutral-200'
+								? 'border border-primary bg-primary-light/20'
+								: ''
 						}`}
 						onClick={() => handleCustomColorClick(color)}
 						onMouseEnter={(e) => onTooltip && onTooltip(e, color.description)}
@@ -65,15 +65,17 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 						) : (
 							<div className='w-4 h-4 rounded-full border border-dashed border-neutral-400'></div>
 						)}
-						<span className='label-color'>{color.label}</span>
+						<span className='btn-base btn-ghost btn-xs label-color'>
+							{color.label}
+						</span>
 					</button>
 				))}
 			</div>
 
 			{/* カラーホイールセクション */}
-			<div className='color-wheel-section mt-2'>
+			<div className='color-wheel-section '>
 				<button
-					className='w-full py-2 px-3 border rounded flex items-center justify-center gap-2 bg-neutral-100 hover:bg-neutral-200'
+					className='btn-base btn-solid btn-sm color-neutral'
 					onClick={() => setIsColorPickerOpen(true)}
 				>
 					<span>

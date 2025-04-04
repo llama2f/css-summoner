@@ -16,7 +16,7 @@
 	}
 
 	.label-color {
-		@apply text-xs font-mono;
+		@apply font-mono font-normal !p-0;
 	}
 
 	.code-aria {
