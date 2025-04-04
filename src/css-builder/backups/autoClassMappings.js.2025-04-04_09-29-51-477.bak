@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T09:52:35.092Z
+// 自動生成されたコード - 2025-04-04T08:22:13.098Z
 export const componentTypes = [
   {
     "value": "card",
@@ -148,20 +148,56 @@ export const componentVariants = {
   ],
   "infobox": [
     {
-      "value": "infobox-ghost",
-      "label": "Ghost"
+      "value": "infobox-bordered",
+      "label": "Bordered"
+    },
+    {
+      "value": "infobox-compact",
+      "label": "Compact"
+    },
+    {
+      "value": "infobox-error",
+      "label": "Error"
+    },
+    {
+      "value": "infobox-icon",
+      "label": "Icon"
+    },
+    {
+      "value": "infobox-info",
+      "label": "Info"
+    },
+    {
+      "value": "infobox-note",
+      "label": "Note"
     },
     {
       "value": "infobox-outline",
       "label": "Outline"
     },
     {
-      "value": "infobox-solid",
-      "label": "Solid"
+      "value": "infobox-shadow",
+      "label": "Shadow"
+    },
+    {
+      "value": "infobox-square",
+      "label": "Square"
+    },
+    {
+      "value": "infobox-success",
+      "label": "Success"
     },
     {
       "value": "infobox-title",
       "label": "Title"
+    },
+    {
+      "value": "infobox-warning",
+      "label": "Warning"
+    },
+    {
+      "value": "infobox-with-icon",
+      "label": "With Icon"
     }
   ],
   "img": [
@@ -518,10 +554,19 @@ export const classDescriptions = {
   "text-quote": "コンポーネントカラーを使用して、テキスト（通常は引用）に左ボーダーを適用します。",
   "text-highlight": "コンポーネントカラーを使用して、微妙な背景ハイライトを適用します。marker-fullに似ていますが、異なるスタイル設定が可能です。",
   "text-deco-base": "テキストデコレーションの基本スタイルを提供します。",
-  "infobox-solid": "背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。",
-  "infobox-outline": "背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。",
-  "infobox-ghost": "背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。",
-  "infobox-title": "タイトル要素のスタイル。",
+  "infobox-with-icon": "アイコン付きの情報ボックス。視覚的な手がかりを追加します。",
+  "infobox-info": "一般的な情報を表示するボックス。通常の通知やメッセージに使用します。",
+  "infobox-success": "成功や完了を表示するボックス。操作の成功やポジティブな通知に使用します。",
+  "infobox-warning": "警告を表示するボックス。注意が必要な情報やユーザーの確認が必要な内容に使用します。",
+  "infobox-error": "エラーを表示するボックス。問題や失敗を通知する場合に使用します。",
+  "infobox-note": "メモや補足情報を表示するボックス。追加情報や備考に使用します。",
+  "infobox-outline": "背景色なしで枠線のみのスタイル。控えめな表示が必要な場合に使用します。",
+  "infobox-bordered": "通常の枠線付きスタイル。視覚的な区切りを強調します。",
+  "infobox-shadow": "影付きスタイル。立体感を強調し、ページ上で目立たせます。",
+  "infobox-square": "角丸なしの四角形スタイル。シャープなデザインが必要な場合に使用します。",
+  "infobox-icon": "アイコン要素のスタイル。視覚的なシンボルを左側に配置します。",
+  "infobox-title": "タイトル要素のスタイル。情報ボックス内の見出しに使用します。",
+  "infobox-compact": "コンパクトサイズのスタイル。スペースが限られている場合に使用します。",
   "infobox-base": "すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。",
   "img-container": "画像コンテナの基本スタイル。すべての画像要素の親要素に適用します。",
   "img-rounded-sm": "小さい角丸を適用した画像スタイル。控えめな角丸が必要な場合に使用します。",
@@ -731,29 +776,74 @@ export const componentExamples = {
   ],
   "infobox": [
     {
-      "variant": "solid",
-      "className": "infobox-solid",
-      "example": "<div class=\"infobox-base infobox-solid color-info\">...</div>"
+      "variant": "with-icon",
+      "className": "infobox-with-icon",
+      "example": "<div class=\"infobox-info infobox-with-icon\">\n<span class=\"infobox-icon\">\n<svg>...</svg>\n</span>\nアイコン付き情報ボックス\n</div>"
+    },
+    {
+      "variant": "info",
+      "className": "infobox-info",
+      "example": "<div class=\"infobox-info\">\n情報: このサービスは24時間利用可能です。\n</div>"
+    },
+    {
+      "variant": "success",
+      "className": "infobox-success",
+      "example": "<div class=\"infobox-success\">\n成功: データの保存が完了しました。\n</div>"
+    },
+    {
+      "variant": "warning",
+      "className": "infobox-warning",
+      "example": "<div class=\"infobox-warning\">\n警告: このアクションは取り消せません。\n</div>"
+    },
+    {
+      "variant": "error",
+      "className": "infobox-error",
+      "example": "<div class=\"infobox-error\">\nエラー: ファイルの上传に失敗しました。\n</div>"
+    },
+    {
+      "variant": "note",
+      "className": "infobox-note",
+      "example": "<div class=\"infobox-note\">\nメモ: 詳細については資料を参照してください。\n</div>"
     },
     {
       "variant": "outline",
       "className": "infobox-outline",
-      "example": "<div class=\"infobox-base infobox-outline color-warning\">...</div>"
+      "example": "<div class=\"infobox-info infobox-outline\">\n枠線のみの情報ボックス\n</div>"
     },
     {
-      "variant": "ghost",
-      "className": "infobox-ghost",
-      "example": "<div class=\"infobox-base infobox-ghost color-neutral\">...</div>"
+      "variant": "bordered",
+      "className": "infobox-bordered",
+      "example": "<div class=\"infobox-info infobox-bordered\">\n枠線付きの情報ボックス\n</div>"
+    },
+    {
+      "variant": "shadow",
+      "className": "infobox-shadow",
+      "example": "<div class=\"infobox-info infobox-shadow\">\n影付きの情報ボックス\n</div>"
+    },
+    {
+      "variant": "square",
+      "className": "infobox-square",
+      "example": "<div class=\"infobox-info infobox-square\">\n角丸なしの情報ボックス\n</div>"
+    },
+    {
+      "variant": "icon",
+      "className": "infobox-icon",
+      "example": "<div class=\"infobox-info infobox-with-icon\">\n<span class=\"infobox-icon\">\n<svg>...</svg>\n</span>\nアイコン付き情報ボックス\n</div>"
     },
     {
       "variant": "title",
       "className": "infobox-title",
-      "example": "<div class=\"infobox-base infobox-solid color-error\"><h4 class=\"infobox-title\">エラー</h4>...</div>"
+      "example": "<div class=\"infobox-info\"><h4 class=\"infobox-title\">重要なお知らせ</h4><p>システムメンテナンスのお知らせです。</p></div>"
+    },
+    {
+      "variant": "compact",
+      "className": "infobox-compact",
+      "example": "<div class=\"infobox-info infobox-compact\">\nコンパクトサイズの情報ボックス\n</div>"
     },
     {
       "variant": "base",
       "className": "infobox-base",
-      "example": "<div class=\"infobox-base infobox-solid color-info\">...</div>"
+      "example": "<div class=\"infobox-base\">基本的な情報ボックス</div>"
     }
   ],
   "img": [

@@ -1,66 +1,36 @@
 @layer base {
 	:root {
-		/* インフォボックス用変数 - カスタマイズ可能 */
+		/* インフォボックス用変数 - モノクロベース */
 		--infobox-font-family: var(--font, sans-serif);
 
 		/* 余白 */
-		--infobox-padding-x: 1.25rem;
-		--infobox-padding-y: 1.25rem;
-		--infobox-padding-left-icon: 3.25rem;
-		--infobox-margin-y: 1.5rem;
+		--infobox-padding-x: 1.25rem; /* px-5 */
+		--infobox-padding-y: 1.25rem; /* py-5 */
+		--infobox-padding-left-icon: 3rem; /* アイコン表示時の左パディング */
+		--infobox-margin-y: 1.5rem; /* my-6 */
 
 		/* 境界線 */
 		--infobox-border-width: 1px;
 		--infobox-border-radius: 0.375rem; /* rounded-md */
-		--infobox-outline-width: 2px;
+		--infobox-outline-width: 2px; /* フォーカスリングなどに使用 */
 
-		/* ベースカラー設定 */
-		--infobox-bg-opacity: 0.1;
-		--infobox-border-opacity: 0.3;
-		--infobox-outline-opacity: 0.5;
+		/* 状態 */
+		--infobox-disabled-opacity: 0.6; /* 無効時の透明度 (card と同様) */
 
-		/* 情報ボックスカラー */
-		--infobox-info-color: var(--neutral-dark, #1a568e);
-		--infobox-info-bg: var(--neutral-light, #e5edf5);
+		/* アイコン */
+		--infobox-icon-size: 1.5rem; /* アイコンのサイズ */
+		--infobox-icon-position-left: 1rem; /* アイコンの左位置 */
+		--infobox-icon-position-top: 1.25rem; /* アイコンの上位置 */
 
-		/* 成功ボックスカラー */
-		--infobox-success-color: var(--success, #1d8db9);
-		--infobox-success-bg: var(--neutral-light, #e0f3ff);
-
-		/* 警告ボックスカラー */
-		--infobox-warning-color: var(--accent-dark, #86552c);
-		--infobox-warning-bg: var(--accent-light, #f5e6e0);
-
-		/* エラーボックスカラー */
-		--infobox-error-color: var(--error, #d32f2f);
-		--infobox-error-bg: #f8eff0;
-
-		/* メモボックスカラー */
-		--infobox-note-color: var(--neutral-dark, #242424);
-		--infobox-note-bg: var(--neutral-light, #fafafa);
-
-		/* アイコンサイズ */
-		--infobox-icon-size: 1.5rem;
-		--infobox-icon-position-left: 1rem;
-		--infobox-icon-position-top: 1.25rem;
+		/* トランジション (card を参考に) */
+		--infobox-transition-duration: var(--transition-duration, 200ms);
+		--infobox-transition-timing-function: ease-in-out;
 	}
 
-	/* ダークモード用の変数 */
+	/* ダークモード用の変数上書き (非カラー変数のみ) */
 	:root.dark {
-		--infobox-info-color: var(--primary-light, #e5edf5);
-		--infobox-info-bg: rgba(26, 86, 142, 0.2);
-
-		--infobox-success-color: var(--secondary-light, #edf0e9);
-		--infobox-success-bg: rgba(67, 99, 34, 0.2);
-
-		--infobox-warning-color: var(--accent-light, #f5e6e0);
-		--infobox-warning-bg: rgba(139, 87, 82, 0.2);
-
-		--infobox-error-color: #ffcdd2;
-		--infobox-error-bg: rgba(211, 47, 47, 0.2);
-
-		--infobox-note-color: var(--neutral-light, #fafafa);
-		--infobox-note-bg: rgba(36, 36, 36, 0.2);
+		/* 必要に応じてダークモード固有の非カラー変数を設定 */
+		/* 例: --infobox-disabled-opacity: 0.5; */
 	}
 
 	/* 印刷用スタイル */
@@ -71,27 +41,43 @@
 			--infobox-margin-y: 1rem;
 			--infobox-border-width: 0.5pt;
 			--infobox-outline-width: 1pt;
-
-			/* 印刷時は背景色を薄く、境界線をはっきりと */
-			--infobox-bg-opacity: 0.05;
-			--infobox-border-opacity: 0.5;
-			--infobox-outline-opacity: 0.8;
+		}
+		.infobox-base {
+			page-break-inside: avoid; /* infobox がページ間で分割されないように */
 		}
 	}
-	
-	/* 
+
+	/*
 	 * @component: infobox
 	 * @variant: base
 	 * @description: すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。
 	 * @category: notification
-	 * @example: <div class="infobox-base">基本的な情報ボックス</div>
+	 * @example: <div class="infobox-base infobox-solid color-info">...</div>
 	 */
 	.infobox-base {
-		@apply relative w-full rounded;
+		@apply relative w-full rounded; /* 基本レイアウト */
 		font-family: var(--infobox-font-family);
 		margin-top: var(--infobox-margin-y);
 		margin-bottom: var(--infobox-margin-y);
 		padding: var(--infobox-padding-y) var(--infobox-padding-x);
+		border-width: var(--infobox-border-width);
+		border-style: solid; /* card に合わせて追加 */
 		border-radius: var(--infobox-border-radius);
+		/* カラー関連のスタイルはバリアントとカラーセレクタで定義 */
+		/* background-color, color, border-color はここでは設定しない */
+		transition: all var(--infobox-transition-duration)
+			var(--infobox-transition-timing-function);
+	}
+
+	/* アイコン表示用のスタイル（アイコン自体は ::before などで追加することを想定） */
+	.infobox-base.has-icon {
+		padding-left: var(--infobox-padding-left-icon);
+	}
+
+	/* 無効状態 */
+	.infobox-base[aria-disabled='true'] {
+		opacity: var(--infobox-disabled-opacity);
+		pointer-events: none;
+		user-select: none;
 	}
 }

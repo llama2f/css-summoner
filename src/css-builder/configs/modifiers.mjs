@@ -219,29 +219,22 @@ export const modifiers = {
 		// 影関連は common にあるため、ここでは不要
 	],
 
-	// インフォボックス専用のモディファイア
+	// インフォボックス専用のモディファイア (variants.css, utilities.css に基づく)
 	infobox: [
-		{
-			value: 'infobox-outline',
-			label: 'アウトライン',
-			description: '背景透明で枠線のみ',
-		},
-		{
-			value: 'infobox-bordered',
-			label: '枠線付き',
-			description: '標準の枠線を追加',
-		},
-		{ value: 'infobox-shadow', label: '影付き', description: '影を追加' },
-		{
-			value: 'infobox-with-icon',
-			label: 'アイコン付き',
-			description: 'アイコンのスペースを確保',
-		},
+		{ value : 'infobox-with-icon', label: 'アイコンつき', description: 'アイコンを表示します' },
+		// サイズ (variants.css)
 		{
 			value: 'infobox-compact',
 			label: 'コンパクト',
 			description: '余白が少ないコンパクトスタイル',
 		},
+		// ホバー効果 (utilities.css)
+		{ value: 'infobox-hover', label: 'ホバー(上)', description: 'ホバー時に上に移動します' },
+		{ value: 'infobox-hover-down', label: 'ホバー(下)', description: 'ホバー時に下に移動します' },
+		{ value: 'infobox-hover-scale', label: 'ホバー(拡大)', description: 'ホバー時に拡大します' },
+		{ value: 'infobox-hover-overlay', label: 'ホバー(オーバーレイ)', description: 'ホバー時にオーバーレイを表示します' },
+		{ value: 'infobox-hover-border', label: 'ホバー(枠線強調)', description: 'ホバー時に枠線を強調します (outline/ghost向け)' },
+		{ value: 'infobox-hover-ghost', label: 'ホバー(ゴースト)', description: 'ホバー時に背景を薄く表示します (ghost向け)' },
 	],
 }
 

@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T09:52:35.092Z
+// 自動生成されたコード - 2025-04-04T09:29:51.476Z
 export const componentTypes = [
   {
     "value": "card",
@@ -148,16 +148,32 @@ export const componentVariants = {
   ],
   "infobox": [
     {
+      "value": "infobox-compact",
+      "label": "Compact"
+    },
+    {
       "value": "infobox-ghost",
       "label": "Ghost"
+    },
+    {
+      "value": "infobox-icon",
+      "label": "Icon"
     },
     {
       "value": "infobox-outline",
       "label": "Outline"
     },
     {
+      "value": "infobox-shadow",
+      "label": "Shadow"
+    },
+    {
       "value": "infobox-solid",
       "label": "Solid"
+    },
+    {
+      "value": "infobox-square",
+      "label": "Square"
     },
     {
       "value": "infobox-title",
@@ -521,6 +537,10 @@ export const classDescriptions = {
   "infobox-solid": "背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。",
   "infobox-outline": "背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。",
   "infobox-ghost": "背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。",
+  "infobox-shadow": "影付きスタイル。立体感を強調します。",
+  "infobox-square": "角丸なしの四角形スタイル。",
+  "infobox-compact": "コンパクトサイズのスタイル。",
+  "infobox-icon": "アイコン要素のスタイル。通常は ::before 疑似要素などで実装します。",
   "infobox-title": "タイトル要素のスタイル。",
   "infobox-base": "すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。",
   "img-container": "画像コンテナの基本スタイル。すべての画像要素の親要素に適用します。",
@@ -744,6 +764,26 @@ export const componentExamples = {
       "variant": "ghost",
       "className": "infobox-ghost",
       "example": "<div class=\"infobox-base infobox-ghost color-neutral\">...</div>"
+    },
+    {
+      "variant": "shadow",
+      "className": "infobox-shadow",
+      "example": "<div class=\"infobox-base infobox-solid color-neutral infobox-shadow\">...</div>"
+    },
+    {
+      "variant": "square",
+      "className": "infobox-square",
+      "example": "<div class=\"infobox-base infobox-solid color-primary infobox-square\">...</div>"
+    },
+    {
+      "variant": "compact",
+      "className": "infobox-compact",
+      "example": "<div class=\"infobox-base infobox-solid color-secondary infobox-compact\">...</div>"
+    },
+    {
+      "variant": "icon",
+      "className": "infobox-icon",
+      "example": "<div class=\"infobox-base infobox-solid color-info has-icon\"><span class=\"infobox-icon\"><svg>...</svg></span>...</div>"
     },
     {
       "variant": "title",
