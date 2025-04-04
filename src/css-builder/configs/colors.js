@@ -2,43 +2,43 @@
 export const colorRegistry = {
   primary: {
     value: 'color-primary',
-    label: 'プライマリ',
+    label: 'Primary',
     description: '主要なアクションに使用する色',
     cssVar: '--primary'
   },
   secondary: {
     value: 'color-secondary',
-    label: 'セカンダリ',
+    label: 'Secondary',
     description: '補助的なアクションに使用する色',
     cssVar: '--secondary'
   },
   accent: {
     value: 'color-accent',
-    label: 'アクセント',
+    label: 'Accent',
     description: '注目を集めるアクションに使用する色',
     cssVar: '--accent'
   },
   neutral: {
     value: 'color-neutral',
-    label: 'ニュートラル',
+    label: 'Neutral',
     description: '一般的なアクションに使用する色',
     cssVar: '--neutral'
   },
   dark: {
     value: 'color-dark',
-    label: 'ダーク',
+    label: 'Dark',
     description: '明るい背景上での表示に適した暗い色',
     cssVar: '--neutral-dark'
   },
   light: {
     value: 'color-light',
-    label: 'ライト',
+    label: 'Light',
     description: '暗い背景上での表示に適した明るい色',
     cssVar: '--neutral-light'
   },
   custom: {
     value: 'color-custom',
-    label: 'カスタム',
+    label: 'Custom',
     description: 'カラーピッカーで選択したカスタム色',
     cssVar: '--custom-color',
     isCustom: true
@@ -47,7 +47,7 @@ export const colorRegistry = {
 
 // 他のカラー関連の設定
 export const colorOptions = [
-  { value: '', label: 'なし', description: '色を指定しない' },
+  { value: '', label: 'None', description: '色を指定しない' },
   ...Object.entries(colorRegistry).map(([key, color]) => ({
     value: color.value,
     label: color.label,

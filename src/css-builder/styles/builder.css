@@ -9,6 +9,16 @@
 
 @layer components {
 	/* 追加クラスラベル */
+
+	.color-selector-container {
+		@apply grid grid-cols-1 gap-2 mb-4;
+		@apply overflow-y-auto max-h-56;
+	}
+
+	.label-color {
+		@apply text-xs font-mono;
+	}
+
 	.code-aria {
 		@apply font-mono;
 		background-color: var(--background);

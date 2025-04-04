@@ -1,7 +1,7 @@
 @import '../../styles/global.css';
 
-@import './all-components.css'
-@import './class-builder.css';
+@import './all-components.css';
+/* @import './class-builder.css'; */
 @import './builder.css';
 
 @import './utils.css';
@@ -9,4 +9,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
