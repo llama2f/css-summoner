@@ -1,35 +1,38 @@
 @layer base {
-  :root {
-    /* フォーム要素の基本変数 */
-    --form-font-family: var(--font, sans-serif);
-    --form-border-radius: 0.375rem;
-    --form-border-width: 1px;
-    --form-padding-x: 0.75rem;
-    --form-padding-y: 0.5rem;
-    --form-font-size: 1rem;
-    --form-line-height: 1.5;
-    
-    /* カラー変数 - プロジェクト固有の色合いを反映 */
-    --form-bg: var(--neutral-light, #fafafa);
-    --form-text: var(--neutral-dark, #242424);
-    --form-border: var(--neutral, #e4e4e4);
-    --form-focus-ring: rgba(var(--primary-rgb), 0.25);
-    --form-placeholder: rgba(var(--neutral-dark-rgb), 0.5);
-    --form-disabled-bg: rgba(var(--neutral-rgb), 0.2);
-    --form-disabled-text: rgba(var(--neutral-dark-rgb), 0.6);
-    
-    /* バリデーションカラー */
-    --form-valid: var(--success, #0b6a81);
-    --form-invalid: var(--error, #c03831);
-  }
+	:root {
+		/* フォーム要素の基本変数 */
+		--form-font-family: var(--font, sans-serif);
+		--form-border-radius: 0.375rem; /* Tailwind rounded-md */
+		--form-border-width: 1px;
+		--form-padding-x: 0.75rem; /* Tailwind px-3 */
+		--form-padding-y: 0.5rem; /* Tailwind py-2 */
+		--form-font-size: 1rem; /* Tailwind text-base */
+		--form-line-height: 1.5; /* Tailwind leading-normal */
 
-  /* ダークモード */
-  :root.dark {
-    --form-bg: var(--neutral-dark, #242424);
-    --form-text: var(--neutral-light, #fafafa);
-    --form-border: rgba(var(--neutral-light-rgb), 0.2);
-    --form-placeholder: rgba(var(--neutral-light-rgb), 0.5);
-    --form-disabled-bg: rgba(var(--neutral-rgb), 0.1);
-    --form-disabled-text: rgba(var(--neutral-light-rgb), 0.4);
-  }
+		/* 注: カラー関連の変数は削除し、カラーセレクタクラス (.color-*) で管理 */
+	}
+
+	/* 注: ダークモードのカラー設定もカラーセレクタクラス側で処理 */
+
+	/* チェックボックス: チェックマークを表示する */
+	.form-checkbox:checked {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+		background-size: 80%;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	/* チェック状態のスタイル */
+	.form-checkbox:checked,
+	.form-radio:checked {
+		background-color: var(
+			--component-active-color,
+			var(--component-color)
+		); /* アクティブ色を使用 (背景色) */
+		border-color: var(
+			--component-active-color,
+			var(--component-color)
+		); /* アクティブ色を使用 */
+		position: relative; /* 疑似要素配置のため */
+	}
 }

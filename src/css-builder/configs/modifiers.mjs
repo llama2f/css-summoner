@@ -187,6 +187,11 @@ export const modifiers = {
 			label: '成功状態',
 			description: '成功表示のスタイルを適用します',
 		},
+		{
+			value: 'form-checkbox-square',
+			label: 'チェックボックスの四角アイコン',
+			description: 'チェックボックスの四角アイコンを表示します',
+		}
 	],
 
 	// 画像専用のモディファイア
