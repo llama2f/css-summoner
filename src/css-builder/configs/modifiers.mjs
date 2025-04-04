@@ -70,6 +70,26 @@ export const modifiers = {
 			label: 'コンパクト',
 			description: '内部の余白が小さいコンパクトなカード。スペースを節約したい場合に使用します。',
 		},
+		{
+			value: 'card-hover-down',
+			label: 'ホバー効果(下)',
+			description: 'ホバー時に下に移動する効果のあるカード。',
+		},
+		{
+			value: 'card-hover-scale',
+			label: 'ホバー効果(拡大)',
+			description: 'ホバー時に拡大する効果のあるカード。',
+		},
+		{
+			value: 'card-hover-overlay',
+			label: 'ホバー効果(オーバーレイ)',
+			description: 'ホバー時にオーバーレイを表示する効果のあるカード。',
+		},
+		{
+			value: 'card-hover-border',
+			label: 'ホバー効果(枠線)',
+			description: 'ホバー時に枠線の色を強調する効果のあるカード。',
+		},
 	],
 
 	// 見出し専用のモディファイア

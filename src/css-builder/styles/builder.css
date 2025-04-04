@@ -19,6 +19,10 @@
 		@apply font-mono font-normal !p-0;
 	}
 
+	.color-wheel-btn {
+		@apply tracking-tighter whitespace-normal;
+	}
+
 	.code-aria {
 		@apply font-mono;
 		background-color: var(--background);

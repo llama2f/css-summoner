@@ -43,7 +43,7 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 				{colors.map((color) => (
 					<button
 						key={color.value}
-						className={`p-2  rounded flex items-center gap-2 ${
+						className={`p-1  rounded flex items-center gap-2 ${
 							selectedColor === color.value
 								? 'border border-primary bg-primary-light/20'
 								: ''
@@ -75,7 +75,7 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 			{/* カラーホイールセクション */}
 			<div className='color-wheel-section '>
 				<button
-					className='btn-base btn-solid btn-sm color-neutral'
+					className='color-wheel-btn btn-base btn-outline btn-sm color-primary'
 					onClick={() => setIsColorPickerOpen(true)}
 				>
 					<span>

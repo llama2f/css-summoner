@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T08:22:13.098Z
+// 自動生成されたコード - 2025-04-04T08:09:31.720Z
 export const componentTypes = [
   {
     "value": "card",
@@ -464,6 +464,10 @@ export const componentVariants = {
       "label": "Horizontal"
     },
     {
+      "value": "card-hover",
+      "label": "Hover"
+    },
+    {
       "value": "card-outline",
       "label": "Outline"
     },
@@ -634,6 +638,7 @@ export const classDescriptions = {
   "card-ghost": "ゴーストスタイルのカード。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
   "card-subtle": "控えめなカード。薄い背景色が適用され、ホバー時に色が濃くなります。",
   "card-bordered": "カードに明示的な境界線を追加します。",
+  "card-hover": "ホバー時にカードが少し浮き上がり、影が濃くなる効果を追加します。",
   "card-horizontal": "画像とコンテンツが横並びになるカード。モバイルでは縦並びになるレスポンシブ対応です。",
   "card-actions": "カード内でのアクションボタンをグループ化するための領域。",
   "card-base": "すべてのカードの基本スタイル。コンテナとしての基本的な構造とレイアウトを提供します。",
@@ -1182,6 +1187,11 @@ export const componentExamples = {
       "variant": "bordered",
       "className": "card-bordered",
       "example": "<div class=\"card-base card-solid color-neutral card-bordered\">境界線付きカード</div>"
+    },
+    {
+      "variant": "hover",
+      "className": "card-hover",
+      "example": "<div class=\"card-base card-solid color-neutral card-hover\">ホバー効果付きカード</div>"
     },
     {
       "variant": "horizontal",

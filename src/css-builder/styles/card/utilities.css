@@ -1,13 +1,109 @@
 @layer utilities {
-  /* 印刷時の調整 */
-  @media print {
-    .card {
-      box-shadow: none !important;
-      border: 1px solid #000 !important;
-    }
-    
-    .card-hover:hover {
-      transform: none;
-    }
-  }
+	/* 印刷時の調整 */
+	@media print {
+		.card {
+			box-shadow: none !important;
+			border: 1px solid #000 !important;
+		}
+	}
+
+	/* ----- モディファイア ----- */
+
+	.card-hover {
+		transition:
+			transform var(--transition-duration, 200ms) ease,
+			box-shadow var(--transition-duration, 200ms) ease;
+	}
+
+	.card-hover-down {
+		transition:
+			transform var(--transition-duration, 200ms) ease,
+			box-shadow var(--transition-duration, 200ms) ease;
+	}
+
+	.card-hover-down:hover {
+		transform: translateY(4px); /* 下方向に移動 */
+		box-shadow: var(--card-shadow-lg); /* 影も少し濃くする */
+	}
+
+	/* 印刷時はホバー効果を無効化 */
+	@media print {
+		.card-hover-down:hover {
+			transform: none;
+			box-shadow: none !important;
+		}
+	}
+
+	.card-hover-scale {
+		transition:
+			transform var(--transition-duration, 200ms) ease,
+			box-shadow var(--transition-duration, 200ms) ease;
+	}
+
+	.card-hover-scale:hover {
+		transform: scale(1.03); /* 少し拡大 */
+		box-shadow: var(--card-shadow-lg); /* 影も少し濃くする */
+	}
+
+	/* 印刷時はホバー効果を無効化 */
+	@media print {
+		.card-hover-scale:hover {
+			transform: none;
+			box-shadow: none !important;
+		}
+	}
+
+	.card-hover-overlay {
+		position: relative; /* 疑似要素の基準 */
+		overflow: hidden; /* 疑似要素がはみ出さないように */
+	}
+
+	.card-hover-overlay::after {
+		content: '';
+		position: absolute;
+		inset: 0; /* top, right, bottom, left を 0 に */
+		background-color: rgba(0, 0, 0, 0.1); /* 半透明の黒 */
+		opacity: 0;
+		transition: opacity var(--transition-duration, 200ms) ease-in-out;
+		pointer-events: none; /* オーバーレイがクリックを妨げないように */
+		z-index: 1; /* コンテンツより手前、ただしカード内の要素よりは奥にしたい場合調整 */
+	}
+
+	.card-hover-overlay:hover::after {
+		opacity: 1;
+	}
+
+	/* ダークモードでのオーバーレイ調整 */
+	.dark .card-hover-overlay::after {
+		background-color: rgba(255, 255, 255, 0.1); /* 半透明の白 */
+	}
+
+	/* 印刷時はホバー効果を無効化 */
+	@media print {
+		.card-hover-overlay::after {
+			opacity: 0 !important;
+		}
+	}
+
+	.card-hover:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--card-shadow-lg); /* base.css で定義された影変数を使用 */
+	}
+
+	/* 印刷時はホバー効果を無効化 */
+	@media print {
+		.card-hover:hover {
+			transform: none;
+			box-shadow: none !important; /* 印刷時は影を完全に消す */
+		}
+	}
+
+	/* ボーダー効果 */
+	.card-hover-border {
+		border-style: solid;
+		border-width: var(--card-border-width);
+	}
+	.card-hover-border:hover {
+		border-color: var(--component-border, #333);
+	}
 }
