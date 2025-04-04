@@ -34,6 +34,18 @@ const ClassCodeDisplay = ({
 			})
 	}, [setCopySuccess]) // setCopySuccessが変更されることはないが、念のため依存配列に含める
 
+	// ベースクラスを決定
+	// コンポーネントタイプに基づいてベースクラスを設定
+	const baseClass = useMemo(() => {
+		if (componentType === 'tooltip') return 'tooltip-base';
+		if (componentType === 'button') return 'btn-base';
+		if (componentType === 'card') return 'card-base';
+		if (componentType === 'badge') return 'badge-base';
+		if (componentType === 'infobox') return 'infobox-base';
+		// 他のコンポーネントタイプも必要に応じて追加
+		return `${componentType}-base`; // デフォルトのパターン
+	}, [componentType]);
+
 	// テンプレートからHTML文字列を取得（メモ化）
 	const htmlString = useMemo(() => {
 	 
@@ -50,13 +62,14 @@ const ClassCodeDisplay = ({
 			return getComponentHtmlTemplate(componentType, {
 				classString,
 				selectedModifiers,
-				variant // バリアント情報を渡す
+				variant, // バリアント情報を渡す
+				baseClass  // ベースクラスを明示的に渡す
 			});
 		} catch (error) {
 			console.error(`[ClassCodeDisplay] Error getting HTML template:`, error);
 			return `<!-- Error generating HTML template -->`;
 		}
-	}, [componentType, classString, selectedModifiers]) // 依存する値が変更された時のみ再計算
+	}, [componentType, classString, selectedModifiers, baseClass]) // 依存する値が変更された時のみ再計算
 
 	return (
 		<div className='mt-6 space-y-4'>
@@ -64,10 +77,14 @@ const ClassCodeDisplay = ({
 				<h3 className='label-config label-generated-class'>生成されたクラス</h3>
 				<div className='flex items-center gap-2'>
 					<div className='code-aria p-3 rounded  text-sm overflow-x-auto flex-grow'>
-						{classString || '<クラスを選択してください>'}
+						{(baseClass && !classString.includes(baseClass)) 
+							? `${baseClass} ${classString}`.trim() 
+							: classString || '<クラスを選択してください>'}
 					</div>
 					<button
-						onClick={() => copyToClipboard(classString)}
+						onClick={() => copyToClipboard(baseClass && !classString.includes(baseClass) 
+							? `${baseClass} ${classString}`.trim() 
+							: classString)}
 						disabled={!classString}
 						className='btn-accent btn-sm btn-animate-down'
 					>

@@ -6,10 +6,11 @@ import { buttonHandlers } from './handlers/buttonHandlers'
 import { cardHandlers } from './handlers/cardHandlers'
 import { infoboxHandlers } from './handlers/infoboxHandlers'
 import { headingPatternHandler } from './handlers/headingHandlers'
-import {  formHandlers } from './handlers/formHandlers'
+import { formHandlers } from './handlers/formHandlers'
 import { imagePatternHandler } from './handlers/imageHandlers'
 import { textPatternHandler } from './handlers/textHandlers'
 import { badgeHandlers } from './handlers/badgeHandlers'
+import { tooltipHandlers } from './handlers/tooltipHandlers'
 
 /**
  * コンポーネントレジストリ
@@ -24,7 +25,8 @@ const componentRegistry = {
     ...cardHandlers,
     ...infoboxHandlers,
     ...formHandlers,
-    ...badgeHandlers
+    ...badgeHandlers,
+    ...tooltipHandlers
   },
 
   // パターンハンドラー

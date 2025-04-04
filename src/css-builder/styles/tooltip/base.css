@@ -1,173 +1,173 @@
 /* ダークモード用の変数 */
 @layer base {
-  :root.dark {
-    --tooltip-bg: var(--neutral-dark, #242424);
-    --tooltip-text: var(--neutral-light, #fafafa);
-    --tooltip-border: var(--neutral, #444444);
-    
-    --tooltip-info-bg: rgba(59, 130, 246, 0.9);
-    --tooltip-info-text: var(--neutral-light, #fafafa);
-    --tooltip-info-border: var(--primary, #1a568e);
-    
-    --tooltip-success-bg: rgba(34, 197, 94, 0.9);
-    --tooltip-success-text: var(--neutral-light, #fafafa);
-    --tooltip-success-border: var(--secondary, #95c75d);
-    
-    --tooltip-warning-bg: rgba(234, 179, 8, 0.9);
-    --tooltip-warning-text: var(--neutral-light, #fafafa);
-    --tooltip-warning-border: var(--warning, #f59e0b);
-    
-    --tooltip-error-bg: rgba(239, 68, 68, 0.9);
-    --tooltip-error-text: var(--neutral-light, #fafafa);
-    --tooltip-error-border: var(--accent, #ef6428);
-  }
+	:root.dark {
+		--tooltip-bg: var(--neutral-dark, #242424);
+		--tooltip-text: var(--neutral-light, #fafafa);
+		--tooltip-border: var(--neutral, #444444);
+
+		--tooltip-info-bg: rgba(59, 130, 246, 0.9);
+		--tooltip-info-text: var(--neutral-light, #fafafa);
+		--tooltip-info-border: var(--primary, #1a568e);
+
+		--tooltip-success-bg: rgba(34, 197, 94, 0.9);
+		--tooltip-success-text: var(--neutral-light, #fafafa);
+		--tooltip-success-border: var(--secondary, #95c75d);
+
+		--tooltip-warning-bg: rgba(234, 179, 8, 0.9);
+		--tooltip-warning-text: var(--neutral-light, #fafafa);
+		--tooltip-warning-border: var(--warning, #f59e0b);
+
+		--tooltip-error-bg: rgba(239, 68, 68, 0.9);
+		--tooltip-error-text: var(--neutral-light, #fafafa);
+		--tooltip-error-border: var(--accent, #ef6428);
+	}
 }
 
 @layer base {
-  :root {
-    /* ツールチップ用変数 - カスタマイズ可能 */
-    --tooltip-font-family: var(--font, sans-serif);
-    
-    /* サイズと余白 */
-    --tooltip-padding-x: 0.75rem;
-    --tooltip-padding-y: 0.5rem;
-    --tooltip-max-width: 20rem;
-    --tooltip-min-width: 6rem;
-    --tooltip-z-index: 50;
-    --tooltip-arrow-size: 0.5rem;
-    --tooltip-distance: 0.5rem;
-    
-    /* 境界線 */
-    --tooltip-border-width: 1px;
-    --tooltip-border-radius: 0.375rem; /* rounded-md */
-    
-    /* 基本カラー */
-    --tooltip-bg: rgba(36, 36, 36, 0.9);
-    --tooltip-text: var(--neutral-light, #fafafa);
-    --tooltip-border: var(--neutral-dark, #242424);
-    
-    /* 情報用ツールチップ */
-    --tooltip-info-bg: rgba(59, 130, 246, 0.9);
-    --tooltip-info-text: var(--neutral-light, #fafafa);
-    --tooltip-info-border: var(--primary, #1a568e);
-    
-    /* 成功用ツールチップ */
-    --tooltip-success-bg: rgba(34, 197, 94, 0.9);
-    --tooltip-success-text: var(--neutral-light, #fafafa);
-    --tooltip-success-border: var(--secondary, #95c75d);
-    
-    /* 警告用ツールチップ */
-    --tooltip-warning-bg: rgba(234, 179, 8, 0.9);
-    --tooltip-warning-text: var(--neutral-light, #fafafa);
-    --tooltip-warning-border: var(--warning, #f59e0b);
-    
-    /* エラー用ツールチップ */
-    --tooltip-error-bg: rgba(239, 68, 68, 0.9);
-    --tooltip-error-text: var(--neutral-light, #fafafa);
-    --tooltip-error-border: var(--accent, #ef6428);
-    
-    /* アニメーション */
-    --tooltip-transition-duration: 200ms;
-    --tooltip-transition-timing: ease-out;
-  }
-  
-  /* 印刷用スタイル */
-  @media print {
-    :root {
-      --tooltip-bg: transparent;
-      --tooltip-border-width: 0.5pt;
-      --tooltip-padding-x: 0.25rem;
-      --tooltip-padding-y: 0.125rem;
-      
-      /* 印刷時はシンプルな表示に */
-      --tooltip-info-bg: transparent;
-      --tooltip-info-text: var(--primary-dark, #1a568e);
-      --tooltip-info-border: var(--primary-dark, #1a568e);
-      
-      --tooltip-success-bg: transparent;
-      --tooltip-success-text: var(--secondary-dark, #436322);
-      --tooltip-success-border: var(--secondary-dark, #436322);
-      
-      --tooltip-warning-bg: transparent;
-      --tooltip-warning-text: var(--warning-dark, #b45309);
-      --tooltip-warning-border: var(--warning-dark, #b45309);
-      
-      --tooltip-error-bg: transparent;
-      --tooltip-error-text: var(--accent-dark, #8b5752);
-      --tooltip-error-border: var(--accent-dark, #8b5752);
-    }
-  }
-  
-  /* 
+	:root {
+		/* ツールチップ用変数 - カスタマイズ可能 */
+		--tooltip-font-family: var(--font, sans-serif);
+
+		/* サイズと余白 */
+		--tooltip-padding-x: 0.75rem;
+		--tooltip-padding-y: 0.5rem;
+		--tooltip-max-width: 20rem;
+		--tooltip-min-width: 6rem;
+		--tooltip-z-index: 50;
+		--tooltip-arrow-size: 0.5rem;
+		--tooltip-distance: 0.5rem;
+
+		/* 境界線 */
+		--tooltip-border-width: 1px;
+		--tooltip-border-radius: 0.375rem; /* rounded-md */
+
+		/* 基本カラー */
+		--tooltip-bg: rgba(36, 36, 36, 0.9);
+		--tooltip-text: var(--neutral-light, #fafafa);
+		--tooltip-border: var(--neutral-dark, #242424);
+
+		/* 情報用ツールチップ */
+		--tooltip-info-bg: rgba(59, 130, 246, 0.9);
+		--tooltip-info-text: var(--neutral-light, #fafafa);
+		--tooltip-info-border: var(--primary, #1a568e);
+
+		/* 成功用ツールチップ */
+		--tooltip-success-bg: rgba(34, 197, 94, 0.9);
+		--tooltip-success-text: var(--neutral-light, #fafafa);
+		--tooltip-success-border: var(--secondary, #95c75d);
+
+		/* 警告用ツールチップ */
+		--tooltip-warning-bg: rgba(234, 179, 8, 0.9);
+		--tooltip-warning-text: var(--neutral-light, #fafafa);
+		--tooltip-warning-border: var(--warning, #f59e0b);
+
+		/* エラー用ツールチップ */
+		--tooltip-error-bg: rgba(239, 68, 68, 0.9);
+		--tooltip-error-text: var(--neutral-light, #fafafa);
+		--tooltip-error-border: var(--accent, #ef6428);
+
+		/* アニメーション */
+		--tooltip-transition-duration: 200ms;
+		--tooltip-transition-timing: ease-out;
+	}
+
+	/* 印刷用スタイル */
+	@media print {
+		:root {
+			--tooltip-bg: transparent;
+			--tooltip-border-width: 0.5pt;
+			--tooltip-padding-x: 0.25rem;
+			--tooltip-padding-y: 0.125rem;
+
+			/* 印刷時はシンプルな表示に */
+			--tooltip-info-bg: transparent;
+			--tooltip-info-text: var(--primary-dark, #1a568e);
+			--tooltip-info-border: var(--primary-dark, #1a568e);
+
+			--tooltip-success-bg: transparent;
+			--tooltip-success-text: var(--secondary-dark, #436322);
+			--tooltip-success-border: var(--secondary-dark, #436322);
+
+			--tooltip-warning-bg: transparent;
+			--tooltip-warning-text: var(--warning-dark, #b45309);
+			--tooltip-warning-border: var(--warning-dark, #b45309);
+
+			--tooltip-error-bg: transparent;
+			--tooltip-error-text: var(--accent-dark, #8b5752);
+			--tooltip-error-border: var(--accent-dark, #8b5752);
+		}
+	}
+
+	/* 
    * @component: tooltip
    * @variant: base
    * @description: ツールチップの基本スタイル。ホバーすると表示される追加情報を提供します。data-tooltip属性にツールチップのテキストを設定します。
    * @category: display
    * @example: <span class="tooltip-base" data-tooltip="これはツールチップです">ホバーしてください</span>
    */
-  .tooltip-base {
-    @apply relative inline-flex cursor-pointer;
-    
-    /* ツールチップ本体 - data-tooltip属性の内容を表示 */
-    &::after {
-      @apply absolute invisible opacity-0 whitespace-normal break-words text-center;
-      content: attr(data-tooltip);
-      z-index: var(--tooltip-z-index);
-      max-width: var(--tooltip-max-width);
-      min-width: var(--tooltip-min-width);
-      padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
-      font-family: var(--tooltip-font-family);
-      font-size: 0.875rem; /* text-sm */
-      font-weight: normal;
-      line-height: 1.25;
-      border-radius: var(--tooltip-border-radius);
-      border-width: var(--tooltip-border-width);
-      border-style: solid;
-      transition-property: opacity, visibility;
-      transition-duration: var(--tooltip-transition-duration);
-      transition-timing-function: var(--tooltip-transition-timing);
-      pointer-events: none;
-    }
-    
-    /* 三角形の矢印 */
-    &::before {
-      @apply absolute invisible opacity-0;
-      content: '';
-      z-index: var(--tooltip-z-index);
-      width: 0;
-      height: 0;
-      border: var(--tooltip-arrow-size) solid transparent;
-      transition-property: opacity, visibility;
-      transition-duration: var(--tooltip-transition-duration);
-      transition-timing-function: var(--tooltip-transition-timing);
-      pointer-events: none;
-    }
-    
-    /* ホバー時の表示 */
-    &:hover::after,
-    &:hover::before,
-    &:focus::after,
-    &:focus::before {
-      @apply visible opacity-100;
-    }
-  }
-  
-  /* ツールチップの位置 - デフォルトは上に表示、三角形は下向き */
-  .tooltip-base {
-    /* ツールチップ本体は上に表示 */
-    &::after {
-      bottom: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    /* 三角形は下向き */
-    &::before {
-      bottom: calc(100% + var(--tooltip-distance));
-      left: 50%;
-      transform: translateX(-50%);
-      border-bottom-width: 0;
-      border-top-color: inherit;
-    }
-  }
+	.tooltip-base {
+		@apply relative inline-flex cursor-pointer;
+
+		/* ツールチップ本体 - data-tooltip属性の内容を表示 */
+		&::after {
+			@apply absolute invisible opacity-0 whitespace-normal break-words text-center;
+			content: attr(data-tooltip);
+			z-index: var(--tooltip-z-index);
+			max-width: var(--tooltip-max-width);
+			min-width: var(--tooltip-min-width);
+			padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+			font-family: var(--tooltip-font-family);
+			font-size: 0.875rem; /* text-sm */
+			font-weight: normal;
+			line-height: 1.25;
+			border-radius: var(--tooltip-border-radius);
+			border-width: var(--tooltip-border-width);
+			border-style: solid;
+			transition-property: opacity, visibility;
+			transition-duration: var(--tooltip-transition-duration);
+			transition-timing-function: var(--tooltip-transition-timing);
+			pointer-events: none;
+		}
+
+		/* 三角形の矢印 */
+		&::before {
+			@apply absolute invisible opacity-0;
+			content: '';
+			z-index: var(--tooltip-z-index);
+			width: 0;
+			height: 0;
+			border: var(--tooltip-arrow-size) solid transparent;
+			transition-property: opacity, visibility;
+			transition-duration: var(--tooltip-transition-duration);
+			transition-timing-function: var(--tooltip-transition-timing);
+			pointer-events: none;
+		}
+
+		/* ホバー時の表示 */
+		&:hover::after,
+		&:hover::before,
+		&:focus::after,
+		&:focus::before {
+			@apply visible opacity-100;
+		}
+	}
+
+	/* ツールチップの位置 - デフォルトは上に表示、三角形は下向き */
+	.tooltip-base {
+		/* ツールチップ本体は上に表示 */
+		&::after {
+			bottom: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		/* 三角形は下向き */
+		&::before {
+			bottom: calc(100% + var(--tooltip-distance));
+			left: 50%;
+			transform: translateX(-50%);
+			border-bottom-width: 0;
+			border-top-color: inherit;
+		}
+	}
 }

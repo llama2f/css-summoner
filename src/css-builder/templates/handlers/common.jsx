@@ -143,6 +143,38 @@ export const ensureBaseClass = (classString, baseClass) => {
 };
 
 /**
+ * 要素をrecursiveに検索して、data-skip-decoration属性を持つ要素があるか確認
+ * @param {React.ReactElement} element - 検索対象のReact要素
+ * @returns {boolean} data-skip-decoration属性を持つ要素があればtrue
+ */
+const hasSkipDecorationAttribute = (element) => {
+  if (!element || !element.props) return false;
+  
+  // data-skip-decoration属性を持っているか確認
+  if (element.props['data-skip-decoration'] === 'true') {
+    return true;
+  }
+  
+  // 子要素を検索
+  const { children } = element.props;
+  if (children) {
+    // 単一の子要素の場合
+    if (React.isValidElement(children)) {
+      return hasSkipDecorationAttribute(children);
+    }
+    
+    // 複数の子要素の場合
+    if (Array.isArray(children)) {
+      return children.some(child => 
+        React.isValidElement(child) && hasSkipDecorationAttribute(child)
+      );
+    }
+  }
+  
+  return false;
+};
+
+/**
  * ハンドラーの結果にベースクラスを適用するデコレーター
  * @param {Object} result - ハンドラーからの結果
  * @param {React.ReactElement} result.reactElement - Reactエレメント
@@ -154,7 +186,17 @@ export const decorateWithBaseClass = (result, baseClass) => {
   if (!baseClass) return result;
   if (!result) return result;
   
-  const { reactElement, htmlString } = result;
+  const { reactElement, htmlString, skipDecoration } = result;
+  
+  // skipDecorationフラグがある場合は装飾を行わない
+  if (skipDecoration === true) {
+    return result;
+  }
+  
+  // 要素がdata-skip-decoration属性を持つか確認
+  if (reactElement && hasSkipDecorationAttribute(reactElement)) {
+    return result;
+  }
   
   // React要素のclassNameを修正
   let decoratedReactElement = reactElement;
@@ -175,6 +217,7 @@ export const decorateWithBaseClass = (result, baseClass) => {
   
   return {
     reactElement: decoratedReactElement,
-    htmlString: decoratedHtmlString
+    htmlString: decoratedHtmlString,
+    skipDecoration
   };
 };
