@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T02:35:59.487Z
+// 自動生成されたコード - 2025-04-04T02:02:29.910Z
 export const componentTypes = [
   {
     "value": "color",
@@ -68,8 +68,7 @@ export const baseClasses = {
   "infobox": "infobox-base",
   "heading": "heading-base",
   "card": "card",
-  "button": "btn-base",
-  "badge": "badge-base"
+  "button": "btn-base"
 };
 
 export const componentVariants = {
@@ -587,6 +586,10 @@ export const componentVariants = {
   ],
   "button": [
     {
+      "value": "btn-flat",
+      "label": "Flat"
+    },
+    {
       "value": "btn-ghost",
       "label": "Ghost"
     },
@@ -817,6 +820,7 @@ export const classDescriptions = {
   "btn-ghost": "ゴーストスタイルのボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
   "btn-link": "リンク風ボタン。通常のテキストリンクのような見た目で、ホバー時に下線が表示されます。",
   "btn-gradient": "グラデーションスタイルのボタン。グラデーション効果が適用されます。",
+  "btn-flat": "フラットスタイルのボタン。枠線がなく、背景色のみが適用されます。",
   "btn-subtle": "控えめなボタン。薄い背景色が適用され、ホバー時に色が濃くなります。",
   "btn-icon": "アイコン用ボタン。正方形で、アイコンを中央に配置します。",
   "btn-icon-outline": "アウトラインスタイルのアイコン用ボタン。枠線のみで、ホバー時に背景色が表示されます。",
@@ -835,8 +839,7 @@ export const classDescriptions = {
   "badge-neutral-outlined": "ニュートラルカラーのバッジ（アウトライン）",
   "badge-success-outlined": "成功を示す緑色のバッジ（アウトライン）",
   "badge-warning-outlined": "警告を示す黄色いバッジ（アウトライン）",
-  "badge-error-outlined": "エラーを示す赤色のバッジ（アウトライン）",
-  "badge-base": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。"
+  "badge-error-outlined": "エラーを示す赤色のバッジ（アウトライン）"
 };
 
 // componentExamples もエクスポートすると便利かもしれない
@@ -1491,6 +1494,11 @@ export const componentExamples = {
       "example": "<button class=\"btn-base btn-gradient color-primary\">グラデーションボタン</button>"
     },
     {
+      "variant": "flat",
+      "className": "btn-flat",
+      "example": "<button class=\"btn-base btn-flat color-primary\">フラットボタン</button>"
+    },
+    {
       "variant": "subtle",
       "className": "btn-subtle",
       "example": "<button class=\"btn-base btn-subtle color-primary\">サブトルボタン</button>"
@@ -1513,7 +1521,7 @@ export const componentExamples = {
     {
       "variant": "base",
       "className": "btn-base",
-      "example": "<button class=\"btn-base btn-solid color-primary\">ボタン</button>"
+      "example": "<button class=\"btn-base btn-primary\">ボタン</button>"
     }
   ],
   "badge": [
@@ -1586,11 +1594,6 @@ export const componentExamples = {
       "variant": "error-outlined",
       "className": "badge-error-outlined",
       "example": "<span class=\"badge-base badge-error-outlined\">エラー</span>"
-    },
-    {
-      "variant": "base",
-      "className": "badge-base",
-      "example": "<span class=\"badge-base badge-primary\">バッジ</span>"
     }
   ]
 };

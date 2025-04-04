@@ -1,12 +1,5 @@
 /* src/css-builder/styles/badge/base.css */
 
-/*
- * @component: badge
- * @variant: base
- * @description: すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。
- * @category: display
- * @example: <span class="badge-base badge-primary">バッジ</span>
- */
 @layer base {
 	:root {
 		/* Badge Colors */
@@ -25,6 +18,14 @@
 		--color-badge-error: #dc2626; /* red-600 */
 		--color-badge-error-foreground: var(--neutral-light);
 	}
+
+	/*
+ * @component: badge
+ * @variant: base
+ * @description: すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。
+ * @category: display
+ * @example: <span class="badge-base badge-primary">バッジ</span>
+ */
 	.badge-base {
 		display: inline-flex;
 		align-items: center;

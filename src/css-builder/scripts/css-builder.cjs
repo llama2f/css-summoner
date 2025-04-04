@@ -2,7 +2,7 @@
 // css-builder.cjs - コマンドラインインターフェース
 
 const { program } = require('commander');
-const { main } = require('./index.cjs');
+const { main } = require('./index.js');
 const { version } = require('./package.json');
 
 // コマンドラインオプションの設定

@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T02:35:59.487Z
+// 自動生成されたコード - 2025-04-04T02:35:24.308Z
 export const componentTypes = [
   {
     "value": "color",
@@ -68,8 +68,7 @@ export const baseClasses = {
   "infobox": "infobox-base",
   "heading": "heading-base",
   "card": "card",
-  "button": "btn-base",
-  "badge": "badge-base"
+  "button": "btn-base"
 };
 
 export const componentVariants = {
@@ -835,8 +834,7 @@ export const classDescriptions = {
   "badge-neutral-outlined": "ニュートラルカラーのバッジ（アウトライン）",
   "badge-success-outlined": "成功を示す緑色のバッジ（アウトライン）",
   "badge-warning-outlined": "警告を示す黄色いバッジ（アウトライン）",
-  "badge-error-outlined": "エラーを示す赤色のバッジ（アウトライン）",
-  "badge-base": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。"
+  "badge-error-outlined": "エラーを示す赤色のバッジ（アウトライン）"
 };
 
 // componentExamples もエクスポートすると便利かもしれない
@@ -1586,11 +1584,6 @@ export const componentExamples = {
       "variant": "error-outlined",
       "className": "badge-error-outlined",
       "example": "<span class=\"badge-base badge-error-outlined\">エラー</span>"
-    },
-    {
-      "variant": "base",
-      "className": "badge-base",
-      "example": "<span class=\"badge-base badge-primary\">バッジ</span>"
     }
   ]
 };

@@ -166,34 +166,6 @@
 
 	/* 
    * @component: button
-   * @variant: flat
-   * @description: フラットスタイルのボタン。枠線がなく、背景色のみが適用されます。
-   * @category: interactive
-   * @example: <button class="btn-base btn-flat color-primary">フラットボタン</button>
-   */
-	.btn-flat {
-		background-color: var(--component-color, #333);
-		color: var(--component-text, #fff);
-		border-color: transparent;
-		box-shadow: none;
-	}
-
-	.btn-flat:hover {
-		background-color: var(
-			--component-hover-color,
-			color-mix(in srgb, var(--component-color, #333), #000 10%)
-		);
-	}
-
-	.btn-flat:active {
-		background-color: var(
-			--component-active-color,
-			color-mix(in srgb, var(--component-color, #333), #000 20%)
-		);
-	}
-
-	/* 
-   * @component: button
    * @variant: subtle
    * @description: 控えめなボタン。薄い背景色が適用され、ホバー時に色が濃くなります。
    * @category: interactive
