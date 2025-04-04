@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T02:45:35.020Z
+// 自動生成されたコード - 2025-04-04T02:35:59.487Z
 export const componentTypes = [
   {
     "value": "color",
@@ -625,16 +625,60 @@ export const componentVariants = {
   ],
   "badge": [
     {
-      "value": "badge-outline",
-      "label": "Outline"
+      "value": "badge-accent",
+      "label": "Accent"
     },
     {
-      "value": "badge-solid",
-      "label": "Solid"
+      "value": "badge-accent-outlined",
+      "label": "Accent Outlined"
     },
     {
-      "value": "badge-subtle",
-      "label": "Subtle"
+      "value": "badge-error",
+      "label": "Error"
+    },
+    {
+      "value": "badge-error-outlined",
+      "label": "Error Outlined"
+    },
+    {
+      "value": "badge-neutral",
+      "label": "Neutral"
+    },
+    {
+      "value": "badge-neutral-outlined",
+      "label": "Neutral Outlined"
+    },
+    {
+      "value": "badge-primary",
+      "label": "Primary"
+    },
+    {
+      "value": "badge-primary-outlined",
+      "label": "Primary Outlined"
+    },
+    {
+      "value": "badge-secondary",
+      "label": "Secondary"
+    },
+    {
+      "value": "badge-secondary-outlined",
+      "label": "Secondary Outlined"
+    },
+    {
+      "value": "badge-success",
+      "label": "Success"
+    },
+    {
+      "value": "badge-success-outlined",
+      "label": "Success Outlined"
+    },
+    {
+      "value": "badge-warning",
+      "label": "Warning"
+    },
+    {
+      "value": "badge-warning-outlined",
+      "label": "Warning Outlined"
     }
   ]
 };
@@ -778,10 +822,21 @@ export const classDescriptions = {
   "btn-icon-outline": "アウトラインスタイルのアイコン用ボタン。枠線のみで、ホバー時に背景色が表示されます。",
   "btn-icon-ghost": "ゴーストスタイルのアイコン用ボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
   "btn-base": "すべてのボタンの基本スタイル。インタラクティブ要素に必要な共通のスタイルとレイアウトを提供します。",
-  "badge-solid": "塗りつぶしスタイルのバッジ。背景色が適用されます。カラーセレクタと組み合わせて使用します。",
-  "badge-outline": "アウトラインスタイルのバッジ。枠線のみが表示されます。カラーセレクタと組み合わせて使用します。",
-  "badge-subtle": "控えめなスタイルのバッジ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。",
-  "badge-base": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。色や具体的な形状は含まない。"
+  "badge-primary": "プライマリカラーのバッジ（塗りつぶし）",
+  "badge-secondary": "セカンダリカラーのバッジ（塗りつぶし）",
+  "badge-accent": "アクセントカラーのバッジ（塗りつぶし）",
+  "badge-neutral": "ニュートラルカラーのバッジ（塗りつぶし）",
+  "badge-success": "成功を示す緑色のバッジ（塗りつぶし）",
+  "badge-warning": "警告を示す黄色いバッジ（塗りつぶし）",
+  "badge-error": "エラーを示す赤色のバッジ（塗りつぶし）",
+  "badge-primary-outlined": "プライマリカラーのバッジ（アウトライン）",
+  "badge-secondary-outlined": "セカンダリカラーのバッジ（アウトライン）",
+  "badge-accent-outlined": "アクセントカラーのバッジ（アウトライン）",
+  "badge-neutral-outlined": "ニュートラルカラーのバッジ（アウトライン）",
+  "badge-success-outlined": "成功を示す緑色のバッジ（アウトライン）",
+  "badge-warning-outlined": "警告を示す黄色いバッジ（アウトライン）",
+  "badge-error-outlined": "エラーを示す赤色のバッジ（アウトライン）",
+  "badge-base": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。"
 };
 
 // componentExamples もエクスポートすると便利かもしれない
@@ -1463,24 +1518,79 @@ export const componentExamples = {
   ],
   "badge": [
     {
-      "variant": "solid",
-      "className": "badge-solid",
-      "example": "<span class=\"badge-base badge-solid color-primary\">ソリッドバッジ</span>"
+      "variant": "primary",
+      "className": "badge-primary",
+      "example": "<span class=\"badge-base badge-primary\">プライマリ</span>"
     },
     {
-      "variant": "outline",
-      "className": "badge-outline",
-      "example": "<span class=\"badge-base badge-outline color-primary\">アウトラインバッジ</span>"
+      "variant": "secondary",
+      "className": "badge-secondary",
+      "example": "<span class=\"badge-base badge-secondary\">セカンダリ</span>"
     },
     {
-      "variant": "subtle",
-      "className": "badge-subtle",
-      "example": "<span class=\"badge-base badge-subtle color-primary\">サブトルバッジ</span>"
+      "variant": "accent",
+      "className": "badge-accent",
+      "example": "<span class=\"badge-base badge-accent\">アクセント</span>"
+    },
+    {
+      "variant": "neutral",
+      "className": "badge-neutral",
+      "example": "<span class=\"badge-base badge-neutral\">ニュートラル</span>"
+    },
+    {
+      "variant": "success",
+      "className": "badge-success",
+      "example": "<span class=\"badge-base badge-success\">成功</span>"
+    },
+    {
+      "variant": "warning",
+      "className": "badge-warning",
+      "example": "<span class=\"badge-base badge-warning\">警告</span>"
+    },
+    {
+      "variant": "error",
+      "className": "badge-error",
+      "example": "<span class=\"badge-base badge-error\">エラー</span>"
+    },
+    {
+      "variant": "primary-outlined",
+      "className": "badge-primary-outlined",
+      "example": "<span class=\"badge-base badge-primary-outlined\">プライマリ</span>"
+    },
+    {
+      "variant": "secondary-outlined",
+      "className": "badge-secondary-outlined",
+      "example": "<span class=\"badge-base badge-secondary-outlined\">セカンダリ</span>"
+    },
+    {
+      "variant": "accent-outlined",
+      "className": "badge-accent-outlined",
+      "example": "<span class=\"badge-base badge-accent-outlined\">アクセント</span>"
+    },
+    {
+      "variant": "neutral-outlined",
+      "className": "badge-neutral-outlined",
+      "example": "<span class=\"badge-base badge-neutral-outlined\">ニュートラル</span>"
+    },
+    {
+      "variant": "success-outlined",
+      "className": "badge-success-outlined",
+      "example": "<span class=\"badge-base badge-success-outlined\">成功</span>"
+    },
+    {
+      "variant": "warning-outlined",
+      "className": "badge-warning-outlined",
+      "example": "<span class=\"badge-base badge-warning-outlined\">警告</span>"
+    },
+    {
+      "variant": "error-outlined",
+      "className": "badge-error-outlined",
+      "example": "<span class=\"badge-base badge-error-outlined\">エラー</span>"
     },
     {
       "variant": "base",
       "className": "badge-base",
-      "example": "<span class=\"badge-base badge-solid color-primary\">バッジ</span>"
+      "example": "<span class=\"badge-base badge-primary\">バッジ</span>"
     }
   ]
 };

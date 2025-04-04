@@ -1,9 +1,35 @@
 /* src/css-builder/styles/badge/utilities.css */
 
 @layer utilities {
+	/* ----- サイズバリエーション ----- */
+	.badge-xs {
+		font-size: var(--badge-font-size-xs);
+		padding: var(--badge-padding-y-xs) var(--badge-padding-x-xs);
+	}
+
+	.badge-sm {
+		font-size: var(--badge-font-size-sm);
+		padding: var(--badge-padding-y-sm) var(--badge-padding-x-sm);
+	}
+
+	.badge-md {
+		font-size: var(--badge-font-size);
+		padding: var(--badge-padding-y) var(--badge-padding-x);
+	}
+
+	.badge-lg {
+		font-size: var(--badge-font-size-lg);
+		padding: var(--badge-padding-y-lg) var(--badge-padding-x-lg);
+	}
+
 	/* --- アイコンのみ --- */
+
 	.badge-icon-only {
-		/* このクラス自体にスタイルは不要な場合が多い */
-		/* 他のクラス（サイズなど）と組み合わせて使用 */
+		padding: 0.5em; /* Adjust padding for icon-only */
+		/* aspect-ratio: 1 / 1; /* Optional: force square shape if needed */
+	}
+	.badge-rounded-full {
+		border-radius: var(--badge-border-radius-full);
+		aspect-ratio: 1 / 1;
 	}
 }

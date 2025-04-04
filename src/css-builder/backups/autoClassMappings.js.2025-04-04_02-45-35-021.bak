@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T02:45:35.020Z
+// 自動生成されたコード - 2025-04-04T02:40:44.060Z
 export const componentTypes = [
   {
     "value": "color",
@@ -625,16 +625,40 @@ export const componentVariants = {
   ],
   "badge": [
     {
+      "value": "badge-icon-only",
+      "label": "Icon Only"
+    },
+    {
+      "value": "badge-lg",
+      "label": "Lg"
+    },
+    {
       "value": "badge-outline",
       "label": "Outline"
+    },
+    {
+      "value": "badge-rounded-full",
+      "label": "Rounded Full"
+    },
+    {
+      "value": "badge-sm",
+      "label": "Sm"
     },
     {
       "value": "badge-solid",
       "label": "Solid"
     },
     {
+      "value": "badge-square",
+      "label": "Square"
+    },
+    {
       "value": "badge-subtle",
       "label": "Subtle"
+    },
+    {
+      "value": "badge-xs",
+      "label": "Xs"
     }
   ]
 };
@@ -781,6 +805,12 @@ export const classDescriptions = {
   "badge-solid": "塗りつぶしスタイルのバッジ。背景色が適用されます。カラーセレクタと組み合わせて使用します。",
   "badge-outline": "アウトラインスタイルのバッジ。枠線のみが表示されます。カラーセレクタと組み合わせて使用します。",
   "badge-subtle": "控えめなスタイルのバッジ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。",
+  "badge-xs": "Extra small size badge.",
+  "badge-sm": "Small size badge (default size).",
+  "badge-lg": "Large size badge.",
+  "badge-rounded-full": "Fully rounded badge (pill shape).",
+  "badge-square": "Square badge (no border radius).",
+  "badge-icon-only": "Modifier for badges containing only an icon. Adjusts padding for better visual balance.",
   "badge-base": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。色や具体的な形状は含まない。"
 };
 
@@ -1476,6 +1506,36 @@ export const componentExamples = {
       "variant": "subtle",
       "className": "badge-subtle",
       "example": "<span class=\"badge-base badge-subtle color-primary\">サブトルバッジ</span>"
+    },
+    {
+      "variant": "xs",
+      "className": "badge-xs",
+      "example": "<span class=\"badge-base badge-solid color-primary badge-xs\">XS</span>"
+    },
+    {
+      "variant": "sm",
+      "className": "badge-sm",
+      "example": "<span class=\"badge-base badge-solid color-primary badge-sm\">Small</span>"
+    },
+    {
+      "variant": "lg",
+      "className": "badge-lg",
+      "example": "<span class=\"badge-base badge-solid color-primary badge-lg\">Large</span>"
+    },
+    {
+      "variant": "rounded-full",
+      "className": "badge-rounded-full",
+      "example": "<span class=\"badge-base badge-solid color-primary badge-rounded-full\">Pill</span>"
+    },
+    {
+      "variant": "square",
+      "className": "badge-square",
+      "example": "<span class=\"badge-base badge-solid color-primary badge-square\">Square</span>"
+    },
+    {
+      "variant": "icon-only",
+      "className": "badge-icon-only",
+      "example": "<span class=\"badge-base badge-solid color-primary badge-icon-only\"><svg>...</svg></span>"
     },
     {
       "variant": "base",
