@@ -166,6 +166,7 @@
 		border-width: var(--btn-border-width);
 		border-style: solid;
 		border-radius: var(--btn-border-radius);
+		transition-property: all;
 		transition-duration: var(--btn-transition-duration);
 	}
 

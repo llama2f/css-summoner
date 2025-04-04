@@ -1,0 +1,87 @@
+@layer components {
+  /* 
+   * このファイルは新旧システムの互換性を維持するためのブリッジです。
+   * 古いカラーバリアントを新しいカラーシステムに変換します。
+   * 新システムへの移行後、このファイルは削除してください。
+   */
+
+  /* ----- 古いカラーバリアントを新システムにマッピング ----- */
+
+  /* プライマリカラー */
+  .btn-primary {
+    --component-color: var(--primary, #1a568e);
+    --component-text: var(--primary-contrasting-text, #fafafa);
+    --component-border: var(--primary, #1a568e);
+    --component-hover-color: var(--primary-hover, color-mix(in srgb, var(--primary, #1a568e), #000 10%));
+    --component-active-color: var(--primary-active, color-mix(in srgb, var(--primary, #1a568e), #000 20%));
+  }
+
+  /* セカンダリカラー */
+  .btn-secondary {
+    --component-color: var(--secondary, #95c75d);
+    --component-text: var(--secondary-contrasting-text, #fafafa);
+    --component-border: var(--secondary, #95c75d);
+    --component-hover-color: var(--secondary-hover, color-mix(in srgb, var(--secondary, #95c75d), #000 10%));
+    --component-active-color: var(--secondary-active, color-mix(in srgb, var(--secondary, #95c75d), #000 20%));
+  }
+
+  /* アクセントカラー */
+  .btn-accent {
+    --component-color: var(--accent, #ef6428);
+    --component-text: var(--accent-contrasting-text, #fafafa);
+    --component-border: var(--accent, #ef6428);
+    --component-hover-color: var(--accent-hover, color-mix(in srgb, var(--accent, #ef6428), #000 10%));
+    --component-active-color: var(--accent-active, color-mix(in srgb, var(--accent, #ef6428), #000 20%));
+  }
+
+  /* ニュートラルカラー */
+  .btn-neutral {
+    --component-color: var(--neutral, #e4e4e4);
+    --component-text: var(--neutral-dark, #242424);
+    --component-border: var(--neutral, #e4e4e4);
+    --component-hover-color: var(--neutral-hover, color-mix(in srgb, var(--neutral, #e4e4e4), #000 10%));
+    --component-active-color: var(--neutral-active, color-mix(in srgb, var(--neutral, #e4e4e4), #000 20%));
+  }
+
+  /* ライトカラー */
+  .btn-light {
+    --component-color: var(--neutral-light, #fafafa);
+    --component-text: var(--neutral-dark, #242424);
+    --component-border: var(--neutral-light, #fafafa);
+    --component-hover-color: var(--neutral-light-hover, color-mix(in srgb, var(--neutral-light, #fafafa), #000 10%));
+    --component-active-color: var(--neutral-light-active, color-mix(in srgb, var(--neutral-light, #fafafa), #000 20%));
+  }
+
+  /* ダークカラー */
+  .btn-dark {
+    --component-color: var(--neutral-dark, #242424);
+    --component-text: var(--neutral-light, #fafafa);
+    --component-border: var(--neutral-dark, #242424);
+    --component-hover-color: var(--neutral-dark-hover, color-mix(in srgb, var(--neutral-dark, #242424), #fff 10%));
+    --component-active-color: var(--neutral-dark-active, color-mix(in srgb, var(--neutral-dark, #242424), #fff 20%));
+  }
+
+  /* ----- レガシーバリアント変換 ----- */
+
+  /* アウトラインバリアント */
+  .btn-outline-primary { @apply btn-outline color-primary; }
+  .btn-outline-secondary { @apply btn-outline color-secondary; }
+  .btn-outline-accent { @apply btn-outline color-accent; }
+  .btn-outline-neutral { @apply btn-outline color-neutral; }
+
+  /* ゴーストバリアント */
+  .btn-ghost-primary { @apply btn-ghost color-primary; }
+  .btn-ghost-secondary { @apply btn-ghost color-secondary; }
+  .btn-ghost-accent { @apply btn-ghost color-accent; }
+  .btn-ghost-neutral { @apply btn-ghost color-neutral; }
+
+  /* リンクバリアント */
+  .btn-link-primary { @apply btn-link color-primary; }
+  .btn-link-secondary { @apply btn-link color-secondary; }
+  .btn-link-accent { @apply btn-link color-accent; }
+
+  /* グラデーションバリアント */
+  .btn-gradient-primary { @apply btn-gradient color-primary; }
+  .btn-gradient-secondary { @apply btn-gradient color-secondary; }
+  .btn-gradient-accent { @apply btn-gradient color-accent; }
+}
