@@ -42,12 +42,28 @@ export const createDefaultTemplate = (componentType, classString) => {
  * @param {Object} patternHandlers - パターンハンドラーのマップ
  * @returns {Function|null} - 一致するハンドラー関数またはnull
  */
+// findPatternHandler からデバッグログを削除
 export const findPatternHandler = (componentType, patternHandlers) => {
-	for (const [pattern, handler] of Object.entries(patternHandlers || {})) {
-		if (componentType.match(new RegExp(pattern))) {
-			/* console.log(
-				`コンポーネント "${componentType}" をパターン "${pattern}" で処理しました`
-			) */
+	const containsRegexMeta = (pattern) => /[\\^$.*+?()[\]{}|]/.test(pattern)
+
+	const sortedPatterns = Object.entries(patternHandlers || {}).sort(
+		([patternA], [patternB]) => {
+			const aContainsRegex = containsRegexMeta(patternA)
+			const bContainsRegex = containsRegexMeta(patternB)
+
+			if (aContainsRegex === bContainsRegex) {
+				return patternB.length - patternA.length
+			} else {
+				return aContainsRegex ? 1 : -1
+			}
+		}
+	)
+
+	for (const [pattern, handler] of sortedPatterns) {
+		const isSimpleString = !containsRegexMeta(pattern)
+		const regexPattern = isSimpleString ? `^${pattern}$` : pattern
+
+		if (componentType.match(new RegExp(regexPattern))) {
 			return handler
 		}
 	}
@@ -63,10 +79,12 @@ export const findPatternHandler = (componentType, patternHandlers) => {
  * @returns {Object} - {reactElement, htmlString}
  */
 export const generateTemplate = (componentType, options = {}, registry) => {
+	// console.log(`[generateTemplate] Received componentType: ${componentType}, options:`, JSON.stringify(options)) // デバッグログ削除
+
 	// オプションにコンポーネントタイプを追加
 	const mergedOptions = {
 		...options,
-		componentType,
+		componentType, // ここで元の componentType が使われる
 	}
 
 	// 結果を格納する変数
@@ -79,58 +97,60 @@ export const generateTemplate = (componentType, options = {}, registry) => {
 	 * 2. バリアントの親コンポーネントハンドラー
 	 * 3. 指定されたコンポーネントタイプの直接ハンドラー
 	 * 4. パターンマッチングで検索するハンドラー
-	 * 
+	 *
 	 * @returns {{handler: Function, options: Object}|null} ハンドラーとオプション、またはnull
 	 */
 	const findHandler = () => {
-		// 1. バリアントに直接対応するハンドラーを探す
+		// console.log(`[findHandler] Searching handler for componentType: ${componentType}, variant: ${options.variant}`) // デバッグログ削除
+
+		// 1. バリアント名に直接対応するハンドラー
 		if (options.variant && registry.components[options.variant]) {
-			console.log(`[templateEngine] Using variant handler for: ${options.variant}`)
+			// console.log(`[findHandler] Using direct variant handler: ${options.variant}`) // デバッグログ削除
 			return {
 				handler: registry.components[options.variant],
-				options: mergedOptions
+				options: mergedOptions,
 			}
 		}
-		
-		// 2. 親コンポーネントハンドラーでバリアントを処理
+
+		// 2. バリアント名でパターンマッチング
 		if (options.variant) {
-			const parentType = options.variant.split('-')[0]
-			if (parentType && registry.components[parentType]) {
-				console.log(`[templateEngine] Using parent component handler for variant: ${parentType}/${options.variant}`)
-				return {
-					handler: registry.components[parentType],
-					options: { ...mergedOptions, isVariant: true, variantType: options.variant }
-				}
+			const patternHandler = findPatternHandler(
+				options.variant,
+				registry.patterns
+			)
+			if (patternHandler) {
+				// console.log(`[findHandler] Using pattern handler for variant: ${options.variant}`) // デバッグログ削除
+				// 注意: パターンハンドラーが見つかった場合、componentTypeではなくvariant名を元に処理が進む
+				// 必要であれば、ここで options を調整する (例: mergedOptions.originalComponentType = componentType)
+				return { handler: patternHandler, options: mergedOptions }
 			}
 		}
-		
-		// 3. 直接登録されたハンドラーがあればそれを使用
+
+		// 3. コンポーネントタイプに直接対応するハンドラー
 		if (registry.components[componentType]) {
-			// console.log(`[templateEngine] Using direct handler for: ${componentType}`)
+			// console.log(`[findHandler] Using direct component handler: ${componentType}`) // デバッグログ削除
 			return {
 				handler: registry.components[componentType],
-				options: mergedOptions
+				options: mergedOptions,
 			}
 		}
-		
-		// 4. パターンマッチングで検索
+
+		// 4. コンポーネントタイプでパターンマッチング
+		// (ステップ2でvariantのマッチングが失敗した場合のフォールバック)
 		const patternHandler = findPatternHandler(componentType, registry.patterns)
 		if (patternHandler) {
-			console.log(`[templateEngine] Using pattern handler for: ${componentType}`)
-			return {
-				handler: patternHandler,
-				options: mergedOptions
-			}
+			// console.log(`[findHandler] Using pattern handler for component type: ${componentType}`) // デバッグログ削除
+			return { handler: patternHandler, options: mergedOptions }
 		}
-		
+
 		// 適切なハンドラーが見つからなかった
-		console.log(`[templateEngine] No handler found for: ${componentType}`)
+		// console.log(`[findHandler] No handler found for: ${componentType} (variant: ${options.variant})`) // デバッグログ削除
 		return null
 	}
 
 	// ハンドラーを検索して実行
 	const handlerInfo = findHandler()
-	
+
 	if (handlerInfo) {
 		// 見つかったハンドラーを実行
 		result = handlerInfo.handler(handlerInfo.options)

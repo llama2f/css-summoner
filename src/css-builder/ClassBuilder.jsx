@@ -42,7 +42,7 @@ import {
 const ClassBuilder = () => {
 	// カスタムフックを使用して状態管理
 	const { state, actions } = useClassBuilder()
-	 
+
 	// ツールチップの表示状態
 	const [tooltipText, setTooltipText] = useState('')
 	const [tooltipVisible, setTooltipVisible] = useState(false)
@@ -52,20 +52,23 @@ const ClassBuilder = () => {
 	const [showCssVarEditor, setShowCssVarEditor] = useState(true)
 
 	// ツールチップを表示する（メモ化）
-	const showTooltip = useCallback((e, text) => {
-		if (!e || !text) {
-			setTooltipVisible(false)
-			return
-		}
+	const showTooltip = useCallback(
+		(e, text) => {
+			if (!e || !text) {
+				setTooltipVisible(false)
+				return
+			}
 
-		setTooltipText(text)
-		setTooltipVisible(true)
+			setTooltipText(text)
+			setTooltipVisible(true)
 
-		// ポジションの計算（オフセットを追加してカーソルの近くに表示）
-		const x = e.clientX + 10
-		const y = e.clientY + 10
-		setTooltipPosition({ x, y })
-	}, [setTooltipText, setTooltipVisible, setTooltipPosition]) // 依存する状態更新関数をメモ化
+			// ポジションの計算（オフセットを追加してカーソルの近くに表示）
+			const x = e.clientX + 10
+			const y = e.clientY + 10
+			setTooltipPosition({ x, y })
+		},
+		[setTooltipText, setTooltipVisible, setTooltipPosition]
+	) // 依存する状態更新関数をメモ化
 
 	// コンポーネントタイプのベース名を抽出する関数
 	const getBaseComponentType = useCallback((type) => {
@@ -130,13 +133,16 @@ const ClassBuilder = () => {
 	const getModifierOptions = () => modifierOptionsValue
 
 	// カスタム色変更のハンドラー
-	const handleCustomColorChange = useCallback((colorSettings) => {
-		actions.setCustomColorSettings(colorSettings);
-		// カスタムカラーが選択されていない場合は自動的に選択
-		if (state.selectedColor !== 'color-custom') {
-			actions.setColor('color-custom');
-		}
-	}, [actions, state.selectedColor]);
+	const handleCustomColorChange = useCallback(
+		(colorSettings) => {
+			actions.setCustomColorSettings(colorSettings)
+			// カスタムカラーが選択されていない場合は自動的に選択
+			if (state.selectedColor !== 'color-custom') {
+				actions.setColor('color-custom')
+			}
+		},
+		[actions, state.selectedColor]
+	)
 
 	// コンポーネントタイプが変更されたときにサイズを設定するuseEffect
 	useEffect(() => {
@@ -278,13 +284,12 @@ const ClassBuilder = () => {
 								></button>
 							</div>
 						</div>
-						
 					</div>
 
 					{/* CSS変数エディタボタン */}
 					<div className='flex justify-end mb-2'>
 						<button
-							onClick={() => setShowCssVarEditor(prev => !prev)}
+							onClick={() => setShowCssVarEditor((prev) => !prev)}
 							className='button-css-edit btn-primary btn-xs btn-animate-down'
 						>
 							{showCssVarEditor
@@ -328,6 +333,7 @@ const ClassBuilder = () => {
 					<ClassCodeDisplay
 						classString={state.generatedClassString}
 						componentType={state.componentType}
+						componentVariant={state.componentVariant}
 						selectedModifiers={state.selectedModifiers}
 						selectedColor={state.selectedColor} // 色クラスの受け渡し
 					/>
