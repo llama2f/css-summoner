@@ -42,7 +42,7 @@ export default {
 		'./src/styles/global.css',
 		'./src/styles/**/*.scss',
 	],
-	safelist: generateSafeList(),
+	safelist: [...generateSafeList(), 'font-serif', 'font-sans', 'font-mono'],
 	data: {
 		checked: 'open~="true"',
 		open: 'ui~="checked"',

@@ -23,7 +23,9 @@
 
 		/*ベースの変数*/
 
-		--font: 'Noto Sans JP', sans-serif;
+		--font:
+			'Noto Sans JP', sans-serif, 'Noto Sans', 'Helvetica Neue', 'Helvetica',
+			'Arial', sans-serif;
 		--background: var(--neutral-light);
 		--foreground: var(--neutral-dark);
 		--border: var(--neutral);

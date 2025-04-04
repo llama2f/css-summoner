@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T05:04:15.772Z
+// 自動生成されたコード - 2025-04-04T03:23:57.912Z
 export const componentTypes = [
   {
     "value": "card",
@@ -41,15 +41,15 @@ export const componentTypes = [
     "category": "typography"
   },
   {
-    "value": "text",
-    "label": "Text",
+    "value": "text-deco",
+    "label": "Text Deco",
     "category": "typography"
   }
 ];
 
 export const baseClasses = {
   "tooltip": "tooltip-base",
-  "text": "text-deco-base",
+  "text-deco": "text-deco-base",
   "infobox": "infobox-base",
   "heading": "heading-base",
   "card": "card",
@@ -100,7 +100,7 @@ export const componentVariants = {
       "label": "Warning"
     }
   ],
-  "text": [
+  "text-deco": [
     {
       "value": "text-highlight",
       "label": "Highlight"
@@ -727,7 +727,7 @@ export const componentExamples = {
       "example": "<span class=\"tooltip-base\" data-tooltip=\"これはツールチップです\">ホバーしてください</span>"
     }
   ],
-  "text": [
+  "text-deco": [
     {
       "variant": "marker",
       "className": "text-marker",

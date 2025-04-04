@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-04T05:04:15.772Z
+// 自動生成されたコード - 2025-04-04T03:14:12.977Z
 export const componentTypes = [
   {
     "value": "card",
@@ -49,7 +49,6 @@ export const componentTypes = [
 
 export const baseClasses = {
   "tooltip": "tooltip-base",
-  "text": "text-deco-base",
   "infobox": "infobox-base",
   "heading": "heading-base",
   "card": "card",
@@ -102,6 +101,10 @@ export const componentVariants = {
   ],
   "text": [
     {
+      "value": "text-blur",
+      "label": "Blur"
+    },
+    {
       "value": "text-highlight",
       "label": "Highlight"
     },
@@ -122,8 +125,20 @@ export const componentVariants = {
       "label": "Marker Stripe"
     },
     {
+      "value": "text-outlined",
+      "label": "Outlined"
+    },
+    {
       "value": "text-quote",
       "label": "Quote"
+    },
+    {
+      "value": "text-shadow",
+      "label": "Shadow"
+    },
+    {
+      "value": "text-shadow-sm",
+      "label": "Shadow Sm"
     },
     {
       "value": "text-underline",
@@ -144,6 +159,10 @@ export const componentVariants = {
     {
       "value": "text-underline-wavy",
       "label": "Underline Wavy"
+    },
+    {
+      "value": "text-vertical",
+      "label": "Vertical"
     }
   ],
   "infobox": [
@@ -554,18 +573,22 @@ export const classDescriptions = {
   "tooltip-outline-warning": "枠線スタイルの警告ツールチップ。控えめな注意喚起に使用します。",
   "tooltip-outline-error": "枠線スタイルのエラーツールチップ。控えめなエラーメッセージに使用します。",
   "tooltip-base": "ツールチップの基本スタイル。ホバーすると表示される追加情報を提供します。data-tooltip属性にツールチップのテキストを設定します。",
-  "text-marker": "コンポーネントカラーを使用して、テキスト背景の下部に蛍光ペン効果を適用します。",
-  "text-marker-full": "コンポーネントカラーを使用して、テキスト背景全体に蛍光ペン効果を適用します。",
-  "text-marker-stripe": "コンポーネントカラーを使用して、テキスト下部にストライプ状のマーカー効果を適用します。",
-  "text-marker-double": "コンポーネントカラーを使用して、二重線のマーカー効果を適用します。",
-  "text-underline": "コンポーネントカラーを使用して、標準的な実線の下線を適用します。",
-  "text-underline-dotted": "コンポーネントカラーを使用して、点線の下線を適用します。",
-  "text-underline-dashed": "コンポーネントカラーを使用して、破線の下線を適用します。",
-  "text-underline-wavy": "コンポーネントカラーを使用して、波線の下線を適用します。",
-  "text-underline-thick": "コンポーネントカラーを使用して、太い実線の下線を適用します。",
-  "text-quote": "コンポーネントカラーを使用して、テキスト（通常は引用）に左ボーダーを適用します。",
-  "text-highlight": "コンポーネントカラーを使用して、微妙な背景ハイライトを適用します。marker-fullに似ていますが、異なるスタイル設定が可能です。",
-  "text-deco-base": "テキストデコレーションの基本スタイルを提供します。",
+  "text-marker": "Applies a highlighter effect to the bottom part of the text background using the component color.",
+  "text-marker-full": "Applies a highlighter effect to the entire text background using the component color.",
+  "text-marker-stripe": "Applies a striped marker effect to the bottom of the text using the component color.",
+  "text-marker-double": "Applies a double line marker effect using the component color.",
+  "text-underline": "Applies a standard solid underline using the component color.",
+  "text-underline-dotted": "Applies a dotted underline using the component color.",
+  "text-underline-dashed": "Applies a dashed underline using the component color.",
+  "text-underline-wavy": "Applies a wavy underline using the component color.",
+  "text-underline-thick": "Applies a thick solid underline using the component color.",
+  "text-quote": "Applies a left border to the text, typically for quotes, using the component color.",
+  "text-highlight": "Applies a subtle background highlight using the component color. Similar to marker-full but potentially different styling.",
+  "text-shadow-sm": "テキストに軽い影を適用します。",
+  "text-shadow": "テキストに標準的な影を適用します。",
+  "text-blur": "テキストにぼかし効果を適用します。色は透明になり、影で文字が見えるようになります。",
+  "text-outlined": "テキストにアウトライン（縁取り）を適用します。",
+  "text-vertical": "テキストを縦書きにします（右から左へ）。",
   "infobox-with-icon": "アイコン付きの情報ボックス。視覚的な手がかりを追加します。",
   "infobox-info": "一般的な情報を表示するボックス。通常の通知やメッセージに使用します。",
   "infobox-success": "成功や完了を表示するボックス。操作の成功やポジティブな通知に使用します。",
@@ -731,62 +754,82 @@ export const componentExamples = {
     {
       "variant": "marker",
       "className": "text-marker",
-      "example": "<span class=\"text-marker color-primary\">マーカー付きテキスト</span>"
+      "example": "<span class=\"text-marker color-primary\">Marked Text</span>"
     },
     {
       "variant": "marker-full",
       "className": "text-marker-full",
-      "example": "<span class=\"text-marker-full color-secondary\">全面マーカーテキスト</span>"
+      "example": "<span class=\"text-marker-full color-secondary\">Full Marked Text</span>"
     },
     {
       "variant": "marker-stripe",
       "className": "text-marker-stripe",
-      "example": "<span class=\"text-marker-stripe color-accent\">ストライプマーカー</span>"
+      "example": "<span class=\"text-marker-stripe color-accent\">Striped Marker</span>"
     },
     {
       "variant": "marker-double",
       "className": "text-marker-double",
-      "example": "<span class=\"text-marker-double color-primary\">二重マーカーテキスト</span>"
+      "example": "<span class=\"text-marker-double color-primary\">Double Marker Text</span>"
     },
     {
       "variant": "underline",
       "className": "text-underline",
-      "example": "<span class=\"text-underline color-primary\">下線付きテキスト</span>"
+      "example": "<span class=\"text-underline color-primary\">Underlined Text</span>"
     },
     {
       "variant": "underline-dotted",
       "className": "text-underline-dotted",
-      "example": "<span class=\"text-underline-dotted color-secondary\">点線下線</span>"
+      "example": "<span class=\"text-underline-dotted color-secondary\">Dotted Underline</span>"
     },
     {
       "variant": "underline-dashed",
       "className": "text-underline-dashed",
-      "example": "<span class=\"text-underline-dashed color-accent\">破線下線</span>"
+      "example": "<span class=\"text-underline-dashed color-accent\">Dashed Underline</span>"
     },
     {
       "variant": "underline-wavy",
       "className": "text-underline-wavy",
-      "example": "<span class=\"text-underline-wavy color-neutral\">波線下線</span>"
+      "example": "<span class=\"text-underline-wavy color-neutral\">Wavy Underline</span>"
     },
     {
       "variant": "underline-thick",
       "className": "text-underline-thick",
-      "example": "<span class=\"text-underline-thick color-primary\">太線下線</span>"
+      "example": "<span class=\"text-underline-thick color-primary\">Thick Underline</span>"
     },
     {
       "variant": "quote",
       "className": "text-quote",
-      "example": "<p class=\"text-quote color-neutral\">これは引用です。</p>"
+      "example": "<p class=\"text-quote color-neutral\">This is a quote.</p>"
     },
     {
       "variant": "highlight",
       "className": "text-highlight",
-      "example": "<span class=\"text-highlight color-accent\">ハイライトされたテキスト</span>"
+      "example": "<span class=\"text-highlight color-accent\">Highlighted Text</span>"
     },
     {
-      "variant": "base",
-      "className": "text-deco-base",
-      "example": "<span class=\"text-deco-base\">ベースデコレーション</span>"
+      "variant": "shadow-sm",
+      "className": "text-shadow-sm",
+      "example": "<span class=\"text-shadow-sm\">Shadow Text (sm)</span>"
+    },
+    {
+      "variant": "shadow",
+      "className": "text-shadow",
+      "example": "<span class=\"text-shadow\">Shadow Text</span>"
+    },
+    {
+      "variant": "blur",
+      "className": "text-blur",
+      "example": "<span class=\"text-blur\">Blurred Text</span>"
+    },
+    {
+      "variant": "outlined",
+      "className": "text-outlined",
+      "example": "<span class=\"text-outlined\">Outlined Text</span>"
+    },
+    {
+      "variant": "vertical",
+      "className": "text-vertical",
+      "example": "<p class=\"text-vertical\">縦書きテキスト</p>"
     }
   ],
   "infobox": [

@@ -1,18 +1,12 @@
 @layer base {
 	:root {
-		/* カラー関連 */
-		--marker-primary-bg: var(--primary-light, #70974e);
-		--marker-secondary-bg: var(--secondary-light, #d0c9c1);
-		--marker-accent-bg: var(--accent-light, #f5e6e0);
-		--marker-neutral-bg: var(--neutral, #f0f0f0);
-
+		/* カラー関連変数は variants.css または カラーセレクタ側で管理 */
 		/* テキスト装飾の基本変数 */
 		--text-font-family: var(--font, sans-serif);
 
-		/* マーカー関連 */
+		/* マーカー関連 (透明度は variants で調整する可能性あり) */
 		--text-marker-thickness: 0.5em;
-		--text-marker-opacity: 0.3;
-
+		/* --text-marker-opacity: 0.3; */ /* variants側で color-mix を使うためコメントアウト */
 		/* アンダーライン関連 */
 		--text-underline-thickness: 2px;
 		--text-underline-offset: 0.2em;
@@ -22,36 +16,37 @@
 		--text-highlight-padding-y: 0.1em;
 		--text-highlight-opacity: 0.15;
 
-		/* カラーパレット（リファレンス用） */
-		--primary-ref: var(--primary, #70974e);
-		--primary-dark-ref: var(--primary-dark, #2a3a2b);
-		--primary-light-ref: var(--primary-light, #dae2d9);
-
-		--secondary-ref: var(--secondary, #79472e);
-		--secondary-dark-ref: var(--secondary-dark, #3f3938);
-		--secondary-light-ref: var(--secondary-light, #d0c9c1);
-
-		--accent-ref: var(--accent, #e3621c);
-		--accent-dark-ref: var(--accent-dark, #77320d);
-		--accent-light-ref: var(--accent-light, #f5e6e0);
-
-		--neutral-ref: var(--neutral, #c3c1bb);
-		--neutral-dark-ref: var(--neutral-dark, #362e2b);
-		--neutral-light-ref: var(--neutral-light, #f5f4f0);
+		/* カラーパレット（リファレンス用） - variants.css で --component-color 等を参照するため削除 */
 	}
 
 	/* ダークモード */
 	:root.dark {
-		--marker-primary-bg: var(--primary-dark, #2a3a2b);
-		--marker-secondary-bg: var(--secondary-dark, #3f3938);
-		--marker-accent-bg: var(--accent-dark, #77320d);
-		--marker-text-highlight-opacity: 0.25;
+		/* マーカー背景色はカラーセレクタ側で管理 */
+		/* --marker-primary-bg: var(--primary-dark, #2a3a2b); */
+		/* --marker-secondary-bg: var(--secondary-dark, #3f3938); */
+		/* --marker-accent-bg: var(--accent-dark, #77320d); */
+		--text-highlight-opacity: 0.25; /* ハイライトの透明度調整 */
+	}
+
+	/* 
+   * @component: text
+   * @variant: base
+   * @description: テキストデコレーションの基本スタイルを提供します。
+   * @category: typography
+   * @example: <span class="text-deco-base">ベースデコレーション</span>
+   */
+	.text-deco-base {
+		font-family: var(--text-font-family);
+		font-size: 1rem;
+		letter-spacing: 0.05em;
+		line-height: 1.75;
+		overflow-wrap: break-word;
 	}
 
 	/* 印刷時 */
 	@media print {
 		:root {
-			--text-marker-opacity: 0.2;
+			/* --text-marker-opacity: 0.2; */ /* variants側で color-mix を使うためコメントアウト */
 			--text-underline-thickness: 0.75px;
 		}
 	}

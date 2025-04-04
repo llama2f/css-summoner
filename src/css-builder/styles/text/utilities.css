@@ -13,7 +13,8 @@
 
 	.text-blur {
 		color: transparent;
-		text-shadow: 0 0 5px rgba(var(--neutral-dark-rgb), 0.75);
+		/* --neutral-dark-rgb のような変数は定義されていないため、汎用的な黒の影にする */
+		text-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
 	}
 
 	/* 
@@ -22,7 +23,7 @@
 
 	.text-outlined {
 		/* 細いボーダー */
-		-webkit-text-stroke: 1px currentColor;
+		-webkit-text-stroke: 1px currentColor; /* Use currentColor to inherit text color */
 		text-stroke: 1px currentColor;
 	}
 
@@ -43,7 +44,7 @@
 		}
 
 		.text-blur {
-			color: var(--neutral-dark-ref) !important;
+			color: currentColor !important; /* Use currentColor for print */
 			text-shadow: none !important;
 		}
 	}
