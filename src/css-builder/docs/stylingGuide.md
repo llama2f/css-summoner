@@ -14,12 +14,9 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 │   ├── utilities.css # ユーティリティクラス
 │   └── index.css     # インポート管理
 ├── card/             # カードコンポーネント
-├── form/             # フォームコンポーネント
-├── heading/          # 見出しコンポーネント
 ├── colors/           # カラー定義
-│   ├── base.css      # ベースカラー変数
-│   ├── variants.css  # カラーバリエーション
-│   └── monochrome.css # モノクロベース
+│   ├── color-system.css      
+│   ├── custom-colors.css 
 ├── ...
 ├── styles.css        # 全体スタイル
 ├── class-builder.css # カスタムクラスビルダーUI用スタイル
