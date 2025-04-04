@@ -23,6 +23,8 @@ git commit -m "Add css-builder as a submodule"
 - プロジェクトルートの自動検出
 - ファイルタイプ別上書き設定
 - カスタムクラスビルダーUI（コンポーネントのプレビューと構築）
+- モノクロベースのスタイル設計とカラーセレクタによる柔軟なカラー適用
+- カスタムカラーピッカーによるカラーカスタマイズ
 
 ## 使い方
 
@@ -172,15 +174,98 @@ CSSファイル内にアノテーションを追加して、コンポーネン�
 
 /* 
  * @component: button
- * @variant: primary
- * @description: プライマリカラーを使用した重要なアクション用ボタン
+ * @variant: solid
+ * @description: 塗りつぶしスタイルのボタン
  * @category: interactive
- * @example: <button class="btn-base btn-primary">プライマリボタン</button>
- *           <button class="btn-base btn-primary btn-lg">大きいプライマリボタン</button>
  */
-.btn-primary {
+.btn-solid {
 	/* スタイル定義 */
 }
+
+/* 
+ * @component: color
+ * @variant: primary
+ * @description: プライマリカラーを適用するユーティリティクラス
+ * @category: color
+ * @example: <button class="btn-base btn-solid color-primary">プライマリボタン</button>
+ */
+.color-primary {
+	/* スタイル定義 */
+}
+```
+
+## モノクロベースのスタイルとカラーセレクタ
+
+CSS Builderでは、モノクロベースのスタイル設計を採用し、カラーセレクタを使用して柔軟なカラー適用を実現しています。
+
+### モノクロベースのスタイル
+
+コンポーネントの構造と色を分離することで、より柔軟で再利用性の高いデザインを実現します。
+
+```css
+/* モノクロベースのボタン構造定義 */
+.btn-base {
+  @apply inline-flex items-center justify-center;
+  @apply font-medium text-center whitespace-nowrap;
+  @apply select-none cursor-pointer;
+  /* カラー関連のスタイルは含まない */
+}
+
+/* ボタンのスタイルバリアント */
+.btn-solid {
+  /* 形状のみを定義し、色は含まない */
+}
+
+.btn-outline {
+  @apply bg-transparent;
+  @apply border;
+  /* 色はカラーセレクタによって提供される */
+}
+```
+
+### カラーセレクタ
+
+カラーセレクタは、コンポーネントに色を適用するための専用クラスです。
+
+```css
+/* カラーセレクタの例 */
+.color-primary {
+  background-color: var(--primary);
+  color: var(--primary-text);
+  border-color: var(--primary-border, var(--primary));
+}
+
+.color-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-text);
+  border-color: var(--secondary-border, var(--secondary));
+}
+
+/* アウトラインスタイルとの組み合わせ */
+.btn-outline.color-primary {
+  color: var(--primary);
+}
+```
+
+### 使用例
+
+```html
+<!-- 従来の書き方 -->
+<button class="btn-base btn-primary">プライマリボタン</button>
+
+<!-- 新しい書き方（モノクロベース + カラーセレクタ） -->
+<button class="btn-base btn-solid color-primary">プライマリボタン</button>
+<button class="btn-base btn-outline color-secondary">セカンダリアウトライン</button>
+<button class="btn-base btn-ghost color-accent">アクセントゴースト</button>
+```
+
+### カスタムカラーの使用
+
+カスタムカラーピッカーを使用して、あらかじめ定義されたカラーテーマ以外のカスタムカラーを適用できます。
+
+```html
+<!-- カスタムカラーのボタン -->
+<button class="btn-base btn-solid color-custom">カスタムカラーボタン</button>
 ```
 
 ## 生成されるファイル
@@ -316,6 +401,25 @@ export const modifiers = {
 	],
 	// ...
 }
+
+// カラー設定の例
+export const colorOptions = [
+  { value: '', label: 'なし', description: '色を指定しない' },
+  { 
+    value: 'color-primary', 
+    label: 'プライマリ', 
+    description: '主要なアクションに使用する色',
+    cssVar: '--primary'
+  },
+  // ... 他のカラー
+  { 
+    value: 'color-custom', 
+    label: 'カスタム', 
+    description: 'カラーピッカーで選択したカスタム色',
+    cssVar: '--custom-color',
+    isCustom: true
+  }
+]
 ```
 
 ## カスタムクラスビルダーUIの使用方法
@@ -325,40 +429,15 @@ export const modifiers = {
 ### 機能概要
 
 - コンポーネントタイプの選択（ボタン、カード、フォームなど）
-- バリアントの選択（プライマリ、セカンダリなど）
+- バリアントの選択（solid, outline, ghostなど）
+- カラーの選択（primary, secondary, customなど）
 - サイズの選択（小、中、大など）
 - 角丸の選択
 - モディファイアの追加（影、アニメーションなど）
 - カスタムクラスの追加
 - リアルタイムプレビュー
 - 生成されたコードの表示とコピー
-
-### アーキテクチャ
-
-カスタムクラスビルダーUIは以下のコンポーネントで構成されています：
-
-1. **ClassBuilder**: メインのアプリケーションコンポーネント
-2. **コンポーネントセレクター**: コンポーネントタイプやバリアントの選択UI
-3. **プレビュー**: 選択したコンポーネントのリアルタイムプレビュー
-4. **コード表示**: 生成されたHTMLコード
-5. **テンプレートエンジン**: コンポーネントの表示テンプレートを生成
-
-### テンプレートシステム
-
-テンプレートシステムは以下の階層で構成されています：
-
-1. **コンポーネントレジストリ**:
-   - `components`: 直接名前で検索できる具体的なコンポーネントハンドラー（高速検索用）
-   - `patterns`: 正規表現パターンで検索される汎用的なハンドラー（柔軟性のため）
-
-2. **ハンドラー**:
-   - 各コンポーネントタイプ（button, card, form等）ごとに専用のハンドラーセット
-   - 各バリアント（form-input, card-title等）ごとに個別のハンドラー関数
-
-3. **テンプレートエンジン**:
-   - バリアント情報の処理
-   - 適切なハンドラーの検索と実行
-   - フォールバック処理
+- カスタムカラーピッカー（色の選択とプレビュー）
 
 ### 新しいコンポーネントの追加方法
 
@@ -375,12 +454,26 @@ export const modifiers = {
    }
    ```
 
-2. **ハンドラーを実装**:
+2. **カラーセレクタと組み合わせるためのアノテーション**:
+   ```css
+   /* 
+    * @component: color
+    * @variant: new-color
+    * @description: 新しいカラーバリエーション
+    * @category: color
+    * @example: <div class="新コンポーネント-base 新コンポーネント-solid color-new-color">...</div>
+    */
+   .color-new-color {
+     /* カラー定義 */
+   }
+   ```
+
+3. **ハンドラーを実装**:
    - `templates/handlers/`に新規または既存のファイルでハンドラーを実装
    - 各バリアント用の個別ハンドラー関数を作成
    - ハンドラーをエクスポートオブジェクトに追加
 
-3. **レジストリに登録**:
+4. **レジストリに登録**:
    - `registry.jsx`でハンドラーをインポートして登録
 
 ## トラブルシューティング
@@ -403,11 +496,11 @@ export const modifiers = {
 - ハンドラーが正しく実装・登録されているか確認
 - バリアント名がCSSのアノテーションと一致しているか確認
 
-### バリアントハンドラーが動作しない場合
+### カスタムカラーが適用されない場合
 
-- バリアント情報が正しく渡されているか確認
-- レジストリに適切なハンドラーが登録されているか確認
-- テンプレートエンジンのデバッグログを有効にして処理を追跡
+- カラーピッカーで色を設定した後、「適用」ボタンを押したか確認
+- CSS変数 `--custom-color` が正しく設定されているか確認
+- コンポーネントに `color-custom` クラスが適用されているか確認
 
 ### 既存のファイルが上書きされない場合
 

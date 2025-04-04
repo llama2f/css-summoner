@@ -16,6 +16,10 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 ├── card/             # カードコンポーネント
 ├── form/             # フォームコンポーネント
 ├── heading/          # 見出しコンポーネント
+├── colors/           # カラー定義
+│   ├── base.css      # ベースカラー変数
+│   ├── variants.css  # カラーバリエーション
+│   └── monochrome.css # モノクロベース
 ├── ...
 ├── styles.css        # 全体スタイル
 ├── class-builder.css # カスタムクラスビルダーUI用スタイル
@@ -65,6 +69,111 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
   - 各スタイルファイルのインポート
   - コンポーネントの説明と使用例のコメント
   - バージョン情報やメンテナンス情報
+
+## 新しいスタイリング方法：モノクロームとカラーセレクタ
+
+### 1. モノクロベースのスタイリング
+
+モノクロベーススタイルは、コンポーネントの基本構造を色に依存せず定義するアプローチです。これにより、カラーセレクタを使用して後からカラーバリエーションを適用できるようになります。
+
+```css
+/* モノクロベースのボタン定義例 */
+.btn-base {
+  @apply inline-flex items-center justify-center;
+  @apply font-medium text-center whitespace-nowrap;
+  @apply select-none cursor-pointer;
+  @apply transition-all duration-200;
+  
+  /* カラー関連のスタイルをここでは定義しない */
+  /* 代わりにカラークラスで上書きできるようにする */
+}
+
+/* ホバー/フォーカスのベース振る舞い（カラー非依存） */
+.btn-base:hover, .btn-base:focus-visible {
+  @apply outline-none;
+  /* 個別カラークラスで色を定義 */
+}
+```
+
+#### モノクロベースの利点
+
+- **コンポーネントの再利用性向上**: 色の定義から独立した構造設計により、様々なテーマに適応しやすくなります
+- **テーマ切り替えの簡素化**: ダークモードなどのテーマ切り替えが容易になります
+- **カラーシステムの統一**: アプリケーション全体で一貫したカラーシステムを維持できます
+- **アクセシビリティの向上**: コントラスト比を一元管理しやすくなります
+
+### 2. カラーセレクタ
+
+カラーセレクタを使用して、モノクロベースのコンポーネントに色を適用します。これは `.color-[variant]` クラスを使用して実現されます。
+
+```css
+/* カラーセレクタクラスの例 */
+.color-primary {
+  background-color: var(--primary);
+  color: var(--primary-text);
+  border-color: var(--primary-border, var(--primary));
+}
+
+.color-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-text);
+  border-color: var(--secondary-border, var(--secondary));
+}
+
+/* バリエーション（アウトライン、ゴーストなど）のためのクラス */
+.btn-outline.color-primary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+/* ホバー状態 */
+.color-primary:hover {
+  background-color: var(--primary-hover, var(--primary-dark, var(--primary)));
+}
+```
+
+#### カラーセレクタの使用例
+
+```html
+<!-- プライマリカラーのボタン -->
+<button class="btn-base btn-solid color-primary">プライマリボタン</button>
+
+<!-- セカンダリカラーのアウトラインボタン -->
+<button class="btn-base btn-outline color-secondary">セカンダリアウトライン</button>
+
+<!-- アクセントカラーのカード -->
+<div class="card-base color-accent">
+  <div class="card-header">アクセントカード</div>
+  <div class="card-body">内容</div>
+</div>
+```
+
+### 3. カスタムカラー設定
+
+カスタムカラーピッカーを使用して、あらかじめ定義されたカラーテーマ以外のカスタムカラーを適用できます。
+
+#### カスタムカラーの使用方法
+
+1. クラスビルダーUIでカラーセレクタから「カスタム」を選択
+2. カラーピッカーが表示され、以下の設定が可能：
+   - メインカラー：コンポーネントの主要色
+   - テキストカラー：テキストの色（自動設定可能）
+   - ボーダーカラー：境界線の色（自動設定可能）
+3. プリセットカラーから選択するか、HEX値を直接入力
+4. 「適用」をクリックして設定を保存
+
+```html
+<!-- カスタムカラーのボタン -->
+<button class="btn-base btn-solid color-custom">カスタムカラーボタン</button>
+```
+
+カスタムカラーは次のCSS変数を自動的に設定します：
+- `--custom-color`: メインのカスタムカラー
+- `--custom-text-color`: テキスト色
+- `--custom-border-color`: ボーダー色
+- `--custom-hover-color`: ホバー時の色（自動計算）
+- `--custom-active-color`: アクティブ時の色（自動計算）
 
 ## スタイリング方法
 
@@ -180,6 +289,7 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 - グローバル変数：`--[property-name]`
 - コンポーネント変数：`--[component]-[property-name]`
 - 状態変数：`--[component]-[state]-[property-name]`
+- カラー変数：`--[color-name]`, `--[color-name]-light`, `--[color-name]-dark`
 
 ### 4. Tailwindの活用とカスタム設定
 
@@ -205,26 +315,29 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 }
 ```
 
-### 5. 組み合わせによるスタイリング
+### 5. 新しいクラスの組み合わせ方法
 
 コンポーネントは以下のようなクラスの組み合わせで構築します：
 
 1. **ベースクラス**（必須）
    - `[component]-base` - すべてのコンポーネントに必要な基本スタイル
 
-2. **バリアントクラス**（必須）
-   - `[component]-primary`, `[component]-outline-secondary` など
+2. **スタイルバリアント**（必須）
+   - `[component]-solid`, `[component]-outline` など
 
-3. **サイズクラス**（オプション）
+3. **カラーセレクタ**（必須）
+   - `color-primary`, `color-secondary`, `color-custom` など
+
+4. **サイズクラス**（オプション）
    - `[component]-xs`, `[component]-sm`, `[component]-md` など
 
-4. **形状クラス**（オプション）
+5. **形状クラス**（オプション）
    - `[component]-rounded-sm`, `[component]-rounded-lg` など
 
-5. **エフェクトクラス**（オプション）
+6. **エフェクトクラス**（オプション）
    - `[component]-shadow`, `[component]-full` など
 
-6. **アニメーションクラス**（オプション）
+7. **アニメーションクラス**（オプション）
    - `[component]-animate-up`, `[component]-animate-pulse` など
 
 ### 6. レスポンシブデザイン
@@ -259,13 +372,15 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 }
 
 /* ダークモード用のスタイル */
-.dark .btn-outline-neutral {
-  color: var(--btn-neutral-bg);
+.dark .color-primary {
+  --primary: var(--primary-dark, #0e2c47);
+  --primary-text: var(--neutral-light, #fafafa);
 }
 
 /* または */
 :root.dark {
-  --btn-neutral-bg: var(--neutral, #242424);
+  --primary: #0e2c47;
+  --neutral-light: #fafafa;
 }
 ```
 
@@ -285,42 +400,77 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 - アノテーションブロックの直後に `.[クラス名] {` という形式のセレクタが必要です
 - 複数行の例を含めることができます（インデントに注意）
 
-## Tailwindとの連携
-
-- `@apply` ディレクティブを使用してTailwindのユーティリティクラスを適用
-- Tailwindのブレークポイントとの一貫性を保持
-- カスタムプロパティ（CSS変数）を使用して値を一元管理
-- サイズ、影、余白などの値は基本的にTailwindのプリセット値を使用
+## カラーアノテーションの例
 
 ```css
-/* Tailwindのシャドウを参照する例 */
-.btn-shadow {
-  /* カスタム変数で参照 */
-  box-shadow: var(--btn-shadow-md);
+/* 
+ * @component: color
+ * @variant: primary
+ * @description: プライマリカラーを適用するためのユーティリティクラス
+ * @category: color
+ * @example: <button class="btn-base btn-solid color-primary">プライマリボタン</button>
+ */
+.color-primary {
+  background-color: var(--primary);
+  color: var(--primary-text);
+  border-color: var(--primary-border, var(--primary));
 }
 
-/* または直接Tailwindクラスを適用 */
-.btn-shadow {
-  @apply shadow-md;
+/* 
+ * @component: color
+ * @variant: custom
+ * @description: カスタムカラーピッカーで設定した色を適用するユーティリティクラス
+ * @category: color
+ * @example: <button class="btn-base btn-solid color-custom">カスタムカラーボタン</button>
+ */
+.color-custom {
+  background-color: var(--custom-color, #6366f1);
+  color: var(--custom-text-color, #ffffff);
+  border-color: var(--custom-border-color, var(--custom-color, #6366f1));
 }
+```
 
-/* ホバー時の拡張 */
-.btn-shadow:hover {
-  @apply shadow-lg;
+## カラーセレクタの設定
+
+カラーセレクタの設定は `configs/colors.js` で行います。以下の情報を定義します：
+
+- **value**: カラークラス名（例: `color-primary`）
+- **label**: UI表示名（例: `プライマリ`）
+- **description**: 説明文
+- **cssVar**: 対応するCSS変数名（例: `--primary`）
+- **isCustom**: カスタムカラーかどうか
+
+```javascript
+export const colorRegistry = {
+  primary: {
+    value: 'color-primary',
+    label: 'プライマリ',
+    description: '主要なアクションに使用する色',
+    cssVar: '--primary'
+  },
+  // ... 他のカラー
+  custom: {
+    value: 'color-custom',
+    label: 'カスタム',
+    description: 'カラーピッカーで選択したカスタム色',
+    cssVar: '--custom-color',
+    isCustom: true
+  }
 }
 ```
 
 ## アクセシビリティへの配慮
 
 - フォーカス状態に対応したスタイル
-- 十分なコントラスト比
+- 十分なコントラスト比（カスタムカラーでも自動計算）
 - aria属性に対応したスタイリング
 - キーボードナビゲーションのサポート
 
 ```css
 /* アクセシビリティ対応の例 */
 .btn-base:focus-visible {
-  @apply outline-none ring-2 ring-offset-2 ring-primary;
+  @apply outline-none ring-2 ring-offset-2;
+  ring-color: var(--focus-ring-color, var(--primary, #1a568e));
 }
 
 .btn-base[aria-disabled='true'] {
@@ -329,68 +479,92 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 }
 ```
 
-## パフォーマンス最適化
+## カスタムカラーとアクセシビリティ
 
-- 必要最小限のセレクタ使用
-- CSS変数による値の一元管理
-- @layerによる効率的なCSSの構造化
-- メディアクエリの最適な使用
+カスタムカラーピッカーは自動的にコントラスト比を計算し、適切なテキスト色を提案します。
+
+```javascript
+// コントラスト比に基づいてテキスト色を決定（白or黒）
+export const getContrastTextColor = (bgColor) => {
+  // カラーコードからRGB値を取得
+  const r = parseInt(bgColor.slice(1, 3), 16);
+  const g = parseInt(bgColor.slice(3, 5), 16);
+  const b = parseInt(bgColor.slice(5, 7), 16);
+  
+  // 明度の計算（W3C方式）
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  
+  // 明度が0.5より大きい（明るい色）なら黒、そうでなければ白
+  return luminance > 0.5 ? '#000000' : '#ffffff';
+}
+```
 
 ## ベストプラクティス
 
-1. **一貫性を保つ**
+1. **モノクロベースとカラーセレクタの分離**
+   - コンポーネントの構造と色を分離して設計する
+   - カラーセレクタクラスを使用して色を適用する
+   - カスタムカラーが必要な場合はカラーピッカーを活用する
+
+2. **一貫性を保つ**
    - 命名規則に従う（[component]-[variant]）
    - 変数の命名規則を守る（--[component]-[property]）
    - アノテーションを正確に記述する
 
-2. **コンポーネントの分割**
+3. **コンポーネントの分割**
    - 関連する機能ごとにファイルを分割
    - base.css, variants.css, utilities.cssの役割を遵守
 
-3. **変数の活用**
+4. **変数の活用**
    - ハードコーディングされた値は避け、変数を使用
    - コンポーネント固有の変数は接頭辞をつける（--btn-*, --card-*）
    - フォールバック値を指定する（var(--primary, #1a568e)）
 
-4. **コメントの活用**
+5. **コメントの活用**
    - コードの意図を説明するコメントを追加
    - 複雑なセレクタや計算にはコメントを付ける
 
-5. **アノテーションの最新化**
+6. **アノテーションの最新化**
    - スタイルを変更する際はアノテーションも更新する
    - 例（@example）は実際に機能するコードにする
 
 ## 使用例
 
-### 基本的な使用法
+### 基本的な使用法（新しいスタイル）
 
 ```html
 <!-- 基本的なプライマリボタン -->
-<button class="btn-base btn-primary">プライマリボタン</button>
+<button class="btn-base btn-solid color-primary">プライマリボタン</button>
+
+<!-- アウトラインのセカンダリボタン -->
+<button class="btn-base btn-outline color-secondary">セカンダリアウトライン</button>
+
+<!-- カスタムカラーのボタン -->
+<button class="btn-base btn-solid color-custom">カスタムカラーボタン</button>
 
 <!-- サイズ付きのカード -->
-<div class="card-base card-default card-lg">
+<div class="card-base color-neutral card-lg">
   <div class="card-header">タイトル</div>
   <div class="card-body">内容がここに入ります</div>
 </div>
 
-<!-- 見出し -->
-<h2 class="heading-base heading-section">セクション見出し</h2>
+<!-- アクセントカラーの見出し -->
+<h2 class="heading-base heading-section color-accent">セクション見出し</h2>
 ```
 
 ### 高度な使用例
 
 ```html
 <!-- 角丸と影付きのゴーストボタン -->
-<button class="btn-base btn-ghost-primary btn-rounded-full btn-shadow">
+<button class="btn-base btn-ghost color-primary btn-rounded-full btn-shadow">
   角丸と影付きゴーストボタン
 </button>
 
 <!-- アイコン付きのフォーム入力 -->
 <div class="form-group">
-  <label class="form-label" for="username">ユーザー名</label>
+  <label class="form-label color-dark" for="username">ユーザー名</label>
   <div class="form-input-wrapper form-input-icon-left">
-    <input type="text" id="username" class="form-input-base form-input-outlined">
+    <input type="text" id="username" class="form-input-base form-input-outlined color-neutral">
     <span class="form-input-icon">
       <svg>...</svg>
     </span>
@@ -398,7 +572,7 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 </div>
 
 <!-- アニメーション付きのカード -->
-<div class="card-base card-primary card-shadow card-animate-up">
+<div class="card-base color-primary card-shadow card-animate-up">
   <div class="card-header">アニメーションカード</div>
   <div class="card-body">ホバーすると上に移動します</div>
 </div>
@@ -406,12 +580,14 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 
 ## 特記事項
 
-1. **アノテーション対応**: 各クラスにはCSSビルダーが解析するためのアノテーションが付与されています。
+1. **カラーセレクタの切り替え**: 同じコンポーネントでも、カラーセレクタを変更することで色を簡単に切り替えられます。
 
-2. **Tailwindとの互換性**: 一部のクラスは`@apply`を使用してTailwindクラスを適用しています。サイズや影は基本的にTailwindのプリセット値を使用します。
+2. **カスタムカラーの利用**: カラーピッカーを使用して、特定のブランドカラーやプロジェクト固有の色を設定できます。
 
-3. **印刷対応**: 印刷時には省インク効果があるようにスタイルが自動調整されます。
+3. **コントラスト自動調整**: カスタムカラー選択時に、テキスト色を背景色に基づいて自動調整することで、アクセシビリティの基準を満たしやすくなります。
 
-4. **アクセシビリティ**: aria属性やフォーカス状態に対応したスタイルが含まれています。
+4. **印刷対応**: 印刷時には省インク効果があるようにスタイルが自動調整されます。
 
-5. **ダークモード対応**: `.dark`クラスや`:root.dark`セレクタを使用したダークモード対応が実装されています。
+5. **アクセシビリティ**: aria属性やフォーカス状態に対応したスタイルが含まれています。
+
+6. **ダークモード対応**: `.dark`クラスや`:root.dark`セレクタを使用したダークモード対応が実装されています。
