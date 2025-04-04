@@ -1,5 +1,10 @@
-// 自動生成されたコード - 2025-04-04T02:50:25.309Z
+// 自動生成されたコード - 2025-04-04T02:45:35.020Z
 export const componentTypes = [
+  {
+    "value": "color",
+    "label": "Color",
+    "category": "colors"
+  },
   {
     "value": "card",
     "label": "Card",
@@ -508,6 +513,36 @@ export const componentVariants = {
       "label": "Textarea"
     }
   ],
+  "color": [
+    {
+      "value": "color-accent",
+      "label": "Accent"
+    },
+    {
+      "value": "color-custom",
+      "label": "Custom"
+    },
+    {
+      "value": "color-dark",
+      "label": "Dark"
+    },
+    {
+      "value": "color-light",
+      "label": "Light"
+    },
+    {
+      "value": "color-neutral",
+      "label": "Neutral"
+    },
+    {
+      "value": "color-primary",
+      "label": "Primary"
+    },
+    {
+      "value": "color-secondary",
+      "label": "Secondary"
+    }
+  ],
   "card": [
     {
       "value": "card-accent",
@@ -715,6 +750,13 @@ export const classDescriptions = {
   "form-switch-label": "トグルスイッチの表示部分。スイッチの見た目を形成します。",
   "form-feedback": "フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。",
   "form-search": "検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。",
+  "color-custom": "カスタムカラーを使用するコンポーネント用。ユーザーが選択した色を適用します。",
+  "color-primary": "プライマリカラーを使用するコンポーネント用。サイト内の主要なアクションに使用します。",
+  "color-secondary": "セカンダリカラーを使用するコンポーネント用。補助的なアクションに使用します。",
+  "color-accent": "アクセントカラーを使用するコンポーネント用。注目させたいアクションに使用します。",
+  "color-neutral": "ニュートラルカラーを使用するコンポーネント用。一般的なアクションに使用します。",
+  "color-dark": "ダークカラーを使用するコンポーネント用。明るい背景上での表示に適しています。",
+  "color-light": "ライトカラーを使用するコンポーネント用。暗い背景上での表示に適しています。",
   "card": "基本的なカードスタイル。情報をグループ化して表示するために使用されます。shadcn UIと互換性があります。",
   "card-body": "カードの主要コンテンツ部分。カード内の主たる情報を表示します。",
   "card-header": "カードのヘッダー部分。タイトルや概要情報を表示します。",
