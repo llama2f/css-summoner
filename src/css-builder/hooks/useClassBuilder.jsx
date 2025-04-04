@@ -2,6 +2,30 @@
 import { useReducer, useEffect, useCallback } from 'react'
 import { componentVariants, baseClasses } from '@/css-builder/autoClassMappings.js'
 import { combineClasses } from '@/css-builder/templates/handlers/common'
+import { defaultCustomColor } from '@/css-builder/configs/colors'
+
+// ローカルストレージのキー
+const STORAGE_KEY = 'css-builder-custom-colors';
+
+// カスタムカラーをロード
+const loadCustomColors = () => {
+  try {
+    const savedColors = localStorage.getItem(STORAGE_KEY);
+    return savedColors ? JSON.parse(savedColors) : defaultCustomColor;
+  } catch (error) {
+    console.error('Error loading custom colors:', error);
+    return defaultCustomColor;
+  }
+};
+
+// カスタムカラーを保存
+const saveCustomColors = (colorSettings) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(colorSettings));
+  } catch (error) {
+    console.error('Error saving custom colors:', error);
+  }
+};
 
 // アクション定義
 export const ACTIONS = {
@@ -13,6 +37,8 @@ export const ACTIONS = {
 	SET_ADDITIONAL_CLASSES: 'SET_ADDITIONAL_CLASSES',
 	TOGGLE_SPECIAL_CLASS: 'TOGGLE_SPECIAL_CLASS',
 	SET_PREVIEW_BG: 'SET_PREVIEW_BG',
+	SET_COLOR: 'SET_COLOR', // 色設定アクション
+	SET_CUSTOM_COLOR_SETTINGS: 'SET_CUSTOM_COLOR_SETTINGS', // カスタム色設定アクション
 	RESET_SETTINGS: 'RESET_SETTINGS',
 }
 
@@ -26,6 +52,8 @@ const initialState = {
 	additionalClasses: '',
 	selectedSpecialClasses: [],
 	previewBg: 'bg-transparent',
+	selectedColor: 'color-primary', // 選択中の色クラス
+	customColorSettings: loadCustomColors(), // カスタム色設定
 	generatedClassString: '',
 }
 
@@ -71,6 +99,12 @@ const reducer = (state, action) => {
 		}
 		case ACTIONS.SET_PREVIEW_BG:
 			return { ...state, previewBg: action.payload }
+		case ACTIONS.SET_COLOR: // 色選択のケース
+			return { ...state, selectedColor: action.payload }
+		case ACTIONS.SET_CUSTOM_COLOR_SETTINGS: // カスタム色設定のケース
+			// ローカルストレージに保存
+			saveCustomColors(action.payload);
+			return { ...state, customColorSettings: action.payload }
 		case ACTIONS.UPDATE_GENERATED_CLASS:
 			return { ...state, generatedClassString: action.payload }
 		case ACTIONS.RESET_SETTINGS:
@@ -78,6 +112,7 @@ const reducer = (state, action) => {
 				...initialState,
 				componentType: state.componentType,
 				previewBg: state.previewBg,
+				customColorSettings: state.customColorSettings,
 			}
 		default:
 			return state
@@ -116,8 +151,9 @@ export const useClassBuilder = () => {
 			radius: state.borderRadius,
 			modifiers: state.selectedModifiers,
 			specialClasses: state.selectedSpecialClasses,
-			additional: state.additionalClasses,
-		})
+			color: state.selectedColor, // 色クラスを含める
+			additional: state.additionalClasses
+		});
 
 		dispatch({ type: ACTIONS.UPDATE_GENERATED_CLASS, payload: combinedClasses })
 	}, [
@@ -127,7 +163,29 @@ export const useClassBuilder = () => {
 		state.selectedModifiers,
 		state.selectedSpecialClasses,
 		state.additionalClasses,
+		state.selectedColor, // 依存配列に色クラスを追加
 	])
+
+	// カスタム色の初期設定
+	useEffect(() => {
+		// カスタム色の設定をCSSに適用
+		const { mainColor, textColor, autoBorderColor } = state.customColorSettings;
+		const borderColor = autoBorderColor ? mainColor : null;
+		
+		// CSS変数を設定
+		document.documentElement.style.setProperty('--custom-color', mainColor);
+		document.documentElement.style.setProperty('--custom-text-color', textColor);
+		
+		if (borderColor) {
+			document.documentElement.style.setProperty('--custom-border-color', borderColor);
+		}
+		
+		// ホバー色と押下色を自動計算
+		const hoverColor = `color-mix(in srgb, ${mainColor}, #000 10%)`;
+		const activeColor = `color-mix(in srgb, ${mainColor}, #000 20%)`;
+		document.documentElement.style.setProperty('--custom-hover-color', hoverColor);
+		document.documentElement.style.setProperty('--custom-active-color', activeColor);
+	}, [state.customColorSettings]);
 
 	// コンポーネントタイプとバリアントの変更を直接ディスパッチ（すべてメモ化）
 	const actions = {
@@ -161,6 +219,14 @@ export const useClassBuilder = () => {
 		
 		setPreviewBg: useCallback((bg) =>
 			dispatch({ type: ACTIONS.SET_PREVIEW_BG, payload: bg }),
+		[dispatch]),
+		
+		setColor: useCallback((color) => // 色選択のアクション
+			dispatch({ type: ACTIONS.SET_COLOR, payload: color }),
+		[dispatch]),
+		
+		setCustomColorSettings: useCallback((settings) => // カスタム色設定アクション
+			dispatch({ type: ACTIONS.SET_CUSTOM_COLOR_SETTINGS, payload: settings }),
 		[dispatch]),
 		
 		resetSettings: useCallback(() =>

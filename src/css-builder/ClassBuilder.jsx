@@ -12,6 +12,7 @@ import SizeSelector from '@/css-builder/components/selectors/SizeSelector'
 import BorderRadiusSelector from '@/css-builder/components/selectors/BorderRadiusSelector'
 import ModifierSelector from '@/css-builder/components/selectors/ModifierSelector'
 import SpecialClassSelector from '@/css-builder/components/selectors/SpecialClassSelector'
+import ColorSelector from '@/css-builder/components/selectors/ColorSelector' // カラーセレクター
 import ClassPreview from '@/css-builder/components/preview/ClassPreview'
 import ClassCodeDisplay from '@/css-builder/components/display/ClassCodeDisplay'
 import Tooltip from '@/css-builder/components/common/Tooltip'
@@ -30,6 +31,7 @@ import {
 	borderRadiusOptions,
 	modifiers,
 	specialClasses,
+	colorOptions, // カラーオプション
 } from '@/css-builder/configs'
 
 /**
@@ -38,14 +40,9 @@ import {
  * 視覚的にプレビューしながら組み合わせられる
  */
 const ClassBuilder = () => {
-	
-
-	
-
 	// カスタムフックを使用して状態管理
 	const { state, actions } = useClassBuilder()
 	 
-
 	// ツールチップの表示状態
 	const [tooltipText, setTooltipText] = useState('')
 	const [tooltipVisible, setTooltipVisible] = useState(false)
@@ -132,15 +129,14 @@ const ClassBuilder = () => {
 	// 元の関数インターフェイスを維持
 	const getModifierOptions = () => modifierOptionsValue
 
-	// 常にログ確認
-	/* useEffect(() => {
-		console.log('Current component type:', state.componentType)
-		console.log(
-			'Base component type:',
-			getBaseComponentType(state.componentType)
-		)
-		console.log('Available modifiers:', getModifierOptions())
-	}, [state.componentType]) */
+	// カスタム色変更のハンドラー
+	const handleCustomColorChange = useCallback((colorSettings) => {
+		actions.setCustomColorSettings(colorSettings);
+		// カスタムカラーが選択されていない場合は自動的に選択
+		if (state.selectedColor !== 'color-custom') {
+			actions.setColor('color-custom');
+		}
+	}, [actions, state.selectedColor]);
 
 	// コンポーネントタイプが変更されたときにサイズを設定するuseEffect
 	useEffect(() => {
@@ -184,6 +180,15 @@ const ClassBuilder = () => {
 								classDescriptions={classDescriptions}
 							/>
 						)}
+
+					{/* カラー選択 */}
+					<ColorSelector
+						colors={colorOptions}
+						selectedColor={state.selectedColor}
+						onSelect={actions.setColor}
+						onTooltip={showTooltip}
+						onCustomColorChange={handleCustomColorChange}
+					/>
 
 					{/* サイズ選択 */}
 					{getSizeOptions().length > 0 && (
@@ -299,6 +304,7 @@ const ClassBuilder = () => {
 						size={state.size}
 						previewBg={state.previewBg}
 						baseClass={baseClasses[state.componentType] || ''}
+						selectedColor={state.selectedColor} // 色クラスの受け渡し
 					/>
 
 					{/* 追加クラス入力 */}
@@ -323,6 +329,7 @@ const ClassBuilder = () => {
 						classString={state.generatedClassString}
 						componentType={state.componentType}
 						selectedModifiers={state.selectedModifiers}
+						selectedColor={state.selectedColor} // 色クラスの受け渡し
 					/>
 				</div>
 			</div>

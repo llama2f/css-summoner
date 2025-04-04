@@ -106,6 +106,7 @@ export const createHandlerResult = (reactElement, htmlString) => {
  * @param {Array} options.modifiers - モディファイア配列
  * @param {Array} options.specialClasses - 特殊クラス配列
  * @param {string} options.additional - 追加クラス
+ * @param {string} options.color - 色クラス（新規追加）
  * @returns {string} 結合されたクラス文字列
  */
 export const combineClasses = ({ 
@@ -115,6 +116,7 @@ export const combineClasses = ({
   radius = '', 
   modifiers = [], 
   specialClasses = [], 
+  color = '', // 新規追加：色クラス
   additional = '' 
 }) => {
   return [
@@ -124,6 +126,7 @@ export const combineClasses = ({
     radius,
     ...(modifiers || []),
     ...(specialClasses || []),
+    color, // 色クラスを追加
     additional
   ].filter(Boolean).join(' ');
 };

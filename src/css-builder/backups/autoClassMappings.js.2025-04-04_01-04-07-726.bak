@@ -1,10 +1,5 @@
-// 自動生成されたコード - 2025-04-04T01:04:07.725Z
+// 自動生成されたコード - 2025-04-03T16:25:08.764Z
 export const componentTypes = [
-  {
-    "value": "color",
-    "label": "Color",
-    "category": "colors"
-  },
   {
     "value": "card",
     "label": "Card",
@@ -518,32 +513,6 @@ export const componentVariants = {
       "label": "Textarea"
     }
   ],
-  "color": [
-    {
-      "value": "color-accent",
-      "label": "Accent"
-    },
-    {
-      "value": "color-dark",
-      "label": "Dark"
-    },
-    {
-      "value": "color-light",
-      "label": "Light"
-    },
-    {
-      "value": "color-neutral",
-      "label": "Neutral"
-    },
-    {
-      "value": "color-primary",
-      "label": "Primary"
-    },
-    {
-      "value": "color-secondary",
-      "label": "Secondary"
-    }
-  ],
   "card": [
     {
       "value": "card-accent",
@@ -596,10 +565,6 @@ export const componentVariants = {
       "label": "Dark"
     },
     {
-      "value": "btn-ghost",
-      "label": "Ghost"
-    },
-    {
       "value": "btn-ghost-accent",
       "label": "Ghost Accent"
     },
@@ -614,10 +579,6 @@ export const componentVariants = {
     {
       "value": "btn-ghost-secondary",
       "label": "Ghost Secondary"
-    },
-    {
-      "value": "btn-gradient",
-      "label": "Gradient"
     },
     {
       "value": "btn-gradient-accent",
@@ -636,10 +597,6 @@ export const componentVariants = {
       "label": "Light"
     },
     {
-      "value": "btn-link",
-      "label": "Link"
-    },
-    {
       "value": "btn-link-accent",
       "label": "Link Accent"
     },
@@ -654,10 +611,6 @@ export const componentVariants = {
     {
       "value": "btn-neutral",
       "label": "Neutral"
-    },
-    {
-      "value": "btn-outline",
-      "label": "Outline"
     },
     {
       "value": "btn-outline-accent",
@@ -682,10 +635,6 @@ export const componentVariants = {
     {
       "value": "btn-secondary",
       "label": "Secondary"
-    },
-    {
-      "value": "btn-solid",
-      "label": "Solid"
     }
   ],
   "button-group": [
@@ -865,12 +814,6 @@ export const classDescriptions = {
   "form-switch-label": "トグルスイッチの表示部分。スイッチの見た目を形成します。",
   "form-feedback": "フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。",
   "form-search": "検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。",
-  "color-primary": "プライマリカラーを使用するコンポーネント用。サイト内の主要なアクションに使用します。",
-  "color-secondary": "セカンダリカラーを使用するコンポーネント用。補助的なアクションに使用します。",
-  "color-accent": "アクセントカラーを使用するコンポーネント用。注目させたいアクションに使用します。",
-  "color-neutral": "ニュートラルカラーを使用するコンポーネント用。一般的なアクションに使用します。",
-  "color-dark": "ダークカラーを使用するコンポーネント用。明るい背景上での表示に適しています。",
-  "color-light": "ライトカラーを使用するコンポーネント用。暗い背景上での表示に適しています。",
   "card": "基本的なカードスタイル。情報をグループ化して表示するために使用されます。shadcn UIと互換性があります。",
   "card-body": "カードの主要コンテンツ部分。カード内の主たる情報を表示します。",
   "card-header": "カードのヘッダー部分。タイトルや概要情報を表示します。",
@@ -904,11 +847,6 @@ export const classDescriptions = {
   "btn-link-primary": "プライマリカラーを使用したリンク風ボタン。インラインのテキストリンクのようなアクションに使用します。",
   "btn-link-secondary": "セカンダリカラーを使用したリンク風ボタン。補助的なインラインリンクのようなアクションに使用します。",
   "btn-link-accent": "アクセントカラーを使用したリンク風ボタン。注目させたいインラインリンクに使用します。",
-  "btn-solid": "塗りつぶしスタイルのボタン。色は別途カラークラスで指定します。",
-  "btn-outline": "アウトラインスタイルのボタン。枠線のみで、ホバー時に背景色が表示されます。",
-  "btn-ghost": "ゴーストスタイルのボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
-  "btn-link": "リンク風ボタン。通常のテキストリンクのような見た目で、ホバー時に下線が表示されます。",
-  "btn-gradient": "グラデーションスタイルのボタン。グラデーション効果が適用されます。",
   "btn-base": "すべてのボタンの基本スタイル。インタラクティブ要素に必要な共通のスタイルとレイアウトを提供します。",
   "badge-primary": "プライマリカラーのバッジ（塗りつぶし）",
   "badge-secondary": "セカンダリカラーのバッジ（塗りつぶし）",
@@ -1651,31 +1589,6 @@ export const componentExamples = {
       "variant": "link-accent",
       "className": "btn-link-accent",
       "example": "<button class=\"btn-base btn-link-accent\">アクセントリンクボタン</button>"
-    },
-    {
-      "variant": "solid",
-      "className": "btn-solid",
-      "example": "<button class=\"btn-base btn-solid color-primary\">ソリッドボタン</button>"
-    },
-    {
-      "variant": "outline",
-      "className": "btn-outline",
-      "example": "<button class=\"btn-base btn-outline color-primary\">アウトラインボタン</button>"
-    },
-    {
-      "variant": "ghost",
-      "className": "btn-ghost",
-      "example": "<button class=\"btn-base btn-ghost color-primary\">ゴーストボタン</button>"
-    },
-    {
-      "variant": "link",
-      "className": "btn-link",
-      "example": "<button class=\"btn-base btn-link color-primary\">リンクボタン</button>"
-    },
-    {
-      "variant": "gradient",
-      "className": "btn-gradient",
-      "example": "<button class=\"btn-base btn-gradient color-primary\">グラデーションボタン</button>"
     },
     {
       "variant": "base",

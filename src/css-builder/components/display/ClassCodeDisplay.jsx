@@ -12,11 +12,13 @@ import { getComponentHtmlTemplate } from '@/css-builder/templates/componentFacto
  * @param {string} props.classString - 生成されたクラス文字列
  * @param {string} props.componentType - 選択されたコンポーネントタイプ
  * @param {Array} props.selectedModifiers - 選択されたモディファイア
+ * @param {string} props.selectedColor - 選択された色クラス
  */
 const ClassCodeDisplay = ({
 	classString,
 	componentType,
 	selectedModifiers,
+	selectedColor, // 追加: 色クラス
 }) => {
 	const [copySuccess, setCopySuccess] = useState('')
 
@@ -63,13 +65,14 @@ const ClassCodeDisplay = ({
 				classString,
 				selectedModifiers,
 				variant, // バリアント情報を渡す
-				baseClass  // ベースクラスを明示的に渡す
+				baseClass,  // ベースクラスを明示的に渡す
+				color: selectedColor // 追加: 色情報を渡す
 			});
 		} catch (error) {
 			console.error(`[ClassCodeDisplay] Error getting HTML template:`, error);
 			return `<!-- Error generating HTML template -->`;
 		}
-	}, [componentType, classString, selectedModifiers, baseClass]) // 依存する値が変更された時のみ再計算
+	}, [componentType, classString, selectedModifiers, baseClass, selectedColor]) // 依存配列に色クラスを追加
 
 	return (
 		<div className='mt-6 space-y-4'>
@@ -118,11 +121,13 @@ ClassCodeDisplay.propTypes = {
 	classString: PropTypes.string,
 	componentType: PropTypes.string.isRequired,
 	selectedModifiers: PropTypes.arrayOf(PropTypes.string),
+	selectedColor: PropTypes.string, // 追加: 色クラスのPropType
 }
 
 ClassCodeDisplay.defaultProps = {
 	classString: '',
 	selectedModifiers: [],
+	selectedColor: '', // 追加: デフォルト値
 }
 
 // メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない

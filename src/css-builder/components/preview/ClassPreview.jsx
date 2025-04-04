@@ -18,6 +18,7 @@ import { combineClasses } from '@/css-builder/templates/handlers/common.jsx'
  * @param {string} props.additionalClasses - 追加のカスタムクラス
  * @param {string} props.size - 選択されたサイズ
  * @param {string} props.previewBg - プレビュー背景のスタイル
+ * @param {string} props.selectedColor - 選択された色クラス
  */
 const ClassPreview = ({
 	componentType,
@@ -29,6 +30,7 @@ const ClassPreview = ({
 	size,
 	previewBg,
 	baseClass,
+	selectedColor, // 追加: 選択された色クラス
 }) => {
 	// すべてのクラスを結合（メモ化）
 	const combinedClasses = useMemo(() => {
@@ -39,6 +41,7 @@ const ClassPreview = ({
 			radius: borderRadius,
 			modifiers: selectedModifiers,
 			specialClasses: selectedSpecialClasses,
+			color: selectedColor, // 追加: 色クラスを追加
 			additional: additionalClasses
 		});
 	}, [
@@ -48,7 +51,8 @@ const ClassPreview = ({
 		borderRadius,
 		selectedModifiers,
 		selectedSpecialClasses,
-		additionalClasses
+		additionalClasses,
+		selectedColor // 追加: 依存配列に色クラスを追加
 	]); // 依存する値が変更された時のみ再計算
 
 	// テンプレートからReactコンポーネントを取得（メモ化）
@@ -59,9 +63,10 @@ const ClassPreview = ({
 			baseClass,
 			forPreview: true,
 			// バリアント情報を明示的に渡す
-			variant: componentVariant
+			variant: componentVariant,
+			color: selectedColor // 追加: 色情報を渡す
 		});
-	}, [componentType, combinedClasses, selectedModifiers, baseClass, componentVariant]); // 依存値にcomponentVariantを追加
+	}, [componentType, combinedClasses, selectedModifiers, baseClass, componentVariant, selectedColor]); // 依存値に色クラスを追加
 
 	return (
 		<div
@@ -92,6 +97,7 @@ ClassPreview.propTypes = {
 	size: PropTypes.string,
 	previewBg: PropTypes.string,
 	baseClass: PropTypes.string,
+	selectedColor: PropTypes.string, // 追加: 色クラスのPropType
 }
 
 ClassPreview.defaultProps = {
@@ -103,6 +109,7 @@ ClassPreview.defaultProps = {
 	previewBg: 'bg-transparent',
 	baseClass: '',
 	componentVariant: '',
+	selectedColor: '', // 追加: デフォルト値
 }
 
 // メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない

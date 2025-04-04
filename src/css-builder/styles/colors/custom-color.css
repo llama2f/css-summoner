@@ -1,0 +1,15 @@
+@layer components {
+  /* 
+   * @component: color
+   * @variant: custom
+   * @description: カスタムカラーを使用するコンポーネント用。ユーザーが選択した色を適用します。
+   * @category: colors
+   */
+  .color-custom {
+    --component-color: var(--custom-color, #6366f1);
+    --component-text: var(--custom-text-color, #ffffff);
+    --component-border: var(--custom-border-color, var(--custom-color, #6366f1));
+    --component-hover-color: var(--custom-hover-color, color-mix(in srgb, var(--custom-color, #6366f1), #000 10%));
+    --component-active-color: var(--custom-active-color, color-mix(in srgb, var(--custom-color, #6366f1), #000 20%));
+  }
+}
