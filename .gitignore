@@ -59,3 +59,5 @@ yarn.lock
 #ai
 .clinerules
 .rooignore
+
+handler-manifest.json

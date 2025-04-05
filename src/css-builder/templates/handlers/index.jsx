@@ -1,29 +1,11 @@
-// handlers/index.jsx
-// 全てのハンドラーをインポートして再エクスポートする
+// templates/handlers/index.jsx
+// ビルド時に生成されたハンドラーマニフェストをインポート
+import manifest from '../../configs/handler-manifest.json'
 
-import { sampleIcon } from './common'
-import { buttonHandlers } from './buttonHandlers'
-import { cardHandlers } from './cardHandlers'
-import { infoboxHandlers } from './infoboxHandlers'
-import { badgeHandlers } from './badgeHandlers' // badgeHandlersをインポート
-import { headingPatternHandler } from './headingHandlers'
-import { formPatternHandler } from './formHandlers'
-import { imagePatternHandler } from './imageHandlers'
-import { textPatternHandler } from './textHandlers'
+// マニフェストオブジェクトをそのままエクスポートする
+// このオブジェクトには、各ハンドラータイプをキーとして、
+// { metadata, path, sourceFile } という情報が含まれる。
+// 'path' は実行時に動的インポートするための相対パス。
+const handlers = manifest
 
-// 全てのコンポーネントハンドラーを統合
-const componentHandlers = {
-	// 個別コンポーネント
-	...buttonHandlers,
-	...cardHandlers,
-	...infoboxHandlers,
-	// パターンマッチング用ハンドラー
-	patterns: {
-		...headingPatternHandler,
-		...formPatternHandler,
-		...imagePatternHandler,
-		...textPatternHandler,
-	},
-}
-
-export { sampleIcon, componentHandlers as default }
+export default handlers

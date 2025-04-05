@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "astro dev --host --port 5000",
 		"start": "astro dev",
-		"build": "astro build",
+		"build": "npm run generate:handlers && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
 		"lint": "eslint .",
@@ -16,7 +16,8 @@
 		"css": "node src/css-builder/scripts/index.js",
 		"css-docs": "node src/css-builder/scripts/index.js --docs",
 		"css-components": "node src/css-builder/scripts/index.js --components",
-		"css-all": "node src/css-builder/scripts/index.js --all"
+		"css-all": "node src/css-builder/scripts/index.js --all",
+		"generate:handlers": "node src/css-builder/scripts/generate-handler-manifest.js"
 	},
 	"dependencies": {
 		"@astrojs/react": "4.2.2",

@@ -1,171 +1,173 @@
-// core/templateEngine.jsx
-// テンプレートエンジンのコア機能
+import React, { useState, useEffect, Suspense } from 'react'
+import handlersManifest from '../handlers' // マニフェストファイルをインポート
 
-import React from 'react'
-import { decorateWithBaseClass } from '@/css-builder/templates/handlers/common'
+// ローディング中のプレースホルダーコンポーネント
+function LoadingFallback({ componentType }) {
+	return <div>Loading handler for "{componentType}"...</div>
+}
 
-/**
- * デフォルトテンプレート - 未登録コンポーネント用のフォールバック
- *
- * @param {string} componentType - コンポーネントタイプ
- * @param {string} classString - 適用するクラス文字列
- * @returns {Object} - {reactElement, htmlString}
- */
-export const createDefaultTemplate = (componentType, classString) => {
-	// Reactコンポーネント
-	const reactElement = (
-		<div className={classString}>
-			<div className='p-4 border border-dashed border-neutral-400 rounded'>
-				<div className='text-sm text-neutral-500 mb-2'>
-					コンポーネント: {componentType}
-				</div>
-				<div className='font-medium'>デフォルトテンプレート</div>
-			</div>
+// エラー時のフォールバックコンポーネント
+function ErrorFallback({ componentType, error }) {
+	console.error(`Error loading handler for ${componentType}:`, error)
+	return (
+		<div style={{ color: 'red', border: '1px solid red', padding: '10px' }}>
+			Error loading handler for "{componentType}":{' '}
+			{error?.message || 'Unknown error'}
 		</div>
 	)
-
-	// HTML文字列
-	const htmlString = `<div class="${classString}">
-  <div class="p-4 border border-dashed border-neutral-400 rounded">
-    <div class="text-sm text-neutral-500 mb-2">コンポーネント: ${componentType}</div>
-    <div class="font-medium">デフォルトテンプレート</div>
-  </div>
-</div>`
-
-	return { reactElement, htmlString }
 }
 
-/**
- * パターンマッチングを使用してハンドラーを検索
- *
- * @param {string} componentType - コンポーネントタイプ
- * @param {Object} patternHandlers - パターンハンドラーのマップ
- * @returns {Function|null} - 一致するハンドラー関数またはnull
- */
-// findPatternHandler からデバッグログを削除
-export const findPatternHandler = (componentType, patternHandlers) => {
-	const containsRegexMeta = (pattern) => /[\\^$.*+?()[\]{}|]/.test(pattern)
-
-	const sortedPatterns = Object.entries(patternHandlers || {}).sort(
-		([patternA], [patternB]) => {
-			const aContainsRegex = containsRegexMeta(patternA)
-			const bContainsRegex = containsRegexMeta(patternB)
-
-			if (aContainsRegex === bContainsRegex) {
-				return patternB.length - patternA.length
-			} else {
-				return aContainsRegex ? 1 : -1
-			}
-		}
+// ハンドラーが見つからない場合のフォールバックコンポーネント
+function NotFoundFallback({ componentType }) {
+	console.warn(
+		`警告: ${componentType} のテンプレートハンドラーがマニフェストに見つかりませんでした`
 	)
-
-	for (const [pattern, handler] of sortedPatterns) {
-		const isSimpleString = !containsRegexMeta(pattern)
-		const regexPattern = isSimpleString ? `^${pattern}$` : pattern
-
-		if (componentType.match(new RegExp(regexPattern))) {
-			return handler
-		}
-	}
-	return null
+	// 以前のフォールバックと同様の表示
+	return <div>Component: {componentType} (Handler not found)</div>
 }
 
 /**
- * コンポーネントテンプレートを生成
- *
- * @param {string} componentType - コンポーネントタイプ
- * @param {Object} options - オプション
- * @param {Object} registry - コンポーネントレジストリ
- * @returns {Object} - {reactElement, htmlString}
+ * 指定されたコンポーネントタイプのハンドラーを非同期にロードし、
+ * そのハンドラーの render 関数を実行してコンポーネントをレンダリングするReactコンポーネント。
+ * @param {string} componentType - レンダリングするコンポーネントのタイプ (例: 'button', 'card')
+ * @param {object} options - ハンドラーの render 関数に渡されるプロパティ (classString, children, variant など)
  */
-export const generateTemplate = (componentType, options = {}, registry) => {
-	// console.log(`[generateTemplate] Received componentType: ${componentType}, options:`, JSON.stringify(options)) // デバッグログ削除
+function TemplateRenderer({ componentType, options = {} }) {
+	const [handlerModule, setHandlerModule] = useState(null)
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState(null)
 
-	// オプションにコンポーネントタイプを追加
-	const mergedOptions = {
-		...options,
-		componentType, // ここで元の componentType が使われる
-	}
+	useEffect(() => {
+		let isMounted = true // アンマウント時の不要なステート更新を防ぐフラグ
+		setLoading(true)
+		setError(null)
+		setHandlerModule(null) // タイプが変わったらリセット
 
-	// 結果を格納する変数
-	let result
+		const loadHandler = async () => {
+			if (!componentType) {
+				if (isMounted) setLoading(false)
+				return // タイプが指定されていなければ何もしない
+			}
 
-	/**
-	 * 適切なハンドラーを検索する関数
-	 * 検索順序：
-	 * 1. 指定されたバリアントに対応する直接ハンドラー
-	 * 2. バリアントの親コンポーネントハンドラー
-	 * 3. 指定されたコンポーネントタイプの直接ハンドラー
-	 * 4. パターンマッチングで検索するハンドラー
-	 *
-	 * @returns {{handler: Function, options: Object}|null} ハンドラーとオプション、またはnull
-	 */
-	const findHandler = () => {
-		// console.log(`[findHandler] Searching handler for componentType: ${componentType}, variant: ${options.variant}`) // デバッグログ削除
+			const handlerInfo = handlersManifest[componentType]
 
-		// 1. バリアント名に直接対応するハンドラー
-		if (options.variant && registry.components[options.variant]) {
-			// console.log(`[findHandler] Using direct variant handler: ${options.variant}`) // デバッグログ削除
-			return {
-				handler: registry.components[options.variant],
-				options: mergedOptions,
+			if (!handlerInfo || !handlerInfo.path) {
+				console.warn(
+					`Handler info not found in manifest for type: ${componentType}`
+				)
+				if (isMounted) {
+					setError(
+						new Error(
+							`Handler not found in manifest for type: ${componentType}`
+						)
+					)
+					setLoading(false)
+				}
+				return
+			}
+
+			try {
+				// マニフェストのパスを使って動的インポート (エイリアスパスを解決させる)
+				const module = await import(handlerInfo.path)
+
+				if (isMounted) {
+					if (
+						module.default &&
+						(module.default.render || module.default.variants)
+					) {
+						setHandlerModule(module.default)
+					} else {
+						console.error(
+							`Loaded module for ${componentType} is missing default export or render/variants function.`
+						)
+						setError(
+							new Error(
+								`Invalid handler module structure for type: ${componentType}`
+							)
+						)
+					}
+					setLoading(false)
+				}
+			} catch (err) {
+				console.error(
+					`Failed to load handler for ${componentType} from ${handlerInfo.path}:`,
+					err
+				)
+				if (isMounted) {
+					setError(err)
+					setLoading(false)
+				}
 			}
 		}
 
-		// 2. バリアント名でパターンマッチング
-		if (options.variant) {
-			const patternHandler = findPatternHandler(
-				options.variant,
-				registry.patterns
+		loadHandler()
+
+		// クリーンアップ関数
+		return () => {
+			isMounted = false
+		}
+	}, [componentType]) // componentType が変更されたら再実行
+
+	// --- レンダリングロジック ---
+
+	if (loading) {
+		return <LoadingFallback componentType={componentType} />
+	}
+
+	if (error) {
+		// ハンドラーが見つからないエラーは専用のフォールバックで表示
+		if (error.message.includes('Handler not found in manifest')) {
+			return <NotFoundFallback componentType={componentType} />
+		}
+		return <ErrorFallback componentType={componentType} error={error} />
+	}
+
+	if (!handlerModule) {
+		// 通常はここまで来ないはずだが、念のため
+		return <NotFoundFallback componentType={componentType} />
+	}
+
+	// ハンドラーモジュールがロードされたら、render または variants を呼び出す
+	try {
+		const { variant, ...props } = options
+		let renderFunction = null
+
+		// バリアント固有のレンダラーを優先
+		if (variant && handlerModule.variants && handlerModule.variants[variant]) {
+			renderFunction = handlerModule.variants[variant]
+		} else if (handlerModule.render) {
+			// 基本レンダラーを使用
+			renderFunction = handlerModule.render
+		}
+
+		if (typeof renderFunction === 'function') {
+			// ハンドラーは { reactElement, htmlString } を返す想定
+			const result = renderFunction(props)
+			// このコンポーネントは React 要素のみをレンダリングする
+			return (
+				result?.reactElement || (
+					<ErrorFallback
+						componentType={componentType}
+						error={new Error('Handler did not return a valid React element.')}
+					/>
+				)
 			)
-			if (patternHandler) {
-				// console.log(`[findHandler] Using pattern handler for variant: ${options.variant}`) // デバッグログ削除
-				// 注意: パターンハンドラーが見つかった場合、componentTypeではなくvariant名を元に処理が進む
-				// 必要であれば、ここで options を調整する (例: mergedOptions.originalComponentType = componentType)
-				return { handler: patternHandler, options: mergedOptions }
-			}
+		} else {
+			return (
+				<ErrorFallback
+					componentType={componentType}
+					error={new Error('No valid render function found in handler.')}
+				/>
+			)
 		}
-
-		// 3. コンポーネントタイプに直接対応するハンドラー
-		if (registry.components[componentType]) {
-			// console.log(`[findHandler] Using direct component handler: ${componentType}`) // デバッグログ削除
-			return {
-				handler: registry.components[componentType],
-				options: mergedOptions,
-			}
-		}
-
-		// 4. コンポーネントタイプでパターンマッチング
-		// (ステップ2でvariantのマッチングが失敗した場合のフォールバック)
-		const patternHandler = findPatternHandler(componentType, registry.patterns)
-		if (patternHandler) {
-			// console.log(`[findHandler] Using pattern handler for component type: ${componentType}`) // デバッグログ削除
-			return { handler: patternHandler, options: mergedOptions }
-		}
-
-		// 適切なハンドラーが見つからなかった
-		// console.log(`[findHandler] No handler found for: ${componentType} (variant: ${options.variant})`) // デバッグログ削除
-		return null
+	} catch (renderError) {
+		console.error(`Error rendering component ${componentType}:`, renderError)
+		return <ErrorFallback componentType={componentType} error={renderError} />
 	}
-
-	// ハンドラーを検索して実行
-	const handlerInfo = findHandler()
-
-	if (handlerInfo) {
-		// 見つかったハンドラーを実行
-		result = handlerInfo.handler(handlerInfo.options)
-	} else {
-		// ハンドラーがない場合はデフォルトテンプレート
-		console.log(`[templateEngine] Using default template for: ${componentType}`)
-		result = createDefaultTemplate(componentType, options.classString || '')
-	}
-
-	// 必要に応じてベースクラスを適用するデコレーター
-	return decorateWithBaseClass(result, options.baseClass)
 }
 
-export default {
-	createDefaultTemplate,
-	findPatternHandler,
-	generateTemplate,
-}
+// TemplateRenderer コンポーネントをデフォルトエクスポートする
+export default TemplateRenderer
+
+// generateTemplate 関数は削除 (または必要ならコメントアウト)
+// export { generateTemplate }; // ← 削除
