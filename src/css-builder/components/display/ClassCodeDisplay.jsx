@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react'
 import PropTypes from 'prop-types'
-// import { getComponentHtmlTemplate } from '@/css-builder/templates/componentFactory.jsx'; // 削除
-import handlersManifest from '@/css-builder/templates/handlers' // マニフェストをインポート
+import useAsyncHandler from '@/css-builder/hooks/useAsyncHandler' // カスタムフックをインポート
+// import handlersManifest from '@/css-builder/templates/handlers'; // マニフェストはフック内で使用するため不要
 
 /**
  * 生成されたクラス文字列とHTMLコードを表示するコンポーネント
@@ -16,13 +16,20 @@ const ClassCodeDisplay = ({
 }) => {
 	const [copySuccess, setCopySuccess] = useState('')
 	const [htmlString, setHtmlString] = useState('<!-- Loading HTML... -->')
-	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState(null)
+	// カスタムフックからハンドラーモジュール、ローディング状態、エラーを取得
+	const {
+		handlerModule,
+		loading: handlerLoading,
+		error: handlerError,
+	} = useAsyncHandler(componentType)
+	// HTML生成自体のローディング/エラー状態も管理 (フックとは別)
+	const [generatingHtml, setGeneratingHtml] = useState(false)
+	const [htmlError, setHtmlError] = useState(null)
 
 	// クラス文字列をクリップボードにコピーする（メモ化）
 	const copyToClipboard = useCallback(
 		(text) => {
-			if (!text) return // コピー対象がない場合は何もしない
+			if (!text) return
 			navigator.clipboard
 				.writeText(text)
 				.then(() => {
@@ -37,7 +44,7 @@ const ClassCodeDisplay = ({
 		[setCopySuccess]
 	)
 
-	// ベースクラスを決定 (これはハンドラーに渡すオプションとして必要になる場合がある)
+	// ベースクラスを決定
 	const baseClass = useMemo(() => {
 		if (componentType === 'tooltip') return 'tooltip-base'
 		if (componentType === 'button') return 'btn-base'
@@ -47,98 +54,77 @@ const ClassCodeDisplay = ({
 		return `${componentType}-base`
 	}, [componentType])
 
-	// HTML文字列を非同期で取得する useEffect
+	// HTML文字列を生成する useEffect (ハンドラーがロードされた後に実行)
 	useEffect(() => {
 		let isMounted = true
-		setLoading(true)
-		setError(null)
-		setHtmlString('<!-- Loading HTML... -->') // タイプが変わったらリセット
+		setGeneratingHtml(true)
+		setHtmlError(null)
 
-		const loadHtml = async () => {
-			if (!componentType) {
-				if (isMounted) {
-					setHtmlString('<!-- Select a component type -->')
-					setLoading(false)
-				}
-				return
-			}
-
-			const handlerInfo = handlersManifest[componentType]
-
-			if (!handlerInfo || !handlerInfo.path) {
-				console.warn(
-					`[ClassCodeDisplay] Handler info not found for type: ${componentType}`
-				)
-				if (isMounted) {
-					setError(new Error(`Handler not found for type: ${componentType}`))
-					setHtmlString(`<!-- Handler not found for ${componentType} -->`)
-					setLoading(false)
-				}
+		const generateHtml = () => {
+			if (handlerLoading || handlerError || !handlerModule) {
+				// ハンドラーロード中またはエラー、またはモジュールがない場合は何もしない
+				// (表示は後続のJSXで行う)
+				if (isMounted) setGeneratingHtml(false)
 				return
 			}
 
 			try {
-				const module = await import(handlerInfo.path)
-				const handlerModule = module.default
-
-				if (handlerModule && (handlerModule.render || handlerModule.variants)) {
-					const options = {
-						classString,
-						selectedModifiers,
-						variant: componentVariant,
-						baseClass,
-						color: selectedColor,
-						children: `${componentType} Example`, // HTML用の子要素 (必要に応じて調整)
-					}
-
-					let renderFunction = null
-					if (
-						componentVariant &&
-						handlerModule.variants &&
-						handlerModule.variants[componentVariant]
-					) {
-						renderFunction = handlerModule.variants[componentVariant]
-					} else if (handlerModule.render) {
-						renderFunction = handlerModule.render
-					}
-
-					if (typeof renderFunction === 'function') {
-						const result = renderFunction(options)
-						if (isMounted) {
-							setHtmlString(
-								result?.htmlString || '<!-- Failed to generate HTML -->'
-							)
-						}
-					} else {
-						throw new Error('No valid render function found in handler.')
-					}
-				} else {
-					throw new Error('Invalid handler module structure.')
+				const options = {
+					classString,
+					selectedModifiers,
+					variant: componentVariant,
+					baseClass,
+					color: selectedColor,
+					children: `${componentType} Example`,
 				}
 
-				if (isMounted) setLoading(false)
+				let renderFunction = null
+				if (
+					componentVariant &&
+					handlerModule.variants &&
+					handlerModule.variants[componentVariant]
+				) {
+					renderFunction = handlerModule.variants[componentVariant]
+				} else if (handlerModule.render) {
+					renderFunction = handlerModule.render
+				}
+
+				if (typeof renderFunction === 'function') {
+					const result = renderFunction(options)
+					if (isMounted) {
+						setHtmlString(
+							result?.htmlString || '<!-- Failed to generate HTML -->'
+						)
+					}
+				} else {
+					throw new Error('No valid render function found in handler.')
+				}
 			} catch (err) {
 				console.error(
-					`[ClassCodeDisplay] Failed to load/render HTML for ${componentType}:`,
+					`[ClassCodeDisplay] Failed to render HTML for ${componentType}:`,
 					err
 				)
 				if (isMounted) {
-					setError(err)
+					setHtmlError(err)
 					setHtmlString(
-						`<!-- Error loading/rendering ${componentType}: ${err.message} -->`
+						`<!-- Error rendering ${componentType}: ${err.message} -->`
 					)
-					setLoading(false)
 				}
+			} finally {
+				if (isMounted) setGeneratingHtml(false)
 			}
 		}
 
-		loadHtml()
+		generateHtml()
 
 		return () => {
 			isMounted = false
 		}
-		// classString も依存関係に含める (クラスが変わったらHTMLも再生成)
+		// handlerModule が変更された時 (ロード完了時) と、HTML生成に必要な他の props が変更された時に実行
 	}, [
+		handlerModule,
+		handlerLoading,
+		handlerError,
 		componentType,
 		componentVariant,
 		classString,
@@ -147,9 +133,7 @@ const ClassCodeDisplay = ({
 		baseClass,
 	])
 
-	// 以前の htmlString を生成する useMemo は削除
-
-	// 表示するクラス文字列 (ベースクラスを先頭に追加)
+	// 表示するクラス文字列
 	const displayClassString = useMemo(() => {
 		return (
 			baseClass && classString && !classString.includes(baseClass)
@@ -157,6 +141,34 @@ const ClassCodeDisplay = ({
 				: classString || ''
 		).trim()
 	}, [baseClass, classString])
+
+	// HTML表示部分の決定ロジック
+	const renderHtmlContent = () => {
+		if (handlerLoading || generatingHtml) {
+			return <pre>Loading HTML...</pre>
+		}
+		if (handlerError) {
+			// ハンドラーが見つからないエラー
+			if (handlerError.message.includes('Handler not found in manifest')) {
+				return <pre>{`<!-- Handler not found for ${componentType} -->`}</pre>
+			}
+			// その他のロードエラー
+			return (
+				<pre
+					style={{ color: 'red' }}
+				>{`<!-- Error loading handler: ${handlerError.message} -->`}</pre>
+			)
+		}
+		if (htmlError) {
+			// HTML生成時のエラー
+			return <pre style={{ color: 'red' }}>{htmlString}</pre>
+		}
+		if (!componentType) {
+			return <pre>{'<!-- Select a component type -->'}</pre>
+		}
+		// 正常に生成されたHTML
+		return <pre>{htmlString}</pre>
+	}
 
 	return (
 		<div className='mt-6 space-y-4'>
@@ -183,9 +195,13 @@ const ClassCodeDisplay = ({
 				<h3 className='label-config label-html'>HTMLコード</h3>
 				<button
 					onClick={() => copyToClipboard(htmlString)}
-					// ローディング中やエラー時はコピー無効化
 					disabled={
-						loading || !!error || !classString || htmlString.startsWith('<!--')
+						handlerLoading ||
+						generatingHtml ||
+						!!handlerError ||
+						!!htmlError ||
+						!classString ||
+						htmlString.startsWith('<!--')
 					}
 					className='btn-neutral btn-xs btn-animate-down'
 				>
@@ -194,14 +210,7 @@ const ClassCodeDisplay = ({
 			</div>
 
 			<div className='code-aria p-3 rounded text-sm overflow-x-auto'>
-				{/* ローディング状態やエラーも考慮して表示 */}
-				{loading ? (
-					<pre>Loading HTML...</pre>
-				) : error ? (
-					<pre style={{ color: 'red' }}>{htmlString}</pre> // エラーメッセージを表示
-				) : (
-					<pre>{htmlString}</pre>
-				)}
+				{renderHtmlContent()}
 			</div>
 		</div>
 	)

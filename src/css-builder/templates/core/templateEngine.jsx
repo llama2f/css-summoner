@@ -1,5 +1,6 @@
-import React, { useState, useEffect, Suspense } from 'react'
-import handlersManifest from '../handlers' // マニフェストファイルをインポート
+import React from 'react' // useState, useEffect は不要になった
+import useAsyncHandler from '@/css-builder/hooks/useAsyncHandler' // カスタムフックをインポート
+// import handlersManifest from '../handlers'; // マニフェストはフック内で使用するため不要
 
 // ローディング中のプレースホルダーコンポーネント
 function LoadingFallback({ componentType }) {
@@ -8,7 +9,7 @@ function LoadingFallback({ componentType }) {
 
 // エラー時のフォールバックコンポーネント
 function ErrorFallback({ componentType, error }) {
-	console.error(`Error loading handler for ${componentType}:`, error)
+	// エラーログはフック内で行われるため、ここでは表示に専念
 	return (
 		<div style={{ color: 'red', border: '1px solid red', padding: '10px' }}>
 			Error loading handler for "{componentType}":{' '}
@@ -19,10 +20,7 @@ function ErrorFallback({ componentType, error }) {
 
 // ハンドラーが見つからない場合のフォールバックコンポーネント
 function NotFoundFallback({ componentType }) {
-	console.warn(
-		`警告: ${componentType} のテンプレートハンドラーがマニフェストに見つかりませんでした`
-	)
-	// 以前のフォールバックと同様の表示
+	// 警告ログはフック内で行われるため、ここでは表示に専念
 	return <div>Component: {componentType} (Handler not found)</div>
 }
 
@@ -33,80 +31,10 @@ function NotFoundFallback({ componentType }) {
  * @param {object} options - ハンドラーの render 関数に渡されるプロパティ (classString, children, variant など)
  */
 function TemplateRenderer({ componentType, options = {} }) {
-	const [handlerModule, setHandlerModule] = useState(null)
-	const [loading, setLoading] = useState(true)
-	const [error, setError] = useState(null)
+	// カスタムフックを使用してハンドラーモジュール、ローディング状態、エラーを取得
+	const { handlerModule, loading, error } = useAsyncHandler(componentType)
 
-	useEffect(() => {
-		let isMounted = true // アンマウント時の不要なステート更新を防ぐフラグ
-		setLoading(true)
-		setError(null)
-		setHandlerModule(null) // タイプが変わったらリセット
-
-		const loadHandler = async () => {
-			if (!componentType) {
-				if (isMounted) setLoading(false)
-				return // タイプが指定されていなければ何もしない
-			}
-
-			const handlerInfo = handlersManifest[componentType]
-
-			if (!handlerInfo || !handlerInfo.path) {
-				console.warn(
-					`Handler info not found in manifest for type: ${componentType}`
-				)
-				if (isMounted) {
-					setError(
-						new Error(
-							`Handler not found in manifest for type: ${componentType}`
-						)
-					)
-					setLoading(false)
-				}
-				return
-			}
-
-			try {
-				// マニフェストのパスを使って動的インポート (エイリアスパスを解決させる)
-				const module = await import(handlerInfo.path)
-
-				if (isMounted) {
-					if (
-						module.default &&
-						(module.default.render || module.default.variants)
-					) {
-						setHandlerModule(module.default)
-					} else {
-						console.error(
-							`Loaded module for ${componentType} is missing default export or render/variants function.`
-						)
-						setError(
-							new Error(
-								`Invalid handler module structure for type: ${componentType}`
-							)
-						)
-					}
-					setLoading(false)
-				}
-			} catch (err) {
-				console.error(
-					`Failed to load handler for ${componentType} from ${handlerInfo.path}:`,
-					err
-				)
-				if (isMounted) {
-					setError(err)
-					setLoading(false)
-				}
-			}
-		}
-
-		loadHandler()
-
-		// クリーンアップ関数
-		return () => {
-			isMounted = false
-		}
-	}, [componentType]) // componentType が変更されたら再実行
+	// useEffect 内のロジックはカスタムフックに移動したため削除
 
 	// --- レンダリングロジック ---
 
@@ -123,6 +51,8 @@ function TemplateRenderer({ componentType, options = {} }) {
 	}
 
 	if (!handlerModule) {
+		// タイプが指定されていない場合など
+		if (!componentType) return <div>Select a component type</div>
 		// 通常はここまで来ないはずだが、念のため
 		return <NotFoundFallback componentType={componentType} />
 	}
@@ -161,6 +91,7 @@ function TemplateRenderer({ componentType, options = {} }) {
 			)
 		}
 	} catch (renderError) {
+		// レンダリング時のエラーログはここに残す
 		console.error(`Error rendering component ${componentType}:`, renderError)
 		return <ErrorFallback componentType={componentType} error={renderError} />
 	}
@@ -168,6 +99,3 @@ function TemplateRenderer({ componentType, options = {} }) {
 
 // TemplateRenderer コンポーネントをデフォルトエクスポートする
 export default TemplateRenderer
-
-// generateTemplate 関数は削除 (または必要ならコメントアウト)
-// export { generateTemplate }; // ← 削除
