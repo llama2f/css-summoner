@@ -1,4 +1,4 @@
-// 自動生成されたコード - 2025-04-05T01:49:15.433Z
+// 自動生成されたコード - 2025-04-04T12:58:07.969Z
 export const componentTypes = [
   {
     "value": "card",
@@ -434,10 +434,6 @@ export const componentVariants = {
   ],
   "button": [
     {
-      "value": "btn-group",
-      "label": "Btn Group"
-    },
-    {
       "value": "btn-ghost",
       "label": "Ghost"
     },
@@ -595,7 +591,6 @@ export const classDescriptions = {
   "btn-icon": "アイコン用ボタン。正方形で、アイコンを中央に配置します。",
   "btn-icon-outline": "アウトラインスタイルのアイコン用ボタン。枠線のみで、ホバー時に背景色が表示されます。",
   "btn-icon-ghost": "ゴーストスタイルのアイコン用ボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
-  "btn-group": "ボタンをグループ化して表示します。",
   "btn-base": "すべてのボタンの基本スタイル。インタラクティブ要素に必要な共通のスタイルとレイアウトを提供します。",
   "badge-solid": "塗りつぶしスタイルのバッジ。背景色が適用されます。カラーセレクタと組み合わせて使用します。",
   "badge-outline": "アウトラインスタイルのバッジ。枠線のみが表示されます。カラーセレクタと組み合わせて使用します。",
@@ -1139,11 +1134,6 @@ export const componentExamples = {
       "variant": "icon-ghost",
       "className": "btn-icon-ghost",
       "example": "<button class=\"btn-base btn-icon-ghost color-primary\"><svg>...</svg></button>"
-    },
-    {
-      "variant": "btn-group",
-      "className": "btn-group",
-      "example": "<div class=\"btn-group\"><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button><div>"
     },
     {
       "variant": "base",

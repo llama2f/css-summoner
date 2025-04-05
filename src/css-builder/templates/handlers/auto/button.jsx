@@ -18,7 +18,8 @@ export function render(props) {
 		disabled = false,
 		type = 'button',
 		onClick = null,
-		selectedModifiers = [], // 追加：モディファイア処理用
+		selectedModifiers = [], // これはDOMに渡さない
+		...rest // 残りのプロパティを受け取る
 	} = props
 
 	// モディファイア処理ロジック
@@ -38,6 +39,7 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: sampleIcon }}
+				{...rest}
 			/>
 		)
 
@@ -53,6 +55,7 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: `${sampleIcon} ボタンテキスト` }}
+				{...rest}
 			/>
 		)
 
@@ -67,6 +70,7 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: `ボタンテキスト ${sampleIcon}` }}
+				{...rest}
 			/>
 		)
 
@@ -80,6 +84,7 @@ export function render(props) {
 				disabled={disabled}
 				type={type}
 				onClick={onClick}
+				{...rest}
 			>
 				{children}
 			</button>
@@ -104,6 +109,7 @@ export const variants = {
 			disabled = false,
 			type = 'button',
 			onClick = null,
+			selectedModifiers, // これを除外
 			...rest
 		} = props
 
@@ -123,6 +129,61 @@ export const variants = {
 		const htmlString = `<button class="${classString}" title="${title}" ${disabled ? 'disabled' : ''} type="${type}">
       ${icon}
     </button>`
+
+		return createHandlerResult(reactElement, htmlString)
+	},
+
+	'btn-group': (props) => {
+		const {
+			classString = '',
+			children = 'buttons',
+			title = '',
+			disabled = false,
+			type = 'button',
+			onClick = null,
+			selectedModifiers, // これを除外
+			...rest
+		} = props
+		const reactElement = (
+			<div className={classString}>
+				<button
+					className='btn-base btn-primary'
+					title={title}
+					disabled={disabled}
+					type={type}
+					onClick={onClick}
+					{...rest}
+				>
+					{children}
+				</button>
+				<button
+					className='btn-base btn-primary'
+					title={title}
+					disabled={disabled}
+					type={type}
+					onClick={onClick}
+					{...rest}
+				>
+					{children}
+				</button>
+				<button
+					className='btn-base btn-primary'
+					title={title}
+					disabled={disabled}
+					type={type}
+					onClick={onClick}
+					{...rest}
+				>
+					{children}
+				</button>
+			</div>
+		)
+
+		const htmlString = `<div class="${classString}">
+  <button class="btn-base btn-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
+  <button class="btn-base btn-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
+  <button class="btn-base btn-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
+</div>`
 
 		return createHandlerResult(reactElement, htmlString)
 	},

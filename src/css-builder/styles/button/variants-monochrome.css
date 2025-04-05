@@ -274,6 +274,18 @@
 		);
 	}
 
+	/* 
+   * @component: button
+   * @variant: btn-group
+   * @description: ボタンをグループ化して表示します。
+   * @category: interactive
+   * @example: <div class="btn-group"><button class="btn-base btn-primary">ボタン</button><button class="btn-base btn-primary">ボタン</button><button class="btn-base btn-primary">ボタン</button><div>
+   */
+	.btn-group {
+		display: flex;
+		gap: 0.5rem;
+	}
+
 	/* ダークモード調整 */
 	.dark .btn-outline,
 	.dark .btn-ghost,

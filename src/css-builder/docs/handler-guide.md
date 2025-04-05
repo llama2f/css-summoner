@@ -1,341 +1,192 @@
-# CSS Builder ハンドラー開発ガイド
+# CSS Builder ハンドラー開発ガイド 
 
-このドキュメントでは、CSS Builderにコンポーネントハンドラーを追加する方法について説明します。ハンドラーは、選択されたコンポーネントタイプに基づいてプレビューとHTMLコードを生成する役割を担います。
+このドキュメントでは、CSS Builder  にコンポーネントハンドラーを追加する方法について説明します。ハンドラーは、選択されたコンポーネントタイプに基づいてプレビュー用のReact要素とコード表示用のHTML文字列を生成する役割を担います。
 
 ## 目次
 
-1. [ハンドラーの基本概念](#ハンドラーの基本概念)
-2. [ハンドラーファイルの作成](#ハンドラーファイルの作成)
-3. [レジストリへの登録](#レジストリへの登録)
-4. [特殊なケースの処理](#特殊なケースの処理)
-5. [ベストプラクティス](#ベストプラクティス)
-6. [デバッグとテスト](#デバッグとテスト)
+1.  [ハンドラーの基本概念](#ハンドラーの基本概念)
+2.  [ハンドラーファイルの作成](#ハンドラーファイルの作成)
+3.  [自動登録の仕組み](#自動登録の仕組み)
+4.  [ハンドラーの実装詳細](#ハンドラーの実装詳細)
+5.  [ベストプラクティス](#ベストプラクティス)
+6.  [デバッグ](#デバッグ)
 
 ## ハンドラーの基本概念
 
-CSS Builderでは、コンポーネントタイプごとにハンドラー関数を作成し、それをレジストリに登録することで、カスタムクラスビルダーUIのプレビューとコード生成を実現しています。
+CSS Builder  では、コンポーネントタイプごとにハンドラーモジュールを作成します。これらのモジュールはビルド時に自動的に検出・登録され、実行時に非同期で読み込まれて使用されます。
 
 ### ハンドラーの役割
 
-- プレビュー表示用のReactコンポーネントを生成
-- コード表示用のHTML文字列を生成
-- ユーザーのクラス選択とモディファイア選択を反映
+-   プレビュー表示用の **React要素 (`reactElement`)** を生成する。
+-   コード表示用の **HTML文字列 (`htmlString`)** を生成する。
+-   ユーザーがUIで選択したクラス（バリアント、サイズ、色、モディファイアなど）を反映する。
 
-### ハンドラーの基本構造
+### ハンドラーモジュールの基本構造
+
+ハンドラーは、特定の形式でエクスポートを持つ `.jsx` ファイルとして作成します。
 
 ```jsx
-export const exampleHandler = (options) => {
-  const { classString = '', selectedModifiers = [] } = options;
-  
-  // Reactコンポーネントの作成
-  const reactElement = (
-    <div className={classString}>
-      コンポーネントプレビュー
-    </div>
-  );
-  
-  // HTML文字列の生成
-  const htmlString = `<div class="${classString}">
-  コンポーネントコード
-</div>`;
-  
-  // 結果を返す
-  return createHandlerResult(reactElement, htmlString);
+// src/css-builder/templates/handlers/auto/example.jsx
+import React from 'react';
+import { sampleIcon } from '../common'; // 共通ユーティリティ
+
+// 1. メタデータ (必須)
+export const metadata = {
+  type: 'example', // コンポーネントタイプ (必須・一意)
+  category: 'general', // カテゴリ (任意)
+  description: 'ハンドラーの例', // 説明 (任意)
+};
+
+// 2. 基本レンダラー (render または variants のどちらか一方は必須)
+export function render(options) {
+  const { classString = '', children = 'Example Content' } = options;
+
+  const reactElement = <div className={classString}>{children}</div>;
+  const htmlString = `<div class="${classString}">${children}</div>`;
+
+  // reactElement と htmlString を含むオブジェクトを返す
+  return { reactElement, htmlString };
+}
+
+// 3. バリアント固有レンダラー (オプション)
+export const variants = {
+  special: (options) => {
+    const { classString = '', children = 'Special Example' } = options;
+    const reactElement = <div className={`${classString} special-style`}>{children}</div>;
+    const htmlString = `<div class="${classString} special-style">${children}</div>`;
+    return { reactElement, htmlString };
+  },
+  // 他のバリアント...
+};
+
+// 4. プレビュー用サンプル (オプション)
+export const samples = {
+  default: 'デフォルト表示',
+  special: '特別表示',
+};
+
+// 5. デフォルトエクスポート (必須)
+export default {
+  metadata,
+  render, // 基本レンダラー (なければ undefined でも可)
+  variants, // バリアント (なければ undefined でも可)
+  samples, // サンプル (なければ undefined でも可)
 };
 ```
 
 ## ハンドラーファイルの作成
 
-### 1. 新しいハンドラーファイルの作成
+### 1. ファイルの配置
 
-`src/css-builder/templates/handlers/`ディレクトリに新しいファイルを作成します。
-命名規則は`[componentName]Handlers.jsx`です。
+新しいハンドラーファイルは、必ず `src/css-builder/templates/handlers/auto/` ディレクトリ内に作成します。ファイル名はコンポーネントタイプに合わせて分かりやすく付けます（例: `button.jsx`, `card.jsx`）。
 
-```jsx
-// src/css-builder/templates/handlers/newComponentHandlers.jsx
-import React from 'react';
-import { sampleIcon, createHandlerResult } from './common';
+### 2. 必須のエクスポート
 
-// メインハンドラー
-export const newComponentHandler = (options) => {
-  const { classString = '', selectedModifiers = [] } = options;
-  
-  // モディファイアによる条件分岐
-  const hasSpecialFeature = selectedModifiers.includes('special-feature');
-  
-  // Reactコンポーネント
-  const reactElement = (
-    <div className={classString}>
-      {hasSpecialFeature ? '特殊機能付き' : '標準表示'}
-    </div>
-  );
-  
-  // HTML文字列
-  const htmlString = `<div class="${classString}">
-  ${hasSpecialFeature ? '特殊機能付き' : '標準表示'}
-</div>`;
-  
-  return createHandlerResult(reactElement, htmlString);
-};
+各ハンドラーファイルには、以下のエクスポートが **必須** です。
 
-// エクスポートするハンドラーマップ
-export const newComponentHandlers = {
-  'new-component': newComponentHandler,
-  // バリアント用ハンドラーもここに追加
-};
+-   `export const metadata`:
+    -   `type` (string): コンポーネントタイプを示す一意の識別子。これがハンドラーを特定するキーとなります。
+    -   `category` (string, optional): UIでの分類用カテゴリ。
+    -   `description` (string, optional): ハンドラーの説明。
+-   `export default { metadata, render, variants, samples }`:
+    -   上記で定義した `metadata` と、オプションの `render`, `variants`, `samples` を含むオブジェクトをデフォルトエクスポートします。
+
+### 3. レンダリング関数の実装 (`render` / `variants`)
+
+-   `render` または `variants` の **少なくともどちらか一方** をエクスポートする必要があります。
+-   これらの関数は `options` オブジェクトを引数として受け取ります。`options` には通常、UIで選択された情報（`classString`, `selectedModifiers`, `variant`, `color` など）が含まれます。
+-   関数は **`{ reactElement: ReactElement, htmlString: string }`** という形式のオブジェクトを **必ず** 返す必要があります。
+    -   `reactElement`: プレビュー表示用のReact要素。
+    -   `htmlString`: コード表示用のHTML文字列。
+
+### 4. オプションのエクスポート
+
+-   `export function render(options)`: コンポーネントの基本的な表示を生成します。バリアントがない場合や、デフォルトの表示に使われます。
+-   `export const variants = { variantName: (options) => { ... } }`: コンポーネントの特定のバリアント（UIのVariantSelectorで選択されるもの）に対応するレンダリング関数を定義します。キーがバリアント名になります。
+-   `export const samples = { sampleName: '...' }`: UIの特定の箇所で表示されるサンプルテキストやアイコンなどを定義します（現在は主に `button` ハンドラーなどで利用）。
+
+## 自動登録の仕組み
+
+`src/css-builder/templates/handlers/auto/` ディレクトリに規約に従ったハンドラーファイルを作成するだけで、**自動的にシステムに登録**されます。
+
+-   **ビルド時:** `npm run build` (または `npm run dev`) の実行時に、`generate-handler-manifest.js` スクリプトが `auto/` ディレクトリをスキャンします。
+-   **マニフェスト生成:** 各ファイルの `metadata` を読み取り、ハンドラータイプ、メタデータ、実行時インポート用のパス (`/src/...`) を含む `src/css-builder/configs/handler-manifest.json` ファイルを生成・更新します。
+-   **実行時:** UIコンポーネント (`TemplateRenderer`, `ClassCodeDisplay`) は、このマニフェストを参照し、必要なハンドラーモジュールを非同期で動的にインポートします。
+
+**手動でのレジストリファイル (`registry.jsx`) への登録は不要になりました。**
+
+### プロセス図解
+
+```mermaid
+graph TD
+    subgraph Build Time
+        A[npm run build] --> B(npm run generate:handlers);
+        B --> C{Scan src/css-builder/templates/handlers/auto/*.jsx};
+        C --> D[Extract metadata & path];
+        D --> E(Generate/Update src/css-builder/configs/handler-manifest.json);
+        E --> F[astro build];
+    end
+
+    subgraph "Runtime (Client-side)"
+        G[User selects component type] --> H(componentType changes);
+        H --> I[useAsyncHandler(componentType)];
+        I --> J{Read handler-manifest.json};
+        J -- handlerInfo --> K[import(handlerInfo.path)];
+        K -- Module --> L{handlerModule state updated};
+        L --> M[TemplateRenderer / ClassCodeDisplay];
+        M -- options --> N(Call handlerModule.render / .variants);
+        N -- {reactElement / htmlString} --> O[Update UI];
+    end
+
+    style Build Time fill:#f9f,stroke:#333,stroke-width:2px
+    style Runtime fill:#ccf,stroke:#333,stroke-width:2px
 ```
 
-### 2. `common.jsx`のユーティリティの活用
+## ハンドラーの実装詳細
 
-`common.jsx`には便利なユーティリティ関数が用意されています：
+### `options` オブジェクト
 
-- `createHandlerResult`: reactElementとhtmlStringを含むオブジェクトを生成
-- `ensureBaseClass`: 指定したベースクラスを確実にクラス文字列に含める
-- `combineClasses`: 複数のクラスを結合する
+`render` および `variants` 関数に渡される `options` オブジェクトには、主に以下のプロパティが含まれる可能性があります（呼び出し元のコンポーネントによって異なります）。
+
+-   `classString` (string): UIで選択されたクラス（ベース、サイズ、色、角丸、特殊効果、追加クラスなど）が結合された文字列。
+-   `selectedModifiers` (string[]): 選択されたモディファイアクラス名の配列。
+-   `variant` (string): 選択されたバリアント名（`variants` 内の関数を呼び出す際に使用される）。
+-   `color` (string): 選択された色クラス名。
+-   `children` (any): デフォルトのコンテンツ（プレビュー用に仮のものが渡されることが多い）。
+-   `baseClass` (string): コンポーネントのベースクラス名（`ClassCodeDisplay` から渡される）。
+
+ハンドラー内では、これらの `options` を利用して、表示するReact要素やHTML文字列を動的に構築します。
+
+### `common.jsx` ユーティリティ
+
+`src/css-builder/templates/handlers/common.jsx` には、ハンドラー開発に役立つユーティリティが含まれています。
+
+-   `combineClasses`: 複数のクラスソース（オブジェクト形式）を受け取り、有効なクラスを結合して単一の文字列を返します。`ClassPreview` などで使用されていますが、ハンドラー内部で直接クラスを組み立てる場合にも利用できます。
+-   `sampleIcon`: プレビュー用の汎用アイコンSVG文字列。
 
 ```jsx
-import { createHandlerResult, ensureBaseClass, combineClasses } from './common';
+import { sampleIcon } from '../common';
 
-// ベースクラスを確実に含める
-const enhancedClassString = ensureBaseClass(classString, 'new-component-base');
-```
-
-## レジストリへの登録
-
-新しく作成したハンドラーをシステムで利用可能にするには、レジストリに登録する必要があります。
-
-### 1. レジストリファイルを編集
-
-`src/css-builder/templates/registry.jsx`を開き、以下の手順で編集します：
-
-```jsx
-// 1. ハンドラーをインポート
-import { newComponentHandlers } from './handlers/newComponentHandlers';
-
-// 2. componentsオブジェクトに追加
-const componentRegistry = {
-  components: {
-    ...buttonHandlers,
-    ...cardHandlers,
-    // 既存のハンドラー
-    ...newComponentHandlers, // 追加
-  },
+export function render(options) {
   // ...
-};
-```
-
-### 2. パターンハンドラーの登録（任意）
-
-特定のパターンに一致するコンポーネントタイプを処理するパターンハンドラーを作成する場合は、`patterns`オブジェクトに登録します。
-
-```jsx
-// パターンハンドラーの例
-export const newComponentPatternHandler = {
-  '^new-.*': newComponentHandler // "new-"で始まるすべてのコンポーネントを処理
-};
-
-// レジストリへの登録
-const componentRegistry = {
+  const reactElement = <button className={options.classString} dangerouslySetInnerHTML={{ __html: `${sampleIcon} Button` }} />;
   // ...
-  patterns: {
-    ...headingPatternHandler,
-    ...newComponentPatternHandler, // 追加
-  },
-  // ...
-};
-```
-
-## 特殊なケースの処理
-
-### 1. プレビューコンテナのカスタマイズ
-
-コンポーネントによっては、プレビュー表示のコンテナに特別な処理が必要な場合があります。例えば、ツールチップコンポーネントでは、プレビューコンテナにベースクラスが適用されないようにする必要があります。
-
-```jsx
-// 特殊なコンテナコンポーネント
-const SpecialContainer = ({ children, layoutClass = '' }) => {
-  return (
-    <div 
-      data-skip-decoration="true" 
-      className={`preview-container ${layoutClass}`}
-    >
-      {children}
-    </div>
-  );
-};
-
-// ハンドラーでの使用
-const reactElement = (
-  <SpecialContainer>
-    <span className={enhancedClassString}>
-      実際のコンポーネント
-    </span>
-  </SpecialContainer>
-);
-
-// skipDecorationフラグを設定
-return {
-  reactElement,
-  htmlString,
-  skipDecoration: true // デコレーターを回避
-};
-```
-
-### 2. 複数の表示状態を示す
-
-状態の異なる複数のコンポーネントを同時に表示したい場合：
-
-```jsx
-// 複数の状態を表示するハンドラー
-export const multiStateHandler = (options) => {
-  const { classString = '' } = options;
-  
-  // 状態ごとのクラス
-  const normalState = classString;
-  const activeState = `${classString} component-active`;
-  
-  // 複数の状態を表示するReactコンポーネント
-  const reactElement = (
-    <div className="preview-container flex space-x-4">
-      <div className={normalState}>通常状態</div>
-      <div className={activeState}>アクティブ状態</div>
-    </div>
-  );
-  
-  // HTML文字列は基本コンポーネントのみ
-  const htmlString = `<div class="${classString}">
-  コンポーネント
-</div>`;
-  
-  return createHandlerResult(reactElement, htmlString);
-};
+}
 ```
 
 ## ベストプラクティス
 
-### 1. コンポーネントのベースクラスを確実に含める
+-   **クラスの結合:** ハンドラー内でクラスを動的に追加・変更する場合、`clsx` や `tailwind-merge` ライブラリ、または自作の結合関数を利用して、クラスの重複や競合を適切に処理することを検討してください。`combineClasses` ユーティリティも参考になります。
+-   **HTMLの可読性:** 生成する `htmlString` は、ユーザーがコピーして利用するため、適切なインデントを付けて可読性を高めてください。
+-   **モディファイアの活用:** `options.selectedModifiers` 配列を確認し、特定のモディファイアが選択されている場合に表示や構造を変化させるロジックを実装します。
+-   **サブコンポーネント:** 複雑なReact要素を生成する場合、ハンドラーファイル内で小さなサブコンポーネントに分割すると見通しが良くなります。
 
-ユーザーがバリアントクラスのみを選択した場合でも、ベースクラスが確実に含まれるようにします：
+## デバッグ
 
-```jsx
-const enhancedClassString = ensureBaseClass(classString, 'component-base');
-```
-
-### 2. 可読性の高いHTML文字列を生成
-
-生成されるHTMLコードは、ユーザーがコピーして使用するものなので、適切にインデントして可読性を高めます：
-
-```jsx
-const htmlString = `<div class="${classString}">
-  <div class="component-inner">
-    コンテンツ
-  </div>
-</div>`;
-```
-
-### 3. モディファイアの確認
-
-ユーザーが選択したモディファイアに基づいてコンポーネントの見た目や動作を調整します：
-
-```jsx
-const hasIcon = selectedModifiers.includes('component-with-icon');
-const isLarge = selectedModifiers.includes('component-lg');
-
-// 条件に基づいてコンテンツを調整
-const content = hasIcon 
-  ? `${sampleIcon} テキスト` 
-  : 'テキスト';
-
-// サイズクラスに基づいてスタイルを調整
-const sizeClass = isLarge ? 'text-lg p-4' : 'text-base p-2';
-```
-
-### 4. 再利用可能なサブコンポーネント
-
-複雑なコンポーネントの場合、再利用可能なサブコンポーネントに分割します：
-
-```jsx
-// 内部利用のサブコンポーネント
-const ComponentHeader = ({ title, className }) => (
-  <div className={`component-header ${className}`}>{title}</div>
-);
-
-const ComponentBody = ({ content, className }) => (
-  <div className={`component-body ${className}`}>{content}</div>
-);
-
-// ハンドラーでの利用
-const reactElement = (
-  <div className={classString}>
-    <ComponentHeader title="タイトル" className="mb-2" />
-    <ComponentBody content="内容" className="p-4" />
-  </div>
-);
-```
-
-## デバッグとテスト
-
-### 1. ログの活用
-
-開発中は`console.log`を使用して、渡されるオプションや生成される要素を確認します：
-
-```jsx
-export const debugHandler = (options) => {
-  console.log('Handler options:', options);
-  
-  // 通常の処理
-  const result = createHandlerResult(reactElement, htmlString);
-  console.log('Handler result:', result);
-  
-  return result;
-};
-```
-
-### 2. エラーハンドリング
-
-ハンドラー内でエラーが発生した場合にも対応できるようにします：
-
-```jsx
-export const safeHandler = (options) => {
-  try {
-    // 通常の処理
-    return createHandlerResult(reactElement, htmlString);
-  } catch (error) {
-    console.error('Handler error:', error);
-    
-    // エラー表示用のフォールバック
-    const errorElement = (
-      <div className="p-4 border border-red-500 bg-red-100 text-red-700">
-        コンポーネントの生成中にエラーが発生しました
-      </div>
-    );
-    
-    const errorHtml = `<!-- Error: ${error.message} -->
-<div class="error">エラーが発生しました</div>`;
-    
-    return createHandlerResult(errorElement, errorHtml);
-  }
-};
-```
-
-### 3. プレビューモードでのテスト
-
-`forPreview`フラグを確認して、プレビュー表示用に特別な処理を行うことができます：
-
-```jsx
-export const previewAwareHandler = (options) => {
-  const { forPreview = false } = options;
-  
-  if (forPreview) {
-    // プレビュー用の軽量バージョン
-    return createHandlerResult(previewElement, htmlString);
-  }
-  
-  // 通常バージョン
-  return createHandlerResult(reactElement, htmlString);
-};
-```
+-   **`console.log`:** ハンドラー関数内で `console.log(options)` を使用して、渡されているプロパティを確認するのが最も基本的なデバッグ方法です。
+-   **ブラウザ開発者ツール:** 非同期ロードのエラーやレンダリング時のエラーは、ブラウザの開発者ツールのコンソールに出力されます。`useAsyncHandler`, `TemplateRenderer`, `ClassCodeDisplay` 内のエラーログも確認してください。
+-   **マニフェストファイルの確認:** `npm run generate:handlers` を実行後、`src/css-builder/configs/handler-manifest.json` が正しく生成・更新されているか確認してください。特に `path` が正しい形式 (`/src/...`) になっているか確認します。
 
 ---
 
-このガイドラインに従って新しいコンポーネントハンドラーを追加することで、CSS Builderの機能を拡張し、より多様なコンポーネントをサポートすることができます。既存のハンドラーを参考にしながら、一貫性のあるユーザー体験を提供するよう心がけてください。
+このガイドに従って新しいコンポーネントハンドラーを追加することで、CSS Builderの機能を拡張できます。
