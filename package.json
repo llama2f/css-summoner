@@ -17,7 +17,10 @@
 		"css-docs": "node src/css-builder/scripts/index.js --docs",
 		"css-components": "node src/css-builder/scripts/index.js --components",
 		"css-all": "node src/css-builder/scripts/index.js --all",
-		"generate:handlers": "node src/css-builder/scripts/generate-handler-manifest.js"
+		"generate:handlers": "node src/css-builder/scripts/generate-handler-manifest.js",
+		"generate:astro": "node src/css-builder/scripts/generate-astro.js",
+		"generate:astro-force": "node src/css-builder/scripts/generate-astro.js --force",
+		"extract-jsx": "node src/css-builder/scripts/extract-jsx.js src/css-builder/templates/handlers/auto"
 	},
 	"dependencies": {
 		"@astrojs/react": "4.2.2",

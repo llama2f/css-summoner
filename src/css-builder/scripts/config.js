@@ -70,6 +70,7 @@ function checkPathExists(pathToCheck, description) {
 const paths = {
 	// ソースディレクトリ
 	stylesDir: resolveProjectPath('src/css-builder/styles/'),
+	handlersDir: resolveProjectPath('src/css-builder/templates/handlers/auto/'), // ハンドラーディレクトリ
 
 	// 出力ディレクトリ
 	output: {
@@ -121,7 +122,9 @@ paths.getStyleFiles = function () {
 };
 // 重要なパスが存在するか確認
 checkPathExists(paths.stylesDir, 'CSSスタイルディレクトリ');
+checkPathExists(paths.handlersDir, 'ハンドラーディレクトリ');
 checkPathExists(paths.output.cssBuilder, 'CSSビルダー出力先');
+checkPathExists(paths.output.components, 'Astroコンポーネント出力先');
 
 /**
  * 設定オブジェクト
@@ -171,7 +174,7 @@ const config = {
 			mappings: true, // クラスマッピング関連ファイル
 			types: true, // 型定義ファイル
 			docs: true, // Astroドキュメントページ（デフォルトで上書き有効）
-			components: false, // Astroコンポーネント
+			components: true, // Astroコンポーネント
 		},
 
 		// バックアップの設定
