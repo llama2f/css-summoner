@@ -167,7 +167,7 @@ const astroGenerator = {
  * 元のCSSファイルのアノテーション、または astro-generator.js を編集してください。
  * ソース: ${sourceFiles.join(', ') || '不明'}
  */
-import Layout from '@/layouts/Layout.astro'; // エイリアスを確認
+import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
 import Menu from '@/css-builder/layouts/Menu.astro'; // css-builder内のMenuを使用
 
 // スタイルシートのインポート (必要に応じて調整)
@@ -245,7 +245,7 @@ const pageDesc = "${componentLabel} コンポーネントのスタイルバリ�
 
 			// ページを保存
 			const filePath = path.join(outputDir, `${componentType}.astro`);
-			const success = fileUtils.safeWriteFile(filePath, astroComponentContent, {
+			const success = fileUtils.safeWriteFile(filePath, astroContent, { // 正しい変数名に修正
 				force: useForce,
 				backup: useBackup,
 			});

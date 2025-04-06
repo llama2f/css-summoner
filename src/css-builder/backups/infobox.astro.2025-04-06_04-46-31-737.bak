@@ -1,0 +1,285 @@
+---
+/**
+ * Infobox コンポーネント
+ * 
+ * このファイルは自動生成されています。直接編集せず、元のCSSファイル、scripts/css-builder/astro-generator.cjsを編集してください。
+ * ソース: infobox/index.css
+ */
+import Layout from '@layouts/Layout.astro'
+import Menu from '@layouts/Menu.astro'
+
+// スタイルシートのインポート
+import '@stylesCss/styles.css'
+---
+
+<Layout pageTitle="Infobox コンポーネント" desc="Infoboxのスタイルとバリエーション">
+  <div class="content-width py-8">
+    <p class="text-lg mb-8">
+      すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。
+    </p>
+		 <div class="mt-4">
+      <a href="/" class="text-primary hover:text-primary-dark">
+        ← カスタムクラスビルダーに戻る
+      </a>
+    </div>
+    <Menu />
+   
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">variant</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">With Icon</h3>
+          <p class="text-sm text-neutral-600 mb-4">アイコン付きの情報ボックス。視覚的な手がかりを追加します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-with-icon" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-with-icon</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Info</h3>
+          <p class="text-sm text-neutral-600 mb-4">一般的な情報を表示するボックス。通常の通知やメッセージに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-info" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-info</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Success</h3>
+          <p class="text-sm text-neutral-600 mb-4">成功や完了を表示するボックス。操作の成功やポジティブな通知に使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-success" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-success</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Warning</h3>
+          <p class="text-sm text-neutral-600 mb-4">警告を表示するボックス。注意が必要な情報やユーザーの確認が必要な内容に使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-warning" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-warning</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Error</h3>
+          <p class="text-sm text-neutral-600 mb-4">エラーを表示するボックス。問題や失敗を通知する場合に使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-error" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-error</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Note</h3>
+          <p class="text-sm text-neutral-600 mb-4">メモや補足情報を表示するボックス。追加情報や備考に使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-note" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-note</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Outline</h3>
+          <p class="text-sm text-neutral-600 mb-4">背景色なしで枠線のみのスタイル。控えめな表示が必要な場合に使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-outline" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-outline</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Bordered</h3>
+          <p class="text-sm text-neutral-600 mb-4">通常の枠線付きスタイル。視覚的な区切りを強調します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-bordered" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-bordered</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Shadow</h3>
+          <p class="text-sm text-neutral-600 mb-4">影付きスタイル。立体感を強調し、ページ上で目立たせます。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-shadow" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-shadow</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Square</h3>
+          <p class="text-sm text-neutral-600 mb-4">角丸なしの四角形スタイル。シャープなデザインが必要な場合に使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-square" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-square</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Icon</h3>
+          <p class="text-sm text-neutral-600 mb-4">アイコン要素のスタイル。視覚的なシンボルを左側に配置します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-icon" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-icon</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Title</h3>
+          <p class="text-sm text-neutral-600 mb-4">タイトル要素のスタイル。情報ボックス内の見出しに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-title" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-title</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Compact</h3>
+          <p class="text-sm text-neutral-600 mb-4">コンパクトサイズのスタイル。スペースが限られている場合に使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <div class="infobox-base infobox-compact" style="width: 100%">
+        <p>インフォメーションメッセージ</p>
+      </div>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">infobox-compact</code>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">使用例</h2>
+      <div class="bg-neutral-50 p-6 rounded-lg">
+        <pre class="text-sm overflow-x-auto"><div class="infobox-info infobox-with-icon">
+<span class="infobox-icon">
+<svg>...</svg>
+</span>
+アイコン付き情報ボックス
+</div>
+
+<div class="infobox-info">
+情報: このサービスは24時間利用可能です。
+</div>
+
+<div class="infobox-success">
+成功: データの保存が完了しました。
+</div>
+
+<div class="infobox-warning">
+警告: このアクションは取り消せません。
+</div>
+
+<div class="infobox-error">
+エラー: ファイルの上传に失敗しました。
+</div>
+
+<div class="infobox-note">
+メモ: 詳細については資料を参照してください。
+</div>
+
+<div class="infobox-info infobox-outline">
+枠線のみの情報ボックス
+</div>
+
+<div class="infobox-info infobox-bordered">
+枠線付きの情報ボックス
+</div>
+
+<div class="infobox-info infobox-shadow">
+影付きの情報ボックス
+</div>
+
+<div class="infobox-info infobox-square">
+角丸なしの情報ボックス
+</div>
+
+<div class="infobox-info infobox-with-icon">
+<span class="infobox-icon">
+<svg>...</svg>
+</span>
+アイコン付き情報ボックス
+</div>
+
+<div class="infobox-info"><h4 class="infobox-title">重要なお知らせ</h4><p>システムメンテナンスのお知らせです。</p></div>
+
+<div class="infobox-info infobox-compact">
+コンパクトサイズの情報ボックス
+</div>
+
+<div class="infobox-base">基本的な情報ボックス</div></pre>
+      </div>
+    </div>
+    <Menu />
+    <div class="mt-4">
+      <a href="/" class="text-primary hover:text-primary-dark">
+        ← カスタムクラスビルダーに戻る
+      </a>
+    </div>
+  </div>
+</Layout>

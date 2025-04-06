@@ -1,4 +1,5 @@
 // index.js - メインスクリプト (ESM版)
+import fs from 'fs'; // fsモジュールをインポート
 import path from 'path';
 import { fileURLToPath } from 'url';
 import config from './config.js';
@@ -119,6 +120,9 @@ export const classDescriptions = ${JSON.stringify(componentData.classDescription
 
 // componentExamples もエクスポートすると便利かもしれない
 export const componentExamples = ${JSON.stringify(componentData.componentExamples, null, 2)};
+
+// 追加: クラス名ごとのルール詳細
+export const classRuleDetails = ${JSON.stringify(componentData.classRuleDetails, null, 2)};
 `;
 
 		fileUtils.writeFileSafely(autoMappingsPath, autoOutput); // writeFileSafely はバックアップも考慮
@@ -231,7 +235,7 @@ export const componentBorderRadius = {
 				? `import { ${exportNames.join(', ')} } from './${configBaseName}';`
 				: `// 設定ファイル (${configBaseName}) からのエクスポートはありませんでした。`;
 
-			const importFromAuto = `import { componentTypes, baseClasses, componentVariants, classDescriptions, componentExamples } from './${autoBaseName}';`; // componentExamples もインポート
+			const importFromAuto = `import { componentTypes, baseClasses, componentVariants, classDescriptions, componentExamples, classRuleDetails } from './${autoBaseName}';`; // classRuleDetails もインポート
 
 			// エクスポート文の生成
 			const allExports = [
@@ -239,8 +243,9 @@ export const componentBorderRadius = {
 				'baseClasses',
 				'componentVariants',
 				'classDescriptions',
-                'componentExamples', // componentExamples もエクスポート
-				...exportNames,
+                'componentExamples',
+                'classRuleDetails', // classRuleDetails もエクスポート
+   ...exportNames,
 			];
 
 			const exportStatement = `export {\n  ${allExports.join(',\n  ')}\n};`;
@@ -270,7 +275,7 @@ ${exportStatement}
 		    // configs/index.js を動的にインポート
             // 注意: 動的インポートのパスは実行時のカレントディレクトリに依存しないようにする
             // ここでは index.js から見た相対パスを使用
-            const configModule = await import('../configs/index.js');
+            const configModule = await import('../configs/index.js'); // 相対パスを修正
 			configData = configModule.default || configModule; // default export または 名前付き export を想定
 			logger.verbose('設定データ (configs/index.js) を読み込みました。');
 		} catch (error) {
@@ -339,7 +344,7 @@ ${exportStatement}
 		logger.info('すべての処理が完了しました。');
 		return true; // 成功を示すために true を返す
 	} catch (error) {
-		logger.error('処理中に予期せぬエラーが発生しました。', error);
+		logger.error('処理中に予期せぬエラーが発生しました。エラー詳細:', error); // エラーオブジェクト全体を出力
 		return false; // エラーを示すために false を返す
 	}
 }

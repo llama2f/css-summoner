@@ -71,7 +71,7 @@ export const logger = {
   error: (message, error) => {
     logger._errorCount++;
     console.error(`[ERROR] ${message}`);
-    if (error && config.logging.verbose) {
+    if (error) { // verboseモードに関わらずエラーオブジェクトを出力
       console.error(error);
     }
   }

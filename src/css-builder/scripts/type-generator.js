@@ -1,4 +1,5 @@
 // type-generator.js - TypeScript型定義を生成するモジュール (ESM版)
+import fs from 'fs'; // fsモジュールをインポート
 import path from 'path';
 import config from './config.js'; // config.js をインポート
 import { logger, fileUtils, stringUtils } from './utils.js'; // utils.js をインポート
@@ -154,7 +155,7 @@ ${exports.join('\n')}
 
       return success;
     } catch (error) {
-      logger.error('インデックス型定義ファイルの生成中にエラーが発生しました。', error);
+      logger.error('インデックス型定義ファイルの生成中にエラーが発生しました。エラー詳細:', error); // エラーオブジェクト全体を出力
       return false;
     }
   },

@@ -1,0 +1,215 @@
+---
+/**
+ * Heading コンポーネント
+ * 
+ * このファイルは自動生成されています。直接編集せず、元のCSSファイル、scripts/css-builder/astro-generator.cjsを編集してください。
+ * ソース: heading/index.css
+ */
+import Layout from '@layouts/Layout.astro'
+import Menu from '@layouts/Menu.astro'
+
+// スタイルシートのインポート
+import '@stylesCss/styles.css'
+---
+
+<Layout pageTitle="Heading コンポーネント" desc="Headingのスタイルとバリエーション">
+  <div class="content-width py-8">
+    <p class="text-lg mb-8">
+      すべての見出しに共通する基本スタイル。見出しに一貫性を持たせます。
+    </p>
+		 <div class="mt-4">
+      <a href="/" class="text-primary hover:text-primary-dark">
+        ← カスタムクラスビルダーに戻る
+      </a>
+    </div>
+    <Menu />
+   
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">variant</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Formal Primary</h3>
+          <p class="text-sm text-neutral-600 mb-4">左側に太いボーダーを持つビジネス向け見出し。公式文書や企業サイトに最適です。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-formal-primary">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-formal-primary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Formal Underline</h3>
+          <p class="text-sm text-neutral-600 mb-4">下線付きのフォーマルな見出し。清潔で簡潔なビジネス文書に適しています。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-formal-underline">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-formal-underline</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Formal Full</h3>
+          <p class="text-sm text-neutral-600 mb-4">背景色が全体に適用されたフォーマルな見出し。重要なセクションを強調します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-formal-full">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-formal-full</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Casual Dotted</h3>
+          <p class="text-sm text-neutral-600 mb-4">ドット下線付きのカジュアルな見出し。親しみやすく柔らかい印象を与えます。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-casual-dotted">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-casual-dotted</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Casual Badge</h3>
+          <p class="text-sm text-neutral-600 mb-4">バッジスタイルのカジュアルな見出し。特別なセクションやポイントを強調します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-casual-badge">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-casual-badge</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Casual Wavy</h3>
+          <p class="text-sm text-neutral-600 mb-4">波線下線付きのカジュアルな見出し。遊び心のあるデザインに適しています。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-casual-wavy">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-casual-wavy</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Technical Code</h3>
+          <p class="text-sm text-neutral-600 mb-4">コード風の技術的な見出し。開発者向けドキュメントや技術記事に最適です。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-technical-code">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-technical-code</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Technical Tag</h3>
+          <p class="text-sm text-neutral-600 mb-4">HTMLタグ風の技術的な見出し。ウェブ関連のコンテンツに適しています。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-technical-tag">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-technical-tag</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Technical Bracket</h3>
+          <p class="text-sm text-neutral-600 mb-4">角括弧付きの技術的な見出し。構造化されたコンテンツに適しています。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-technical-bracket">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-technical-bracket</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Accent Gradient</h3>
+          <p class="text-sm text-neutral-600 mb-4">グラデーション背景の強調見出し。注目を集めるセクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-accent-gradient">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-accent-gradient</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Accent Border</h3>
+          <p class="text-sm text-neutral-600 mb-4">強調されたボーダーを持つ見出し。重要なセクションを示します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-accent-border">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-accent-border</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Accent Stripe</h3>
+          <p class="text-sm text-neutral-600 mb-4">ストライプ背景の強調見出し。ユニークで目立つセクションに使用します。</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <h2 class="heading-base heading-accent-stripe">見出しサンプル</h2>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">heading-accent-stripe</code>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">使用例</h2>
+      <div class="bg-neutral-50 p-6 rounded-lg">
+        <pre class="text-sm overflow-x-auto"><h2 class="heading-formal-primary">プライマリフォーマル見出し</h2>
+
+<h2 class="heading-formal-underline">下線付きフォーマル見出し</h2>
+
+<h2 class="heading-formal-full">フルバックグラウンド見出し</h2>
+
+<h2 class="heading-casual-dotted">ドット下線カジュアル見出し</h2>
+
+<h2 class="heading-casual-badge">バッジスタイル見出し</h2>
+
+<h2 class="heading-casual-wavy">波線下線カジュアル見出し</h2>
+
+<h2 class="heading-technical-code">コード風見出し</h2>
+
+<h2 class="heading-technical-tag">タグ風見出し</h2>
+
+<h2 class="heading-technical-bracket">角括弧付き見出し</h2>
+
+<h2 class="heading-accent-gradient">グラデーション見出し</h2>
+
+<h2 class="heading-accent-border">強調ボーダー見出し</h2>
+
+<h2 class="heading-accent-stripe">ストライプ背景見出し</h2>
+
+<h2 class="heading-base">基本的な見出し</h2></pre>
+      </div>
+    </div>
+    <Menu />
+    <div class="mt-4">
+      <a href="/" class="text-primary hover:text-primary-dark">
+        ← カスタムクラスビルダーに戻る
+      </a>
+    </div>
+  </div>
+</Layout>

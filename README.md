@@ -26,7 +26,7 @@ git commit -m "Add css-builder as a submodule"
 -   カスタムクラスビルダーUI（コンポーネントのプレビューと構築）
 -   モノクロベースのスタイル設計とカラーセレクタによる柔軟なカラー適用
 -   カスタムカラーピッカーによるカラーカスタマイズ
-
+-   **選択されたカスタムCSSクラスに対応するルールの表示**
 ## 使い方
 
 ### スクリプトのセットアップ（package.json）
@@ -115,7 +115,7 @@ CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-builder/scripts/i
 ## 生成されるファイル
 
 -   `src/css-builder/configs/handler-manifest.json`: **(New!)** 自動検出されたハンドラーの情報（メタデータ、パス）を格納するJSONファイル。ビルド時に生成/更新されます。
--   `src/css-builder/autoClassMappings.js`: CSSアノテーションから抽出されたコンポーネント情報。
+-   `src/css-builder/autoClassMappings.js`: CSSアノテーションから抽出されたコンポーネント情報（クラス名、バリアント、説明、**CSSルールテキスト**など）。
 -   `src/css-builder/classMappings.js`: インポート統合用ファイル。
 -   `src/css-builder/classMappingsConfig.js`: 手動設定ファイル（サイズ、モディファイア等）。
 -   `src/css-builder/types/`: 型定義ファイル（`npm run css -- --types` などで生成）。
