@@ -45,7 +45,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">カード内でのアクションボタンをグループ化するための領域。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">カードに明示的な境界線を追加します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">カード内のパディングを減らし、コンパクトな表示にします。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">ゴーストスタイルのカード。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">画像とコンテンツが横並びになるカード。モバイルでは縦並びになるレスポンシブ対応です。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">アウトラインスタイルのカード。枠線のみで背景は透明です。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -135,7 +135,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">塗りつぶしスタイルのカード。背景色とテキスト色が適用されます。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -150,7 +150,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">控えめなカード。薄い背景色が適用され、ホバー時に色が濃くなります。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@ const pageDesc = "Card コンポーネントのスタイルバリエーション
       <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
         <pre class="text-sm">
           <!-- HTMLをエスケープせずに埋め込む -->
-          <Fragment set:html={astroGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
+          <Fragment set:html={docGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
         </pre>
       </div>
     </section>

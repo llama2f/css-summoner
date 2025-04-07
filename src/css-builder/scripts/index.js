@@ -1,3 +1,6 @@
+// [非推奨] このスクリプトは非推奨です。代わりに node src/css-summoner-integration.js を使用してください。
+// css-summonerへの移行完了後に削除予定です。
+
 // index.js - メインスクリプト (ESM版)
 import fs from 'fs'; // fsモジュールをインポート
 import path from 'path';
@@ -6,7 +9,7 @@ import config from './config.js';
 import { logger, fileUtils } from './utils.js';
 import cssParser from './css-parser.js';
 import typeGenerator from './type-generator.js';
-import astroGenerator from './astro-generator.js';
+import docGenerator from './generate-docs.js';
 
 // ESMでは__dirnameは使えないため、import.meta.urlから取得
 const __filename = fileURLToPath(import.meta.url);
@@ -312,7 +315,7 @@ ${exportStatement}
 		// Astroドキュメントページの生成（オプション）
 		if (options.generateDocs) {
 			logger.info('Astroドキュメントページの生成を開始します...');
-			const docsSuccess = astroGenerator.generateAstroDocPages(
+			const docsSuccess = docGenerator.generateAstroDocPages(
 				componentData,
 				configData, // 設定データを渡す (現在は未使用だが将来のため)
 				config.paths.output.docs
@@ -326,9 +329,9 @@ ${exportStatement}
 		}
 
 		// Astroコンポーネントの生成（オプション、非推奨）
-		if (options.generateComponents) {
+		/* if (options.generateComponents) {
 			// logger.info('Astroコンポーネントの生成を開始します...'); // 既に警告済み
-			const componentsSuccess = astroGenerator.generateAstroComponents(
+			const componentsSuccess = docGenerator.generateAstroComponents(
 				componentData,
 				configData,
 				config.paths.output.components
@@ -340,7 +343,7 @@ ${exportStatement}
 				logger.warn('Astroコンポーネントの生成に一部失敗または問題がありました。');
 			}
 		}
-
+ */
 		logger.info('すべての処理が完了しました。');
 		return true; // 成功を示すために true を返す
 	} catch (error) {

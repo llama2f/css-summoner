@@ -25,10 +25,13 @@ const VariantSelector = ({
 	}
 
 	// 選択時のスクロールを防止する関数（メモ化）
-	const handleSelect = useCallback((e, value) => {
-		e.preventDefault() // デフォルト動作を防止
-		onSelect(value) // 選択コールバック
-	}, [onSelect]) // onSelectが変更されたときのみ再作成
+	const handleSelect = useCallback(
+		(e, value) => {
+			e.preventDefault() // デフォルト動作を防止
+			onSelect(value) // 選択コールバック
+		},
+		[onSelect]
+	) // onSelectが変更されたときのみ再作成
 
 	return (
 		<div>
@@ -38,8 +41,12 @@ const VariantSelector = ({
 					<div key={variant.value}>
 						<button
 							className={`btn-ghost-neutral btn-xs btn-square selector-button selector-variant ${selectedVariant === variant.value ? 'active' : ''}`}
-							onMouseEnter={(e) =>
-								onTooltip(e, classDescriptions[variant.value])
+							onMouseEnter={
+								(e) =>
+									onTooltip(
+										e,
+										classDescriptions[variant.value]?.description || ''
+									) // description プロパティを渡す
 							}
 							onMouseLeave={() => onTooltip(null, '')}
 							onClick={(e) => handleSelect(e, variant.value)}

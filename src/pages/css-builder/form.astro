@@ -45,7 +45,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">カスタムスタイルのチェックボックス。オン/オフの選択に使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">カスタムスタイルのラジオボタン。複数の選択肢から1つを選ぶ場合に使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -105,7 +105,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">ドロップダウン選択フィールド。オプションから1つを選ぶ場合に使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -135,7 +135,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -150,7 +150,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
               <p class="text-sm text-neutral-600 mb-4">複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@ const pageDesc = "Form コンポーネントのスタイルバリエーション
       <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
         <pre class="text-sm">
           <!-- HTMLをエスケープせずに埋め込む -->
-          <Fragment set:html={astroGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
+          <Fragment set:html={docGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
         </pre>
       </div>
     </section>

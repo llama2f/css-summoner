@@ -45,7 +45,7 @@ const pageDesc = "Badge コンポーネントのスタイルバリエーショ�
               <p class="text-sm text-neutral-600 mb-4">アウトラインスタイルのバッジ。枠線のみが表示されます。カラーセレクタと組み合わせて使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ const pageDesc = "Badge コンポーネントのスタイルバリエーショ�
               <p class="text-sm text-neutral-600 mb-4">塗りつぶしスタイルのバッジ。背景色が適用されます。カラーセレクタと組み合わせて使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ const pageDesc = "Badge コンポーネントのスタイルバリエーショ�
               <p class="text-sm text-neutral-600 mb-4">控えめなスタイルのバッジ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ const pageDesc = "Badge コンポーネントのスタイルバリエーショ�
       <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
         <pre class="text-sm">
           <!-- HTMLをエスケープせずに埋め込む -->
-          <Fragment set:html={astroGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
+          <Fragment set:html={docGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
         </pre>
       </div>
     </section>

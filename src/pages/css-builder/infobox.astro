@@ -45,7 +45,7 @@ const pageDesc = "Infobox コンポーネントのスタイルバリエーショ
               <p class="text-sm text-neutral-600 mb-4">背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ const pageDesc = "Infobox コンポーネントのスタイルバリエーショ
               <p class="text-sm text-neutral-600 mb-4">背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ const pageDesc = "Infobox コンポーネントのスタイルバリエーショ
               <p class="text-sm text-neutral-600 mb-4">背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ const pageDesc = "Infobox コンポーネントのスタイルバリエーショ
               <p class="text-sm text-neutral-600 mb-4">タイトル要素のスタイル。</p>
               <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
                 <!-- HTMLをエスケープせずに埋め込む -->
-                <Fragment set:html={astroGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
               </div>
             </div>
           </div>
@@ -104,7 +104,7 @@ const pageDesc = "Infobox コンポーネントのスタイルバリエーショ
       <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
         <pre class="text-sm">
           <!-- HTMLをエスケープせずに埋め込む -->
-          <Fragment set:html={astroGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
+          <Fragment set:html={docGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
         </pre>
       </div>
     </section>
