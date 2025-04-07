@@ -1,7 +1,7 @@
 // templates/handlers/auto/form.jsx
 
 import React from 'react'
-import { createHandlerResult } from '../common'
+import { createHandlerResult, combineClasses } from '../common'
 
 // メタデータ（必須）
 export const metadata = {
@@ -13,83 +13,103 @@ export const metadata = {
 // 基本レンダラー（必須） - デフォルトは input
 export function render(props) {
 	const {
-		classString = 'form-input', // デフォルトクラス
+		classString = '',
 		label = 'ラベル',
 		placeholder = 'テキストを入力',
 		id = 'sample-input',
+		baseClass = 'form-input',
+		selectedModifiers, // 明示的に分離
+		children, // 明示的に分離
+		...domProps // DOM要素に渡す安全なプロパティのみ
 	} = props
 
+	// baseClassとclassStringを結合
+	const finalClassString = combineClasses({
+		baseClass,
+		additional: classString,
+	})
+
 	const reactElement = (
-		<div>
-			<label htmlFor={id} className='block mb-2'>
+		<div className="form-field">
+			<label htmlFor={id} className='form-label'>
 				{label}
 			</label>
 			<input
 				id={id}
 				type='text'
-				className={classString}
+				className={finalClassString}
 				placeholder={placeholder}
+				{...domProps}
 			/>
 		</div>
 	)
 
-	const htmlString = `<div>
-  <label for="${id}" class="block mb-2">${label}</label>
-  <input id="${id}" type="text" class="${classString}" placeholder="${placeholder}" />
-</div>`
-
-	return createHandlerResult(reactElement, htmlString)
+	return createHandlerResult(reactElement)
 }
 
 // バリアント特化処理
 export const variants = {
 	// Input (基本レンダラーと同じだが、明示的に定義)
 	'form-input': (props) => {
-		// プレフィックス追加
 		const {
-			classString = 'form-input',
+			classString = '',
 			label = 'ラベル',
 			placeholder = 'テキストを入力',
 			id = 'sample-input',
-			type = 'text', // type を props で受け取れるように
+			type = 'text',
+			baseClass = 'form-input',
+			selectedModifiers, // 明示的に分離
+			children, // 明示的に分離
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
 
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
+
 		const reactElement = (
-			<div>
-				<label htmlFor={id} className='block mb-2'>
+			<div className="form-field">
+				<label htmlFor={id} className='form-label'>
 					{label}
 				</label>
 				<input
 					id={id}
 					type={type}
-					className={classString}
+					className={finalClassString}
 					placeholder={placeholder}
+					{...domProps}
 				/>
 			</div>
 		)
 
-		const htmlString = `<div>
-	 <label for="${id}" class="block mb-2">${label}</label>
-	 <input id="${id}" type="${type}" class="${classString}" placeholder="${placeholder}" />
-</div>`
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement)
 	},
 
 	// Select
 	'form-select': (props) => {
-		// プレフィックス追加
 		const {
-			classString = 'form-select',
+			classString = '',
 			label = 'ラベル',
 			id = 'sample-select',
+			baseClass = 'form-select',
+			selectedModifiers, // 明示的に分離
+			children, // 明示的に分離
 			options = [
-				// 固定オプション
 				{ value: '', label: '項目を選択' },
 				{ value: '1', label: '選択肢1' },
 				{ value: '2', label: '選択肢2' },
 				{ value: '3', label: '選択肢3' },
 			],
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
+
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
 
 		const reactOptions = options.map((opt) => (
 			<option key={opt.value} value={opt.value}>
@@ -97,205 +117,236 @@ export const variants = {
 			</option>
 		))
 
-		const htmlOptions = options
-			.map((opt) => `    <option value="${opt.value}">${opt.label}</option>`)
-			.join('\n')
-
 		const reactElement = (
-			<div>
-				<label htmlFor={id} className='block mb-2'>
+			<div className="form-field">
+				<label htmlFor={id} className='form-label'>
 					{label}
 				</label>
-				<select id={id} className={classString}>
+				<select id={id} className={finalClassString} {...domProps}>
 					{reactOptions}
 				</select>
 			</div>
 		)
 
-		const htmlString = `<div>
-	 <label for="${id}" class="block mb-2">${label}</label>
-	 <select id="${id}" class="${classString}">
-${htmlOptions}
-	 </select>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement)
 	},
 
 	// Checkbox
 	'form-checkbox': (props) => {
-		// プレフィックス追加
 		const {
-			classString = 'form-checkbox',
+			classString = '',
 			label = 'チェックボックスラベル',
 			id = 'sample-checkbox',
+			baseClass = 'form-checkbox',
+			selectedModifiers, // 明示的に分離
+			children, // 明示的に分離
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
 
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
+
 		const reactElement = (
-			<div className='flex items-center'>
-				<input id={id} type='checkbox' className={classString} />
-				<label htmlFor={id} className='ml-2'>
+			<div className='form-field-inline'>
+				<input 
+					id={id} 
+					type='checkbox' 
+					className={finalClassString} 
+					{...domProps}
+				/>
+				<label htmlFor={id} className='form-label-inline'>
 					{label}
 				</label>
 			</div>
 		)
 
-		const htmlString = `<div class="flex items-center">
-	 <input id="${id}" type="checkbox" class="${classString}" />
-	 <label for="${id}" class="ml-2">${label}</label>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement)
 	},
 
 	// Radio
 	'form-radio': (props) => {
-		// プレフィックス追加
 		const {
-			classString = 'form-radio',
+			classString = '',
 			label = 'ラジオボタンラベル',
 			id = 'sample-radio',
 			name = 'sample-radio-group',
+			baseClass = 'form-radio',
+			selectedModifiers, // 明示的に分離
+			children, // 明示的に分離
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
 
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
+
 		const reactElement = (
-			<div className='flex items-center'>
-				<input id={id} type='radio' name={name} className={classString} />
-				<label htmlFor={id} className='ml-2'>
+			<div className='form-field-inline'>
+				<input 
+					id={id} 
+					type='radio' 
+					name={name} 
+					className={finalClassString} 
+					{...domProps}
+				/>
+				<label htmlFor={id} className='form-label-inline'>
 					{label}
 				</label>
 			</div>
 		)
 
-		const htmlString = `<div class="flex items-center">
-	 <input id="${id}" type="radio" name="${name}" class="${classString}" />
-	 <label for="${id}" class="ml-2">${label}</label>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement)
 	},
 
 	// Textarea
 	'form-textarea': (props) => {
-		// プレフィックス追加
 		const {
-			classString = 'form-textarea',
+			classString = '',
 			label = 'テキストエリアラベル',
 			placeholder = '複数行のテキストを入力',
 			id = 'sample-textarea',
 			rows = '4',
+			baseClass = 'form-textarea',
+			selectedModifiers, // 明示的に分離
+			children, // 明示的に分離
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
 
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
+
 		const reactElement = (
-			<div>
-				<label htmlFor={id} className='block mb-2'>
+			<div className="form-field">
+				<label htmlFor={id} className='form-label'>
 					{label}
 				</label>
 				<textarea
 					id={id}
-					className={classString}
+					className={finalClassString}
 					rows={rows}
 					placeholder={placeholder}
+					{...domProps}
 				/>
 			</div>
 		)
 
-		const htmlString = `<div>
-	 <label for="${id}" class="block mb-2">${label}</label>
-	 <textarea id="${id}" class="${classString}" rows="${rows}" placeholder="${placeholder}"></textarea>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement)
 	},
 
-	// Search (カスタムレンダリング)
+	// Search
 	'form-search': (props) => {
-		// プレフィックス追加
 		const {
-			classString = 'form-input form-search', // 複数クラス
+			classString = '',
 			label = '検索',
 			placeholder = '検索キーワードを入力',
 			id = 'sample-search',
+			baseClass = 'form-search',
+			selectedModifiers, // 明示的に分離
+			children, // 明示的に分離
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
 
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
+
 		const reactElement = (
-			<div>
-				<label htmlFor={id} className='block mb-2'>
+			<div className="form-field">
+				<label htmlFor={id} className='form-label'>
 					{label}
 				</label>
-				<div className='relative'>
+				<div className='form-search-container'>
 					<input
 						id={id}
 						type='search'
-						className={classString}
+						className={finalClassString}
 						placeholder={placeholder}
+						{...domProps}
 					/>
-					<span className='absolute right-3 top-1/2 transform -translate-y-1/2'>
-						🔍
-					</span>
+					<span className='form-search-icon'>🔍</span>
 				</div>
 			</div>
 		)
 
-		const htmlString = `<div>
-	 <label for="${id}" class="block mb-2">${label}</label>
-	 <div class="relative">
-	   <input id="${id}" type="search" class="${classString}" placeholder="${placeholder}" />
-	   <span class="absolute right-3 top-1/2 transform -translate-y-1/2">🔍</span>
-	 </div>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement)
 	},
 
-	// Switch (カスタムレンダリング)
+	// Switch
 	'form-switch': (props) => {
-		// プレフィックス追加
 		const {
-			classString = '', // form-switch はコンテナに付与
+			classString = '',
 			label = 'スイッチラベル',
 			id = 'sample-switch',
+			baseClass = 'form-switch',
+			selectedModifiers, // 明示的に分離
+			children, // 明示的に分離
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
 
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
+
 		const reactElement = (
-			<div className='flex items-center'>
-				<div className={`form-switch ${classString}`}>
-					<input type='checkbox' className='form-switch-input' id={id} />
+			<div className='form-field-inline'>
+				<div className='form-switch-container'>
+					<input 
+						type='checkbox' 
+						className='form-switch-input' 
+						id={id} 
+						{...domProps}
+					/>
 					<label className='form-switch-label' htmlFor={id}></label>
 				</div>
-				<label htmlFor={id} className='ml-2'>
+				<label htmlFor={id} className='form-label-inline'>
 					{label}
 				</label>
 			</div>
 		)
 
-		const htmlString = `<div class="flex items-center">
-	 <div class="form-switch ${classString}">
-	   <input type="checkbox" class="form-switch-input" id="${id}" />
-	   <label class="form-switch-label" for="${id}"></label>
-	 </div>
-	 <label for="${id}" class="ml-2">${label}</label>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement)
 	},
 
-	// Feedback (カスタムレンダリング)
+	// Feedback
 	'form-feedback': (props) => {
-		// プレフィックス追加
-		const { classString = 'form-feedback' } = props
+		const {
+			classString = '',
+			baseClass = 'form-feedback',
+			selectedModifiers, // 明示的に分離
+			children, // 明示的に分離
+			...domProps // DOM要素に渡す安全なプロパティのみ
+		} = props
+
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
 
 		const reactElement = (
-			<div>
-				{/* CSS変更に合わせて color-* クラスを使用 */}
-				<div className={`${classString} color-success mb-2`}>
+			<div {...domProps}>
+				<div className={`${finalClassString} color-success form-feedback-item`}>
 					正常な入力です (Success)
 				</div>
-				<div className={`${classString} color-error`}>
+				<div className={`${finalClassString} color-error form-feedback-item`}>
 					エラー: 入力が不正です (Error)
 				</div>
 			</div>
 		)
 
-		const htmlString = `<div>
-	 <div class="${classString} color-success mb-2">正常な入力です (Success)</div>
-	 <div class="${classString} color-error">エラー: 入力が不正です (Error)</div>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement)
 	},
 }
 

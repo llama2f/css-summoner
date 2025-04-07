@@ -3,7 +3,7 @@
 import React from 'react'
 import { createHandlerResult } from '../common'
 
-// Metadata
+// メタデータ（必須）
 export const metadata = {
 	type: 'heading',
 	category: 'typography',
@@ -15,43 +15,38 @@ export function render(props) {
 	const {
 		classString = '',
 		children = 'Heading 見出し',
-		selectedModifiers = [], // モディファイアを受け取る
-		icon = '⭐', // デフォルトアイコン（モディファイア用）
+		selectedModifiers = [],
+		icon = '⭐',
+		baseClass = 'heading-base',
+		...rest
 	} = props
 
 	const hasIcon = selectedModifiers.includes('heading-with-icon')
 
 	// 基本構造
 	const reactElement = (
-		<h2 className={classString}>
+		<h2 className={classString} {...rest}>
 			{hasIcon && (
 				<span className='heading-icon' role='img' aria-hidden='true'>
 					{icon}
 				</span>
 			)}{' '}
-			{/* アイコンとテキストの間にスペース */}
 			{children}
 		</h2>
 	)
 
-	const htmlString = `<h2 class="${classString}">${
-		hasIcon
-			? `<span class="heading-icon" role="img" aria-hidden="true">${icon}</span> `
-			: ''
-	}${children}</h2>`
-
-	return createHandlerResult(reactElement, htmlString)
+	return createHandlerResult(reactElement)
 }
 
 // プレビュー用サンプル
 export const samples = {
 	default: '基本の見出し',
+	withIcon: 'アイコン付き見出し'
 }
 
 // デフォルトエクスポート
 export default {
 	metadata,
 	render,
-	// variants は削除したためエクスポートからも削除
 	samples,
 }

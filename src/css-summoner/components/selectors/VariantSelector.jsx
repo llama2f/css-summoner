@@ -37,8 +37,8 @@ const VariantSelector = ({
 		<div>
 			<h2 className='label-config label-variant label-config'>variant</h2>
 			<div className='container-config container-config-variants'>
-				{variants.map((variant) => (
-					<div key={variant.value}>
+				{variants.map((variant, index) => (
+					<div key={`${variant.value}-${index}`}>
 						<button
 							className={`btn-ghost-neutral btn-xs btn-square selector-button selector-variant ${selectedVariant === variant.value ? 'active' : ''}`}
 							onMouseEnter={

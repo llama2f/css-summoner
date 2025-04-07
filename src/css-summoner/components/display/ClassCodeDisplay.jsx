@@ -1,4 +1,13 @@
 import React, { useState, useCallback, useMemo, useEffect } from 'react'
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import css from 'highlight.js/lib/languages/css'
+import xml from 'highlight.js/lib/languages/xml' // HTML用
+import 'highlight.js/styles/github-dark.css' // テーマCSSをインポート (例: github-dark)
+
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('html', xml) // HTMLはxmlとして登録
 import PropTypes from 'prop-types'
 import useAsyncHandler from '@/css-summoner/hooks/useAsyncHandler' // カスタムフックをインポート
 import { classRuleDetails } from '@/css-summoner/classMappings' // CSSルール詳細をインポート
@@ -31,7 +40,9 @@ const ClassCodeDisplay = ({
 		'/* Select classes to see relevant CSS rules */'
 	)
 	const [cssCopySuccess, setCssCopySuccess] = useState('')
-
+	// ハイライトされたコードを保持する state
+	const [highlightedHtml, setHighlightedHtml] = useState('')
+	const [highlightedCss, setHighlightedCss] = useState('')
 	const copyToClipboard = useCallback(
 		(text) => {
 			if (!text) return
@@ -245,21 +256,78 @@ const ClassCodeDisplay = ({
 		componentType,
 	])
 
-	// レンダー関数 (renderHtmlContent, renderCssRulesContent) は
-	// htmlString と cssRulesString を直接使うようにする
-	const renderHtmlContent = () => {
-		const style =
-			htmlString.startsWith('<!-- Error') ||
-			htmlString.startsWith('<!-- Handler not found')
-				? { color: 'red' }
-				: {}
-		return <pre style={style}>{htmlString}</pre>
-	}
+	// htmlString が変更されたらハイライト処理を実行
+	useEffect(() => {
+		if (htmlString && !htmlString.startsWith('<!--')) {
+			try {
+				const highlighted = hljs.highlight(htmlString, {
+					language: 'html',
+					ignoreIllegals: true,
+				}).value
+				setHighlightedHtml(highlighted)
+			} catch (error) {
+				console.error('Error highlighting HTML:', error)
+				setHighlightedHtml(htmlString) // エラー時は元の文字列を表示
+			}
+		} else {
+			setHighlightedHtml(htmlString) // ローディング中やエラーメッセージはそのまま表示
+		}
+	}, [htmlString])
 
-	// CSSルール表示部分の決定ロジック
+	// cssRulesString が変更されたらハイライト処理を実行
+	useEffect(() => {
+		if (cssRulesString && !cssRulesString.startsWith('/*')) {
+			try {
+				const highlighted = hljs.highlight(cssRulesString, {
+					language: 'css',
+					ignoreIllegals: true,
+				}).value
+				setHighlightedCss(highlighted)
+			} catch (error) {
+				console.error('Error highlighting CSS:', error)
+				setHighlightedCss(cssRulesString) // エラー時は元の文字列を表示
+			}
+		} else {
+			setHighlightedCss(cssRulesString) // 初期メッセージ等はそのまま表示
+		}
+	}, [cssRulesString])
+
+	// ハイライトされたHTMLをレンダリング
+	const renderHtmlContent = () => {
+		// エラーメッセージなどのプレーンテキストはそのまま表示
+		if (htmlString.startsWith('<!--')) {
+			const style = { color: 'red' }
+			return (
+				<pre style={style}>
+					<code>{htmlString}</code>
+				</pre>
+			)
+		}
+		// ハイライトされたHTMLを表示
+		return (
+			<pre>
+				<code
+					className='language-html hljs' // hljsクラスを追加
+					dangerouslySetInnerHTML={{ __html: highlightedHtml }}
+				/>
+			</pre>
+		)
+	}
+	// ハイライトされたCSSをレンダリング
 	const renderCssRulesContent = () => {
-		// ローディングやエラー表示は不要になったためシンプルに
-		return <pre>{cssRulesString}</pre>
+		// 初期メッセージなどはそのまま表示
+		if (cssRulesString.startsWith('/*')) {
+			return <pre>{cssRulesString}</pre>
+		}
+		// ハイライトされたCSSを表示
+		return (
+			<pre>
+				<code
+					className='language-css hljs' // hljsクラスを追加
+					dangerouslySetInnerHTML={{ __html: highlightedCss }}
+				/>
+			</pre>
+		)
 	}
 
 	return (
@@ -267,9 +335,10 @@ const ClassCodeDisplay = ({
 			<div>
 				<h3 className='label-config label-generated-class'>生成されたクラス</h3>
 				<div className='flex items-center gap-2'>
-					<div className='code-aria p-3 rounded text-sm overflow-x-auto flex-grow'>
-						{displayClassString || '<クラスを選択してください>'}
-					</div>
+					{/* pre と code タグで囲み、他のコードエリアとスタイルを統一 */}
+					<pre className='code-aria p-3 rounded text-sm overflow-x-auto flex-grow'>
+						<code>{displayClassString || '<クラスを選択してください>'}</code>
+					</pre>
 					<button
 						onClick={() => copyToClipboard(displayClassString)}
 						disabled={!displayClassString}
@@ -336,9 +405,9 @@ const ClassCodeDisplay = ({
 	)
 }
 
-// PropTypes と defaultProps は変更なし
+// PropTypes の名前を元に戻す (initialClassString は内部でのみ使用)
 ClassCodeDisplay.propTypes = {
-	initialClassString: PropTypes.string, // 名前変更
+	classString: PropTypes.string,
 	componentType: PropTypes.string.isRequired,
 	componentVariant: PropTypes.string,
 	selectedModifiers: PropTypes.arrayOf(PropTypes.string),
@@ -346,7 +415,7 @@ ClassCodeDisplay.propTypes = {
 }
 
 ClassCodeDisplay.defaultProps = {
-	initialClassString: '', // 名前変更
+	classString: '',
 	componentVariant: '',
 	selectedModifiers: [],
 	selectedColor: '',

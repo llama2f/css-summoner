@@ -1,11 +1,11 @@
-// templates/handlers/auto/image.jsx
+// templates/handlers/auto/img.jsx
 
 import React from 'react'
-import { createHandlerResult } from '../common'
+import { createHandlerResult, combineClasses } from '../common'
 
-// メタデータ（必須）
+// メタデータ（必須）- typeをimgに変更
 export const metadata = {
-	type: 'image',
+	type: 'img',
 	category: 'media',
 	description: '画像を表示するコンポーネント',
 }
@@ -19,11 +19,19 @@ export function render(props) {
 		width = '200',
 		height = '150',
 		baseClass = 'img-base',
-		...rest
+		selectedModifiers, // 明示的に分離し、DOMに渡さない
+		children, // 明示的に分離し、DOMに渡さない
+		...domProps // DOM要素に渡す安全なプロパティのみ
 	} = props
 
+	// baseClassとclassStringを結合
+	const finalClassString = combineClasses({
+		baseClass,
+		additional: classString,
+	})
+
 	const reactElement = (
-		<div className={classString} {...rest}>
+		<div className={finalClassString} {...domProps}>
 			<img src={src} alt={alt} width={width} height={height} />
 		</div>
 	)
@@ -44,8 +52,16 @@ export const variants = {
 				{ src: '/placeholder-image.jpg', alt: '画像4' },
 			],
 			baseClass = 'img-gallery',
-			...rest
+			selectedModifiers, // 明示的に分離し、DOMに渡さない
+			children, // 明示的に分離し、DOMに渡さない
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
+
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
 
 		const reactImages = images.map((img, index) => (
 			<img key={index} src={img.src} alt={img.alt} className='img-item' />
@@ -53,7 +69,7 @@ export const variants = {
 
 		// グリッドレイアウトで表示
 		const reactElement = (
-			<div className={classString} {...rest}>
+			<div className={finalClassString} {...domProps}>
 				<div className='img-grid'>
 					{reactImages}
 				</div>

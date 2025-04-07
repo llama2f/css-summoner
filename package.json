@@ -34,6 +34,7 @@
 		"astro-purgecss": "^5.2.2",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
+		"highlight.js": "^11.11.1",
 		"purgecss": "^7.0.2",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",

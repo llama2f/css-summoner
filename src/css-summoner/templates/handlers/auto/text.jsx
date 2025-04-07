@@ -1,7 +1,7 @@
 // templates/handlers/auto/text.jsx
 
 import React from 'react'
-import { createHandlerResult } from '../common'
+import { createHandlerResult, combineClasses } from '../common'
 
 // デフォルトのテキストコンテンツ
 const sampleText =
@@ -14,17 +14,25 @@ export const metadata = {
 	description: '基本的なテキスト表示コンポーネント',
 }
 
-// 基本レンダラー（必須） - 通常のテキスト (<p>)
+// 基本レンダラー（必須）
 export function render(props) {
 	const {
-		classString = 'text-base', // デフォルトクラス
+		classString = '',
 		children = sampleText,
+		baseClass = 'text-base',
+		selectedModifiers, // 明示的に分離し、DOMに渡さない
+		...domProps // DOM要素に渡す安全なプロパティのみ
 	} = props
 
-	const reactElement = <p className={classString}>{children}</p>
-	const htmlString = `<p class="${classString}">${children}</p>`
+	// baseClassとclassStringを結合
+	const finalClassString = combineClasses({
+		baseClass,
+		additional: classString,
+	})
 
-	return createHandlerResult(reactElement, htmlString)
+	const reactElement = <p className={finalClassString} {...domProps}>{children}</p>
+
+	return createHandlerResult(reactElement)
 }
 
 // バリアント特化処理
@@ -32,16 +40,24 @@ export const variants = {
 	// 引用テキスト (<blockquote>)
 	quote: (props) => {
 		const {
-			classString = 'text-quote', // 引用用のクラス
+			classString = '',
 			children = sampleText,
+			baseClass = 'text-quote',
+			selectedModifiers, // 明示的に分離し、DOMに渡さない
+			...domProps // DOM要素に渡す安全なプロパティのみ
 		} = props
 
-		const reactElement = (
-			<blockquote className={classString}>{children}</blockquote>
-		)
-		const htmlString = `<blockquote class="${classString}">${children}</blockquote>`
+		// baseClassとclassStringを結合
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
 
-		return createHandlerResult(reactElement, htmlString)
+		const reactElement = (
+			<blockquote className={finalClassString} {...domProps}>{children}</blockquote>
+		)
+
+		return createHandlerResult(reactElement)
 	},
 }
 
