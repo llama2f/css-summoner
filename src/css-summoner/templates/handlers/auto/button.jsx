@@ -1,5 +1,6 @@
 // templates/handlers/auto/button.jsx
-// プレビュー、html、コード表示
+// プレビュー、コード表示を行います
+// baseクラス付与をスキップする場合はvariantでreturn {skipDecoration: true}を渡してください
 
 import React from 'react'
 import { sampleIcon, createHandlerResult } from '../common'
@@ -19,7 +20,8 @@ export function render(props) {
 		disabled = false,
 		type = 'button',
 		onClick = null,
-		selectedModifiers = [], // これはDOMに渡さない
+		selectedModifiers = [],
+		baseClass,
 		...rest // 残りのプロパティを受け取る
 	} = props
 
@@ -143,10 +145,11 @@ export const variants = {
 			type = 'button',
 			onClick = null,
 			selectedModifiers,
+			baseClass, // baseClass を明示的に受け取り、rest から除外する
 			...rest
 		} = props
 		const reactElement = (
-			<div className='btn-group'>
+			<div className={classString} data-skip-decoration='true'>
 				<button
 					className='btn-base btn-solid btn-sm color-primary'
 					title={title}
@@ -180,13 +183,16 @@ export const variants = {
 			</div>
 		)
 
-		const htmlString = `<div class="btn-group">
+		const htmlString = `<div class=${classString} data-skip-decoration="true">
   <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
   <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
   <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
 </div>`
 
-		return createHandlerResult(reactElement, htmlString)
+		return {
+			...createHandlerResult(reactElement, htmlString),
+			skipDecoration: true,
+		}
 	},
 }
 

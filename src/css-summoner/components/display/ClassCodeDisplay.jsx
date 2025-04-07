@@ -8,14 +8,15 @@ import { classRuleDetails } from '@/css-summoner/classMappings' // CSSルール�
  * (Propsの説明は省略)
  */
 const ClassCodeDisplay = ({
-	classString,
+	classString: initialClassString, // props名を変更して区別
 	componentType,
 	componentVariant,
 	selectedModifiers,
 	selectedColor,
 }) => {
 	const [copySuccess, setCopySuccess] = useState('')
-	const [htmlString, setHtmlString] = useState('<!-- Loading HTML... -->')
+	const [handlerResult, setHandlerResult] = useState(null) // ハンドラー結果を保持する state
+	// const [htmlString, setHtmlString] = useState('<!-- Loading HTML... -->') // handlerResult から導出するため不要に
 	// カスタムフックからハンドラーモジュール、ローディング状態、エラーを取得
 	const {
 		handlerModule,
@@ -31,7 +32,6 @@ const ClassCodeDisplay = ({
 	)
 	const [cssCopySuccess, setCssCopySuccess] = useState('')
 
-	// クラス文字列をクリップボードにコピーする（メモ化）
 	const copyToClipboard = useCallback(
 		(text) => {
 			if (!text) return
@@ -47,7 +47,7 @@ const ClassCodeDisplay = ({
 				})
 		},
 		[setCopySuccess]
-	)
+	) // 変更なしだが、後続の変更のため再記述
 
 	// ベースクラスを決定
 	const baseClass = useMemo(() => {
@@ -64,6 +64,7 @@ const ClassCodeDisplay = ({
 		let isMounted = true
 		setGeneratingHtml(true)
 		setHtmlError(null)
+		setHandlerResult(null) // 依存関係が変わったらリセット
 
 		const generateHtml = () => {
 			if (handlerLoading || handlerError || !handlerModule) {
@@ -75,7 +76,7 @@ const ClassCodeDisplay = ({
 
 			try {
 				const options = {
-					classString,
+					classString: initialClassString, // props から受け取ったクラス文字列
 					selectedModifiers,
 					variant: componentVariant,
 					baseClass,
@@ -97,9 +98,8 @@ const ClassCodeDisplay = ({
 				if (typeof renderFunction === 'function') {
 					const result = renderFunction(options)
 					if (isMounted) {
-						setHtmlString(
-							result?.htmlString || '<!-- Failed to generate HTML -->'
-						)
+						setHandlerResult(result) // 結果オブジェクト全体を保存
+						// setHtmlString(...) は不要に
 					}
 				} else {
 					throw new Error('No valid render function found in handler.')
@@ -111,9 +111,11 @@ const ClassCodeDisplay = ({
 				)
 				if (isMounted) {
 					setHtmlError(err)
-					setHtmlString(
-						`<!-- Error rendering ${componentType}: ${err.message} -->`
-					)
+					// エラー時も handlerResult を設定して表示できるようにする
+					setHandlerResult({
+						htmlString: `<!-- Error rendering ${componentType}: ${err.message} -->`,
+						skipDecoration: true,
+					}) // エラー時は baseClass を追加しない想定
 				}
 			} finally {
 				if (isMounted) setGeneratingHtml(false)
@@ -132,20 +134,34 @@ const ClassCodeDisplay = ({
 		handlerError,
 		componentType,
 		componentVariant,
-		classString,
+		initialClassString, // props 名変更
 		selectedModifiers,
 		selectedColor,
 		baseClass,
 	])
 
-	// 表示するクラス文字列
+	// 表示するクラス文字列 (handlerResult を参照)
 	const displayClassString = useMemo(() => {
+		// ハンドラー結果がない場合は初期クラス文字列を表示
+		if (!handlerResult) {
+			return initialClassString || ''
+		}
+		// skipDecoration が true の場合は、ハンドラーに渡した initialClassString を使う
+		// (または result.reactElement.props.className を使う方がより正確だが複雑になる)
+		if (handlerResult.skipDecoration) {
+			return initialClassString || ''
+		}
+
+		// skipDecoration が false または未定義の場合、baseClass を追加するロジック
+		// ハンドラー結果の React 要素からクラスを取得試行、なければ初期値
+		const currentClassString =
+			handlerResult.reactElement?.props?.className || initialClassString || ''
 		return (
-			baseClass && classString && !classString.includes(baseClass)
-				? `${baseClass} ${classString}`
-				: classString || ''
+			baseClass && currentClassString && !currentClassString.includes(baseClass)
+				? `${baseClass} ${currentClassString}`
+				: currentClassString
 		).trim()
-	}, [baseClass, classString])
+	}, [handlerResult, baseClass, initialClassString]) // initialClassString も依存に追加
 
 	// 選択されたクラスに対応するCSSルールを取得する useEffect
 	useEffect(() => {
@@ -208,32 +224,36 @@ const ClassCodeDisplay = ({
 			})
 	}, [cssRulesString])
 
-	// HTML表示部分の決定ロジック
-	const renderHtmlContent = () => {
-		if (handlerLoading || generatingHtml) {
-			return <pre>Loading HTML...</pre>
-		}
+	// HTML表示用の文字列 (handlerResult から取得)
+	const htmlString = useMemo(() => {
+		if (generatingHtml || handlerLoading) return '<!-- Loading HTML... -->'
 		if (handlerError) {
-			// ハンドラーが見つからないエラー
 			if (handlerError.message.includes('Handler not found in manifest')) {
-				return <pre>{`<!-- Handler not found for ${componentType} -->`}</pre>
+				return `<!-- Handler not found for ${componentType} -->`
 			}
-			// その他のロードエラー
-			return (
-				<pre
-					style={{ color: 'red' }}
-				>{`<!-- Error loading handler: ${handlerError.message} -->`}</pre>
-			)
+			return `<!-- Error loading handler: ${handlerError.message} -->`
 		}
-		if (htmlError) {
-			// HTML生成時のエラー
-			return <pre style={{ color: 'red' }}>{htmlString}</pre>
-		}
-		if (!componentType) {
-			return <pre>{'<!-- Select a component type -->'}</pre>
-		}
-		// 正常に生成されたHTML
-		return <pre>{htmlString}</pre>
+		// htmlError は handlerResult に含めるようにしたので不要
+		// if (htmlError) return `<!-- Error rendering ${componentType}: ${htmlError.message} -->`;
+		if (!componentType) return '<!-- Select a component type -->'
+		return handlerResult?.htmlString || '<!-- Failed to generate HTML -->'
+	}, [
+		handlerResult,
+		generatingHtml,
+		handlerLoading,
+		handlerError,
+		componentType,
+	])
+
+	// レンダー関数 (renderHtmlContent, renderCssRulesContent) は
+	// htmlString と cssRulesString を直接使うようにする
+	const renderHtmlContent = () => {
+		const style =
+			htmlString.startsWith('<!-- Error') ||
+			htmlString.startsWith('<!-- Handler not found')
+				? { color: 'red' }
+				: {}
+		return <pre style={style}>{htmlString}</pre>
 	}
 
 	// CSSルール表示部分の決定ロジック
@@ -298,7 +318,7 @@ const ClassCodeDisplay = ({
 							generatingHtml ||
 							!!handlerError ||
 							!!htmlError ||
-							!classString ||
+							!initialClassString || // props 名変更
 							htmlString.startsWith('<!--')
 						}
 						className='btn-neutral btn-xs btn-animate-down'
@@ -318,7 +338,7 @@ const ClassCodeDisplay = ({
 
 // PropTypes と defaultProps は変更なし
 ClassCodeDisplay.propTypes = {
-	classString: PropTypes.string,
+	initialClassString: PropTypes.string, // 名前変更
 	componentType: PropTypes.string.isRequired,
 	componentVariant: PropTypes.string,
 	selectedModifiers: PropTypes.arrayOf(PropTypes.string),
@@ -326,7 +346,7 @@ ClassCodeDisplay.propTypes = {
 }
 
 ClassCodeDisplay.defaultProps = {
-	classString: '',
+	initialClassString: '', // 名前変更
 	componentVariant: '',
 	selectedModifiers: [],
 	selectedColor: '',

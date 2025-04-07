@@ -23,8 +23,9 @@ const ClassPreview = ({
 }) => {
 	// すべてのクラスを結合（メモ化）- これは TemplateRenderer に渡す classString のために必要
 	const combinedClasses = useMemo(() => {
+		// baseClass は TemplateRenderer 側でハンドラーに渡して処理させるため、ここでは結合しない
 		return combineClasses({
-			baseClass,
+			// baseClass, // 除外
 			variant: componentVariant,
 			size,
 			radius: borderRadius,
@@ -34,7 +35,7 @@ const ClassPreview = ({
 			additional: additionalClasses,
 		})
 	}, [
-		baseClass,
+		// baseClass, // 除外
 		componentVariant,
 		size,
 		borderRadius,
@@ -56,7 +57,7 @@ const ClassPreview = ({
 			variant: componentVariant,
 			color: selectedColor, // ハンドラーが必要とする場合
 			// forPreview: true, // 以前あったが、新しいハンドラーで必要か確認
-			// baseClass: baseClass, // 必要なら追加
+			baseClass: baseClass, // TemplateRenderer に渡す
 		}),
 		[
 			combinedClasses,
@@ -64,6 +65,7 @@ const ClassPreview = ({
 			componentType,
 			componentVariant,
 			selectedColor,
+			baseClass, // 依存配列に追加
 		]
 	)
 
