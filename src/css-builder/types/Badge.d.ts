@@ -11,20 +11,20 @@ export interface BadgeProps {
 
   /**
    * コンポーネントのサイズ。
-   * @default "xs"
+   * @default ""
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg';
+  size?: string;
 
   /**
    * コンポーネントの角丸の程度。
    */
-  radius?: 'rounded-none' | 'rounded-sm' | 'rounded' | 'rounded-lg' | 'rounded-xl' | 'rounded-2xl' | 'rounded-3xl' | 'rounded-full';
+  radius?: string;
 
   /**
    * 追加のスタイル修飾子 (例: 影、アニメーション)。
    * @example ["shadow", "animate-up"]
    */
-  modifiers?: Array<'icon-only' | 'rounded-full'>;
+  modifiers?: Array<string>;
 
   /**
    * Tailwindクラスなど、追加で適用するCSSクラス文字列。

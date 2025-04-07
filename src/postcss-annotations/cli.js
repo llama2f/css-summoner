@@ -16,13 +16,13 @@ const args = process.argv.slice(2);
 const options = {
   input: null,
   output: './annotations.json',
-  verbose: false
+  verbose: false,
 };
 
 // 引数を解析
 for (let i = 0; i < args.length; i++) {
   const arg = args[i];
-  
+
   if (arg === '--help' || arg === '-h') {
     printHelp();
     process.exit(0);
@@ -72,17 +72,19 @@ async function main() {
       console.log(`入力パターン: ${options.input}`);
       console.log(`出力ファイル: ${options.output}`);
     }
-    
+
     // 入力ファイルを検索
     const inputFiles = glob.sync(options.input);
-    
+
     if (inputFiles.length === 0) {
-      console.error(`エラー: パターン "${options.input}" に一致するファイルが見つかりませんでした`);
+      console.error(
+        `エラー: パターン "${options.input}" に一致するファイルが見つかりませんでした`,
+      );
       process.exit(1);
     }
-    
+
     console.log(`${inputFiles.length}個のCSSファイルを処理します...`);
-    
+
     // 各ファイルを処理
     const mergedData = {
       componentTypes: {},
@@ -95,65 +97,66 @@ async function main() {
         totalFiles: inputFiles.length,
         totalClasses: 0,
         errors: [],
-        sources: []
-      }
+        sources: [],
+      },
     };
-    
+
     for (const file of inputFiles) {
       if (options.verbose) {
         console.log(`処理中: ${file}`);
       }
-      
+
       const css = fs.readFileSync(file, 'utf8');
-      
+
       // PostCSSプラグインを実行
-      const result = await postcss([plugin({ verbose: options.verbose })])
-        .process(css, { from: file });
-      
+      const result = await postcss([
+        plugin({ verbose: options.verbose }),
+      ]).process(css, { from: file });
+
       // 抽出データを取得
-      const dataMessage = result.messages.find(msg => msg.type === 'css-annotations-data');
-      
+      const dataMessage = result.messages.find(
+        (msg) => msg.type === 'css-annotations-data',
+      );
+
       if (dataMessage && dataMessage.data) {
         const data = dataMessage.data;
-        
+
         // マージ処理
         mergeData(mergedData, data);
-        
+
         // メタ情報を更新
         mergedData.meta.totalClasses += data.meta.totalClasses;
         mergedData.meta.errors.push(...data.meta.errors);
         mergedData.meta.sources.push(data.meta.source);
-        
+
         if (options.verbose) {
           console.log(`  ${data.meta.totalClasses}個のクラスを抽出しました`);
         }
       }
     }
-    
+
     // 結果を出力
-    console.log(`抽出完了: 合計${mergedData.meta.totalClasses}個のクラスを抽出しました`);
-    
+    console.log(
+      `抽出完了: 合計${mergedData.meta.totalClasses}個のクラスを抽出しました`,
+    );
+
     if (mergedData.meta.errors.length > 0) {
       console.warn(`${mergedData.meta.errors.length}件のエラーがありました:`);
       for (const error of mergedData.meta.errors) {
         console.warn(`  - ${error}`);
       }
     }
-    
+
     // ディレクトリを作成
     const outputDir = path.dirname(options.output);
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
-    
+
     // JSONファイルに保存
-    fs.writeFileSync(
-      options.output,
-      JSON.stringify(mergedData, null, 2)
-    );
-    
+    fs.writeFileSync(options.output, JSON.stringify(mergedData, null, 2));
+
     console.log(`抽出データを ${options.output} に保存しました`);
-    
   } catch (error) {
     console.error('エラーが発生しました:', error);
     process.exit(1);
@@ -171,38 +174,42 @@ function mergeData(target, source) {
     if (!target.componentTypes[component]) {
       target.componentTypes[component] = [];
     }
-    
+
     for (const className of classes) {
       if (!target.componentTypes[component].includes(className)) {
         target.componentTypes[component].push(className);
       }
     }
   }
-  
+
   // baseClasses のマージ
   Object.assign(target.baseClasses, source.baseClasses);
-  
+
   // componentVariants のマージ
-  for (const [component, variants] of Object.entries(source.componentVariants)) {
+  for (const [component, variants] of Object.entries(
+    source.componentVariants,
+  )) {
     if (!target.componentVariants[component]) {
       target.componentVariants[component] = {};
     }
     Object.assign(target.componentVariants[component], variants);
   }
-  
+
   // classDescriptions のマージ
   Object.assign(target.classDescriptions, source.classDescriptions);
-  
+
   // componentExamples のマージ
   if (source.componentExamples) {
-    for (const [component, examples] of Object.entries(source.componentExamples)) {
+    for (const [component, examples] of Object.entries(
+      source.componentExamples,
+    )) {
       if (!target.componentExamples[component]) {
         target.componentExamples[component] = [];
       }
       target.componentExamples[component].push(...examples);
     }
   }
-  
+
   // classRuleDetails のマージ
   if (source.classRuleDetails) {
     Object.assign(target.classRuleDetails, source.classRuleDetails);

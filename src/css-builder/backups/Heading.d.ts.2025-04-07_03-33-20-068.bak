@@ -11,20 +11,20 @@ export interface HeadingProps {
 
   /**
    * コンポーネントのサイズ。
-   * @default ""
+   * @default "sm"
    */
-  size?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 
   /**
    * コンポーネントの角丸の程度。
    */
-  radius?: string;
+  radius?: 'rounded-none' | 'rounded-sm' | 'rounded' | 'rounded-lg' | 'rounded-xl' | 'rounded-2xl' | 'rounded-3xl' | 'rounded-full';
 
   /**
    * 追加のスタイル修飾子 (例: 影、アニメーション)。
    * @example ["shadow", "animate-up"]
    */
-  modifiers?: Array<string>;
+  modifiers?: Array<'with-icon' | 'animated'>;
 
   /**
    * Tailwindクラスなど、追加で適用するCSSクラス文字列。

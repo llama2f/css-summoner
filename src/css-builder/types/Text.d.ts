@@ -11,9 +11,9 @@ export interface TextProps {
 
   /**
    * コンポーネントのサイズ。
-   * @default "xs"
+   * @default ""
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: string;
 
   /**
    * コンポーネントの角丸の程度。
@@ -24,7 +24,7 @@ export interface TextProps {
    * 追加のスタイル修飾子 (例: 影、アニメーション)。
    * @example ["shadow", "animate-up"]
    */
-  modifiers?: Array<'center' | 'right' | 'justify' | 'nowrap' | 'shadow' | 'shadow-sm' | 'blur' | 'outlined' | 'serif' | 'sans' | 'mono' | 'vertical'>;
+  modifiers?: Array<string>;
 
   /**
    * Tailwindクラスなど、追加で適用するCSSクラス文字列。

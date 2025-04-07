@@ -26,7 +26,7 @@ function extractTagValue(comment, tag, allTags) {
           0,
           afterTag.indexOf('*/') !== -1
             ? afterTag.indexOf('*/')
-            : afterTag.length
+            : afterTag.length,
         );
 
   // 行頭の*や空白を削除して整形
@@ -67,11 +67,21 @@ function structureComponentData(classes) {
   const classDescriptions = {};
   const componentExamples = {};
   const classRuleDetails = {};
-  
+
   // データの集約
   classes.forEach((cls) => {
-    const { component, variant, className, description, category, example, ruleText, selector, sourceFile } = cls;
-    
+    const {
+      component,
+      variant,
+      className,
+      description,
+      category,
+      example,
+      ruleText,
+      selector,
+      sourceFile,
+    } = cls;
+
     // componentTypesの構築
     if (!componentTypes[component]) {
       componentTypes[component] = [];
@@ -79,26 +89,26 @@ function structureComponentData(classes) {
     if (!componentTypes[component].includes(className)) {
       componentTypes[component].push(className);
     }
-    
+
     // baseClassesの構築 (variantが'base'の場合)
     if (variant === 'base') {
       baseClasses[component] = className;
     }
-    
+
     // componentVariantsの構築
     if (!componentVariants[component]) {
       componentVariants[component] = {};
     }
     componentVariants[component][variant] = className;
-    
+
     // classDescriptionsの構築
     classDescriptions[className] = {
       component,
       variant,
       description,
-      category: category || null
+      category: category || null,
     };
-    
+
     // componentExamplesの構築
     if (example) {
       if (!componentExamples[component]) {
@@ -107,27 +117,27 @@ function structureComponentData(classes) {
       componentExamples[component].push({
         variant,
         className,
-        example
+        example,
       });
     }
-    
+
     // classRuleDetailsの構築
     if (ruleText && selector) {
       classRuleDetails[className] = {
         ruleText,
         selector,
-        sourceFile
+        sourceFile,
       };
     }
   });
-  
+
   return {
     componentTypes,
     baseClasses,
     componentVariants,
     classDescriptions,
     componentExamples,
-    classRuleDetails
+    classRuleDetails,
   };
 }
 
@@ -147,62 +157,93 @@ function extractClassName(selector) {
 module.exports = (opts = {}) => {
   // デフォルトオプションとマージ
   const options = {
-    outputPath: null,  // 抽出データの出力先パス（指定がなければ返すだけ）
-    recognizedTags: ['@component:', '@variant:', '@description:', '@category:', '@example:'],  // 認識するタグ
-    requiredTags: ['@component:', '@variant:', '@description:'],  // 必須タグ
+    outputPath: null, // 抽出データの出力先パス（指定がなければ返すだけ）
+    recognizedTags: [
+      '@component:',
+      '@variant:',
+      '@description:',
+      '@category:',
+      '@example:',
+    ], // 認識するタグ
+    requiredTags: ['@component:', '@variant:', '@description:'], // 必須タグ
     verbose: false, // 詳細なログを出力するか
-    ...opts
+    ...opts,
   };
 
   return {
     postcssPlugin: 'postcss-css-annotations',
-    
+
     Once(root, { result }) {
       // 抽出したクラス情報
       const classes = [];
       const errors = [];
-      
+
       let commentIndex = 0;
-      
+
       // すべてのコメントノードを走査
-      root.walkComments(comment => {
+      root.walkComments((comment) => {
         commentIndex++;
-        const commentText = comment.text;  // コメント内容 (/* */ は含まない)
-        const fullCommentText = `/*${commentText}*/`;  // アノテーション抽出用に復元
-        
+        const commentText = comment.text; // コメント内容 (/* */ は含まない)
+        const fullCommentText = `/*${commentText}*/`; // アノテーション抽出用に復元
+
         // ステップ1: 認識するアノテーションタグが一つでも含まれるかチェック
-        const hasAnyRecognizedTag = options.recognizedTags.some(tag => fullCommentText.includes(tag));
+        const hasAnyRecognizedTag = options.recognizedTags.some((tag) =>
+          fullCommentText.includes(tag),
+        );
         if (!hasAnyRecognizedTag) {
-          return;  // アノテーションコメントでなければスキップ
+          return; // アノテーションコメントでなければスキップ
         }
-        
+
         // ステップ2: 必須アノテーションタグの存在チェック
-        const missingTags = options.requiredTags.filter(tag => !fullCommentText.includes(tag));
+        const missingTags = options.requiredTags.filter(
+          (tag) => !fullCommentText.includes(tag),
+        );
         if (missingTags.length > 0) {
           const errorMsg = `${result.opts.from || 'unknown'} 内のコメントブロック #${commentIndex} (line ${comment.source.start.line}) に必須タグがありません: ${missingTags.join(', ')}`;
           errors.push(errorMsg);
           return;
         }
-        
+
         // ステップ3: 各アノテーションの値を抽出
-        const component = extractTagValue(fullCommentText, '@component:', options.recognizedTags);
-        const variant = extractTagValue(fullCommentText, '@variant:', options.recognizedTags);
-        const description = extractTagValue(fullCommentText, '@description:', options.recognizedTags);
-        const category = extractTagValue(fullCommentText, '@category:', options.recognizedTags) || 'other';
-        const example = extractTagValue(fullCommentText, '@example:', options.recognizedTags);
-        
+        const component = extractTagValue(
+          fullCommentText,
+          '@component:',
+          options.recognizedTags,
+        );
+        const variant = extractTagValue(
+          fullCommentText,
+          '@variant:',
+          options.recognizedTags,
+        );
+        const description = extractTagValue(
+          fullCommentText,
+          '@description:',
+          options.recognizedTags,
+        );
+        const category =
+          extractTagValue(
+            fullCommentText,
+            '@category:',
+            options.recognizedTags,
+          ) || 'other';
+        const example = extractTagValue(
+          fullCommentText,
+          '@example:',
+          options.recognizedTags,
+        );
+
         // 値の検証
         const emptyTags = [];
         if (!component) emptyTags.push('@component');
         if (!variant) emptyTags.push('@variant');
         if (!description) emptyTags.push('@description');
-        
+
         if (emptyTags.length > 0) {
           const errorMsg = `${result.opts.from || 'unknown'} 内のコメントブロック #${commentIndex} (line ${comment.source.start.line}) にタグの値がありません: ${emptyTags.join(', ')}`;
           errors.push(errorMsg);
           return;
         }
-        
+
         // ステップ4: アノテーションコメントの直後のルールノードを取得
         let nextNode = comment.next();
         // コメントとルールの間の空白ノードなどをスキップ
@@ -216,15 +257,15 @@ module.exports = (opts = {}) => {
             break;
           }
         }
-        
+
         if (nextNode && nextNode.type === 'rule') {
           const rule = nextNode;
           const ruleText = rule.toString();
           const selector = rule.selector;
-          
+
           // セレクタからクラス名を抽出
           const className = extractClassName(selector);
-          
+
           if (className) {
             classes.push({
               component,
@@ -237,7 +278,7 @@ module.exports = (opts = {}) => {
               ruleText,
               selector,
             });
-            
+
             if (options.verbose) {
               console.log(`クラス抽出: ${className} (${component}/${variant})`);
             }
@@ -250,61 +291,64 @@ module.exports = (opts = {}) => {
           errors.push(errorMsg);
         }
       });
-      
+
       // 抽出したデータを構造化
       const structuredData = structureComponentData(classes);
-      
+
       // 追加情報
       structuredData.meta = {
         totalClasses: classes.length,
         errors: errors,
-        source: result.opts.from || 'unknown'
+        source: result.opts.from || 'unknown',
       };
-      
+
       // ベースクラスが見つからないコンポーネントの警告
-      const missingBaseClasses = Object.keys(structuredData.componentTypes)
-        .filter(component => !structuredData.baseClasses[component]);
-      
+      const missingBaseClasses = Object.keys(
+        structuredData.componentTypes,
+      ).filter((component) => !structuredData.baseClasses[component]);
+
       if (missingBaseClasses.length > 0) {
         const warningMsg = `以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: ${missingBaseClasses.join(', ')}`;
         errors.push(warningMsg);
         result.warn(warningMsg);
       }
-      
+
       // 結果をPostCSSのメッセージとして追加
       result.messages.push({
         type: 'css-annotations-data',
         plugin: 'postcss-css-annotations',
-        data: structuredData
+        data: structuredData,
       });
-      
+
       // エラーがあればワーニングとして追加
-      errors.forEach(error => {
+      errors.forEach((error) => {
         result.warn(error);
       });
-      
+
       // ログ出力
       if (options.verbose) {
-        console.log(`抽出完了: ${classes.length}個のクラスと${errors.length}個のエラーが見つかりました`);
+        console.log(
+          `抽出完了: ${classes.length}個のクラスと${errors.length}個のエラーが見つかりました`,
+        );
       }
-      
+
       // オプションで出力先が指定されていれば、JSONとして保存
       if (options.outputPath && typeof options.outputPath === 'string') {
         try {
           const fs = require('fs');
           const path = require('path');
-          
+
           // 出力ディレクトリが存在しない場合は作成
           const outputDir = path.dirname(options.outputPath);
           if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir, { recursive: true });
           }
-          
+
           fs.writeFileSync(
             options.outputPath,
-            JSON.stringify(structuredData, null, 2)
+            JSON.stringify(structuredData, null, 2),
           );
-          
+
           if (options.verbose) {
             console.log(`JSONファイルを保存しました: ${options.outputPath}`);
           }
@@ -313,7 +357,7 @@ module.exports = (opts = {}) => {
           result.warn(errorMsg);
         }
       }
-    }
+    },
   };
 };
 

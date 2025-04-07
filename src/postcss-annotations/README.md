@@ -23,13 +23,13 @@ npm install --save-dev postcss postcss-css-annotations
 const postcss = require('postcss');
 const cssAnnotations = require('postcss-css-annotations');
 
-postcss([
-  cssAnnotations()
-])
+postcss([cssAnnotations()])
   .process(yourCSS, { from: 'input.css' })
-  .then(result => {
+  .then((result) => {
     // 抽出データを取得
-    const dataMessage = result.messages.find(msg => msg.type === 'css-annotations-data');
+    const dataMessage = result.messages.find(
+      (msg) => msg.type === 'css-annotations-data',
+    );
     const extractedData = dataMessage.data;
     console.log(extractedData);
   });
@@ -40,11 +40,11 @@ postcss([
 ```js
 postcss([
   cssAnnotations({
-    outputPath: './extracted-annotations.json'
-  })
+    outputPath: './extracted-annotations.json',
+  }),
 ])
   .process(yourCSS, { from: 'input.css' })
-  .then(result => {
+  .then((result) => {
     console.log('抽出データをJSONファイルに保存しました');
   });
 ```
@@ -56,27 +56,23 @@ postcss([
   cssAnnotations({
     // 抽出データの出力先パス（指定がなければ返すだけ）
     outputPath: './extracted-annotations.json',
-    
+
     // 認識するタグ
     recognizedTags: [
       '@component:',
       '@variant:',
       '@description:',
       '@category:',
-      '@example:'
+      '@example:',
     ],
-    
+
     // 必須タグ
-    requiredTags: [
-      '@component:',
-      '@variant:',
-      '@description:'
-    ],
-    
+    requiredTags: ['@component:', '@variant:', '@description:'],
+
     // 詳細ログを表示
-    verbose: true
-  })
-])
+    verbose: true,
+  }),
+]);
 ```
 
 ## サポートするアノテーション形式
@@ -108,13 +104,13 @@ CSS内の以下のようなアノテーションコメントを認識します�
 
 ## アノテーションタグの説明
 
-| タグ | 説明 | 必須 |
-|------|------|:----:|
-| `@component:` | コンポーネントタイプ（例: button, card, alert） | ✅ |
-| `@variant:` | バリアント名（例: primary, secondary, base） | ✅ |
-| `@description:` | クラスの説明文 | ✅ |
-| `@category:` | コンポーネントのカテゴリ（例: interactive, container, typography） | ❌ |
-| `@example:` | 使用例のHTMLコード | ❌ |
+| タグ            | 説明                                                               | 必須 |
+| --------------- | ------------------------------------------------------------------ | :--: |
+| `@component:`   | コンポーネントタイプ（例: button, card, alert）                    |  ✅  |
+| `@variant:`     | バリアント名（例: primary, secondary, base）                       |  ✅  |
+| `@description:` | クラスの説明文                                                     |  ✅  |
+| `@category:`    | コンポーネントのカテゴリ（例: interactive, container, typography） |  ❌  |
+| `@example:`     | 使用例のHTMLコード                                                 |  ❌  |
 
 **注意**: `@variant: base` は特別な意味を持ち、そのクラスがコンポーネントのベースクラスであることを示します。
 
@@ -131,12 +127,12 @@ CSS内の以下のようなアノテーションコメントを認識します�
       "btn-primary"
     ]
   },
-  
+
   // コンポーネントのベースクラス
   baseClasses: {
     "button": "btn-base"
   },
-  
+
   // コンポーネントのバリアント
   componentVariants: {
     "button": {
@@ -144,7 +140,7 @@ CSS内の以下のようなアノテーションコメントを認識します�
       "primary": "btn-primary"
     }
   },
-  
+
   // クラスの詳細情報
   classDescriptions: {
     "btn-base": {
@@ -160,7 +156,7 @@ CSS内の以下のようなアノテーションコメントを認識します�
       "category": "interactive"
     }
   },
-  
+
   // コンポーネントの使用例（@exampleタグがある場合）
   componentExamples: {
     "button": [
@@ -171,7 +167,7 @@ CSS内の以下のようなアノテーションコメントを認識します�
       }
     ]
   },
-  
+
   // CSSルールの詳細情報
   classRuleDetails: {
     "btn-base": {
@@ -180,7 +176,7 @@ CSS内の以下のようなアノテーションコメントを認識します�
       "sourceFile": "input.css"
     }
   },
-  
+
   // メタ情報
   meta: {
     "totalClasses": 2,
@@ -204,7 +200,7 @@ processCssFiles({
   outputPath: './extracted-annotations.json',
   generateTypes: true,
   generateDocs: true,
-  generateComponents: true
+  generateComponents: true,
 });
 ```
 

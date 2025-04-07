@@ -7,7 +7,9 @@
     "postcss-css-annotations": "cli.js"
   },
   "scripts": {
-    "test": "node test/test.js",
+    "test": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
     "extract": "node cli.js"
   },
   "keywords": [
@@ -25,7 +27,12 @@
     "postcss": "^8.0.0"
   },
   "devDependencies": {
-    "postcss": "^8.4.0"
+    "@eslint/js": "^9.24.0",
+    "eslint": "^9.24.0",
+    "globals": "^16.0.0",
+    "postcss": "^8.4.0",
+    "prettier": "3.5.3",
+    "vitest": "^3.1.1"
   },
   "dependencies": {
     "glob": "^10.3.0"

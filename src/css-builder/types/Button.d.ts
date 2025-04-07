@@ -11,20 +11,20 @@ export interface ButtonProps {
 
   /**
    * コンポーネントのサイズ。
-   * @default "xs"
+   * @default ""
    */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: string;
 
   /**
    * コンポーネントの角丸の程度。
    */
-  radius?: 'btn-rounded-sm' | 'btn-rounded-lg' | 'btn-rounded-full' | 'btn-square';
+  radius?: string;
 
   /**
    * 追加のスタイル修飾子 (例: 影、アニメーション)。
    * @example ["shadow", "animate-up"]
    */
-  modifiers?: Array<'full' | 'animate-up' | 'animate-down' | 'animate-pulse' | 'icon-left' | 'icon-right' | 'icon-only'>;
+  modifiers?: Array<string>;
 
   /**
    * Tailwindクラスなど、追加で適用するCSSクラス文字列。

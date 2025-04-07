@@ -1,30 +1,30 @@
 /**
- * Img コンポーネントのプロパティ型定義
- * カテゴリ: media
+ * Infobox コンポーネントのプロパティ型定義
+ * カテゴリ: notification
  */
-export interface ImgProps {
+export interface InfoboxProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "aspect-portrait"
+   * @default "ghost"
    */
-  variant?: 'aspect-portrait' | 'aspect-square' | 'aspect-video' | 'border' | 'border-accent' | 'border-double' | 'border-primary' | 'border-secondary' | 'brightness-high' | 'brightness-low' | 'container' | 'caption-hover' | 'caption-overlay' | 'circle' | 'container' | 'contrast-high' | 'float-left' | 'float-right' | 'grayscale' | 'grayscale-hover' | 'grid' | 'rounded' | 'rounded-lg' | 'rounded-sm' | 'sepia' | 'shadow' | 'shadow-lg' | 'shadow-sm' | 'w-1' | 'w-1' | 'w-1' | 'w-3' | 'w-full' | 'zoom-hover';
+  variant?: 'ghost' | 'outline' | 'solid' | 'title';
 
   /**
    * コンポーネントのサイズ。
-   * @default ""
+   * @default "xs"
    */
-  size?: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
   /**
    * コンポーネントの角丸の程度。
    */
-  radius?: string;
+  radius?: 'rounded-none' | 'rounded-sm' | 'rounded' | 'rounded-lg' | 'rounded-xl' | 'rounded-2xl' | 'rounded-3xl' | 'rounded-full';
 
   /**
    * 追加のスタイル修飾子 (例: 影、アニメーション)。
    * @example ["shadow", "animate-up"]
    */
-  modifiers?: Array<string>;
+  modifiers?: Array<'with-icon' | 'compact' | 'hover' | 'hover-down' | 'hover-scale' | 'hover-overlay' | 'hover-border' | 'hover-ghost'>;
 
   /**
    * Tailwindクラスなど、追加で適用するCSSクラス文字列。

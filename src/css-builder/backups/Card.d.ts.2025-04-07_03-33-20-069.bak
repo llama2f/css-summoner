@@ -1,30 +1,30 @@
 /**
- * Img コンポーネントのプロパティ型定義
- * カテゴリ: media
+ * Card コンポーネントのプロパティ型定義
+ * カテゴリ: container
  */
-export interface ImgProps {
+export interface CardProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "aspect-portrait"
+   * @default "actions"
    */
-  variant?: 'aspect-portrait' | 'aspect-square' | 'aspect-video' | 'border' | 'border-accent' | 'border-double' | 'border-primary' | 'border-secondary' | 'brightness-high' | 'brightness-low' | 'container' | 'caption-hover' | 'caption-overlay' | 'circle' | 'container' | 'contrast-high' | 'float-left' | 'float-right' | 'grayscale' | 'grayscale-hover' | 'grid' | 'rounded' | 'rounded-lg' | 'rounded-sm' | 'sepia' | 'shadow' | 'shadow-lg' | 'shadow-sm' | 'w-1' | 'w-1' | 'w-1' | 'w-3' | 'w-full' | 'zoom-hover';
+  variant?: 'actions' | 'bordered' | 'compact' | 'ghost' | 'horizontal' | 'outline' | 'solid' | 'subtle';
 
   /**
    * コンポーネントのサイズ。
-   * @default ""
+   * @default "xs"
    */
-  size?: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
   /**
    * コンポーネントの角丸の程度。
    */
-  radius?: string;
+  radius?: 'rounded-none' | 'rounded-sm' | 'rounded' | 'rounded-lg' | 'rounded-xl' | 'rounded-2xl' | 'rounded-3xl' | 'rounded-full';
 
   /**
    * 追加のスタイル修飾子 (例: 影、アニメーション)。
    * @example ["shadow", "animate-up"]
    */
-  modifiers?: Array<string>;
+  modifiers?: Array<'bordered' | 'hover' | 'compact' | 'hover-down' | 'hover-scale' | 'hover-overlay' | 'hover-border'>;
 
   /**
    * Tailwindクラスなど、追加で適用するCSSクラス文字列。

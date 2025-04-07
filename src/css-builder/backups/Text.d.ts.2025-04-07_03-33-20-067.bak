@@ -1,19 +1,19 @@
 /**
- * Img コンポーネントのプロパティ型定義
- * カテゴリ: media
+ * Text コンポーネントのプロパティ型定義
+ * カテゴリ: typography
  */
-export interface ImgProps {
+export interface TextProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "aspect-portrait"
+   * @default "highlight"
    */
-  variant?: 'aspect-portrait' | 'aspect-square' | 'aspect-video' | 'border' | 'border-accent' | 'border-double' | 'border-primary' | 'border-secondary' | 'brightness-high' | 'brightness-low' | 'container' | 'caption-hover' | 'caption-overlay' | 'circle' | 'container' | 'contrast-high' | 'float-left' | 'float-right' | 'grayscale' | 'grayscale-hover' | 'grid' | 'rounded' | 'rounded-lg' | 'rounded-sm' | 'sepia' | 'shadow' | 'shadow-lg' | 'shadow-sm' | 'w-1' | 'w-1' | 'w-1' | 'w-3' | 'w-full' | 'zoom-hover';
+  variant?: 'highlight' | 'marker' | 'marker-double' | 'marker-full' | 'marker-stripe' | 'quote' | 'underline' | 'underline-dashed' | 'underline-dotted' | 'underline-thick' | 'underline-wavy';
 
   /**
    * コンポーネントのサイズ。
-   * @default ""
+   * @default "xs"
    */
-  size?: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
   /**
    * コンポーネントの角丸の程度。
@@ -24,7 +24,7 @@ export interface ImgProps {
    * 追加のスタイル修飾子 (例: 影、アニメーション)。
    * @example ["shadow", "animate-up"]
    */
-  modifiers?: Array<string>;
+  modifiers?: Array<'center' | 'right' | 'justify' | 'nowrap' | 'shadow' | 'shadow-sm' | 'blur' | 'outlined' | 'serif' | 'sans' | 'mono' | 'vertical'>;
 
   /**
    * Tailwindクラスなど、追加で適用するCSSクラス文字列。

@@ -13,7 +13,7 @@
 		"lint": "eslint .",
 		"check": "astro check",
 		"map": "node src/css-builder/scripts/simple-file-mapper.js",
-		"css": "node node src/css-summoner-integration.js --all",
+		"css": "node src/css-summoner-integration.js --all",
 		"css-docs": "node src/css-builder/scripts/css-summoner-integration.js --docs",
 		"css-components": "node src/css-builder/scripts/css-summoner-integration.js --components",
 		"css-all": "node src/css-builder/scripts/css-summoner-integration.js --all",

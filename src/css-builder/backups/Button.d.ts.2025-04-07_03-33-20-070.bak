@@ -1,30 +1,30 @@
 /**
- * Img コンポーネントのプロパティ型定義
- * カテゴリ: media
+ * Button コンポーネントのプロパティ型定義
+ * カテゴリ: interactive
  */
-export interface ImgProps {
+export interface ButtonProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "aspect-portrait"
+   * @default "group"
    */
-  variant?: 'aspect-portrait' | 'aspect-square' | 'aspect-video' | 'border' | 'border-accent' | 'border-double' | 'border-primary' | 'border-secondary' | 'brightness-high' | 'brightness-low' | 'container' | 'caption-hover' | 'caption-overlay' | 'circle' | 'container' | 'contrast-high' | 'float-left' | 'float-right' | 'grayscale' | 'grayscale-hover' | 'grid' | 'rounded' | 'rounded-lg' | 'rounded-sm' | 'sepia' | 'shadow' | 'shadow-lg' | 'shadow-sm' | 'w-1' | 'w-1' | 'w-1' | 'w-3' | 'w-full' | 'zoom-hover';
+  variant?: 'group' | 'ghost' | 'gradient' | 'icon' | 'icon-ghost' | 'icon-outline' | 'link' | 'outline' | 'solid' | 'subtle';
 
   /**
    * コンポーネントのサイズ。
-   * @default ""
+   * @default "xs"
    */
-  size?: string;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
   /**
    * コンポーネントの角丸の程度。
    */
-  radius?: string;
+  radius?: 'btn-rounded-sm' | 'btn-rounded-lg' | 'btn-rounded-full' | 'btn-square';
 
   /**
    * 追加のスタイル修飾子 (例: 影、アニメーション)。
    * @example ["shadow", "animate-up"]
    */
-  modifiers?: Array<string>;
+  modifiers?: Array<'full' | 'animate-up' | 'animate-down' | 'animate-pulse' | 'icon-left' | 'icon-right' | 'icon-only'>;
 
   /**
    * Tailwindクラスなど、追加で適用するCSSクラス文字列。
