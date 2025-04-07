@@ -7,77 +7,130 @@ PostCSSプラグインとして、CSSファイルからコンポーネントア�
 - CSSファイル内のアノテーションコメントからコンポーネント情報を抽出
 - コンポーネントタイプ、バリアント、説明文などの構造化データを生成
 - 抽出データをPostCSSメッセージまたはJSONファイルとして出力
-- [css-summoner](https://github.com/yourusername/css-summoner)と連携してTypeScript型定義、Astroドキュメント、コンポーネントを生成
 
 ## インストール
 
+npmを使用する場合:
 ```bash
 npm install --save-dev postcss postcss-css-annotations
 ```
 
+yarnを使用する場合:
+```bash
+yarn add --dev postcss postcss-css-annotations
+```
+
 ## 使い方
 
-### 基本的な使い方
+### PostCSS設定ファイル (`postcss.config.js`) での使用例
+
+```js
+const cssAnnotations = require('postcss-css-annotations');
+
+module.exports = {
+  plugins: [
+    cssAnnotations({
+      // オプション (詳細は後述)
+      // outputPath: './extracted-annotations.json' 
+    })
+  ]
+}
+```
+
+### Node.js スクリプトでの使用例
 
 ```js
 const postcss = require('postcss');
 const cssAnnotations = require('postcss-css-annotations');
+const fs = require('fs');
 
-postcss([cssAnnotations()])
+const yourCSS = fs.readFileSync('input.css', 'utf8');
+
+postcss([
+  cssAnnotations({
+    // オプション
+  })
+])
   .process(yourCSS, { from: 'input.css' })
   .then((result) => {
     // 抽出データを取得
     const dataMessage = result.messages.find(
       (msg) => msg.type === 'css-annotations-data',
     );
-    const extractedData = dataMessage.data;
-    console.log(extractedData);
+    if (dataMessage) {
+      const extractedData = dataMessage.data;
+      console.log(extractedData);
+      // 必要に応じて extractedData を利用
+    }
+
+    // 警告やエラーの確認
+    result.warnings().forEach(warn => {
+      console.warn(warn.toString());
+    });
   });
 ```
 
-### JSON形式でデータを保存
+### コマンドラインインターフェース (CLI)
 
-```js
-postcss([
-  cssAnnotations({
-    outputPath: './extracted-annotations.json',
-  }),
-])
-  .process(yourCSS, { from: 'input.css' })
-  .then((result) => {
-    console.log('抽出データをJSONファイルに保存しました');
-  });
+このパッケージには、コマンドラインから直接アノテーションを抽出するツールも含まれています。
+
+```bash
+# 特定のCSSファイルから抽出し、デフォルトの annotations.json に出力
+npx postcss-css-annotations ./src/styles/button.css
+
+# globパターンで複数ファイルを指定し、出力ファイル名を指定
+npx postcss-css-annotations ./src/styles/**/*.css -o ./dist/component-data.json
+
+# 詳細なログを表示
+npx postcss-css-annotations ./src/styles/**/*.css -v
+
+# ヘルプを表示
+npx postcss-css-annotations --help
 ```
 
-### オプション設定
+#### CLI オプション
+
+- `<input-path>`: (必須) 入力CSSファイルまたはglobパターン。
+- `-o, --output <path>`: 出力JSONファイルのパス（デフォルト: `./annotations.json`）。
+- `-v, --verbose`: 詳細なログをコンソールに出力します。
+- `-h, --help`: ヘルプメッセージを表示します。
+
+## オプション設定
+
+プラグインやCLI実行時に以下のオプションを指定できます。
 
 ```js
-postcss([
-  cssAnnotations({
-    // 抽出データの出力先パス（指定がなければ返すだけ）
-    outputPath: './extracted-annotations.json',
+cssAnnotations({
+  // 抽出データの出力先JSONファイルパス。
+  // 指定しない場合、データはPostCSSのresult.messagesに含まれるのみ。
+  outputPath: null, 
 
-    // 認識するタグ
-    recognizedTags: [
-      '@component:',
-      '@variant:',
-      '@description:',
-      '@category:',
-      '@example:',
-    ],
+  // 認識するアノテーションタグのリスト。
+  recognizedTags: [
+    '@component:',
+    '@variant:',
+    '@description:',
+    '@category:',
+    '@example:',
+  ],
 
-    // 必須タグ
-    requiredTags: ['@component:', '@variant:', '@description:'],
+  // 必須のアノテーションタグのリスト。
+  // これらのタグがコメント内に存在しない場合、警告が出力されます。
+  requiredTags: [
+    '@component:',
+    '@variant:',
+    '@description:',
+  ],
 
-    // 詳細ログを表示
-    verbose: true,
-  }),
-]);
+  // 詳細なログをコンソールに出力するかどうか。
+  // CLIでは -v オプションで有効になります。
+  verbose: false, 
+})
 ```
 
 ## サポートするアノテーション形式
 
-CSS内の以下のようなアノテーションコメントを認識します：
+CSS内の以下のような特別なコメント形式を認識します。各アノテーションタグは行頭の `*` の有無に関わらず認識されます。
 
 ```css
 /* 
@@ -91,12 +144,12 @@ CSS内の以下のようなアノテーションコメントを認識します�
 }
 
 /* 
- * @component: button
- * @variant: primary
- * @description: プライマリカラーを使用した重要なアクション用ボタン
- * @category: interactive
- * @example: <button class="btn-base btn-primary">プライマリボタン</button>
- */
+ @component: button
+ @variant: primary
+ @description: プライマリカラーを使用した重要なアクション用ボタン
+ @category: interactive
+ @example: <button class="btn-base btn-primary">プライマリボタン</button>
+*/
 .btn-primary {
   /* スタイル定義 */
 }
@@ -104,45 +157,52 @@ CSS内の以下のようなアノテーションコメントを認識します�
 
 ## アノテーションタグの説明
 
-| タグ            | 説明                                                               | 必須 |
-| --------------- | ------------------------------------------------------------------ | :--: |
-| `@component:`   | コンポーネントタイプ（例: button, card, alert）                    |  ✅  |
-| `@variant:`     | バリアント名（例: primary, secondary, base）                       |  ✅  |
-| `@description:` | クラスの説明文                                                     |  ✅  |
-| `@category:`    | コンポーネントのカテゴリ（例: interactive, container, typography） |  ❌  |
-| `@example:`     | 使用例のHTMLコード                                                 |  ❌  |
+| タグ            | 説明                                                               | 必須 | デフォルト値 |
+| --------------- | ------------------------------------------------------------------ | :--: | :----------: |
+| `@component:`   | コンポーネントタイプ（例: button, card, alert）                    |  ✅  |     なし     |
+| `@variant:`     | バリアント名（例: primary, secondary, base）                       |  ✅  |     なし     |
+| `@description:` | クラスの説明文                                                     |  ✅  |     なし     |
+| `@category:`    | コンポーネントのカテゴリ（例: interactive, container, typography） |  ❌  |   `'other'`  |
+| `@example:`     | 使用例のHTMLコード                                                 |  ❌  |     なし     |
 
-**注意**: `@variant: base` は特別な意味を持ち、そのクラスがコンポーネントのベースクラスであることを示します。
+**注意**: 
+- `@variant: base` は特別な意味を持ち、そのクラスがコンポーネントのベースクラスであることを示します。各コンポーネントにはベースクラスが1つ定義されていることが期待されます。
+- `@category:` が指定されていない場合、デフォルトで `'other'` が設定されます。
 
 ## 出力データ形式
 
-プラグインは以下の構造でデータを出力します：
+プラグインはPostCSSメッセージ (`result.messages`) または指定されたJSONファイルに以下の構造でデータを出力します。
 
 ```js
 {
   // コンポーネントタイプとそれに属するクラス名のマップ
-  componentTypes: {
+  "componentTypes": {
     "button": [
       "btn-base",
       "btn-primary"
-    ]
+    ],
+    "card": ["card"]
   },
-
-  // コンポーネントのベースクラス
-  baseClasses: {
-    "button": "btn-base"
+  
+  // コンポーネントのベースクラス (variant: base)
+  "baseClasses": {
+    "button": "btn-base",
+    "card": "card"
   },
-
-  // コンポーネントのバリアント
-  componentVariants: {
+  
+  // コンポーネントのバリアントと対応するクラス名
+  "componentVariants": {
     "button": {
       "base": "btn-base",
       "primary": "btn-primary"
+    },
+    "card": {
+      "base": "card"
     }
   },
-
+  
   // クラスの詳細情報
-  classDescriptions: {
+  "classDescriptions": {
     "btn-base": {
       "component": "button",
       "variant": "base",
@@ -154,11 +214,17 @@ CSS内の以下のようなアノテーションコメントを認識します�
       "variant": "primary",
       "description": "プライマリカラーを使用した重要なアクション用ボタン",
       "category": "interactive"
-    }
+    },
+    "card": {
+       "component": "card",
+       "variant": "base",
+       "description": "カードコンポーネントの基本スタイル",
+       "category": "other" // デフォルトカテゴリ
+     }
   },
-
+  
   // コンポーネントの使用例（@exampleタグがある場合）
-  componentExamples: {
+  "componentExamples": {
     "button": [
       {
         "variant": "primary",
@@ -166,56 +232,46 @@ CSS内の以下のようなアノテーションコメントを認識します�
         "example": "<button class=\"btn-base btn-primary\">プライマリボタン</button>"
       }
     ]
+    // cardにはexampleがないため、キーが存在しない
   },
-
+  
   // CSSルールの詳細情報
-  classRuleDetails: {
+  "classRuleDetails": {
     "btn-base": {
-      "ruleText": ".btn-base { display: inline-block; padding: 0.5rem 1rem; }",
+      "ruleText": ".btn-base {\n  display: inline-block;\n  padding: 0.5rem 1rem;\n}",
       "selector": ".btn-base",
-      "sourceFile": "input.css"
-    }
+      "sourceFile": "input.css" // 処理されたファイルパス
+    },
+    // ... 他のクラスのルール詳細
   },
-
+  
   // メタ情報
-  meta: {
-    "totalClasses": 2,
-    "errors": [],
-    "source": "input.css"
+  "meta": {
+    "totalClasses": 3, // 抽出されたアノテーション付きクラスの総数
+    "errors": [ // 処理中に発生したエラーメッセージのリスト
+      // 例: "input.css 内のコメントブロック #3 に必須タグがありません: @description:"
+    ],
+    "source": "input.css" // 処理されたファイルパス (CLIの場合は複数の場合あり)
   }
 }
 ```
+*注意:* CLIで複数のファイルを処理した場合、`meta.source` は配列 (`sources`) になり、各データはマージされます。
 
-## css-summonerとの連携
+## 開発
 
-このプラグインは[css-summoner](https://github.com/yourusername/css-summoner)と組み合わせることで、
-抽出したコンポーネント情報からTypeScript型定義、Astroコンポーネント、ドキュメントページを生成できます。
-
-```js
-import { processCssFiles } from 'css-summoner';
-
-// CSSファイルからアノテーションを抽出し、様々な出力物を生成
-processCssFiles({
-  cssPattern: './src/styles/**/*.css',
-  outputPath: './extracted-annotations.json',
-  generateTypes: true,
-  generateDocs: true,
-  generateComponents: true,
-});
-```
-
-## 実行例（コマンドライン）
-
+### テストの実行
 ```bash
-# css-summonerのCLI経由で実行
-npx css-summoner --all   # 全ての出力物を生成
-npx css-summoner --types # 型定義のみ生成
-npx css-summoner --docs  # ドキュメントページのみ生成
+yarn test 
 ```
+または
+```bash
+npm test
+```
+Vitestによるテストが実行されます。ウォッチモードで起動します。
 
 ## 貢献
 
-バグレポートや機能リクエストは[GitHub Issues](https://github.com/yourusername/postcss-css-annotations/issues)で受け付けています。
+バグレポートや機能リクエストは[GitHub Issues](https://github.com/yourusername/postcss-css-annotations/issues)で受け付けています。（TODO: 正しいURLに更新）
 
 ## ライセンス
 
