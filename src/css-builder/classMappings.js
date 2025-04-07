@@ -1,7 +1,20 @@
-// クラスマッピングのインデックスファイル - 自動生成 2025-04-07T03:00:47.122Z
-// このファイルは直接編集しないでください。スクリプト実行時に上書きされます。
-import { componentTypes, baseClasses, componentVariants, classDescriptions, componentExamples, classRuleDetails } from './autoClassMappings.js';
-import { sizes, borderRadiusOptions, modifiers, specialClasses } from './classMappingsConfig.js';
+// クラスマッピングのインデックスファイル
+// アノテーションデータと手動設定データを統合
+import annotationsData from './extracted-annotations.json'; // JSONデータを直接インポート
+// configs/index.js から手動設定データをインポート
+import { sizes, borderRadiusOptions, modifiers, specialClasses } from './configs/index.js';
+
+// extracted-annotations.json から必要なデータを取得
+const {
+  componentTypes,
+  baseClasses,
+  componentVariants,
+  classDescriptions,
+  componentExamples,
+  classRuleDetails // classRuleDetails も取得
+} = annotationsData;
+
+// autoClassMappings.js は不要になるため、そこからのインポートは削除
 
 export {
   componentTypes,
@@ -9,7 +22,7 @@ export {
   componentVariants,
   classDescriptions,
   componentExamples,
-  classRuleDetails,
+  classRuleDetails, // extracted-annotations.json から取得したものをエクスポート
   sizes,
   borderRadiusOptions,
   modifiers,

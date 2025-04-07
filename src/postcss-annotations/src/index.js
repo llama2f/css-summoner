@@ -3,6 +3,23 @@
  * Based on the existing css-parser.js functionality
  */
 
+// --- Constants ---
+const PLUGIN_NAME = 'postcss-css-annotations';
+const MESSAGE_TYPE = 'css-annotations-data';
+const DEFAULT_CATEGORY = 'other';
+
+const TAGS = {
+  COMPONENT: '@component:',
+  VARIANT: '@variant:',
+  DESCRIPTION: '@description:',
+  CATEGORY: '@category:',
+  EXAMPLE: '@example:',
+};
+
+const DEFAULT_RECOGNIZED_TAGS = Object.values(TAGS);
+const DEFAULT_REQUIRED_TAGS = [TAGS.COMPONENT, TAGS.VARIANT, TAGS.DESCRIPTION];
+// --- End Constants ---
+
 /**
  * 特定のタグの値を抽出するヘルパー関数
  * @param {string} comment コメントテキスト
@@ -106,7 +123,7 @@ function structureComponentData(classes) {
       component,
       variant,
       description,
-      category: category || null,
+      category: category || null, // Keep null if explicitly null, otherwise use default later if needed
     };
 
     // componentExamplesの構築
@@ -147,6 +164,7 @@ function structureComponentData(classes) {
  * @returns {string|null} 抽出したクラス名またはnull
  */
 function extractClassName(selector) {
+  // Match the first class name, handling potential pseudo-classes/elements
   const firstClassMatch = selector.match(/^\s*\.([\w-]+)/);
   return firstClassMatch ? firstClassMatch[1] : null;
 }
@@ -157,21 +175,15 @@ function extractClassName(selector) {
 module.exports = (opts = {}) => {
   // デフォルトオプションとマージ
   const options = {
-    outputPath: null, // 抽出データの出力先パス（指定がなければ返すだけ）
-    recognizedTags: [
-      '@component:',
-      '@variant:',
-      '@description:',
-      '@category:',
-      '@example:',
-    ], // 認識するタグ
-    requiredTags: ['@component:', '@variant:', '@description:'], // 必須タグ
-    verbose: false, // 詳細なログを出力するか
+    outputPath: null,
+    recognizedTags: DEFAULT_RECOGNIZED_TAGS,
+    requiredTags: DEFAULT_REQUIRED_TAGS,
+    verbose: false,
     ...opts,
   };
 
   return {
-    postcssPlugin: 'postcss-css-annotations',
+    postcssPlugin: PLUGIN_NAME,
 
     Once(root, { result }) {
       // 抽出したクラス情報
@@ -199,60 +211,88 @@ module.exports = (opts = {}) => {
           (tag) => !fullCommentText.includes(tag),
         );
         if (missingTags.length > 0) {
-          const errorMsg = `${result.opts.from || 'unknown'} 内のコメントブロック #${commentIndex} (line ${comment.source.start.line}) に必須タグがありません: ${missingTags.join(', ')}`;
+          const errorMsg = `${
+            result.opts.from || 'unknown'
+          } 内のコメントブロック #${commentIndex} (line ${
+            comment.source.start.line
+          }) に必須タグがありません: ${missingTags.join(', ')}`;
           errors.push(errorMsg);
-          return;
+          // Don't return here, allow extracting other tags if present
         }
 
         // ステップ3: 各アノテーションの値を抽出
         const component = extractTagValue(
           fullCommentText,
-          '@component:',
+          TAGS.COMPONENT,
           options.recognizedTags,
         );
         const variant = extractTagValue(
           fullCommentText,
-          '@variant:',
+          TAGS.VARIANT,
           options.recognizedTags,
         );
         const description = extractTagValue(
           fullCommentText,
-          '@description:',
+          TAGS.DESCRIPTION,
           options.recognizedTags,
         );
         const category =
           extractTagValue(
             fullCommentText,
-            '@category:',
+            TAGS.CATEGORY,
             options.recognizedTags,
-          ) || 'other';
+          ) || DEFAULT_CATEGORY; // Use default if not found
         const example = extractTagValue(
           fullCommentText,
-          '@example:',
+          TAGS.EXAMPLE,
           options.recognizedTags,
         );
 
-        // 値の検証
-        const emptyTags = [];
-        if (!component) emptyTags.push('@component');
-        if (!variant) emptyTags.push('@variant');
-        if (!description) emptyTags.push('@description');
+        // 値の検証 (必須タグの値が空でないか) - missingTagsチェックの後に行う
+        const emptyRequiredValues = [];
+        if (options.requiredTags.includes(TAGS.COMPONENT) && !component)
+          emptyRequiredValues.push(TAGS.COMPONENT);
+        if (options.requiredTags.includes(TAGS.VARIANT) && !variant)
+          emptyRequiredValues.push(TAGS.VARIANT);
+        if (options.requiredTags.includes(TAGS.DESCRIPTION) && !description)
+          emptyRequiredValues.push(TAGS.DESCRIPTION);
 
-        if (emptyTags.length > 0) {
-          const errorMsg = `${result.opts.from || 'unknown'} 内のコメントブロック #${commentIndex} (line ${comment.source.start.line}) にタグの値がありません: ${emptyTags.join(', ')}`;
-          errors.push(errorMsg);
-          return;
+        if (emptyRequiredValues.length > 0) {
+           const errorMsg = `${
+             result.opts.from || 'unknown'
+           } 内のコメントブロック #${commentIndex} (line ${
+             comment.source.start.line
+           }) に必須タグの値がありません: ${emptyRequiredValues.join(', ')}`;
+           errors.push(errorMsg);
+           return; // If required values are missing, skip this annotation block
         }
+
+        // If component or variant couldn't be extracted (even if not required), skip
+        if (!component || !variant) {
+            if (options.verbose && !missingTags.length && !emptyRequiredValues.length) {
+                // Log only if it wasn't already reported as a missing/empty required tag
+                console.warn(`Skipping annotation block #${commentIndex} in ${result.opts.from || 'unknown'} due to missing component or variant tag value.`);
+            }
+            return;
+        }
+
 
         // ステップ4: アノテーションコメントの直後のルールノードを取得
         let nextNode = comment.next();
         // コメントとルールの間の空白ノードなどをスキップ
         while (nextNode && nextNode.type !== 'rule') {
+          // Allow whitespace nodes between comment and rule
           if (nextNode.type === 'text' && nextNode.text.trim() === '') {
-            nextNode = nextNode.next();
+             nextNode = nextNode.next();
           } else if (nextNode.type === 'comment') {
-            nextNode = nextNode.next();
-          } else {
+             // Allow other comments, but log if verbose
+             if(options.verbose) {
+                 console.log(`Skipping intermediate comment at line ${nextNode.source.start.line} in ${result.opts.from || 'unknown'}`);
+             }
+             nextNode = nextNode.next();
+          }
+           else {
+            // If it's not whitespace or another comment, break
             nextNode = null;
             break;
           }
@@ -272,7 +312,7 @@ module.exports = (opts = {}) => {
               variant,
               className,
               description,
-              category,
+              category, // Already has default applied
               example,
               sourceFile: result.opts.from || 'unknown',
               ruleText,
@@ -283,11 +323,19 @@ module.exports = (opts = {}) => {
               console.log(`クラス抽出: ${className} (${component}/${variant})`);
             }
           } else {
-            const errorMsg = `${result.opts.from || 'unknown'} 内のコンポーネント「${component}」(line ${comment.source.start.line}) のアノテーション直後のルール (${selector}) からクラス名を抽出できませんでした。`;
+            const errorMsg = `${
+              result.opts.from || 'unknown'
+            } 内のコンポーネント「${component}」(line ${
+              comment.source.start.line
+            }) のアノテーション直後のルール (${selector}) からクラス名を抽出できませんでした。`;
             errors.push(errorMsg);
           }
         } else {
-          const errorMsg = `${result.opts.from || 'unknown'} 内のコンポーネント「${component}」(line ${comment.source.start.line}) のアノテーション直後にCSSルールが見つかりません。`;
+          const errorMsg = `${
+            result.opts.from || 'unknown'
+          } 内のコンポーネント「${component}」(line ${
+            comment.source.start.line
+          }) のアノテーション直後にCSSルールが見つかりません。`;
           errors.push(errorMsg);
         }
       });
@@ -298,45 +346,53 @@ module.exports = (opts = {}) => {
       // 追加情報
       structuredData.meta = {
         totalClasses: classes.length,
-        errors: errors,
+        errors: errors, // Include errors found during parsing
         source: result.opts.from || 'unknown',
       };
 
-      // ベースクラスが見つからないコンポーネントの警告
-      const missingBaseClasses = Object.keys(
-        structuredData.componentTypes,
-      ).filter((component) => !structuredData.baseClasses[component]);
+      // ベースクラスが見つからないコンポーネントの警告 (構造化後に行う)
+      const missingBaseClasses = Object.keys(structuredData.componentTypes).filter(
+        (component) => !structuredData.baseClasses[component],
+      );
 
       if (missingBaseClasses.length > 0) {
-        const warningMsg = `以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: ${missingBaseClasses.join(', ')}`;
-        errors.push(warningMsg);
-        result.warn(warningMsg);
+        const warningMsg = `以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: ${missingBaseClasses.join(
+          ', ',
+        )}`;
+        // Add to meta errors and also emit PostCSS warning
+        structuredData.meta.errors.push(warningMsg);
+        result.warn(warningMsg, { plugin: PLUGIN_NAME });
       }
 
       // 結果をPostCSSのメッセージとして追加
       result.messages.push({
-        type: 'css-annotations-data',
-        plugin: 'postcss-css-annotations',
+        type: MESSAGE_TYPE, // Use constant
+        plugin: PLUGIN_NAME,
         data: structuredData,
       });
 
-      // エラーがあればワーニングとして追加
-      errors.forEach((error) => {
-        result.warn(error);
+      // エラーがあればワーニングとして追加 (重複を避けるため meta.errors を参照)
+      structuredData.meta.errors.forEach((error) => {
+         // Avoid duplicating the base class warning
+         if (!error.includes('ベースクラス（variant: base）が見つかりませんでした')) {
+            result.warn(error, { plugin: PLUGIN_NAME });
+         }
       });
+
 
       // ログ出力
       if (options.verbose) {
         console.log(
-          `抽出完了: ${classes.length}個のクラスと${errors.length}個のエラーが見つかりました`,
+          `抽出完了: ${structuredData.meta.totalClasses}個のクラスと${structuredData.meta.errors.length}個のエラーが見つかりました`,
         );
       }
 
       // オプションで出力先が指定されていれば、JSONとして保存
       if (options.outputPath && typeof options.outputPath === 'string') {
         try {
-          const fs = require('fs');
-          const path = require('path');
+          // Use require inside the function only when needed
+          const fs = require('node:fs');
+          const path = require('node:path');
 
           // 出力ディレクトリが存在しない場合は作成
           const outputDir = path.dirname(options.outputPath);
@@ -354,7 +410,7 @@ module.exports = (opts = {}) => {
           }
         } catch (error) {
           const errorMsg = `JSONファイルの出力に失敗しました: ${error.message}`;
-          result.warn(errorMsg);
+          result.warn(errorMsg, { plugin: PLUGIN_NAME }); // Add plugin name to warning
         }
       }
     },

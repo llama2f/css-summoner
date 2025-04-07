@@ -83,8 +83,6 @@ const paths = {
 
 	// ファイル名
 	files: {
-		autoMappings: 'autoClassMappings.js',
-		configMappings: 'classMappingsConfig.js',
 		indexMappings: 'classMappings.js',
 	},
 };

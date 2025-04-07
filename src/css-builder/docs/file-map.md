@@ -1,6 +1,6 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-05T01:34:36.768Z*
+*自動生成: 2025-04-07T04:00:19.744Z*
 
 ## ディレクトリ構造
 
@@ -17,6 +17,7 @@
   │ ├── selectors (選択UIコンポーネント)
   ├── configs (設定ファイル群 (クラスビルダーUI用))
   ├── docs (ドキュメントファイル)
+  ├── generators (generatorsディレクトリ)
   ├── hooks (Reactカスタムフック)
   ├── layouts (Astroレイアウトコンポーネント)
   ├── scripts (ビルド・自動化スクリプト)
@@ -36,7 +37,6 @@
   │ ├── handlers (コンポーネントタイプ別のプレビューハンドラー)
   │ │ ├── auto (templates/handlers/autoディレクトリ)
   ├── types (TypeScript型定義)
-  │ ├── css-tyles (CSSクラス名に基づく型定義 (自動生成))
   ├── utils (utilsディレクトリ)
 ```
 
@@ -47,9 +47,7 @@
 | ファイル | 役割 |
 |---------|------|
 | `ClassBuilder.jsx` | メインアプリケーションコンポーネント |
-| `autoClassMappings.js` | CSSアノテーションから自動生成されたコンポーネント情報 |
 | `classMappings.js` | 設定とマッピングのエントリポイント |
-| `classMappingsConfig.js` | JavaScriptモジュール |
 
 ### components/accessibility/
 
@@ -132,6 +130,12 @@
 | `todo.md` | Markdownドキュメント |
 | `テンプレートハンドラー移行ガイド.md` | Markdownドキュメント |
 
+### generators/
+
+| ファイル | 役割 |
+|---------|------|
+| `astroComponentGenerator.js` | JavaScriptモジュール |
+
 ### hooks/
 
 | ファイル | 役割 |
@@ -150,10 +154,12 @@
 
 | ファイル | 役割 |
 |---------|------|
-| `astro-generator.js` | Astroコンポーネント生成スクリプト |
 | `config.js` | スクリプト設定ファイル |
 | `css-builder.cjs` | JavaScript CommonJS Module |
 | `css-parser.js` | CSS解析ロジック |
+| `extract-jsx.js` | JavaScriptモジュール |
+| `generate-astro.js` | JavaScriptモジュール |
+| `generate-docs.js` | JavaScriptモジュール |
 | `generate-handler-manifest.js` | JavaScriptモジュール |
 | `index.js` | モジュールのエクスポート用ファイル |
 | `simple-file-mapper.js` | このファイルマップ生成スクリプト |
@@ -264,7 +270,6 @@
 |---------|------|
 | `componentFactory.jsx` | Reactコンポーネント |
 | `componentHandlers.jsx` | Reactコンポーネント |
-| `registry.jsx` | コンポーネントハンドラーの登録管理 |
 
 ### templates/core/
 
@@ -292,31 +297,29 @@
 
 | ファイル | 役割 |
 |---------|------|
+| `badge.jsx` | Reactコンポーネント |
 | `button.jsx` | Reactコンポーネント |
 | `card.jsx` | Reactコンポーネント |
+| `form.jsx` | Reactコンポーネント |
+| `heading.jsx` | Reactコンポーネント |
+| `image.jsx` | Reactコンポーネント |
+| `infobox.jsx` | Reactコンポーネント |
+| `text.jsx` | Reactコンポーネント |
+| `tooltip.jsx` | Reactコンポーネント |
 
 ### types/
 
 | ファイル | 役割 |
 |---------|------|
+| `Badge.d.ts` | その他のファイル |
 | `Button.d.ts` | その他のファイル |
-| `ButtonGroup.d.ts` | その他のファイル |
 | `Card.d.ts` | その他のファイル |
+| `Form.d.ts` | その他のファイル |
 | `Heading.d.ts` | その他のファイル |
+| `Img.d.ts` | その他のファイル |
 | `Infobox.d.ts` | その他のファイル |
-| `TextQuote.d.ts` | その他のファイル |
-| `index.d.ts` | その他のファイル |
-
-### types/css-tyles/
-
-| ファイル | 役割 |
-|---------|------|
-| `Button.d.ts` | その他のファイル |
-| `ButtonGroup.d.ts` | その他のファイル |
-| `Card.d.ts` | その他のファイル |
-| `Heading.d.ts` | その他のファイル |
-| `Infobox.d.ts` | その他のファイル |
-| `TextQuote.d.ts` | その他のファイル |
+| `Text.d.ts` | その他のファイル |
+| `Tooltip.d.ts` | その他のファイル |
 | `index.d.ts` | その他のファイル |
 
 ### utils/

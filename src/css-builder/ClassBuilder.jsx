@@ -19,12 +19,13 @@ import Tooltip from '@/css-builder/components/common/Tooltip'
 import CssVarEditor from '@/css-builder/components/common/CssVarEditor'
 
 // 設定のインポート
+// autoClassMappings.js の代わりに classMappings.js からインポート
 import {
 	componentTypes,
 	baseClasses,
 	componentVariants,
 	classDescriptions,
-} from '@/css-builder/autoClassMappings'
+} from '@/css-builder/classMappings.js'
 
 import {
 	sizes,

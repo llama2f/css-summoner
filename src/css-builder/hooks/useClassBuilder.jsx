@@ -1,9 +1,7 @@
 // hooks/useClassBuilder.jsx
 import { useReducer, useEffect, useCallback } from 'react'
-import {
-	componentVariants,
-	baseClasses,
-} from '@/css-builder/autoClassMappings.js'
+// autoClassMappings.js の代わりに classMappings.js からインポート
+import { componentVariants, baseClasses } from '@/css-builder/classMappings.js'
 import { combineClasses } from '@/css-builder/templates/handlers/common'
 import { defaultCustomColor } from '@/css-builder/configs/colors'
 
