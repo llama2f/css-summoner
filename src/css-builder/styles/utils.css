@@ -1,7 +1,3 @@
-<<<<<<< HEAD:src/styles/utils.css
-@import "tailwindcss";
-=======
->>>>>>> template-engine:src/css-builder/styles/utils.css
 @layer utilities {
 	.abs-center {
 		position: absolute;

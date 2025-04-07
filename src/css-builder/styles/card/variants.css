@@ -132,16 +132,10 @@
 		@apply flex flex-col md:flex-row;
 	}
 
-<<<<<<< HEAD
-  .card-horizontal .card-image {
-    @apply w-full md:w-1/3 shrink-0;
-  }
-=======
 	.card-horizontal .card-image {
 		@apply w-full md:w-1/3 flex-shrink-0;
 		/* 画像コンポーネント側で object-cover を推奨 */
 	}
->>>>>>> template-engine
 
 	.card-horizontal .card-body {
 		@apply flex-grow;
