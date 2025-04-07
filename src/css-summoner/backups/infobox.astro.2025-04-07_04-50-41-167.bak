@@ -1,0 +1,51 @@
+---
+/**
+	* Infobox コンポーネント ドキュメント
+	*
+	* このファイルはスクリプトによって自動生成されました。
+	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+	* ソース: infobox/variants.css, infobox/base.css
+	*/
+import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
+import Menu from '@/css-summoner/layouts/Menu.astro'; // css-summoner内のMenuを使用
+
+// スタイルシートのインポート (必要に応じて調整)
+// import '@/css-summoner/styles/styles.css'; // 全体スタイル
+// import '@/css-summoner/styles/infobox/index.css'; // 個別スタイル (必要なら)
+
+const pageTitle = "Infobox コンポーネント";
+const pageDesc = "Infobox コンポーネントのスタイルバリエーションと使用例。";
+---
+
+<Layout pageTitle={pageTitle} desc={pageDesc}>
+		<div class="container mx-auto px-4 py-8">
+			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+			 <p class="text-lg text-neutral-600 mb-6">
+			   背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。
+			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.infobox-solid</code>}
+			 </p>
+			 <div class="mb-6">
+			   <a href="/css-summoner" class="text-primary hover:underline">
+			     ← back to css-summoner
+			   </a>
+			 </div>
+			 <Menu  />
+
+			 {/* 事前に生成したバリアントHTMLを展開 */}
+			 <Fragment set:html={variantsHtml} />
+
+			 <section class="mb-12">
+			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
+			   <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
+			     <pre class="text-sm"><code>{"<div class=\"infobox-base infobox-solid color-info\">...</div>\\n\\n<div class=\"infobox-base infobox-outline color-warning\">...</div>\\n\\n<div class=\"infobox-base infobox-ghost color-neutral\">...</div>\\n\\n<div class=\"infobox-base infobox-solid color-error\"><h4 class=\"infobox-title\">エラー</h4>...</div>\\n\\n<div class=\"infobox-base infobox-solid color-info\">...</div>"}</code></pre> {/* 事前に生成したコードを展開 */}
+			   </div>
+			 </section>
+
+			 <Menu client:load /> {/* client:load を追加 */}
+			 <div class="mt-6">
+			   <a href="/css-summoner" class="text-primary hover:underline">
+			     ← クラスビルダーに戻る
+			   </a>
+			 </div>
+		</div>
+</Layout>

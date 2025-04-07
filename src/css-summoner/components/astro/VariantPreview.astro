@@ -1,0 +1,34 @@
+---
+// src/css-summoner/components/astro/VariantPreview.astro
+// 個々のコンポーネントバリアントを表示するためのカードコンポーネント
+
+interface Props {
+	variant: string // バリアント名 (例: "solid", "outline")
+	className: string // 対応するCSSクラス名 (例: "btn-solid")
+	description: string // バリアントの説明
+	previewHtml: string // プレビュー表示用のHTML文字列
+}
+
+const { variant, className, description, previewHtml } = Astro.props
+
+// バリアント名を整形 (例: "solid" -> "Solid", "icon-outline" -> "Icon Outline")
+const formattedVariantName = variant
+	.replace(/-/g, ' ')
+	.replace(/\b[a-z]/g, (c) => c.toUpperCase())
+---
+
+<div class='border rounded-lg shadow-sm overflow-hidden'>
+	<div class='p-4 bg-neutral-100'>
+		<h3 class='text-lg font-medium'>{formattedVariantName}</h3>
+		<code class='block text-sm text-neutral-700 mt-1'>.{className}</code>
+	</div>
+	<div class='p-4'>
+		<p class='text-sm text-neutral-600 mb-4'>{description}</p>
+		<div
+			class='bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]'
+		>
+			{/* プレビューHTMLを埋め込む */}
+			<Fragment set:html={previewHtml} />
+		</div>
+	</div>
+</div>

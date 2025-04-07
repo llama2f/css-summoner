@@ -1,0 +1,51 @@
+---
+/**
+	* Heading コンポーネント ドキュメント
+	*
+	* このファイルはスクリプトによって自動生成されました。
+	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+	* ソース: heading/variants-monochrome.css, heading/base.css
+	*/
+import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
+import Menu from '@/css-summoner/layouts/Menu.astro'; // css-summoner内のMenuを使用
+
+// スタイルシートのインポート (必要に応じて調整)
+// import '@/css-summoner/styles/styles.css'; // 全体スタイル
+// import '@/css-summoner/styles/heading/index.css'; // 個別スタイル (必要なら)
+
+const pageTitle = "Heading コンポーネント";
+const pageDesc = "Heading コンポーネントのスタイルバリエーションと使用例。";
+---
+
+<Layout pageTitle={pageTitle} desc={pageDesc}>
+		<div class="container mx-auto px-4 py-8">
+			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+			 <p class="text-lg text-neutral-600 mb-6">
+			   左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.heading-formal-primary</code>}
+			 </p>
+			 <div class="mb-6">
+			   <a href="/css-summoner" class="text-primary hover:underline">
+			     ← back to css-summoner
+			   </a>
+			 </div>
+			 <Menu  />
+
+			 {/* 事前に生成したバリアントHTMLを展開 */}
+			 <Fragment set:html={variantsHtml} />
+
+			 <section class="mb-12">
+			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
+			   <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
+			     <pre class="text-sm"><code>{"<h2 class=\"heading-base heading-formal-primary color-primary\">プライマリフォーマル見出し</h2>\\n\\n<h2 class=\"heading-base heading-formal-underline color-primary\">下線付きフォーマル見出し</h2>\\n\\n<h2 class=\"heading-base heading-formal-full color-primary\">フルバックグラウンド見出し</h2>\\n\\n<h2 class=\"heading-base heading-casual-dotted color-secondary\">ドット下線カジュアル見出し</h2>\\n\\n<h2 class=\"heading-base heading-casual-badge color-secondary\">バッジスタイル見出し</h2>\\n\\n<h2 class=\"heading-base heading-casual-wavy color-secondary\">波線下線カジュアル見出し</h2>\\n\\n<h2 class=\"heading-base heading-technical-code color-neutral\">コード風見出し</h2>\\n\\n<h2 class=\"heading-base heading-technical-tag color-neutral\">タグ風見出し</h2>\\n\\n<h2 class=\"heading-base heading-technical-bracket color-neutral\">角括弧付き見出し</h2>\\n\\n<h2 class=\"heading-base heading-accent-gradient color-accent\">グラデーション見出し</h2>\\n\\n<h2 class=\"heading-base heading-accent-border color-accent\">強調ボーダー見出し</h2>\\n\\n<h2 class=\"heading-base heading-accent-stripe color-accent\">ストライプ背景見出し</h2>\\n\\n<h2 class=\"heading-base heading-modern-minimal color-neutral\">ミニマルな見出し</h2>\\n\\n<h2 class=\"heading-base heading-modern-split color-primary\">分割デザインの見出し</h2>\\n\\n<h2 class=\"heading-base heading-modern-oversized color-neutral\">オーバーサイズ見出し</h2>\\n\\n<h2 class=\"heading-base heading-japanesque-brush color-accent2\">筆文字風見出し</h2>\\n\\n<h2 class=\"heading-base heading-japanesque-vertical color-accent2\">縦書き見出し</h2>\\n\\n<h2 class=\"heading-base heading-formal-boxed color-primary\">囲み枠付き見出し</h2>\\n\\n<h2 class=\"heading-base heading-formal-double color-primary\">二重下線見出し</h2>\\n\\n<h2 class=\"heading-base heading-casual-handwritten color-secondary\">手書き風見出し</h2>\\n\\n<h2 class=\"heading-base heading-casual-highlight color-secondary\">ハイライト見出し</h2>\\n\\n<h2 class=\"heading-base heading-technical-comment color-neutral\">コメント風見出し</h2>\\n\\n<h2 class=\"heading-base\">基本的な見出し</h2>"}</code></pre> {/* 事前に生成したコードを展開 */}
+			   </div>
+			 </section>
+
+			 <Menu client:load /> {/* client:load を追加 */}
+			 <div class="mt-6">
+			   <a href="/css-summoner" class="text-primary hover:underline">
+			     ← クラスビルダーに戻る
+			   </a>
+			 </div>
+		</div>
+</Layout>

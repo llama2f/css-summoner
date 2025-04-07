@@ -1,8 +1,8 @@
 {
 	"private": true,
-	"name": "css-builder",
+	"name": "css-summoner",
 	"version": "0.1.0",
-	"description": "CSS builder",
+	"description": "CSS Summoner",
 	"type": "module",
 	"scripts": {
 		"dev": "npm run generate:handlers && astro dev --host --port 5000",
@@ -12,15 +12,15 @@
 		"astro": "astro",
 		"lint": "eslint .",
 		"check": "astro check",
-		"map": "node src/css-builder/scripts/simple-file-mapper.js",
+		"map": "node src/css-summoner/scripts/simple-file-mapper.js",
 		"css": "node src/css-summoner-integration.js --all",
-		"css-docs": "node src/css-builder/scripts/css-summoner-integration.js --docs",
-		"css-components": "node src/css-builder/scripts/css-summoner-integration.js --components",
-		"css-all": "node src/css-builder/scripts/css-summoner-integration.js --all",
-		"generate:handlers": "node src/css-builder/scripts/generate-handler-manifest.js",
-		"generate:astro": "node src/css-builder/scripts/generate-astro.js",
-		"generate:astro-force": "node src/css-builder/scripts/generate-astro.js --force",
-		"extract-jsx": "node src/css-builder/scripts/extract-jsx.js src/css-builder/templates/handlers/auto"
+		"css-docs": "node src/css-summoner/scripts/css-summoner-integration.js --docs",
+		"css-components": "node src/css-summoner/scripts/css-summoner-integration.js --components",
+		"css-all": "node src/css-summoner/scripts/css-summoner-integration.js --all",
+		"generate:handlers": "node src/css-summoner/scripts/generate-handler-manifest.js",
+		"generate:astro": "node src/css-summoner/scripts/generate-astro.js",
+		"generate:astro-force": "node src/css-summoner/scripts/generate-astro.js --force",
+		"extract-jsx": "node src/css-summoner/scripts/extract-jsx.js src/css-summoner/templates/handlers/auto"
 	},
 	"dependencies": {
 		"@astrojs/react": "4.2.2",

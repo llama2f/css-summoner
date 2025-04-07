@@ -1,0 +1,58 @@
+/* src/css-summoner/styles/badge/base.css */
+
+@layer base {
+	:root {
+		/* Badge Variables - Customize as needed */
+		--badge-font-family: var(--font, sans-serif);
+		--badge-font-weight: 500; /* font-medium */
+		--badge-font-size: 0.875rem; /* text-sm */
+		--badge-line-height: 1;
+		--badge-border-radius: 0.375rem; /* rounded-md */
+		--badge-padding-x: 0.65em;
+		--badge-padding-y: 0.25em;
+		--badge-border-width: 1px;
+		--badge-transition-duration: 150ms;
+
+		/* Size specific variables */
+		--badge-font-size-xs: 0.75rem;
+		--badge-padding-x-xs: 0.5em;
+		--badge-padding-y-xs: 0.2em;
+
+		--badge-font-size-sm: var(--badge-font-size); /* Default */
+		--badge-padding-x-sm: var(--badge-padding-x); /* Default */
+		--badge-padding-y-sm: var(--badge-padding-y); /* Default */
+
+		--badge-font-size-lg: 1rem;
+		--badge-padding-x-lg: 0.8em;
+		--badge-padding-y-lg: 0.3em;
+
+		/* Shape specific variables */
+		--badge-border-radius-full: 9999px; /* rounded-full */
+	}
+
+	/*
+   * @component: badge
+   * @variant: base
+   * @description: すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。色や具体的な形状は含まない。
+   * @category: display
+   * @example: <span class="badge-base badge-solid color-primary">バッジ</span>
+   */
+	.badge-base {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--badge-font-family);
+		font-weight: var(--badge-font-weight);
+		font-size: var(--badge-font-size);
+		line-height: var(--badge-line-height);
+		border-radius: var(--badge-border-radius);
+		padding: var(--badge-padding-y) var(--badge-padding-x);
+		border-width: var(--badge-border-width);
+		border-style: solid;
+		border-color: transparent; /* Default to transparent, variants will override */
+		transition-property: color, background-color, border-color;
+		transition-duration: var(--badge-transition-duration);
+		transition-timing-function: ease-in-out;
+		white-space: nowrap; /* Prevent wrapping */
+	}
+}

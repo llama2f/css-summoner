@@ -10,17 +10,17 @@ import { fileURLToPath } from 'url';
 // 注意: CommonJSモジュールをESMで使用
 import cssAnnotationsPlugin from './postcss-annotations/src/index.js';
 
-// css-builderの既存の型生成関数や設定をインポート
-import config from './css-builder/scripts/config.js';
+// css-summonerの既存の型生成関数や設定をインポート
+import config from './css-summoner/scripts/config.js';
 
 // 型生成機能
-import typeGenerator from './css-builder/scripts/type-generator.js';
+import typeGenerator from './css-summoner/scripts/type-generator.js';
 
 // Astroドキュメント生成
-import docGenerator from './css-builder/scripts/generate-docs.js';
+import docGenerator from './css-summoner/scripts/generate-docs.js';
 
 // コンポーネント生成機能 - ハンドラーから生成するため、正しいジェネレータを使用
-import { generateAstroComponents } from './css-builder/generators/astroComponentGenerator.js';
+import { generateAstroComponents } from './css-summoner/generators/astroComponentGenerator.js';
 
 // プラグインオプション
 const pluginOptions = {
@@ -90,7 +90,7 @@ async function extractAnnotations(cssFiles, options = {}) {
   }
   
   // componentTypesをフォーマット変換（配列→オブジェクト形式へ）
-  // css-builderの既存コードとの互換性のため
+  // css-summonerの既存コードとの互換性のため
   convertComponentTypesFormat(allExtractedData);
   
   // JSONファイルに保存（デバッグ用）
@@ -162,7 +162,7 @@ function mergeExtractedData(target, source) {
 
 /**
  * componentTypesをフォーマット変換（配列→オブジェクト形式へ）
- * css-builderの既存コードとの互換性のため
+ * css-summonerの既存コードとの互換性のため
  * @param {Object} data 抽出データ
  */
 function convertComponentTypesFormat(data) {
@@ -230,24 +230,15 @@ function convertComponentTypesFormat(data) {
   for (const [component, classes] of Object.entries(data.originalComponentTypes)) {
     data.componentsByType[component] = classes.map(className => {
       // クラス情報をcomponentsByType用に構築
-      const description = data.classDescriptions[className];
-      let variant = 'base'; // デフォルト値
-      
-      // 元のcomponentVariantsから該当するバリアントを探す
-      for (const [v, cls] of Object.entries(data.componentVariants[component] || {})) {
-        if (cls === className) {
-          variant = v;
-          break;
-        }
-      }
-      
+      const descriptionData = data.classDescriptions[className]; // classDescriptionsから情報を取得
+      const variant = descriptionData?.variant || 'base'; // classDescriptionsからvariantを取得、なければbase
+
       return {
         component,
-        variant,
+        variant, // 正しいvariantを設定
         className,
-        description: description?.description || '',
-        category: description?.category || 'other',
-        // 他の必要な情報も追加
+        description: descriptionData?.description || '',
+        category: descriptionData?.category || 'other',
         sourceFile: data.classRuleDetails?.[className]?.sourceFile || 'unknown'
       };
     });
@@ -292,8 +283,8 @@ export async function processCssFiles(options = {}) {
   // オプションのデフォルト値
   const opts = {
     cssPattern: config.paths.getStylesPattern(),
-    outputPath: path.join(config.paths.output.cssBuilder, 'extracted-annotations.json'),
-    autoMappingsPath: path.join(config.paths.output.cssBuilder, config.paths.files.autoMappings),
+    outputPath: path.join(config.paths.output.cssBuilder, 'extracted-annotations.json'), // extracted-annotations.json のパス
+    // autoMappingsPath: path.join(config.paths.output.cssBuilder, config.paths.files.autoMappings), // autoMappings.js は不要になったため削除
     generateTypes: false,
     generateDocs: false,
     generateComponents: false,
@@ -330,7 +321,7 @@ export async function processCssFiles(options = {}) {
   }
   
   // AutoClassMappingsを生成
-  writeAutoClassMappings(extractedData, opts.autoMappingsPath);
+  // writeAutoClassMappings(extractedData, opts.autoMappingsPath); // autoMappings.js は不要になったため削除 (行をコメントアウト)
   
   // 型定義の生成
   if (opts.generateTypes) {

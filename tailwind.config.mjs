@@ -38,7 +38,7 @@ export default {
 	content: [
 		'./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
 		'./public/**/*.html',
-		'./src/css-builder/styles/**/*.css',
+		'./src/css-summoner/styles/**/*.css',
 		'./src/styles/global.css',
 		'./src/styles/**/*.scss',
 	],

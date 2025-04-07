@@ -1,0 +1,58 @@
+---
+/**
+	* Card コンポーネント ドキュメント
+	*
+	* このファイルはスクリプトによって自動生成されました。
+	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+	* ソース: card/variants.css, card/base.css
+	*/
+import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
+import Menu from '@/css-summoner/layouts/Menu.astro'; // css-summoner内のMenuを使用
+
+// スタイルシートのインポート (必要に応じて調整)
+// import '@/css-summoner/styles/styles.css'; // 全体スタイル
+// import '@/css-summoner/styles/card/index.css'; // 個別スタイル (必要なら)
+
+const pageTitle = "Card コンポーネント";
+const pageDesc = "Card コンポーネントのスタイルバリエーションと使用例。";
+
+// --- フロントマターに変数を渡す ---
+const baseClassName = "card-base"; // baseClassName を文字列として渡す
+const variantsHtml = "\n\t\t\t   <section class=\"mb-12\">\n\t\t\t     <h2 class=\"text-2xl font-semibold mb-6 border-b pb-2\">バリアント</h2>\n\t\t\t     <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6\">\n\t\t\t       \n\t\t\t           <div class=\"border rounded-lg shadow-sm overflow-hidden\">\n\t\t\t             <div class=\"p-4 bg-neutral-100\">\n\t\t\t               <h3 class=\"text-lg font-medium\">Actions</h3>\n\t\t\t               <code class=\"block text-sm text-neutral-700 mt-1\">.card-actions</code>\n\t\t\t             </div>\n\t\t\t             <div class=\"p-4\">\n\t\t\t               <p class=\"text-sm text-neutral-600 mb-4\">カード内でのアクションボタンをグループ化するための領域。</p>\n\t\t\t               <div class=\"bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]\">\n\t\t\t                 <div class=\"card-base card-solid color-neutral\">\n<div class=\"card-body\">...</div>\n<div class=\"card-actions\">...</div>\n</div> {/* HTML文字列を直接埋め込む */}\n\t\t\t               </div>\n\t\t\t             </div>\n\t\t\t           </div>\n\t\t\t         \n\t\t\t           <div class=\"border rounded-lg shadow-sm overflow-hidden\">\n\t\t\t             <div class=\"p-4 bg-neutral-100\">\n\t\t\t               <h3 class=\"text-lg font-medium\">Bordered</h3>\n\t\t\t               <code class=\"block text-sm text-neutral-700 mt-1\">.card-bordered</code>\n\t\t\t             </div>\n\t\t\t             <div class=\"p-4\">\n\t\t\t               <p class=\"text-sm text-neutral-600 mb-4\">カードに明示的な境界線を追加します。</p>\n\t\t\t               <div class=\"bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]\">\n\t\t\t                 <div class=\"card-base card-solid color-neutral card-bordered\">境界線付きカード</div> {/* HTML文字列を直接埋め込む */}\n\t\t\t               </div>\n\t\t\t             </div>\n\t\t\t           </div>\n\t\t\t         \n\t\t\t           <div class=\"border rounded-lg shadow-sm overflow-hidden\">\n\t\t\t             <div class=\"p-4 bg-neutral-100\">\n\t\t\t               <h3 class=\"text-lg font-medium\">Compact</h3>\n\t\t\t               <code class=\"block text-sm text-neutral-700 mt-1\">.card-compact</code>\n\t\t\t             </div>\n\t\t\t             <div class=\"p-4\">\n\t\t\t               <p class=\"text-sm text-neutral-600 mb-4\">カード内のパディングを減らし、コンパクトな表示にします。</p>\n\t\t\t               <div class=\"bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]\">\n\t\t\t                 <div class=\"card-base card-solid color-neutral card-compact\">コンパクトカード</div> {/* HTML文字列を直接埋め込む */}\n\t\t\t               </div>\n\t\t\t             </div>\n\t\t\t           </div>\n\t\t\t         \n\t\t\t           <div class=\"border rounded-lg shadow-sm overflow-hidden\">\n\t\t\t             <div class=\"p-4 bg-neutral-100\">\n\t\t\t               <h3 class=\"text-lg font-medium\">Ghost</h3>\n\t\t\t               <code class=\"block text-sm text-neutral-700 mt-1\">.card-ghost</code>\n\t\t\t             </div>\n\t\t\t             <div class=\"p-4\">\n\t\t\t               <p class=\"text-sm text-neutral-600 mb-4\">ゴーストスタイルのカード。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。</p>\n\t\t\t               <div class=\"bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]\">\n\t\t\t                 <div class=\"card-base card-ghost color-secondary\">ゴーストカード</div> {/* HTML文字列を直接埋め込む */}\n\t\t\t               </div>\n\t\t\t             </div>\n\t\t\t           </div>\n\t\t\t         \n\t\t\t           <div class=\"border rounded-lg shadow-sm overflow-hidden\">\n\t\t\t             <div class=\"p-4 bg-neutral-100\">\n\t\t\t               <h3 class=\"text-lg font-medium\">Horizontal</h3>\n\t\t\t               <code class=\"block text-sm text-neutral-700 mt-1\">.card-horizontal</code>\n\t\t\t             </div>\n\t\t\t             <div class=\"p-4\">\n\t\t\t               <p class=\"text-sm text-neutral-600 mb-4\">画像とコンテンツが横並びになるカード。モバイルでは縦並びになるレスポンシブ対応です。</p>\n\t\t\t               <div class=\"bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]\">\n\t\t\t                 <div class=\"card-base card-solid color-neutral card-horizontal\">...</div> {/* HTML文字列を直接埋め込む */}\n\t\t\t               </div>\n\t\t\t             </div>\n\t\t\t           </div>\n\t\t\t         \n\t\t\t           <div class=\"border rounded-lg shadow-sm overflow-hidden\">\n\t\t\t             <div class=\"p-4 bg-neutral-100\">\n\t\t\t               <h3 class=\"text-lg font-medium\">Outline</h3>\n\t\t\t               <code class=\"block text-sm text-neutral-700 mt-1\">.card-outline</code>\n\t\t\t             </div>\n\t\t\t             <div class=\"p-4\">\n\t\t\t               <p class=\"text-sm text-neutral-600 mb-4\">アウトラインスタイルのカード。枠線のみで背景は透明です。</p>\n\t\t\t               <div class=\"bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]\">\n\t\t\t                 <div class=\"card-base card-outline color-primary\">アウトラインカード</div> {/* HTML文字列を直接埋め込む */}\n\t\t\t               </div>\n\t\t\t             </div>\n\t\t\t           </div>\n\t\t\t         \n\t\t\t           <div class=\"border rounded-lg shadow-sm overflow-hidden\">\n\t\t\t             <div class=\"p-4 bg-neutral-100\">\n\t\t\t               <h3 class=\"text-lg font-medium\">Solid</h3>\n\t\t\t               <code class=\"block text-sm text-neutral-700 mt-1\">.card-solid</code>\n\t\t\t             </div>\n\t\t\t             <div class=\"p-4\">\n\t\t\t               <p class=\"text-sm text-neutral-600 mb-4\">塗りつぶしスタイルのカード。背景色とテキスト色が適用されます。</p>\n\t\t\t               <div class=\"bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]\">\n\t\t\t                 <div class=\"card-base card-solid color-neutral\">ソリッドカード</div> {/* HTML文字列を直接埋め込む */}\n\t\t\t               </div>\n\t\t\t             </div>\n\t\t\t           </div>\n\t\t\t         \n\t\t\t           <div class=\"border rounded-lg shadow-sm overflow-hidden\">\n\t\t\t             <div class=\"p-4 bg-neutral-100\">\n\t\t\t               <h3 class=\"text-lg font-medium\">Subtle</h3>\n\t\t\t               <code class=\"block text-sm text-neutral-700 mt-1\">.card-subtle</code>\n\t\t\t             </div>\n\t\t\t             <div class=\"p-4\">\n\t\t\t               <p class=\"text-sm text-neutral-600 mb-4\">控えめなカード。薄い背景色が適用され、ホバー時に色が濃くなります。</p>\n\t\t\t               <div class=\"bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]\">\n\t\t\t                 <div class=\"card-base card-subtle color-accent\">サブトルカード</div> {/* HTML文字列を直接埋め込む */}\n\t\t\t               </div>\n\t\t\t             </div>\n\t\t\t           </div>\n\t\t\t         \n\t\t\t     </div>\n\t\t\t   </section>\n\t\t\t "; // 事前生成したHTMLを変数として渡す (エスケープされる)
+const exampleCode = "<div class=\"card-base card-solid color-neutral\">ソリッドカード</div>\\n\\n<div class=\"card-base card-outline color-primary\">アウトラインカード</div>\\n\\n<div class=\"card-base card-ghost color-secondary\">ゴーストカード</div>\\n\\n<div class=\"card-base card-subtle color-accent\">サブトルカード</div>\\n\\n<div class=\"card-base card-solid color-neutral card-bordered\">境界線付きカード</div>\\n\\n<div class=\"card-base card-solid color-neutral card-compact\">コンパクトカード</div>\\n\\n<div class=\"card-base card-solid color-neutral card-horizontal\">...</div>\\n\\n<div class=\"card-base card-solid color-neutral\">\n<div class=\"card-body\">...</div>\n<div class=\"card-actions\">...</div>\n</div>\\n\\n<div class=\"card-base card-solid color-neutral\">...</div>"; // 事前生成したJSON文字列を展開 (既にJSON.stringify済み)
+---
+
+<Layout title={pageTitle} desc={pageDesc}>
+		<div class="container mx-auto px-4 py-8">
+			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+			 <p class="text-lg text-neutral-600 mb-6">
+			   すべてのカードの基本スタイル。コンテナとしての基本的な構造とレイアウトを提供します。
+			   {/* フロントマターの baseClassName を参照 */}
+			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
+			 </p>
+			 <div class="mb-6">
+			   <a href="/css-summoner" class="text-primary hover:underline">
+			     ← back to css-summoner
+			   </a>
+			 </div>
+			 <Menu  />
+
+			 {/* 事前に生成したバリアントHTMLを展開 */}
+			 {/* フロントマターの variantsHtml を参照 */}
+			 <Fragment set:html={variantsHtml} />
+
+			 <section class="mb-12">
+			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
+			   <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
+			     <pre class="text-sm"><code>{exampleCode}</code></pre> {/* フロントマターの exampleCode を参照 */}
+			   </div>
+			 </section>
+
+			 <Menu client:load /> {/* client:load を追加 */}
+			 <div class="mt-6">
+			   <a href="/css-summoner" class="text-primary hover:underline">
+			     ← クラスビルダーに戻る
+			   </a>
+			 </div>
+		</div>
+</Layout>

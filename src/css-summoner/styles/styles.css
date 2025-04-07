@@ -1,0 +1,11 @@
+@import '../../styles/global.css';
+
+@import './all-components.css';
+/* @import './class-sumonner.css'; */
+@import './builder.css';
+
+@import './utils.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

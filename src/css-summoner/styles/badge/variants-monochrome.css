@@ -1,0 +1,69 @@
+/* src/css-summoner/styles/badge/variants-monochrome.css */
+@layer components {
+	/* ----- モノクロバリエーション（形状バリアント） ----- */
+
+	/*
+   * @component: badge
+   * @variant: solid
+   * @description: 塗りつぶしスタイルのバッジ。背景色が適用されます。カラーセレクタと組み合わせて使用します。
+   * @category: display
+   * @example: <span class="badge-base badge-solid color-primary">ソリッドバッジ</span>
+   */
+	.badge-solid {
+		background-color: var(
+			--component-color,
+			var(--neutral)
+		); /* カラーセレクタから色を取得 */
+		color: var(
+			--component-text,
+			var(--neutral-dark)
+		); /* カラーセレクタからテキスト色を取得 */
+		border-color: transparent; /* 通常、塗りつぶしには枠線は不要 */
+	}
+
+	/*
+   * @component: badge
+   * @variant: outline
+   * @description: アウトラインスタイルのバッジ。枠線のみが表示されます。カラーセレクタと組み合わせて使用します。
+   * @category: display
+   * @example: <span class="badge-base badge-outline color-primary">アウトラインバッジ</span>
+   */
+	.badge-outline {
+		background-color: transparent;
+		color: var(
+			--component-color,
+			var(--neutral-dark)
+		); /* カラーセレクタから色を取得（テキスト色として使用） */
+		border-color: var(
+			--component-border,
+			var(--component-color, var(--neutral))
+		); /* カラーセレクタから色を取得（枠線色として使用） */
+	}
+
+	/*
+   * @component: badge
+   * @variant: subtle
+   * @description: 控えめなスタイルのバッジ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。
+   * @category: display
+   * @example: <span class="badge-base badge-subtle color-primary">サブトルバッジ</span>
+   */
+	.badge-subtle {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, var(--neutral)),
+			transparent 90%
+		); /* カラーセレクタの色を薄くして背景に */
+		color: var(
+			--component-color,
+			var(--neutral-dark)
+		); /* カラーセレクタから色を取得（テキスト色として使用） */
+		border-color: transparent;
+	}
+
+	/* ダークモード時のテキスト色調整 (必要に応じて) */
+	/* .dark .badge-outline,
+    .dark .badge-subtle {
+        color: var(--component-text-dark, var(--component-color));
+    } */
+	/* Note: カラーセレクタ側でダークモードの色変数を定義するため、ここでは通常不要 */
+}
