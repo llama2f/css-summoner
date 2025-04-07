@@ -63,12 +63,14 @@ export const modifiers = {
 		{
 			value: 'card-hover',
 			label: 'ホバー効果',
-			description: 'ホバー時に浮き上がる効果のあるカード。インタラクティブ性を高めます。',
+			description:
+				'ホバー時に浮き上がる効果のあるカード。インタラクティブ性を高めます。',
 		},
 		{
 			value: 'card-compact',
 			label: 'コンパクト',
-			description: '内部の余白が小さいコンパクトなカード。スペースを節約したい場合に使用します。',
+			description:
+				'内部の余白が小さいコンパクトなカード。スペースを節約したい場合に使用します。',
 		},
 		{
 			value: 'card-hover-down',
@@ -191,7 +193,7 @@ export const modifiers = {
 			value: 'form-checkbox-square',
 			label: 'チェックボックスの四角アイコン',
 			description: 'チェックボックスの四角アイコンを表示します',
-		}
+		},
 	],
 
 	// 画像専用のモディファイア
@@ -212,21 +214,30 @@ export const modifiers = {
 	// バッジ専用のモディファイア
 	badge: [
 		{
+			value: 'badge-icon-left',
+			label: 'アイコン左',
+			description: 'アイコンを左側に配置します',
+		},
+		{
+			value: 'badge-icon-right',
+			label: 'アイコン右',
+			description: 'アイコンを右側に配置します',
+		},
+		{
 			value: 'badge-icon-only', // アイコンのみクラス
 			label: 'アイコンのみ',
 			description: 'アイコンのみを表示します',
-		},
-		{
-			value: 'badge-rounded-full', // 角丸クラス
-			label: '完全な円',
-			description: 'バッジを完全な円にします',
 		},
 		// 影関連は common にあるため、ここでは不要
 	],
 
 	// インフォボックス専用のモディファイア (variants.css, utilities.css に基づく)
 	infobox: [
-		{ value : 'infobox-with-icon', label: 'アイコンつき', description: 'アイコンを表示します' },
+		{
+			value: 'infobox-with-icon',
+			label: 'アイコンつき',
+			description: 'アイコンを表示します',
+		},
 		// サイズ (variants.css)
 		{
 			value: 'infobox-compact',
@@ -234,12 +245,36 @@ export const modifiers = {
 			description: '余白が少ないコンパクトスタイル',
 		},
 		// ホバー効果 (utilities.css)
-		{ value: 'infobox-hover', label: 'ホバー(上)', description: 'ホバー時に上に移動します' },
-		{ value: 'infobox-hover-down', label: 'ホバー(下)', description: 'ホバー時に下に移動します' },
-		{ value: 'infobox-hover-scale', label: 'ホバー(拡大)', description: 'ホバー時に拡大します' },
-		{ value: 'infobox-hover-overlay', label: 'ホバー(オーバーレイ)', description: 'ホバー時にオーバーレイを表示します' },
-		{ value: 'infobox-hover-border', label: 'ホバー(枠線強調)', description: 'ホバー時に枠線を強調します (outline/ghost向け)' },
-		{ value: 'infobox-hover-ghost', label: 'ホバー(ゴースト)', description: 'ホバー時に背景を薄く表示します (ghost向け)' },
+		{
+			value: 'infobox-hover',
+			label: 'ホバー(上)',
+			description: 'ホバー時に上に移動します',
+		},
+		{
+			value: 'infobox-hover-down',
+			label: 'ホバー(下)',
+			description: 'ホバー時に下に移動します',
+		},
+		{
+			value: 'infobox-hover-scale',
+			label: 'ホバー(拡大)',
+			description: 'ホバー時に拡大します',
+		},
+		{
+			value: 'infobox-hover-overlay',
+			label: 'ホバー(オーバーレイ)',
+			description: 'ホバー時にオーバーレイを表示します',
+		},
+		{
+			value: 'infobox-hover-border',
+			label: 'ホバー(枠線強調)',
+			description: 'ホバー時に枠線を強調します (outline/ghost向け)',
+		},
+		{
+			value: 'infobox-hover-ghost',
+			label: 'ホバー(ゴースト)',
+			description: 'ホバー時に背景を薄く表示します (ghost向け)',
+		},
 	],
 }
 

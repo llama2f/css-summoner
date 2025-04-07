@@ -9,7 +9,9 @@
 //   のように `skipDecoration: true` を含めてください。
 
 import React from 'react'
-import { createHandlerResult, sampleIcon } from '../common' // 必要に応じてインポート
+// combineClasses: baseClass と他のクラス文字列を結合するヘルパー関数
+// sampleIcon: プレビュー用のサンプルSVGアイコン
+import { createHandlerResult, combineClasses, sampleIcon } from '../common' // 必要に応じてインポート
 
 // --- メタデータ (必須) ---
 // ハンドラー自動登録システムが使用します。
@@ -24,16 +26,24 @@ export const metadata = {
 // props: { classString, selectedModifiers, children, color, variant, baseClass, ...rest } などを受け取ります。
 export function render(props) {
 	const {
-		classString = '',
+		classString = '', // ClassPreview から渡される、baseClass 以外の結合済みクラス
 		children = `${metadata.type} Preview`, // デフォルトのプレビューテキスト
 		// 他に必要な props を分割代入で受け取る
-		baseClass, // baseClass を受け取り、rest から除外 (DOM警告防止)
+		baseClass = `${metadata.type}-base`, // デフォルトのベースクラス (必要に応じて調整)
 		...rest // DOM要素に渡さない props はここで除外する
 	} = props
 
+	// --- 最終的なクラス文字列の生成 ---
+	// baseClass と ClassPreview から渡された classString を結合
+	const finalClassString = combineClasses({
+		baseClass,
+		additional: classString,
+	})
+
 	// --- React要素の生成 ---
 	const reactElement = (
-		<div className={classString} {...rest}>
+		// finalClassString を className に適用
+		<div className={finalClassString} {...rest}>
 			{' '}
 			{/* ★ 適切なHTML要素に変更 */}
 			{children}
@@ -43,7 +53,8 @@ export function render(props) {
 
 	// --- HTML文字列の生成 ---
 	// dangerouslySetInnerHTML を使う場合はサニタイズに注意してください。
-	const htmlString = `<div class="${classString}"> {/* ★ 適切なHTML要素に変更 */}
+	// finalClassString を class 属性に適用
+	const htmlString = `<div class="${finalClassString}"> {/* ★ 適切なHTML要素に変更 */}
     ${children}
   </div>`
 
@@ -58,9 +69,10 @@ export function render(props) {
 // コンポーネントに特定のバリアントがある場合に定義します。
 export const variants = {
 	// variantName: (props) => {
-	//   const { classString, baseClass, ... } = props; // baseClass を受け取り rest から除外
-	//   const reactElement = ...;
-	//   const htmlString = ...;
+	//   const { classString = '', baseClass = `${metadata.type}-base`, ... } = props;
+	//   const finalClassString = combineClasses({ baseClass, additional: classString });
+	//   const reactElement = <div className={finalClassString} ...>...</div>;
+	//   const htmlString = `<div class="${finalClassString}" ...>...</div>`;
 	//   // 必要なら skipDecoration: true を含める
 	//   return createHandlerResult(reactElement, htmlString);
 	// },

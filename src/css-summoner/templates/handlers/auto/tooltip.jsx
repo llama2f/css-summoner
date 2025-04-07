@@ -1,7 +1,7 @@
 // templates/handlers/auto/tooltip.jsx
 
 import React from 'react'
-import { createHandlerResult } from '../common'
+import { createHandlerResult, combineClasses } from '../common' // combineClasses をインポート
 
 // デコレーターの挙動を回避するための特殊コンポーネント
 const SpecialContainer = ({ children, layoutClass = '' }) => {
@@ -26,8 +26,10 @@ export const metadata = {
 // 基本レンダラー（必須） - デモ表示 (tooltipDemoHandler ベース)
 export function render(props) {
 	const {
-		classString = 'tooltip-base', // デフォルトクラス
+		classString = '', // デフォルトは空に
 		selectedModifiers = [],
+		baseClass = 'tooltip-base', // デフォルトで baseClass を設定
+		...restProps
 	} = props
 
 	// モディファイアによる条件分岐
@@ -46,9 +48,15 @@ export function render(props) {
 		tooltipText =
 			'これは長いテキストを含むツールチップです。複数行にわたる内容を表示する場合に使用します。'
 
-	// 通常要素とツールチップ常時表示要素のクラス
-	const hoverClassString = classString // 基本クラスをそのまま使用
-	const alwaysClassString = `${classString} tooltip-always`
+	// 通常要素とツールチップ常時表示要素のクラス (baseClass と classString を結合)
+	const hoverClassString = combineClasses({
+		baseClass,
+		additional: classString,
+	})
+	const alwaysClassString = combineClasses({
+		baseClass,
+		additional: `${classString} tooltip-always`,
+	})
 
 	// 位置に応じたレイアウト
 	let containerLayout = 'flex-col space-y-16' // デフォルトと上表示
@@ -71,14 +79,26 @@ export function render(props) {
 	const reactElement = (
 		<SpecialContainer layoutClass={containerLayout}>
 			<div className='flex flex-col items-center'>
-				<span className={hoverClassString} data-tooltip={tooltipText}>
+				<span
+					className={hoverClassString}
+					data-tooltip={tooltipText}
+					{...restProps}
+				>
+					{' '}
+					{/* restProps を適用 */}
 					ホバーしてください
 				</span>
 				<p className='text-xs text-gray-500 mt-2'>↑ ホバーすると表示</p>
 			</div>
 
 			<div className='flex flex-col items-center'>
-				<span className={alwaysClassString} data-tooltip={tooltipText}>
+				<span
+					className={alwaysClassString}
+					data-tooltip={tooltipText}
+					{...restProps}
+				>
+					{' '}
+					{/* restProps を適用 */}
 					表示例
 				</span>
 				<p className='text-xs text-gray-500 mt-2'>↑ 表示されたツールチップ</p>
@@ -95,8 +115,10 @@ export const variants = {
 	// ホバー表示 (tooltipHandler ベース)
 	hover: (props) => {
 		const {
-			classString = 'tooltip-base', // デフォルトクラス
+			classString = '', // デフォルトは空に
 			selectedModifiers = [],
+			baseClass = 'tooltip-base', // デフォルトで baseClass を設定
+			...restProps
 		} = props
 
 		// モディファイアによる条件分岐
@@ -118,15 +140,27 @@ export const variants = {
 		// 表示テキスト
 		const displayText = isAlways ? 'ツールチップ常時表示' : 'ホバーしてください'
 
+		// 最終的なクラス文字列 (baseClass と classString を結合)
+		const finalClassString = combineClasses({
+			baseClass,
+			additional: classString,
+		})
+
 		// HTML文字列の生成
-		const htmlString = `<span class="${classString}" data-tooltip="${tooltipText}">
+		const htmlString = `<span class="${finalClassString}" data-tooltip="${tooltipText}">
   ${displayText}
 </span>`
 
 		// SpecialContainerを使ってデコレーション回避
 		const reactElement = (
 			<SpecialContainer>
-				<span className={classString} data-tooltip={tooltipText}>
+				<span
+					className={finalClassString}
+					data-tooltip={tooltipText}
+					{...restProps}
+				>
+					{' '}
+					{/* restProps を適用 */}
 					{displayText}
 				</span>
 			</SpecialContainer>

@@ -22,14 +22,52 @@
 		padding: var(--badge-padding-y-lg) var(--badge-padding-x-lg);
 	}
 
-	/* --- アイコンのみ --- */
+	/* ----- アイコン関連 ----- */
 
-	.badge-icon-only {
-		padding: 0.5em; /* Adjust padding for icon-only */
-		/* aspect-ratio: 1 / 1; /* Optional: force square shape if needed */
+	/* アイコン自体のスタイル */
+	.badge-icon {
+		display: inline-block; /* アイコンをインラインブロック要素に */
+		width: 1em; /* フォントサイズ基準の幅 */
+		height: 1em; /* フォントサイズ基準の高さ */
+		vertical-align: middle; /* テキストとの垂直位置調整 */
+		fill: currentColor; /* 親要素の色を継承 */
 	}
-	.badge-rounded-full {
-		border-radius: var(--badge-border-radius-full);
+
+	/* アイコン左 */
+	.badge-icon-left {
+		/* アイコンとテキストの間隔 */
+		gap: 0.4em;
+	}
+	.badge-icon-left .badge-icon:first-child {
+		/* 左アイコンのマージン調整 (必要に応じて) */
+		/* margin-right: 0.4em; */
+	}
+
+	/* アイコン右 */
+	.badge-icon-right {
+		/* アイコンとテキストの間隔 */
+		gap: 0.4em;
+		flex-direction: row-reverse; /* アイコンを右に配置 */
+	}
+	.badge-icon-right .badge-icon:last-child {
+		/* 右アイコンのマージン調整 (必要に応じて) */
+		/* margin-left: 0.4em; */
+	}
+
+	/* アイコンのみ */
+	.badge-icon-only {
+		padding: 0.5em; /* アイコンのみの場合のパディング */
+		/* aspect-ratio: 1 / 1; /* 正方形にする場合 */
+	}
+	/* アイコンのみの場合、テキストは非表示 (ハンドラ側で制御推奨) */
+	/* .badge-icon-only > *:not(.badge-icon) {
+	       display: none;
+	   } */
+
+	/* アイコンのみの円形バッジ */
+	.badge-icon-only.rounded-full {
 		aspect-ratio: 1 / 1;
+		justify-content: center;
+		align-items: center;
 	}
 }
