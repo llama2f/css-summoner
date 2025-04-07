@@ -1,4 +1,4 @@
-# CSS Builder 型定義・コンポーネント生成ツール
+# CSS Summoner 型定義・コンポーネント生成ツール
 
 CSSファイルからコンポーネント情報を抽出し、TypeScript型定義、Astroドキュメントページ、Astroコンポーネントを生成するツールです。また、カスタムクラスビルダーUIも含んでおり、コンポーネントを視覚的に構築することができます。
 
@@ -10,7 +10,7 @@ CSSファイルからコンポーネント情報を抽出し、TypeScript型定�
 # 元のプロジェクトで以下を実行
 cd /path/to/your/project
 git submodule add https://github.com/llama2f/css-summoner.git src/css-summoner
-git commit -m "Add css-summonerr as a submodule"
+git commit -m "Add css-summoner as a submodule"
 ```
 
 ## 機能
@@ -27,6 +27,21 @@ git commit -m "Add css-summonerr as a submodule"
 -   モノクロベースのスタイル設計とカラーセレクタによる柔軟なカラー適用
 -   カスタムカラーピッカーによるカラーカスタマイズ
 -   **選択されたカスタムCSSクラスに対応するルールの表示**
+
+## データフロー
+
+```
+CSSファイル（アノテーション付き） → PostCSSプラグイン → extracted-annotations.json
+                                                          ↓
+設定ファイル（configs/*.js）→ configs/index.js ----------→ classMappings.js
+                                                          ↓
+                                                    各種ジェネレーター → TypeScript型定義/Astroドキュメント/コンポーネント
+                                                          ↓
+                                                カスタムクラスビルダーUI
+                                                          ↓
+                                                プレビュー表示/クラス文字列
+```
+
 ## 使い方
 
 ### スクリプトのセットアップ（package.json）
@@ -41,12 +56,12 @@ git commit -m "Add css-summonerr as a submodule"
 		"astro": "astro",
 		"lint": "eslint .",
 		"check": "astro check",
-		"map": "node src/css-summonerr/scripts/simple-file-mapper.js",
-		"css": "node src/css-summonerr/scripts/index.js",
-		"css-docs": "node src/css-summonerr/scripts/index.js --docs",
-		"css-components": "node src/css-summonerr/scripts/index.js --components",
-		"css-all": "node src/css-summonerr/scripts/index.js --all",
-		"generate:handlers": "node src/css-summonerr/scripts/generate-handler-manifest.js"
+		"map": "node src/css-summoner/scripts/simple-file-mapper.js",
+		"css": "node src/css-summoner/scripts/index.js",
+		"css-docs": "node src/css-summoner/scripts/index.js --docs",
+		"css-components": "node src/css-summoner/scripts/index.js --components",
+		"css-all": "node src/css-summoner/scripts/index.js --all",
+		"generate:handlers": "node src/css-summoner/scripts/generate-handler-manifest.js"
 	}
 }
 ```
@@ -76,14 +91,14 @@ npm run build
 
 ```bash
 # 詳細なログを表示 (--verbose)
-node src/css-summonerr/scripts/index.js --verbose
-node src/css-summonerr/scripts/generate-handler-manifest.js # (このスクリプトは現在 --verbose 非対応)
+node src/css-summoner/scripts/index.js --verbose
+node src/css-summoner/scripts/generate-handler-manifest.js # (このスクリプトは現在 --verbose 非対応)
 
 # 最小限のログのみ表示 (--silent)
-node src/css-summonerr/scripts/index.js --silent
+node src/css-summoner/scripts/index.js --silent
 
 # 出力先を変更（環境変数 - index.js のみ対応）
-CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-summonerr/scripts/index.js
+CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-summoner/scripts/index.js
 ```
 
 ## CSSアノテーションの書き方
@@ -103,33 +118,46 @@ CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-summonerr/scripts
 カスタムクラスビルダーUIで新しいコンポーネントタイプをサポートするには、対応する「ハンドラー」を作成します。
 
 1.  **ハンドラーファイルを作成**:
-    *   `src/css-summonerr/templates/handlers/auto/` ディレクトリ内に、コンポーネントタイプに合わせた名前で `.jsx` ファイルを作成します (例: `myComponent.jsx`)。
+    *   `src/css-summoner/templates/handlers/auto/` ディレクトリ内に、コンポーネントタイプに合わせた名前で `.jsx` ファイルを作成します (例: `myComponent.jsx`)。
 2.  **必須のエクスポートを実装**:
     *   `export const metadata = { type: 'my-component', ... };` を定義します (`type` は一意)。
     *   `render` 関数または `variants` オブジェクトの少なくとも一方を実装し、`{ reactElement, htmlString }` を返すようにします。
     *   `export default { metadata, render, variants, samples };` を定義します。
-    *   詳細は `src/css-summonerr/docs/handler-guide.md` を参照してください。
+    *   詳細は `src/css-summoner/docs/handler-guide.md` を参照してください。
 3.  **(自動登録)**: ファイルを保存すると、次回 `npm run dev` または `npm run build` (内部で `npm run generate:handlers` が実行される) 時に自動的に検出され、`handler-manifest.json` に登録されます。**手動での登録作業は不要です。**
 4.  **UIで確認**: 開発サーバーを再起動またはページをリロードすると、新しいコンポーネントタイプがUIの選択肢に表示されます。
 
+### ハンドラー自動検出の仕組み
+
+`generate-handler-manifest.js` スクリプトは `auto/` ディレクトリ内のファイルを検索し、各ハンドラーのメタデータ情報を取得して `handler-manifest.json` に保存します。このマニフェストファイルはビルド時に自動的に生成・更新され、実行時にハンドラーを動的にロードするために使用されます。
+
+## CSSクラスルール表示機能
+
+カスタムクラスビルダーUIで選択したクラスに対応するCSSルールをリアルタイムで確認できます。この機能は:
+
+1. 選択中のクラスに対応するCSSルールを表示
+2. 複数クラスの場合はすべての関連ルールを表示
+3. クラスがどのように定義されているかを直接確認可能
+4. CSSルール全体をコピーして再利用可能
+
 ## 生成されるファイル
 
--   `src/css-summonerr/configs/handler-manifest.json`: **(New!)** 自動検出されたハンドラーの情報（メタデータ、パス）を格納するJSONファイル。ビルド時に生成/更新されます。
--   `src/css-summonerr/autoClassMappings.js`: CSSアノテーションから抽出されたコンポーネント情報（クラス名、バリアント、説明、**CSSルールテキスト**など）。
--   `src/css-summonerr/classMappings.js`: インポート統合用ファイル。
--   `src/css-summonerr/classMappingsConfig.js`: 手動設定ファイル（サイズ、モディファイア等）。
--   `src/css-summonerr/types/`: 型定義ファイル（`npm run css -- --types` などで生成）。
--   `src/pages/css-summonerr/`: Astroドキュメントページ（`npm run css -- --docs` などで生成）。
--   `src/css-summonerr/dist/components/`: Astroコンポーネント（`npm run css -- --components` などで生成、非推奨の可能性あり）。
+-   `src/css-summoner/configs/handler-manifest.json`: **(New!)** 自動検出されたハンドラーの情報（メタデータ、パス）を格納するJSONファイル。ビルド時に生成/更新されます。
+-   `src/css-summoner/extracted-annotations.json`: CSSアノテーションから抽出されたコンポーネント情報（クラス名、バリアント、説明、CSSルールテキストなど）。
+-   `src/css-summoner/classMappings.js`: インポート統合用ファイル。extracted-annotationsのデータとconfigs/index.jsの設定を統合します。
+-   `src/css-summoner/classMappingsConfig.js`: 手動設定ファイル（サイズ、モディファイア等）。
+-   `src/css-summoner/types/`: 型定義ファイル（`npm run css -- --types` などで生成）。
+-   `src/pages/css-summoner/`: Astroドキュメントページ（`npm run css -- --docs` などで生成）。
+-   `src/css-summoner/dist/components/`: Astroコンポーネント（`npm run css -- --components` などで生成、非推奨の可能性あり）。
 
 ## カスタマイズ
 
 ### コンポーネント固有の設定
 
-`src/css-summonerr/classMappingsConfig.js` ファイルを編集して、各コンポーネントのUIオプション（サイズ、モディファイア、色など）をカスタマイズできます。
+`src/css-summoner/classMappingsConfig.js` ファイルを編集して、各コンポーネントのUIオプション（サイズ、モディファイア、色など）をカスタマイズできます。
 
 ```javascript
-// src/css-summonerr/classMappingsConfig.js の例
+// src/css-summoner/classMappingsConfig.js の例
 export const sizes = {
   button: [ /* ... */ ],
   // ...
@@ -147,14 +175,14 @@ AstroやTailwind CSSに関する設定は、プロジェクトルートの `astr
 
 ### ファイル上書きとバックアップ
 
-ファイル生成時の上書き動作やバックアップ設定は、現在スクリプト (`src/css-summonerr/scripts/index.js` など) 内で直接管理されています。必要に応じてスクリプトを修正してください。
+ファイル生成時の上書き動作やバックアップ設定は、現在スクリプト (`src/css-summoner/scripts/index.js` など) 内で直接管理されています。必要に応じてスクリプトを修正してください。
 
 ## トラブルシューティング
 
 ### ハンドラーがUIに表示されない / プレビューが機能しない
 
 -   `npm run generate:handlers` を実行し、エラーが出ていないか確認します。
--   `src/css-summonerr/configs/handler-manifest.json` を確認し、対象ハンドラーが正しく登録され、`path` が `/src/...` 形式になっているか確認します。
+-   `src/css-summoner/configs/handler-manifest.json` を確認し、対象ハンドラーが正しく登録され、`path` が `/src/...` 形式になっているか確認します。
 -   ハンドラーファイル (`auto/` 内の `.jsx`) の `export const metadata` と `export default` が規約通りか確認します。
 -   `render` または `variants` 関数が `{ reactElement, htmlString }` を返しているか確認します。
 -   ブラウザの開発者ツールでコンソールエラーを確認します (`useAsyncHandler` や `TemplateRenderer` からのエラーが出ていないか)。
@@ -163,6 +191,6 @@ AstroやTailwind CSSに関する設定は、プロジェクトルートの `astr
 
 -   アノテーション形式が正しいか確認します。
 -   アノテーションブロックの直後にクラスセレクタがあるか確認します。
--   CSSファイルが `src/css-summonerr/styles/` 以下の適切な場所にあるか確認します。
+-   CSSファイルが `src/css-summoner/styles/` 以下の適切な場所にあるか確認します。
 
 (カスタムカラー、ファイル上書き、パス関連のトラブルシューティングは省略)

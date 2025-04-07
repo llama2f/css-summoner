@@ -276,6 +276,50 @@ export const modifiers = {
 			description: 'ホバー時に背景を薄く表示します (ghost向け)',
 		},
 	],
+
+	// ツールチップ専用のモディファイア
+	tooltip: [
+		{
+			value: 'tooltip-shadow-sm',
+			label: '影 (小)',
+			description: 'ツールチップに小さい影を付けます',
+		},
+		{
+			value: 'tooltip-shadow',
+			label: '影 (標準)',
+			description: 'ツールチップに標準の影を付けます',
+		},
+		{
+			value: 'tooltip-shadow-lg',
+			label: '影 (大)',
+			description: 'ツールチップに大きい影を付けます',
+		},
+		{
+			value: 'tooltip-no-arrow',
+			label: '矢印なし',
+			description: '矢印なしのツールチップ',
+		},
+		{
+			value: 'tooltip-wide',
+			label: '幅広',
+			description: 'ツールチップの幅を広くします',
+		},
+		{
+			value: 'tooltip-always',
+			label: '常に表示',
+			description: 'ツールチップを常に表示します',
+		},
+		{
+			value: 'tooltip-scale',
+			label: 'アニメーション(拡大)',
+			description: '拡大します',
+		},
+		{
+			value: 'tooltip-fade',
+			label: 'アニメーション(フェード)',
+			description: 'フェードします',
+		},
+	],
 }
 
 export default modifiers

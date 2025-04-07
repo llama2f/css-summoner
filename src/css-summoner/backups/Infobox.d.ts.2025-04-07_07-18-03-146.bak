@@ -1,13 +1,13 @@
 /**
- * Tooltip コンポーネントのプロパティ型定義
- * カテゴリ: display
+ * Infobox コンポーネントのプロパティ型定義
+ * カテゴリ: notification
  */
-export interface TooltipProps {
+export interface InfoboxProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
    * @default "ghost"
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'subtle';
+  variant?: 'ghost' | 'outline' | 'solid' | 'title';
 
   /**
    * コンポーネントのサイズ。

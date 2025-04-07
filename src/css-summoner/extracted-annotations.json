@@ -58,44 +58,20 @@
   "componentVariants": {
     "tooltip": [
       {
-        "value": "tooltip-default",
-        "label": "Default"
+        "value": "tooltip-ghost",
+        "label": "Ghost"
       },
       {
-        "value": "tooltip-error",
-        "label": "Error"
+        "value": "tooltip-outline",
+        "label": "Outline"
       },
       {
-        "value": "tooltip-info",
-        "label": "Info"
+        "value": "tooltip-solid",
+        "label": "Solid"
       },
       {
-        "value": "tooltip-outline-default",
-        "label": "Outline Default"
-      },
-      {
-        "value": "tooltip-outline-error",
-        "label": "Outline Error"
-      },
-      {
-        "value": "tooltip-outline-info",
-        "label": "Outline Info"
-      },
-      {
-        "value": "tooltip-outline-success",
-        "label": "Outline Success"
-      },
-      {
-        "value": "tooltip-outline-warning",
-        "label": "Outline Warning"
-      },
-      {
-        "value": "tooltip-success",
-        "label": "Success"
-      },
-      {
-        "value": "tooltip-warning",
-        "label": "Warning"
+        "value": "tooltip-subtle",
+        "label": "Subtle"
       }
     ],
     "text": [
@@ -516,64 +492,28 @@
     ]
   },
   "classDescriptions": {
-    "tooltip-default": {
+    "tooltip-solid": {
       "component": "tooltip",
-      "variant": "default",
-      "description": "デフォルトスタイルのツールチップ。一般的な追加情報の表示に使用します。",
+      "variant": "solid",
+      "description": "塗りつぶしスタイルのツールチップ。カラーセレクタと組み合わせて使用します。",
       "category": "display"
     },
-    "tooltip-info": {
+    "tooltip-outline": {
       "component": "tooltip",
-      "variant": "info",
-      "description": "情報を示すスタイルのツールチップ。補足情報の表示に使用します。",
+      "variant": "outline",
+      "description": "枠線スタイルのツールチップ。カラーセレクタと組み合わせて使用します。",
       "category": "display"
     },
-    "tooltip-success": {
+    "tooltip-subtle": {
       "component": "tooltip",
-      "variant": "success",
-      "description": "成功を示すスタイルのツールチップ。ポジティブなメッセージの表示に使用します。",
+      "variant": "subtle",
+      "description": "控えめなスタイルのツールチップ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。",
       "category": "display"
     },
-    "tooltip-warning": {
+    "tooltip-ghost": {
       "component": "tooltip",
-      "variant": "warning",
-      "description": "警告を示すスタイルのツールチップ。注意喚起のメッセージに使用します。",
-      "category": "display"
-    },
-    "tooltip-error": {
-      "component": "tooltip",
-      "variant": "error",
-      "description": "エラーを示すスタイルのツールチップ。エラーメッセージの表示に使用します。",
-      "category": "display"
-    },
-    "tooltip-outline-default": {
-      "component": "tooltip",
-      "variant": "outline-default",
-      "description": "枠線スタイルのデフォルトツールチップ。より控えめな表示に使用します。",
-      "category": "display"
-    },
-    "tooltip-outline-info": {
-      "component": "tooltip",
-      "variant": "outline-info",
-      "description": "枠線スタイルの情報ツールチップ。控えめな補足情報の表示に使用します。",
-      "category": "display"
-    },
-    "tooltip-outline-success": {
-      "component": "tooltip",
-      "variant": "outline-success",
-      "description": "枠線スタイルの成功ツールチップ。控えめなポジティブメッセージに使用します。",
-      "category": "display"
-    },
-    "tooltip-outline-warning": {
-      "component": "tooltip",
-      "variant": "outline-warning",
-      "description": "枠線スタイルの警告ツールチップ。控えめな注意喚起に使用します。",
-      "category": "display"
-    },
-    "tooltip-outline-error": {
-      "component": "tooltip",
-      "variant": "outline-error",
-      "description": "枠線スタイルのエラーツールチップ。控えめなエラーメッセージに使用します。",
+      "variant": "ghost",
+      "description": "ゴーストスタイルのツールチップ。背景がなく、ホバー時にテキスト色のみ変化します（ホバー効果は utilities.css で定義推奨）。カラーセレクタと組み合わせて使用します。",
       "category": "display"
     },
     "tooltip-base": {
@@ -1204,54 +1144,24 @@
   "componentExamples": {
     "tooltip": [
       {
-        "variant": "default",
-        "className": "tooltip-default",
-        "example": "<span class=\"tooltip-base tooltip-default\" data-tooltip=\"これは標準のツールチップです\">ホバーしてください</span>"
+        "variant": "solid",
+        "className": "tooltip-solid",
+        "example": "<span class=\"tooltip-base tooltip-solid color-neutral\" data-tooltip=\"これは塗りつぶしツールチップです\">ホバーしてください</span>"
       },
       {
-        "variant": "info",
-        "className": "tooltip-info",
-        "example": "<span class=\"tooltip-base tooltip-info\" data-tooltip=\"情報: これは重要な情報です\">ホバーしてください</span>"
+        "variant": "outline",
+        "className": "tooltip-outline",
+        "example": "<span class=\"tooltip-base tooltip-outline color-neutral\" data-tooltip=\"これはアウトラインツールチップです\">ホバーしてください</span>"
       },
       {
-        "variant": "success",
-        "className": "tooltip-success",
-        "example": "<span class=\"tooltip-base tooltip-success\" data-tooltip=\"成功: タスクが完了しました\">ホバーしてください</span>"
+        "variant": "subtle",
+        "className": "tooltip-subtle",
+        "example": "<span class=\"tooltip-base tooltip-subtle color-primary\" data-tooltip=\"サブトルツールチップ\">ホバーしてください</span>"
       },
       {
-        "variant": "warning",
-        "className": "tooltip-warning",
-        "example": "<span class=\"tooltip-base tooltip-warning\" data-tooltip=\"警告: この操作は取り消せません\">ホバーしてください</span>"
-      },
-      {
-        "variant": "error",
-        "className": "tooltip-error",
-        "example": "<span class=\"tooltip-base tooltip-error\" data-tooltip=\"エラー: 入力が不正です\">ホバーしてください</span>"
-      },
-      {
-        "variant": "outline-default",
-        "className": "tooltip-outline-default",
-        "example": "<span class=\"tooltip-base tooltip-outline-default\" data-tooltip=\"これはアウトラインツールチップです\">ホバーしてください</span>"
-      },
-      {
-        "variant": "outline-info",
-        "className": "tooltip-outline-info",
-        "example": "<span class=\"tooltip-base tooltip-outline-info\" data-tooltip=\"情報: これは重要な情報です\">ホバーしてください</span>"
-      },
-      {
-        "variant": "outline-success",
-        "className": "tooltip-outline-success",
-        "example": "<span class=\"tooltip-base tooltip-outline-success\" data-tooltip=\"成功: タスクが完了しました\">ホバーしてください</span>"
-      },
-      {
-        "variant": "outline-warning",
-        "className": "tooltip-outline-warning",
-        "example": "<span class=\"tooltip-base tooltip-outline-warning\" data-tooltip=\"警告: この操作は取り消せません\">ホバーしてください</span>"
-      },
-      {
-        "variant": "outline-error",
-        "className": "tooltip-outline-error",
-        "example": "<span class=\"tooltip-base tooltip-outline-error\" data-tooltip=\"エラー: 入力が不正です\">ホバーしてください</span>"
+        "variant": "ghost",
+        "className": "tooltip-ghost",
+        "example": "<span class=\"tooltip-base tooltip-ghost color-primary\" data-tooltip=\"ゴーストツールチップ\">ホバーしてください</span>"
       },
       {
         "variant": "base",
@@ -1807,58 +1717,28 @@
     ]
   },
   "classRuleDetails": {
-    "tooltip-default": {
-      "ruleText": ".tooltip-default {\n    &::after {\n      background-color: var(--tooltip-bg);\n      color: var(--tooltip-text);\n      border-color: var(--tooltip-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-bg);\n    }\n  }",
-      "selector": ".tooltip-default",
+    "tooltip-solid": {
+      "ruleText": ".tooltip-solid {\n\t\t&::after {\n\t\t\tbackground-color: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); /* Use component color or fallback */\n\t\t\tcolor: var(\n\t\t\t\t--component-text,\n\t\t\t\tvar(--neutral-light)\n\t\t\t); /* Use component text color or fallback */\n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\ttransparent\n\t\t\t); /* Use component border or transparent */\n\t\t}\n\n\t\t/* Default arrow (top) */\n\t\t&::before {\n\t\t\tborder-top-color: var(--component-color, var(--neutral-dark));\n\t\t}\n\t\t/* Arrow adjustments for other directions (handled in utilities.css) */\n\t\t&.tooltip-bottom::before {\n\t\t\tborder-bottom-color: var(--component-color, var(--neutral-dark));\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-left::before {\n\t\t\tborder-left-color: var(--component-color, var(--neutral-dark));\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-right::before {\n\t\t\tborder-right-color: var(--component-color, var(--neutral-dark));\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t}",
+      "selector": ".tooltip-solid",
       "sourceFile": "tooltip/variants.css"
     },
-    "tooltip-info": {
-      "ruleText": ".tooltip-info {\n    &::after {\n      background-color: var(--tooltip-info-bg);\n      color: var(--tooltip-info-text);\n      border-color: var(--tooltip-info-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-info-bg);\n    }\n  }",
-      "selector": ".tooltip-info",
+    "tooltip-outline": {
+      "ruleText": ".tooltip-outline {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); /* Use component color for text */\n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t); /* Use component border or color */\n\t\t}\n\n\t\t/* Default arrow (top) */\n\t\t&::before {\n\t\t\tborder-top-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t}\n\t\t/* Arrow adjustments for other directions */\n\t\t&.tooltip-bottom::before {\n\t\t\tborder-bottom-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-left::before {\n\t\t\tborder-left-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-right::before {\n\t\t\tborder-right-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t}",
+      "selector": ".tooltip-outline",
       "sourceFile": "tooltip/variants.css"
     },
-    "tooltip-success": {
-      "ruleText": ".tooltip-success {\n    &::after {\n      background-color: var(--tooltip-success-bg);\n      color: var(--tooltip-success-text);\n      border-color: var(--tooltip-success-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-success-bg);\n    }\n  }",
-      "selector": ".tooltip-success",
+    "tooltip-subtle": {
+      "ruleText": ".tooltip-subtle {\n\t\t&::after {\n\t\t\tbackground-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 10%,\n\t\t\t\ttransparent\n\t\t\t); /* Use component color mixed with transparent */\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); /* Use component color for text */\n\t\t\tborder-color: transparent;\n\t\t}\n\n\t\t/* Default arrow (top) */\n\t\t&::before {\n\t\t\tborder-top-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 90%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t}\n\t\t/* Arrow adjustments for other directions */\n\t\t&.tooltip-bottom::before {\n\t\t\tborder-bottom-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 90%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-left::before {\n\t\t\tborder-left-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 90%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-right::before {\n\t\t\tborder-right-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 90%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t}",
+      "selector": ".tooltip-subtle",
       "sourceFile": "tooltip/variants.css"
     },
-    "tooltip-warning": {
-      "ruleText": ".tooltip-warning {\n    &::after {\n      background-color: var(--tooltip-warning-bg);\n      color: var(--tooltip-warning-text);\n      border-color: var(--tooltip-warning-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-warning-bg);\n    }\n  }",
-      "selector": ".tooltip-warning",
-      "sourceFile": "tooltip/variants.css"
-    },
-    "tooltip-error": {
-      "ruleText": ".tooltip-error {\n    &::after {\n      background-color: var(--tooltip-error-bg);\n      color: var(--tooltip-error-text);\n      border-color: var(--tooltip-error-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-error-bg);\n    }\n  }",
-      "selector": ".tooltip-error",
-      "sourceFile": "tooltip/variants.css"
-    },
-    "tooltip-outline-default": {
-      "ruleText": ".tooltip-outline-default {\n    &::after {\n      background-color: transparent;\n      color: var(--tooltip-text);\n      border-color: var(--tooltip-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-border);\n    }\n  }",
-      "selector": ".tooltip-outline-default",
-      "sourceFile": "tooltip/variants.css"
-    },
-    "tooltip-outline-info": {
-      "ruleText": ".tooltip-outline-info {\n    &::after {\n      background-color: transparent;\n      color: var(--tooltip-info-border);\n      border-color: var(--tooltip-info-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-info-border);\n    }\n  }",
-      "selector": ".tooltip-outline-info",
-      "sourceFile": "tooltip/variants.css"
-    },
-    "tooltip-outline-success": {
-      "ruleText": ".tooltip-outline-success {\n    &::after {\n      background-color: transparent;\n      color: var(--tooltip-success-border);\n      border-color: var(--tooltip-success-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-success-border);\n    }\n  }",
-      "selector": ".tooltip-outline-success",
-      "sourceFile": "tooltip/variants.css"
-    },
-    "tooltip-outline-warning": {
-      "ruleText": ".tooltip-outline-warning {\n    &::after {\n      background-color: transparent;\n      color: var(--tooltip-warning-border);\n      border-color: var(--tooltip-warning-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-warning-border);\n    }\n  }",
-      "selector": ".tooltip-outline-warning",
-      "sourceFile": "tooltip/variants.css"
-    },
-    "tooltip-outline-error": {
-      "ruleText": ".tooltip-outline-error {\n    &::after {\n      background-color: transparent;\n      color: var(--tooltip-error-border);\n      border-color: var(--tooltip-error-border);\n    }\n    \n    &::before {\n      border-top-color: var(--tooltip-error-border);\n    }\n  }",
-      "selector": ".tooltip-outline-error",
+    "tooltip-ghost": {
+      "ruleText": ".tooltip-ghost {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); /* Use component color for text */\n\t\t\tborder-color: transparent;\n\t\t\t/* ホバー時のスタイルは utilities.css で .tooltip-hover-ghost などで定義することを推奨 */\n\t\t}\n\n\t\t/* Ghost usually doesn't have an arrow, but if needed, make it transparent or match text */\n\t\t&::before {\n\t\t\tborder-top-color: transparent; /* Or match text color if design requires */\n\t\t}\n\t\t/* Arrow adjustments for other directions */\n\t\t&.tooltip-bottom::before {\n\t\t\tborder-bottom-color: transparent;\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-left::before {\n\t\t\tborder-left-color: transparent;\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-right::before {\n\t\t\tborder-right-color: transparent;\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t/* Consider adding .tooltip-no-arrow modifier for ghost style */\n\t}",
+      "selector": ".tooltip-ghost",
       "sourceFile": "tooltip/variants.css"
     },
     "tooltip-base": {
-      "ruleText": ".tooltip-base {\n\t\t@apply relative inline-flex cursor-pointer;\n\n\t\t/* ツールチップ本体 - data-tooltip属性の内容を表示 */\n\t\t&::after {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; /* invisible */\n\t\t\topacity: 0;\n\t\t\twhite-space: normal;\n\t\t\toverflow-wrap: break-word; /* break-words */\n\t\t\ttext-align: center;\n\t\t\tcontent: attr(data-tooltip);\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\tmax-width: var(--tooltip-max-width);\n\t\t\tmin-width: var(--tooltip-min-width);\n\t\t\tpadding: var(--tooltip-padding-y) var(--tooltip-padding-x);\n\t\t\tfont-family: var(--tooltip-font-family);\n\t\t\tfont-size: 0.875rem; /* text-sm */\n\t\t\tfont-weight: 400; /* normal */\n\t\t\tline-height: 1.25;\n\t\t\tborder-radius: var(--tooltip-border-radius);\n\t\t\tborder-width: var(--tooltip-border-width);\n\t\t\tborder-style: solid;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t/* 三角形の矢印 */\n\t\t&::before {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; /* invisible */\n\t\t\topacity: 0;\n\t\t\tcontent: '';\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\twidth: 0;\n\t\t\theight: 0;\n\t\t\tborder: var(--tooltip-arrow-size) solid transparent;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t/* ホバー時の表示 */\n\t\t&:hover::after,\n\t\t&:hover::before,\n\t\t&:focus::after,\n\t\t&:focus::before {\n\t\t\tvisibility: visible;\n\t\t\topacity: 1;\n\t\t}\n\t}",
+      "ruleText": ".tooltip-base {\n\t\t@apply relative inline-flex cursor-pointer;\n\n\t\t/* ツールチップ本体 - data-tooltip属性の内容を表示 */\n\t\t&::after {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; /* invisible */\n\t\t\topacity: 0;\n\t\t\twhite-space: normal;\n\t\t\toverflow-wrap: break-word; /* break-words */\n\t\t\ttext-align: center;\n\t\t\tcontent: attr(data-tooltip);\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\tmax-width: var(--tooltip-max-width);\n\t\t\tmin-width: var(--tooltip-min-width);\n\t\t\tpadding: var(--tooltip-padding-y) var(--tooltip-padding-x);\n\t\t\tfont-family: var(--tooltip-font-family);\n\t\t\tfont-size: 0.875rem; /* text-sm */\n\t\t\tfont-weight: 400; /* font-normal */\n\t\t\tline-height: 1.25;\n\t\t\tborder-radius: var(--tooltip-border-radius);\n\t\t\tborder-width: var(--tooltip-border-width);\n\t\t\tborder-style: solid;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t/* 三角形の矢印 */\n\t\t&::before {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; /* invisible */\n\t\t\topacity: 0;\n\t\t\tcontent: '';\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\twidth: 0;\n\t\t\theight: 0;\n\t\t\tborder: var(--tooltip-arrow-size) solid transparent;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t/* ホバー時の表示 */\n\t\t&:hover::after,\n\t\t&:hover::before,\n\t\t&:focus::after,\n\t\t&:focus::before {\n\t\t\tvisibility: visible;\n\t\t\topacity: 1;\n\t\t}\n\t}",
       "selector": ".tooltip-base",
       "sourceFile": "tooltip/base.css"
     },
@@ -2380,7 +2260,7 @@
   },
   "meta": {
     "totalFiles": 29,
-    "totalClasses": 117,
+    "totalClasses": 111,
     "errors": [
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
@@ -2427,16 +2307,10 @@
   },
   "originalComponentTypes": {
     "tooltip": [
-      "tooltip-default",
-      "tooltip-info",
-      "tooltip-success",
-      "tooltip-warning",
-      "tooltip-error",
-      "tooltip-outline-default",
-      "tooltip-outline-info",
-      "tooltip-outline-success",
-      "tooltip-outline-warning",
-      "tooltip-outline-error",
+      "tooltip-solid",
+      "tooltip-outline",
+      "tooltip-subtle",
+      "tooltip-ghost",
       "tooltip-base"
     ],
     "text": [
@@ -2563,81 +2437,33 @@
     "tooltip": [
       {
         "component": "tooltip",
-        "variant": "default",
-        "className": "tooltip-default",
-        "description": "デフォルトスタイルのツールチップ。一般的な追加情報の表示に使用します。",
+        "variant": "solid",
+        "className": "tooltip-solid",
+        "description": "塗りつぶしスタイルのツールチップ。カラーセレクタと組み合わせて使用します。",
         "category": "display",
         "sourceFile": "tooltip/variants.css"
       },
       {
         "component": "tooltip",
-        "variant": "info",
-        "className": "tooltip-info",
-        "description": "情報を示すスタイルのツールチップ。補足情報の表示に使用します。",
+        "variant": "outline",
+        "className": "tooltip-outline",
+        "description": "枠線スタイルのツールチップ。カラーセレクタと組み合わせて使用します。",
         "category": "display",
         "sourceFile": "tooltip/variants.css"
       },
       {
         "component": "tooltip",
-        "variant": "success",
-        "className": "tooltip-success",
-        "description": "成功を示すスタイルのツールチップ。ポジティブなメッセージの表示に使用します。",
+        "variant": "subtle",
+        "className": "tooltip-subtle",
+        "description": "控えめなスタイルのツールチップ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。",
         "category": "display",
         "sourceFile": "tooltip/variants.css"
       },
       {
         "component": "tooltip",
-        "variant": "warning",
-        "className": "tooltip-warning",
-        "description": "警告を示すスタイルのツールチップ。注意喚起のメッセージに使用します。",
-        "category": "display",
-        "sourceFile": "tooltip/variants.css"
-      },
-      {
-        "component": "tooltip",
-        "variant": "error",
-        "className": "tooltip-error",
-        "description": "エラーを示すスタイルのツールチップ。エラーメッセージの表示に使用します。",
-        "category": "display",
-        "sourceFile": "tooltip/variants.css"
-      },
-      {
-        "component": "tooltip",
-        "variant": "outline-default",
-        "className": "tooltip-outline-default",
-        "description": "枠線スタイルのデフォルトツールチップ。より控えめな表示に使用します。",
-        "category": "display",
-        "sourceFile": "tooltip/variants.css"
-      },
-      {
-        "component": "tooltip",
-        "variant": "outline-info",
-        "className": "tooltip-outline-info",
-        "description": "枠線スタイルの情報ツールチップ。控えめな補足情報の表示に使用します。",
-        "category": "display",
-        "sourceFile": "tooltip/variants.css"
-      },
-      {
-        "component": "tooltip",
-        "variant": "outline-success",
-        "className": "tooltip-outline-success",
-        "description": "枠線スタイルの成功ツールチップ。控えめなポジティブメッセージに使用します。",
-        "category": "display",
-        "sourceFile": "tooltip/variants.css"
-      },
-      {
-        "component": "tooltip",
-        "variant": "outline-warning",
-        "className": "tooltip-outline-warning",
-        "description": "枠線スタイルの警告ツールチップ。控えめな注意喚起に使用します。",
-        "category": "display",
-        "sourceFile": "tooltip/variants.css"
-      },
-      {
-        "component": "tooltip",
-        "variant": "outline-error",
-        "className": "tooltip-outline-error",
-        "description": "枠線スタイルのエラーツールチップ。控えめなエラーメッセージに使用します。",
+        "variant": "ghost",
+        "className": "tooltip-ghost",
+        "description": "ゴーストスタイルのツールチップ。背景がなく、ホバー時にテキスト色のみ変化します（ホバー効果は utilities.css で定義推奨）。カラーセレクタと組み合わせて使用します。",
         "category": "display",
         "sourceFile": "tooltip/variants.css"
       },

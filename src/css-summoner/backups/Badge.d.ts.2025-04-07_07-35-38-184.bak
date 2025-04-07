@@ -1,13 +1,13 @@
 /**
- * Tooltip コンポーネントのプロパティ型定義
+ * Badge コンポーネントのプロパティ型定義
  * カテゴリ: display
  */
-export interface TooltipProps {
+export interface BadgeProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "ghost"
+   * @default "outline"
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'subtle';
+  variant?: 'outline' | 'solid' | 'subtle';
 
   /**
    * コンポーネントのサイズ。

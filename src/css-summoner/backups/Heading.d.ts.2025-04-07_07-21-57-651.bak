@@ -1,13 +1,13 @@
 /**
- * Tooltip コンポーネントのプロパティ型定義
- * カテゴリ: display
+ * Heading コンポーネントのプロパティ型定義
+ * カテゴリ: typography
  */
-export interface TooltipProps {
+export interface HeadingProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "ghost"
+   * @default "accent-border"
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'subtle';
+  variant?: 'accent-border' | 'accent-gradient' | 'accent-stripe' | 'casual-badge' | 'casual-dotted' | 'casual-handwritten' | 'casual-highlight' | 'casual-wavy' | 'formal-boxed' | 'formal-double' | 'formal-full' | 'formal-primary' | 'formal-underline' | 'japanesque-brush' | 'japanesque-vertical' | 'modern-minimal' | 'modern-oversized' | 'modern-split' | 'technical-bracket' | 'technical-code' | 'technical-comment' | 'technical-tag';
 
   /**
    * コンポーネントのサイズ。

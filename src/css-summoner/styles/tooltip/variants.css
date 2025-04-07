@@ -1,195 +1,142 @@
 @layer components {
-  /* ----- カラーバリエーション ----- */
-  
-  /* 
+	/* ----- 見た目ベースのバリエーション ----- */
+
+	/*
    * @component: tooltip
-   * @variant: default
-   * @description: デフォルトスタイルのツールチップ。一般的な追加情報の表示に使用します。
+   * @variant: solid
+   * @description: 塗りつぶしスタイルのツールチップ。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="tooltip-base tooltip-default" data-tooltip="これは標準のツールチップです">ホバーしてください</span>
+   * @example: <span class="tooltip-base tooltip-solid color-neutral" data-tooltip="これは塗りつぶしツールチップです">ホバーしてください</span>
    */
-  .tooltip-default {
-    &::after {
-      background-color: var(--tooltip-bg);
-      color: var(--tooltip-text);
-      border-color: var(--tooltip-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-bg);
-    }
-  }
-  
-  /* 
+	.tooltip-solid {
+		&::after {
+			background-color: var(
+				--component-color,
+				var(--neutral-dark)
+			); /* Use component color or fallback */
+			color: var(
+				--component-text,
+				var(--neutral-light)
+			); /* Use component text color or fallback */
+			border-color: var(
+				--component-border,
+				transparent
+			); /* Use component border or transparent */
+		}
+
+		/* Default arrow (top) */
+		&::before {
+			border-top-color: var(--component-color, var(--neutral-dark));
+		}
+		/* 他の方向の色指定は削除 */
+	}
+
+	/*
    * @component: tooltip
-   * @variant: info
-   * @description: 情報を示すスタイルのツールチップ。補足情報の表示に使用します。
+   * @variant: outline
+   * @description: 枠線スタイルのツールチップ。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="tooltip-base tooltip-info" data-tooltip="情報: これは重要な情報です">ホバーしてください</span>
+   * @example: <span class="tooltip-base tooltip-outline color-neutral" data-tooltip="これはアウトラインツールチップです">ホバーしてください</span>
    */
-  .tooltip-info {
-    &::after {
-      background-color: var(--tooltip-info-bg);
-      color: var(--tooltip-info-text);
-      border-color: var(--tooltip-info-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-info-bg);
-    }
-  }
-  
-  /* 
-   * @component: tooltip
-   * @variant: success
-   * @description: 成功を示すスタイルのツールチップ。ポジティブなメッセージの表示に使用します。
-   * @category: display
-   * @example: <span class="tooltip-base tooltip-success" data-tooltip="成功: タスクが完了しました">ホバーしてください</span>
-   */
-  .tooltip-success {
-    &::after {
-      background-color: var(--tooltip-success-bg);
-      color: var(--tooltip-success-text);
-      border-color: var(--tooltip-success-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-success-bg);
-    }
-  }
-  
-  /* 
-   * @component: tooltip
-   * @variant: warning
-   * @description: 警告を示すスタイルのツールチップ。注意喚起のメッセージに使用します。
-   * @category: display
-   * @example: <span class="tooltip-base tooltip-warning" data-tooltip="警告: この操作は取り消せません">ホバーしてください</span>
-   */
-  .tooltip-warning {
-    &::after {
-      background-color: var(--tooltip-warning-bg);
-      color: var(--tooltip-warning-text);
-      border-color: var(--tooltip-warning-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-warning-bg);
-    }
-  }
-  
-  /* 
-   * @component: tooltip
-   * @variant: error
-   * @description: エラーを示すスタイルのツールチップ。エラーメッセージの表示に使用します。
-   * @category: display
-   * @example: <span class="tooltip-base tooltip-error" data-tooltip="エラー: 入力が不正です">ホバーしてください</span>
-   */
-  .tooltip-error {
-    &::after {
-      background-color: var(--tooltip-error-bg);
-      color: var(--tooltip-error-text);
-      border-color: var(--tooltip-error-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-error-bg);
-    }
-  }
-  
-  /* ----- アウトラインバリエーション ----- */
-  
-  /* 
-   * @component: tooltip
-   * @variant: outline-default
-   * @description: 枠線スタイルのデフォルトツールチップ。より控えめな表示に使用します。
-   * @category: display
-   * @example: <span class="tooltip-base tooltip-outline-default" data-tooltip="これはアウトラインツールチップです">ホバーしてください</span>
-   */
-  .tooltip-outline-default {
-    &::after {
-      background-color: transparent;
-      color: var(--tooltip-text);
-      border-color: var(--tooltip-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-border);
-    }
-  }
-  
-  /* 
-   * @component: tooltip
-   * @variant: outline-info
-   * @description: 枠線スタイルの情報ツールチップ。控えめな補足情報の表示に使用します。
-   * @category: display
-   * @example: <span class="tooltip-base tooltip-outline-info" data-tooltip="情報: これは重要な情報です">ホバーしてください</span>
-   */
-  .tooltip-outline-info {
-    &::after {
-      background-color: transparent;
-      color: var(--tooltip-info-border);
-      border-color: var(--tooltip-info-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-info-border);
-    }
-  }
-  
-  /* 
-   * @component: tooltip
-   * @variant: outline-success
-   * @description: 枠線スタイルの成功ツールチップ。控えめなポジティブメッセージに使用します。
-   * @category: display
-   * @example: <span class="tooltip-base tooltip-outline-success" data-tooltip="成功: タスクが完了しました">ホバーしてください</span>
-   */
-  .tooltip-outline-success {
-    &::after {
-      background-color: transparent;
-      color: var(--tooltip-success-border);
-      border-color: var(--tooltip-success-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-success-border);
-    }
-  }
-  
-  /* 
-   * @component: tooltip
-   * @variant: outline-warning
-   * @description: 枠線スタイルの警告ツールチップ。控えめな注意喚起に使用します。
-   * @category: display
-   * @example: <span class="tooltip-base tooltip-outline-warning" data-tooltip="警告: この操作は取り消せません">ホバーしてください</span>
-   */
-  .tooltip-outline-warning {
-    &::after {
-      background-color: transparent;
-      color: var(--tooltip-warning-border);
-      border-color: var(--tooltip-warning-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-warning-border);
-    }
-  }
-  
-  /* 
-   * @component: tooltip
-   * @variant: outline-error
-   * @description: 枠線スタイルのエラーツールチップ。控えめなエラーメッセージに使用します。
-   * @category: display
-   * @example: <span class="tooltip-base tooltip-outline-error" data-tooltip="エラー: 入力が不正です">ホバーしてください</span>
-   */
-  .tooltip-outline-error {
-    &::after {
-      background-color: transparent;
-      color: var(--tooltip-error-border);
-      border-color: var(--tooltip-error-border);
-    }
-    
-    &::before {
-      border-top-color: var(--tooltip-error-border);
-    }
-  }
+	.tooltip-outline {
+		&::after {
+			background-color: transparent;
+			color: var(
+				--component-color,
+				var(--neutral-dark)
+			); /* Use component color for text */
+			border-color: var(
+				--component-border,
+				var(--component-color, var(--neutral-dark))
+			); /* Use component border or color */
+		}
+
+		/* Default arrow (top) */
+		&::before {
+			border-top-color: var(
+				--component-border,
+				var(--component-color, var(--neutral-dark))
+			);
+		}
+		/* Arrow adjustments for other directions */
+		&.tooltip-bottom::before {
+			border-bottom-color: var(
+				--component-border,
+				var(--component-color, var(--neutral-dark))
+			);
+			border-top-color: transparent; /* !important を削除 */
+		}
+		&.tooltip-left::before {
+			border-left-color: var(
+				--component-border,
+				var(--component-color, var(--neutral-dark))
+			);
+			border-top-color: transparent; /* !important を削除 */
+		}
+		&.tooltip-right::before {
+			border-right-color: var(
+				--component-border,
+				var(--component-color, var(--neutral-dark))
+			);
+			border-top-color: transparent; /* !important を削除 */
+		}
+	}
+
+	/*
+	  * @component: tooltip
+	  * @variant: subtle
+	  * @description: 控えめなスタイルのツールチップ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。
+	  * @category: display
+	  * @example: <span class="tooltip-base tooltip-subtle color-primary" data-tooltip="サブトルツールチップ">ホバーしてください</span>
+	  */
+	.tooltip-subtle {
+		&::after {
+			background-color: color-mix(
+				in srgb,
+				var(--component-color, var(--neutral)) 10%,
+				transparent
+			); /* Use component color mixed with transparent */
+			color: var(
+				--component-color,
+				var(--neutral-dark)
+			); /* Use component color for text */
+			border-color: transparent;
+		}
+
+		/* Default arrow (top) */
+		&::before {
+			border-top-color: color-mix(
+				in srgb,
+				var(--component-color, var(--neutral)) 90%,
+				transparent
+			);
+		}
+		/* 他の方向の色指定は削除 */
+	}
+
+	/*
+	  * @component: tooltip
+	  * @variant: ghost
+	  * @description: ゴーストスタイルのツールチップ。背景がなく、ホバー時にテキスト色のみ変化します（ホバー効果は utilities.css で定義推奨）。カラーセレクタと組み合わせて使用します。
+	  * @category: display
+	  * @example: <span class="tooltip-base tooltip-ghost color-primary" data-tooltip="ゴーストツールチップ">ホバーしてください</span>
+	  */
+	.tooltip-ghost {
+		&::after {
+			background-color: transparent;
+			color: var(
+				--component-color,
+				var(--neutral-dark)
+			); /* Use component color for text */
+			border-color: transparent;
+			/* ホバー時のスタイルは utilities.css で .tooltip-hover-ghost などで定義することを推奨 */
+		}
+
+		/* Ghost usually doesn't have an arrow, but if needed, make it transparent or match text */
+		&::before {
+			border-top-color: transparent; /* Or match text color if design requires */
+		}
+		/* 他の方向の色指定は削除 */
+		/* Consider adding .tooltip-no-arrow modifier for ghost style */
+	}
 }

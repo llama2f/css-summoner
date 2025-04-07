@@ -1,196 +1,208 @@
 @layer utilities {
-  /* ----- ツールチップの位置バリエーション ----- */
-  
-  /* 下向きツールチップ */
-  .tooltip-bottom {
-    &::after {
-      top: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
-      bottom: auto;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    &::before {
-      top: calc(100% + var(--tooltip-distance));
-      bottom: auto;
-      left: 50%;
-      transform: translateX(-50%);
-      border-top-width: 0;
-      border-bottom-color: inherit;
-    }
-  }
-  
-  /* 左向きツールチップ */
-  .tooltip-left {
-    &::after {
-      top: 50%;
-      right: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
-      bottom: auto;
-      left: auto;
-      transform: translateY(-50%);
-    }
-    
-    &::before {
-      top: 50%;
-      right: calc(100% + var(--tooltip-distance));
-      bottom: auto;
-      left: auto;
-      transform: translateY(-50%);
-      border-right-width: 0;
-      border-left-color: inherit;
-    }
-  }
-  
-  /* 右向きツールチップ */
-  .tooltip-right {
-    &::after {
-      top: 50%;
-      left: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
-      bottom: auto;
-      right: auto;
-      transform: translateY(-50%);
-    }
-    
-    &::before {
-      top: 50%;
-      left: calc(100% + var(--tooltip-distance));
-      bottom: auto;
-      right: auto;
-      transform: translateY(-50%);
-      border-left-width: 0;
-      border-right-color: inherit;
-    }
-  }
-  
-  /* ----- サイズバリエーション ----- */
-  
-  .tooltip-sm {
-    &::after {
-      --tooltip-padding-x: 0.5rem;
-      --tooltip-padding-y: 0.25rem;
-      font-size: 0.75rem; /* text-xs */
-      min-width: 4rem;
-    }
-    
-    &::before {
-      --tooltip-arrow-size: 0.375rem;
-    }
-  }
-  
-  .tooltip-lg {
-    &::after {
-      --tooltip-padding-x: 1rem;
-      --tooltip-padding-y: 0.625rem;
-      font-size: 1rem; /* text-base */
-      min-width: 8rem;
-    }
-    
-    &::before {
-      --tooltip-arrow-size: 0.625rem;
-    }
-  }
-  
-  /* ----- 表示効果 ----- */
-  
-  /* フェードインアニメーション（デフォルト） */
-  .tooltip-fade {
-    &::after,
-    &::before {
-      transition-property: opacity, visibility;
-    }
-  }
-  
-  /* スケールアニメーション */
-  .tooltip-scale {
-    &::after {
-      transform-origin: center bottom;
-      transform: translateX(-50%) scale(0.8);
-      transition-property: opacity, visibility, transform;
-    }
-    
-    &:hover::after {
-      transform: translateX(-50%) scale(1);
-    }
-    
-    &.tooltip-bottom::after {
-      transform-origin: center top;
-    }
-    
-    &.tooltip-left::after {
-      transform-origin: right center;
-      transform: translateY(-50%) scale(0.8);
-    }
-    
-    &.tooltip-left:hover::after {
-      transform: translateY(-50%) scale(1);
-    }
-    
-    &.tooltip-right::after {
-      transform-origin: left center;
-      transform: translateY(-50%) scale(0.8);
-    }
-    
-    &.tooltip-right:hover::after {
-      transform: translateY(-50%) scale(1);
-    }
-  }
-  
-  /* 常時表示 */
-  .tooltip-always {
-    &::after,
-    &::before {
-      @apply visible opacity-100;
-    }
-  }
-  
-  /* 長いコンテンツ用 */
-  .tooltip-wide {
-    &::after {
-      min-width: var(--tooltip-max-width);
-      text-align: left;
-      white-space: normal;
-    }
-  }
-  
-  /* 矢印なし */
-  .tooltip-no-arrow {
-    &::before {
-      @apply hidden;
-    }
-    
-    &::after {
-      bottom: calc(100% + var(--tooltip-distance));
-    }
-    
-    &.tooltip-bottom::after {
-      top: calc(100% + var(--tooltip-distance));
-      bottom: auto;
-    }
-    
-    &.tooltip-left::after {
-      right: calc(100% + var(--tooltip-distance));
-    }
-    
-    &.tooltip-right::after {
-      left: calc(100% + var(--tooltip-distance));
-    }
-  }
+	/* ----- ツールチップの位置バリエーション ----- */
+
+	/* 下向きツールチップ */
+	.tooltip-bottom {
+		&::after {
+			top: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
+			bottom: auto;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		&::before {
+			top: calc(100% + var(--tooltip-distance));
+			bottom: auto;
+			left: 50%;
+			transform: translateX(-50%);
+			border-top-width: 0;
+			/* border-bottom-color: inherit; */ /* variants.css で !important 指定するため削除 */
+		}
+	}
+
+	/* 左向きツールチップ */
+	.tooltip-left {
+		&::after {
+			top: 50%;
+			right: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
+			bottom: auto;
+			left: auto;
+			transform: translateY(-50%);
+		}
+
+		&::before {
+			top: 50%;
+			right: calc(100% + var(--tooltip-distance));
+			bottom: auto;
+			left: auto;
+			transform: translateY(-50%);
+			border-right-width: 0;
+			/* border-left-color: inherit; */ /* variants.css で !important 指定するため削除 */
+		}
+	}
+
+	/* 右向きツールチップ */
+	.tooltip-right {
+		&::after {
+			top: 50%;
+			left: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
+			bottom: auto;
+			right: auto;
+			transform: translateY(-50%);
+		}
+
+		&::before {
+			top: 50%;
+			left: calc(100% + var(--tooltip-distance));
+			bottom: auto;
+			right: auto;
+			transform: translateY(-50%);
+			border-left-width: 0;
+			/* border-right-color: inherit; */ /* variants.css で !important 指定するため削除 */
+		}
+	}
+
+	/* ----- サイズバリエーション ----- */
+
+	.tooltip-sm {
+		&::after {
+			--tooltip-padding-x: 0.5rem; /* px-2 */
+			--tooltip-padding-y: 0.25rem; /* py-1 */
+			font-size: 0.75rem; /* text-xs */
+		}
+	}
+
+	.tooltip-lg {
+		&::after {
+			--tooltip-padding-x: 1rem; /* px-4 */
+			--tooltip-padding-y: 0.625rem; /* py-2.5 (approx) */
+			font-size: 1rem; /* text-base */
+			min-width: 8rem;
+		}
+
+		&::before {
+			--tooltip-arrow-size: 0.625rem;
+		}
+	}
+
+	/* ----- 表示効果 ----- */
+
+	/* フェードインアニメーション（デフォルト） */
+	.tooltip-fade {
+		&::after,
+		&::before {
+			transition-property: opacity, visibility;
+		}
+	}
+
+	/* スケールアニメーション */
+	.tooltip-scale {
+		&::after {
+			transform-origin: center bottom;
+			transform: translateX(-50%) scale(0.8);
+			transition-property: opacity, visibility, transform;
+		}
+
+		&:hover::after {
+			transform: translateX(-50%) scale(1);
+		}
+
+		&.tooltip-bottom::after {
+			transform-origin: center top;
+		}
+
+		&.tooltip-left::after {
+			transform-origin: right center;
+			transform: translateY(-50%) scale(0.8);
+		}
+
+		&.tooltip-left:hover::after {
+			transform: translateY(-50%) scale(1);
+		}
+
+		&.tooltip-right::after {
+			transform-origin: left center;
+			transform: translateY(-50%) scale(0.8);
+		}
+
+		&.tooltip-right:hover::after {
+			transform: translateY(-50%) scale(1);
+		}
+	}
+
+	/* 常時表示 */
+	.tooltip-always {
+		&::after,
+		&::before {
+			@apply visible opacity-100;
+		}
+	}
+
+	/* 長いコンテンツ用 */
+	.tooltip-wide {
+		&::after {
+			min-width: var(--tooltip-max-width);
+			text-align: left;
+			white-space: normal;
+		}
+	}
+
+	/* 矢印なし */
+	.tooltip-no-arrow {
+		&::before {
+			@apply hidden;
+		}
+
+		&::after {
+			bottom: calc(100% + var(--tooltip-distance));
+		}
+
+		&.tooltip-bottom::after {
+			top: calc(100% + var(--tooltip-distance));
+			bottom: auto;
+		}
+
+		&.tooltip-left::after {
+			right: calc(100% + var(--tooltip-distance));
+		}
+
+		&.tooltip-right::after {
+			left: calc(100% + var(--tooltip-distance));
+		}
+	}
+
+	/* ----- 影の適用 (Tooltip 専用クラス) ----- */
+	.tooltip-base.tooltip-shadow-sm::after {
+		box-shadow: var(--tooltip-shadow-sm);
+	}
+	.tooltip-base.tooltip-shadow::after {
+		box-shadow: var(--tooltip-shadow);
+	}
+	/* .tooltip-base.tooltip-shadow-md::after { box-shadow: var(--tw-shadow-md); } */ /* 必要なら追加 */
+	.tooltip-base.tooltip-shadow-lg::after {
+		box-shadow: var(--tooltip-shadow-lg);
+	}
 }
 
 /* 印刷時のスタイル調整 */
 @media print {
-  /* 印刷時はツールチップを常に表示 */
-  .tooltip-base {
-    &::after {
-      @apply static visible opacity-100 border;
-      position: static !important;
-      transform: none !important;
-      margin-left: 0.5rem;
-      display: inline-block;
-    }
-    
-    &::before {
-      @apply hidden;
-    }
-  }
+	/* 印刷時はツールチップを常に表示 */
+	.tooltip-base {
+		&::after {
+			/* @apply static visible opacity-100 border; */ /* @apply を削除 */
+			position: static !important;
+			visibility: visible;
+			opacity: 1;
+			border-width: 1px; /* border */
+			transform: none !important;
+			margin-left: 0.5rem;
+			display: inline-block;
+			box-shadow: none; /* 印刷時は影を消す */
+		}
+
+		&::before {
+			/* @apply hidden; */ /* @apply を削除 */
+			display: none;
+		}
+	}
 }

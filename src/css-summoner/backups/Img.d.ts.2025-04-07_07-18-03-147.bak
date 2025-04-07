@@ -1,13 +1,13 @@
 /**
- * Tooltip コンポーネントのプロパティ型定義
- * カテゴリ: display
+ * Img コンポーネントのプロパティ型定義
+ * カテゴリ: media
  */
-export interface TooltipProps {
+export interface ImgProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "ghost"
+   * @default "aspect-portrait"
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'subtle';
+  variant?: 'aspect-portrait' | 'aspect-square' | 'aspect-video' | 'border' | 'border-accent' | 'border-double' | 'border-primary' | 'border-secondary' | 'brightness-high' | 'brightness-low' | 'container' | 'caption-hover' | 'caption-overlay' | 'circle' | 'container' | 'contrast-high' | 'float-left' | 'float-right' | 'grayscale' | 'grayscale-hover' | 'grid' | 'rounded' | 'rounded-lg' | 'rounded-sm' | 'sepia' | 'shadow' | 'shadow-lg' | 'shadow-sm' | 'w-1' | 'w-1' | 'w-1' | 'w-3' | 'w-full' | 'zoom-hover';
 
   /**
    * コンポーネントのサイズ。

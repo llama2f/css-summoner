@@ -1,0 +1,52 @@
+---
+/**
+	* Form コンポーネント ドキュメント
+	*
+	* このファイルはスクリプトによって自動生成されました。
+	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+	* ソース: form/variants.css
+	*/
+import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
+import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro';
+import ExamplePreview from '@/css-summoner/components/astro/ExamplePreview.astro'; // 使用例コンポーネントをインポート
+
+const pageTitle = "Form コンポーネント";
+const pageDesc = "Form コンポーネントのスタイルバリエーションと使用例。";
+
+// --- フロントマターに変数を渡す ---
+const baseClassName = ""; // baseClassName を文字列として渡す
+const variantsData = [{"variant":"checkbox","className":"form-checkbox","description":"カスタムスタイルのチェックボックス。オン/オフの選択に使用します。","previewHtml":"<input type=\"checkbox\" class=\"form-checkbox color-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>"},{"variant":"feedback","className":"form-feedback","description":"フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。","previewHtml":"<div class=\"form-feedback color-success\">入力内容は有効です</div>\n<div class=\"form-feedback color-error\">必須項目です</div>"},{"variant":"input","className":"form-input","description":"テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。","previewHtml":"<input type=\"text\" class=\"form-input color-neutral\" placeholder=\"入力してください\">"},{"variant":"radio","className":"form-radio","description":"カスタムスタイルのラジオボタン。複数の選択肢から1つを選ぶ場合に使用します。","previewHtml":"<input type=\"radio\" class=\"form-radio color-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>"},{"variant":"search","className":"form-search","description":"検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。","previewHtml":"<input type=\"search\" class=\"form-input form-search color-neutral\" placeholder=\"検索...\">"},{"variant":"select","className":"form-select","description":"ドロップダウン選択フィールド。オプションから1つを選ぶ場合に使用します。","previewHtml":"<select class=\"form-select color-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>"},{"variant":"switch","className":"form-switch","description":"トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。","previewHtml":"<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label color-neutral\" for=\"darkmode\"></label> <!-- color-* を指定 -->\n</div>"},{"variant":"textarea","className":"form-textarea","description":"複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。","previewHtml":"<textarea class=\"form-textarea color-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>"}]; // バリアントデータの配列を渡す
+const examplesData = [{"exampleHtml":"<input type=\"text\" class=\"form-input color-neutral\" placeholder=\"入力してください\">","index":0},{"exampleHtml":"<textarea class=\"form-textarea color-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>","index":1},{"exampleHtml":"<select class=\"form-select color-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>","index":2},{"exampleHtml":"<input type=\"checkbox\" class=\"form-checkbox color-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>","index":3},{"exampleHtml":"<input type=\"radio\" class=\"form-radio color-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>","index":4},{"exampleHtml":"<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label color-neutral\" for=\"darkmode\"></label> <!-- color-* を指定 -->\n</div>","index":5},{"exampleHtml":"<div class=\"form-feedback color-success\">入力内容は有効です</div>\n<div class=\"form-feedback color-error\">必須項目です</div>","index":6},{"exampleHtml":"<input type=\"search\" class=\"form-input form-search color-neutral\" placeholder=\"検索...\">","index":7}]; // 使用例データの配列を渡す
+---
+
+<DocLayout title={pageTitle} desc={pageDesc}>
+		<div class="container mx-auto px-4 py-8">
+			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+			 <p class="text-lg text-neutral-600 mb-6">
+			   Form の基本スタイル
+			   {/* フロントマターの baseClassName を参照 */}
+			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
+			 </p>
+			
+
+			 {/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
+			 {variantsData.length > 0 && (
+			   <section class="mb-12">
+			     <h2 class="text-2xl font-semibold mb-6 border-b pb-2">バリアント</h2>
+			     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			       {variantsData.map(variantProps => (
+			         <VariantPreview {...variantProps} />
+			       ))}
+			     </div>
+			   </section>
+			 )}
+
+			 <section class="mb-12">
+			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
+			   {/* ExamplePreviewコンポーネントに examplesData 配列全体を渡す */}
+			   <ExamplePreview examples={examplesData} />
+			 </section>
+
+			 
+		</div>
+</DocLayout>

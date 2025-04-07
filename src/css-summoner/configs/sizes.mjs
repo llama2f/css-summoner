@@ -69,7 +69,14 @@ export const sizes = {
 		{ value: 'text-md', label: 'Medium' },
 		{ value: 'text-lg', label: 'Large' },
 		{ value: 'text-xl', label: 'XL' },
-	]
+	],
+
+	// ツールチップ専用のサイズクラス
+	tooltip: [
+		{ value: 'tooltip-sm', label: 'Small' },
+		{ value: 'tooltip-md', label: 'Medium' }, // Default size, might not need a class if base styles handle it
+		{ value: 'tooltip-lg', label: 'Large' },
+	],
 }
-	
+
 export default sizes

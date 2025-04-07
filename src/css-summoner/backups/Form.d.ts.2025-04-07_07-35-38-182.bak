@@ -1,13 +1,13 @@
 /**
- * Tooltip コンポーネントのプロパティ型定義
- * カテゴリ: display
+ * Form コンポーネントのプロパティ型定義
+ * カテゴリ: form-controls
  */
-export interface TooltipProps {
+export interface FormProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "ghost"
+   * @default "checkbox"
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'subtle';
+  variant?: 'checkbox' | 'feedback' | 'input' | 'radio' | 'search' | 'select' | 'switch' | 'textarea';
 
   /**
    * コンポーネントのサイズ。

@@ -1,13 +1,13 @@
 /**
- * Tooltip コンポーネントのプロパティ型定義
- * カテゴリ: display
+ * Card コンポーネントのプロパティ型定義
+ * カテゴリ: container
  */
-export interface TooltipProps {
+export interface CardProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "ghost"
+   * @default "actions"
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'subtle';
+  variant?: 'actions' | 'bordered' | 'compact' | 'ghost' | 'horizontal' | 'outline' | 'solid' | 'subtle';
 
   /**
    * コンポーネントのサイズ。

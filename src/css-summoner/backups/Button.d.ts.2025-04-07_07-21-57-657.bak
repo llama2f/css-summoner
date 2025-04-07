@@ -1,13 +1,13 @@
 /**
- * Tooltip コンポーネントのプロパティ型定義
- * カテゴリ: display
+ * Button コンポーネントのプロパティ型定義
+ * カテゴリ: interactive
  */
-export interface TooltipProps {
+export interface ButtonProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "ghost"
+   * @default "group"
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'subtle';
+  variant?: 'group' | 'ghost' | 'gradient' | 'icon' | 'icon-ghost' | 'icon-outline' | 'link' | 'outline' | 'solid' | 'subtle';
 
   /**
    * コンポーネントのサイズ。

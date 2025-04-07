@@ -1,13 +1,13 @@
 /**
- * Tooltip コンポーネントのプロパティ型定義
- * カテゴリ: display
+ * Text コンポーネントのプロパティ型定義
+ * カテゴリ: typography
  */
-export interface TooltipProps {
+export interface TextProps {
   /**
    * コンポーネントの視覚的なスタイルバリアント。
-   * @default "ghost"
+   * @default "highlight"
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'subtle';
+  variant?: 'highlight' | 'marker' | 'marker-double' | 'marker-full' | 'marker-stripe' | 'quote' | 'underline' | 'underline-dashed' | 'underline-dotted' | 'underline-thick' | 'underline-wavy';
 
   /**
    * コンポーネントのサイズ。
