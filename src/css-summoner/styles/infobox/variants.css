@@ -81,47 +81,6 @@
 		border-color: transparent;
 	}
 
-	/* ghost のホバーは背景を薄く表示 (utilities.css の infobox-hover-ghost と連携) */
-	/* .infobox-ghost:hover スタイルは utilities.css の .infobox-hover-ghost で定義 */
-
-	.infobox-compact {
-		--infobox-padding-y: 0.75rem; /* py-3 */
-		--infobox-padding-x: 1rem; /* px-4 */
-		--infobox-padding-left-icon: 2.5rem; /* アイコン用 */
-		--infobox-icon-size: 1.25rem; /* text-xl 相当 */
-		--infobox-icon-position-left: 0.75rem; /* left-3 */
-		--infobox-icon-position-top: 0.75rem; /* top-3 */
-		@apply text-sm;
-	}
-
-	/*
-	 * =========================================
-	 * Infobox Content & Icon Styles
-	 * =========================================
-	 */
-
-	.infobox-icon {
-		position: absolute;
-		left: var(--infobox-icon-position-left);
-		top: var(--infobox-icon-position-top);
-		/* width/height は削除し、コンテナとしての役割に */
-		display: inline-flex; /* SVGをインライン要素のように扱い、中央揃えなどを可能に */
-		align-items: center; /* 垂直方向の中央揃え */
-		justify-content: center; /* 水平方向の中央揃え */
-		/* アイコンの色は通常、親要素の color を継承するか、個別に設定 */
-		color: currentColor; /* デフォルト */
-	}
-
-	/* .infobox-icon 内の svg 要素にサイズを指定 */
-	.infobox-icon svg {
-		width: var(--infobox-icon-size);
-		height: var(--infobox-icon-size);
-	}
-
-	.infobox-with-icon {
-		padding-left: var(--infobox-padding-left-icon);
-	}
-
 	/*
 	 * @component: infobox
 	 * @variant: title

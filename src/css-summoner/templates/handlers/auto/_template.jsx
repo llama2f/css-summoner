@@ -5,7 +5,7 @@
 // --- 仕様 ---
 // - プレビュー、HTMLコード表示を行います。
 // - baseクラスの自動付与をスキップしたい場合は、render関数またはvariant関数内で
-//   `return { ...createHandlerResult(reactElement, htmlString), skipDecoration: true }`
+//   `return { ...createHandlerResult(reactElement), skipDecoration: true }`
 //   のように `skipDecoration: true` を含めてください。
 
 import React from 'react'
@@ -51,18 +51,11 @@ export function render(props) {
 		</div>
 	)
 
-	// --- HTML文字列の生成 ---
-	// dangerouslySetInnerHTML を使う場合はサニタイズに注意してください。
-	// finalClassString を class 属性に適用
-	const htmlString = `<div class="${finalClassString}"> {/* ★ 適切なHTML要素に変更 */}
-    ${children}
-  </div>`
-
 	// --- 結果を返す ---
-	// skipDecoration が不要な場合はシンプルに: return createHandlerResult(reactElement, htmlString);
-	return createHandlerResult(reactElement, htmlString)
+	// HTML文字列はJSXから自動生成されるので、第2引数を省略します
+	return createHandlerResult(reactElement)
 	// ベースクラス付与をスキップする場合:
-	// return { ...createHandlerResult(reactElement, htmlString), skipDecoration: true };
+	// return { ...createHandlerResult(reactElement), skipDecoration: true };
 }
 
 // --- バリアント固有のレンダラー (オプション) ---
@@ -72,9 +65,10 @@ export const variants = {
 	//   const { classString = '', baseClass = `${metadata.type}-base`, ... } = props;
 	//   const finalClassString = combineClasses({ baseClass, additional: classString });
 	//   const reactElement = <div className={finalClassString} ...>...</div>;
-	//   const htmlString = `<div class="${finalClassString}" ...>...</div>`;
+	//   // HTML文字列は自動生成されるので省略
+	//   return createHandlerResult(reactElement);
 	//   // 必要なら skipDecoration: true を含める
-	//   return createHandlerResult(reactElement, htmlString);
+	//   // return { ...createHandlerResult(reactElement), skipDecoration: true };
 	// },
 }
 

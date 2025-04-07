@@ -44,7 +44,8 @@ export function render(props) {
 // バリアント特化処理
 export const variants = {
 	// Input (基本レンダラーと同じだが、明示的に定義)
-	input: (props) => {
+	'form-input': (props) => {
+		// プレフィックス追加
 		const {
 			classString = 'form-input',
 			label = 'ラベル',
@@ -75,7 +76,8 @@ export const variants = {
 	},
 
 	// Select
-	select: (props) => {
+	'form-select': (props) => {
+		// プレフィックス追加
 		const {
 			classString = 'form-select',
 			label = 'ラベル',
@@ -120,7 +122,8 @@ ${htmlOptions}
 	},
 
 	// Checkbox
-	checkbox: (props) => {
+	'form-checkbox': (props) => {
+		// プレフィックス追加
 		const {
 			classString = 'form-checkbox',
 			label = 'チェックボックスラベル',
@@ -144,7 +147,8 @@ ${htmlOptions}
 	},
 
 	// Radio
-	radio: (props) => {
+	'form-radio': (props) => {
+		// プレフィックス追加
 		const {
 			classString = 'form-radio',
 			label = 'ラジオボタンラベル',
@@ -169,7 +173,8 @@ ${htmlOptions}
 	},
 
 	// Textarea
-	textarea: (props) => {
+	'form-textarea': (props) => {
+		// プレフィックス追加
 		const {
 			classString = 'form-textarea',
 			label = 'テキストエリアラベル',
@@ -200,7 +205,8 @@ ${htmlOptions}
 	},
 
 	// Search (カスタムレンダリング)
-	search: (props) => {
+	'form-search': (props) => {
+		// プレフィックス追加
 		const {
 			classString = 'form-input form-search', // 複数クラス
 			label = '検索',
@@ -238,7 +244,8 @@ ${htmlOptions}
 	},
 
 	// Switch (カスタムレンダリング)
-	switch: (props) => {
+	'form-switch': (props) => {
+		// プレフィックス追加
 		const {
 			classString = '', // form-switch はコンテナに付与
 			label = 'スイッチラベル',
@@ -268,7 +275,8 @@ ${htmlOptions}
 	},
 
 	// Feedback (カスタムレンダリング)
-	feedback: (props) => {
+	'form-feedback': (props) => {
+		// プレフィックス追加
 		const { classString = 'form-feedback' } = props
 
 		const reactElement = (

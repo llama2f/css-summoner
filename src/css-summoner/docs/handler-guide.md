@@ -1,6 +1,6 @@
 # CSS Builder ハンドラー開発ガイド 
 
-このドキュメントでは、CSS Builder  にコンポーネントハンドラーを追加する方法について説明します。ハンドラーは、選択されたコンポーネントタイプに基づいてプレビュー用のReact要素とコード表示用のHTML文字列を生成する役割を担います。
+このドキュメントでは、CSS Builder にコンポーネントハンドラーを追加する方法について説明します。ハンドラーは、選択されたコンポーネントタイプに基づいてプレビュー用のReact要素を生成し、それから自動的にコード表示用のHTML文字列を生成する役割を担います。
 
 ## 目次
 
@@ -8,8 +8,9 @@
 2.  [ハンドラーファイルの作成](#ハンドラーファイルの作成)
 3.  [自動登録の仕組み](#自動登録の仕組み)
 4.  [ハンドラーの実装詳細](#ハンドラーの実装詳細)
-5.  [ベストプラクティス](#ベストプラクティス)
-6.  [デバッグ](#デバッグ)
+5.  [JSXからHTMLの自動生成](#jsxからhtmlの自動生成)
+6.  [ベストプラクティス](#ベストプラクティス)
+7.  [デバッグ](#デバッグ)
 
 ## ハンドラーの基本概念
 
@@ -18,7 +19,7 @@ CSS Builder  では、コンポーネントタイプごとにハンドラーモ�
 ### ハンドラーの役割
 
 -   プレビュー表示用の **React要素 (`reactElement`)** を生成する。
--   コード表示用の **HTML文字列 (`htmlString`)** を生成する。
+-   コード表示用の **HTML文字列 (`htmlString`)** は **JSXから自動生成** される。
 -   ユーザーがUIで選択したクラス（バリアント、サイズ、色、モディファイアなど）を反映する。
 
 ### ハンドラーモジュールの基本構造
@@ -28,7 +29,7 @@ CSS Builder  では、コンポーネントタイプごとにハンドラーモ�
 ```jsx
 // src/css-summoner/templates/handlers/auto/example.jsx
 import React from 'react';
-import { sampleIcon } from '../common'; // 共通ユーティリティ
+import { createHandlerResult, sampleIcon } from '../common'; // 共通ユーティリティ
 
 // 1. メタデータ (必須)
 export const metadata = {
@@ -41,20 +42,23 @@ export const metadata = {
 export function render(options) {
   const { classString = '', children = 'Example Content' } = options;
 
+  // ReactElementのみを定義（HTML文字列は自動生成される）
   const reactElement = <div className={classString}>{children}</div>;
-  const htmlString = `<div class="${classString}">${children}</div>`;
-
-  // reactElement と htmlString を含むオブジェクトを返す
-  return { reactElement, htmlString };
+  
+  // createHandlerResultでReactElementからHTMLを自動生成
+  return createHandlerResult(reactElement);
 }
 
 // 3. バリアント固有レンダラー (オプション)
 export const variants = {
   special: (options) => {
     const { classString = '', children = 'Special Example' } = options;
+    
+    // ReactElementを定義
     const reactElement = <div className={`${classString} special-style`}>{children}</div>;
-    const htmlString = `<div class="${classString} special-style">${children}</div>`;
-    return { reactElement, htmlString };
+    
+    // HTMLは自動生成されるので、第二引数は省略
+    return createHandlerResult(reactElement);
   },
   // 他のバリアント...
 };
@@ -95,9 +99,8 @@ export default {
 
 -   `render` または `variants` の **少なくともどちらか一方** をエクスポートする必要があります。
 -   これらの関数は `options` オブジェクトを引数として受け取ります。`options` には通常、UIで選択された情報（`classString`, `selectedModifiers`, `variant`, `color` など）が含まれます。
--   関数は **`{ reactElement: ReactElement, htmlString: string }`** という形式のオブジェクトを **必ず** 返す必要があります。
-    -   `reactElement`: プレビュー表示用のReact要素。
-    -   `htmlString`: コード表示用のHTML文字列。
+-   関数は **ReactElementを作成し、`createHandlerResult(reactElement)`** を呼び出して結果を返します。
+    -   **HTML文字列は自動的に生成されるため、手動で生成する必要はありません。**
 
 ### 4. オプションのエクスポート
 
@@ -135,7 +138,9 @@ graph TD
         K -- Module --> L{handlerModule state updated};
         L --> M[TemplateRenderer / ClassCodeDisplay];
         M -- options --> N(Call handlerModule.render / .variants);
-        N -- {reactElement / htmlString} --> O[Update UI];
+        N -- reactElement --> O[Update UI Preview];
+        N -- reactElement --> P[ReactDOMServer.renderToString];
+        P -- htmlString --> Q[Update Code Display];
     end
 
     style Build Time fill:#f9f,stroke:#333,stroke-width:2px
@@ -155,22 +160,87 @@ graph TD
 -   `children` (any): デフォルトのコンテンツ（プレビュー用に仮のものが渡されることが多い）。
 -   `baseClass` (string): コンポーネントのベースクラス名（`ClassCodeDisplay` から渡される）。
 
-ハンドラー内では、これらの `options` を利用して、表示するReact要素やHTML文字列を動的に構築します。
+ハンドラー内では、これらの `options` を利用して、表示するReact要素を動的に構築します。
+
+## JSXからHTMLの自動生成
+
+### 新しいアプローチ
+
+CSS Builderの最新版では、手動でHTML文字列を生成する代わりに、JSXからHTMLを自動的に生成するアプローチを採用しています。これにより、以下のメリットがあります：
+
+1. **一貫性の保証:** プレビュー表示とコード表示が常に同期されます
+2. **コードの重複削減:** 一箇所でJSXを定義するだけで両方の出力が得られます
+3. **保守の容易さ:** 変更が必要な場合はJSXのみを更新すれば良いです
+
+### 実装メカニズム
+
+内部的にはハンドラーの結果を処理する際に、ReactDOMServerを使用して次のような処理が行われます：
+
+1. ハンドラーが `createHandlerResult(reactElement)` を呼び出します
+2. `createHandlerResult` 関数内で `ReactDOMServer.renderToString(reactElement)` を使用してHTML文字列が生成されます
+3. React固有の属性（`data-reactroot` など）がクリーンアップされます
+4. 整形されたHTMLが生成され、コード表示に使用されます
+
+### 使用例
+
+基本的な使用方法：
+
+```jsx
+// ハンドラー内での使用例
+import { createHandlerResult } from '../common';
+
+export function render(options) {
+  const { classString, children } = options;
+  
+  // React要素のみを定義
+  const reactElement = <div className={classString}>{children}</div>;
+  
+  // HTMLは自動生成される
+  return createHandlerResult(reactElement);
+}
+```
+
+特殊なケースの処理：
+
+```jsx
+// dangerouslySetInnerHTMLを使用する場合
+export function renderWithIcon(options) {
+  const { classString } = options;
+  
+  // 安全な方法でアイコンを挿入
+  const reactElement = (
+    <button className={classString}>
+      <span dangerouslySetInnerHTML={{ __html: sampleIcon }} />
+      <span>ボタンテキスト</span>
+    </button>
+  );
+  
+  return createHandlerResult(reactElement);
+}
+```
 
 ### `common.jsx` ユーティリティ
 
 `src/css-summoner/templates/handlers/common.jsx` には、ハンドラー開発に役立つユーティリティが含まれています。
 
--   `combineClasses`: 複数のクラスソース（オブジェクト形式）を受け取り、有効なクラスを結合して単一の文字列を返します。`ClassPreview` などで使用されていますが、ハンドラー内部で直接クラスを組み立てる場合にも利用できます。
+-   `createHandlerResult`: JSXを受け取り、それをReact要素として保存し、また同時にHTML文字列を自動生成します。ReactDOMServer.renderToStringを内部的に使用します。
+-   `combineClasses`: 複数のクラスソース（オブジェクト形式）を受け取り、有効なクラスを結合して単一の文字列を返します。
+-   `cleanupReactAttributes`: ReactDOMServerによって生成されたHTMLからReact固有の属性を除去し、整形します。
 -   `sampleIcon`: プレビュー用の汎用アイコンSVG文字列。
 
 ```jsx
-import { sampleIcon } from '../common';
+import { createHandlerResult, sampleIcon } from '../common';
 
 export function render(options) {
   // ...
-  const reactElement = <button className={options.classString} dangerouslySetInnerHTML={{ __html: `${sampleIcon} Button` }} />;
-  // ...
+  const reactElement = (
+    <button className={options.classString}>
+      <span dangerouslySetInnerHTML={{ __html: sampleIcon }} />
+      <span>Button</span>
+    </button>
+  );
+  
+  return createHandlerResult(reactElement);
 }
 ```
 

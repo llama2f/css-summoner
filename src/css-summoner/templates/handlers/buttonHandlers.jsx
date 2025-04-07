@@ -13,51 +13,39 @@ export const buttonHandler = (options) => {
 	const hasIconOnly = selectedModifiers.includes('btn-icon-only')
 
 	let reactElement
-	let htmlString
 
 	if (hasIconOnly) {
+		// アイコンのみのボタン
 		reactElement = (
-			<button
-				className={classString}
-				dangerouslySetInnerHTML={{ __html: sampleIcon }}
-			/>
+			<button className={classString}>
+				<span dangerouslySetInnerHTML={{ __html: sampleIcon }} />
+				<span className="sr-only">ボタンテキスト</span>
+			</button>
 		)
-
-		htmlString = `<button class="${classString}">
-  ${sampleIcon}
-  <span class="sr-only">ボタンテキスト</span>
-</button>`
 	} else if (hasIconLeft) {
+		// 左にアイコンがあるボタン
 		reactElement = (
-			<button
-				className={classString}
-				dangerouslySetInnerHTML={{ __html: `${sampleIcon} ボタンテキスト` }}
-			/>
+			<button className={classString}>
+				<span dangerouslySetInnerHTML={{ __html: sampleIcon }} />
+				<span> ボタンテキスト</span>
+			</button>
 		)
-
-		htmlString = `<button class="${classString}">
-  ${sampleIcon} ボタンテキスト
-</button>`
 	} else if (hasIconRight) {
+		// 右にアイコンがあるボタン
 		reactElement = (
-			<button
-				className={classString}
-				dangerouslySetInnerHTML={{ __html: `ボタンテキスト ${sampleIcon}` }}
-			/>
+			<button className={classString}>
+				<span>ボタンテキスト </span>
+				<span dangerouslySetInnerHTML={{ __html: sampleIcon }} />
+			</button>
 		)
-
-		htmlString = `<button class="${classString}">
-  ボタンテキスト ${sampleIcon}
-</button>`
 	} else {
+		// 標準ボタン
 		reactElement = <button className={classString}>ボタンテキスト</button>
-
-		htmlString = `<button class="${classString}">
-  ボタンテキスト
-</button>`
 	}
 
-	return createHandlerResult(reactElement, htmlString)
+	// html文字列は自動生成されるようになったので、
+	// 第二引数を省略することでReactDOMServerを使用したHTML生成を利用
+	return createHandlerResult(reactElement)
 }
 
 // ボタングループハンドラー
@@ -72,13 +60,8 @@ export const buttonGroupHandler = (options) => {
 		</div>
 	)
 
-	const htmlString = `<div class="${classString}">
-  <button class="btn-base btn-primary">ボタン1</button>
-  <button class="btn-base btn-primary">ボタン2</button>
-  <button class="btn-base btn-primary">ボタン3</button>
-</div>`
-
-	return createHandlerResult(reactElement, htmlString)
+	// HTML文字列は自動生成されるようになったので、第二引数を省略
+	return createHandlerResult(reactElement)
 }
 
 // エクスポートするハンドラーマップ

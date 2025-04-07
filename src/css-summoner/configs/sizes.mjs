@@ -55,11 +55,9 @@ export const sizes = {
 
 	// インフォボックス専用のサイズクラス
 	infobox: [
-		{ value: 'text-xs', label: 'XS' },
-		{ value: 'text-sm', label: 'Small' },
-		{ value: 'text-md', label: 'Medium' },
-		{ value: 'text-lg', label: 'Large' },
-		{ value: 'text-xl', label: 'XL' },
+		{ value: 'infobox-sm', label: 'Small' },
+		{ value: 'infobox-md', label: 'Medium' }, // デフォルト (クラスなし)
+		{ value: 'infobox-lg', label: 'Large' },
 	],
 
 	// カード専用のサイズクラス

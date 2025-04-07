@@ -17,6 +17,8 @@ export function render(props) {
 		classString = '', // ClassPreview から渡される、baseClass 以外の結合済みクラス
 		children = 'インフォメーションメッセージのサンプルです。重要な情報や注意事項を表示するために使用します。',
 		baseClass = 'infobox-base', // デフォルトのベースクラス
+		title = 'インフォボックスタイトル', // デフォルトタイトル (title クラスがある場合に使用)
+		selectedModifiers, // selectedModifiers を明示的に受け取り、rest に含めない
 		...rest // DOM要素に渡さない props はここで除外
 	} = props
 
@@ -26,6 +28,25 @@ export function render(props) {
 		additional: classString, // ClassPreview から渡されたクラスを追加
 	})
 
+	// --- アイコンとタイトルの条件付きレンダリング ---
+	const hasIcon = classString.includes('infobox-with-icon')
+	const hasTitle = classString.includes('infobox-with-title') // CSSクラス名で判断
+
+	const iconReact = hasIcon ? (
+		<div
+			className='infobox-icon'
+			dangerouslySetInnerHTML={{ __html: sampleIcon }}
+		/>
+	) : null
+	const iconHtml = hasIcon
+		? `<div class="infobox-icon">${sampleIcon}</div>`
+		: ''
+
+	const titleReact = hasTitle ? (
+		<div className='infobox-title'>{title}</div>
+	) : null
+	const titleHtml = hasTitle ? `<div class="infobox-title">${title}</div>` : ''
+
 	// --- React要素の生成 ---
 	const reactElement = (
 		<div
@@ -34,15 +55,19 @@ export function render(props) {
 			role='alert'
 			{...rest}
 		>
+			{iconReact} {/* アイコンを条件付きで表示 */}
 			<div className='infobox-content'>
+				{titleReact} {/* タイトルを条件付きで表示 */}
 				<p>{children}</p>
 			</div>
 		</div>
 	)
 
 	// --- HTML文字列の生成 ---
+	// HTML文字列内でもアイコンとタイトルを条件付きで含める
 	const htmlString = `<div class="${finalClassString}" role="alert">
-  <div class="infobox-content"><p>${children}</p></div>
+  ${iconHtml}
+  <div class="infobox-content">${titleHtml}<p>${children}</p></div>
 </div>`
 
 	// --- 結果を返す ---
@@ -50,148 +75,16 @@ export function render(props) {
 }
 
 // --- バリアント固有のレンダラー (オプション) ---
-export const variants = {
-	// アイコン付き
-	'with-icon': (props) => {
-		const {
-			classString = '', // ClassPreview から渡されるクラス (例: 'infobox-with-icon color-primary size-sm')
-			children = 'アイコン付きメッセージのサンプルです。',
-			baseClass = 'infobox-base',
-			...rest
-		} = props
-
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
-
-		const iconReact = (
-			<div
-				className='infobox-icon'
-				dangerouslySetInnerHTML={{ __html: sampleIcon }}
-			/>
-		)
-		const iconHtml = `<div class="infobox-icon">${sampleIcon}</div>`
-
-		const reactElement = (
-			<div
-				className={finalClassString}
-				style={{ maxWidth: '400px' }}
-				role='alert'
-				{...rest}
-			>
-				{iconReact}
-				<div className='infobox-content'>
-					<p>{children}</p>
-				</div>
-			</div>
-		)
-
-		const htmlString = `<div class="${finalClassString}" role="alert">
-  ${iconHtml}
-  <div class="infobox-content"><p>${children}</p></div>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
-	},
-
-	// タイトル付き
-	'with-title': (props) => {
-		const {
-			classString = '', // ClassPreview から渡されるクラス (例: 'infobox-with-title color-secondary')
-			title = 'インフォボックスタイトル',
-			children = 'タイトル付きメッセージのサンプルです。',
-			baseClass = 'infobox-base',
-			...rest
-		} = props
-
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
-
-		const titleReact = <div className='infobox-title'>{title}</div>
-		const titleHtml = `<div class="infobox-title">${title}</div>`
-
-		const reactElement = (
-			<div
-				className={finalClassString}
-				style={{ maxWidth: '400px' }}
-				role='alert'
-				{...rest}
-			>
-				<div className='infobox-content'>
-					{titleReact}
-					<p>{children}</p>
-				</div>
-			</div>
-		)
-
-		const htmlString = `<div class="${finalClassString}" role="alert">
-  <div class="infobox-content">${titleHtml}<p>${children}</p></div>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
-	},
-
-	// アイコンとタイトル付き
-	'with-icon-title': (props) => {
-		const {
-			classString = '', // ClassPreview から渡されるクラス (例: 'infobox-with-icon infobox-with-title color-accent')
-			title = 'アイコン＆タイトル付き',
-			children = 'アイコンとタイトルが付いたメッセージのサンプルです。',
-			baseClass = 'infobox-base',
-			...rest
-		} = props
-
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
-
-		const iconReact = (
-			<div
-				className='infobox-icon'
-				dangerouslySetInnerHTML={{ __html: sampleIcon }}
-			/>
-		)
-		const iconHtml = `<div class="infobox-icon">${sampleIcon}</div>`
-		const titleReact = <div className='infobox-title'>{title}</div>
-		const titleHtml = `<div class="infobox-title">${title}</div>`
-
-		const reactElement = (
-			<div
-				className={finalClassString}
-				style={{ maxWidth: '400px' }}
-				role='alert'
-				{...rest}
-			>
-				{iconReact}
-				<div className='infobox-content'>
-					{titleReact}
-					<p>{children}</p>
-				</div>
-			</div>
-		)
-
-		const htmlString = `<div class="${finalClassString}" role="alert">
-  ${iconHtml}
-  <div class="infobox-content">${titleHtml}<p>${children}</p></div>
-</div>`
-		return createHandlerResult(reactElement, htmlString)
-	},
-}
+// バリアントはCSS側で定義されているもののみ対応するため、削除
+// export const variants = { ... }
 
 // --- プレビュー用サンプルデータ (オプション) ---
-export const samples = {
-	default: '基本インフォボックス',
-	'with-icon': 'アイコン付き',
-	'with-title': 'タイトル付き',
-	'with-icon-title': 'アイコン＆タイトル付き',
-}
+// バリアントに基づかないため削除
+// export const samples = { ... }
 
 // --- デフォルトエクスポート (必須) ---
 export default {
 	metadata,
 	render,
-	variants,
-	samples,
+	// variants と samples を削除
 }

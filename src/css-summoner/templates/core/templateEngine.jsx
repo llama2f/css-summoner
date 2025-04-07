@@ -67,6 +67,7 @@ function TemplateRenderer({ componentType, options = {} }) {
 			renderFunction = handlerModule.variants[variant]
 		} else if (handlerModule.render) {
 			// 基本レンダラーを使用
+			// 基本レンダラーを使用
 			renderFunction = handlerModule.render
 		}
 

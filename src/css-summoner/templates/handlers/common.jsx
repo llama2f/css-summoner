@@ -6,67 +6,67 @@
  * @returns {Object} {components, patterns} オブジェクト
  */
 export const createComponentHandlers = (handlersMap, options = {}) => {
-  const { customPatterns = {} } = options;
-  
-  // 直接的な名前に対応するハンドラー
-  const components = { ...handlersMap };
-  
-  // パターンマッチング用ハンドラー
-  const patterns = { ...customPatterns };
-  
-  // 各コンポーネントタイプをパターンとしても登録
-  Object.entries(handlersMap).forEach(([type, handler]) => {
-    const exactPattern = `^${type}`;
-    // カスタムパターンに存在しない場合のみ登録
-    if (!patterns[exactPattern]) {
-      patterns[exactPattern] = handler;
-    }
-    
-    // プレフィックスパターンも登録（例: 'form-'で始まるもの全て）
-    const prefix = type.split('-')[0];
-    const prefixPattern = `^${prefix}-`;
-    if (prefix && prefix !== type && !patterns[prefixPattern]) {
-      patterns[prefixPattern] = components[prefix] || handler;
-    }
-  });
-  
-  return { components, patterns };
-};
+	const { customPatterns = {} } = options
+
+	// 直接的な名前に対応するハンドラー
+	const components = { ...handlersMap }
+
+	// パターンマッチング用ハンドラー
+	const patterns = { ...customPatterns }
+
+	// 各コンポーネントタイプをパターンとしても登録
+	Object.entries(handlersMap).forEach(([type, handler]) => {
+		const exactPattern = `^${type}`
+		// カスタムパターンに存在しない場合のみ登録
+		if (!patterns[exactPattern]) {
+			patterns[exactPattern] = handler
+		}
+
+		// プレフィックスパターンも登録（例: 'form-'で始まるもの全て）
+		const prefix = type.split('-')[0]
+		const prefixPattern = `^${prefix}-`
+		if (prefix && prefix !== type && !patterns[prefixPattern]) {
+			patterns[prefixPattern] = components[prefix] || handler
+		}
+	})
+
+	return { components, patterns }
+}
 /**
  * ハンドラーオプションを標準化するユーティリティ
  * @param {Object} options - 元のオプション
  * @returns {Object} 標準化されたオプション
  */
 export const normalizeOptions = (options = {}) => {
-  const {
-    componentType = '',
-    classString = '',
-    variant = '',
-    isVariant = false,
-    variantType = '',
-    baseClass = '',
-    forPreview = false,
-    selectedModifiers = [],
-    ...rest
-  } = options;
-  
-  // 実際に使用するコンポーネントタイプを決定
-  // バリアントとして呼び出された場合はvariantTypeを優先
-  const actualType = isVariant && variantType ? variantType : componentType;
-  
-  return {
-    componentType,   // 元のコンポーネントタイプ
-    actualType,      // 実際に使用するタイプ
-    classString,     // クラス文字列
-    variant,         // バリアント名
-    isVariant,       // バリアントとして呼び出されたか
-    variantType,     // バリアントタイプ
-    baseClass,       // ベースクラス
-    forPreview,      // プレビュー用か
-    selectedModifiers, // 選択されたモディファイア
-    ...rest          // その他の全てのオプション
-  };
-};
+	const {
+		componentType = '',
+		classString = '',
+		variant = '',
+		isVariant = false,
+		variantType = '',
+		baseClass = '',
+		forPreview = false,
+		selectedModifiers = [],
+		...rest
+	} = options
+
+	// 実際に使用するコンポーネントタイプを決定
+	// バリアントとして呼び出された場合はvariantTypeを優先
+	const actualType = isVariant && variantType ? variantType : componentType
+
+	return {
+		componentType, // 元のコンポーネントタイプ
+		actualType, // 実際に使用するタイプ
+		classString, // クラス文字列
+		variant, // バリアント名
+		isVariant, // バリアントとして呼び出されたか
+		variantType, // バリアントタイプ
+		baseClass, // ベースクラス
+		forPreview, // プレビュー用か
+		selectedModifiers, // 選択されたモディファイア
+		...rest, // その他の全てのオプション
+	}
+}
 
 /**
  * ハンドラー関数を作成するユーティリティ
@@ -74,15 +74,16 @@ export const normalizeOptions = (options = {}) => {
  * @returns {Function} 標準化されたハンドラー関数
  */
 export const createHandler = (renderFn) => {
-  return (options) => {
-    const normalizedOptions = normalizeOptions(options);
-    return renderFn(normalizedOptions);
-  };
-};
+	return (options) => {
+		const normalizedOptions = normalizeOptions(options)
+		return renderFn(normalizedOptions)
+	}
+}
 // handlers/common.jsx
 // 共通ユーティリティと定数
 
 import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 
 // サンプルアイコンSVG - 各種ハンドラーで共通利用
 export const sampleIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -92,8 +93,49 @@ export const sampleIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" he
 </svg>`
 
 // 共通ハンドラーユーティリティ関数
-export const createHandlerResult = (reactElement, htmlString) => {
-  return { reactElement, htmlString }
+
+/**
+ * JSX要素からHTML文字列を生成し、Reactの内部属性を削除
+ * @param {React.ReactElement} element - JSX要素
+ * @returns {string} クリーンなHTML文字列
+ */
+export const cleanupReactAttributes = (html) => {
+	// React属性の削除
+	const cleaned = html
+		.replace(/\s+data-reactroot=""/g, '')
+		.replace(/<!-- -->/g, '')
+		.replace(/\s+data-reactid="[^"]*"/g, '')
+		.replace(/\s+data-react-checksum="[^"]*"/g, '')
+		.replace(/className=/g, 'class=')
+
+	// 基本的な整形 (オプション)
+	return cleaned
+		.replace(/></g, '>\n  <')
+		.replace(/<\/div>/g, '\n</div>')
+		.replace(/<\/button>/g, '\n</button>')
+}
+
+/**
+ * JSX要素からHTMLを生成するハンドラー結果を作成
+ * @param {React.ReactElement} reactElement - React要素
+ * @param {string} [htmlString] - オプションの手動HTML文字列（指定がなければJSXから自動生成）
+ * @returns {Object} ハンドラー結果
+ */
+export const createHandlerResult = (reactElement, htmlString = null) => {
+	// htmlStringが指定されていない場合は、JSXから自動生成
+	if (htmlString === null) {
+		try {
+			htmlString = cleanupReactAttributes(
+				ReactDOMServer.renderToString(reactElement)
+			)
+		} catch (error) {
+			console.error('JSXからHTMLの生成に失敗しました:', error)
+			// フォールバックとして簡易的なHTML生成（完全な変換は難しい）
+			htmlString = `<div>JSXからHTMLへの変換エラー</div>`
+		}
+	}
+
+	return { reactElement, htmlString }
 }
 
 /**
@@ -109,27 +151,29 @@ export const createHandlerResult = (reactElement, htmlString) => {
  * @param {string} options.color - 色クラス（新規追加）
  * @returns {string} 結合されたクラス文字列
  */
-export const combineClasses = ({ 
-  baseClass = '', 
-  variant = '', 
-  size = '', 
-  radius = '', 
-  modifiers = [], 
-  specialClasses = [], 
-  color = '', // 新規追加：色クラス
-  additional = '' 
+export const combineClasses = ({
+	baseClass = '',
+	variant = '',
+	size = '',
+	radius = '',
+	modifiers = [],
+	specialClasses = [],
+	color = '', // 新規追加：色クラス
+	additional = '',
 }) => {
-  return [
-    baseClass,
-    variant,
-    size,
-    radius,
-    ...(modifiers || []),
-    ...(specialClasses || []),
-    color, // 色クラスを追加
-    additional
-  ].filter(Boolean).join(' ');
-};
+	return [
+		baseClass,
+		variant,
+		size,
+		radius,
+		...(modifiers || []),
+		...(specialClasses || []),
+		color, // 色クラスを追加
+		additional,
+	]
+		.filter(Boolean)
+		.join(' ')
+}
 
 /**
  * ベースクラスが指定されているがクラス文字列に含まれていない場合に追加する
@@ -138,12 +182,12 @@ export const combineClasses = ({
  * @returns {string} ベースクラスを確実に含むクラス文字列
  */
 export const ensureBaseClass = (classString, baseClass) => {
-  if (!baseClass) return classString; // ベースクラスがない場合は何もしない
-  if (!classString.includes(baseClass)) {
-    return `${baseClass} ${classString}`.trim();
-  }
-  return classString;
-};
+	if (!baseClass) return classString // ベースクラスがない場合は何もしない
+	if (!classString.includes(baseClass)) {
+		return `${baseClass} ${classString}`.trim()
+	}
+	return classString
+}
 
 /**
  * 要素をrecursiveに検索して、data-skip-decoration属性を持つ要素があるか確認
@@ -151,31 +195,32 @@ export const ensureBaseClass = (classString, baseClass) => {
  * @returns {boolean} data-skip-decoration属性を持つ要素があればtrue
  */
 const hasSkipDecorationAttribute = (element) => {
-  if (!element || !element.props) return false;
-  
-  // data-skip-decoration属性を持っているか確認
-  if (element.props['data-skip-decoration'] === 'true') {
-    return true;
-  }
-  
-  // 子要素を検索
-  const { children } = element.props;
-  if (children) {
-    // 単一の子要素の場合
-    if (React.isValidElement(children)) {
-      return hasSkipDecorationAttribute(children);
-    }
-    
-    // 複数の子要素の場合
-    if (Array.isArray(children)) {
-      return children.some(child => 
-        React.isValidElement(child) && hasSkipDecorationAttribute(child)
-      );
-    }
-  }
-  
-  return false;
-};
+	if (!element || !element.props) return false
+
+	// data-skip-decoration属性を持っているか確認
+	if (element.props['data-skip-decoration'] === 'true') {
+		return true
+	}
+
+	// 子要素を検索
+	const { children } = element.props
+	if (children) {
+		// 単一の子要素の場合
+		if (React.isValidElement(children)) {
+			return hasSkipDecorationAttribute(children)
+		}
+
+		// 複数の子要素の場合
+		if (Array.isArray(children)) {
+			return children.some(
+				(child) =>
+					React.isValidElement(child) && hasSkipDecorationAttribute(child)
+			)
+		}
+	}
+
+	return false
+}
 
 /**
  * ハンドラーの結果にベースクラスを適用するデコレーター
@@ -186,41 +231,40 @@ const hasSkipDecorationAttribute = (element) => {
  * @returns {Object} 装飾された結果
  */
 export const decorateWithBaseClass = (result, baseClass) => {
-  if (!baseClass) return result;
-  if (!result) return result;
-  
-  const { reactElement, htmlString, skipDecoration } = result;
-  
-  // skipDecorationフラグがある場合は装飾を行わない
-  if (skipDecoration === true) {
-    return result;
-  }
-  
-  // 要素がdata-skip-decoration属性を持つか確認
-  if (reactElement && hasSkipDecorationAttribute(reactElement)) {
-    return result;
-  }
-  
-  // React要素のclassNameを修正
-  let decoratedReactElement = reactElement;
-  if (reactElement && reactElement.props) {
-    decoratedReactElement = React.cloneElement(
-      reactElement,
-      { 
-        className: ensureBaseClass(reactElement.props.className || '', baseClass) 
-      }
-    );
-  }
-  
-  // HTML文字列も修正（正規表現で置換）
-  const decoratedHtmlString = htmlString ? htmlString.replace(
-    /class="([^"]*)"/,
-    (match, classStr) => `class="${ensureBaseClass(classStr, baseClass)}"`
-  ) : htmlString;
-  
-  return {
-    reactElement: decoratedReactElement,
-    htmlString: decoratedHtmlString,
-    skipDecoration
-  };
-};
+	if (!baseClass) return result
+	if (!result) return result
+
+	const { reactElement, htmlString, skipDecoration } = result
+
+	// skipDecorationフラグがある場合は装飾を行わない
+	if (skipDecoration === true) {
+		return result
+	}
+
+	// 要素がdata-skip-decoration属性を持つか確認
+	if (reactElement && hasSkipDecorationAttribute(reactElement)) {
+		return result
+	}
+
+	// React要素のclassNameを修正
+	let decoratedReactElement = reactElement
+	if (reactElement && reactElement.props) {
+		decoratedReactElement = React.cloneElement(reactElement, {
+			className: ensureBaseClass(reactElement.props.className || '', baseClass),
+		})
+	}
+
+	// HTML文字列も修正（正規表現で置換）
+	const decoratedHtmlString = htmlString
+		? htmlString.replace(
+				/class="([^"]*)"/,
+				(match, classStr) => `class="${ensureBaseClass(classStr, baseClass)}"`
+			)
+		: htmlString
+
+	return {
+		reactElement: decoratedReactElement,
+		htmlString: decoratedHtmlString,
+		skipDecoration,
+	}
+}
