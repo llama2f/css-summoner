@@ -37,6 +37,7 @@ function generateSafeList() {
 export default {
 	content: [
 		'./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+		'!**/node_modules/**', // node_modulesを除外
 		'./public/**/*.html',
 		'./src/css-summoner/styles/**/*.css',
 		'./src/styles/global.css',

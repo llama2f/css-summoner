@@ -279,7 +279,7 @@
    * @variant: btn-group
    * @description: ボタンをグループ化して表示します。
    * @category: interactive
-   * @example: <div class="btn-group"><button class="btn-base btn-primary">ボタン</button><button class="btn-base btn-primary">ボタン</button><button class="btn-base btn-primary">ボタン</button><div>
+   * @example: <div class="btn-group"><button class="btn-base btn-primary">ボタン</button><button class="btn-base btn-primary">ボタン</button><button class="btn-base btn-primary">ボタン</button></div>
    */
 	.btn-group {
 		display: flex;

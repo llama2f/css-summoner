@@ -17,18 +17,11 @@ const formattedVariantName = variant
 	.replace(/\b[a-z]/g, (c) => c.toUpperCase())
 ---
 
-<div class='border rounded-lg shadow-sm overflow-hidden'>
-	<div class='p-4 bg-neutral-100'>
-		<h3 class='text-lg font-medium'>{formattedVariantName}</h3>
-		<code class='block text-sm text-neutral-700 mt-1'>.{className}</code>
-	</div>
-	<div class='p-4'>
-		<p class='text-sm text-neutral-600 mb-4'>{description}</p>
-		<div
-			class='bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]'
-		>
-			{/* プレビューHTMLを埋め込む */}
-			<Fragment set:html={previewHtml} />
-		</div>
-	</div>
+<div>
+	<h3 class='text-lg font-medium break-words'>{formattedVariantName}</h3>
+	<Fragment set:html={previewHtml} />
+	<code class='block text-sm text-neutral-700 mt-1 break-words'
+		>.{className}</code
+	>
+	<p class='text-sm text-neutral-600 mb-4 break-words'>{description}</p>
 </div>

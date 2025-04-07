@@ -1775,7 +1775,7 @@
       {
         "variant": "btn-group",
         "className": "btn-group",
-        "example": "<div class=\"btn-group\"><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button><div>"
+        "example": "<div class=\"btn-group\"><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button></div>"
       },
       {
         "variant": "base",

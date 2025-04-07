@@ -1,0 +1,67 @@
+---
+/**
+	* Form コンポーネント ドキュメント
+	*
+	* このファイルはスクリプトによって自動生成されました。
+	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+	* ソース: form/variants.css
+	*/
+import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
+import Menu from '@/css-summoner/layouts/Menu.astro'; // css-summoner内のMenuを使用
+import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro'; // 作成したコンポーネントをインポート
+
+// スタイルシートのインポート (必要に応じて調整)
+// import '@/css-summoner/styles/styles.css'; // 全体スタイル
+// import '@/css-summoner/styles/form/index.css'; // 個別スタイル (必要なら)
+
+const pageTitle = "Form コンポーネント";
+const pageDesc = "Form コンポーネントのスタイルバリエーションと使用例。";
+
+// --- フロントマターに変数を渡す ---
+const baseClassName = ""; // baseClassName を文字列として渡す
+const variantsData = [{"variant":"checkbox","className":"form-checkbox","description":"カスタムスタイルのチェックボックス。オン/オフの選択に使用します。","previewHtml":"<input type=\"checkbox\" class=\"form-checkbox color-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>"},{"variant":"feedback","className":"form-feedback","description":"フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。","previewHtml":"<div class=\"form-feedback color-success\">入力内容は有効です</div>\n<div class=\"form-feedback color-error\">必須項目です</div>"},{"variant":"input","className":"form-input","description":"テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。","previewHtml":"<input type=\"text\" class=\"form-input color-neutral\" placeholder=\"入力してください\">"},{"variant":"radio","className":"form-radio","description":"カスタムスタイルのラジオボタン。複数の選択肢から1つを選ぶ場合に使用します。","previewHtml":"<input type=\"radio\" class=\"form-radio color-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>"},{"variant":"search","className":"form-search","description":"検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。","previewHtml":"<input type=\"search\" class=\"form-input form-search color-neutral\" placeholder=\"検索...\">"},{"variant":"select","className":"form-select","description":"ドロップダウン選択フィールド。オプションから1つを選ぶ場合に使用します。","previewHtml":"<select class=\"form-select color-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>"},{"variant":"switch","className":"form-switch","description":"トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。","previewHtml":"<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label color-neutral\" for=\"darkmode\"></label> <!-- color-* を指定 -->\n</div>"},{"variant":"textarea","className":"form-textarea","description":"複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。","previewHtml":"<textarea class=\"form-textarea color-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>"}]; // バリアントデータの配列を渡す
+const exampleCode = "<input type=\"text\" class=\"form-input color-neutral\" placeholder=\"入力してください\">\\n\\n<textarea class=\"form-textarea color-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>\\n\\n<select class=\"form-select color-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>\\n\\n<input type=\"checkbox\" class=\"form-checkbox color-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>\\n\\n<input type=\"radio\" class=\"form-radio color-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>\\n\\n<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label color-neutral\" for=\"darkmode\"></label> <!-- color-* を指定 -->\n</div>\\n\\n<div class=\"form-feedback color-success\">入力内容は有効です</div>\n<div class=\"form-feedback color-error\">必須項目です</div>\\n\\n<input type=\"search\" class=\"form-input form-search color-neutral\" placeholder=\"検索...\">"; // 事前生成したJSON文字列を展開 (既にJSON.stringify済み)
+---
+
+<Layout title={pageTitle} desc={pageDesc}>
+		<div class="container mx-auto px-4 py-8">
+			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+			 <p class="text-lg text-neutral-600 mb-6">
+			   Form の基本スタイル
+			   {/* フロントマターの baseClassName を参照 */}
+			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
+			 </p>
+			 <div class="mb-6">
+			   <a href="/css-summoner" class="text-primary hover:underline">
+			     ← back to css-summoner
+			   </a>
+			 </div>
+			 <Menu  />
+
+			 {/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
+			 {variantsData.length > 0 && (
+			   <section class="mb-12">
+			     <h2 class="text-2xl font-semibold mb-6 border-b pb-2">バリアント</h2>
+			     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			       {variantsData.map(variantProps => (
+			         <VariantPreview {...variantProps} />
+			       ))}
+			     </div>
+			   </section>
+			 )}
+
+			 <section class="mb-12">
+			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
+			   <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
+			     <pre class="text-sm"><code>{exampleCode}</code></pre> {/* フロントマターの exampleCode を参照 */}
+			   </div>
+			 </section>
+
+			 <Menu/>
+			 <div class="mt-6">
+			   <a href="/css-summoner" class="text-primary hover:underline">
+			     ← クラスビルダーに戻る
+			   </a>
+			 </div>
+		</div>
+</Layout>
