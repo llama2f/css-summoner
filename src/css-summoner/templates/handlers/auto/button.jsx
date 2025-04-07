@@ -3,7 +3,7 @@
 // baseクラス付与をスキップする場合はvariantでreturn {skipDecoration: true}を渡してください
 
 import React from 'react'
-import { sampleIcon, createHandlerResult } from '../common'
+import { sampleIcon, createHandlerResult, separateProps } from '../common'
 
 // メタデータ（必須）- 自動登録の鍵
 export const metadata = {
@@ -14,24 +14,30 @@ export const metadata = {
 
 // 基本レンダラー（必須）
 export function render(props) {
-	const {
-		classString = '',
-		children = 'ボタンテキスト',
-		disabled = false,
-		type = 'button',
-		onClick = null,
+	// プロパティ分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		['classString', 'children', 'selectedModifiers', 'baseClass', 'onClick'], // Reactプロパティ
+		['disabled', 'type'] // DOM要素プロパティ
+	);
+
+	// Reactプロパティから必要な値を取得
+	const { 
+		classString = '', 
+		children = 'ボタンテキスト', 
 		selectedModifiers = [],
-		baseClass,
-		...rest // 残りのプロパティを受け取る
-	} = props
+		onClick = null 
+	} = reactProps;
+
+	// DOMプロパティから必要な値を取得
+	const { disabled = false, type = 'button' } = domProps;
 
 	// モディファイア処理ロジック
-	const hasIconLeft = selectedModifiers.includes('btn-icon-left')
-	const hasIconRight = selectedModifiers.includes('btn-icon-right')
-	const hasIconOnly = selectedModifiers.includes('btn-icon-only')
+	const hasIconLeft = selectedModifiers.includes('btn-icon-left');
+	const hasIconRight = selectedModifiers.includes('btn-icon-right');
+	const hasIconOnly = selectedModifiers.includes('btn-icon-only');
 
-	let reactElement
-	let htmlString
+	let reactElement;
 
 	// アイコン処理
 	if (hasIconOnly) {
@@ -42,14 +48,9 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: sampleIcon }}
-				{...rest}
+				{...commonProps}
 			/>
-		)
-
-		htmlString = `<button class="${classString}" ${disabled ? 'disabled' : ''} type="${type}">
-      ${sampleIcon}
-      <span class="sr-only">ボタンテキスト</span>
-    </button>`
+		);
 	} else if (hasIconLeft) {
 		reactElement = (
 			<button
@@ -58,13 +59,9 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: `${sampleIcon} ボタンテキスト` }}
-				{...rest}
+				{...commonProps}
 			/>
-		)
-
-		htmlString = `<button class="${classString}" ${disabled ? 'disabled' : ''} type="${type}">
-      ${sampleIcon} ボタンテキスト
-    </button>`
+		);
 	} else if (hasIconRight) {
 		reactElement = (
 			<button
@@ -73,13 +70,9 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: `ボタンテキスト ${sampleIcon}` }}
-				{...rest}
+				{...commonProps}
 			/>
-		)
-
-		htmlString = `<button class="${classString}" ${disabled ? 'disabled' : ''} type="${type}">
-      ボタンテキスト ${sampleIcon}
-    </button>`
+		);
 	} else {
 		reactElement = (
 			<button
@@ -87,34 +80,36 @@ export function render(props) {
 				disabled={disabled}
 				type={type}
 				onClick={onClick}
-				{...rest}
+				{...commonProps}
 			>
 				{children}
 			</button>
-		)
-
-		htmlString = `<button class="${classString}" ${disabled ? 'disabled' : ''} type="${type}">
-      ${children}
-    </button>`
+		);
 	}
 
-	return createHandlerResult(reactElement, htmlString)
+	// HTML文字列は自動生成されるようにする
+	return createHandlerResult(reactElement);
 }
 
 // バリアント固有のレンダラー（オプション）
 export const variants = {
 	// 例: アイコンボタン
 	icon: (props) => {
-		const {
-			classString = '',
-			icon = '⚙️',
+		// プロパティ分離
+		const { reactProps, domProps, commonProps } = separateProps(
+			props,
+			['classString', 'icon', 'title', 'onClick'], // Reactプロパティ
+			['disabled', 'type'] // DOM要素プロパティ
+		);
+
+		// 各種値を取得
+		const { 
+			classString = '', 
+			icon = '⚙️', 
 			title = '',
-			disabled = false,
-			type = 'button',
-			onClick = null,
-			selectedModifiers, // これを除外
-			...rest
-		} = props
+			onClick = null 
+		} = reactProps;
+		const { disabled = false, type = 'button' } = domProps;
 
 		const reactElement = (
 			<button
@@ -123,31 +118,32 @@ export const variants = {
 				disabled={disabled}
 				type={type}
 				onClick={onClick}
-				{...rest}
+				{...commonProps}
 			>
 				{icon}
 			</button>
-		)
+		);
 
-		const htmlString = `<button class="${classString}" title="${title}" ${disabled ? 'disabled' : ''} type="${type}">
-      ${icon}
-    </button>`
-
-		return createHandlerResult(reactElement, htmlString)
+		return createHandlerResult(reactElement);
 	},
 
 	'btn-group': (props) => {
-		const {
-			classString = '',
-			children = 'buttons',
+		// プロパティ分離
+		const { reactProps, domProps, commonProps } = separateProps(
+			props,
+			['classString', 'children', 'title', 'baseClass', 'onClick'], // Reactプロパティ
+			['disabled', 'type'] // DOM要素プロパティ
+		);
+
+		// 各種値を取得
+		const { 
+			classString = '', 
+			children = 'buttons', 
 			title = '',
-			disabled = false,
-			type = 'button',
-			onClick = null,
-			selectedModifiers,
-			baseClass, // baseClass を明示的に受け取り、rest から除外する
-			...rest
-		} = props
+			onClick = null 
+		} = reactProps;
+		const { disabled = false, type = 'button' } = domProps;
+
 		const reactElement = (
 			<div className={classString} data-skip-decoration='true'>
 				<button
@@ -156,7 +152,7 @@ export const variants = {
 					disabled={disabled}
 					type={type}
 					onClick={onClick}
-					{...rest}
+					{...commonProps}
 				>
 					{children}
 				</button>
@@ -166,7 +162,7 @@ export const variants = {
 					disabled={disabled}
 					type={type}
 					onClick={onClick}
-					{...rest}
+					{...commonProps}
 				>
 					{children}
 				</button>
@@ -176,23 +172,17 @@ export const variants = {
 					disabled={disabled}
 					type={type}
 					onClick={onClick}
-					{...rest}
+					{...commonProps}
 				>
 					{children}
 				</button>
 			</div>
-		)
-
-		const htmlString = `<div class=${classString} data-skip-decoration="true">
-  <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
-  <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
-  <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
-</div>`
+		);
 
 		return {
-			...createHandlerResult(reactElement, htmlString),
+			...createHandlerResult(reactElement),
 			skipDecoration: true,
-		}
+		};
 	},
 }
 

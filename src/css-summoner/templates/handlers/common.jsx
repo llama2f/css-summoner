@@ -85,6 +85,60 @@ export const createHandler = (renderFn) => {
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 
+/**
+ * Reactコンポーネントのプロパティを、React特有のプロパティとDOM要素プロパティに分離する
+ * @param {Object} props - 元のプロパティオブジェクト
+ * @param {Array<string>} reactProps - Reactとして扱うプロパティ名の配列（標準React propsに追加）
+ * @param {Array<string>} domProps - DOM要素として扱うプロパティ名の配列（標準DOM propsに追加）
+ * @returns {Object} { reactProps, domProps, commonProps } - 分離されたプロパティオブジェクト
+ */
+export const separateProps = (props, reactProps = [], domProps = []) => {
+  // Reactコンポーネント特有のプロパティ
+  const standardReactProps = [
+    'className', 'style', 'onClick', 'onChange', 'onFocus', 'onBlur',
+    'onMouseOver', 'onMouseOut', 'onKeyDown', 'onKeyUp', 'onKeyPress',
+    'children', 'dangerouslySetInnerHTML', 'key', 'ref',
+    // CSS Builder特有のプロパティ
+    'classString', 'variant', 'componentType', 'baseClass',
+    'selectedModifiers', 'forPreview', 'isVariant', 'variantType'
+  ];
+  
+  // DOM要素特有のプロパティ
+  const standardDomProps = [
+    'id', 'name', 'type', 'value', 'disabled', 'placeholder',
+    'aria-label', 'aria-describedby', 'aria-hidden', 'role',
+    'title', 'tabIndex', 'autoFocus', 'autoComplete',
+    'href', 'target', 'rel', 'alt', 'src', 'width', 'height'
+  ];
+  
+  // 全てのカスタムReactプロパティとDOM要素プロパティを合わせる
+  const allReactProps = [...standardReactProps, ...reactProps];
+  const allDomProps = [...standardDomProps, ...domProps];
+  
+  // オブジェクトの初期化
+  const reactPropsObj = {};
+  const domPropsObj = {};
+  const commonProps = {}; // 両方に適用したいプロパティ
+  
+  // プロパティを分類
+  Object.entries(props).forEach(([key, value]) => {
+    // React特有のプロパティ
+    if (allReactProps.includes(key)) {
+      reactPropsObj[key] = value;
+    }
+    // DOM要素特有のプロパティ
+    else if (allDomProps.includes(key)) {
+      domPropsObj[key] = value;
+    }
+    // 両方に当てはまらないプロパティはcommonPropsに
+    else {
+      commonProps[key] = value;
+    }
+  });
+  
+  return { reactProps: reactPropsObj, domProps: domPropsObj, commonProps };
+};
+
 // サンプルアイコンSVG - 各種ハンドラーで共通利用
 export const sampleIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <circle cx="12" cy="12" r="10"></circle>

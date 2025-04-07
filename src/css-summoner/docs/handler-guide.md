@@ -1,3 +1,4 @@
+
 # CSS Builder ハンドラー開発ガイド 
 
 このドキュメントでは、CSS Builder にコンポーネントハンドラーを追加する方法について説明します。ハンドラーは、選択されたコンポーネントタイプに基づいてプレビュー用のReact要素を生成し、それから自動的にコード表示用のHTML文字列を生成する役割を担います。
@@ -29,7 +30,7 @@ CSS Builder  では、コンポーネントタイプごとにハンドラーモ�
 ```jsx
 // src/css-summoner/templates/handlers/auto/example.jsx
 import React from 'react';
-import { createHandlerResult, sampleIcon } from '../common'; // 共通ユーティリティ
+import { createHandlerResult, separateProps, sampleIcon } from '../common'; // 共通ユーティリティ
 
 // 1. メタデータ (必須)
 export const metadata = {
@@ -39,11 +40,29 @@ export const metadata = {
 };
 
 // 2. 基本レンダラー (render または variants のどちらか一方は必須)
-export function render(options) {
-  const { classString = '', children = 'Example Content' } = options;
+export function render(props) {
+  // プロパティを分離
+  const { reactProps, domProps, commonProps } = separateProps(
+    props,
+    ['classString', 'children'], // React特有のプロパティ
+    ['id', 'role'] // DOM要素に直接渡すプロパティ
+  );
+  
+  // 各種プロパティの取得
+  const { classString = '', children = 'Example Content' } = reactProps;
+  const { id, role } = domProps;
 
-  // ReactElementのみを定義（HTML文字列は自動生成される）
-  const reactElement = <div className={classString}>{children}</div>;
+  // ReactElementの生成
+  const reactElement = (
+    <div 
+      className={classString}
+      id={id}
+      role={role}
+      {...commonProps}
+    >
+      {children}
+    </div>
+  );
   
   // createHandlerResultでReactElementからHTMLを自動生成
   return createHandlerResult(reactElement);
@@ -51,13 +70,31 @@ export function render(options) {
 
 // 3. バリアント固有レンダラー (オプション)
 export const variants = {
-  special: (options) => {
-    const { classString = '', children = 'Special Example' } = options;
+  special: (props) => {
+    // プロパティを分離
+    const { reactProps, domProps, commonProps } = separateProps(
+      props,
+      ['classString', 'children'], // React特有のプロパティ
+      ['id', 'role'] // DOM要素に直接渡すプロパティ
+    );
     
-    // ReactElementを定義
-    const reactElement = <div className={`${classString} special-style`}>{children}</div>;
+    // 各種プロパティの取得
+    const { classString = '', children = 'Special Example' } = reactProps;
+    const { id, role } = domProps;
     
-    // HTMLは自動生成されるので、第二引数は省略
+    // ReactElementを生成
+    const reactElement = (
+      <div 
+        className={`${classString} special-style`}
+        id={id}
+        role={role}
+        {...commonProps}
+      >
+        {children}
+      </div>
+    );
+    
+    // HTMLは自動生成される
     return createHandlerResult(reactElement);
   },
   // 他のバリアント...
@@ -98,14 +135,14 @@ export default {
 ### 3. レンダリング関数の実装 (`render` / `variants`)
 
 -   `render` または `variants` の **少なくともどちらか一方** をエクスポートする必要があります。
--   これらの関数は `options` オブジェクトを引数として受け取ります。`options` には通常、UIで選択された情報（`classString`, `selectedModifiers`, `variant`, `color` など）が含まれます。
+-   これらの関数は `props` オブジェクトを引数として受け取ります。`props` には通常、UIで選択された情報（`classString`, `selectedModifiers`, `variant`, `color` など）が含まれます。
 -   関数は **ReactElementを作成し、`createHandlerResult(reactElement)`** を呼び出して結果を返します。
     -   **HTML文字列は自動的に生成されるため、手動で生成する必要はありません。**
 
 ### 4. オプションのエクスポート
 
--   `export function render(options)`: コンポーネントの基本的な表示を生成します。バリアントがない場合や、デフォルトの表示に使われます。
--   `export const variants = { variantName: (options) => { ... } }`: コンポーネントの特定のバリアント（UIのVariantSelectorで選択されるもの）に対応するレンダリング関数を定義します。キーがバリアント名になります。
+-   `export function render(props)`: コンポーネントの基本的な表示を生成します。バリアントがない場合や、デフォルトの表示に使われます。
+-   `export const variants = { variantName: (props) => { ... } }`: コンポーネントの特定のバリアント（UIのVariantSelectorで選択されるもの）に対応するレンダリング関数を定義します。キーがバリアント名になります。
 -   `export const samples = { sampleName: '...' }`: UIの特定の箇所で表示されるサンプルテキストやアイコンなどを定義します（現在は主に `button` ハンドラーなどで利用）。
 
 ## 自動登録の仕組み
@@ -149,9 +186,52 @@ graph TD
 
 ## ハンドラーの実装詳細
 
-### `options` オブジェクト
+### プロパティ分離パターン
 
-`render` および `variants` 関数に渡される `options` オブジェクトには、主に以下のプロパティが含まれる可能性があります（呼び出し元のコンポーネントによって異なります）。
+ハンドラー関数内では、プロパティをその用途に応じて分離することを推奨しています。`common.jsx` に定義されている `separateProps` 関数を使用して、以下のように分類します：
+
+```jsx
+// プロパティ分離の基本的な使い方
+import { separateProps } from '../common';
+
+export function render(props) {
+  // プロパティ分離
+  const { reactProps, domProps, commonProps } = separateProps(
+    props,
+    ['classString', 'children', 'selectedModifiers', 'baseClass', 'onClick'], // React特有のプロパティ
+    ['disabled', 'type'] // DOM要素に直接渡すプロパティ
+  );
+  
+  // 各カテゴリから必要な値を取得
+  const { classString = '', children = 'Example' } = reactProps;
+  const { disabled = false } = domProps;
+  
+  // ReactElementの生成
+  const reactElement = (
+    <button
+      className={classString}
+      disabled={disabled}
+      {...commonProps} // その他のプロパティを自動的に展開
+    >
+      {children}
+    </button>
+  );
+  
+  return createHandlerResult(reactElement);
+}
+```
+
+プロパティは以下の3つのカテゴリに分離されます：
+
+1. **reactProps**：React特有のプロパティ（`className`, `children`, `onClick`など）や、CSS Builder固有のプロパティ（`classString`, `baseClass`, `selectedModifiers`など）
+2. **domProps**：実際のDOM要素に直接渡すプロパティ（`type`, `disabled`, `href`, `title`など）
+3. **commonProps**：上記以外の、定義していないプロパティ（カスタムデータ属性など）
+
+このパターンを適用することで、コードの可読性や保守性が向上し、プロパティの用途が明確になります。
+
+### `props` オブジェクト
+
+`render` および `variants` 関数に渡される `props` オブジェクトには、主に以下のプロパティが含まれる可能性があります（呼び出し元のコンポーネントによって異なります）。
 
 -   `classString` (string): UIで選択されたクラス（ベース、サイズ、色、角丸、特殊効果、追加クラスなど）が結合された文字列。
 -   `selectedModifiers` (string[]): 選択されたモディファイアクラス名の配列。
@@ -160,7 +240,7 @@ graph TD
 -   `children` (any): デフォルトのコンテンツ（プレビュー用に仮のものが渡されることが多い）。
 -   `baseClass` (string): コンポーネントのベースクラス名（`ClassCodeDisplay` から渡される）。
 
-ハンドラー内では、これらの `options` を利用して、表示するReact要素を動的に構築します。
+ハンドラー内では、これらのプロパティを `separateProps` 関数で分類し、各カテゴリのプロパティを適切に利用してReact要素を動的に構築します。
 
 ## JSXからHTMLの自動生成
 
@@ -187,13 +267,29 @@ CSS Builderの最新版では、手動でHTML文字列を生成する代わり�
 
 ```jsx
 // ハンドラー内での使用例
-import { createHandlerResult } from '../common';
+import { createHandlerResult, separateProps } from '../common';
 
-export function render(options) {
-  const { classString, children } = options;
+export function render(props) {
+  // プロパティ分離パターンを使用
+  const { reactProps, domProps, commonProps } = separateProps(
+    props,
+    ['classString', 'children'],
+    ['id']
+  );
   
-  // React要素のみを定義
-  const reactElement = <div className={classString}>{children}</div>;
+  const { classString = '', children = 'Content' } = reactProps;
+  const { id } = domProps;
+  
+  // React要素を定義
+  const reactElement = (
+    <div 
+      className={classString}
+      id={id}
+      {...commonProps}
+    >
+      {children}
+    </div>
+  );
   
   // HTMLは自動生成される
   return createHandlerResult(reactElement);
@@ -204,12 +300,24 @@ export function render(options) {
 
 ```jsx
 // dangerouslySetInnerHTMLを使用する場合
-export function renderWithIcon(options) {
-  const { classString } = options;
+export function renderWithIcon(props) {
+  const { reactProps, domProps, commonProps } = separateProps(
+    props,
+    ['classString'],
+    ['disabled', 'type']
+  );
+  
+  const { classString = '' } = reactProps;
+  const { disabled = false, type = 'button' } = domProps;
   
   // 安全な方法でアイコンを挿入
   const reactElement = (
-    <button className={classString}>
+    <button 
+      className={classString}
+      disabled={disabled}
+      type={type}
+      {...commonProps}
+    >
       <span dangerouslySetInnerHTML={{ __html: sampleIcon }} />
       <span>ボタンテキスト</span>
     </button>
@@ -223,40 +331,22 @@ export function renderWithIcon(options) {
 
 `src/css-summoner/templates/handlers/common.jsx` には、ハンドラー開発に役立つユーティリティが含まれています。
 
+-   `separateProps`: プロパティを React特有、DOM要素特有、その他の共通プロパティに分離します。
 -   `createHandlerResult`: JSXを受け取り、それをReact要素として保存し、また同時にHTML文字列を自動生成します。ReactDOMServer.renderToStringを内部的に使用します。
 -   `combineClasses`: 複数のクラスソース（オブジェクト形式）を受け取り、有効なクラスを結合して単一の文字列を返します。
 -   `cleanupReactAttributes`: ReactDOMServerによって生成されたHTMLからReact固有の属性を除去し、整形します。
 -   `sampleIcon`: プレビュー用の汎用アイコンSVG文字列。
 
-```jsx
-import { createHandlerResult, sampleIcon } from '../common';
-
-export function render(options) {
-  // ...
-  const reactElement = (
-    <button className={options.classString}>
-      <span dangerouslySetInnerHTML={{ __html: sampleIcon }} />
-      <span>Button</span>
-    </button>
-  );
-  
-  return createHandlerResult(reactElement);
-}
-```
-
 ## ベストプラクティス
 
--   **クラスの結合:** ハンドラー内でクラスを動的に追加・変更する場合、`clsx` や `tailwind-merge` ライブラリ、または自作の結合関数を利用して、クラスの重複や競合を適切に処理することを検討してください。`combineClasses` ユーティリティも参考になります。
--   **HTMLの可読性:** 生成する `htmlString` は、ユーザーがコピーして利用するため、適切なインデントを付けて可読性を高めてください。
--   **モディファイアの活用:** `options.selectedModifiers` 配列を確認し、特定のモディファイアが選択されている場合に表示や構造を変化させるロジックを実装します。
+-   **プロパティ分離の一貫性:** ハンドラー関数内ではすべて `separateProps` 関数を使用してプロパティを適切に分離しましょう。
+-   **クラスの結合:** ハンドラー内でクラスを動的に追加・変更する場合、`combineClasses` ユーティリティを使用して、クラスの重複や競合を適切に処理しましょう。
+-   **HTMLの自動生成:** 手動でHTML文字列を生成するのではなく、`createHandlerResult(reactElement)` に頼り、JSXから自動的にHTMLを生成しましょう。
+-   **モディファイアの活用:** `props.selectedModifiers` 配列を確認し、特定のモディファイアが選択されている場合に表示や構造を変化させるロジックを実装しましょう。
 -   **サブコンポーネント:** 複雑なReact要素を生成する場合、ハンドラーファイル内で小さなサブコンポーネントに分割すると見通しが良くなります。
 
 ## デバッグ
 
--   **`console.log`:** ハンドラー関数内で `console.log(options)` を使用して、渡されているプロパティを確認するのが最も基本的なデバッグ方法です。
+-   **`console.log`:** ハンドラー関数内で `console.log(props)` を使用して、渡されているプロパティを確認するのが最も基本的なデバッグ方法です。
 -   **ブラウザ開発者ツール:** 非同期ロードのエラーやレンダリング時のエラーは、ブラウザの開発者ツールのコンソールに出力されます。`useAsyncHandler`, `TemplateRenderer`, `ClassCodeDisplay` 内のエラーログも確認してください。
 -   **マニフェストファイルの確認:** `npm run generate:handlers` を実行後、`src/css-summoner/configs/handler-manifest.json` が正しく生成・更新されているか確認してください。特に `path` が正しい形式 (`/src/...`) になっているか確認します。
-
----
-
-このガイドに従って新しいコンポーネントハンドラーを追加することで、CSS Builderの機能を拡張できます。

@@ -25,9 +25,18 @@
 
 	.code-aria {
 		@apply font-mono;
-		background-color: var(--background);
-		color: var(--foreground);
+		font-size: 0.8rem;
+		letter-spacing: 0.02em;
+		background-color: var(--neutral-dark);
+		color: var(--neutral-light);
 		border: var(--border) 1px solid;
+		border-radius: 4px;
+		padding: 0.5rem;
+	}
+
+	pre code.hljs {
+		font-size: 0.8rem;
+		border-radius: 4px;
 	}
 
 	.label-custom::after {

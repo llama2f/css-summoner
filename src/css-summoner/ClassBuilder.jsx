@@ -315,16 +315,16 @@ const ClassBuilder = () => {
 
 					{/* 追加クラス入力 */}
 					<div className='mt-2 mb-2'>
-						<h2 className='label-config label-custom text-lg font-medium mb-3'>
-							追加クラス
-						</h2>
-						<input
-							type='text'
-							value={state.additionalClasses}
-							onChange={(e) => actions.setAdditionalClasses(e.target.value)}
-							placeholder='カスタムクラスを入力'
-							className='w-full p-2 border rounded'
-						/>
+						<h2 className='label-config label-custom'>追加クラス</h2>
+						<div className=' flex items-center gap-2'>
+							<input
+								type='text'
+								value={state.additionalClasses}
+								onChange={(e) => actions.setAdditionalClasses(e.target.value)}
+								placeholder='カスタムクラスを入力'
+								className='code-aria w-full'
+							/>
+						</div>
 						<p className='text-xs text-neutral-500 mt-1'>
 							例: 'w-full mb-4 dark:bg-neutral-800'
 						</p>

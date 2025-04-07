@@ -336,15 +336,15 @@ const ClassCodeDisplay = ({
 				<h3 className='label-config label-generated-class'>生成されたクラス</h3>
 				<div className='flex items-center gap-2'>
 					{/* pre と code タグで囲み、他のコードエリアとスタイルを統一 */}
-					<pre className='code-aria p-3 rounded text-sm overflow-x-auto flex-grow'>
+					<pre className='code-aria rounded overflow-x-auto flex-grow'>
 						<code>{displayClassString || '<クラスを選択してください>'}</code>
 					</pre>
 					<button
 						onClick={() => copyToClipboard(displayClassString)}
 						disabled={!displayClassString}
-						className='btn-accent btn-sm btn-animate-down'
+						className='btn-base btn-solid btn-sm rounded color-accent'
 					>
-						コピー
+						<span className='text-sm'>copy</span>
 					</button>
 				</div>
 				{copySuccess && (
@@ -359,12 +359,12 @@ const ClassCodeDisplay = ({
 					<button
 						onClick={copyCssToClipboard}
 						disabled={!cssRulesString || cssRulesString.startsWith('/*')}
-						className='btn-neutral btn-xs btn-animate-down'
+						className='btn-base btn-solid btn-xs rounded btn-icon-right color-primary'
 					>
-						CSSをコピー
+						<span className='text-sm'>copy css</span>
 					</button>
 				</div>
-				<div className='code-aria p-3 rounded text-sm overflow-x-auto min-h-[100px]'>
+				<div className='overflow-x-auto min-h-[100px] max-h-[300px]'>
 					{renderCssRulesContent()}
 				</div>
 				{cssCopySuccess && (
@@ -390,12 +390,12 @@ const ClassCodeDisplay = ({
 							!initialClassString || // props 名変更
 							htmlString.startsWith('<!--')
 						}
-						className='btn-neutral btn-xs btn-animate-down'
+						className='btn-base btn-solid btn-xs rounded btn-icon-right color-primary'
 					>
-						HTMLをコピー
+						<span className='text-sm'>copy html</span>
 					</button>
 				</div>
-				<div className='code-aria p-3 rounded text-sm overflow-x-auto'>
+				<div className='overflow-x-auto'>
 					{' '}
 					{/* コード表示エリア */}
 					{renderHtmlContent()}

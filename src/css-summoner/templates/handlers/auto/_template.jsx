@@ -11,7 +11,13 @@
 import React from 'react'
 // combineClasses: baseClass と他のクラス文字列を結合するヘルパー関数
 // sampleIcon: プレビュー用のサンプルSVGアイコン
-import { createHandlerResult, combineClasses, sampleIcon } from '../common' // 必要に応じてインポート
+// separateProps: プロパティを分離するユーティリティ
+import {
+	createHandlerResult,
+	combineClasses,
+	sampleIcon,
+	separateProps,
+} from '../common' // 必要に応じてインポート
 
 // --- メタデータ (必須) ---
 // ハンドラー自動登録システムが使用します。
@@ -23,15 +29,23 @@ export const metadata = {
 
 // --- 基本レンダラー (必須) ---
 // コンポーネントの基本的な表示を定義します。
-// props: { classString, selectedModifiers, children, color, variant, baseClass, ...rest } などを受け取ります。
 export function render(props) {
+	// プロパティを分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		['classString', 'children', 'selectedModifiers', 'baseClass'], // React特有のプロパティ
+		['id', 'role'] // DOM要素に直接渡すプロパティ
+	)
+
+	// Reactプロパティを取得
 	const {
 		classString = '', // ClassPreview から渡される、baseClass 以外の結合済みクラス
 		children = `${metadata.type} Preview`, // デフォルトのプレビューテキスト
-		// 他に必要な props を分割代入で受け取る
 		baseClass = `${metadata.type}-base`, // デフォルトのベースクラス (必要に応じて調整)
-		...rest // DOM要素に渡さない props はここで除外する
-	} = props
+	} = reactProps
+
+	// DOM要素プロパティを取得
+	const { id, role } = domProps
 
 	// --- 最終的なクラス文字列の生成 ---
 	// baseClass と ClassPreview から渡された classString を結合
@@ -43,11 +57,15 @@ export function render(props) {
 	// --- React要素の生成 ---
 	const reactElement = (
 		// finalClassString を className に適用
-		<div className={finalClassString} {...rest}>
-			{' '}
+		<div
+			className={finalClassString}
+			id={id}
+			role={role}
+			{...commonProps} // その他のプロパティを展開
+		>
 			{/* ★ 適切なHTML要素に変更 */}
 			{children}
-			{/* 必要に応じてアイコンなどを追加: {sampleIcon} */}
+			{/* 必要に応じてアイコンなどを追加: <span dangerouslySetInnerHTML={{ __html: sampleIcon }} /> */}
 		</div>
 	)
 
@@ -61,15 +79,32 @@ export function render(props) {
 // --- バリアント固有のレンダラー (オプション) ---
 // コンポーネントに特定のバリアントがある場合に定義します。
 export const variants = {
-	// variantName: (props) => {
-	//   const { classString = '', baseClass = `${metadata.type}-base`, ... } = props;
+	// 例: specialというバリアントの場合
+	// special: (props) => {
+	//   // プロパティを分離
+	//   const { reactProps, domProps, commonProps } = separateProps(
+	//     props,
+	//     ['classString', 'children', 'baseClass'], // React特有のプロパティ
+	//     ['id', 'role'] // DOM要素プロパティ
+	//   );
+	//
+	//   // 必要なプロパティを取得
+	//   const { classString = '', baseClass = `${metadata.type}-base` } = reactProps;
+	//   const { id, role } = domProps;
+	//
+	//   // クラス文字列を結合
 	//   const finalClassString = combineClasses({ baseClass, additional: classString });
-	//   const reactElement = <div className={finalClassString} ...>...</div>;
-	//   // HTML文字列は自動生成されるので省略
+	//
+	//   // React要素を生成
+	//   const reactElement = (
+	//     <div className={finalClassString} id={id} role={role} {...commonProps}>
+	//       特別な表示
+	//     </div>
+	//   );
+	//
+	//   // HTML文字列は自動生成される
 	//   return createHandlerResult(reactElement);
-	//   // 必要なら skipDecoration: true を含める
-	//   // return { ...createHandlerResult(reactElement), skipDecoration: true };
-	// },
+	// }
 }
 
 // --- プレビュー用サンプルデータ (オプション) ---
