@@ -1,7 +1,7 @@
 // templates/handlers/auto/card.jsx
 
 import React from 'react'
-import { createHandlerResult, combineClasses } from '../common'
+import { createHandlerResult, combineClasses, separateProps } from '../common' // separateProps をインポート
 
 // メタデータ（必須）
 export const metadata = {
@@ -12,6 +12,23 @@ export const metadata = {
 
 // 基本レンダラー（必須）
 export function render(props) {
+	// プロパティ分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		[
+			'classString',
+			'title',
+			'subtitle',
+			'content',
+			'actionLabel',
+			'baseClass',
+			'selectedModifiers',
+			'children',
+		], // Reactプロパティ
+		[] // DOM要素プロパティ (card特有のものは少ない)
+	)
+
+	// Reactプロパティから必要な値を取得
 	const {
 		classString = '',
 		title = 'カードタイトル',
@@ -19,10 +36,7 @@ export function render(props) {
 		content = 'カードのコンテンツがここに入ります。テキストや画像など、様々なコンテンツを含めることができます。',
 		actionLabel = 'アクション',
 		baseClass = 'card-base',
-		selectedModifiers, // 明示的に分離
-		children, // 明示的に分離
-		...domProps // DOM要素に渡す安全なプロパティのみ
-	} = props
+	} = reactProps
 
 	// baseClassとclassStringを結合
 	const finalClassString = combineClasses({
@@ -32,7 +46,9 @@ export function render(props) {
 
 	// カードの基本構造
 	const reactElement = (
-		<div className={finalClassString} {...domProps}>
+		<div className={finalClassString} {...commonProps}>
+			{' '}
+			{/* commonProps を展開 */}
 			<div className='card-header'>
 				<h3 className='card-title'>{title}</h3>
 				<p className='card-subtitle'>{subtitle}</p>
@@ -56,16 +72,29 @@ export function render(props) {
 export const variants = {
 	// 画像付きカード
 	image: (props) => {
+		// プロパティ分離
+		const { reactProps, domProps, commonProps } = separateProps(
+			props,
+			[
+				'classString',
+				'imageUrl',
+				'title',
+				'content',
+				'baseClass',
+				'selectedModifiers',
+				'children',
+			], // Reactプロパティ
+			[] // DOM要素プロパティ
+		)
+
+		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
 			imageUrl = '/placeholder-image.jpg',
 			title = 'カードタイトル',
 			content = 'カードコンテンツ',
 			baseClass = 'card-base',
-			selectedModifiers, // 明示的に分離
-			children, // 明示的に分離
-			...domProps // DOM要素に渡す安全なプロパティのみ
-		} = props
+		} = reactProps
 
 		// baseClassとclassStringを結合
 		const finalClassString = combineClasses({
@@ -74,7 +103,9 @@ export const variants = {
 		})
 
 		const reactElement = (
-			<div className={finalClassString} {...domProps}>
+			<div className={finalClassString} {...commonProps}>
+				{' '}
+				{/* commonProps を展開 */}
 				<div className='card-image-container'>
 					<img src={imageUrl} alt={title} className='card-image' />
 				</div>
@@ -93,15 +124,27 @@ export const variants = {
 
 	// シンプルなカード
 	simple: (props) => {
+		// プロパティ分離
+		const { reactProps, domProps, commonProps } = separateProps(
+			props,
+			[
+				'classString',
+				'title',
+				'content',
+				'baseClass',
+				'selectedModifiers',
+				'children',
+			], // Reactプロパティ
+			[] // DOM要素プロパティ
+		)
+
+		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
 			title = 'シンプルカード',
 			content = 'シンプルなカードコンテンツ',
 			baseClass = 'card-base',
-			selectedModifiers, // 明示的に分離
-			children, // 明示的に分離
-			...domProps // DOM要素に渡す安全なプロパティのみ
-		} = props
+		} = reactProps
 
 		// baseClassとclassStringを結合
 		const finalClassString = combineClasses({
@@ -110,7 +153,9 @@ export const variants = {
 		})
 
 		const reactElement = (
-			<div className={finalClassString} {...domProps}>
+			<div className={finalClassString} {...commonProps}>
+				{' '}
+				{/* commonProps を展開 */}
 				<div className='card-body'>
 					<h3 className='card-title'>{title}</h3>
 					<div className='card-content'>{content}</div>
@@ -123,16 +168,29 @@ export const variants = {
 
 	// 横並びカード
 	horizontal: (props) => {
+		// プロパティ分離
+		const { reactProps, domProps, commonProps } = separateProps(
+			props,
+			[
+				'classString',
+				'imageUrl',
+				'title',
+				'content',
+				'baseClass',
+				'selectedModifiers',
+				'children',
+			], // Reactプロパティ
+			[] // DOM要素プロパティ
+		)
+
+		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
 			imageUrl = '/placeholder-image.jpg',
 			title = '横並びカード',
 			content = 'カードのコンテンツです。',
 			baseClass = 'card-base',
-			selectedModifiers, // 明示的に分離
-			children, // 明示的に分離
-			...domProps // DOM要素に渡す安全なプロパティのみ
-		} = props
+		} = reactProps
 
 		// baseClassとclassStringを結合
 		const finalClassString = combineClasses({
@@ -141,7 +199,9 @@ export const variants = {
 		})
 
 		const reactElement = (
-			<div className={finalClassString} {...domProps}>
+			<div className={finalClassString} {...commonProps}>
+				{' '}
+				{/* commonProps を展開 */}
 				<div className='card-image-container'>
 					<img src={imageUrl} alt={title} className='card-image' />
 				</div>
@@ -153,7 +213,7 @@ export const variants = {
 		)
 
 		return createHandlerResult(reactElement)
-	}
+	},
 }
 
 // プレビュー用サンプル
@@ -161,7 +221,7 @@ export const samples = {
 	default: '基本カード',
 	image: '画像付きカード',
 	simple: 'シンプルカード',
-	horizontal: '横並びカード'
+	horizontal: '横並びカード',
 }
 
 // デフォルトエクスポート

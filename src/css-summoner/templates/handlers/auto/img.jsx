@@ -1,7 +1,7 @@
 // templates/handlers/auto/img.jsx
 
 import React from 'react'
-import { createHandlerResult, combineClasses } from '../common'
+import { createHandlerResult, combineClasses, separateProps } from '../common' // separateProps をインポート
 
 // メタデータ（必須）- typeをimgに変更
 export const metadata = {
@@ -12,17 +12,27 @@ export const metadata = {
 
 // 基本レンダラー（必須）
 export function render(props) {
+	// プロパティ分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		['classString', 'baseClass', 'selectedModifiers', 'children'], // Reactプロパティ (コンテナdiv用)
+		['src', 'alt', 'width', 'height'] // DOM要素プロパティ (img要素用)
+	)
+
+	// Reactプロパティから必要な値を取得 (コンテナdiv用)
 	const {
 		classString = '',
+		baseClass = 'img-base', // baseClassを取得
+	} = reactProps
+
+	// DOMプロパティから必要な値を取得 (img要素用)
+	const {
 		src = '/placeholder-image.jpg',
 		alt = 'サンプル画像',
 		width = '200',
 		height = '150',
-		baseClass = 'img-base',
-		selectedModifiers, // 明示的に分離し、DOMに渡さない
-		children, // 明示的に分離し、DOMに渡さない
-		...domProps // DOM要素に渡す安全なプロパティのみ
-	} = props
+		...restDomProps // img要素に適用する可能性のあるその他のDOM属性
+	} = domProps
 
 	// baseClassとclassStringを結合
 	const finalClassString = combineClasses({
@@ -31,8 +41,17 @@ export function render(props) {
 	})
 
 	const reactElement = (
-		<div className={finalClassString} {...domProps}>
-			<img src={src} alt={alt} width={width} height={height} />
+		<div className={finalClassString} {...commonProps}>
+			{' '}
+			{/* コンテナdivにcommonPropsを展開 */}
+			<img
+				src={src}
+				alt={alt}
+				width={width}
+				height={height}
+				{...restDomProps}
+			/>{' '}
+			{/* img要素にrestDomPropsを展開 */}
 		</div>
 	)
 
@@ -43,6 +62,14 @@ export function render(props) {
 export const variants = {
 	// 画像ギャラリー
 	gallery: (props) => {
+		// プロパティ分離
+		const { reactProps, domProps, commonProps } = separateProps(
+			props,
+			['classString', 'images', 'baseClass', 'selectedModifiers', 'children'], // Reactプロパティ (コンテナdiv用)
+			[] // DOM要素プロパティ (ギャラリーコンテナ用)
+		)
+
+		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
 			images = [
@@ -51,11 +78,11 @@ export const variants = {
 				{ src: '/placeholder-image.jpg', alt: '画像3' },
 				{ src: '/placeholder-image.jpg', alt: '画像4' },
 			],
-			baseClass = 'img-gallery',
-			selectedModifiers, // 明示的に分離し、DOMに渡さない
-			children, // 明示的に分離し、DOMに渡さない
-			...domProps // DOM要素に渡す安全なプロパティのみ
-		} = props
+			baseClass = 'img-gallery', // baseClassを取得
+		} = reactProps
+
+		// DOMプロパティから必要な値を取得
+		const { ...restDomProps } = domProps
 
 		// baseClassとclassStringを結合
 		const finalClassString = combineClasses({
@@ -69,10 +96,10 @@ export const variants = {
 
 		// グリッドレイアウトで表示
 		const reactElement = (
-			<div className={finalClassString} {...domProps}>
-				<div className='img-grid'>
-					{reactImages}
-				</div>
+			<div className={finalClassString} {...restDomProps} {...commonProps}>
+				{' '}
+				{/* コンテナdivに展開 */}
+				<div className='img-grid'>{reactImages}</div>
 			</div>
 		)
 

@@ -1,7 +1,12 @@
 // templates/handlers/auto/badge.jsx
 
 import React from 'react'
-import { createHandlerResult, sampleIcon, combineClasses } from '../common'
+import {
+	createHandlerResult,
+	sampleIcon,
+	combineClasses,
+	separateProps,
+} from '../common' // separateProps をインポート
 
 // メタデータ（必須）
 export const metadata = {
@@ -12,13 +17,20 @@ export const metadata = {
 
 // 基本レンダラー（必須）
 export function render(props) {
+	// プロパティ分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		['classString', 'children', 'selectedModifiers', 'baseClass'], // Reactプロパティ
+		[] // DOM要素プロパティ (badge特有のものは少ない)
+	)
+
+	// Reactプロパティから必要な値を取得
 	const {
 		classString = '',
 		children = 'バッジ',
 		selectedModifiers = [],
 		baseClass = 'badge-base',
-		...rest
-	} = props
+	} = reactProps
 
 	// baseClassとclassStringを結合
 	const finalClassString = combineClasses({
@@ -41,7 +53,7 @@ export function render(props) {
 			/>
 		)
 	}
-	
+
 	if (!isIconOnly) {
 		reactChildren.push(<span key='text'>{children}</span>)
 	} else {
@@ -51,7 +63,7 @@ export function render(props) {
 			</span>
 		)
 	}
-	
+
 	if (hasIconRight) {
 		reactChildren.push(
 			<span
@@ -63,7 +75,9 @@ export function render(props) {
 	}
 
 	const reactElement = (
-		<span className={finalClassString} {...rest}>
+		<span className={finalClassString} {...commonProps}>
+			{' '}
+			{/* commonProps を展開 */}
 			{reactChildren}
 		</span>
 	)

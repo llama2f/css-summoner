@@ -1,7 +1,12 @@
 // templates/handlers/auto/infobox.jsx
 
 import React from 'react'
-import { createHandlerResult, sampleIcon, combineClasses } from '../common'
+import {
+	createHandlerResult,
+	sampleIcon,
+	separateProps,
+	combineClasses,
+} from '../common'
 
 // メタデータ（必須）
 export const metadata = {
@@ -12,20 +17,24 @@ export const metadata = {
 
 // 基本レンダラー（必須）
 export function render(props) {
+	// プロパティ分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		['classString', 'children', 'selectedModifiers', 'baseClass', 'title'], // Reactプロパティ
+		['role'] // DOM要素プロパティ
+	)
+
+	// Reactプロパティから必要な値を取得
 	const {
 		classString = '',
 		children = 'インフォメーションメッセージのサンプルです。重要な情報や注意事項を表示するために使用します。',
-		baseClass = 'infobox-base',
 		title = 'インフォボックスタイトル',
 		selectedModifiers = [],
-		...rest
-	} = props
+		baseClass = 'infobox-base', // baseClassを取得
+	} = reactProps
 
-	// baseClassとclassStringを結合
-	const finalClassString = combineClasses({
-		baseClass,
-		additional: classString,
-	})
+	// DOMプロパティから必要な値を取得
+	const { role = 'alert' } = domProps
 
 	// アイコンとタイトルの条件付きレンダリング
 	const hasIcon = selectedModifiers.includes('infobox-with-icon')
@@ -37,7 +46,7 @@ export function render(props) {
 			dangerouslySetInnerHTML={{ __html: sampleIcon }}
 		/>
 	) : null
-	
+
 	const titleReact = hasTitle ? (
 		<div className='infobox-title'>{title}</div>
 	) : null
@@ -45,9 +54,9 @@ export function render(props) {
 	// React要素の生成
 	const reactElement = (
 		<div
-			className={finalClassString}
-			role='alert'
-			{...rest}
+			className={combineClasses({ baseClass, additional: classString })}
+			role={role}
+			{...commonProps}
 		>
 			{iconReact}
 			<div className='infobox-content'>
@@ -63,5 +72,5 @@ export function render(props) {
 // デフォルトエクスポート
 export default {
 	metadata,
-	render
+	render,
 }

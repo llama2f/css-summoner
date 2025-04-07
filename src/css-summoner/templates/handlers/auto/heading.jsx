@@ -1,7 +1,7 @@
 // templates/handlers/auto/heading.jsx
 
 import React from 'react'
-import { createHandlerResult } from '../common'
+import { createHandlerResult, separateProps } from '../common' // separateProps をインポート
 
 // メタデータ（必須）
 export const metadata = {
@@ -12,20 +12,32 @@ export const metadata = {
 
 // 基本レンダラー（必須）
 export function render(props) {
+	// プロパティ分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		['classString', 'children', 'selectedModifiers', 'icon', 'baseClass'], // Reactプロパティ
+		[] // DOM要素プロパティ (heading特有のものは少ない)
+	)
+
+	// Reactプロパティから必要な値を取得
 	const {
 		classString = '',
 		children = 'Heading 見出し',
 		selectedModifiers = [],
 		icon = '⭐',
-		baseClass = 'heading-base',
-		...rest
-	} = props
+		// baseClass は className に直接結合しないため、ここでは取得しない
+	} = reactProps
+
+	// DOMプロパティから必要な値を取得
+	const { ...restDomProps } = domProps
 
 	const hasIcon = selectedModifiers.includes('heading-with-icon')
 
 	// 基本構造
 	const reactElement = (
-		<h2 className={classString} {...rest}>
+		<h2 className={classString} {...restDomProps} {...commonProps}>
+			{' '}
+			{/* classNameには分離したclassStringを、残りは展開 */}
 			{hasIcon && (
 				<span className='heading-icon' role='img' aria-hidden='true'>
 					{icon}
@@ -41,7 +53,7 @@ export function render(props) {
 // プレビュー用サンプル
 export const samples = {
 	default: '基本の見出し',
-	withIcon: 'アイコン付き見出し'
+	withIcon: 'アイコン付き見出し',
 }
 
 // デフォルトエクスポート

@@ -1,7 +1,7 @@
 // templates/handlers/auto/text.jsx
 
 import React from 'react'
-import { createHandlerResult, combineClasses } from '../common'
+import { createHandlerResult, combineClasses, separateProps } from '../common' // separateProps をインポート
 
 // デフォルトのテキストコンテンツ
 const sampleText =
@@ -16,21 +16,33 @@ export const metadata = {
 
 // 基本レンダラー（必須）
 export function render(props) {
+	// プロパティ分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		['classString', 'children', 'baseClass', 'selectedModifiers'], // Reactプロパティ
+		[] // DOM要素プロパティ (pタグ用)
+	)
+
+	// Reactプロパティから必要な値を取得
 	const {
 		classString = '',
 		children = sampleText,
 		baseClass = 'text-base',
-		selectedModifiers, // 明示的に分離し、DOMに渡さない
-		...domProps // DOM要素に渡す安全なプロパティのみ
-	} = props
+	} = reactProps
+
+	// DOMプロパティから必要な値を取得
+	const { ...restDomProps } = domProps
 
 	// baseClassとclassStringを結合
 	const finalClassString = combineClasses({
 		baseClass,
 		additional: classString,
 	})
-
-	const reactElement = <p className={finalClassString} {...domProps}>{children}</p>
+	const reactElement = (
+		<p className={finalClassString} {...restDomProps} {...commonProps}>
+			{sampleText}
+		</p>
+	)
 
 	return createHandlerResult(reactElement)
 }
@@ -39,13 +51,22 @@ export function render(props) {
 export const variants = {
 	// 引用テキスト (<blockquote>)
 	quote: (props) => {
+		// プロパティ分離
+		const { reactProps, domProps, commonProps } = separateProps(
+			props,
+			['classString', 'children', 'baseClass', 'selectedModifiers'], // Reactプロパティ
+			[] // DOM要素プロパティ (blockquoteタグ用)
+		)
+
+		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
 			children = sampleText,
 			baseClass = 'text-quote',
-			selectedModifiers, // 明示的に分離し、DOMに渡さない
-			...domProps // DOM要素に渡す安全なプロパティのみ
-		} = props
+		} = reactProps
+
+		// DOMプロパティから必要な値を取得
+		const { ...restDomProps } = domProps
 
 		// baseClassとclassStringを結合
 		const finalClassString = combineClasses({
@@ -54,7 +75,13 @@ export const variants = {
 		})
 
 		const reactElement = (
-			<blockquote className={finalClassString} {...domProps}>{children}</blockquote>
+			<blockquote
+				className={finalClassString}
+				{...restDomProps}
+				{...commonProps}
+			>
+				{sampleText}
+			</blockquote>
 		)
 
 		return createHandlerResult(reactElement)

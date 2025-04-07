@@ -3,14 +3,12 @@
 CSSコンポーネントの修正、調整をしてください
 
 関連ファイル例
-- src/css-summoner/styles/badge cssファイル
-- src/css-summoner/templates/handlers/auto/badge.jsx ハンドラファイル
+- src/css-summoner/styles/button cssファイル
+- src/css-summoner/templates/handlers/auto/button.jsx ハンドラファイル
 - src/css-summoner/templates/handlers/auto/_template.jsx ハンドラテンプレート
-- src/css-builder/docs/stylingGuide.md スタイリングガイド
-- src/css-summoner/configs/modifiers.mjs モディファイア調整
-- src/css-summoner/configs/sizes.mjs　サイズ調整
+- src/css-summoner/templates/handlers/common.jsx
 
-ガイドを参考にモノクロベースへスタイルの修正
+ガイド、button.jsxを参考にseparatePropsを実装してください
 既存クラスを維持し、基本的にクラスの増減はなし
 utilityクラスは@アノテーションは不要
 colormixなどを使用し明暗差を表現する
