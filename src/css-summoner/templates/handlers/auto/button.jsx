@@ -1,4 +1,5 @@
 // templates/handlers/auto/button.jsx
+// プレビュー、html、コード表示
 
 import React from 'react'
 import { sampleIcon, createHandlerResult } from '../common'
@@ -141,13 +142,13 @@ export const variants = {
 			disabled = false,
 			type = 'button',
 			onClick = null,
-			selectedModifiers, // これを除外
+			selectedModifiers,
 			...rest
 		} = props
 		const reactElement = (
-			<div className={classString}>
+			<div className='btn-group'>
 				<button
-					className='btn-base btn-primary'
+					className='btn-base btn-solid btn-sm color-primary'
 					title={title}
 					disabled={disabled}
 					type={type}
@@ -157,7 +158,7 @@ export const variants = {
 					{children}
 				</button>
 				<button
-					className='btn-base btn-primary'
+					className='btn-base btn-solid btn-sm color-primary'
 					title={title}
 					disabled={disabled}
 					type={type}
@@ -167,7 +168,7 @@ export const variants = {
 					{children}
 				</button>
 				<button
-					className='btn-base btn-primary'
+					className='btn-base btn-solid btn-sm color-primary'
 					title={title}
 					disabled={disabled}
 					type={type}
@@ -179,10 +180,10 @@ export const variants = {
 			</div>
 		)
 
-		const htmlString = `<div class="${classString}">
-  <button class="btn-base btn-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
-  <button class="btn-base btn-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
-  <button class="btn-base btn-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
+		const htmlString = `<div class="btn-group">
+  <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
+  <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
+  <button class="btn-base btn-solid btn-sm color-primary" title="${title}" ${disabled ? 'disabled' : ''} type="${type}>${children}</button>
 </div>`
 
 		return createHandlerResult(reactElement, htmlString)

@@ -6,29 +6,43 @@ export interface Props {
 
 const { title = 'title', desc = 'description' } = Astro.props
 
-import ThemeSwitcher from '@components/astro/ThemeSwitcher.astro'
+import Footer from '@layouts/Footer.astro'
+import Head from '@layouts/Head.astro'
+import Header from '@layouts/Header.astro'
+import Menu from '@layouts/Menu.astro'
 // スタイルシートのインポート
 import '@stylesCss/styles.css'
 
 const mainClass = 'container mx-auto px-global max-w-screen-2xl'
 ---
 
-<!doctype html>
 <html lang='ja'>
-	<head>
-		<meta charset='UTF-8' />
-		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-		<title>{title}</title>
-		<meta name='description' content={desc} />
-	</head>
+	<Head title={title} desc={desc} />
 	<body>
-		<header>
-			header-aria
-			<ThemeSwitcher />
-		</header>
+		<Header />
 		<main class={mainClass}>
+			<Menu />
 			<slot />
+			<Menu />
+
+			<div class='mt-10 p-4 rounded-lg text-sm'>
+				<h3 class='font-bold mb-2'>参照スタイルシート</h3>
+				<p>
+					このビルダーは以下のスタイルシートで定義されたカスタムクラスを使用しています：
+				</p>
+				<ul class='list-disc ml-5 mt-2 space-y-1'>
+					<li><code>button-style.css</code> - ボタン関連スタイル</li>
+					<li><code>card-style.css</code> - カード関連スタイル</li>
+					<li><code>heading.css</code> - 見出し関連スタイル</li>
+					<li><code>infobox.css</code> - 情報ボックス関連スタイル</li>
+					<li><code>text-style.css</code> - テキスト関連スタイル</li>
+					<li><code>form-style.css</code> - フォーム関連スタイル</li>
+					<li><code>image-style.css</code> - 画像関連スタイル</li>
+					<li><code>global.css</code> - 全体で使用される特殊効果クラス</li>
+				</ul>
+			</div>
 		</main>
-		<footer>footer-aria</footer>
+
+		<Footer />
 	</body>
 </html>

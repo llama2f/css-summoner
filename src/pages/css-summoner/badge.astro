@@ -6,13 +6,9 @@
 	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
 	* ソース: badge/variants-monochrome.css, badge/base.css
 	*/
-import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
-import Menu from '@/css-summoner/layouts/Menu.astro'; // css-summoner内のMenuを使用
-import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro'; // 作成したコンポーネントをインポート
-
-// スタイルシートのインポート (必要に応じて調整)
-// import '@/css-summoner/styles/styles.css'; // 全体スタイル
-// import '@/css-summoner/styles/badge/index.css'; // 個別スタイル (必要なら)
+import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
+import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro';
+import ExamplePreview from '@/css-summoner/components/astro/ExamplePreview.astro'; // 使用例コンポーネントをインポート
 
 const pageTitle = "Badge コンポーネント";
 const pageDesc = "Badge コンポーネントのスタイルバリエーションと使用例。";
@@ -20,10 +16,10 @@ const pageDesc = "Badge コンポーネントのスタイルバリエーショ�
 // --- フロントマターに変数を渡す ---
 const baseClassName = "badge-base"; // baseClassName を文字列として渡す
 const variantsData = [{"variant":"outline","className":"badge-outline","description":"アウトラインスタイルのバッジ。枠線のみが表示されます。カラーセレクタと組み合わせて使用します。","previewHtml":"<span class=\"badge-base badge-outline color-primary\">アウトラインバッジ</span>"},{"variant":"solid","className":"badge-solid","description":"塗りつぶしスタイルのバッジ。背景色が適用されます。カラーセレクタと組み合わせて使用します。","previewHtml":"<span class=\"badge-base badge-solid color-primary\">ソリッドバッジ</span>"},{"variant":"subtle","className":"badge-subtle","description":"控えめなスタイルのバッジ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。","previewHtml":"<span class=\"badge-base badge-subtle color-primary\">サブトルバッジ</span>"}]; // バリアントデータの配列を渡す
-const exampleCode = "<span class=\"badge-base badge-solid color-primary\">ソリッドバッジ</span>\\n\\n<span class=\"badge-base badge-outline color-primary\">アウトラインバッジ</span>\\n\\n<span class=\"badge-base badge-subtle color-primary\">サブトルバッジ</span>\\n\\n<span class=\"badge-base badge-solid color-primary\">バッジ</span>"; // 事前生成したJSON文字列を展開 (既にJSON.stringify済み)
+const examplesData = [{"exampleHtml":"<span class=\"badge-base badge-solid color-primary\">ソリッドバッジ</span>","index":0},{"exampleHtml":"<span class=\"badge-base badge-outline color-primary\">アウトラインバッジ</span>","index":1},{"exampleHtml":"<span class=\"badge-base badge-subtle color-primary\">サブトルバッジ</span>","index":2},{"exampleHtml":"<span class=\"badge-base badge-solid color-primary\">バッジ</span>","index":3}]; // 使用例データの配列を渡す
 ---
 
-<Layout title={pageTitle} desc={pageDesc}>
+<DocLayout title={pageTitle} desc={pageDesc}>
 		<div class="container mx-auto px-4 py-8">
 			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
 			 <p class="text-lg text-neutral-600 mb-6">
@@ -31,12 +27,7 @@ const exampleCode = "<span class=\"badge-base badge-solid color-primary\">ソリ
 			   {/* フロントマターの baseClassName を参照 */}
 			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
 			 </p>
-			 <div class="mb-6">
-			   <a href="/css-summoner" class="text-primary hover:underline">
-			     ← back to css-summoner
-			   </a>
-			 </div>
-			 <Menu  />
+			
 
 			 {/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
 			 {variantsData.length > 0 && (
@@ -52,16 +43,10 @@ const exampleCode = "<span class=\"badge-base badge-solid color-primary\">ソリ
 
 			 <section class="mb-12">
 			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
-			   <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
-			     <pre class="text-sm"><code>{exampleCode}</code></pre> {/* フロントマターの exampleCode を参照 */}
-			   </div>
+			   {/* ExamplePreviewコンポーネントに examplesData 配列全体を渡す */}
+			   <ExamplePreview examples={examplesData} />
 			 </section>
 
-			 <Menu/>
-			 <div class="mt-6">
-			   <a href="/css-summoner" class="text-primary hover:underline">
-			     ← クラスビルダーに戻る
-			   </a>
-			 </div>
+			 
 		</div>
-</Layout>
+</DocLayout>

@@ -1,6 +1,6 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-07T04:00:19.744Z*
+*自動生成: 2025-04-07T05:52:33.522Z*
 
 ## ディレクトリ構造
 
@@ -59,9 +59,11 @@
 
 | ファイル | 役割 |
 |---------|------|
+| `ExamplePreview.astro` | Astro UIコンポーネント - ExamplePreview |
 | `FontAwesomeIcon.astro` | Astro UIコンポーネント - FontAwesomeIcon |
 | `ThemeSwitcher.astro` | Astro UIコンポーネント - ThemeSwitcher |
 | `ToggleSwitch.astro` | Astro UIコンポーネント - ToggleSwitch |
+| `VariantPreview.astro` | Astro UIコンポーネント - VariantPreview |
 | `theme.ts` | その他のファイル |
 
 ### components/color/
@@ -147,6 +149,10 @@
 
 | ファイル | 役割 |
 |---------|------|
+| `DocLayout.astro` | Astroレイアウト - DocLayout |
+| `Footer.astro` | Astroレイアウト - Footer |
+| `Head.astro` | Astroレイアウト - Head |
+| `Header.astro` | Astroレイアウト - Header |
 | `Layout.astro` | Astroレイアウト - Layout |
 | `Menu.astro` | Astroレイアウト - Menu |
 
@@ -155,13 +161,11 @@
 | ファイル | 役割 |
 |---------|------|
 | `config.js` | スクリプト設定ファイル |
-| `css-summoner.cjs` | JavaScript CommonJS Module |
-| `css-parser.js` | CSS解析ロジック |
+| `css-builder.cjs` | JavaScript CommonJS Module |
 | `extract-jsx.js` | JavaScriptモジュール |
 | `generate-astro.js` | JavaScriptモジュール |
 | `generate-docs.js` | JavaScriptモジュール |
 | `generate-handler-manifest.js` | JavaScriptモジュール |
-| `index.js` | モジュールのエクスポート用ファイル |
 | `simple-file-mapper.js` | このファイルマップ生成スクリプト |
 | `type-generator.js` | 型定義生成スクリプト |
 | `utils.js` | スクリプト共通ユーティリティ |

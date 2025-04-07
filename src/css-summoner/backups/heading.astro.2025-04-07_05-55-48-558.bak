@@ -1,0 +1,53 @@
+---
+/**
+	* Heading コンポーネント ドキュメント
+	*
+	* このファイルはスクリプトによって自動生成されました。
+	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+	* ソース: heading/variants-monochrome.css, heading/base.css
+	*/
+import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
+import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro'; // 作成したコンポーネントをインポート
+
+const pageTitle = "Heading コンポーネント";
+const pageDesc = "Heading コンポーネントのスタイルバリエーションと使用例。";
+
+// --- フロントマターに変数を渡す ---
+const baseClassName = "heading-base"; // baseClassName を文字列として渡す
+const variantsData = [{"variant":"accent-border","className":"heading-accent-border","description":"強調されたボーダーを持つ見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-accent-border color-accent\">強調ボーダー見出し</h2>"},{"variant":"accent-gradient","className":"heading-accent-gradient","description":"グラデーション背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-accent-gradient color-accent\">グラデーション見出し</h2>"},{"variant":"accent-stripe","className":"heading-accent-stripe","description":"ストライプ背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-accent-stripe color-accent\">ストライプ背景見出し</h2>"},{"variant":"casual-badge","className":"heading-casual-badge","description":"バッジスタイルのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-casual-badge color-secondary\">バッジスタイル見出し</h2>"},{"variant":"casual-dotted","className":"heading-casual-dotted","description":"ドット下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-casual-dotted color-secondary\">ドット下線カジュアル見出し</h2>"},{"variant":"casual-handwritten","className":"heading-casual-handwritten","description":"手書き風フォントを使用したカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-casual-handwritten color-secondary\">手書き風見出し</h2>"},{"variant":"casual-highlight","className":"heading-casual-highlight","description":"マーカーでハイライトしたような見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-casual-highlight color-secondary\">ハイライト見出し</h2>"},{"variant":"casual-wavy","className":"heading-casual-wavy","description":"波線下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-casual-wavy color-secondary\">波線下線カジュアル見出し</h2>"},{"variant":"formal-boxed","className":"heading-formal-boxed","description":"四方をボーダーで囲んだビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-formal-boxed color-primary\">囲み枠付き見出し</h2>"},{"variant":"formal-double","className":"heading-formal-double","description":"二重下線のフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-formal-double color-primary\">二重下線見出し</h2>"},{"variant":"formal-full","className":"heading-formal-full","description":"背景色が全体に適用されたフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-formal-full color-primary\">フルバックグラウンド見出し</h2>"},{"variant":"formal-primary","className":"heading-formal-primary","description":"左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-formal-primary color-primary\">プライマリフォーマル見出し</h2>"},{"variant":"formal-underline","className":"heading-formal-underline","description":"下線付きのフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-formal-underline color-primary\">下線付きフォーマル見出し</h2>"},{"variant":"japanesque-brush","className":"heading-japanesque-brush","description":"筆文字風の和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-japanesque-brush color-accent2\">筆文字風見出し</h2>"},{"variant":"japanesque-vertical","className":"heading-japanesque-vertical","description":"縦書きレイアウトの和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-japanesque-vertical color-accent2\">縦書き見出し</h2>"},{"variant":"modern-minimal","className":"heading-modern-minimal","description":"余白と細い線のみで構成されたミニマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-modern-minimal color-neutral\">ミニマルな見出し</h2>"},{"variant":"modern-oversized","className":"heading-modern-oversized","description":"大きめのフォントが特徴の現代的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-modern-oversized color-neutral\">オーバーサイズ見出し</h2>"},{"variant":"modern-split","className":"heading-modern-split","description":"2色に分かれたモダンな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-modern-split color-primary\">分割デザインの見出し</h2>"},{"variant":"technical-bracket","className":"heading-technical-bracket","description":"角括弧付きの技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-technical-bracket color-neutral\">角括弧付き見出し</h2>"},{"variant":"technical-code","className":"heading-technical-code","description":"コード風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-technical-code color-neutral\">コード風見出し</h2>"},{"variant":"technical-comment","className":"heading-technical-comment","description":"コードコメント風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-technical-comment color-neutral\">コメント風見出し</h2>"},{"variant":"technical-tag","className":"heading-technical-tag","description":"HTMLタグ風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。","previewHtml":"<h2 class=\"heading-base heading-technical-tag color-neutral\">タグ風見出し</h2>"}]; // バリアントデータの配列を渡す
+const exampleCode = `<h2 class="heading-base heading-formal-primary color-primary">プライマリフォーマル見出し</h2>\n\n<h2 class="heading-base heading-formal-underline color-primary">下線付きフォーマル見出し</h2>\n\n<h2 class="heading-base heading-formal-full color-primary">フルバックグラウンド見出し</h2>\n\n<h2 class="heading-base heading-casual-dotted color-secondary">ドット下線カジュアル見出し</h2>\n\n<h2 class="heading-base heading-casual-badge color-secondary">バッジスタイル見出し</h2>\n\n<h2 class="heading-base heading-casual-wavy color-secondary">波線下線カジュアル見出し</h2>\n\n<h2 class="heading-base heading-technical-code color-neutral">コード風見出し</h2>\n\n<h2 class="heading-base heading-technical-tag color-neutral">タグ風見出し</h2>\n\n<h2 class="heading-base heading-technical-bracket color-neutral">角括弧付き見出し</h2>\n\n<h2 class="heading-base heading-accent-gradient color-accent">グラデーション見出し</h2>\n\n<h2 class="heading-base heading-accent-border color-accent">強調ボーダー見出し</h2>\n\n<h2 class="heading-base heading-accent-stripe color-accent">ストライプ背景見出し</h2>\n\n<h2 class="heading-base heading-modern-minimal color-neutral">ミニマルな見出し</h2>\n\n<h2 class="heading-base heading-modern-split color-primary">分割デザインの見出し</h2>\n\n<h2 class="heading-base heading-modern-oversized color-neutral">オーバーサイズ見出し</h2>\n\n<h2 class="heading-base heading-japanesque-brush color-accent2">筆文字風見出し</h2>\n\n<h2 class="heading-base heading-japanesque-vertical color-accent2">縦書き見出し</h2>\n\n<h2 class="heading-base heading-formal-boxed color-primary">囲み枠付き見出し</h2>\n\n<h2 class="heading-base heading-formal-double color-primary">二重下線見出し</h2>\n\n<h2 class="heading-base heading-casual-handwritten color-secondary">手書き風見出し</h2>\n\n<h2 class="heading-base heading-casual-highlight color-secondary">ハイライト見出し</h2>\n\n<h2 class="heading-base heading-technical-comment color-neutral">コメント風見出し</h2>\n\n<h2 class="heading-base">基本的な見出し</h2>`; // HTML文字列をテンプレートリテラル内で安全に展開
+---
+
+<DocLayout title={pageTitle} desc={pageDesc}>
+		<div class="container mx-auto px-4 py-8">
+			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+			 <p class="text-lg text-neutral-600 mb-6">
+			   すべての見出しに共通する基本スタイル。見出しに一貫性を持たせます。
+			   {/* フロントマターの baseClassName を参照 */}
+			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
+			 </p>
+			
+
+			 {/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
+			 {variantsData.length > 0 && (
+			   <section class="mb-12">
+			     <h2 class="text-2xl font-semibold mb-6 border-b pb-2">バリアント</h2>
+			     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			       {variantsData.map(variantProps => (
+			         <VariantPreview {...variantProps} />
+			       ))}
+			     </div>
+			   </section>
+			 )}
+
+			 <section class="mb-12">
+			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
+			   <div class="container-example">
+			     {/* HTMLを直接レンダリング */}
+			     <Fragment set:html={exampleCode} />
+			   </div>
+			 </section>
+
+			 
+		</div>
+</DocLayout>

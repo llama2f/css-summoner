@@ -1,34 +1,36 @@
 
-```graph TD
+```mermaid
+flowchart TB
     subgraph データ準備 [データ準備プロセス]
         direction LR
-        CSS[CSSファイル<br>アノテーション付き] --> Plugin(PostCSS Plugin<br>postcss-css-annotations)
-        Plugin --> ExtractedData(extracted-annotations.json<br>抽出データ)
-        Configs[手動設定<br>src/css-summoner/configs/*] --> Mappings(データ統合<br>src/css-summoner/classMappings.js)
+        CSS[CSSファイル<br>アノテーション付き] --> Parser["PostCSSプラグイン<br>(postcss-css-annotations)"]
+        Parser --> ExtractedData["extracted-annotations.json<br>(抽出データ)"]
+        ConfigIndex["手動設定<br>(configs/index.js)"] --> Mappings["classMappings.js<br>(データ統合)"]
+        ConfigFiles["設定ファイル群<br>(sizes.mjs, modifiers.mjs等)"] --> ConfigIndex
         ExtractedData --> Mappings
     end
 
     subgraph ビルド時生成 [ビルド時生成プロセス]
         direction LR
-        Mappings --> Integration(実行スクリプト<br>src/css-summoner-integration.js)
-        Integration --> Generator(各種ジェネレーター<br>scripts/generators)
-        Generator --> Types(TypeScript型定義<br>src/css-summoner/types)
-        Generator --> Docs(Astroドキュメント<br>src/pages/css-summoner)
-        Generator --> Components(Astroコンポーネント<br>src/pages/css-summoner)
+        Mappings --> Integration["css-summoner-integration.js<br>(実行スクリプト)"]
+        Integration --> Generator["各種ジェネレーター<br>(scripts/generators)"]
+        Generator --> Types["TypeScript型定義<br>(types/*.d.ts)"]
+        Generator --> Docs["Astroドキュメント<br>(pages/docs)"]
+        Generator --> Components["Astroコンポーネント<br>(pages/components)"]
     end
 
     subgraph UIとプレビュー [UIとプレビュープロセス]
         direction LR
-        Mappings --> UI(カスタムクラス<br>ビルダーUI<br>Classsummoner.jsx)
-        UI --> Handler(ハンドラーシステム<br>templates/handlers)
-        Handler --> Preview(プレビュー表示<br>ClassPreview.jsx)
-        Handler --> CodeOutput(クラス文字列<br>ClassCodeDisplay.jsx)
+        Mappings --> UI["カスタムクラスビルダーUI<br>(ClassBuilder.jsx)"]
+        UI --> Handler["ハンドラーシステム<br>(templates/handlers)"]
+        Handler --> Preview["プレビュー表示<br>(ClassPreview.jsx)"]
+        Handler --> CodeOutput["クラス文字列<br>(ClassCodeDisplay.jsx)"]
     end
 
-    %% 実行フローの関連付け (点線)
-    Integration -.-> Plugin
-    Integration -.-> Generator
-
+    %% コンポーネント間の関連
+    Parser -.-> Integration
+    UI -.-> Preview
+    UI -.-> CodeOutput
 ```
 
 **システム概要:**

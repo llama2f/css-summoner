@@ -1,0 +1,53 @@
+---
+/**
+	* Infobox コンポーネント ドキュメント
+	*
+	* このファイルはスクリプトによって自動生成されました。
+	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+	* ソース: infobox/variants.css, infobox/base.css
+	*/
+import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
+import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro'; // 作成したコンポーネントをインポート
+
+const pageTitle = "Infobox コンポーネント";
+const pageDesc = "Infobox コンポーネントのスタイルバリエーションと使用例。";
+
+// --- フロントマターに変数を渡す ---
+const baseClassName = "infobox-base"; // baseClassName を文字列として渡す
+const variantsData = [{"variant":"ghost","className":"infobox-ghost","description":"背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。","previewHtml":"<div class=\"infobox-base infobox-ghost color-neutral\">...</div>"},{"variant":"outline","className":"infobox-outline","description":"背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。","previewHtml":"<div class=\"infobox-base infobox-outline color-warning\">...</div>"},{"variant":"solid","className":"infobox-solid","description":"背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。","previewHtml":"<div class=\"infobox-base infobox-solid color-info\">...</div>"},{"variant":"title","className":"infobox-title","description":"タイトル要素のスタイル。","previewHtml":"<div class=\"infobox-base infobox-solid color-error\"><h4 class=\"infobox-title\">エラー</h4>...</div>"}]; // バリアントデータの配列を渡す
+const exampleCode = `<div class="infobox-base infobox-solid color-info">...</div>\n\n<div class="infobox-base infobox-outline color-warning">...</div>\n\n<div class="infobox-base infobox-ghost color-neutral">...</div>\n\n<div class="infobox-base infobox-solid color-error"><h4 class="infobox-title">エラー</h4>...</div>\n\n<div class="infobox-base infobox-solid color-info">...</div>`; // HTML文字列をテンプレートリテラル内で安全に展開
+---
+
+<DocLayout title={pageTitle} desc={pageDesc}>
+		<div class="container mx-auto px-4 py-8">
+			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+			 <p class="text-lg text-neutral-600 mb-6">
+			   すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。
+			   {/* フロントマターの baseClassName を参照 */}
+			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
+			 </p>
+			
+
+			 {/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
+			 {variantsData.length > 0 && (
+			   <section class="mb-12">
+			     <h2 class="text-2xl font-semibold mb-6 border-b pb-2">バリアント</h2>
+			     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			       {variantsData.map(variantProps => (
+			         <VariantPreview {...variantProps} />
+			       ))}
+			     </div>
+			   </section>
+			 )}
+
+			 <section class="mb-12">
+			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
+			   <div class="container-example">
+			     {/* HTMLを直接レンダリング */}
+			     <Fragment set:html={exampleCode} />
+			   </div>
+			 </section>
+
+			 
+		</div>
+</DocLayout>

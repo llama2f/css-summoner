@@ -6,24 +6,20 @@
 	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
 	* ソース: button/variants-monochrome.css, button/base.css
 	*/
-import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
-import Menu from '@/css-summoner/layouts/Menu.astro'; // css-summoner内のMenuを使用
-import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro'; // 作成したコンポーネントをインポート
-
-// スタイルシートのインポート (必要に応じて調整)
-// import '@/css-summoner/styles/styles.css'; // 全体スタイル
-// import '@/css-summoner/styles/button/index.css'; // 個別スタイル (必要なら)
+import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
+import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro';
+import ExamplePreview from '@/css-summoner/components/astro/ExamplePreview.astro'; // 使用例コンポーネントをインポート
 
 const pageTitle = "Button コンポーネント";
 const pageDesc = "Button コンポーネントのスタイルバリエーションと使用例。";
 
 // --- フロントマターに変数を渡す ---
 const baseClassName = "btn-base"; // baseClassName を文字列として渡す
-const variantsData = [{"variant":"btn-group","className":"btn-group","description":"ボタンをグループ化して表示します。","previewHtml":"<div class=\"btn-group\"><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button></div>"},{"variant":"ghost","className":"btn-ghost","description":"ゴーストスタイルのボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。","previewHtml":"<button class=\"btn-base btn-ghost color-primary\">ゴーストボタン</button>"},{"variant":"gradient","className":"btn-gradient","description":"グラデーションスタイルのボタン。グラデーション効果が適用されます。","previewHtml":"<button class=\"btn-base btn-gradient color-primary\">グラデーションボタン</button>"},{"variant":"icon","className":"btn-icon","description":"アイコン用ボタン。正方形で、アイコンを中央に配置します。","previewHtml":"<button class=\"btn-base btn-icon color-primary\"><svg>...</svg></button>"},{"variant":"icon-ghost","className":"btn-icon-ghost","description":"ゴーストスタイルのアイコン用ボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。","previewHtml":"<button class=\"btn-base btn-icon-ghost color-primary\"><svg>...</svg></button>"},{"variant":"icon-outline","className":"btn-icon-outline","description":"アウトラインスタイルのアイコン用ボタン。枠線のみで、ホバー時に背景色が表示されます。","previewHtml":"<button class=\"btn-base btn-icon-outline color-primary\"><svg>...</svg></button>"},{"variant":"link","className":"btn-link","description":"リンク風ボタン。通常のテキストリンクのような見た目で、ホバー時に下線が表示されます。","previewHtml":"<button class=\"btn-base btn-link color-primary\">リンクボタン</button>"},{"variant":"outline","className":"btn-outline","description":"アウトラインスタイルのボタン。枠線のみで、ホバー時に背景色が表示されます。","previewHtml":"<button class=\"btn-base btn-outline color-primary\">アウトラインボタン</button>"},{"variant":"solid","className":"btn-solid","description":"塗りつぶしスタイルのボタン。背景色が適用されます。","previewHtml":"<button class=\"btn-base btn-solid color-primary\">ソリッドボタン</button>"},{"variant":"subtle","className":"btn-subtle","description":"控えめなボタン。薄い背景色が適用され、ホバー時に色が濃くなります。","previewHtml":"<button class=\"btn-base btn-subtle color-primary\">サブトルボタン</button>"}]; // バリアントデータの配列を渡す
-const exampleCode = "<button class=\"btn-base btn-solid color-primary\">ソリッドボタン</button>\\n\\n<button class=\"btn-base btn-outline color-primary\">アウトラインボタン</button>\\n\\n<button class=\"btn-base btn-ghost color-primary\">ゴーストボタン</button>\\n\\n<button class=\"btn-base btn-link color-primary\">リンクボタン</button>\\n\\n<button class=\"btn-base btn-gradient color-primary\">グラデーションボタン</button>\\n\\n<button class=\"btn-base btn-subtle color-primary\">サブトルボタン</button>\\n\\n<button class=\"btn-base btn-icon color-primary\"><svg>...</svg></button>\\n\\n<button class=\"btn-base btn-icon-outline color-primary\"><svg>...</svg></button>\\n\\n<button class=\"btn-base btn-icon-ghost color-primary\"><svg>...</svg></button>\\n\\n<div class=\"btn-group\"><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button><button class=\"btn-base btn-primary\">ボタン</button></div>\\n\\n<button class=\"btn-base btn-solid color-primary\">ボタン</button>"; // 事前生成したJSON文字列を展開 (既にJSON.stringify済み)
+const variantsData = [{"variant":"btn-group","className":"btn-group","description":"ボタンをグループ化して表示します。","previewHtml":"<div class=\"btn-group\"><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button></div>"},{"variant":"ghost","className":"btn-ghost","description":"ゴーストスタイルのボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。","previewHtml":"<button class=\"btn-base btn-ghost color-primary\">ゴーストボタン</button>"},{"variant":"gradient","className":"btn-gradient","description":"グラデーションスタイルのボタン。グラデーション効果が適用されます。","previewHtml":"<button class=\"btn-base btn-gradient color-primary\">グラデーションボタン</button>"},{"variant":"icon","className":"btn-icon","description":"アイコン用ボタン。正方形で、アイコンを中央に配置します。","previewHtml":"<button class=\"btn-base btn-icon color-primary\"><svg>...</svg></button>"},{"variant":"icon-ghost","className":"btn-icon-ghost","description":"ゴーストスタイルのアイコン用ボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。","previewHtml":"<button class=\"btn-base btn-icon-ghost color-primary\"><svg>...</svg></button>"},{"variant":"icon-outline","className":"btn-icon-outline","description":"アウトラインスタイルのアイコン用ボタン。枠線のみで、ホバー時に背景色が表示されます。","previewHtml":"<button class=\"btn-base btn-icon-outline color-primary\"><svg>...</svg></button>"},{"variant":"link","className":"btn-link","description":"リンク風ボタン。通常のテキストリンクのような見た目で、ホバー時に下線が表示されます。","previewHtml":"<button class=\"btn-base btn-link color-primary\">リンクボタン</button>"},{"variant":"outline","className":"btn-outline","description":"アウトラインスタイルのボタン。枠線のみで、ホバー時に背景色が表示されます。","previewHtml":"<button class=\"btn-base btn-outline color-primary\">アウトラインボタン</button>"},{"variant":"solid","className":"btn-solid","description":"塗りつぶしスタイルのボタン。背景色が適用されます。","previewHtml":"<button class=\"btn-base btn-solid color-primary\">ソリッドボタン</button>"},{"variant":"subtle","className":"btn-subtle","description":"控えめなボタン。薄い背景色が適用され、ホバー時に色が濃くなります。","previewHtml":"<button class=\"btn-base btn-subtle color-primary\">サブトルボタン</button>"}]; // バリアントデータの配列を渡す
+const examplesData = [{"exampleHtml":"<button class=\"btn-base btn-solid color-primary\">ソリッドボタン</button>","index":0},{"exampleHtml":"<button class=\"btn-base btn-outline color-primary\">アウトラインボタン</button>","index":1},{"exampleHtml":"<button class=\"btn-base btn-ghost color-primary\">ゴーストボタン</button>","index":2},{"exampleHtml":"<button class=\"btn-base btn-link color-primary\">リンクボタン</button>","index":3},{"exampleHtml":"<button class=\"btn-base btn-gradient color-primary\">グラデーションボタン</button>","index":4},{"exampleHtml":"<button class=\"btn-base btn-subtle color-primary\">サブトルボタン</button>","index":5},{"exampleHtml":"<button class=\"btn-base btn-icon color-primary\"><svg>...</svg></button>","index":6},{"exampleHtml":"<button class=\"btn-base btn-icon-outline color-primary\"><svg>...</svg></button>","index":7},{"exampleHtml":"<button class=\"btn-base btn-icon-ghost color-primary\"><svg>...</svg></button>","index":8},{"exampleHtml":"<div class=\"btn-group\"><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button></div>","index":9},{"exampleHtml":"<button class=\"btn-base btn-solid color-primary\">ボタン</button>","index":10}]; // 使用例データの配列を渡す
 ---
 
-<Layout title={pageTitle} desc={pageDesc}>
+<DocLayout title={pageTitle} desc={pageDesc}>
 		<div class="container mx-auto px-4 py-8">
 			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
 			 <p class="text-lg text-neutral-600 mb-6">
@@ -31,12 +27,7 @@ const exampleCode = "<button class=\"btn-base btn-solid color-primary\">ソリ�
 			   {/* フロントマターの baseClassName を参照 */}
 			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
 			 </p>
-			 <div class="mb-6">
-			   <a href="/css-summoner" class="text-primary hover:underline">
-			     ← back to css-summoner
-			   </a>
-			 </div>
-			 <Menu  />
+			
 
 			 {/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
 			 {variantsData.length > 0 && (
@@ -52,16 +43,10 @@ const exampleCode = "<button class=\"btn-base btn-solid color-primary\">ソリ�
 
 			 <section class="mb-12">
 			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
-			   <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
-			     <pre class="text-sm"><code>{exampleCode}</code></pre> {/* フロントマターの exampleCode を参照 */}
-			   </div>
+			   {/* ExamplePreviewコンポーネントに examplesData 配列全体を渡す */}
+			   <ExamplePreview examples={examplesData} />
 			 </section>
 
-			 <Menu/>
-			 <div class="mt-6">
-			   <a href="/css-summoner" class="text-primary hover:underline">
-			     ← クラスビルダーに戻る
-			   </a>
-			 </div>
+			 
 		</div>
-</Layout>
+</DocLayout>

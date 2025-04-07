@@ -6,13 +6,9 @@
 	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
 	* ソース: text/variants.css, text/base.css
 	*/
-import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
-import Menu from '@/css-summoner/layouts/Menu.astro'; // css-summoner内のMenuを使用
-import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro'; // 作成したコンポーネントをインポート
-
-// スタイルシートのインポート (必要に応じて調整)
-// import '@/css-summoner/styles/styles.css'; // 全体スタイル
-// import '@/css-summoner/styles/text/index.css'; // 個別スタイル (必要なら)
+import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
+import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro';
+import ExamplePreview from '@/css-summoner/components/astro/ExamplePreview.astro'; // 使用例コンポーネントをインポート
 
 const pageTitle = "Text コンポーネント";
 const pageDesc = "Text コンポーネントのスタイルバリエーションと使用例。";
@@ -20,10 +16,10 @@ const pageDesc = "Text コンポーネントのスタイルバリエーション
 // --- フロントマターに変数を渡す ---
 const baseClassName = "text-deco-base"; // baseClassName を文字列として渡す
 const variantsData = [{"variant":"highlight","className":"text-highlight","description":"コンポーネントカラーを使用して、微妙な背景ハイライトを適用します。marker-fullに似ていますが、異なるスタイル設定が可能です。","previewHtml":"<span class=\"text-highlight color-accent\">ハイライトされたテキスト</span>"},{"variant":"marker","className":"text-marker","description":"コンポーネントカラーを使用して、テキスト背景の下部に蛍光ペン効果を適用します。","previewHtml":"<span class=\"text-marker color-primary\">マーカー付きテキスト</span>"},{"variant":"marker-double","className":"text-marker-double","description":"コンポーネントカラーを使用して、二重線のマーカー効果を適用します。","previewHtml":"<span class=\"text-marker-double color-primary\">二重マーカーテキスト</span>"},{"variant":"marker-full","className":"text-marker-full","description":"コンポーネントカラーを使用して、テキスト背景全体に蛍光ペン効果を適用します。","previewHtml":"<span class=\"text-marker-full color-secondary\">全面マーカーテキスト</span>"},{"variant":"marker-stripe","className":"text-marker-stripe","description":"コンポーネントカラーを使用して、テキスト下部にストライプ状のマーカー効果を適用します。","previewHtml":"<span class=\"text-marker-stripe color-accent\">ストライプマーカー</span>"},{"variant":"quote","className":"text-quote","description":"コンポーネントカラーを使用して、テキスト（通常は引用）に左ボーダーを適用します。","previewHtml":"<p class=\"text-quote color-neutral\">これは引用です。</p>"},{"variant":"underline","className":"text-underline","description":"コンポーネントカラーを使用して、標準的な実線の下線を適用します。","previewHtml":"<span class=\"text-underline color-primary\">下線付きテキスト</span>"},{"variant":"underline-dashed","className":"text-underline-dashed","description":"コンポーネントカラーを使用して、破線の下線を適用します。","previewHtml":"<span class=\"text-underline-dashed color-accent\">破線下線</span>"},{"variant":"underline-dotted","className":"text-underline-dotted","description":"コンポーネントカラーを使用して、点線の下線を適用します。","previewHtml":"<span class=\"text-underline-dotted color-secondary\">点線下線</span>"},{"variant":"underline-thick","className":"text-underline-thick","description":"コンポーネントカラーを使用して、太い実線の下線を適用します。","previewHtml":"<span class=\"text-underline-thick color-primary\">太線下線</span>"},{"variant":"underline-wavy","className":"text-underline-wavy","description":"コンポーネントカラーを使用して、波線の下線を適用します。","previewHtml":"<span class=\"text-underline-wavy color-neutral\">波線下線</span>"}]; // バリアントデータの配列を渡す
-const exampleCode = "<span class=\"text-marker color-primary\">マーカー付きテキスト</span>\\n\\n<span class=\"text-marker-full color-secondary\">全面マーカーテキスト</span>\\n\\n<span class=\"text-marker-stripe color-accent\">ストライプマーカー</span>\\n\\n<span class=\"text-marker-double color-primary\">二重マーカーテキスト</span>\\n\\n<span class=\"text-underline color-primary\">下線付きテキスト</span>\\n\\n<span class=\"text-underline-dotted color-secondary\">点線下線</span>\\n\\n<span class=\"text-underline-dashed color-accent\">破線下線</span>\\n\\n<span class=\"text-underline-wavy color-neutral\">波線下線</span>\\n\\n<span class=\"text-underline-thick color-primary\">太線下線</span>\\n\\n<p class=\"text-quote color-neutral\">これは引用です。</p>\\n\\n<span class=\"text-highlight color-accent\">ハイライトされたテキスト</span>\\n\\n<span class=\"text-deco-base\">ベースデコレーション</span>"; // 事前生成したJSON文字列を展開 (既にJSON.stringify済み)
+const examplesData = [{"exampleHtml":"<span class=\"text-marker color-primary\">マーカー付きテキスト</span>","index":0},{"exampleHtml":"<span class=\"text-marker-full color-secondary\">全面マーカーテキスト</span>","index":1},{"exampleHtml":"<span class=\"text-marker-stripe color-accent\">ストライプマーカー</span>","index":2},{"exampleHtml":"<span class=\"text-marker-double color-primary\">二重マーカーテキスト</span>","index":3},{"exampleHtml":"<span class=\"text-underline color-primary\">下線付きテキスト</span>","index":4},{"exampleHtml":"<span class=\"text-underline-dotted color-secondary\">点線下線</span>","index":5},{"exampleHtml":"<span class=\"text-underline-dashed color-accent\">破線下線</span>","index":6},{"exampleHtml":"<span class=\"text-underline-wavy color-neutral\">波線下線</span>","index":7},{"exampleHtml":"<span class=\"text-underline-thick color-primary\">太線下線</span>","index":8},{"exampleHtml":"<p class=\"text-quote color-neutral\">これは引用です。</p>","index":9},{"exampleHtml":"<span class=\"text-highlight color-accent\">ハイライトされたテキスト</span>","index":10},{"exampleHtml":"<span class=\"text-deco-base\">ベースデコレーション</span>","index":11}]; // 使用例データの配列を渡す
 ---
 
-<Layout title={pageTitle} desc={pageDesc}>
+<DocLayout title={pageTitle} desc={pageDesc}>
 		<div class="container mx-auto px-4 py-8">
 			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
 			 <p class="text-lg text-neutral-600 mb-6">
@@ -31,12 +27,7 @@ const exampleCode = "<span class=\"text-marker color-primary\">マーカー付�
 			   {/* フロントマターの baseClassName を参照 */}
 			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
 			 </p>
-			 <div class="mb-6">
-			   <a href="/css-summoner" class="text-primary hover:underline">
-			     ← back to css-summoner
-			   </a>
-			 </div>
-			 <Menu  />
+			
 
 			 {/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
 			 {variantsData.length > 0 && (
@@ -52,16 +43,10 @@ const exampleCode = "<span class=\"text-marker color-primary\">マーカー付�
 
 			 <section class="mb-12">
 			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
-			   <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
-			     <pre class="text-sm"><code>{exampleCode}</code></pre> {/* フロントマターの exampleCode を参照 */}
-			   </div>
+			   {/* ExamplePreviewコンポーネントに examplesData 配列全体を渡す */}
+			   <ExamplePreview examples={examplesData} />
 			 </section>
 
-			 <Menu/>
-			 <div class="mt-6">
-			   <a href="/css-summoner" class="text-primary hover:underline">
-			     ← クラスビルダーに戻る
-			   </a>
-			 </div>
+			 
 		</div>
-</Layout>
+</DocLayout>
