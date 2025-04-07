@@ -1,6 +1,6 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-07T05:52:33.522Z*
+*自動生成: 2025-04-07T13:47:21.100Z*
 
 ## ディレクトリ構造
 
@@ -124,13 +124,13 @@
 
 | ファイル | 役割 |
 |---------|------|
+| `CSSコンポーネントの修正依頼.md` | Markdownドキュメント |
 | `color-system.md` | Markdownドキュメント |
 | `css-summoner-system.md` | Markdownドキュメント |
 | `file-map.md` | Markdownドキュメント |
 | `handler-guide.md` | Markdownドキュメント |
 | `stylingGuide.md` | Markdownドキュメント |
 | `todo.md` | Markdownドキュメント |
-| `テンプレートハンドラー移行ガイド.md` | Markdownドキュメント |
 
 ### generators/
 
@@ -285,28 +285,21 @@
 
 | ファイル | 役割 |
 |---------|------|
-| `badgeHandlers.jsx` | badgeコンポーネントのテンプレート生成ハンドラー |
-| `buttonHandlers.jsx` | buttonコンポーネントのテンプレート生成ハンドラー |
-| `cardHandlers.jsx` | cardコンポーネントのテンプレート生成ハンドラー |
 | `common.jsx` | 共通ユーティリティと定数 |
-| `formHandlers.jsx` | formコンポーネントのテンプレート生成ハンドラー |
-| `headingHandlers.jsx` | headingコンポーネントのテンプレート生成ハンドラー |
-| `imageHandlers.jsx` | imageコンポーネントのテンプレート生成ハンドラー |
 | `index.jsx` | Reactコンポーネント |
-| `infoboxHandlers.jsx` | infoboxコンポーネントのテンプレート生成ハンドラー |
-| `textHandlers.jsx` | textコンポーネントのテンプレート生成ハンドラー |
-| `tooltipHandlers.jsx` | tooltipコンポーネントのテンプレート生成ハンドラー |
 
 ### templates/handlers/auto/
 
 | ファイル | 役割 |
 |---------|------|
+| `_template.jsx` | Reactコンポーネント |
 | `badge.jsx` | Reactコンポーネント |
 | `button.jsx` | Reactコンポーネント |
 | `card.jsx` | Reactコンポーネント |
 | `form.jsx` | Reactコンポーネント |
 | `heading.jsx` | Reactコンポーネント |
 | `image.jsx` | Reactコンポーネント |
+| `img.jsx` | Reactコンポーネント |
 | `infobox.jsx` | Reactコンポーネント |
 | `text.jsx` | Reactコンポーネント |
 | `tooltip.jsx` | Reactコンポーネント |
