@@ -1,20 +1,26 @@
 /* 
  * text/index.css
- * テキスト装飾スタイルコレクション
+ * テキスト装飾スタイルコレクション (モノクロベース)
  * 
  * 機能:
- * - 様々なテキスト装飾（マーカー、アンダーライン、強調など）
+ * - 様々なテキスト装飾（マーカー、アンダーライン、引用符、ハイライトなど）
+ * - モノクロベースの構造とカラーセレクタによる色付け
  * - CSS変数によるカスタマイズ性
- * - テーマカラーシステムとの統合
  * - 印刷時の対応
+ * - ユーティリティ（影、ぼかし、アウトライン、縦書き）
  * 
  * 使用例:
- * <span class="text-marker-primary">マーカー付きテキスト</span>
- * <span class="text-underline-wavy">波線下線テキスト</span>
- * <p class="text-highlight-accent">強調されたテキスト</p>
+ * <span class="text-marker color-primary">マーカー付きテキスト</span>
+ * <span class="text-underline-wavy color-secondary">波線下線テキスト</span>
+ * <p class="text-quote color-neutral">引用符付きテキスト</p>
+ * <span class="text-highlight color-accent">ハイライトされたテキスト</span>
+ * <span class="text-shadow">影付きテキスト</span>
  */
 @import './base.css';
-@import './variants.css';
+@import './variants.css'; /* モノクロバリアント */
 @import './utilities.css';
+<<<<<<< HEAD
 
 @import "tailwindcss";
+=======
+>>>>>>> template-engine

@@ -1,0 +1,179 @@
+---
+/**
+ * Form コンポーネント ドキュメント
+ *
+ * このファイルはスクリプトによって自動生成されました。
+ * 元のCSSファイルのアノテーション、または astro-generator.js を編集してください。
+ * ソース: form/variants.css
+ */
+import Layout from '@layouts/Layout.astro'; // 正しいエイリアスを使用
+import Menu from '@/css-builder/layouts/Menu.astro'; // css-builder内のMenuを使用
+
+// スタイルシートのインポート (必要に応じて調整)
+// import '@/css-builder/styles/styles.css'; // 全体スタイル
+// import '@/css-builder/styles/form/index.css'; // 個別スタイル (必要なら)
+
+const pageTitle = "Form コンポーネント";
+const pageDesc = "Form コンポーネントのスタイルバリエーションと使用例。";
+---
+
+<Layout pageTitle={pageTitle} desc={pageDesc}>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
+    <p class="text-lg text-neutral-600 mb-6">
+      Form の基本スタイル
+      {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.</code>}
+    </p>
+    <div class="mb-6">
+      <a href="/css-builder" class="text-primary hover:underline">
+        ← クラスビルダーに戻る
+      </a>
+    </div>
+    <Menu client:load /> {/* client:load を追加 */}
+
+    {variants.length > 0 && (
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6 border-b pb-2">バリアント</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <div class="border rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 bg-neutral-100">
+              <h3 class="text-lg font-medium">Checkbox</h3>
+              <code class="block text-sm text-neutral-700 mt-1">.form-checkbox</code>
+            </div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-600 mb-4">カスタムスタイルのチェックボックス。オン/オフの選択に使用します。</p>
+              <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
+                <!-- HTMLをエスケープせずに埋め込む -->
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="border rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 bg-neutral-100">
+              <h3 class="text-lg font-medium">Feedback</h3>
+              <code class="block text-sm text-neutral-700 mt-1">.form-feedback</code>
+            </div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-600 mb-4">フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。</p>
+              <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
+                <!-- HTMLをエスケープせずに埋め込む -->
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="border rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 bg-neutral-100">
+              <h3 class="text-lg font-medium">Input</h3>
+              <code class="block text-sm text-neutral-700 mt-1">.form-input</code>
+            </div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-600 mb-4">テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。</p>
+              <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
+                <!-- HTMLをエスケープせずに埋め込む -->
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="border rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 bg-neutral-100">
+              <h3 class="text-lg font-medium">Radio</h3>
+              <code class="block text-sm text-neutral-700 mt-1">.form-radio</code>
+            </div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-600 mb-4">カスタムスタイルのラジオボタン。複数の選択肢から1つを選ぶ場合に使用します。</p>
+              <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
+                <!-- HTMLをエスケープせずに埋め込む -->
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="border rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 bg-neutral-100">
+              <h3 class="text-lg font-medium">Search</h3>
+              <code class="block text-sm text-neutral-700 mt-1">.form-search</code>
+            </div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-600 mb-4">検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。</p>
+              <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
+                <!-- HTMLをエスケープせずに埋め込む -->
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="border rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 bg-neutral-100">
+              <h3 class="text-lg font-medium">Select</h3>
+              <code class="block text-sm text-neutral-700 mt-1">.form-select</code>
+            </div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-600 mb-4">ドロップダウン選択フィールド。オプションから1つを選ぶ場合に使用します。</p>
+              <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
+                <!-- HTMLをエスケープせずに埋め込む -->
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="border rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 bg-neutral-100">
+              <h3 class="text-lg font-medium">Switch</h3>
+              <code class="block text-sm text-neutral-700 mt-1">.form-switch</code>
+            </div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-600 mb-4">トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。</p>
+              <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
+                <!-- HTMLをエスケープせずに埋め込む -->
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="border rounded-lg shadow-sm overflow-hidden">
+            <div class="p-4 bg-neutral-100">
+              <h3 class="text-lg font-medium">Textarea</h3>
+              <code class="block text-sm text-neutral-700 mt-1">.form-textarea</code>
+            </div>
+            <div class="p-4">
+              <p class="text-sm text-neutral-600 mb-4">複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。</p>
+              <div class="bg-white p-6 rounded border border-dashed flex items-center justify-center min-h-[100px]">
+                <!-- HTMLをエスケープせずに埋め込む -->
+                <Fragment set:html={docGenerator.getComponentPreviewHtml(componentType, v.className, baseClasses)} />
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+    )}
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
+      <div class="bg-neutral-800 text-neutral-100 p-4 rounded-lg overflow-x-auto">
+        <pre class="text-sm">
+          <!-- HTMLをエスケープせずに埋め込む -->
+          <Fragment set:html={docGenerator.getComponentExampleCode(componentType, componentExamples, baseClasses, componentVariants)} />
+        </pre>
+      </div>
+    </section>
+
+    <Menu client:load /> {/* client:load を追加 */}
+    <div class="mt-6">
+      <a href="/css-builder" class="text-primary hover:underline">
+        ← クラスビルダーに戻る
+      </a>
+    </div>
+  </div>
+</Layout>

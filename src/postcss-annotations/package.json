@@ -1,0 +1,33 @@
+{
+  "name": "postcss-css-annotations",
+  "version": "0.1.0",
+  "description": "PostCSSプラグイン: CSSファイルからコンポーネントアノテーションを抽出",
+  "main": "src/index.js",
+  "bin": {
+    "postcss-css-annotations": "cli.js"
+  },
+  "scripts": {
+    "test": "node test/test.js",
+    "extract": "node cli.js"
+  },
+  "keywords": [
+    "postcss",
+    "postcss-plugin",
+    "css",
+    "annotations",
+    "components",
+    "astro",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.0"
+  },
+  "dependencies": {
+    "glob": "^10.3.0"
+  }
+}

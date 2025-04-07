@@ -1,352 +1,234 @@
 @layer components {
 	/* 
-   * マーカースタイル 
-   * テキストの背景に蛍光ペンのようなマーカー効果を適用
+   * ==========================================================================
+   * Text Component Variants (Monochrome Base)
+   * ==========================================================================
+   * マーカー、アンダーライン、引用符など、様々なテキスト装飾スタイルを提供します。
+   * 色はカラーセレクタクラス（例: .color-primary）を使用して適用されます。
    */
 
 	/* 
-   * @component: text-marker
-   * @variant: primary
-   * @description: プライマリカラーでテキストの背景下部に蛍光ペン風のマーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-primary">プライマリカラーマーカー</span>
+   * --------------------------------------------------------------------------
+   * Marker Styles
+   * --------------------------------------------------------------------------
+   * テキストの背景に蛍光ペンのような効果を適用します。
    */
-	.text-marker-primary {
+
+	/* 
+   * @component: text
+   * @variant: marker
+   * @description: コンポーネントカラーを使用して、テキスト背景の下部に蛍光ペン効果を適用します。
+   * @category: typography
+   * @example: <span class="text-marker color-primary">マーカー付きテキスト</span>
+   */
+	.text-marker {
+		/* color-mixを使用して微妙な背景色を作成。必要に応じて透明度を調整。 */
 		background-image: linear-gradient(
 			transparent 60%,
-			rgba(var(--primary-rgb), var(--text-marker-opacity)) 40%
+			color-mix(in srgb, var(--component-color, #333), transparent 70%) 40%
 		);
+		background-size: 100% 100%;
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		/* 透明度はcolor-mixで処理 */
+	}
+
+	/* 
+   * @component: text
+   * @variant: marker-full
+   * @description: コンポーネントカラーを使用して、テキスト背景全体に蛍光ペン効果を適用します。
+   * @category: typography
+   * @example: <span class="text-marker-full color-secondary">全面マーカーテキスト</span>
+   */
+	.text-marker-full {
+		/* color-mixを使用して薄い背景塗りつぶしを作成。透明度を調整。 */
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 85%
+		);
+		padding: var(--text-highlight-padding-y) var(--text-highlight-padding-x);
+		border-radius: 0.2em; /* オプション: わずかな角丸を追加 */
+	}
+
+	/* 
+   * @component: text
+   * @variant: marker-stripe
+   * @description: コンポーネントカラーを使用して、テキスト下部にストライプ状のマーカー効果を適用します。
+   * @category: typography
+   * @example: <span class="text-marker-stripe color-accent">ストライプマーカー</span>
+   */
+	.text-marker-stripe {
+		background-image: repeating-linear-gradient(
+			-45deg,
+			transparent 0,
+			transparent 2px,
+			color-mix(in srgb, var(--component-color, #333), transparent 70%) 2px,
+			color-mix(in srgb, var(--component-color, #333), transparent 70%) 4px
+		);
+		background-repeat: no-repeat;
+		background-position: left bottom;
+		background-size: 100% 10px; /* ストライプ領域の高さを調整 */
+		padding-bottom: 4px; /* ストライプのためのスペースを確保 */
+	}
+
+	/* 
+   * @component: text
+   * @variant: marker-double
+   * @description: コンポーネントカラーを使用して、二重線のマーカー効果を適用します。
+   * @category: typography
+   * @example: <span class="text-marker-double color-primary">二重マーカーテキスト</span>
+   */
+	.text-marker-double {
+		background-image:
+			linear-gradient(
+				transparent 40%,
+				color-mix(in srgb, var(--component-color, #333), transparent 70%) 40%,
+				color-mix(in srgb, var(--component-color, #333), transparent 70%) 60%,
+				transparent 60%
+			),
+			linear-gradient(
+				transparent 80%,
+				color-mix(in srgb, var(--component-color, #333), transparent 70%) 80%
+			);
 		background-size: 100% 100%;
 		background-position: 0 0;
 		background-repeat: no-repeat;
 	}
 
 	/* 
-   * @component: text-marker
-   * @variant: secondary
-   * @description: セカンダリカラーでテキストの背景下部に蛍光ペン風のマーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-secondary">セカンダリカラーマーカー</span>
-   */
-	.text-marker-secondary {
-		background-image: linear-gradient(
-			transparent 60%,
-			rgba(var(--secondary-rgb), var(--text-marker-opacity)) 40%
-		);
-		background-size: 100% 100%;
-		background-position: 0 0;
-		background-repeat: no-repeat;
-	}
-
-	/* 
-   * @component: text-marker
-   * @variant: accent
-   * @description: アクセントカラーでテキストの背景下部に蛍光ペン風のマーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-accent">アクセントカラーマーカー</span>
-   */
-	.text-marker-accent {
-		background-image: linear-gradient(
-			transparent 60%,
-			rgba(var(--accent-rgb), var(--text-marker-opacity)) 40%
-		);
-		background-size: 100% 100%;
-		background-position: 0 0;
-		background-repeat: no-repeat;
-	}
-
-	/* 
-   * @component: text-marker
-   * @variant: neutral
-   * @description: ニュートラルカラーでテキストの背景下部に蛍光ペン風のマーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-neutral">ニュートラルカラーマーカー</span>
-   */
-	.text-marker-neutral {
-		background-image: linear-gradient(
-			transparent 60%,
-			rgba(var(--neutral-rgb), var(--text-marker-opacity)) 40%
-		);
-		background-size: 100% 100%;
-		background-position: 0 0;
-		background-repeat: no-repeat;
-	}
-
-	/* 
-   * @component: text-marker
-   * @variant: primary-full
-   * @description: プライマリカラーでテキスト全体に蛍光ペン風のマーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-primary-full">全面プライマリカラーマーカー</span>
-   */
-	.text-marker-primary-full {
-		background-color: rgba(var(--primary-rgb), var(--text-marker-opacity));
-	}
-
-	/* 
-   * @component: text-marker
-   * @variant: secondary-full
-   * @description: セカンダリカラーでテキスト全体に蛍光ペン風のマーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-secondary-full">全面セカンダリカラーマーカー</span>
-   */
-	.text-marker-secondary-full {
-		background-color: rgba(var(--secondary-rgb), var(--text-marker-opacity));
-	}
-
-	/* 
-   * @component: text-marker
-   * @variant: accent-full
-   * @description: アクセントカラーでテキスト全体に蛍光ペン風のマーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-accent-full">全面アクセントカラーマーカー</span>
-   */
-	.text-marker-accent-full {
-		background-color: rgba(var(--accent-rgb), var(--text-marker-opacity));
-	}
-
-	/* 
-   * @component: text-marker
-   * @variant: neutral-full
-   * @description: ニュートラルカラーでテキスト全体に蛍光ペン風のマーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-neutral-full">全面ニュートラルカラーマーカー</span>
-   */
-	.text-marker-neutral-full {
-		background-color: rgba(var(--neutral-rgb), var(--text-marker-opacity));
-	}
-
-	/* 
-   * アンダーラインバリエーション 
-   * 様々な下線スタイルを提供
+   * --------------------------------------------------------------------------
+   * Underline Styles
+   * --------------------------------------------------------------------------
+   * 様々な下線スタイルを提供します。色はカラーセレクタによって決定されます。
    */
 
 	/* 
-   * @component: text-underline
-   * @variant: solid
-   * @description: 標準的な実線の下線を適用します
+   * @component: text
+   * @variant: underline
+   * @description: コンポーネントカラーを使用して、標準的な実線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-solid">実線下線テキスト</span>
+   * @example: <span class="text-underline color-primary">下線付きテキスト</span>
    */
-	.text-underline-solid {
+	.text-underline {
 		@apply underline;
 		text-decoration-thickness: var(--text-underline-thickness);
 		text-underline-offset: var(--text-underline-offset);
+		text-decoration-color: var(--component-color, #333);
 	}
 
 	/* 
-   * @component: text-underline
-   * @variant: primary
-   * @description: プライマリカラーの下線を適用します
+   * @component: text
+   * @variant: underline-dotted
+   * @description: コンポーネントカラーを使用して、点線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-primary">プライマリカラー下線</span>
-   */
-	.text-underline-primary {
-		@apply underline;
-		text-decoration-thickness: var(--text-underline-thickness);
-		text-underline-offset: var(--text-underline-offset);
-		text-decoration-color: var(--primary-ref);
-	}
-
-	/* 
-   * @component: text-underline
-   * @variant: secondary
-   * @description: セカンダリカラーの下線を適用します
-   * @category: typography
-   * @example: <span class="text-underline-secondary">セカンダリカラー下線</span>
-   */
-	.text-underline-secondary {
-		@apply underline;
-		text-decoration-thickness: var(--text-underline-thickness);
-		text-underline-offset: var(--text-underline-offset);
-		text-decoration-color: var(--secondary-ref);
-	}
-
-	/* 
-   * @component: text-underline
-   * @variant: accent
-   * @description: アクセントカラーの下線を適用します
-   * @category: typography
-   * @example: <span class="text-underline-accent">アクセントカラー下線</span>
-   */
-	.text-underline-accent {
-		@apply underline;
-		text-decoration-thickness: var(--text-underline-thickness);
-		text-underline-offset: var(--text-underline-offset);
-		text-decoration-color: var(--accent-ref);
-	}
-
-	/* 
-   * @component: text-underline
-   * @variant: dotted
-   * @description: ドット状の下線を適用します
-   * @category: typography
-   * @example: <span class="text-underline-dotted">ドット下線テキスト</span>
+   * @example: <span class="text-underline-dotted color-secondary">点線下線</span>
    */
 	.text-underline-dotted {
 		text-decoration: underline dotted;
 		text-decoration-thickness: var(--text-underline-thickness);
 		text-underline-offset: var(--text-underline-offset);
+		text-decoration-color: var(--component-color, #333);
 	}
 
 	/* 
-   * @component: text-underline
-   * @variant: dashed
-   * @description: 破線の下線を適用します
+   * @component: text
+   * @variant: underline-dashed
+   * @description: コンポーネントカラーを使用して、破線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-dashed">破線下線テキスト</span>
+   * @example: <span class="text-underline-dashed color-accent">破線下線</span>
    */
 	.text-underline-dashed {
 		text-decoration: underline dashed;
 		text-decoration-thickness: var(--text-underline-thickness);
 		text-underline-offset: var(--text-underline-offset);
+		text-decoration-color: var(--component-color, #333);
 	}
 
 	/* 
-   * @component: text-underline
-   * @variant: wavy
-   * @description: 波線の下線を適用します
+   * @component: text
+   * @variant: underline-wavy
+   * @description: コンポーネントカラーを使用して、波線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-wavy">波線下線テキスト</span>
+   * @example: <span class="text-underline-wavy color-neutral">波線下線</span>
    */
 	.text-underline-wavy {
+		@apply leading-loose;
 		text-decoration: underline wavy;
 		text-decoration-thickness: var(--text-underline-thickness);
 		text-underline-offset: var(--text-underline-offset);
+		text-decoration-color: var(--component-color, #333);
 	}
 
 	/* 
-   * @component: text-underline
-   * @variant: thick
-   * @description: 太い下線を適用します
+   * @component: text
+   * @variant: underline-thick
+   * @description: コンポーネントカラーを使用して、太い実線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-thick">太線下線テキスト</span>
+   * @example: <span class="text-underline-thick color-primary">太線下線</span>
    */
 	.text-underline-thick {
 		@apply underline;
 		text-decoration-thickness: calc(var(--text-underline-thickness) * 2);
 		text-underline-offset: var(--text-underline-offset);
+		text-decoration-color: var(--component-color, #333);
 	}
 
 	/* 
-   * マージン付きブロッククォート
+   * --------------------------------------------------------------------------
+   * Quote Styles
+   * --------------------------------------------------------------------------
+   * ブロック引用要素のスタイル。色はカラーセレクタによって決定されます。
    */
 
 	/* 
-   * @component: text-quote
-   * @variant: base
-   * @description: 引用テキストにニュートラルカラーの左側ボーダーを適用します
+   * @component: text
+   * @variant: quote
+   * @description: コンポーネントカラーを使用して、テキスト（通常は引用）に左ボーダーを適用します。
    * @category: typography
-   * @example: <p class="text-quote">引用テキストの例です</p>
+   * @example: <p class="text-quote color-neutral">これは引用です。</p>
    */
 	.text-quote {
 		@apply relative pl-4 italic;
-		border-left: 3px solid var(--neutral-ref);
+		border-left-width: 3px;
+		border-left-style: solid;
+		border-left-color: var(--component-color, #333);
 	}
 
 	/* 
-   * @component: text-quote
-   * @variant: primary
-   * @description: 引用テキストにプライマリカラーの左側ボーダーを適用します
-   * @category: typography
-   * @example: <p class="text-quote-primary">プライマリカラー引用テキスト</p>
-   */
-	.text-quote-primary {
-		@apply relative pl-4 italic;
-		border-left: 3px solid var(--primary-ref);
-	}
-
-	/* 
-   * @component: text-quote
-   * @variant: secondary
-   * @description: 引用テキストにセカンダリカラーの左側ボーダーを適用します
-   * @category: typography
-   * @example: <p class="text-quote-secondary">セカンダリカラー引用テキスト</p>
-   */
-	.text-quote-secondary {
-		@apply relative pl-4 italic;
-		border-left: 3px solid var(--secondary-ref);
-	}
-
-	/* 
-   * @component: text-quote
-   * @variant: accent
-   * @description: 引用テキストにアクセントカラーの左側ボーダーを適用します
-   * @category: typography
-   * @example: <p class="text-quote-accent">アクセントカラー引用テキスト</p>
-   */
-	.text-quote-accent {
-		@apply relative pl-4 italic;
-		border-left: 3px solid var(--accent-ref);
-	}
-
-	/* 
-   * 装飾パターン
+   * --------------------------------------------------------------------------
+   * Highlight Styles (Example - can be expanded)
+   * --------------------------------------------------------------------------
    */
 
 	/* 
-   * @component: text-marker
-   * @variant: stripe-primary
-   * @description: プライマリカラーのストライプパターンでテキスト下部をマーカーします
+   * @component: text
+   * @variant: highlight
+   * @description: コンポーネントカラーを使用して、微妙な背景ハイライトを適用します。marker-fullに似ていますが、異なるスタイル設定が可能です。
    * @category: typography
-   * @example: <span class="text-marker-stripe-primary">ストライプマーカー</span>
+   * @example: <span class="text-highlight color-accent">ハイライトされたテキスト</span>
    */
-	.text-marker-stripe-primary {
-		background-image: repeating-linear-gradient(
-			-45deg,
-			transparent 0,
-			transparent 2px,
-			rgba(var(--primary-rgb), var(--text-marker-opacity)) 2px,
-			rgba(var(--primary-rgb), var(--text-marker-opacity)) 4px
+	.text-highlight {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent calc(100% - var(--text-highlight-opacity, 0.15) * 100%)
 		);
-		background-repeat: no-repeat;
-		background-position: left bottom;
-		background-size: 100% 10px;
-		padding-bottom: 4px;
+		padding: var(--text-highlight-padding-y) var(--text-highlight-padding-x);
+		border-radius: 0.2em;
 	}
 
-	/* 
-   * @component: text-marker
-   * @variant: stripe-accent
-   * @description: アクセントカラーのストライプパターンでテキスト下部をマーカーします
-   * @category: typography
-   * @example: <span class="text-marker-stripe-accent">アクセントストライプマーカー</span>
-   */
-	.text-marker-stripe-accent {
-		background-image: repeating-linear-gradient(
-			-45deg,
-			transparent 0,
-			transparent 2px,
-			rgba(var(--accent-rgb), var(--text-marker-opacity)) 2px,
-			rgba(var(--accent-rgb), var(--text-marker-opacity)) 4px
-		);
-		background-repeat: no-repeat;
-		background-position: left bottom;
-		background-size: 100% 10px;
-		padding-bottom: 4px;
+	/* Dark mode adjustments for non-solid variants if needed */
+	.dark .text-marker,
+	.dark .text-marker-stripe,
+	.dark .text-marker-double {
+		/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */
+		/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */
 	}
 
-	/* 
-   * @component: text-marker
-   * @variant: double-primary
-   * @description: プライマリカラーの二重マーカー効果を適用します
-   * @category: typography
-   * @example: <span class="text-marker-double-primary">二重マーカーテキスト</span>
-   */
-	.text-marker-double-primary {
-		background-image:
-			linear-gradient(
-				transparent 40%,
-				rgba(var(--primary-rgb), calc(var(--text-marker-opacity) * 0.7)) 40%,
-				rgba(var(--primary-rgb), calc(var(--text-marker-opacity) * 0.7)) 60%,
-				transparent 60%
-			),
-			linear-gradient(
-				transparent 80%,
-				rgba(var(--primary-rgb), var(--text-marker-opacity)) 80%
-			);
-		background-size: 100% 100%;
-		background-position: 0 0;
-		background-repeat: no-repeat;
+	.dark .text-marker-full,
+	.dark .text-highlight {
+		/* ダークモード用にミックスの割合を調整 */
+		/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */
 	}
 }

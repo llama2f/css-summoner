@@ -1,7 +1,7 @@
 // components/selectors/BorderRadiusSelector.jsx
 // 角丸選択のUI - 直接ボタン形式に変更
 
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 
 /**
  * 角丸を選択するセレクター
@@ -16,24 +16,26 @@ const BorderRadiusSelector = ({ options = [], selectedRadius, onSelect }) => {
 		return null
 	}
 
-	// デフォルトオプションを追加
-	const allOptions = [{ value: '', label: 'デフォルト' }, ...options]
+	// デフォルトオプションを追加（メモ化）
+	const allOptions = useMemo(() => {
+		return [{ value: '', label: 'デフォルト' }, ...options]
+	}, [options]) // optionsが変更された時のみ再計算
 
-	// 選択時のスクロールを防止する関数
-	const handleSelect = (e, value) => {
+	// 選択時のスクロールを防止する関数（メモ化）
+	const handleSelect = useCallback((e, value) => {
 		e.preventDefault() // デフォルト動作を防止
 		onSelect(value) // 選択コールバック
-	}
+	}, [onSelect]) // onSelectが変更されたときのみ再作成
 
-	// 角丸の視覚的表現を取得する関数
-	const getRadiusVisual = (value) => {
+	// 角丸の視覚的表現を取得する関数（メモ化）
+	const getRadiusVisual = useCallback((value) => {
 		if (value.includes('full')) return 'rounded-full'
 		if (value.includes('lg')) return 'rounded-lg'
 		if (value.includes('md')) return 'rounded-md'
 		if (value.includes('sm')) return 'rounded-sm'
 		if (value.includes('none')) return 'rounded-none'
 		return 'rounded'
-	}
+	}, []) // 依存配列が空なので再作成されない
 
 	return (
 		<div>
@@ -55,4 +57,5 @@ const BorderRadiusSelector = ({ options = [], selectedRadius, onSelect }) => {
 	)
 }
 
-export default BorderRadiusSelector
+// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
+export default React.memo(BorderRadiusSelector)

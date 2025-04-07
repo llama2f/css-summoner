@@ -1,0 +1,454 @@
+@layer components {
+	/* === フォーマル/ビジネス向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-primary
+	 * @description: 左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-formal-primary color-primary">プライマリフォーマル見出し</h2>
+	 */
+	.heading-formal-primary {
+		@apply heading-base rounded-r;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		padding-left: calc(var(--heading-padding-x) + var(--heading-border-width));
+		border-left: var(--heading-border-width) solid var(--component-border, #333);
+		/* 背景色をカラーセレクタの色を薄めたものに変更 */
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 90%
+		);
+		color: var(--component-color, #333);
+		/* テキスト色はそのまま component-color を使用 */
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-underline
+	 * @description: 下線付きのフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-formal-underline color-primary">下線付きフォーマル見出し</h2>
+	 */
+	.heading-formal-underline {
+		@apply heading-base;
+		padding-bottom: var(--heading-padding-y);
+		border-bottom: 2px solid var(--component-border, #333);
+		color: var(--component-color, #333);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-full
+	 * @description: 背景色が全体に適用されたフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-formal-full color-primary">フルバックグラウンド見出し</h2>
+	 */
+	.heading-formal-full {
+		@apply heading-base rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		background-color: var(--component-color, #333);
+		color: var(--component-text, #fff);
+		/* ホバー/アクティブ時の色調整はカラーセレクタ側で行う */
+	}
+
+	/* === カジュアル向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-dotted
+	 * @description: ドット下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-casual-dotted color-secondary">ドット下線カジュアル見出し</h2>
+	 */
+	.heading-casual-dotted {
+		@apply heading-base;
+		padding-bottom: var(--heading-padding-y);
+		border-bottom: 2px dotted var(--component-border, #aaa);
+		color: var(--component-color, #333);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-badge
+	 * @description: バッジスタイルのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-casual-badge color-secondary">バッジスタイル見出し</h2>
+	 */
+	.heading-casual-badge {
+		@apply heading-base inline-block rounded-full;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		/* 背景色をカラーセレクタの色を薄めたものに変更 */
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 90%
+		);
+		color: var(--component-color, #333);
+		border: 2px solid var(--component-border, #aaa);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-wavy
+	 * @description: 波線下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-casual-wavy color-secondary">波線下線カジュアル見出し</h2>
+	 */
+	.heading-casual-wavy {
+		@apply heading-base;
+		padding-bottom: var(--heading-padding-y);
+		text-decoration: underline wavy var(--component-border, #aaa);
+		text-decoration-thickness: 2px;
+		text-underline-offset: 6px;
+		color: var(--component-color, #333);
+	}
+
+	/* === テクニカル向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: technical-code
+	 * @description: コード風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-technical-code color-neutral">コード風見出し</h2>
+	 */
+	.heading-technical-code {
+		@apply heading-base font-mono rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		/* 背景色をカラーセレクタの色を薄めたものに変更 */
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 95%
+		);
+		color: var(--component-color, #333);
+		border: 1px solid var(--component-border, #ccc);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: technical-tag
+	 * @description: HTMLタグ風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-technical-tag color-neutral">タグ風見出し</h2>
+	 */
+	.heading-technical-tag {
+		@apply heading-base;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		color: var(--component-color, #333);
+		position: relative;
+	}
+
+	.heading-technical-tag::before {
+		content: '</>';
+		@apply font-mono text-sm pr-2;
+		color: var(--component-border, #aaa);
+		opacity: 0.7;
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: technical-bracket
+	 * @description: 角括弧付きの技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-technical-bracket color-neutral">角括弧付き見出し</h2>
+	 */
+	.heading-technical-bracket {
+		@apply heading-base;
+		color: var(--component-color, #333);
+	}
+
+	.heading-technical-bracket::before {
+		content: '[ ';
+		color: var(--component-border, #aaa);
+	}
+
+	.heading-technical-bracket::after {
+		content: ' ]';
+		color: var(--component-border, #aaa);
+	}
+
+	/* === アクセント向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: accent-gradient
+	 * @description: グラデーション背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-accent-gradient color-accent">グラデーション見出し</h2>
+	 */
+	.heading-accent-gradient {
+		@apply heading-base rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		background: linear-gradient(
+			to right,
+			var(--component-border, #f00),
+			transparent
+		);
+		/* グラデーション背景なのでテキスト色は component-text を使用 */
+		color: var(--component-text, #fff);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: accent-border
+	 * @description: 強調されたボーダーを持つ見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-accent-border color-accent">強調ボーダー見出し</h2>
+	 */
+	.heading-accent-border {
+		@apply heading-base;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		border-left: var(--heading-border-width) solid var(--component-border, #f00);
+		border-bottom: 2px solid var(--component-border, #f00);
+		color: var(--component-color, #333);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: accent-stripe
+	 * @description: ストライプ背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-accent-stripe color-accent">ストライプ背景見出し</h2>
+	 */
+	.heading-accent-stripe {
+		@apply heading-base relative rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		color: var(--component-color, #333);
+		background-image: repeating-linear-gradient(
+			-45deg,
+			/* 角度 */ /* component-bg を少し暗くした色 */
+				color-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),
+			color-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,
+			/* 3pxまで同じ色 */ transparent 3px,
+			transparent 6px
+		);
+	}
+
+	/* === モダン/ミニマル向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: modern-minimal
+	 * @description: 余白と細い線のみで構成されたミニマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-modern-minimal color-neutral">ミニマルな見出し</h2>
+	 */
+	.heading-modern-minimal {
+		@apply heading-base;
+		padding: var(--heading-padding-y) 0;
+		border-bottom: 1px solid var(--component-border, #ccc);
+		color: var(--component-color, #333);
+		font-weight: 500;
+		letter-spacing: 0.05em;
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: modern-split
+	 * @description: 2色に分かれたモダンな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-modern-split color-primary">分割デザインの見出し</h2>
+	 */
+	.heading-modern-split {
+		@apply heading-base relative;
+		padding: var(--heading-padding-y) 0;
+		color: var(--component-color, #333);
+		overflow: hidden;
+	}
+
+	.heading-modern-split::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 3px;
+		/* グラデーションはカラーセレクタ側で定義 */
+		background-color: var(--component-border, #ccc);
+		/*
+		background: linear-gradient(
+			to right,
+			var(--heading-modern-border) 0%,
+			var(--heading-modern-border) 50%,
+			var(--heading-accent-border) 50%,
+			var(--heading-accent-border) 100%
+		);
+		*/
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: modern-oversized
+	 * @description: 大きめのフォントが特徴の現代的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-modern-oversized color-neutral">オーバーサイズ見出し</h2>
+	 */
+	.heading-modern-oversized {
+		@apply heading-base;
+		font-size: calc(var(--heading-font-size-xl) * 1.25);
+		color: var(--component-color, #333);
+		opacity: 0.85;
+		font-weight: 300;
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+	}
+
+	/* === 和風/和モダン向けスタイル === */
+
+	/* 
+	 * @component: heading
+	 * @variant: japanesque-brush
+	 * @description: 筆文字風の和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-japanesque-brush color-accent2">筆文字風見出し</h2>
+	 */
+	.heading-japanesque-brush {
+		@apply heading-base;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		color: var(--component-color, #333);
+		font-family: var(--font-ja-mincho, serif);
+		position: relative;
+	}
+
+	.heading-japanesque-brush::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		/* グラデーションはカラーセレクタ側で定義 */
+		background-color: var(--component-border, #aaa);
+		/*
+		background: linear-gradient(
+			to right,
+			var(--heading-japanesque-border),
+			var(--heading-japanesque-border) 70%,
+			transparent
+		);
+		*/
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: japanesque-vertical
+	 * @description: 縦書きレイアウトの和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-japanesque-vertical color-accent2">縦書き見出し</h2>
+	 */
+	.heading-japanesque-vertical {
+		@apply heading-base;
+		writing-mode: vertical-rl;
+		text-orientation: upright;
+		padding: var(--heading-padding-x) var(--heading-padding-y);
+		color: var(--component-color, #333);
+		font-family: var(--font-ja-mincho, serif);
+		height: calc(var(--heading-font-size-lg) * 5);
+		line-height: 1.7;
+		margin-left: auto;
+		margin-right: auto;
+		border-left: 1px solid var(--component-border, #aaa);
+	}
+
+	/* === 既存カテゴリへの追加バリエーション === */
+
+	/* フォーマル追加バリエーション */
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-boxed
+	 * @description: 四方をボーダーで囲んだビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-formal-boxed color-primary">囲み枠付き見出し</h2>
+	 */
+	.heading-formal-boxed {
+		@apply heading-base rounded;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		border: 1px solid var(--component-border, #333);
+		color: var(--component-color, #333);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: formal-double
+	 * @description: 二重下線のフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-formal-double color-primary">二重下線見出し</h2>
+	 */
+	.heading-formal-double {
+		@apply heading-base;
+		padding-bottom: var(--heading-padding-y);
+		border-bottom: 1px solid var(--component-border, #333);
+		position: relative;
+		color: var(--component-color, #333);
+	}
+
+	.heading-formal-double::after {
+		content: '';
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background-color: var(--component-border, #333);
+	}
+
+	/* カジュアル追加バリエーション */
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-handwritten
+	 * @description: 手書き風フォントを使用したカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-casual-handwritten color-secondary">手書き風見出し</h2>
+	 */
+	.heading-casual-handwritten {
+		@apply heading-base;
+		font-family: var(--font-handwritten, cursive);
+		color: var(--component-color, #333);
+		transform: rotate(-1deg);
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: casual-highlight
+	 * @description: マーカーでハイライトしたような見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-casual-highlight color-secondary">ハイライト見出し</h2>
+	 */
+	.heading-casual-highlight {
+		@apply heading-base inline;
+		padding: 0.2em 0;
+		color: var(--component-color, #333);
+		background: linear-gradient(
+			transparent 60%,
+			/* 上部60%は透明 */ /* 下部40%は component-color を透過させた色 */
+				color-mix(in srgb, var(--component-color, #333), transparent 50%) 60%
+		);
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
+	}
+
+	/* 
+	 * @component: heading
+	 * @variant: technical-comment
+	 * @description: コードコメント風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @category: typography
+	 * @example: <h2 class="heading-base heading-technical-comment color-neutral">コメント風見出し</h2>
+	 */
+	.heading-technical-comment {
+		@apply heading-base font-mono;
+		padding: var(--heading-padding-y) var(--heading-padding-x);
+		color: var(--component-color, #333);
+		position: relative;
+	}
+
+	.heading-technical-comment::before {
+		content: '// ';
+		color: var(--component-border, #aaa);
+		letter-spacing: 0.01em;
+	}
+}

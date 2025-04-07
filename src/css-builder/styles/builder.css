@@ -1,5 +1,35 @@
+@layer base {
+	input,
+	textarea {
+		background-color: var(--background);
+		color: var(--foreground);
+		border: var(--border) 1px solid;
+	}
+}
+
 @layer components {
 	/* 追加クラスラベル */
+
+	.color-selector-container {
+		@apply grid grid-cols-1 gap-2 mb-4;
+		@apply overflow-y-auto max-h-56;
+	}
+
+	.label-color {
+		@apply font-mono font-normal !p-0;
+	}
+
+	.color-wheel-btn {
+		@apply tracking-tighter whitespace-normal;
+	}
+
+	.code-aria {
+		@apply font-mono;
+		background-color: var(--background);
+		color: var(--foreground);
+		border: var(--border) 1px solid;
+	}
+
 	.label-custom::after {
 		background-color: var(--accent);
 	}
@@ -10,7 +40,7 @@
 	}
 
 	.panel-preview {
-		@apply lg:col-span-6  lg:sticky lg:top-[9rem];
+		@apply lg:col-span-6  lg:sticky lg:top-[2rem];
 		@apply space-y-4 self-start;
 	}
 
@@ -23,6 +53,10 @@
 		position: relative;
 		overflow: hidden;
 		@apply text-left justify-start;
+	}
+
+	.selector-button:hover {
+		background-color: var(--primary-light) !important;
 	}
 
 	.selector-button::after {
@@ -44,9 +78,9 @@
 		@apply bg-primary text-white font-medium shadow-sm;
 	}
 
-	.selector-button.active::after {
+	/* .selector-button.active::after {
 		background-color: var(--primary-dark) !important;
-	}
+	} */
 
 	/* コンポーネントセレクター */
 	.selector-component {
@@ -96,7 +130,7 @@
 
 	/* 共通のセクションラベルスタイル */
 	.label-config {
-		color: var(--neutral-dark);
+		color: var(--foreground);
 		padding-bottom: 0.3rem;
 		position: relative;
 

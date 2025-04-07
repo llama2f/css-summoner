@@ -1,3 +1,15 @@
-@import './class-builder.css';
+@import '../../styles/global.css';
+
+@import './all-components.css';
+/* @import './class-builder.css'; */
 @import './builder.css';
+<<<<<<< HEAD
 @import "tailwindcss";
+=======
+
+@import './utils.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+>>>>>>> template-engine

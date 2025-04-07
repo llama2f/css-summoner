@@ -1,23 +1,13 @@
 // components/preview/ClassPreview.jsx
-// クラスのプレビュー表示
-
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { getComponentReactTemplate } from '@/css-builder/templates/componentFactory.jsx'
-import { combineClasses } from '@/css-builder/templates/handlers/common.jsx'
+// import { getComponentReactTemplate } from '@/css-builder/templates/componentFactory.jsx'; // 削除
+import { combineClasses } from '@/css-builder/templates/handlers/common.jsx' // これは引き続き使用
+import TemplateRenderer from '@/css-builder/templates/core/templateEngine.jsx' // 追加
 
 /**
  * 選択されたクラスに基づいてコンポーネントをプレビューするコンポーネント
- *
- * @param {Object} props
- * @param {string} props.componentType - 選択されたコンポーネントタイプ
- * @param {string} props.componentVariant - 選択されたコンポーネントのバリアント
- * @param {string} props.borderRadius - 選択された角丸タイプ
- * @param {Array} props.selectedModifiers - 選択されたモディファイア
- * @param {Array} props.selectedSpecialClasses - 選択された特殊効果クラス
- * @param {string} props.additionalClasses - 追加のカスタムクラス
- * @param {string} props.size - 選択されたサイズ
- * @param {string} props.previewBg - プレビュー背景のスタイル
+ * (以下、Propsの説明は省略)
  */
 const ClassPreview = ({
 	componentType,
@@ -29,37 +19,75 @@ const ClassPreview = ({
 	size,
 	previewBg,
 	baseClass,
+	selectedColor,
 }) => {
-	// すべてのクラスを結合
-	const combinedClasses = combineClasses({
+	// すべてのクラスを結合（メモ化）- これは TemplateRenderer に渡す classString のために必要
+	const combinedClasses = useMemo(() => {
+		return combineClasses({
+			baseClass,
+			variant: componentVariant,
+			size,
+			radius: borderRadius,
+			modifiers: selectedModifiers,
+			specialClasses: selectedSpecialClasses,
+			color: selectedColor,
+			additional: additionalClasses,
+		})
+	}, [
 		baseClass,
-		variant: componentVariant,
+		componentVariant,
 		size,
-		radius: borderRadius,
-		modifiers: selectedModifiers,
-		specialClasses: selectedSpecialClasses,
-		additional: additionalClasses
-	});
-
-	// テンプレートからReactコンポーネントを取得
-	const reactElement = getComponentReactTemplate(componentType, {
-		classString: combinedClasses,
+		borderRadius,
 		selectedModifiers,
-		baseClass,
-		forPreview: true,
-	})
+		selectedSpecialClasses,
+		additionalClasses,
+		selectedColor,
+	])
+
+	// TemplateRenderer に渡す options オブジェクトを生成（メモ化）
+	const rendererOptions = useMemo(
+		() => ({
+			classString: combinedClasses,
+			selectedModifiers: selectedModifiers, // ハンドラーがモディファイアを必要とする場合
+			// プレビュー用の固定プロパティ (必要に応じて調整)
+			// ハンドラー側でデフォルト値を持つことが多いので、ここでは必須ではない場合もある
+			children: `${componentType} Preview`,
+			// variant は TemplateRenderer が options から取り出して処理する想定
+			variant: componentVariant,
+			color: selectedColor, // ハンドラーが必要とする場合
+			// forPreview: true, // 以前あったが、新しいハンドラーで必要か確認
+			// baseClass: baseClass, // 必要なら追加
+		}),
+		[
+			combinedClasses,
+			selectedModifiers,
+			componentType,
+			componentVariant,
+			selectedColor,
+		]
+	)
+
+	// reactElement を生成する useMemo は不要になった
 
 	return (
 		<div
 			className={`${previewBg} p-8 flex items-center justify-center rounded-lg min-h-[200px] border border-dashed border-neutral-300`}
 		>
 			<div className='flex flex-col items-center'>
-				{reactElement}
+				{/* TemplateRenderer を使用してプレビューを表示 */}
+				{componentType ? ( // componentType が選択されている場合のみレンダリング
+					<TemplateRenderer
+						componentType={componentType}
+						options={rendererOptions}
+					/>
+				) : (
+					<div>Select a component type</div> // 未選択時の表示
+				)}
 				<div className='mt-4 text-xs text-neutral-500 text-center max-w-xs'>
 					<div>
 						適用クラス:{' '}
 						<code className='bg-neutral-200 p-1 rounded'>
-							{combinedClasses}
+							{combinedClasses || 'N/A'}
 						</code>
 					</div>
 				</div>
@@ -68,6 +96,7 @@ const ClassPreview = ({
 	)
 }
 
+// PropTypes と defaultProps は変更なし (または TemplateRenderer の仕様に合わせて調整)
 ClassPreview.propTypes = {
 	componentType: PropTypes.string.isRequired,
 	componentVariant: PropTypes.string,
@@ -78,6 +107,7 @@ ClassPreview.propTypes = {
 	size: PropTypes.string,
 	previewBg: PropTypes.string,
 	baseClass: PropTypes.string,
+	selectedColor: PropTypes.string,
 }
 
 ClassPreview.defaultProps = {
@@ -89,6 +119,7 @@ ClassPreview.defaultProps = {
 	previewBg: 'bg-transparent',
 	baseClass: '',
 	componentVariant: '',
+	selectedColor: '',
 }
 
-export default ClassPreview
+export default React.memo(ClassPreview)

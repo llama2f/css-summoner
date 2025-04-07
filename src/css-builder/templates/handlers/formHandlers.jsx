@@ -4,126 +4,332 @@
 import React from 'react'
 import { createHandlerResult } from './common'
 
-// フォームハンドラー共通関数
-export const formHandler = (options) => {
-	const { classString = '', componentType } = options
+/**
+ * フォーム要素ハンドラー生成のためのファクトリー関数
+ * @param {Object} config - ハンドラーの設定
+ * @param {string} config.elementType - 要素のタイプ（input, textarea, selectなど）
+ * @param {string} config.label - ラベルテキスト
+ * @param {Object} config.props - 要素に渡すprops
+ * @param {Function} config.renderCustom - カスタムレンダリング関数（オプション）
+ * @returns {Function} ハンドラー関数
+ */
+const createFormElementHandler = (config) => {
+	const {
+		elementType = 'input',
+		label = 'ラベル',
+		props = {},
+		renderCustom = null,
+	} = config
 
-	let reactElement, htmlString
-
-	// フォーム入力
-	if (componentType === 'form-input') {
-		reactElement = (
-			<div>
-				<label htmlFor='sample-input' className='block mb-2'>
-					labelテキスト
-				</label>
-				<input
-					id='sample-input'
-					type='text'
-					className={classString}
-					placeholder='テキストを入力'
-				/>
-			</div>
-		)
-
-		htmlString = `<div>
-  <label for="sample-input" class="block mb-2">labelテキスト</label>
-  <input id="sample-input" type="text" class="${classString}" placeholder="テキストを入力" />
-</div>`
+	// 要素タイプに基づくデフォルトprops
+	const defaultProps = {
+		input: {
+			type: 'text',
+			placeholder: 'テキストを入力',
+		},
+		textarea: {
+			rows: '4',
+			placeholder: '複数行のテキストを入力',
+		},
+		select: {
+			children: [
+				<option key='empty' value=''>
+					項目を選択
+				</option>,
+				<option key='1' value='1'>
+					選択肢1
+				</option>,
+				<option key='2' value='2'>
+					選択肢2
+				</option>,
+				<option key='3' value='3'>
+					選択肢3
+				</option>,
+			],
+		},
+		checkbox: {
+			type: 'checkbox',
+			id: 'sample-checkbox',
+		},
+		radio: {
+			type: 'radio',
+			name: 'sample-radio-group',
+			id: 'sample-radio',
+		},
 	}
 
-	// セレクトボックス
-	else if (componentType === 'form-select') {
-		reactElement = (
-			<div>
-				<label htmlFor='sample-select' className='block mb-2'>
-					labelテキスト
-				</label>
-				<select id='sample-select' className={classString}>
-					<option value=''>項目を選択</option>
-					<option value='1'>選択肢1</option>
-					<option value='2'>選択肢2</option>
-					<option value='3'>選択肢3</option>
-				</select>
-			</div>
-		)
+	// 実際のハンドラー関数を返す
+	return (options) => {
+		const { classString = '' } = options
 
-		htmlString = `<div>
-  <label for="sample-select" class="block mb-2">labelテキスト</label>
-  <select id="sample-select" class="${classString}">
-    <option value="">項目を選択</option>
-    <option value="1">選択肢1</option>
-    <option value="2">選択肢2</option>
-    <option value="3">選択肢3</option>
+		// カスタムレンダリング関数があれば使用
+		if (renderCustom) {
+			return renderCustom(options, classString)
+		}
+
+		// 要素タイプに応じたpropsを組み合わせる
+		const elementProps = {
+			...(defaultProps[elementType] || {}),
+			...props,
+			className: classString,
+		}
+
+		let reactElement, htmlString
+
+		// 要素タイプに応じたレンダリング処理
+		switch (elementType) {
+			case 'input':
+			case 'textarea':
+			case 'select':
+				// 標準的なフォーム要素（ラベル + 要素）
+				const Element =
+					elementType === 'input'
+						? 'input'
+						: elementType === 'textarea'
+							? 'textarea'
+							: 'select'
+
+				const id = `sample-${elementType}`
+				reactElement = (
+					<div>
+						<label htmlFor={id} className='block mb-2'>
+							{label}
+						</label>
+						{elementType === 'textarea' ? (
+							<textarea
+								id={id}
+								{...elementProps}
+								defaultValue={elementProps.placeholder || ''}
+							/>
+						) : elementType === 'select' ? (
+							<Element id={id} {...elementProps}>
+								{elementProps.children}
+							</Element>
+						) : (
+							/* input 要素には children を渡さない */
+							<Element id={id} {...elementProps} />
+						)}
+					</div>
+				)
+
+				// HTML文字列の生成
+				if (elementType === 'select') {
+					// select要素用のHTML
+					const options = elementProps.children
+						.map((child) => {
+							if (!child || !child.props) return ''
+							const { value = '', children } = child.props
+							return `    <option value="${value}">${children}</option>`
+						})
+						.join('\n')
+
+					htmlString = `<div>
+  <label for="${id}" class="block mb-2">${label}</label>
+  <select id="${id}" class="${classString}">
+${options}
   </select>
 </div>`
-	}
-
-	// チェックボックス
-	else if (componentType === 'form-checkbox') {
-		reactElement = (
-			<div className='flex items-center'>
-				<input id='sample-checkbox' type='checkbox' className={classString} />
-				<label htmlFor='sample-checkbox' className='ml-2'>
-					チェックボックスlabel
-				</label>
-			</div>
-		)
-
-		htmlString = `<div class="flex items-center">
-  <input id="sample-checkbox" type="checkbox" class="${classString}" />
-  <label for="sample-checkbox" class="ml-2">チェックボックスlabel</label>
+				} else {
+					// input/textarea要素用のHTML
+					const placeholder = elementProps.placeholder || ''
+					if (elementType === 'textarea') {
+						htmlString = `<div>
+  <label for="${id}" class="block mb-2">${label}</label>
+  <textarea id="${id}" class="${classString}" rows="${elementProps.rows || '4'}" placeholder="${placeholder}"></textarea>
 </div>`
-	}
-
-	// ラジオボタン
-	else if (componentType === 'form-radio') {
-		reactElement = (
-			<div className='flex items-center'>
-				<input
-					id='sample-radio'
-					type='radio'
-					name='sample-radio-group'
-					className={classString}
-				/>
-				<label htmlFor='sample-radio' className='ml-2'>
-					ラジオボタンlabel
-				</label>
-			</div>
-		)
-
-		htmlString = `<div class="flex items-center">
-  <input id="sample-radio" type="radio" name="sample-radio-group" class="${classString}" />
-  <label for="sample-radio" class="ml-2">ラジオボタンlabel</label>
+					} else {
+						htmlString = `<div>
+  <label for="${id}" class="block mb-2">${label}</label>
+  <input id="${id}" type="${elementProps.type || 'text'}" class="${classString}" placeholder="${placeholder}" />
 </div>`
-	}
+					}
+				}
+				break
 
-	// その他のフォーム要素のデフォルト処理
-	else {
-		reactElement = (
-			<div>
-				<label htmlFor='sample-form' className='block mb-2'>
-					{componentType} label
-				</label>
-				<input
-					id='sample-form'
-					type='text'
-					className={classString}
-					placeholder={`${componentType} プレースホルダー`}
-				/>
-			</div>
-		)
+			case 'checkbox':
+			case 'radio':
+				// チェックボックス/ラジオボタン（要素 + ラベル）
+				const inputId = elementProps.id || `sample-${elementType}`
+				reactElement = (
+					<div className='flex items-center'>
+						<input id={inputId} {...elementProps} />
+						<label htmlFor={inputId} className='ml-2'>
+							{label}
+						</label>
+					</div>
+				)
 
-		htmlString = `<div>
-  <label for="sample-form" class="block mb-2">${componentType} label</label>
-  <input id="sample-form" type="text" class="${classString}" placeholder="${componentType} プレースホルダー" />
+				htmlString = `<div class="flex items-center">
+  <input id="${inputId}" type="${elementType}"${elementType === 'radio' ? ` name="${elementProps.name || 'sample-radio-group'}"` : ''} class="${classString}" />
+  <label for="${inputId}" class="ml-2">${label}</label>
 </div>`
-	}
+				break
 
-	return createHandlerResult(reactElement, htmlString)
+			default:
+				// デフォルトの場合
+				reactElement = (
+					<div>
+						<label htmlFor={`sample-form`} className='block mb-2'>
+							{label}
+						</label>
+						<input
+							type='text'
+							id='sample-form'
+							className={classString}
+							placeholder={elementProps.placeholder || ''}
+						/>
+					</div>
+				)
+
+				htmlString = `<div>
+  <label for="sample-form" class="block mb-2">${label}</label>
+  <input id="sample-form" type="text" class="${classString}" placeholder="${elementProps.placeholder || ''}" />
+</div>`
+		}
+
+		return createHandlerResult(reactElement, htmlString)
+	}
 }
 
-// フォーム関連のパターンハンドラー
-export const formPatternHandler = {
-	'^form': formHandler,
+// フォーム入力ハンドラー
+export const formInputHandler = createFormElementHandler({
+	elementType: 'input',
+	label: 'labelテキスト',
+	props: {
+		placeholder: 'テキストを入力',
+	},
+})
+
+// セレクトボックスハンドラー
+export const formSelectHandler = createFormElementHandler({
+	elementType: 'select',
+	label: 'labelテキスト',
+})
+
+// チェックボックスハンドラー
+export const formCheckboxHandler = createFormElementHandler({
+	elementType: 'checkbox',
+	label: 'チェックボックスlabel',
+})
+
+// ラジオボタンハンドラー
+export const formRadioHandler = createFormElementHandler({
+	elementType: 'radio',
+	label: 'ラジオボタンlabel',
+})
+
+// テキストエリアハンドラー
+export const formTextareaHandler = createFormElementHandler({
+	elementType: 'textarea',
+	label: 'テキストエリアラベル',
+})
+
+// 検索フォームハンドラー - カスタムレンダリング使用
+export const formSearchHandler = createFormElementHandler({
+	elementType: 'input',
+	label: '検索',
+	props: {
+		type: 'search',
+		placeholder: '検索キーワードを入力',
+	},
+	renderCustom: (options, classString) => {
+		const reactElement = (
+			<div>
+				<label htmlFor='sample-search' className='block mb-2'>
+					検索
+				</label>
+				<div className='relative'>
+					<input
+						id='sample-search'
+						type='search'
+						className={classString}
+						placeholder='検索キーワードを入力'
+					/>
+					<span className='absolute right-3 top-1/2 transform -translate-y-1/2'>
+						🔍
+					</span>
+				</div>
+			</div>
+		)
+
+		const htmlString = `<div>
+  <label for="sample-search" class="block mb-2">検索</label>
+  <div class="relative">
+    <input id="sample-search" type="search" class="${classString}" placeholder="検索キーワードを入力" />
+    <span class="absolute right-3 top-1/2 transform -translate-y-1/2">🔍</span>
+  </div>
+</div>`
+
+		return createHandlerResult(reactElement, htmlString)
+	},
+})
+
+// スイッチハンドラー - カスタムレンダリング使用
+export const formSwitchHandler = createFormElementHandler({
+	elementType: 'custom',
+	label: 'スイッチラベル',
+	renderCustom: (options, classString) => {
+		const reactElement = (
+			<div className='flex items-center'>
+				<div className={`form-switch ${classString}`}>
+					<input
+						type='checkbox'
+						className='form-switch-input'
+						id='sample-switch'
+					/>
+					<label className='form-switch-label' htmlFor='sample-switch'></label>
+				</div>
+				<label htmlFor='sample-switch' className='ml-2'>
+					スイッチラベル
+				</label>
+			</div>
+		)
+
+		const htmlString = `<div class="flex items-center">
+  <div class="form-switch ${classString}">
+    <input type="checkbox" class="form-switch-input" id="sample-switch" />
+    <label class="form-switch-label" for="sample-switch"></label>
+  </div>
+  <label for="sample-switch" class="ml-2">スイッチラベル</label>
+</div>`
+
+		return createHandlerResult(reactElement, htmlString)
+	},
+})
+
+// フォームフィードバックハンドラー - カスタムレンダリング使用
+export const formFeedbackHandler = createFormElementHandler({
+	elementType: 'custom',
+	renderCustom: (options, classString) => {
+		const reactElement = (
+			<div>
+				{/* CSS変更に合わせて color-* クラスを使用 */}
+				<div className={`form-feedback color-success ${classString} mb-2`}>
+					正常な入力です (Success)
+				</div>
+				<div className={`form-feedback color-error ${classString}`}>
+					エラー: 入力が不正です (Error)
+				</div>
+			</div>
+		)
+
+		const htmlString = `<div>
+  <div class="form-feedback color-success ${classString} mb-2">正常な入力です (Success)</div>
+  <div class="form-feedback color-error ${classString}">エラー: 入力が不正です (Error)</div>
+</div>`
+
+		return createHandlerResult(reactElement, htmlString)
+	},
+})
+
+// フォームハンドラーマップ
+export const formHandlers = {
+	'form-input': formInputHandler,
+	'form-select': formSelectHandler,
+	'form-checkbox': formCheckboxHandler,
+	'form-radio': formRadioHandler,
+	'form-textarea': formTextareaHandler,
+	'form-search': formSearchHandler,
+	'form-switch': formSwitchHandler,
+	'form-feedback': formFeedbackHandler,
 }

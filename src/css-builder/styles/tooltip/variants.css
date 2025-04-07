@@ -1,0 +1,195 @@
+@layer components {
+  /* ----- カラーバリエーション ----- */
+  
+  /* 
+   * @component: tooltip
+   * @variant: default
+   * @description: デフォルトスタイルのツールチップ。一般的な追加情報の表示に使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-default" data-tooltip="これは標準のツールチップです">ホバーしてください</span>
+   */
+  .tooltip-default {
+    &::after {
+      background-color: var(--tooltip-bg);
+      color: var(--tooltip-text);
+      border-color: var(--tooltip-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-bg);
+    }
+  }
+  
+  /* 
+   * @component: tooltip
+   * @variant: info
+   * @description: 情報を示すスタイルのツールチップ。補足情報の表示に使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-info" data-tooltip="情報: これは重要な情報です">ホバーしてください</span>
+   */
+  .tooltip-info {
+    &::after {
+      background-color: var(--tooltip-info-bg);
+      color: var(--tooltip-info-text);
+      border-color: var(--tooltip-info-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-info-bg);
+    }
+  }
+  
+  /* 
+   * @component: tooltip
+   * @variant: success
+   * @description: 成功を示すスタイルのツールチップ。ポジティブなメッセージの表示に使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-success" data-tooltip="成功: タスクが完了しました">ホバーしてください</span>
+   */
+  .tooltip-success {
+    &::after {
+      background-color: var(--tooltip-success-bg);
+      color: var(--tooltip-success-text);
+      border-color: var(--tooltip-success-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-success-bg);
+    }
+  }
+  
+  /* 
+   * @component: tooltip
+   * @variant: warning
+   * @description: 警告を示すスタイルのツールチップ。注意喚起のメッセージに使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-warning" data-tooltip="警告: この操作は取り消せません">ホバーしてください</span>
+   */
+  .tooltip-warning {
+    &::after {
+      background-color: var(--tooltip-warning-bg);
+      color: var(--tooltip-warning-text);
+      border-color: var(--tooltip-warning-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-warning-bg);
+    }
+  }
+  
+  /* 
+   * @component: tooltip
+   * @variant: error
+   * @description: エラーを示すスタイルのツールチップ。エラーメッセージの表示に使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-error" data-tooltip="エラー: 入力が不正です">ホバーしてください</span>
+   */
+  .tooltip-error {
+    &::after {
+      background-color: var(--tooltip-error-bg);
+      color: var(--tooltip-error-text);
+      border-color: var(--tooltip-error-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-error-bg);
+    }
+  }
+  
+  /* ----- アウトラインバリエーション ----- */
+  
+  /* 
+   * @component: tooltip
+   * @variant: outline-default
+   * @description: 枠線スタイルのデフォルトツールチップ。より控えめな表示に使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-outline-default" data-tooltip="これはアウトラインツールチップです">ホバーしてください</span>
+   */
+  .tooltip-outline-default {
+    &::after {
+      background-color: transparent;
+      color: var(--tooltip-text);
+      border-color: var(--tooltip-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-border);
+    }
+  }
+  
+  /* 
+   * @component: tooltip
+   * @variant: outline-info
+   * @description: 枠線スタイルの情報ツールチップ。控えめな補足情報の表示に使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-outline-info" data-tooltip="情報: これは重要な情報です">ホバーしてください</span>
+   */
+  .tooltip-outline-info {
+    &::after {
+      background-color: transparent;
+      color: var(--tooltip-info-border);
+      border-color: var(--tooltip-info-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-info-border);
+    }
+  }
+  
+  /* 
+   * @component: tooltip
+   * @variant: outline-success
+   * @description: 枠線スタイルの成功ツールチップ。控えめなポジティブメッセージに使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-outline-success" data-tooltip="成功: タスクが完了しました">ホバーしてください</span>
+   */
+  .tooltip-outline-success {
+    &::after {
+      background-color: transparent;
+      color: var(--tooltip-success-border);
+      border-color: var(--tooltip-success-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-success-border);
+    }
+  }
+  
+  /* 
+   * @component: tooltip
+   * @variant: outline-warning
+   * @description: 枠線スタイルの警告ツールチップ。控えめな注意喚起に使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-outline-warning" data-tooltip="警告: この操作は取り消せません">ホバーしてください</span>
+   */
+  .tooltip-outline-warning {
+    &::after {
+      background-color: transparent;
+      color: var(--tooltip-warning-border);
+      border-color: var(--tooltip-warning-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-warning-border);
+    }
+  }
+  
+  /* 
+   * @component: tooltip
+   * @variant: outline-error
+   * @description: 枠線スタイルのエラーツールチップ。控えめなエラーメッセージに使用します。
+   * @category: display
+   * @example: <span class="tooltip-base tooltip-outline-error" data-tooltip="エラー: 入力が不正です">ホバーしてください</span>
+   */
+  .tooltip-outline-error {
+    &::after {
+      background-color: transparent;
+      color: var(--tooltip-error-border);
+      border-color: var(--tooltip-error-border);
+    }
+    
+    &::before {
+      border-top-color: var(--tooltip-error-border);
+    }
+  }
+}

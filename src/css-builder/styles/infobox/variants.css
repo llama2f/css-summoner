@@ -1,208 +1,135 @@
 @layer components {
-	/* 
-	 * @component: infobox
-	 * @variant: with-icon
-	 * @description: アイコン付きの情報ボックス。視覚的な手がかりを追加します。
-	 * @category: notification
-	 * @example: <div class="infobox-info infobox-with-icon">
-	 *   <span class="infobox-icon">
-	 *     <svg>...</svg>
-	 *   </span>
-	 *   アイコン付き情報ボックス
-	 * </div>
+	/*
+	 * =========================================
+	 * Infobox Variants (Structure & Appearance)
+	 * =========================================
+	 * These variants define the basic structure and appearance,
+	 * intended to be combined with color selector classes (e.g., .color-info).
 	 */
-	.infobox-with-icon {
-		padding-left: var(--infobox-padding-left-icon) !important;
+
+	/*
+	 * @component: infobox
+	 * @variant: solid
+	 * @description: 背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。
+	 * @category: notification
+	 * @example: <div class="infobox-base infobox-solid color-info">...</div>
+	 */
+	.infobox-solid {
+		background-color: var(
+			--component-color,
+			#e4e4e4
+		); /* デフォルトはニュートラル系 */
+		color: var(--component-text, #242424);
+		border-color: var(
+			--component-border,
+			var(--component-color, #e4e4e4)
+		); /* ボーダーもコンポーネントカラーに依存 */
 	}
 
-	/* 
-	 * @component: infobox
-	 * @variant: info
-	 * @description: 一般的な情報を表示するボックス。通常の通知やメッセージに使用します。
-	 * @category: notification
-	 * @example: <div class="infobox-info">
-	 *   情報: このサービスは24時間利用可能です。
-	 * </div>
-	 */
-	.infobox-info {
-		@apply infobox-base;
-		background-color: var(--infobox-info-bg);
-		color: var(--infobox-info-color);
-	}
-
-	/* 
-	 * @component: infobox
-	 * @variant: success
-	 * @description: 成功や完了を表示するボックス。操作の成功やポジティブな通知に使用します。
-	 * @category: notification
-	 * @example: <div class="infobox-success">
-	 *   成功: データの保存が完了しました。
-	 * </div>
-	 */
-	.infobox-success {
-		@apply infobox-base;
-		background-color: var(--infobox-success-bg);
-		color: var(--infobox-success-color);
-	}
-
-	/* 
-	 * @component: infobox
-	 * @variant: warning
-	 * @description: 警告を表示するボックス。注意が必要な情報やユーザーの確認が必要な内容に使用します。
-	 * @category: notification
-	 * @example: <div class="infobox-warning">
-	 *   警告: このアクションは取り消せません。
-	 * </div>
-	 */
-	.infobox-warning {
-		@apply infobox-base;
-		background-color: var(--infobox-warning-bg);
-		color: var(--infobox-warning-color);
-	}
-
-	/* 
-	 * @component: infobox
-	 * @variant: error
-	 * @description: エラーを表示するボックス。問題や失敗を通知する場合に使用します。
-	 * @category: notification
-	 * @example: <div class="infobox-error">
-	 *   エラー: ファイルの上传に失敗しました。
-	 * </div>
-	 */
-	.infobox-error {
-		@apply infobox-base;
-		background-color: var(--infobox-error-bg);
-		color: var(--infobox-error-color);
-	}
-
-	/* 
-	 * @component: infobox
-	 * @variant: note
-	 * @description: メモや補足情報を表示するボックス。追加情報や備考に使用します。
-	 * @category: notification
-	 * @example: <div class="infobox-note">
-	 *   メモ: 詳細については資料を参照してください。
-	 * </div>
-	 */
-	.infobox-note {
-		@apply infobox-base;
-		background-color: var(--infobox-note-bg);
-		color: var(--infobox-note-color);
-	}
-
-	/* 
+	/*
 	 * @component: infobox
 	 * @variant: outline
-	 * @description: 背景色なしで枠線のみのスタイル。控えめな表示が必要な場合に使用します。
+	 * @description: 背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。
 	 * @category: notification
-	 * @example: <div class="infobox-info infobox-outline">
-	 *   枠線のみの情報ボックス
-	 * </div>
+	 * @example: <div class="infobox-base infobox-outline color-warning">...</div>
 	 */
 	.infobox-outline {
 		background-color: transparent;
-		border-left-width: var(--infobox-outline-width);
-		border-top: var(--infobox-outline-width) solid currentColor;
-		border-right: var(--infobox-outline-width) solid currentColor;
-		border-left: var(--infobox-outline-width) solid currentColor;
-		border-bottom: var(--infobox-outline-width) solid currentColor;
-		border-color:
-			currentColor,
-			transparent calc(100% - var(--infobox-outline-opacity) * 100%);
+		color: var(
+			--component-color,
+			#242424
+		); /* テキスト色はコンポーネントカラー */
+		border-color: var(
+			--component-border,
+			var(--component-color, #242424)
+		); /* ボーダー色もコンポーネントカラー */
 	}
 
-	/* 
-	 * @component: infobox
-	 * @variant: bordered
-	 * @description: 通常の枠線付きスタイル。視覚的な区切りを強調します。
-	 * @category: notification
-	 * @example: <div class="infobox-info infobox-bordered">
-	 *   枠線付きの情報ボックス
-	 * </div>
-	 */
-	.infobox-bordered {
-		border: var(--infobox-border-width) solid
-			color-mix(
-				in srgb,
-				currentColor,
-				transparent calc(100% - var(--infobox-border-opacity) * 100%)
-			);
+	/* outline のホバーは背景を薄く表示 (card を参考に) */
+	.infobox-outline:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #242424),
+			transparent calc(100% - var(--infobox-outline-hover-opacity, 0.1) * 100%)
+				/* base.css で定義予定 or デフォルト値 */
+		);
+	}
+	/* ダークモードでの outline ホバー */
+	.dark .infobox-outline:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #fafafa),
+			transparent
+				calc(100% - var(--infobox-outline-hover-opacity-dark, 0.15) * 100%)
+				/* ダークモード用変数 */
+		);
 	}
 
-	/* 
+	/*
 	 * @component: infobox
-	 * @variant: shadow
-	 * @description: 影付きスタイル。立体感を強調し、ページ上で目立たせます。
+	 * @variant: ghost
+	 * @description: 背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。
 	 * @category: notification
-	 * @example: <div class="infobox-info infobox-shadow">
-	 *   影付きの情報ボックス
-	 * </div>
+	 * @example: <div class="infobox-base infobox-ghost color-neutral">...</div>
 	 */
-	.infobox-shadow {
-		@apply shadow-sm;
+	.infobox-ghost {
+		background-color: transparent;
+		color: var(
+			--component-color,
+			#242424
+		); /* テキスト色はコンポーネントカラー */
+		border-color: transparent;
 	}
 
-	/* 
-	 * @component: infobox
-	 * @variant: square
-	 * @description: 角丸なしの四角形スタイル。シャープなデザインが必要な場合に使用します。
-	 * @category: notification
-	 * @example: <div class="infobox-info infobox-square">
-	 *   角丸なしの情報ボックス
-	 * </div>
-	 */
-	.infobox-square {
-		border-radius: 0;
+	/* ghost のホバーは背景を薄く表示 (utilities.css の infobox-hover-ghost と連携) */
+	/* .infobox-ghost:hover スタイルは utilities.css の .infobox-hover-ghost で定義 */
+
+	.infobox-compact {
+		--infobox-padding-y: 0.75rem; /* py-3 */
+		--infobox-padding-x: 1rem; /* px-4 */
+		--infobox-padding-left-icon: 2.5rem; /* アイコン用 */
+		--infobox-icon-size: 1.25rem; /* text-xl 相当 */
+		--infobox-icon-position-left: 0.75rem; /* left-3 */
+		--infobox-icon-position-top: 0.75rem; /* top-3 */
+		@apply text-sm;
 	}
 
-	/* 
-	 * @component: infobox
-	 * @variant: icon
-	 * @description: アイコン要素のスタイル。視覚的なシンボルを左側に配置します。
-	 * @category: notification
-	 * @example: <div class="infobox-info infobox-with-icon">
-	 *   <span class="infobox-icon">
-	 *     <svg>...</svg>
-	 *   </span>
-	 *   アイコン付き情報ボックス
-	 * </div>
+	/*
+	 * =========================================
+	 * Infobox Content & Icon Styles
+	 * =========================================
 	 */
+
 	.infobox-icon {
 		position: absolute;
 		left: var(--infobox-icon-position-left);
 		top: var(--infobox-icon-position-top);
+		/* width/height は削除し、コンテナとしての役割に */
+		display: inline-flex; /* SVGをインライン要素のように扱い、中央揃えなどを可能に */
+		align-items: center; /* 垂直方向の中央揃え */
+		justify-content: center; /* 水平方向の中央揃え */
+		/* アイコンの色は通常、親要素の color を継承するか、個別に設定 */
+		color: currentColor; /* デフォルト */
+	}
+
+	/* .infobox-icon 内の svg 要素にサイズを指定 */
+	.infobox-icon svg {
 		width: var(--infobox-icon-size);
 		height: var(--infobox-icon-size);
 	}
 
-	/* 
-	 * @component: infobox
-	 * @variant: title
-	 * @description: タイトル要素のスタイル。情報ボックス内の見出しに使用します。
-	 * @category: notification
-	 * @example: <div class="infobox-info"><h4 class="infobox-title">重要なお知らせ</h4><p>システムメンテナンスのお知らせです。</p></div>
-	 */
-
-	.infobox-title {
-		@apply font-bold text-lg mb-2;
+	.infobox-with-icon {
+		padding-left: var(--infobox-padding-left-icon);
 	}
 
-	/* 
+	/*
 	 * @component: infobox
-	 * @variant: compact
-	 * @description: コンパクトサイズのスタイル。スペースが限られている場合に使用します。
+	 * @variant: title
+	 * @description: タイトル要素のスタイル。
 	 * @category: notification
-	 * @example: <div class="infobox-info infobox-compact">
-	 *   コンパクトサイズの情報ボックス
-	 * </div>
+	 * @example: <div class="infobox-base infobox-solid color-error"><h4 class="infobox-title">エラー</h4>...</div>
 	 */
-	.infobox-compact {
-		--infobox-padding-y: 0.75rem;
-		--infobox-padding-x: 1rem;
-		--infobox-padding-left-icon: 2.5rem;
-		--infobox-icon-size: 1.25rem;
-		--infobox-icon-position-left: 0.75rem;
-		--infobox-icon-position-top: 0.75rem;
-		@apply text-sm;
+	.infobox-title {
+		@apply font-bold text-lg mb-2; /* 必要に応じて調整 */
 	}
 }

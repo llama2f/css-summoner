@@ -1,4 +1,49 @@
 @layer utilities {
+	/* ----- サイズバリエーション（手動設定） ----- */
+
+	.btn-xs {
+		font-size: var(--btn-font-size-xs);
+		padding: var(--btn-padding-y-xs) var(--btn-padding-x-xs);
+	}
+
+	.btn-sm {
+		font-size: var(--btn-font-size-sm);
+		padding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);
+	}
+
+	.btn-md {
+		font-size: var(--btn-font-size-md);
+		padding: var(--btn-padding-y-md) var(--btn-padding-x-md);
+	}
+
+	.btn-lg {
+		font-size: var(--btn-font-size-lg);
+		padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
+	}
+
+	.btn-xl {
+		font-size: var(--btn-font-size-xl);
+		padding: var(--btn-padding-y-xl) var(--btn-padding-x-xl);
+	}
+
+	/* ----- 形状バリエーション(手動追加) ----- */
+	.btn-base {
+		&.btn-rounded-sm {
+			border-radius: var(--btn-border-radius-sm);
+		}
+
+		&.btn-rounded-lg {
+			border-radius: var(--btn-border-radius-lg);
+		}
+		&.btn-rounded-full {
+			border-radius: var(--btn-border-radius-full);
+		}
+
+		&.btn-square {
+			border-radius: 0;
+		}
+	}
+
 	.btn-shadow {
 		box-shadow: var(--btn-shadow-md);
 	}

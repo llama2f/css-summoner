@@ -1,5 +1,5 @@
 // src/css-builder/ClassBuilder.jsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
 // import './styles.css' // スタイルシートをインポート
 
 // 独自フック
@@ -12,6 +12,7 @@ import SizeSelector from '@/css-builder/components/selectors/SizeSelector'
 import BorderRadiusSelector from '@/css-builder/components/selectors/BorderRadiusSelector'
 import ModifierSelector from '@/css-builder/components/selectors/ModifierSelector'
 import SpecialClassSelector from '@/css-builder/components/selectors/SpecialClassSelector'
+import ColorSelector from '@/css-builder/components/selectors/ColorSelector' // カラーセレクター
 import ClassPreview from '@/css-builder/components/preview/ClassPreview'
 import ClassCodeDisplay from '@/css-builder/components/display/ClassCodeDisplay'
 import Tooltip from '@/css-builder/components/common/Tooltip'
@@ -30,6 +31,7 @@ import {
 	borderRadiusOptions,
 	modifiers,
 	specialClasses,
+	colorOptions, // カラーオプション
 } from '@/css-builder/configs'
 
 /**
@@ -49,24 +51,38 @@ const ClassBuilder = () => {
 	// CSS変数エディタの表示状態
 	const [showCssVarEditor, setShowCssVarEditor] = useState(true)
 
-	// ツールチップを表示する
-	const showTooltip = (e, text) => {
-		if (!e || !text) {
-			setTooltipVisible(false)
-			return
+	// ツールチップを表示する（メモ化）
+	const showTooltip = useCallback(
+		(e, text) => {
+			if (!e || !text) {
+				setTooltipVisible(false)
+				return
+			}
+
+			setTooltipText(text)
+			setTooltipVisible(true)
+
+			// ポジションの計算（オフセットを追加してカーソルの近くに表示）
+			const x = e.clientX + 10
+			const y = e.clientY + 10
+			setTooltipPosition({ x, y })
+		},
+		[setTooltipText, setTooltipVisible, setTooltipPosition]
+	) // 依存する状態更新関数をメモ化
+
+	// コンポーネントタイプのベース名を抽出する関数
+	const getBaseComponentType = useCallback((type) => {
+		// 'heading'で始まるがハイフンが含まれる場合（例: heading-casual）
+		if (type.startsWith('heading') && type.includes('-')) {
+			return 'heading'
 		}
 
-		setTooltipText(text)
-		setTooltipVisible(true)
+		const parts = type.split('-')
+		return parts[0] // 最初の部分を返す
+	}, []) // 依存配列が空なので再作成されない
 
-		// ポジションの計算（オフセットを追加してカーソルの近くに表示）
-		const x = e.clientX + 10
-		const y = e.clientY + 10
-		setTooltipPosition({ x, y })
-	}
-
-	// コンポーネント固有のサイズオプションを取得
-	const getSizeOptions = () => {
+	// サイズオプションのメモ化
+	const sizeOptionsValue = useMemo(() => {
 		// コンポーネントタイプのベース名を取得
 		const baseType = getBaseComponentType(state.componentType)
 
@@ -77,10 +93,13 @@ const ClassBuilder = () => {
 
 		// コンポーネント特化のサイズがない場合は共通サイズを返す
 		return sizes.common || []
-	}
+	}, [state.componentType, getBaseComponentType]) // componentTypeが変更された時のみ再計算
 
-	// コンポーネント固有の角丸オプションを取得
-	const getBorderRadiusOptions = () => {
+	// 元の関数インターフェイスを維持
+	const getSizeOptions = () => sizeOptionsValue
+
+	// 角丸オプションのメモ化
+	const borderRadiusOptionsValue = useMemo(() => {
 		// コンポーネントタイプのベース名を取得
 		const baseType = getBaseComponentType(state.componentType)
 
@@ -91,48 +110,39 @@ const ClassBuilder = () => {
 
 		// コンポーネント特化の角丸がない場合は共通角丸を返す
 		return borderRadiusOptions.common || []
-	}
+	}, [state.componentType, getBaseComponentType]) // componentTypeが変更された時のみ再計算
+
+	// 元の関数インターフェイスを維持
+	const getBorderRadiusOptions = () => borderRadiusOptionsValue
 
 	// コンポーネント固有のモディファイアを取得
-	// コンポーネントタイプのベース名を抽出する関数
-	const getBaseComponentType = (type) => {
-		// 'heading'で始まるがハイフンが含まれる場合（例: heading-casual）
-		if (type.startsWith('heading') && type.includes('-')) {
-			return 'heading'
-		}
 
-		const parts = type.split('-')
-		return parts[0] // 最初の部分を返す
-	}
-
-	const getModifierOptions = () => {
+	// モディファイアオプションのメモ化
+	const modifierOptionsValue = useMemo(() => {
 		// ベースコンポーネントタイプを取得
 		const baseType = getBaseComponentType(state.componentType)
-
-		/* console.log(
-			'コンポーネントタイプ:',
-			state.componentType,
-			'ベースタイプ:',
-			baseType
-		)
-		console.log('利用可能なモディファイア:', modifiers[baseType] || []) */
 
 		// ベースタイプに対応するモディファイアを取得
 		const componentModifiers = modifiers[baseType] || []
 
 		// 共通モディファイアと結合して返す
 		return [...(modifiers.common || []), ...componentModifiers]
-	}
+	}, [state.componentType, getBaseComponentType]) // componentTypeが変更された時のみ再計算
 
-	// 常にログ確認
-	/* useEffect(() => {
-		console.log('Current component type:', state.componentType)
-		console.log(
-			'Base component type:',
-			getBaseComponentType(state.componentType)
-		)
-		console.log('Available modifiers:', getModifierOptions())
-	}, [state.componentType]) */
+	// 元の関数インターフェイスを維持
+	const getModifierOptions = () => modifierOptionsValue
+
+	// カスタム色変更のハンドラー
+	const handleCustomColorChange = useCallback(
+		(colorSettings) => {
+			actions.setCustomColorSettings(colorSettings)
+			// カスタムカラーが選択されていない場合は自動的に選択
+			if (state.selectedColor !== 'color-custom') {
+				actions.setColor('color-custom')
+			}
+		},
+		[actions, state.selectedColor]
+	)
 
 	// コンポーネントタイプが変更されたときにサイズを設定するuseEffect
 	useEffect(() => {
@@ -177,6 +187,15 @@ const ClassBuilder = () => {
 							/>
 						)}
 
+					{/* カラー選択 */}
+					<ColorSelector
+						colors={colorOptions}
+						selectedColor={state.selectedColor}
+						onSelect={actions.setColor}
+						onTooltip={showTooltip}
+						onCustomColorChange={handleCustomColorChange}
+					/>
+
 					{/* サイズ選択 */}
 					{getSizeOptions().length > 0 && (
 						<SizeSelector
@@ -216,58 +235,61 @@ const ClassBuilder = () => {
 
 				{/* 右側: プレビューと生成コード */}
 				<div className='panel-preview'>
-					{/* 背景色設定 */}
-					<div className='flex flex-wrap items-center gap-4 pb-2 border-b'>
-						<span className='text-sm font-medium'>背景:</span>
-						<div className='flex gap-2'>
-							<button
-								onClick={() => actions.setPreviewBg('bg-transparent')}
-								className={`w-6 h-6 rounded-full border border-dashed ${state.previewBg === 'bg-transparent' ? 'ring-2 ring-primary' : ''}`}
-								aria-label='透過背景'
-								title='透過背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-white')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-white' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: 'white' }}
-								aria-label='白背景'
-								title='白背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-neutral-200')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-neutral-200' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: '#e5e5e5' }}
-								aria-label='グレー背景'
-								title='グレー背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-neutral-800')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-neutral-800' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: '#262626' }}
-								aria-label='黒背景'
-								title='黒背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-primary-light')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-primary-light' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: 'var(--primary-light)' }}
-								aria-label='プライマリライト背景'
-								title='プライマリライト背景'
-							></button>
-							<button
-								onClick={() => actions.setPreviewBg('bg-secondary-light')}
-								className={`w-6 h-6 rounded-full border ${state.previewBg === 'bg-secondary-light' ? 'ring-2 ring-primary' : ''}`}
-								style={{ backgroundColor: 'var(--secondary-light)' }}
-								aria-label='セカンダリライト背景'
-								title='セカンダリライト背景'
-							></button>
+					{/* 上部コントロール: 背景色設定とテーマ切り替え */}
+					<div className='flex flex-wrap items-center justify-between gap-4 pb-2 border-b'>
+						{/* 背景色設定 */}
+						<div className='flex items-center gap-2'>
+							<span className='text-sm font-medium'>背景:</span>
+							<div className='flex gap-1'>
+								<button
+									onClick={() => actions.setPreviewBg('bg-transparent')}
+									className={`w-5 h-5 rounded-full border border-dashed ${state.previewBg === 'bg-transparent' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									aria-label='透過背景'
+									title='透過背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-white')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-white' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: 'white' }}
+									aria-label='白背景'
+									title='白背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-neutral-200')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-neutral-200' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: '#e5e5e5' }}
+									aria-label='グレー背景'
+									title='グレー背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-neutral-800')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-neutral-800' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: '#262626' }}
+									aria-label='黒背景'
+									title='黒背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-primary-light')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-primary-light' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: 'var(--primary-light)' }}
+									aria-label='プライマリライト背景'
+									title='プライマリライト背景'
+								></button>
+								<button
+									onClick={() => actions.setPreviewBg('bg-secondary-light')}
+									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-secondary-light' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									style={{ backgroundColor: 'var(--secondary-light)' }}
+									aria-label='セカンダリライト背景'
+									title='セカンダリライト背景'
+								></button>
+							</div>
 						</div>
 					</div>
 
 					{/* CSS変数エディタボタン */}
 					<div className='flex justify-end mb-2'>
 						<button
-							onClick={() => setShowCssVarEditor(!showCssVarEditor)}
+							onClick={() => setShowCssVarEditor((prev) => !prev)}
 							className='button-css-edit btn-primary btn-xs btn-animate-down'
 						>
 							{showCssVarEditor
@@ -287,6 +309,7 @@ const ClassBuilder = () => {
 						size={state.size}
 						previewBg={state.previewBg}
 						baseClass={baseClasses[state.componentType] || ''}
+						selectedColor={state.selectedColor} // 色クラスの受け渡し
 					/>
 
 					{/* 追加クラス入力 */}
@@ -310,7 +333,9 @@ const ClassBuilder = () => {
 					<ClassCodeDisplay
 						classString={state.generatedClassString}
 						componentType={state.componentType}
+						componentVariant={state.componentVariant}
 						selectedModifiers={state.selectedModifiers}
+						selectedColor={state.selectedColor} // 色クラスの受け渡し
 					/>
 				</div>
 			</div>
@@ -336,4 +361,5 @@ const ClassBuilder = () => {
 	)
 }
 
+// 最適化されたClassBuilderをエクスポート
 export default ClassBuilder

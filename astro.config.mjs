@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config'
-import tailwindcss from '@tailwindcss/vite'
+import tailwind from '@astrojs/tailwind'
 import react from '@astrojs/react'
 import purgecss from 'astro-purgecss'
 
@@ -14,12 +14,10 @@ export default defineConfig({
 		preserveScriptOrder: true,
 		headingIdCompat: true,
 	},
-	vite: {
-        plugins: [
-            tailwindcss()
-        ]
-    },
 	integrations: [
+		tailwind({
+			applyBaseStyles: false,
+		}),
 		react(),
 		purgecss(),
 	],

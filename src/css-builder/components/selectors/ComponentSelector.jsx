@@ -1,7 +1,7 @@
 // components/selectors/ComponentSelector.jsx
 // コンポーネント選択のUIをアコーディオン方式に変更
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 
 /**
  * コンポーネントタイプを選択するセレクター（アコーディオン方式）
@@ -28,33 +28,37 @@ const ComponentSelector = ({ componentTypes, selectedComponent, onSelect }) => {
 		return orderA - orderB
 	}
 
-	// コンポーネントカテゴリごとのグループ化
-	const groupedComponents = componentTypes.reduce((acc, component) => {
-		const category = component.category || 'その他'
-		if (!acc[category]) acc[category] = []
-		acc[category].push(component)
-		return acc
-	}, {})
+	// コンポーネントカテゴリごとのグループ化（メモ化）
+	const groupedComponents = useMemo(() => {
+		return componentTypes.reduce((acc, component) => {
+			const category = component.category || 'その他'
+			if (!acc[category]) acc[category] = []
+			acc[category].push(component)
+			return acc
+		}, {})
+	}, [componentTypes]) // componentTypesが変更された時のみ再計算
 
 	// すべてのカテゴリを初期状態で開く
-	const initialOpenState = Object.keys(groupedComponents).reduce(
-		(acc, category) => {
-			acc[category] = true
-			return acc
-		},
-		{}
-	)
+	const initialOpenState = useMemo(() => {
+		return Object.keys(groupedComponents).reduce(
+			(acc, category) => {
+				acc[category] = true
+				return acc
+			},
+			{}
+		)
+	}, [groupedComponents]) // groupedComponentsが変更された時のみ再計算
 
 	// 開いているカテゴリを管理する状態
 	const [openCategories, setOpenCategories] = useState(initialOpenState)
 
 	// カテゴリの開閉を切り替える関数
-	const toggleCategory = (category) => {
+	const toggleCategory = React.useCallback((category) => {
 		setOpenCategories((prev) => ({
 			...prev,
 			[category]: !prev[category],
 		}))
-	}
+	}, []) // 依存配列が空なので再作成されない
 
 	return (
 		<div className='space-y-1'>
@@ -114,4 +118,5 @@ const ComponentSelector = ({ componentTypes, selectedComponent, onSelect }) => {
 	)
 }
 
-export default ComponentSelector
+// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
+export default React.memo(ComponentSelector)

@@ -1,260 +1,250 @@
 @layer components {
-  /* 
+	/* 
    * 注: 基本的なスタイリング（幅、パディング、マージンなど）はTailwindの
    * クラスで設定可能です。ここではプロジェクト固有のデザインに必要な
    * 追加スタイルのみを定義します。
    */
 
-  /* 
+	/* 
    * @component: form
    * @variant: input
    * @description: テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。
    * @category: form-controls
-   * @example: <input type="text" class="form-input" placeholder="入力してください">
+   * @example: <input type="text" class="form-input color-neutral" placeholder="入力してください">
    */
-  .form-input,
-  .form-select,
-  .form-textarea {
-    font-family: var(--form-font-family);
-    color: var(--form-text);
-    background-color: var(--form-bg);
-    border: var(--form-border-width) solid var(--form-border);
-    border-radius: var(--form-border-radius);
-    padding: var(--form-padding-y) var(--form-padding-x);
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    /* 注: Tailwindのw-full, block, テキストサイズなどは直接クラスで指定可能 */
-  }
+	.form-input,
+	.form-select,
+	.form-textarea {
+		font-family: var(--form-font-family);
+		color: var(--component-text); /* カラーセレクタから供給 */
+		background-color: var(--component-color); /* カラーセレクタから供給 */
+		border: var(--form-border-width) solid
+			var(--component-border, var(--neutral)); /* カラーセレクタから供給 */
+		border-radius: var(--form-border-radius);
+		padding: var(--form-padding-y) var(--form-padding-x);
+		transition:
+			border-color 0.2s ease-in-out,
+			box-shadow 0.2s ease-in-out;
+		/* 注: Tailwindのw-full, block, テキストサイズなどは直接クラスで指定可能 */
+	}
 
-  /* フォーカス状態 - Tailwindの ring クラスで代用できない場合のみ */
-  .form-input:focus,
-  .form-select:focus,
-  .form-textarea:focus {
-    @apply outline-none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px var(--form-focus-ring);
-  }
+	/* フォーカス状態 - Tailwindの ring ユーティリティ推奨 */
+	.form-input:focus,
+	.form-select:focus,
+	.form-textarea:focus {
+		@apply outline-none ring-2 ring-offset-1; /* Tailwindのringを使用 */
+		/* ring-color は color-* クラスや theme で設定 */
+		border-color: var(
+			--component-hover-color,
+			var(--component-color)
+		); /* ホバー色をボーダーに適用 */
+	}
 
-  /* プレースホルダー - Tailwindのplaceholder:クラスで設定可能 */
-  .form-input::placeholder,
+	/* プレースホルダー - Tailwindの placeholder: クラス推奨 */
+	/* .form-input::placeholder,
   .form-textarea::placeholder {
-    color: var(--form-placeholder);
-    opacity: 1;
-  }
+     color: color-mix(in srgb, var(--component-text), transparent 50%);
+     opacity: 1;
+  } */
 
-  /* 無効状態 - Tailwindのdisabled:クラスで設定可能だが、色の一貫性のため */
-  .form-input:disabled,
-  .form-select:disabled,
-  .form-textarea:disabled {
-    background-color: var(--form-disabled-bg);
-    color: var(--form-disabled-text);
-    cursor: not-allowed;
-  }
+	/* 無効状態 - Tailwindの disabled: クラス推奨 */
+	.form-input:disabled,
+	.form-select:disabled,
+	.form-textarea:disabled {
+		/* background-color: color-mix(in srgb, var(--component-color), transparent 50%); */
+		/* color: color-mix(in srgb, var(--component-text), transparent 40%); */
+		@apply disabled:opacity-60 disabled:cursor-not-allowed; /* Tailwindで代替 */
+	}
 
-  /* 
+	/* 
    * @component: form
    * @variant: textarea
    * @description: 複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。
    * @category: form-controls
-   * @example: <textarea class="form-textarea" placeholder="ご質問やご意見をお書きください"></textarea>
+   * @example: <textarea class="form-textarea color-neutral" placeholder="ご質問やご意見をお書きください"></textarea>
    */
-  .form-textarea {
-    min-height: 6rem;
-    resize: vertical;
-  }
+	.form-textarea {
+		min-height: 6rem;
+		resize: vertical;
+	}
 
-  /* 
+	/* 
    * @component: form
    * @variant: select
    * @description: ドロップダウン選択フィールド。オプションから1つを選ぶ場合に使用します。
    * @category: form-controls
-   * @example: <select class="form-select">
+   * @example: <select class="form-select color-neutral">
    *   <option>選択してください</option>
    *   <option>オプション1</option>
    *   <option>オプション2</option>
    * </select>
    */
-  .form-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
-    background-position: right 0.5rem center;
-    background-repeat: no-repeat;
-    background-size: 1.5em 1.5em;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    padding-right: 2rem;
-  }
+	.form-select {
+		/* アイコンの色をテキスト色に追従させる (stroke='currentColor') */
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+		background-position: right 0.75rem center; /* Tailwind pr-10 と合わせる */
+		background-repeat: no-repeat;
+		background-size: 1.25em 1.25em; /* Tailwind w-5 h-5 相当 */
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		padding-right: 2.5rem; /* Tailwind pr-10 */
+	}
 
-  /* 
+	/* 
    * @component: form
    * @variant: checkbox
    * @description: カスタムスタイルのチェックボックス。オン/オフの選択に使用します。
    * @category: form-controls
-   * @example: <input type="checkbox" class="form-checkbox" id="terms">
+   * @example: <input type="checkbox" class="form-checkbox color-neutral" id="terms">
    *   <label for="terms">利用規約に同意します</label>
    */
-  .form-checkbox,
-  .form-radio {
-    width: 1.25rem;
-    height: 1.25rem;
-    background-color: var(--form-bg);
-    border: var(--form-border-width) solid var(--form-border);
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
+	.form-checkbox,
+	.form-radio {
+		width: 1.25rem; /* Tailwind w-5 */
+		height: 1.25rem; /* Tailwind h-5 */
+		background-color: color-mix(
+			in srgb,
+			var(--component-color),
+			transparent 70%
+		);
+		border: var(--form-border-width) solid
+			var(--component-border, var(--neutral)); /* カラーセレクタから供給 */
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
 
-  .form-checkbox {
-    border-radius: 0.25rem;
-  }
+	.form-checkbox {
+		border-radius: 0.25rem;
+	}
 
-  /* 
+	/* 
    * @component: form
    * @variant: radio
    * @description: カスタムスタイルのラジオボタン。複数の選択肢から1つを選ぶ場合に使用します。
    * @category: form-controls
-   * @example: <input type="radio" class="form-radio" name="option" id="option1">
+   * @example: <input type="radio" class="form-radio color-neutral" name="option" id="option1">
    *   <label for="option1">オプション1</label>
    */
-  .form-radio {
-    border-radius: 50%;
-  }
+	.form-radio {
+		border-radius: 50%;
+	}
 
-  /* チェック状態のスタイル */
-  .form-checkbox:checked {
-    background-color: var(--primary);
-    border-color: var(--primary);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23fff'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 80%;
-  }
+	/* ラジオボタンのチェック状態アイコン */
+	.form-radio:checked::after {
+		content: '';
+		position: absolute;
+		display: block;
+		background-color: white;
+		top: 50%;
+		left: 50%;
+		width: 0.5rem; /* Tailwind w-2 */
+		height: 0.5rem; /* Tailwind h-2 */
+		border-radius: 50%; /* 円形 */
+		transform: translate(-50%, -50%);
+	}
 
-  .form-radio:checked {
-    background-color: var(--primary);
-    border-color: var(--primary);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='4' fill='%23fff'/%3E%3C/svg%3E");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 60%;
-  }
-
-  /* 
+	/* 
    * @component: form
    * @variant: switch
    * @description: トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。
    * @category: form-controls
    * @example: <div class="form-switch">
    *   <input type="checkbox" class="form-switch-input" id="darkmode">
-   *   <label class="form-switch-label" for="darkmode"></label>
+   *   <label class="form-switch-label color-neutral" for="darkmode"></label> <!-- color-* を指定 -->
    * </div>
    */
-  .form-switch {
-    @apply relative inline-block align-middle;
-    width: 3rem;
-    height: 1.5rem;
-  }
+	.form-switch {
+		@apply relative inline-block align-middle;
+		width: 3rem;
+		height: 1.5rem;
+	}
 
-  /* 
-   * @component: form
-   * @variant: switch-input
-   * @description: トグルスイッチの入力要素。実際のチェックボックスですが非表示にします。
-   * @category: form-controls
-   * @example: <input type="checkbox" class="form-switch-input" id="switch">
-   */
-  .form-switch-input {
-    @apply sr-only;
-  }
+	.form-switch-input {
+		@apply sr-only;
+	}
 
-  /* 
-   * @component: form
-   * @variant: switch-label
-   * @description: トグルスイッチの表示部分。スイッチの見た目を形成します。
-   * @category: form-controls
-   * @example: <label class="form-switch-label" for="switch"></label>
-   */
-  .form-switch-label {
-    @apply block h-full cursor-pointer;
-    background-color: var(--neutral);
-    border-radius: 9999px;
-    transition: background-color 0.2s ease;
-  }
+	.form-switch-label {
+		@apply block h-full cursor-pointer rounded-full;
+		/* 未チェック時はニュートラルな背景色 */
+		background-color: var(--neutral, #e4e4e4);
+		transition: background-color 0.2s ease;
+	}
+	/* ダークモード時の未チェック色 */
+	.dark .form-switch-label {
+		background-color: var(--neutral-dark, #242424);
+	}
 
-  .form-switch-label::after {
-    content: '';
-    @apply absolute top-0.5 left-0.5 bg-white rounded-full;
-    width: 1.25rem;
-    height: 1.25rem;
-    transition: transform 0.2s ease;
-  }
+	.form-switch-label::after {
+		content: '';
+		@apply absolute top-[calc(50%-0.625rem)] left-0.5 rounded-full; /* 中央寄せ */
+		/* 円の色はスイッチ背景のコントラスト色 */
+		background-color: var(--neutral-contrasting-text, #242424);
+		width: 1.25rem; /* Tailwind w-5 */
+		height: 1.25rem; /* Tailwind h-5 */
+		transition: transform 0.2s ease;
+	}
+	/* ダークモード時の円の色 */
+	.dark .form-switch-label::after {
+		background-color: var(--neutral-dark-contrasting-text, #fafafa);
+	}
 
-  .form-switch-input:checked + .form-switch-label {
-    background-color: var(--primary);
-  }
+	.form-switch-input:checked + .form-switch-label {
+		/* チェック時はカラーセレクタのアクティブ色 */
+		background-color: var(--component-active-color, var(--component-color));
+	}
 
-  .form-switch-input:checked + .form-switch-label::after {
-    transform: translateX(1.5rem);
-  }
+	.form-switch-input:checked + .form-switch-label::after {
+		/* チェック時は円の色を白固定に変更 */
+		background-color: white;
+		transform: translateX(1.5rem); /* Tailwind translate-x-6 */
+	}
 
-  /* 
-   * @component: form
-   * @variant: valid
-   * @description: 入力が有効である場合のスタイル。フォームバリデーション時に使用します。
-   * @category: form-validation
-   * @example: <input type="email" class="form-input is-valid" value="user@example.com">
-   *   <div class="form-feedback is-valid">正しいメールアドレス形式です</div>
-   */
-  .form-input.is-valid,
-  .form-select.is-valid,
-  .form-textarea.is-valid {
-    border-color: var(--form-valid);
-  }
-
-  /* 
-   * @component: form
-   * @variant: invalid
-   * @description: 入力が無効である場合のスタイル。フォームバリデーション時に使用します。
-   * @category: form-validation
-   * @example: <input type="email" class="form-input is-invalid" value="invalid-email">
-   *   <div class="form-feedback is-invalid">メールアドレスの形式が正しくありません</div>
-   */
-  .form-input.is-invalid,
-  .form-select.is-invalid,
-  .form-textarea.is-invalid {
-    border-color: var(--form-invalid);
-  }
-
-  /* 
+	/* 
    * @component: form
    * @variant: feedback
    * @description: フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。
    * @category: form-validation
-   * @example: <div class="form-feedback is-valid">入力内容は有効です</div>
-   *   <div class="form-feedback is-invalid">必須項目です</div>
+   * @example: <div class="form-feedback color-success">入力内容は有効です</div>
+   *   <div class="form-feedback color-error">必須項目です</div>
    */
-  .form-feedback {
-    @apply mt-1 text-sm;
-  }
+	.form-feedback {
+		@apply mt-1 text-sm;
+		/* デフォルトのテキスト色は親要素から継承 or color-neutral相当 */
+		color: var(--neutral-dark, #242424);
+	}
+	.dark .form-feedback {
+		color: var(--neutral-light, #fafafa);
+	}
 
-  .form-feedback.is-valid {
-    color: var(--form-valid);
-  }
+	/* is-valid/is-invalid クラスは削除し、.color-success/.color-error を使用 */
+	/* color-success/error が適用された場合のテキスト色を定義 */
+	.form-feedback.color-success {
+		/* --success-text 変数がなければ --success を使う */
+		color: var(--success-text, var(--success, green));
+	}
+	.form-feedback.color-error {
+		/* --error-text 変数がなければ --error を使う */
+		color: var(--error-text, var(--error, red));
+	}
 
-  .form-feedback.is-invalid {
-    color: var(--form-invalid);
-  }
-
-  /* 
+	/* 
    * @component: form
    * @variant: search
    * @description: 検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。
    * @category: form-controls
-   * @example: <input type="search" class="form-input form-search" placeholder="検索...">
+   * @example: <input type="search" class="form-input form-search color-neutral" placeholder="検索...">
    */
-  .form-search {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'%3E%3C/path%3E%3C/svg%3E");
-    background-position: 0.75rem center;
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-    padding-left: 2.5rem;
-  }
+	.form-search {
+		/* アイコンの色をテキスト色に追従させる (stroke='currentColor') */
+		/* color プロパティを継承させることで currentColor が機能するようにする */
+		color: inherit;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'%3E%3C/path%3E%3C/svg%3E");
+		background-position: 0.75rem center; /* Tailwind pl-10 と合わせる */
+		background-repeat: no-repeat;
+		background-size: 1rem 1rem; /* Tailwind text-base 相当 */
+		padding-left: 2.5rem; /* Tailwind pl-10 */
+		border-radius: var(--form-border-radius);
+	}
 }

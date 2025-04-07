@@ -5,5 +5,110 @@
 			page-break-inside: avoid;
 			break-inside: avoid;
 		}
+		/* 印刷時はホバー効果を無効化 */
+		.infobox-hover:hover,
+		.infobox-hover-down:hover,
+		.infobox-hover-scale:hover {
+			transform: none;
+			box-shadow: none !important;
+		}
+		.infobox-hover-overlay::after {
+			opacity: 0 !important;
+		}
+		.infobox-hover-border:hover {
+			border-color: transparent !important; /* 印刷時はボーダー変化なし */
+		}
+	}
+
+	/* ----- ホバーエフェクト ----- */
+
+	/* 上に浮き上がる効果 */
+	.infobox-hover {
+		/* transition は base.css で定義済み */
+	}
+	.infobox-hover:hover {
+		transform: translateY(-3px); /* card より少し控えめに */
+		/* box-shadow はオプションで infobox-shadow クラスと組み合わせる想定 */
+		/* box-shadow: var(--shadow-md); */
+	}
+
+	/* 下に沈む効果 */
+	.infobox-hover-down {
+		/* transition は base.css で定義済み */
+	}
+	.infobox-hover-down:hover {
+		transform: translateY(3px); /* card より少し控えめに */
+		/* box-shadow: var(--shadow-sm); */ /* 必要であれば */
+	}
+
+	/* 拡大する効果 */
+	.infobox-hover-scale {
+		/* transition は base.css で定義済み */
+	}
+	.infobox-hover-scale:hover {
+		transform: scale(1.02); /* card より少し控えめに */
+		/* box-shadow: var(--shadow-md); */ /* 必要であれば */
+	}
+
+	/* 半透明オーバーレイ効果 */
+	.infobox-hover-overlay {
+		position: relative; /* 疑似要素の基準 */
+		overflow: hidden; /* 疑似要素がはみ出さないように */
+	}
+	.infobox-hover-overlay::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-color: color-mix(
+			in srgb,
+			currentColor 15%,
+			transparent
+		); /* テキスト色を薄く重ねる */
+		opacity: 0;
+		transition: opacity var(--infobox-transition-duration)
+			var(--infobox-transition-timing-function);
+		pointer-events: none;
+		z-index: 1; /* コンテンツより手前 */
+	}
+	.infobox-hover-overlay:hover::after {
+		opacity: 1;
+	}
+	/* ダークモードでは白を薄く重ねる */
+	.dark .infobox-hover-overlay::after {
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	/* ボーダー強調効果 (outline/ghost バリアント向け) */
+	.infobox-hover-border {
+		/* transition は base.css で定義済み */
+	}
+	.infobox-hover-border:hover {
+		/* 現在のボーダー色を少し濃くする (例: 黒を10%混ぜる) */
+		border-color: color-mix(
+			in srgb,
+			var(--component-border, currentColor) 90%,
+			black 10%
+		);
+	}
+	/* ダークモードでのボーダーホバー (白を混ぜるなど調整が必要な場合) */
+	.dark .infobox-hover-border:hover {
+		border-color: color-mix(
+			in srgb,
+			var(--component-border, currentColor) 90%,
+			white 10%
+		);
+	}
+
+	/* ゴーストホバー (ghost バリアント向け) */
+	.infobox-hover-ghost {
+		/* transition は base.css で定義済み */
+	}
+	.infobox-hover-ghost:hover {
+		/* カラーセレクタで設定されたテキスト色を背景に薄く表示 */
+		background-color: color-mix(in srgb, currentColor 10%, transparent);
+	}
+	/* ダークモードでのゴーストホバー */
+	.dark .infobox-hover-ghost:hover {
+		background-color: rgba(255, 255, 255, 0.08);
 	}
 }

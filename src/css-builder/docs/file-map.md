@@ -1,31 +1,48 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-02T00:31:13.051Z*
+*自動生成: 2025-04-05T01:34:36.768Z*
 
 ## ディレクトリ構造
 
-| ディレクトリ | 説明 |
-|------------|------|
-| `/` | プロジェクトルート |
-| `/components/common/` | components/commonディレクトリ |
-| `/components/display/` | コード表示関連コンポーネント |
-| `/components/preview/` | プレビュー関連コンポーネント |
-| `/components/selectors/` | 選択UIコンポーネント |
-| `/configs/` | 設定ファイル群 |
-| `/hooks/` | hooksディレクトリ |
-| `/styles/` | CSSスタイルファイル |
-| `/styles/button/` | styles/buttonディレクトリ |
-| `/styles/card/` | styles/cardディレクトリ |
-| `/styles/form/` | styles/formディレクトリ |
-| `/styles/heading/` | styles/headingディレクトリ |
-| `/styles/image/` | styles/imageディレクトリ |
-| `/styles/infobox/` | styles/infoboxディレクトリ |
-| `/styles/text/` | styles/textディレクトリ |
-| `/templates/` | テンプレートシステム |
-| `/templates/core/` | テンプレートエンジンのコア機能 |
-| `/templates/handlers/` | コンポーネントタイプ別のハンドラー |
+```
+.
+  ├── components (UIコンポーネント (React))
+  │ ├── accessibility (components/accessibilityディレクトリ)
+  │ ├── astro (UIコンポーネント (Astro))
+  │ ├── color (components/colorディレクトリ)
+  │ ├── color-picker (components/color-pickerディレクトリ)
+  │ ├── common (共通UIコンポーネント)
+  │ ├── display (コード表示関連コンポーネント)
+  │ ├── preview (プレビュー関連コンポーネント)
+  │ ├── selectors (選択UIコンポーネント)
+  ├── configs (設定ファイル群 (クラスビルダーUI用))
+  ├── docs (ドキュメントファイル)
+  ├── hooks (Reactカスタムフック)
+  ├── layouts (Astroレイアウトコンポーネント)
+  ├── scripts (ビルド・自動化スクリプト)
+  ├── styles (CSSスタイルファイル)
+  │ ├── badge (styles/badgeディレクトリ)
+  │ ├── button (Buttonコンポーネント用スタイル)
+  │ ├── card (Cardコンポーネント用スタイル)
+  │ ├── colors (styles/colorsディレクトリ)
+  │ ├── form (Form関連要素用スタイル)
+  │ ├── heading (Headingコンポーネント用スタイル)
+  │ ├── image (Image関連要素用スタイル)
+  │ ├── infobox (Infoboxコンポーネント用スタイル)
+  │ ├── text (Text装飾用スタイル)
+  │ ├── tooltip (styles/tooltipディレクトリ)
+  ├── templates (コンポーネントプレビューテンプレートシステム)
+  │ ├── core (テンプレートエンジンのコア機能)
+  │ ├── handlers (コンポーネントタイプ別のプレビューハンドラー)
+  │ │ ├── auto (templates/handlers/autoディレクトリ)
+  ├── types (TypeScript型定義)
+  │ ├── css-tyles (CSSクラス名に基づく型定義 (自動生成))
+  ├── utils (utilsディレクトリ)
+```
 
-## コアファイル
+## ファイル詳細
+
+### ルート (/)
 
 | ファイル | 役割 |
 |---------|------|
@@ -34,87 +51,144 @@
 | `classMappings.js` | 設定とマッピングのエントリポイント |
 | `classMappingsConfig.js` | JavaScriptモジュール |
 
-## common (components/common)
+### components/accessibility/
 
 | ファイル | 役割 |
 |---------|------|
-| `CssVarEditor.jsx` | Reactコンポーネント |
-| `Tooltip.jsx` | Reactコンポーネント |
+| `ContrastChecker.jsx` | React UIコンポーネント - ContrastChecker |
 
-## display (components/display)
+### components/astro/
+
+| ファイル | 役割 |
+|---------|------|
+| `FontAwesomeIcon.astro` | Astro UIコンポーネント - FontAwesomeIcon |
+| `ThemeSwitcher.astro` | Astro UIコンポーネント - ThemeSwitcher |
+| `ToggleSwitch.astro` | Astro UIコンポーネント - ToggleSwitch |
+| `theme.ts` | その他のファイル |
+
+### components/color/
+
+| ファイル | 役割 |
+|---------|------|
+| `CustomColorPicker.jsx` | React UIコンポーネント - CustomColorPicker |
+
+### components/color-picker/
+
+| ファイル | 役割 |
+|---------|------|
+| `ColorPicker.jsx` | React UIコンポーネント - ColorPicker |
+
+### components/common/
+
+| ファイル | 役割 |
+|---------|------|
+| `CssVarEditor.jsx` | React UIコンポーネント - CssVarEditor |
+| `Tooltip.jsx` | React UIコンポーネント - Tooltip |
+
+### components/display/
 
 | ファイル | 役割 |
 |---------|------|
 | `ClassCodeDisplay.jsx` | ClassCodeDisplay - コード表示コンポーネント |
 
-## preview (components/preview)
+### components/preview/
 
 | ファイル | 役割 |
 |---------|------|
 | `ClassPreview.jsx` | ClassPreview - プレビュー表示コンポーネント |
 
-## selectors (components/selectors)
+### components/selectors/
 
 | ファイル | 役割 |
 |---------|------|
 | `BorderRadiusSelector.jsx` | BorderRadiusSelector - 選択UIコンポーネント |
+| `ColorSelector.jsx` | ColorSelector - 選択UIコンポーネント |
 | `ComponentSelector.jsx` | ComponentSelector - 選択UIコンポーネント |
 | `ModifierSelector.jsx` | ModifierSelector - 選択UIコンポーネント |
 | `SizeSelector.jsx` | SizeSelector - 選択UIコンポーネント |
 | `SpecialClassSelector.jsx` | SpecialClassSelector - 選択UIコンポーネント |
 | `VariantSelector.jsx` | VariantSelector - 選択UIコンポーネント |
 
-## configs (configs)
+### configs/
 
 | ファイル | 役割 |
 |---------|------|
+| `borderRadius.mjs` | borderRadiusの設定定義 (UI用) |
+| `colors.js` | colorsの設定定義 (UI用) |
 | `index.js` | モジュールのエクスポート用ファイル |
+| `modifiers.mjs` | modifiersの設定定義 (UI用) |
+| `sizes.mjs` | sizesの設定定義 (UI用) |
+| `specialClasses.mjs` | specialClassesの設定定義 (UI用) |
 
-## hooks (hooks)
+### docs/
 
 | ファイル | 役割 |
 |---------|------|
+| `color-system.md` | Markdownドキュメント |
+| `css-builder-system.md` | Markdownドキュメント |
+| `file-map.md` | Markdownドキュメント |
+| `handler-guide.md` | Markdownドキュメント |
+| `stylingGuide.md` | Markdownドキュメント |
+| `todo.md` | Markdownドキュメント |
+| `テンプレートハンドラー移行ガイド.md` | Markdownドキュメント |
+
+### hooks/
+
+| ファイル | 役割 |
+|---------|------|
+| `useAsyncHandler.jsx` | Reactコンポーネント |
 | `useClassBuilder.jsx` | Reactコンポーネント |
 
-## styles (styles)
+### layouts/
+
+| ファイル | 役割 |
+|---------|------|
+| `Layout.astro` | Astroレイアウト - Layout |
+| `Menu.astro` | Astroレイアウト - Menu |
+
+### scripts/
+
+| ファイル | 役割 |
+|---------|------|
+| `astro-generator.js` | Astroコンポーネント生成スクリプト |
+| `config.js` | スクリプト設定ファイル |
+| `css-builder.cjs` | JavaScript CommonJS Module |
+| `css-parser.js` | CSS解析ロジック |
+| `generate-handler-manifest.js` | JavaScriptモジュール |
+| `index.js` | モジュールのエクスポート用ファイル |
+| `simple-file-mapper.js` | このファイルマップ生成スクリプト |
+| `type-generator.js` | 型定義生成スクリプト |
+| `utils.js` | スクリプト共通ユーティリティ |
+
+### styles/
 
 | ファイル | 役割 |
 |---------|------|
 | `all-components.css` | スタイルシート |
 | `builder.css` | スタイルシート |
-| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
-| `index.css` | スタイルシート |
-| `utilities.css` | スタイルシート |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
-| `base.css` | スタイルシート |
-| `index.css` | スタイルシート |
-| `utilities.css` | スタイルシート |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 | `class-builder.css` | スタイルシート |
-| `base.css` | スタイルシート |
-| `index.css` | スタイルシート |
-| `utilities.css` | スタイルシート |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
-| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
-| `index.css` | スタイルシート |
-| `utilities.css` | スタイルシート |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
-| `base.css` | スタイルシート |
-| `index.css` | スタイルシート |
-| `utilities.css` | コンポーネントスタイル定義（アノテーション付き） |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
-| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
-| `index.css` | スタイルシート |
-| `utilities.css` | スタイルシート |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 | `styles.css` | スタイルシート |
-| `base.css` | スタイルシート |
-| `index.css` | スタイルシート |
-| `utilities.css` | スタイルシート |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 | `utils.css` | スタイルシート |
 
-## button (styles/button)
+### styles/badge/
+
+| ファイル | 役割 |
+|---------|------|
+| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
+| `index.css` | スタイルシート |
+| `utilities.css` | スタイルシート |
+| `variants-monochrome.css` | コンポーネントスタイル定義（アノテーション付き） |
+
+### styles/button/
+
+| ファイル | 役割 |
+|---------|------|
+| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
+| `index.css` | スタイルシート |
+| `utilities.css` | スタイルシート |
+| `variants-monochrome.css` | コンポーネントスタイル定義（アノテーション付き） |
+
+### styles/card/
 
 | ファイル | 役割 |
 |---------|------|
@@ -123,7 +197,14 @@
 | `utilities.css` | スタイルシート |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 
-## card (styles/card)
+### styles/colors/
+
+| ファイル | 役割 |
+|---------|------|
+| `color-system.css` | スタイルシート |
+| `custom-color.css` | スタイルシート |
+
+### styles/form/
 
 | ファイル | 役割 |
 |---------|------|
@@ -132,25 +213,16 @@
 | `utilities.css` | スタイルシート |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 
-## form (styles/form)
-
-| ファイル | 役割 |
-|---------|------|
-| `base.css` | スタイルシート |
-| `index.css` | スタイルシート |
-| `utilities.css` | スタイルシート |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
-
-## heading (styles/heading)
+### styles/heading/
 
 | ファイル | 役割 |
 |---------|------|
 | `base.css` | コンポーネントスタイル定義（アノテーション付き） |
 | `index.css` | スタイルシート |
 | `utilities.css` | スタイルシート |
-| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
+| `variants-monochrome.css` | コンポーネントスタイル定義（アノテーション付き） |
 
-## image (styles/image)
+### styles/image/
 
 | ファイル | 役割 |
 |---------|------|
@@ -159,7 +231,7 @@
 | `utilities.css` | コンポーネントスタイル定義（アノテーション付き） |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 
-## infobox (styles/infobox)
+### styles/infobox/
 
 | ファイル | 役割 |
 |---------|------|
@@ -168,44 +240,43 @@
 | `utilities.css` | スタイルシート |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 
-## text (styles/text)
+### styles/text/
 
 | ファイル | 役割 |
 |---------|------|
-| `base.css` | スタイルシート |
+| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
 | `index.css` | スタイルシート |
 | `utilities.css` | スタイルシート |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 
-## templates (templates)
+### styles/tooltip/
+
+| ファイル | 役割 |
+|---------|------|
+| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
+| `index.css` | スタイルシート |
+| `utilities.css` | スタイルシート |
+| `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
+
+### templates/
 
 | ファイル | 役割 |
 |---------|------|
 | `componentFactory.jsx` | Reactコンポーネント |
 | `componentHandlers.jsx` | Reactコンポーネント |
-| `templateEngine.jsx` | テンプレート生成エンジン |
-| `buttonHandlers.jsx` | buttonコンポーネントのテンプレート生成ハンドラー |
-| `cardHandlers.jsx` | cardコンポーネントのテンプレート生成ハンドラー |
-| `common.jsx` | 共通ユーティリティと定数 |
-| `formHandlers.jsx` | formコンポーネントのテンプレート生成ハンドラー |
-| `headingHandlers.jsx` | headingコンポーネントのテンプレート生成ハンドラー |
-| `imageHandlers.jsx` | imageコンポーネントのテンプレート生成ハンドラー |
-| `index.jsx` | Reactコンポーネント |
-| `infoboxHandlers.jsx` | infoboxコンポーネントのテンプレート生成ハンドラー |
-| `textHandlers.jsx` | textコンポーネントのテンプレート生成ハンドラー |
-| `index.jsx` | Reactコンポーネント |
 | `registry.jsx` | コンポーネントハンドラーの登録管理 |
 
-## core (templates/core)
+### templates/core/
 
 | ファイル | 役割 |
 |---------|------|
 | `templateEngine.jsx` | テンプレート生成エンジン |
 
-## handlers (templates/handlers)
+### templates/handlers/
 
 | ファイル | 役割 |
 |---------|------|
+| `badgeHandlers.jsx` | badgeコンポーネントのテンプレート生成ハンドラー |
 | `buttonHandlers.jsx` | buttonコンポーネントのテンプレート生成ハンドラー |
 | `cardHandlers.jsx` | cardコンポーネントのテンプレート生成ハンドラー |
 | `common.jsx` | 共通ユーティリティと定数 |
@@ -215,19 +286,61 @@
 | `index.jsx` | Reactコンポーネント |
 | `infoboxHandlers.jsx` | infoboxコンポーネントのテンプレート生成ハンドラー |
 | `textHandlers.jsx` | textコンポーネントのテンプレート生成ハンドラー |
+| `tooltipHandlers.jsx` | tooltipコンポーネントのテンプレート生成ハンドラー |
+
+### templates/handlers/auto/
+
+| ファイル | 役割 |
+|---------|------|
+| `button.jsx` | Reactコンポーネント |
+| `card.jsx` | Reactコンポーネント |
+
+### types/
+
+| ファイル | 役割 |
+|---------|------|
+| `Button.d.ts` | その他のファイル |
+| `ButtonGroup.d.ts` | その他のファイル |
+| `Card.d.ts` | その他のファイル |
+| `Heading.d.ts` | その他のファイル |
+| `Infobox.d.ts` | その他のファイル |
+| `TextQuote.d.ts` | その他のファイル |
+| `index.d.ts` | その他のファイル |
+
+### types/css-tyles/
+
+| ファイル | 役割 |
+|---------|------|
+| `Button.d.ts` | その他のファイル |
+| `ButtonGroup.d.ts` | その他のファイル |
+| `Card.d.ts` | その他のファイル |
+| `Heading.d.ts` | その他のファイル |
+| `Infobox.d.ts` | その他のファイル |
+| `TextQuote.d.ts` | その他のファイル |
+| `index.d.ts` | その他のファイル |
+
+### utils/
+
+| ファイル | 役割 |
+|---------|------|
+| `contrastUtils.js` | JavaScriptモジュール |
 
 ## 使い方
 
 このドキュメントはプロジェクトの全体像を把握するために自動生成されています。
-主要コンポーネントの関係性や詳細については以下を参照してください：
+主要な機能やスクリプトについては以下を参照してください：
 
-1. `ClassBuilder.jsx` - メインのReactコンポーネント
-2. `classMappings.js` - 設定とマッピングのエントリポイント
-3. `extract-classes.cjs` - CSSアノテーション抽出スクリプト
-4. `templates/` - テンプレート生成システム
+*   **UI:** `ClassBuilder.jsx` (メインUI), `components/` (UI部品)
+*   **状態管理:** `hooks/useClassBuilder.jsx`
+*   **プレビュー生成:** `templates/`
+*   **スタイル定義:** `styles/`
+*   **クラス設定:** `configs/`, `classMappings.js`, `autoClassMappings.js`
+*   **自動化スクリプト:** `scripts/` (例: `css-builder.js`)
 
 ファイルマップを更新するには：
 
 ```bash
-node simple-file-mapper.js [プロジェクトルートパス] [出力ファイルパス]
+npm run map
+# または
+node src/css-builder/scripts/simple-file-mapper.js
 ```

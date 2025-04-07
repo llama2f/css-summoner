@@ -4,11 +4,11 @@
 export const sizes = {
 	// 全般的なサイズ
 	common: [
-		{ value: 'xs', label: 'XS' },
-		{ value: 'sm', label: 'Small' },
-		{ value: 'md', label: 'Medium' },
-		{ value: 'lg', label: 'Large' },
-		{ value: 'xl', label: 'XL' },
+		{ value: 'text-xs', label: 'XS' },
+		{ value: 'text-sm', label: 'Small' },
+		{ value: 'text-md', label: 'Medium' },
+		{ value: 'text-lg', label: 'Large' },
+		{ value: 'text-xl', label: 'XL' },
 	],
 	// ボタン専用のサイズクラス
 	button: [
@@ -17,6 +17,14 @@ export const sizes = {
 		{ value: 'btn-md', label: 'Medium' },
 		{ value: 'btn-lg', label: 'Large' },
 		{ value: 'btn-xl', label: 'XL' },
+	],
+
+	// バッジ専用のサイズクラス
+	badge: [
+		{ value: 'badge-xs', label: 'XS' },
+		{ value: 'badge-sm', label: 'Small' },
+		{ value: 'badge-md', label: 'Medium' },
+		{ value: 'badge-lg', label: 'Large' },
 	],
 
 	// テキスト専用のサイズクラス
@@ -44,6 +52,24 @@ export const sizes = {
 		{ value: 'form-lg', label: 'Large' },
 		{ value: 'form-xl', label: 'XL' },
 	],
-}
 
+	// インフォボックス専用のサイズクラス
+	infobox: [
+		{ value: 'text-xs', label: 'XS' },
+		{ value: 'text-sm', label: 'Small' },
+		{ value: 'text-md', label: 'Medium' },
+		{ value: 'text-lg', label: 'Large' },
+		{ value: 'text-xl', label: 'XL' },
+	],
+
+	// カード専用のサイズクラス
+	card: [
+		{ value: 'text-xs', label: 'XS' },
+		{ value: 'text-sm', label: 'Small' },
+		{ value: 'text-md', label: 'Medium' },
+		{ value: 'text-lg', label: 'Large' },
+		{ value: 'text-xl', label: 'XL' },
+	]
+}
+	
 export default sizes

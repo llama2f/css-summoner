@@ -1,0 +1,89 @@
+---
+/**
+ * Text Quote コンポーネント
+ * 
+ * このファイルは自動生成されています。直接編集せず、元のCSSファイル、scripts/css-builder/astro-generator.cjsを編集してください。
+ * ソース: text/index.css
+ */
+import Layout from '@layouts/Layout.astro'
+import Menu from '@layouts/Menu.astro'
+
+// スタイルシートのインポート
+import '@stylesCss/styles.css'
+---
+
+<Layout pageTitle="Text Quote コンポーネント" desc="Text Quoteのスタイルとバリエーション">
+  <div class="content-width py-8">
+    <p class="text-lg mb-8">
+      引用テキストにニュートラルカラーの左側ボーダーを適用します
+    </p>
+		 <div class="mt-4">
+      <a href="/" class="text-primary hover:text-primary-dark">
+        ← カスタムクラスビルダーに戻る
+      </a>
+    </div>
+    <Menu />
+   
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">variant</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Primary</h3>
+          <p class="text-sm text-neutral-600 mb-4">引用テキストにプライマリカラーの左側ボーダーを適用します</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <p class="text-quote text-quote-primary">テキストサンプル</p>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">text-quote-primary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Secondary</h3>
+          <p class="text-sm text-neutral-600 mb-4">引用テキストにセカンダリカラーの左側ボーダーを適用します</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <p class="text-quote text-quote-secondary">テキストサンプル</p>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">text-quote-secondary</code>
+          </div>
+        </div>
+        
+
+        <div class="p-4 bg-neutral-50 rounded-lg">
+          <h3 class="text-lg font-medium mb-2">Accent</h3>
+          <p class="text-sm text-neutral-600 mb-4">引用テキストにアクセントカラーの左側ボーダーを適用します</p>
+          <div class="bg-white p-6 rounded border flex items-center justify-center">
+            <p class="text-quote text-quote-accent">テキストサンプル</p>
+          </div>
+          <div class="mt-3">
+            <code class="text-sm bg-neutral-200 p-1 rounded">text-quote-accent</code>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">使用例</h2>
+      <div class="bg-neutral-50 p-6 rounded-lg">
+        <pre class="text-sm overflow-x-auto"><p class="text-quote">引用テキストの例です</p>
+
+<p class="text-quote-primary">プライマリカラー引用テキスト</p>
+
+<p class="text-quote-secondary">セカンダリカラー引用テキスト</p>
+
+<p class="text-quote-accent">アクセントカラー引用テキスト</p></pre>
+      </div>
+    </div>
+    <Menu />
+    <div class="mt-4">
+      <a href="/" class="text-primary hover:text-primary-dark">
+        ← カスタムクラスビルダーに戻る
+      </a>
+    </div>
+  </div>
+</Layout>

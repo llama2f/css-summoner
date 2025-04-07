@@ -1,4 +1,5 @@
 /* グローバル変数の定義 */
+<<<<<<< HEAD
 :root {
 	--primary: #47791b;
 	--primary-rgb: 71, 121, 27;
@@ -67,7 +68,47 @@
 
 @import "tailwindcss";
 
+=======
+>>>>>>> template-engine
 @layer base {
+	:root {
+		--primary: #1b6e79;
+		--primary-light: #dae2e2;
+		--primary-dark: #2e4652;
+		--secondary: #5a994d;
+		--secondary-light: #e8f8dd;
+		--secondary-dark: #416435;
+		--accent: #b11b1b;
+		--accent-light: #f5e6e0;
+		--accent-dark: #572911;
+		--neutral: #d4d4d4;
+		--neutral-light: #f0f0f0;
+		--neutral-dark: #333333;
+
+		--success: #0b6a81;
+		--success-rgb: rgb(11, 106, 129);
+		--warning: #eb7f56;
+		--warning-rgb: 235, 127, 86;
+		--error: #c03831;
+		--error-rgb: rgb(192, 56, 49);
+
+		/*ベースの変数*/
+
+		--font:
+			'Noto Sans JP', sans-serif, 'Noto Sans', 'Helvetica Neue', 'Helvetica',
+			'Arial', sans-serif;
+		--background: var(--neutral-light);
+		--foreground: var(--neutral-dark);
+		--border: var(--neutral);
+		--muted: var(--neutral-light);
+		--muted-foreground: var(--neutral-dark);
+	}
+
+	:root.dark {
+		--background: var(--neutral-dark);
+		--foreground: var(--neutral-light);
+	}
+
 	html {
 		font-feature-settings: 'pkna' 1;
 		overflow-wrap: break-word;
@@ -81,13 +122,15 @@
 	body {
 		font-family: var(--font);
 		font-feature-settings: 'pkna' 1;
+		color: var(--foreground);
+		background-color: var(--background);
 		line-height: 1.75;
 		letter-spacing: 0.03em;
 		overflow-wrap: break-word;
 		line-break: strict;
 		text-size-adjust: 100%;
 
-		@apply bg-neutral-light text-base text-neutral-dark;
+		@apply text-base transition-colors duration-300 ease-in-out; /* テーマ切り替え時のトランジションを追加 */
 	}
 
 	a:not([class*='no-default']) {
@@ -119,8 +162,4 @@
 	hr {
 		@apply my-6;
 	}
-}
-
-@layer components {
-	/* 共通コンポーネントスタイル */
 }

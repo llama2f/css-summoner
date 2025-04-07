@@ -13,7 +13,10 @@
  * <h3 class="heading-casual-accent">サブ見出し</h3>
  */
 @import './base.css';
-@import './variants.css';
+@import './variants-monochrome.css';
 @import './utilities.css';
+<<<<<<< HEAD
 
 @import "tailwindcss";
+=======
+>>>>>>> template-engine

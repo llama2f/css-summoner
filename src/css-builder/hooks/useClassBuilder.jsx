@@ -1,7 +1,42 @@
 // hooks/useClassBuilder.jsx
-import { useReducer, useEffect } from 'react'
-import { componentVariants, baseClasses } from '@/css-builder/autoClassMappings.js'
+import { useReducer, useEffect, useCallback } from 'react'
+import {
+	componentVariants,
+	baseClasses,
+} from '@/css-builder/autoClassMappings.js'
 import { combineClasses } from '@/css-builder/templates/handlers/common'
+import { defaultCustomColor } from '@/css-builder/configs/colors'
+
+// ローカルストレージのキー
+const STORAGE_KEY = 'css-builder-custom-colors'
+
+// カスタムカラーをロード (クライアントサイドでのみ呼び出す)
+const loadCustomColors = () => {
+	if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+		// サーバーサイドまたはlocalStorageがない環境ではデフォルトを返す
+		return defaultCustomColor
+	}
+	try {
+		const savedColors = localStorage.getItem(STORAGE_KEY)
+		return savedColors ? JSON.parse(savedColors) : defaultCustomColor
+	} catch (error) {
+		console.error('Error loading custom colors:', error)
+		return defaultCustomColor
+	}
+}
+
+// カスタムカラーを保存 (クライアントサイドでのみ呼び出す)
+const saveCustomColors = (colorSettings) => {
+	if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+		// サーバーサイドまたはlocalStorageがない環境では何もしない
+		return
+	}
+	try {
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(colorSettings))
+	} catch (error) {
+		console.error('Error saving custom colors:', error)
+	}
+}
 
 // アクション定義
 export const ACTIONS = {
@@ -13,6 +48,8 @@ export const ACTIONS = {
 	SET_ADDITIONAL_CLASSES: 'SET_ADDITIONAL_CLASSES',
 	TOGGLE_SPECIAL_CLASS: 'TOGGLE_SPECIAL_CLASS',
 	SET_PREVIEW_BG: 'SET_PREVIEW_BG',
+	SET_COLOR: 'SET_COLOR', // 色設定アクション
+	SET_CUSTOM_COLOR_SETTINGS: 'SET_CUSTOM_COLOR_SETTINGS', // カスタム色設定アクション
 	RESET_SETTINGS: 'RESET_SETTINGS',
 }
 
@@ -26,6 +63,8 @@ const initialState = {
 	additionalClasses: '',
 	selectedSpecialClasses: [],
 	previewBg: 'bg-transparent',
+	selectedColor: 'color-primary', // 選択中の色クラス
+	customColorSettings: defaultCustomColor, // デフォルト値を設定
 	generatedClassString: '',
 }
 
@@ -71,6 +110,12 @@ const reducer = (state, action) => {
 		}
 		case ACTIONS.SET_PREVIEW_BG:
 			return { ...state, previewBg: action.payload }
+		case ACTIONS.SET_COLOR: // 色選択のケース
+			return { ...state, selectedColor: action.payload }
+		case ACTIONS.SET_CUSTOM_COLOR_SETTINGS: // カスタム色設定のケース
+			// ローカルストレージに保存
+			saveCustomColors(action.payload)
+			return { ...state, customColorSettings: action.payload }
 		case ACTIONS.UPDATE_GENERATED_CLASS:
 			return { ...state, generatedClassString: action.payload }
 		case ACTIONS.RESET_SETTINGS:
@@ -78,6 +123,7 @@ const reducer = (state, action) => {
 				...initialState,
 				componentType: state.componentType,
 				previewBg: state.previewBg,
+				customColorSettings: state.customColorSettings,
 			}
 		default:
 			return state
@@ -87,6 +133,21 @@ const reducer = (state, action) => {
 // カスタムフック
 export const useClassBuilder = () => {
 	const [state, dispatch] = useReducer(reducer, initialState)
+
+	// クライアントサイドでのみカスタムカラーをロード
+	useEffect(() => {
+		const loadedColors = loadCustomColors()
+		// 初期値と異なる場合のみ state を更新
+		if (
+			JSON.stringify(loadedColors) !==
+			JSON.stringify(initialState.customColorSettings)
+		) {
+			dispatch({
+				type: ACTIONS.SET_CUSTOM_COLOR_SETTINGS,
+				payload: loadedColors,
+			})
+		}
+	}, []) // マウント時に一度だけ実行
 
 	// コンポーネントタイプが変更されたら、対応するバリアントの最初の項目を選択
 	useEffect(() => {
@@ -116,6 +177,7 @@ export const useClassBuilder = () => {
 			radius: state.borderRadius,
 			modifiers: state.selectedModifiers,
 			specialClasses: state.selectedSpecialClasses,
+			color: state.selectedColor, // 色クラスを含める
 			additional: state.additionalClasses,
 		})
 
@@ -127,26 +189,135 @@ export const useClassBuilder = () => {
 		state.selectedModifiers,
 		state.selectedSpecialClasses,
 		state.additionalClasses,
+		state.selectedColor, // 依存配列に色クラスを追加
 	])
 
-	// コンポーネントタイプとバリアントの変更を直接ディスパッチ
+	// カスタム色の設定をCSSに適用 (クライアントサイドでのみ実行される)
+	useEffect(() => {
+		// state.customColorSettings が初期値でない場合のみ実行
+		if (
+			JSON.stringify(state.customColorSettings) ===
+			JSON.stringify(defaultCustomColor)
+		) {
+			return // 初期値の場合は何もしない
+		}
+
+		// サーバーサイドレンダリングを考慮し、document の存在を確認
+		if (typeof document !== 'undefined') {
+			const { mainColor, textColor, autoBorderColor } =
+				state.customColorSettings
+			const borderColor = autoBorderColor ? mainColor : null
+
+			document.documentElement.style.setProperty('--custom-color', mainColor)
+			document.documentElement.style.setProperty(
+				'--custom-text-color',
+				textColor
+			)
+
+			if (borderColor) {
+				document.documentElement.style.setProperty(
+					'--custom-border-color',
+					borderColor
+				)
+			} else {
+				// borderColor が null の場合、変数を削除またはデフォルト値を設定
+				document.documentElement.style.removeProperty('--custom-border-color')
+			}
+
+			// ホバー色と押下色を自動計算
+			// color-mix がサポートされているか確認が必要な場合がある
+			try {
+				const hoverColor = `color-mix(in srgb, ${mainColor}, #000 10%)`
+				const activeColor = `color-mix(in srgb, ${mainColor}, #000 20%)`
+				document.documentElement.style.setProperty(
+					'--custom-hover-color',
+					hoverColor
+				)
+				document.documentElement.style.setProperty(
+					'--custom-active-color',
+					activeColor
+				)
+			} catch (e) {
+				console.warn(
+					'color-mix might not be supported or color format is invalid:',
+					e
+				)
+				// フォールバック処理やエラーハンドリングをここに追加
+				document.documentElement.style.removeProperty('--custom-hover-color')
+				document.documentElement.style.removeProperty('--custom-active-color')
+			}
+		}
+	}, [state.customColorSettings]) // customColorSettings が変更されたときに実行
+
+	// コンポーネントタイプとバリアントの変更を直接ディスパッチ（すべてメモ化）
 	const actions = {
-		setComponentType: (type) =>
-			dispatch({ type: ACTIONS.SET_COMPONENT_TYPE, payload: type }),
-		setComponentVariant: (variant) =>
-			dispatch({ type: ACTIONS.SET_COMPONENT_VARIANT, payload: variant }),
-		setSize: (size) => dispatch({ type: ACTIONS.SET_SIZE, payload: size }),
-		setBorderRadius: (radius) =>
-			dispatch({ type: ACTIONS.SET_BORDER_RADIUS, payload: radius }),
-		toggleModifier: (modifier) =>
-			dispatch({ type: ACTIONS.TOGGLE_MODIFIER, payload: modifier }),
-		setAdditionalClasses: (classes) =>
-			dispatch({ type: ACTIONS.SET_ADDITIONAL_CLASSES, payload: classes }),
-		toggleSpecialClass: (specialClass) =>
-			dispatch({ type: ACTIONS.TOGGLE_SPECIAL_CLASS, payload: specialClass }),
-		setPreviewBg: (bg) =>
-			dispatch({ type: ACTIONS.SET_PREVIEW_BG, payload: bg }),
-		resetSettings: () => dispatch({ type: ACTIONS.RESET_SETTINGS }),
+		setComponentType: useCallback(
+			(type) => dispatch({ type: ACTIONS.SET_COMPONENT_TYPE, payload: type }),
+			[dispatch]
+		),
+
+		setComponentVariant: useCallback(
+			(variant) =>
+				dispatch({ type: ACTIONS.SET_COMPONENT_VARIANT, payload: variant }),
+			[dispatch]
+		),
+
+		setSize: useCallback(
+			(size) => dispatch({ type: ACTIONS.SET_SIZE, payload: size }),
+			[dispatch]
+		),
+
+		setBorderRadius: useCallback(
+			(radius) =>
+				dispatch({ type: ACTIONS.SET_BORDER_RADIUS, payload: radius }),
+			[dispatch]
+		),
+
+		toggleModifier: useCallback(
+			(modifier) =>
+				dispatch({ type: ACTIONS.TOGGLE_MODIFIER, payload: modifier }),
+			[dispatch]
+		),
+
+		setAdditionalClasses: useCallback(
+			(classes) =>
+				dispatch({ type: ACTIONS.SET_ADDITIONAL_CLASSES, payload: classes }),
+			[dispatch]
+		),
+
+		toggleSpecialClass: useCallback(
+			(specialClass) =>
+				dispatch({ type: ACTIONS.TOGGLE_SPECIAL_CLASS, payload: specialClass }),
+			[dispatch]
+		),
+
+		setPreviewBg: useCallback(
+			(bg) => dispatch({ type: ACTIONS.SET_PREVIEW_BG, payload: bg }),
+			[dispatch]
+		),
+
+		setColor: useCallback(
+			(
+				color // 色選択のアクション
+			) => dispatch({ type: ACTIONS.SET_COLOR, payload: color }),
+			[dispatch]
+		),
+
+		setCustomColorSettings: useCallback(
+			(
+				settings // カスタム色設定アクション
+			) =>
+				dispatch({
+					type: ACTIONS.SET_CUSTOM_COLOR_SETTINGS,
+					payload: settings,
+				}),
+			[dispatch]
+		),
+
+		resetSettings: useCallback(
+			() => dispatch({ type: ACTIONS.RESET_SETTINGS }),
+			[dispatch]
+		),
 	}
 
 	return { state, actions }

@@ -1,7 +1,7 @@
 // components/selectors/SpecialClassSelector.jsx
 // 特殊クラス選択のUI
 
-import React from 'react'
+import React, { useCallback } from 'react'
 
 /**
  * 特殊クラスを選択するセレクター
@@ -50,4 +50,5 @@ const SpecialClassSelector = ({
 	)
 }
 
-export default SpecialClassSelector
+// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
+export default React.memo(SpecialClassSelector)

@@ -1,0 +1,23 @@
+<<<<<<< HEAD:src/styles/utils.css
+@import "tailwindcss";
+=======
+>>>>>>> template-engine:src/css-builder/styles/utils.css
+@layer utilities {
+	.abs-center {
+		position: absolute;
+		inset: 0;
+		margin: auto;
+	}
+
+	.tran-200 {
+		transition-duration: 0.2s;
+	}
+
+	.tran-300 {
+		transition-duration: 0.3s;
+	}
+
+	.tran-500 {
+		transition-duration: 0.5s;
+	}
+}
