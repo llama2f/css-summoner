@@ -1,36 +1,78 @@
 ---
-// src/css-summoner/components/astro/ExamplePreview.astro
-// 使用例のリストを表示するためのコンポーネント
+/**
+ * @file src/css-summoner/ui/components/astro/ExamplePreview.astro
+ * @description 提供されたHTML文字列のリストをプレビューとして表示するAstroコンポーネント。
+ *              各使用例のHTMLを直接レンダリングし、その下にHTMLコード自体も表示します。
+ *
+ * @props {ExampleData[]} examples - 表示する使用例データの配列。
+ *   @property {string} exampleHtml - プレビュー表示用のHTML文字列。
+ *   @property {number} index - 例のインデックス（現在は未使用）。
+ * @default examples = [] - examplesが渡されない場合は空配列を使用。
+ *
+ * @structure
+ * - Flexboxコンテナ (`div.flex.flex-col.gap-4`)
+ *   - examples配列をマップ処理
+ *     - 各exampleに対して `div` を生成
+ *       - `Fragment set:html={example.exampleHtml}`: HTML文字列を直接レンダリング
+ *       - `div > code`: HTML文字列をコードとして表示
+ *   - examplesが空の場合: `<p>` タグでメッセージを表示
+ */
 
+// --- TypeScript インターフェース定義 ---
+/**
+ * 個々の使用例データを表すインターフェース
+ */
 interface ExampleData {
-	exampleHtml: string // プレビュー表示用のHTML文字列
-	index: number // 例のインデックス
+	/** プレビュー表示用のHTML文字列 */
+	exampleHtml: string
+	/** 例のインデックス (現在はコード内で直接使用されていません) */
+	index: number
 }
 
+/**
+ * このコンポーネントが受け取るPropsのインターフェース
+ */
 interface Props {
-	examples: ExampleData[] // 使用例データの配列
+	/** 使用例データの配列 */
+	examples: ExampleData[]
 }
 
-const { examples = [] } = Astro.props // デフォルト値 [] を設定
+// --- Propsの受け取り ---
+// Astro.propsからexamplesを取得。指定がない場合は空の配列をデフォルト値として使用。
+const { examples = [] } = Astro.props
 ---
 
-{/* Flexboxコンテナで縦に並べる */}
+{/* --- レンダリング --- */}
+{/* 使用例を縦方向に並べるためのFlexboxコンテナ */}
 <div class='flex flex-col gap-4'>
 	{
+		// examples配列に要素が存在するかどうかで条件分岐
 		examples.length > 0 ? (
+			// examples配列をループ処理し、各使用例を表示
 			examples.map((example, index) => (
-				<div>
-					{' '}
-					{/* key={index} を削除 */}
-					{/* HTMLを直接レンダリング */}
-					<Fragment set:html={example.exampleHtml} />
-					<div>
-						<code>{example.exampleHtml}</code>
+				// 各使用例を囲むdiv要素
+				// key={index} はAstroでは通常不要ですが、Reactコンポーネント内では必要になる場合があります。
+				// ここではAstroのテンプレートなので削除されています。
+				<div class='border border-neutral-200 dark:border-neutral-700 rounded p-4 bg-white dark:bg-neutral-800'>
+					{/* プレビュー表示: exampleHtmlの内容をHTMLとして解釈しレンダリング */}
+					<div class='preview-container mb-2'>
+						<Fragment set:html={example.exampleHtml} />
+					</div>
+					{/* コード表示: exampleHtmlの内容をそのままコードとして表示 */}
+					<div class='code-container mt-2 pt-2 border-t border-neutral-200 dark:border-neutral-700'>
+						<pre>
+							<code class='text-xs bg-neutral-100 dark:bg-neutral-700 p-2 rounded block overflow-x-auto'>
+								{example.exampleHtml}
+							</code>
+						</pre>
 					</div>
 				</div>
 			))
 		) : (
-			<p class='text-neutral-500'>使用例はありません。</p>
+			// examples配列が空の場合に表示するメッセージ
+			<p class='text-neutral-500 dark:text-neutral-400 italic'>
+				使用例はありません。
+			</p>
 		)
 	}
 </div>
