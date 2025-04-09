@@ -21,4 +21,10 @@ export default defineConfig({
 		react(),
 		purgecss(),
 	],
+	// Vite の設定を追加
+	vite: {
+		build: {
+			cssCodeSplit: false, // CSSのコード分割を無効化
+		},
+	},
 })
