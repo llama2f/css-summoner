@@ -4,15 +4,11 @@
 interface AstroPage {
 	url: string
 	// 必要であれば他のプロパティも追加:
-	// file: string;
-	// default: ComponentInstance; // eager: true の場合
-	// getHeadings?: () => Promise<MarkdownHeading[]>; // Markdown/MDX の場合
-	// frontmatter?: Record<string, any>;
 }
 
 // import.meta.glob の結果を型アサーション
 const pages = Object.values(
-	import.meta.glob<AstroPage>('../../pages/css-summoner/*.astro', {
+	import.meta.glob<AstroPage>('../../../pages/css-summoner/*.astro', {
 		eager: true,
 	})
 )
@@ -30,7 +26,7 @@ const menuItems = pages.filter(
 
 <h3 class='text-lg font-bold mb-2'>Component Docs</h3>
 <nav class='docs-menu'>
-	<ul class='text-sm flex flex-wrap gap-2'>
+	<ul class='flex flex-wrap gap-2'>
 		{
 			menuItems.map((item) => {
 				// pop() の結果が undefined の可能性があるため、Optional chaining と Nullish coalescing を使用
@@ -38,7 +34,10 @@ const menuItems = pages.filter(
 					item.url.split('/').pop()?.replace('.astro', '') ?? 'unknown'
 				return (
 					<li>
-						<a href={item.url} class='btn-outline-neutral btn-xs'>
+						<a
+							href={item.url}
+							class='badge-base badge-outline badge-xs shadow color-primary animate-down tran-200 no-default'
+						>
 							{fileName}
 						</a>
 					</li>
@@ -55,19 +54,6 @@ const menuItems = pages.filter(
 			list-style: none;
 			padding: 0;
 			margin: 0;
-		}
-
-		.docs-menu a {
-			color: #333;
-			text-decoration: none;
-			padding: 0.2rem;
-			display: block;
-			border-radius: 4px;
-			transition: background-color 0.2s;
-		}
-
-		.docs-menu a:hover {
-			background-color: #f0f0f0;
 		}
 	</style>
 </nav>

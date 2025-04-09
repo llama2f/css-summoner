@@ -16,4 +16,12 @@
 	.tran-500 {
 		transition-duration: 0.5s;
 	}
+
+	.animate-down {
+		transition: transform 0.2s ease;
+	}
+
+	.animate-down:hover {
+		transform: translateY(2px);
+	}
 }

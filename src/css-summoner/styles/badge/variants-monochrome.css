@@ -30,14 +30,14 @@
    */
 	.badge-outline {
 		background-color: transparent;
-		color: var(
-			--component-color,
-			var(--neutral-dark)
-		); /* カラーセレクタから色を取得（テキスト色として使用） */
+		color: var(--component-color, var(--neutral-dark));
 		border-color: var(
 			--component-border,
 			var(--component-color, var(--neutral))
-		); /* カラーセレクタから色を取得（枠線色として使用） */
+		);
+	}
+	.dark .badge-outline {
+		border-color: var(--component-border-dark, var(--component-color));
 	}
 
 	/*

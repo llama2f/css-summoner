@@ -2,12 +2,14 @@
 import Head from '@layouts/Head.astro'
 import Header from '@layouts/Header.astro'
 import Footer from '@layouts/Footer.astro'
+import siteData from '@configs/siteData.json'
 export interface Props {
 	title: string
 	desc: string
 }
 
-const { title = 'title', desc = 'description' } = Astro.props
+const { title = siteData.siteName, desc = siteData.siteDescription } =
+	Astro.props
 
 // スタイルシートのインポート
 import '@stylesCss/styles.css'

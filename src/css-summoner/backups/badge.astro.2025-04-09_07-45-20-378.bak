@@ -1,0 +1,103 @@
+---
+/**
+ * Badge コンポーネント ドキュメント
+ *
+ * このファイルはスクリプトによって自動生成されました。
+ * 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+ * ソース: badge/variants-monochrome.css, badge/base.css
+ */
+import DocLayout from '@layouts/DocLayout.astro' // 正しいエイリアスを使用
+import VariantPreview from '@components/astro/VariantPreview.astro'
+import ExamplePreview from '@components/astro/ExamplePreview.astro' // 使用例コンポーネントをインポート
+
+const pageTitle = 'Badge コンポーネント'
+const pageDesc = 'Badge コンポーネントのスタイルバリエーションと使用例。'
+
+// --- フロントマターに変数を渡す ---
+const baseClassName = 'badge-base' // baseClassName を文字列として渡す
+const variantsData = [
+	{
+		variant: 'outline',
+		className: 'badge-outline',
+		description:
+			'アウトラインスタイルのバッジ。枠線のみが表示されます。カラーセレクタと組み合わせて使用します。',
+		previewHtml:
+			'<span class="badge-base badge-outline color-primary">アウトラインバッジ</span>',
+	},
+	{
+		variant: 'solid',
+		className: 'badge-solid',
+		description:
+			'塗りつぶしスタイルのバッジ。背景色が適用されます。カラーセレクタと組み合わせて使用します。',
+		previewHtml:
+			'<span class="badge-base badge-solid color-primary">ソリッドバッジ</span>',
+	},
+	{
+		variant: 'subtle',
+		className: 'badge-subtle',
+		description:
+			'控えめなスタイルのバッジ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。',
+		previewHtml:
+			'<span class="badge-base badge-subtle color-primary">サブトルバッジ</span>',
+	},
+] // バリアントデータの配列を渡す
+const examplesData = [
+	{
+		exampleHtml:
+			'<span class="badge-base badge-solid color-primary">ソリッドバッジ</span>',
+		index: 0,
+	},
+	{
+		exampleHtml:
+			'<span class="badge-base badge-outline color-primary">アウトラインバッジ</span>',
+		index: 1,
+	},
+	{
+		exampleHtml:
+			'<span class="badge-base badge-subtle color-primary">サブトルバッジ</span>',
+		index: 2,
+	},
+	{
+		exampleHtml:
+			'<span class="badge-base badge-solid color-primary">バッジ</span>',
+		index: 3,
+	},
+] // 使用例データの配列を渡す
+---
+
+<DocLayout title={pageTitle} desc={pageDesc}>
+	<div class='container mx-auto px-4 py-8'>
+		<h1 class='text-3xl font-bold mb-4'>{pageTitle}</h1>
+		<p class='text-lg text-neutral-600 mb-6'>
+			すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。色や具体的な形状は含まない。
+			{/* フロントマターの baseClassName を参照 */}
+			{
+				baseClassName && (
+					<code class='ml-2 text-sm bg-neutral-200 p-1 rounded'>
+						.{baseClassName}
+					</code>
+				)
+			}
+		</p>
+
+		{/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
+		{
+			variantsData.length > 0 && (
+				<section class='mb-12'>
+					<h2 class='text-2xl font-semibold mb-6 border-b pb-2'>バリアント</h2>
+					<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+						{variantsData.map((variantProps) => (
+							<VariantPreview {...variantProps} />
+						))}
+					</div>
+				</section>
+			)
+		}
+
+		<section class='mb-12'>
+			<h2 class='text-2xl font-semibold mb-6 border-b pb-2'>使用例</h2>
+			{/* ExamplePreviewコンポーネントに examplesData 配列全体を渡す */}
+			<ExamplePreview examples={examplesData} />
+		</section>
+	</div>
+</DocLayout>

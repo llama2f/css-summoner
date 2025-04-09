@@ -2243,7 +2243,7 @@
       "sourceFile": "badge/variants-monochrome.css"
     },
     "badge-outline": {
-      "ruleText": ".badge-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(\n\t\t\t--component-color,\n\t\t\tvar(--neutral-dark)\n\t\t); /* カラーセレクタから色を取得（テキスト色として使用） */\n\t\tborder-color: var(\n\t\t\t--component-border,\n\t\t\tvar(--component-color, var(--neutral))\n\t\t); /* カラーセレクタから色を取得（枠線色として使用） */\n\t}",
+      "ruleText": ".badge-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--component-color, var(--neutral-dark));\n\t\tborder-color: var(\n\t\t\t--component-border,\n\t\t\tvar(--component-color, var(--neutral))\n\t\t);\n\t}",
       "selector": ".badge-outline",
       "sourceFile": "badge/variants-monochrome.css"
     },

@@ -14,6 +14,11 @@
  */
 export const specialClasses = [
 	{
+		value: 'animate-down',
+		label: 'ダウンアニメーション',
+		description: 'マウスオーバー時に下に移動するアニメーション',
+	},
+	{
 		value: 'tran-200',
 		label: '遷移効果 200ms',
 		description: '200msのトランジション効果',

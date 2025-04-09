@@ -1,10 +1,10 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import ClassBuilder from '@ui/ClassBuilder.jsx'
-import Menu from '@layouts/Menu.astro'
+import siteData from '@configs/siteData.json'
 ---
 
-<Layout title='クラスビルダー' desc='custom css builder'>
+<Layout title={siteData.siteName} desc={siteData.siteDescription}>
 	<div class='space-y-4'>
 		<div class='text-sm'>
 			<p>

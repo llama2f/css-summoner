@@ -238,6 +238,7 @@
 		background-color: transparent;
 		color: var(--component-color, #333);
 		border-color: var(--component-border, #333);
+		border: 1px solid var(--component-border, #333);
 	}
 
 	.btn-icon-outline:hover {
@@ -283,6 +284,7 @@
    */
 	.btn-group {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 0.5rem;
 	}
 

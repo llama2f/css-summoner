@@ -19,25 +19,25 @@ export function render(props) {
 		props,
 		['classString', 'children', 'selectedModifiers', 'baseClass', 'onClick'], // Reactプロパティ
 		['disabled', 'type'] // DOM要素プロパティ
-	);
+	)
 
 	// Reactプロパティから必要な値を取得
-	const { 
-		classString = '', 
-		children = 'ボタンテキスト', 
+	const {
+		classString = '',
+		children = 'ボタンテキスト',
 		selectedModifiers = [],
-		onClick = null 
-	} = reactProps;
+		onClick = null,
+	} = reactProps
 
 	// DOMプロパティから必要な値を取得
-	const { disabled = false, type = 'button' } = domProps;
+	const { disabled = false, type = 'button' } = domProps
 
 	// モディファイア処理ロジック
-	const hasIconLeft = selectedModifiers.includes('btn-icon-left');
-	const hasIconRight = selectedModifiers.includes('btn-icon-right');
-	const hasIconOnly = selectedModifiers.includes('btn-icon-only');
+	const hasIconLeft = selectedModifiers.includes('btn-icon-left')
+	const hasIconRight = selectedModifiers.includes('btn-icon-right')
+	const hasIconOnly = selectedModifiers.includes('btn-icon-only')
 
-	let reactElement;
+	let reactElement
 
 	// アイコン処理
 	if (hasIconOnly) {
@@ -50,7 +50,7 @@ export function render(props) {
 				dangerouslySetInnerHTML={{ __html: sampleIcon }}
 				{...commonProps}
 			/>
-		);
+		)
 	} else if (hasIconLeft) {
 		reactElement = (
 			<button
@@ -61,7 +61,7 @@ export function render(props) {
 				dangerouslySetInnerHTML={{ __html: `${sampleIcon} ボタンテキスト` }}
 				{...commonProps}
 			/>
-		);
+		)
 	} else if (hasIconRight) {
 		reactElement = (
 			<button
@@ -72,7 +72,7 @@ export function render(props) {
 				dangerouslySetInnerHTML={{ __html: `ボタンテキスト ${sampleIcon}` }}
 				{...commonProps}
 			/>
-		);
+		)
 	} else {
 		reactElement = (
 			<button
@@ -84,48 +84,51 @@ export function render(props) {
 			>
 				{children}
 			</button>
-		);
+		)
 	}
 
 	// HTML文字列は自動生成されるようにする
-	return createHandlerResult(reactElement);
+	return createHandlerResult(reactElement)
 }
 
-// バリアント固有のレンダラー（オプション）
+export function renderIconButton(props) {
+	// プロパティ分離
+	const { reactProps, domProps, commonProps } = separateProps(
+		props,
+		['classString', 'icon', 'title', 'onClick'], // Reactプロパティ
+		['disabled', 'type'] // DOM要素プロパティ
+	)
+	// 各種値を取得
+	const {
+		classString = '',
+		icon = '⚙️',
+		title = '',
+		onClick = null,
+	} = reactProps
+	const { disabled = false, type = 'button' } = domProps
+
+	const reactElement = (
+		<button
+			className={classString}
+			title={title}
+			disabled={disabled}
+			type={type}
+			onClick={onClick}
+			{...commonProps}
+		>
+			{icon}
+		</button>
+	)
+
+	return createHandlerResult(reactElement)
+}
+
 export const variants = {
-	// 例: アイコンボタン
-	icon: (props) => {
-		// プロパティ分離
-		const { reactProps, domProps, commonProps } = separateProps(
-			props,
-			['classString', 'icon', 'title', 'onClick'], // Reactプロパティ
-			['disabled', 'type'] // DOM要素プロパティ
-		);
+	// バリアント固有のレンダラー（オプション）
 
-		// 各種値を取得
-		const { 
-			classString = '', 
-			icon = '⚙️', 
-			title = '',
-			onClick = null 
-		} = reactProps;
-		const { disabled = false, type = 'button' } = domProps;
-
-		const reactElement = (
-			<button
-				className={classString}
-				title={title}
-				disabled={disabled}
-				type={type}
-				onClick={onClick}
-				{...commonProps}
-			>
-				{icon}
-			</button>
-		);
-
-		return createHandlerResult(reactElement);
-	},
+	'btn-icon': (props) => renderIconButton(props),
+	'btn-icon-ghost': (props) => renderIconButton(props),
+	'btn-icon-outline': (props) => renderIconButton(props),
 
 	'btn-group': (props) => {
 		// プロパティ分離
@@ -133,16 +136,16 @@ export const variants = {
 			props,
 			['classString', 'children', 'title', 'baseClass', 'onClick'], // Reactプロパティ
 			['disabled', 'type'] // DOM要素プロパティ
-		);
+		)
 
 		// 各種値を取得
-		const { 
-			classString = '', 
-			children = 'buttons', 
+		const {
+			classString = '',
+			children = 'buttons',
 			title = '',
-			onClick = null 
-		} = reactProps;
-		const { disabled = false, type = 'button' } = domProps;
+			onClick = null,
+		} = reactProps
+		const { disabled = false, type = 'button' } = domProps
 
 		const reactElement = (
 			<div className={classString} data-skip-decoration='true'>
@@ -177,12 +180,12 @@ export const variants = {
 					{children}
 				</button>
 			</div>
-		);
+		)
 
 		return {
 			...createHandlerResult(reactElement),
 			skipDecoration: true,
-		};
+		}
 	},
 }
 

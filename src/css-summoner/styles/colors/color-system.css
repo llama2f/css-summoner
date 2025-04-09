@@ -90,8 +90,8 @@
 
 	/* ダークモード対応 */
 	.dark .color-neutral {
-		--component-color: var(--neutral-dark, #242424);
-		--component-text: var(--neutral-light, #fafafa);
+		/* --component-color: var(--neutral-dark, #242424);
+		--component-text: var(--neutral-light, #fafafa); */
 	}
 
 	.dark .color-light {
