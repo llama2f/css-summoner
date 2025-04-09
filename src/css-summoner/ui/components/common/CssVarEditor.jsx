@@ -318,21 +318,21 @@ const CssVarEditor = ({ onClose }) => {
 	}
 
 	return (
-		<div className='fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-md  md:w-auto'>
-			<div className='p-3 bg-primary text-white flex justify-between items-center gap-2'>
+		<div className='fixed bottom-20 right-4 z-50 bg-neutral-100 shadow-lg rounded-lg overflow-hidden max-w-md  md:w-auto'>
+			<div className='p-3 bg-neutral-dark text-neutral-light flex justify-between items-center gap-2'>
 				<h3 className='text-sm'>CSS変数エディタ</h3>
 				<div className='flex gap-2'>
 					<button
 						onClick={() => setIsExpanded(!isExpanded)}
-						className='text-sm bg-white/20 hover:bg-white/30 px-2 py-1 rounded'
+						className='text-sm bg-white/10 hover:bg-white/30 px-2 py-1 rounded'
 					>
-						{isExpanded ? '折りたたむ' : '展開する'}
+						{isExpanded ? 'minimize-' : 'open+'}
 					</button>
 					<button
 						onClick={onClose}
-						className='text-sm bg-white/20 hover:bg-white/30 px-2 py-1 rounded'
+						className='text-sm bg-white/10 hover:bg-white/30 px-2 py-1 rounded'
 					>
-						閉じる
+						close☓
 					</button>
 				</div>
 			</div>
@@ -342,13 +342,15 @@ const CssVarEditor = ({ onClose }) => {
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 						{Object.entries(colorVars).map(([varName, value]) => (
 							<div key={varName} className='flex flex-col'>
-								<label className='text-xs mb-1'>{getColorLabel(varName)}</label>
+								<label className='text-xs mb-1 text-neutral-dark'>
+									{getColorLabel(varName)}
+								</label>
 								<div className='flex gap-2 items-center'>
 									<input
 										type='color'
 										value={value}
 										onChange={(e) => handleColorChange(varName, e.target.value)}
-										className='w-8 h-8 p-0 border rounded'
+										className='w-8 h-8 p-0 border rounded bg-transparent'
 									/>
 									<input
 										type='text'
@@ -363,10 +365,14 @@ const CssVarEditor = ({ onClose }) => {
 
 					{/* コントラスト比計算セクション */}
 					<div className='mt-6 border-t pt-4'>
-						<h4 className='text-sm font-medium mb-3'>カラーコントラスト計算</h4>
+						<h4 className='text-sm font-medium mb-3  text-neutral-dark'>
+							カラーコントラスト計算
+						</h4>
 
 						<div className='mb-4'>
-							<div className='text-xs font-medium mb-2'>テキスト色</div>
+							<div className='text-xs font-medium mb-2  text-neutral-dark'>
+								テキスト色
+							</div>
 							<div className='flex flex-wrap gap-2'>
 								{renderColorButton(
 									colorVars['neutral-dark'],
@@ -420,7 +426,9 @@ const CssVarEditor = ({ onClose }) => {
 						</div>
 
 						<div className='mb-4'>
-							<div className='text-xs font-medium mb-2'>背景色</div>
+							<div className='text-xs font-medium mb-2 text-neutral-dark'>
+								背景色
+							</div>
 							<div className='flex flex-wrap gap-2'>
 								{renderColorButton(
 									colorVars['neutral-light'],

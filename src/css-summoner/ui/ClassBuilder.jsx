@@ -342,8 +342,8 @@ const ClassBuilder = () => {
 							className='button-css-edit btn-primary btn-xs btn-animate-down'
 						>
 							{showCssVarEditor
-								? 'CSS変数エディタを閉じる'
-								: 'CSS変数エディタを開く'}
+								? 'CSS変数エディタを閉じる☓'
+								: 'CSS変数エディタを開く>'}
 						</button>
 					</div>
 
@@ -373,7 +373,7 @@ const ClassBuilder = () => {
 								className='code-aria w-full'
 							/>
 						</div>
-						<p className='text-xs text-neutral-500 mt-1'>
+						<p className='text-xs text-neutral-500 dark:text-neutral-300 mt-1'>
 							例: 'w-full mb-4 dark:bg-neutral-800'
 						</p>
 					</div>
@@ -498,16 +498,18 @@ const ClassBuilder = () => {
 
 			{/* --- スマホビュー用トリガーボタン --- */}
 			<div className='mobile-drawer-triggers lg:hidden'>
-				<p className='text-xs'>↓からコンポーネント選択と設定を行います</p>
+				<p className='text-xs text-neutral-200/90'>
+					↓からコンポーネント選択と設定を行います
+				</p>
 				<div className='mobile-drawer-buttons-container'>
 					<button
-						className='drawer-trigger-button btn-base btn-link'
+						className='drawer-trigger-button btn-base btn-link color-light'
 						onClick={() => openDrawer('components')}
 					>
 						Components
 					</button>
 					<button
-						className='drawer-trigger-button btn-base btn-link'
+						className='drawer-trigger-button btn-base btn-link color-light'
 						onClick={() => openDrawer('settings')}
 					>
 						Settings

@@ -85,7 +85,7 @@ const ClassPreview = ({
 				) : (
 					<div>Select a component type</div> // 未選択時の表示
 				)}
-				<div className='mt-4 text-xs text-neutral-500 text-center max-w-xs'>
+				<div className='mt-4 text-xs text-neutral-500 dark:text-neutral-300 text-center max-w-xs'>
 					<div>
 						適用クラス:{' '}
 						<code className='bg-neutral-200 p-1 rounded'>
