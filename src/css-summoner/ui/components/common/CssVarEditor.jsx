@@ -318,7 +318,7 @@ const CssVarEditor = ({ onClose }) => {
 	}
 
 	return (
-		<div className='fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-md w-full md:w-auto'>
+		<div className='fixed bottom-4 right-4 z-50 bg-white shadow-lg rounded-lg overflow-hidden max-w-md  md:w-auto'>
 			<div className='p-3 bg-primary text-white flex justify-between items-center gap-2'>
 				<h3 className='text-sm'>CSS変数エディタ</h3>
 				<div className='flex gap-2'>
