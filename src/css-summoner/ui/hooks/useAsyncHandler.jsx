@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import handlersManifest from '@/css-summoner/templates/handlers' // マニフェストをインポート
+import handlersManifest from '@/css-summoner/configs/handler-manifest.json' // マニフェストをインポート
 
 /**
  * 指定されたコンポーネントタイプのハンドラーモジュールを非同期にロードするカスタムフック。

@@ -1,6 +1,17 @@
-// configs/specialClasses.js
-// 特殊クラス設定の管理
+/**
+ * @fileoverview CSS Summonerで使用される特殊なユーティリティクラス（遷移効果、絶対中央配置など）のオプションを定義します。
+ *
+ * @typedef {object} SpecialClassOption
+ * @property {string} value - CSSクラス名。
+ * @property {string} label - UI表示用のラベル。
+ * @property {string} description - クラスの説明。
+ */
 
+/**
+ * 特殊クラスオプションの配列。
+ * 各オプションは `{ value: string, label: string, description: string }` の形式です。
+ * @type {SpecialClassOption[]}
+ */
 export const specialClasses = [
 	{
 		value: 'tran-200',
@@ -22,6 +33,13 @@ export const specialClasses = [
 		label: '絶対中央',
 		description: '絶対配置で中央に配置',
 	},
-];
+]
 
-export default specialClasses;
+/**
+ * デフォルトエクスポートされる特殊クラスオプションの配列。
+ * 他のファイルからデフォルトインポートして使用します。
+ * 例: `import specialClasses from './specialClasses.mjs';`
+ * @exports specialClasses
+ * @default
+ */
+export default specialClasses

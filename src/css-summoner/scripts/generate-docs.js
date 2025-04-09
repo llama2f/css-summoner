@@ -96,8 +96,8 @@ const docGenerator = {
 	* ソース: ${sourceFiles.join(', ') || '不明'}
 	*/
 import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
-import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro';
-import ExamplePreview from '@/css-summoner/components/astro/ExamplePreview.astro'; // 使用例コンポーネントをインポート
+import VariantPreview from '@components/astro/VariantPreview.astro';
+import ExamplePreview from '@components/astro/ExamplePreview.astro'; // 使用例コンポーネントをインポート
 
 const pageTitle = "${componentLabel} コンポーネント";
 const pageDesc = "${componentLabel} コンポーネントのスタイルバリエーションと使用例。";

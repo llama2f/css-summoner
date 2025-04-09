@@ -3,20 +3,20 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react'
 // import './styles.css' // スタイルシートをインポート
 
 // 独自フック
-import useClassBuilder from '@/css-summoner/hooks/useClassBuilder'
+import useClassBuilder from '@hooks/useClassBuilder'
 
 // コンポーネントのインポート
-import ComponentSelector from '@/css-summoner/components/selectors/ComponentSelector'
-import VariantSelector from '@/css-summoner/components/selectors/VariantSelector'
-import SizeSelector from '@/css-summoner/components/selectors/SizeSelector'
-import BorderRadiusSelector from '@/css-summoner/components/selectors/BorderRadiusSelector'
-import ModifierSelector from '@/css-summoner/components/selectors/ModifierSelector'
-import SpecialClassSelector from '@/css-summoner/components/selectors/SpecialClassSelector'
-import ColorSelector from '@/css-summoner/components/selectors/ColorSelector' // カラーセレクター
-import ClassPreview from '@/css-summoner/components/preview/ClassPreview'
-import ClassCodeDisplay from '@/css-summoner/components/display/ClassCodeDisplay'
-import Tooltip from '@/css-summoner/components/common/Tooltip'
-import CssVarEditor from '@/css-summoner/components/common/CssVarEditor'
+import ComponentSelector from '@components/selectors/ComponentSelector'
+import VariantSelector from '@components/selectors/VariantSelector'
+import SizeSelector from '@components/selectors/SizeSelector'
+import BorderRadiusSelector from '@components/selectors/BorderRadiusSelector'
+import ModifierSelector from '@components/selectors/ModifierSelector'
+import SpecialClassSelector from '@components/selectors/SpecialClassSelector'
+import ColorSelector from '@components/selectors/ColorSelector' // カラーセレクター
+import ClassPreview from '@components/preview/ClassPreview'
+import ClassCodeDisplay from '@components/display/ClassCodeDisplay'
+import Tooltip from '@components/common/Tooltip'
+import CssVarEditor from '@components/common/CssVarEditor'
 
 // 設定のインポート
 // autoClassMappings.js の代わりに classMappings.js からインポート

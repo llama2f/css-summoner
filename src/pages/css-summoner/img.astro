@@ -1,52 +1,474 @@
 ---
 /**
-	* Img コンポーネント ドキュメント
-	*
-	* このファイルはスクリプトによって自動生成されました。
-	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
-	* ソース: image/variants.css, image/utilities.css
-	*/
-import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
-import VariantPreview from '@/css-summoner/components/astro/VariantPreview.astro';
-import ExamplePreview from '@/css-summoner/components/astro/ExamplePreview.astro'; // 使用例コンポーネントをインポート
+ * Img コンポーネント ドキュメント
+ *
+ * このファイルはスクリプトによって自動生成されました。
+ * 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
+ * ソース: image/variants.css, image/utilities.css
+ */
+import DocLayout from '@layouts/DocLayout.astro' // 正しいエイリアスを使用
+import VariantPreview from '@components/astro/VariantPreview.astro'
+import ExamplePreview from '@components/astro/ExamplePreview.astro' // 使用例コンポーネントをインポート
 
-const pageTitle = "Img コンポーネント";
-const pageDesc = "Img コンポーネントのスタイルバリエーションと使用例。";
+const pageTitle = 'Img コンポーネント'
+const pageDesc = 'Img コンポーネントのスタイルバリエーションと使用例。'
 
 // --- フロントマターに変数を渡す ---
-const baseClassName = ""; // baseClassName を文字列として渡す
-const variantsData = [{"variant":"aspect-portrait","className":"img-aspect-portrait","description":"画像をポートレート（3:4）のアスペクト比で表示するスタイル。縦長のコンテンツに適しています。","previewHtml":"<figure class=\"img-container img-aspect-portrait\">\n<img src=\"image.jpg\" alt=\"ポートレート比率画像\" />\n</figure>"},{"variant":"aspect-square","className":"img-aspect-square","description":"画像を正方形（1:1）のアスペクト比で表示するスタイル。プロフィール画像やグリッドレイアウトに適しています。","previewHtml":"<figure class=\"img-container img-aspect-square\">\n<img src=\"image.jpg\" alt=\"正方形画像\" />\n</figure>"},{"variant":"aspect-video","className":"img-aspect-video","description":"画像をビデオ（16:9）のアスペクト比で表示するスタイル。横長のコンテンツやメディア表示に適しています。","previewHtml":"<figure class=\"img-container img-aspect-video\">\n<img src=\"image.jpg\" alt=\"ビデオ比率画像\" />\n</figure>"},{"variant":"border","className":"img-border","description":"標準的なボーダーを適用した画像スタイル。画像に枠線を追加します。","previewHtml":"<figure class=\"img-container img-border\">\n<img src=\"image.jpg\" alt=\"ボーダー付き画像\" />\n</figure>"},{"variant":"border-accent","className":"img-border-accent","description":"アクセントカラーのボーダーを適用した画像スタイル。注目させたいコンテンツの画像に使用します。","previewHtml":"<figure class=\"img-container img-border-accent\">\n<img src=\"image.jpg\" alt=\"アクセントボーダー画像\" />\n</figure>"},{"variant":"border-double","className":"img-border-double","description":"二重ボーダーを適用した画像スタイル。特別感を出したい画像に使用します。","previewHtml":"<figure class=\"img-container img-border-double\">\n<img src=\"image.jpg\" alt=\"二重ボーダー画像\" />\n</figure>"},{"variant":"border-primary","className":"img-border-primary","description":"プライマリカラーのボーダーを適用した画像スタイル。主要なコンテンツの画像に使用します。","previewHtml":"<figure class=\"img-container img-border-primary\">\n<img src=\"image.jpg\" alt=\"プライマリボーダー画像\" />\n</figure>"},{"variant":"border-secondary","className":"img-border-secondary","description":"セカンダリカラーのボーダーを適用した画像スタイル。補助的なコンテンツの画像に使用します。","previewHtml":"<figure class=\"img-container img-border-secondary\">\n<img src=\"image.jpg\" alt=\"セカンダリボーダー画像\" />\n</figure>"},{"variant":"brightness-high","className":"img-brightness-high","description":"画像の明度を上げて明るめに表示するエフェクト。鮮やかさや軽快感を強調します。","previewHtml":"<figure class=\"img-container img-brightness-high\">\n<img src=\"image.jpg\" alt=\"明るめの画像\" />\n</figure>"},{"variant":"brightness-low","className":"img-brightness-low","description":"画像の明度を下げて暗めに表示するエフェクト。落ち着いた印象や重厚感を与えます。","previewHtml":"<figure class=\"img-container img-brightness-low\">\n<img src=\"image.jpg\" alt=\"暗めの画像\" />\n</figure>"},{"variant":"caption","className":"img-container","description":"画像の下部にキャプションを表示するスタイル。figcaption要素と組み合わせて使用します。","previewHtml":"<figure class=\"img-container\">\n<img src=\"image.jpg\" alt=\"説明\" />\n</figure>"},{"variant":"caption-hover","className":"img-caption-hover","description":"ホバー時にのみキャプションを表示するスタイル。ユーザーが画像にマウスを乗せた時に追加情報を表示します。","previewHtml":"<figure class=\"img-container img-caption-hover\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>ホバー時に表示されるキャプション</figcaption>\n</figure>"},{"variant":"caption-overlay","className":"img-caption-overlay","description":"画像の上にキャプションをオーバーレイ表示するスタイル。画像の視認性を維持しながら説明を追加します。","previewHtml":"<figure class=\"img-container img-caption-overlay\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>"},{"variant":"circle","className":"img-circle","description":"円形に切り抜いた画像スタイル。プロフィール画像やアイコンに適しています。","previewHtml":"<figure class=\"img-container img-circle\">\n<img src=\"profile.jpg\" alt=\"プロフィール画像\" />\n</figure>"},{"variant":"contrast-high","className":"img-contrast-high","description":"画像のコントラストを上げて鮮明に表示するエフェクト。はっきりとした印象を与えます。","previewHtml":"<figure class=\"img-container img-contrast-high\">\n<img src=\"image.jpg\" alt=\"高コントラスト画像\" />\n</figure>"},{"variant":"float-left","className":"img-float-left","description":"画像を左側に配置し、テキストを右側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。","previewHtml":"<figure class=\"img-container img-float-left\">\n<img src=\"image.jpg\" alt=\"左配置画像\" />\n</figure>\n<p>この文章は画像の右側に回り込みます...</p>"},{"variant":"float-right","className":"img-float-right","description":"画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。","previewHtml":"<figure class=\"img-container img-float-right\">\n<img src=\"image.jpg\" alt=\"右配置画像\" />\n</figure>\n<p>この文章は画像の左側に回り込みます...</p>"},{"variant":"grayscale","className":"img-grayscale","description":"画像をグレースケール（白黒）で表示するエフェクト。古い写真や落ち着いた印象を与えます。","previewHtml":"<figure class=\"img-container img-grayscale\">\n<img src=\"image.jpg\" alt=\"グレースケール画像\" />\n</figure>"},{"variant":"grayscale-hover","className":"img-grayscale-hover","description":"ホバー時にグレースケールが解除されるエフェクト。色の変化で注目を集めます。","previewHtml":"<figure class=\"img-container img-grayscale-hover\">\n<img src=\"image.jpg\" alt=\"ホバーでカラーになる画像\" />\n</figure>"},{"variant":"grid","className":"img-grid","description":"複数の画像をグリッドレイアウトで表示するコンテナ。ギャラリーやポートフォリオの表示に適しています。","previewHtml":"<div class=\"img-grid\">\n<figure class=\"img-container\"><img src=\"image1.jpg\" alt=\"画像1\" /></figure>\n<figure class=\"img-container\"><img src=\"image2.jpg\" alt=\"画像2\" /></figure>\n<figure class=\"img-container\"><img src=\"image3.jpg\" alt=\"画像3\" /></figure>\n</div>"},{"variant":"rounded","className":"img-rounded","description":"標準的な角丸を適用した画像スタイル。一般的に使用する角丸スタイルです。","previewHtml":"<figure class=\"img-container img-rounded\">\n<img src=\"image.jpg\" alt=\"角丸画像\" />\n</figure>"},{"variant":"rounded-lg","className":"img-rounded-lg","description":"大きい角丸を適用した画像スタイル。より強調された角丸が必要な場合に使用します。","previewHtml":"<figure class=\"img-container img-rounded-lg\">\n<img src=\"image.jpg\" alt=\"大きい角丸画像\" />\n</figure>"},{"variant":"rounded-sm","className":"img-rounded-sm","description":"小さい角丸を適用した画像スタイル。控えめな角丸が必要な場合に使用します。","previewHtml":"<figure class=\"img-container img-rounded-sm\">\n<img src=\"image.jpg\" alt=\"小さい角丸画像\" />\n</figure>"},{"variant":"sepia","className":"img-sepia","description":"画像をセピア調で表示するエフェクト。ヴィンテージ感や温かみのある印象を与えます。","previewHtml":"<figure class=\"img-container img-sepia\">\n<img src=\"image.jpg\" alt=\"セピア調画像\" />\n</figure>"},{"variant":"shadow","className":"img-shadow","description":"標準的な影を適用した画像スタイル。一般的に使用する影の強さです。","previewHtml":"<figure class=\"img-container img-shadow\">\n<img src=\"image.jpg\" alt=\"影付き画像\" />\n</figure>"},{"variant":"shadow-lg","className":"img-shadow-lg","description":"大きな影を適用した画像スタイル。強い立体感を与え、目立たせます。","previewHtml":"<figure class=\"img-container img-shadow-lg\">\n<img src=\"image.jpg\" alt=\"大きい影付き画像\" />\n</figure>"},{"variant":"shadow-sm","className":"img-shadow-sm","description":"小さな影を適用した画像スタイル。控えめな立体感を与えます。","previewHtml":"<figure class=\"img-container img-shadow-sm\">\n<img src=\"image.jpg\" alt=\"小さい影付き画像\" />\n</figure>"},{"variant":"w-1/4","className":"img-w-1","description":"画像を親要素の幅の1/4サイズで中央揃えにするスタイル。","previewHtml":"<figure class=\"img-container img-w-1/2\">\n<img src=\"image.jpg\" alt=\"幅1/2の画像\" />\n</figure>"},{"variant":"w-3/4","className":"img-w-3","description":"画像を親要素の幅の3/4サイズで中央揃えにするスタイル。","previewHtml":"<figure class=\"img-container img-w-3/4\">\n<img src=\"image.jpg\" alt=\"幅3/4の画像\" />\n</figure>"},{"variant":"w-full","className":"img-w-full","description":"画像を親要素の幅いっぱいに表示するスタイル。レスポンシブなレイアウトに適しています。","previewHtml":"<figure class=\"img-container img-w-full\">\n<img src=\"image.jpg\" alt=\"幅いっぱいの画像\" />\n</figure>"},{"variant":"zoom-hover","className":"img-zoom-hover","description":"ホバー時に画像をズームするエフェクト。インタラクティブな要素として注目を集めます。","previewHtml":"<figure class=\"img-container img-zoom-hover\">\n<img src=\"image.jpg\" alt=\"ホバーでズームする画像\" />\n</figure>"}]; // バリアントデータの配列を渡す
-const examplesData = [{"exampleHtml":"<figure class=\"img-container\">\n<img src=\"image.jpg\" alt=\"説明\" />\n</figure>","index":0},{"exampleHtml":"<figure class=\"img-container img-rounded-sm\">\n<img src=\"image.jpg\" alt=\"小さい角丸画像\" />\n</figure>","index":1},{"exampleHtml":"<figure class=\"img-container img-rounded\">\n<img src=\"image.jpg\" alt=\"角丸画像\" />\n</figure>","index":2},{"exampleHtml":"<figure class=\"img-container img-rounded-lg\">\n<img src=\"image.jpg\" alt=\"大きい角丸画像\" />\n</figure>","index":3},{"exampleHtml":"<figure class=\"img-container img-circle\">\n<img src=\"profile.jpg\" alt=\"プロフィール画像\" />\n</figure>","index":4},{"exampleHtml":"<figure class=\"img-container img-shadow-sm\">\n<img src=\"image.jpg\" alt=\"小さい影付き画像\" />\n</figure>","index":5},{"exampleHtml":"<figure class=\"img-container img-shadow\">\n<img src=\"image.jpg\" alt=\"影付き画像\" />\n</figure>","index":6},{"exampleHtml":"<figure class=\"img-container img-shadow-lg\">\n<img src=\"image.jpg\" alt=\"大きい影付き画像\" />\n</figure>","index":7},{"exampleHtml":"<figure class=\"img-container img-border\">\n<img src=\"image.jpg\" alt=\"ボーダー付き画像\" />\n</figure>","index":8},{"exampleHtml":"<figure class=\"img-container img-border-primary\">\n<img src=\"image.jpg\" alt=\"プライマリボーダー画像\" />\n</figure>","index":9},{"exampleHtml":"<figure class=\"img-container img-border-secondary\">\n<img src=\"image.jpg\" alt=\"セカンダリボーダー画像\" />\n</figure>","index":10},{"exampleHtml":"<figure class=\"img-container img-border-accent\">\n<img src=\"image.jpg\" alt=\"アクセントボーダー画像\" />\n</figure>","index":11},{"exampleHtml":"<figure class=\"img-container img-border-double\">\n<img src=\"image.jpg\" alt=\"二重ボーダー画像\" />\n</figure>","index":12},{"exampleHtml":"<figure class=\"img-container\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>画像のキャプション</figcaption>\n</figure>","index":13},{"exampleHtml":"<figure class=\"img-container img-caption-overlay\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>","index":14},{"exampleHtml":"<figure class=\"img-container img-caption-hover\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>ホバー時に表示されるキャプション</figcaption>\n</figure>","index":15},{"exampleHtml":"<figure class=\"img-container img-w-full\">\n<img src=\"image.jpg\" alt=\"幅いっぱいの画像\" />\n</figure>","index":16},{"exampleHtml":"<figure class=\"img-container img-w-3/4\">\n<img src=\"image.jpg\" alt=\"幅3/4の画像\" />\n</figure>","index":17},{"exampleHtml":"<figure class=\"img-container img-w-1/2\">\n<img src=\"image.jpg\" alt=\"幅1/2の画像\" />\n</figure>","index":18},{"exampleHtml":"<figure class=\"img-container img-w-1/3\">\n<img src=\"image.jpg\" alt=\"幅1/3の画像\" />\n</figure>","index":19},{"exampleHtml":"<figure class=\"img-container img-w-1/4\">\n<img src=\"image.jpg\" alt=\"幅1/4の画像\" />\n</figure>","index":20},{"exampleHtml":"<figure class=\"img-container img-aspect-square\">\n<img src=\"image.jpg\" alt=\"正方形画像\" />\n</figure>","index":21},{"exampleHtml":"<figure class=\"img-container img-aspect-video\">\n<img src=\"image.jpg\" alt=\"ビデオ比率画像\" />\n</figure>","index":22},{"exampleHtml":"<figure class=\"img-container img-aspect-portrait\">\n<img src=\"image.jpg\" alt=\"ポートレート比率画像\" />\n</figure>","index":23},{"exampleHtml":"<div class=\"img-grid\">\n<figure class=\"img-container\"><img src=\"image1.jpg\" alt=\"画像1\" /></figure>\n<figure class=\"img-container\"><img src=\"image2.jpg\" alt=\"画像2\" /></figure>\n<figure class=\"img-container\"><img src=\"image3.jpg\" alt=\"画像3\" /></figure>\n</div>","index":24},{"exampleHtml":"<figure class=\"img-container img-float-left\">\n<img src=\"image.jpg\" alt=\"左配置画像\" />\n</figure>\n<p>この文章は画像の右側に回り込みます...</p>","index":25},{"exampleHtml":"<figure class=\"img-container img-float-right\">\n<img src=\"image.jpg\" alt=\"右配置画像\" />\n</figure>\n<p>この文章は画像の左側に回り込みます...</p>","index":26},{"exampleHtml":"<figure class=\"img-container img-zoom-hover\">\n<img src=\"image.jpg\" alt=\"ホバーでズームする画像\" />\n</figure>","index":27},{"exampleHtml":"<figure class=\"img-container img-grayscale\">\n<img src=\"image.jpg\" alt=\"グレースケール画像\" />\n</figure>","index":28},{"exampleHtml":"<figure class=\"img-container img-grayscale-hover\">\n<img src=\"image.jpg\" alt=\"ホバーでカラーになる画像\" />\n</figure>","index":29},{"exampleHtml":"<figure class=\"img-container img-sepia\">\n<img src=\"image.jpg\" alt=\"セピア調画像\" />\n</figure>","index":30},{"exampleHtml":"<figure class=\"img-container img-brightness-low\">\n<img src=\"image.jpg\" alt=\"暗めの画像\" />\n</figure>","index":31},{"exampleHtml":"<figure class=\"img-container img-brightness-high\">\n<img src=\"image.jpg\" alt=\"明るめの画像\" />\n</figure>","index":32},{"exampleHtml":"<figure class=\"img-container img-contrast-high\">\n<img src=\"image.jpg\" alt=\"高コントラスト画像\" />\n</figure>","index":33}]; // 使用例データの配列を渡す
+const baseClassName = '' // baseClassName を文字列として渡す
+const variantsData = [
+	{
+		variant: 'aspect-portrait',
+		className: 'img-aspect-portrait',
+		description:
+			'画像をポートレート（3:4）のアスペクト比で表示するスタイル。縦長のコンテンツに適しています。',
+		previewHtml:
+			'<figure class="img-container img-aspect-portrait">\n<img src="image.jpg" alt="ポートレート比率画像" />\n</figure>',
+	},
+	{
+		variant: 'aspect-square',
+		className: 'img-aspect-square',
+		description:
+			'画像を正方形（1:1）のアスペクト比で表示するスタイル。プロフィール画像やグリッドレイアウトに適しています。',
+		previewHtml:
+			'<figure class="img-container img-aspect-square">\n<img src="image.jpg" alt="正方形画像" />\n</figure>',
+	},
+	{
+		variant: 'aspect-video',
+		className: 'img-aspect-video',
+		description:
+			'画像をビデオ（16:9）のアスペクト比で表示するスタイル。横長のコンテンツやメディア表示に適しています。',
+		previewHtml:
+			'<figure class="img-container img-aspect-video">\n<img src="image.jpg" alt="ビデオ比率画像" />\n</figure>',
+	},
+	{
+		variant: 'border',
+		className: 'img-border',
+		description:
+			'標準的なボーダーを適用した画像スタイル。画像に枠線を追加します。',
+		previewHtml:
+			'<figure class="img-container img-border">\n<img src="image.jpg" alt="ボーダー付き画像" />\n</figure>',
+	},
+	{
+		variant: 'border-accent',
+		className: 'img-border-accent',
+		description:
+			'アクセントカラーのボーダーを適用した画像スタイル。注目させたいコンテンツの画像に使用します。',
+		previewHtml:
+			'<figure class="img-container img-border-accent">\n<img src="image.jpg" alt="アクセントボーダー画像" />\n</figure>',
+	},
+	{
+		variant: 'border-double',
+		className: 'img-border-double',
+		description:
+			'二重ボーダーを適用した画像スタイル。特別感を出したい画像に使用します。',
+		previewHtml:
+			'<figure class="img-container img-border-double">\n<img src="image.jpg" alt="二重ボーダー画像" />\n</figure>',
+	},
+	{
+		variant: 'border-primary',
+		className: 'img-border-primary',
+		description:
+			'プライマリカラーのボーダーを適用した画像スタイル。主要なコンテンツの画像に使用します。',
+		previewHtml:
+			'<figure class="img-container img-border-primary">\n<img src="image.jpg" alt="プライマリボーダー画像" />\n</figure>',
+	},
+	{
+		variant: 'border-secondary',
+		className: 'img-border-secondary',
+		description:
+			'セカンダリカラーのボーダーを適用した画像スタイル。補助的なコンテンツの画像に使用します。',
+		previewHtml:
+			'<figure class="img-container img-border-secondary">\n<img src="image.jpg" alt="セカンダリボーダー画像" />\n</figure>',
+	},
+	{
+		variant: 'brightness-high',
+		className: 'img-brightness-high',
+		description:
+			'画像の明度を上げて明るめに表示するエフェクト。鮮やかさや軽快感を強調します。',
+		previewHtml:
+			'<figure class="img-container img-brightness-high">\n<img src="image.jpg" alt="明るめの画像" />\n</figure>',
+	},
+	{
+		variant: 'brightness-low',
+		className: 'img-brightness-low',
+		description:
+			'画像の明度を下げて暗めに表示するエフェクト。落ち着いた印象や重厚感を与えます。',
+		previewHtml:
+			'<figure class="img-container img-brightness-low">\n<img src="image.jpg" alt="暗めの画像" />\n</figure>',
+	},
+	{
+		variant: 'caption',
+		className: 'img-container',
+		description:
+			'画像の下部にキャプションを表示するスタイル。figcaption要素と組み合わせて使用します。',
+		previewHtml:
+			'<figure class="img-container">\n<img src="image.jpg" alt="説明" />\n</figure>',
+	},
+	{
+		variant: 'caption-hover',
+		className: 'img-caption-hover',
+		description:
+			'ホバー時にのみキャプションを表示するスタイル。ユーザーが画像にマウスを乗せた時に追加情報を表示します。',
+		previewHtml:
+			'<figure class="img-container img-caption-hover">\n<img src="image.jpg" alt="画像説明" />\n<figcaption>ホバー時に表示されるキャプション</figcaption>\n</figure>',
+	},
+	{
+		variant: 'caption-overlay',
+		className: 'img-caption-overlay',
+		description:
+			'画像の上にキャプションをオーバーレイ表示するスタイル。画像の視認性を維持しながら説明を追加します。',
+		previewHtml:
+			'<figure class="img-container img-caption-overlay">\n<img src="image.jpg" alt="画像説明" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>',
+	},
+	{
+		variant: 'circle',
+		className: 'img-circle',
+		description:
+			'円形に切り抜いた画像スタイル。プロフィール画像やアイコンに適しています。',
+		previewHtml:
+			'<figure class="img-container img-circle">\n<img src="profile.jpg" alt="プロフィール画像" />\n</figure>',
+	},
+	{
+		variant: 'contrast-high',
+		className: 'img-contrast-high',
+		description:
+			'画像のコントラストを上げて鮮明に表示するエフェクト。はっきりとした印象を与えます。',
+		previewHtml:
+			'<figure class="img-container img-contrast-high">\n<img src="image.jpg" alt="高コントラスト画像" />\n</figure>',
+	},
+	{
+		variant: 'float-left',
+		className: 'img-float-left',
+		description:
+			'画像を左側に配置し、テキストを右側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。',
+		previewHtml:
+			'<figure class="img-container img-float-left">\n<img src="image.jpg" alt="左配置画像" />\n</figure>\n<p>この文章は画像の右側に回り込みます...</p>',
+	},
+	{
+		variant: 'float-right',
+		className: 'img-float-right',
+		description:
+			'画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。',
+		previewHtml:
+			'<figure class="img-container img-float-right">\n<img src="image.jpg" alt="右配置画像" />\n</figure>\n<p>この文章は画像の左側に回り込みます...</p>',
+	},
+	{
+		variant: 'grayscale',
+		className: 'img-grayscale',
+		description:
+			'画像をグレースケール（白黒）で表示するエフェクト。古い写真や落ち着いた印象を与えます。',
+		previewHtml:
+			'<figure class="img-container img-grayscale">\n<img src="image.jpg" alt="グレースケール画像" />\n</figure>',
+	},
+	{
+		variant: 'grayscale-hover',
+		className: 'img-grayscale-hover',
+		description:
+			'ホバー時にグレースケールが解除されるエフェクト。色の変化で注目を集めます。',
+		previewHtml:
+			'<figure class="img-container img-grayscale-hover">\n<img src="image.jpg" alt="ホバーでカラーになる画像" />\n</figure>',
+	},
+	{
+		variant: 'grid',
+		className: 'img-grid',
+		description:
+			'複数の画像をグリッドレイアウトで表示するコンテナ。ギャラリーやポートフォリオの表示に適しています。',
+		previewHtml:
+			'<div class="img-grid">\n<figure class="img-container"><img src="image1.jpg" alt="画像1" /></figure>\n<figure class="img-container"><img src="image2.jpg" alt="画像2" /></figure>\n<figure class="img-container"><img src="image3.jpg" alt="画像3" /></figure>\n</div>',
+	},
+	{
+		variant: 'rounded',
+		className: 'img-rounded',
+		description:
+			'標準的な角丸を適用した画像スタイル。一般的に使用する角丸スタイルです。',
+		previewHtml:
+			'<figure class="img-container img-rounded">\n<img src="image.jpg" alt="角丸画像" />\n</figure>',
+	},
+	{
+		variant: 'rounded-lg',
+		className: 'img-rounded-lg',
+		description:
+			'大きい角丸を適用した画像スタイル。より強調された角丸が必要な場合に使用します。',
+		previewHtml:
+			'<figure class="img-container img-rounded-lg">\n<img src="image.jpg" alt="大きい角丸画像" />\n</figure>',
+	},
+	{
+		variant: 'rounded-sm',
+		className: 'img-rounded-sm',
+		description:
+			'小さい角丸を適用した画像スタイル。控えめな角丸が必要な場合に使用します。',
+		previewHtml:
+			'<figure class="img-container img-rounded-sm">\n<img src="image.jpg" alt="小さい角丸画像" />\n</figure>',
+	},
+	{
+		variant: 'sepia',
+		className: 'img-sepia',
+		description:
+			'画像をセピア調で表示するエフェクト。ヴィンテージ感や温かみのある印象を与えます。',
+		previewHtml:
+			'<figure class="img-container img-sepia">\n<img src="image.jpg" alt="セピア調画像" />\n</figure>',
+	},
+	{
+		variant: 'shadow',
+		className: 'img-shadow',
+		description:
+			'標準的な影を適用した画像スタイル。一般的に使用する影の強さです。',
+		previewHtml:
+			'<figure class="img-container img-shadow">\n<img src="image.jpg" alt="影付き画像" />\n</figure>',
+	},
+	{
+		variant: 'shadow-lg',
+		className: 'img-shadow-lg',
+		description:
+			'大きな影を適用した画像スタイル。強い立体感を与え、目立たせます。',
+		previewHtml:
+			'<figure class="img-container img-shadow-lg">\n<img src="image.jpg" alt="大きい影付き画像" />\n</figure>',
+	},
+	{
+		variant: 'shadow-sm',
+		className: 'img-shadow-sm',
+		description: '小さな影を適用した画像スタイル。控えめな立体感を与えます。',
+		previewHtml:
+			'<figure class="img-container img-shadow-sm">\n<img src="image.jpg" alt="小さい影付き画像" />\n</figure>',
+	},
+	{
+		variant: 'w-1/4',
+		className: 'img-w-1',
+		description: '画像を親要素の幅の1/4サイズで中央揃えにするスタイル。',
+		previewHtml:
+			'<figure class="img-container img-w-1/2">\n<img src="image.jpg" alt="幅1/2の画像" />\n</figure>',
+	},
+	{
+		variant: 'w-3/4',
+		className: 'img-w-3',
+		description: '画像を親要素の幅の3/4サイズで中央揃えにするスタイル。',
+		previewHtml:
+			'<figure class="img-container img-w-3/4">\n<img src="image.jpg" alt="幅3/4の画像" />\n</figure>',
+	},
+	{
+		variant: 'w-full',
+		className: 'img-w-full',
+		description:
+			'画像を親要素の幅いっぱいに表示するスタイル。レスポンシブなレイアウトに適しています。',
+		previewHtml:
+			'<figure class="img-container img-w-full">\n<img src="image.jpg" alt="幅いっぱいの画像" />\n</figure>',
+	},
+	{
+		variant: 'zoom-hover',
+		className: 'img-zoom-hover',
+		description:
+			'ホバー時に画像をズームするエフェクト。インタラクティブな要素として注目を集めます。',
+		previewHtml:
+			'<figure class="img-container img-zoom-hover">\n<img src="image.jpg" alt="ホバーでズームする画像" />\n</figure>',
+	},
+] // バリアントデータの配列を渡す
+const examplesData = [
+	{
+		exampleHtml:
+			'<figure class="img-container">\n<img src="image.jpg" alt="説明" />\n</figure>',
+		index: 0,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-rounded-sm">\n<img src="image.jpg" alt="小さい角丸画像" />\n</figure>',
+		index: 1,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-rounded">\n<img src="image.jpg" alt="角丸画像" />\n</figure>',
+		index: 2,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-rounded-lg">\n<img src="image.jpg" alt="大きい角丸画像" />\n</figure>',
+		index: 3,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-circle">\n<img src="profile.jpg" alt="プロフィール画像" />\n</figure>',
+		index: 4,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-shadow-sm">\n<img src="image.jpg" alt="小さい影付き画像" />\n</figure>',
+		index: 5,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-shadow">\n<img src="image.jpg" alt="影付き画像" />\n</figure>',
+		index: 6,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-shadow-lg">\n<img src="image.jpg" alt="大きい影付き画像" />\n</figure>',
+		index: 7,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-border">\n<img src="image.jpg" alt="ボーダー付き画像" />\n</figure>',
+		index: 8,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-border-primary">\n<img src="image.jpg" alt="プライマリボーダー画像" />\n</figure>',
+		index: 9,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-border-secondary">\n<img src="image.jpg" alt="セカンダリボーダー画像" />\n</figure>',
+		index: 10,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-border-accent">\n<img src="image.jpg" alt="アクセントボーダー画像" />\n</figure>',
+		index: 11,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-border-double">\n<img src="image.jpg" alt="二重ボーダー画像" />\n</figure>',
+		index: 12,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container">\n<img src="image.jpg" alt="画像説明" />\n<figcaption>画像のキャプション</figcaption>\n</figure>',
+		index: 13,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-caption-overlay">\n<img src="image.jpg" alt="画像説明" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>',
+		index: 14,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-caption-hover">\n<img src="image.jpg" alt="画像説明" />\n<figcaption>ホバー時に表示されるキャプション</figcaption>\n</figure>',
+		index: 15,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-w-full">\n<img src="image.jpg" alt="幅いっぱいの画像" />\n</figure>',
+		index: 16,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-w-3/4">\n<img src="image.jpg" alt="幅3/4の画像" />\n</figure>',
+		index: 17,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-w-1/2">\n<img src="image.jpg" alt="幅1/2の画像" />\n</figure>',
+		index: 18,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-w-1/3">\n<img src="image.jpg" alt="幅1/3の画像" />\n</figure>',
+		index: 19,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-w-1/4">\n<img src="image.jpg" alt="幅1/4の画像" />\n</figure>',
+		index: 20,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-aspect-square">\n<img src="image.jpg" alt="正方形画像" />\n</figure>',
+		index: 21,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-aspect-video">\n<img src="image.jpg" alt="ビデオ比率画像" />\n</figure>',
+		index: 22,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-aspect-portrait">\n<img src="image.jpg" alt="ポートレート比率画像" />\n</figure>',
+		index: 23,
+	},
+	{
+		exampleHtml:
+			'<div class="img-grid">\n<figure class="img-container"><img src="image1.jpg" alt="画像1" /></figure>\n<figure class="img-container"><img src="image2.jpg" alt="画像2" /></figure>\n<figure class="img-container"><img src="image3.jpg" alt="画像3" /></figure>\n</div>',
+		index: 24,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-float-left">\n<img src="image.jpg" alt="左配置画像" />\n</figure>\n<p>この文章は画像の右側に回り込みます...</p>',
+		index: 25,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-float-right">\n<img src="image.jpg" alt="右配置画像" />\n</figure>\n<p>この文章は画像の左側に回り込みます...</p>',
+		index: 26,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-zoom-hover">\n<img src="image.jpg" alt="ホバーでズームする画像" />\n</figure>',
+		index: 27,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-grayscale">\n<img src="image.jpg" alt="グレースケール画像" />\n</figure>',
+		index: 28,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-grayscale-hover">\n<img src="image.jpg" alt="ホバーでカラーになる画像" />\n</figure>',
+		index: 29,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-sepia">\n<img src="image.jpg" alt="セピア調画像" />\n</figure>',
+		index: 30,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-brightness-low">\n<img src="image.jpg" alt="暗めの画像" />\n</figure>',
+		index: 31,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-brightness-high">\n<img src="image.jpg" alt="明るめの画像" />\n</figure>',
+		index: 32,
+	},
+	{
+		exampleHtml:
+			'<figure class="img-container img-contrast-high">\n<img src="image.jpg" alt="高コントラスト画像" />\n</figure>',
+		index: 33,
+	},
+] // 使用例データの配列を渡す
 ---
 
 <DocLayout title={pageTitle} desc={pageDesc}>
-		<div class="container mx-auto px-4 py-8">
-			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
-			 <p class="text-lg text-neutral-600 mb-6">
-			   Img の基本スタイル
-			   {/* フロントマターの baseClassName を参照 */}
-			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
-			 </p>
-			
+	<div class='container mx-auto px-4 py-8'>
+		<h1 class='text-3xl font-bold mb-4'>{pageTitle}</h1>
+		<p class='text-lg text-neutral-600 mb-6'>
+			Img の基本スタイル
+			{/* フロントマターの baseClassName を参照 */}
+			{
+				baseClassName && (
+					<code class='ml-2 text-sm bg-neutral-200 p-1 rounded'>
+						.{baseClassName}
+					</code>
+				)
+			}
+		</p>
 
-			 {/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
-			 {variantsData.length > 0 && (
-			   <section class="mb-12">
-			     <h2 class="text-2xl font-semibold mb-6 border-b pb-2">バリアント</h2>
-			     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-			       {variantsData.map(variantProps => (
-			         <VariantPreview {...variantProps} />
-			       ))}
-			     </div>
-			   </section>
-			 )}
+		{/* バリアントデータをループして VariantPreview コンポーネントを表示 */}
+		{
+			variantsData.length > 0 && (
+				<section class='mb-12'>
+					<h2 class='text-2xl font-semibold mb-6 border-b pb-2'>バリアント</h2>
+					<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+						{variantsData.map((variantProps) => (
+							<VariantPreview {...variantProps} />
+						))}
+					</div>
+				</section>
+			)
+		}
 
-			 <section class="mb-12">
-			   <h2 class="text-2xl font-semibold mb-6 border-b pb-2">使用例</h2>
-			   {/* ExamplePreviewコンポーネントに examplesData 配列全体を渡す */}
-			   <ExamplePreview examples={examplesData} />
-			 </section>
-
-			 
-		</div>
+		<section class='mb-12'>
+			<h2 class='text-2xl font-semibold mb-6 border-b pb-2'>使用例</h2>
+			{/* ExamplePreviewコンポーネントに examplesData 配列全体を渡す */}
+			<ExamplePreview examples={examplesData} />
+		</section>
+	</div>
 </DocLayout>

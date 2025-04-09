@@ -9,7 +9,7 @@ hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('html', xml) // HTMLはxmlとして登録
 import PropTypes from 'prop-types'
-import useAsyncHandler from '@/css-summoner/hooks/useAsyncHandler' // カスタムフックをインポート
+import useAsyncHandler from '@hooks/useAsyncHandler' // カスタムフックをインポート
 import { classRuleDetails } from '@/css-summoner/classMappings' // CSSルール詳細をインポート
 
 /**

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ColorPicker from '@/css-summoner/components/color-picker/ColorPicker'
+import ColorPicker from '@components/color-picker/ColorPicker'
 import { defaultCustomColor } from '@/css-summoner/configs/colors'
 
 /**

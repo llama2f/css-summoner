@@ -1,5 +1,5 @@
 import React from 'react' // useState, useEffect は不要になった
-import useAsyncHandler from '@/css-summoner/hooks/useAsyncHandler' // カスタムフックをインポート
+import useAsyncHandler from '@hooks/useAsyncHandler' // カスタムフックをインポート
 // import handlersManifest from '../handlers'; // マニフェストはフック内で使用するため不要
 
 // ローディング中のプレースホルダーコンポーネント

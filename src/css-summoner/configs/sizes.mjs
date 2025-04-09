@@ -1,3 +1,41 @@
+/**
+ * @fileoverview CSS Summonerで使用されるサイズ関連のオプション（テキストサイズ、ボタンサイズなど）を定義します。
+ *
+ * @module configs/sizes
+ *
+ * @property {object} sizes - サイズオプションを含むオブジェクト。
+ * @property {Array<{value: string, label: string}>} sizes.common - 全般的なサイズオプション。
+ * @property {Array<{value: string, label: string}>} sizes.button - ボタン専用のサイズオプション。
+ * @property {Array<{value: string, label: string}>} sizes.badge - バッジ専用のサイズオプション。
+ * @property {Array<{value: string, label: string}>} sizes.text - テキスト専用のサイズオプション。
+ * @property {Array<{value: string, label: string}>} sizes.heading - 見出し専用のサイズオプション。
+ * @property {Array<{value: string, label: string}>} sizes.form - フォーム専用のサイズオプション。
+ * @property {Array<{value: string, label: string}>} sizes.infobox - インフォボックス専用のサイズオプション。
+ * @property {Array<{value: string, label: string}>} sizes.card - カード専用のサイズオプション。
+ * @property {Array<{value: string, label: string}>} sizes.tooltip - ツールチップ専用のサイズオプション。
+ *
+ * @example
+ * // 他のファイルからデフォルトインポートして使用
+ * import sizes from './sizes.mjs';
+ * const buttonSizes = sizes.button;
+ * console.log(buttonSizes); // [{ value: 'btn-xs', label: 'XS' }, ...]
+ *
+ * @default sizes
+ * @exports sizes
+ *
+ * @description
+ * このファイルは、CSS Summoner UIで利用可能なサイズ関連のクラスとその表示名を定義します。
+ * 各キー（例: `button`, `badge`）は特定のコンポーネントタイプに対応し、
+ * その値は `{ value: string, label: string }` 形式のオブジェクトの配列です。
+ * `value` は適用されるCSSクラス名、`label` はUIに表示される名前です。
+ *
+ * @see configs/colors.js - 色設定ファイル
+ * @see configs/modifiers.mjs - 修飾子設定ファイル
+ * @see configs/borderRadius.mjs - 角丸設定ファイル
+ *
+ * @requires - なし (依存関係なし)
+ */
+
 // configs/sizes.js
 // サイズ設定の管理
 

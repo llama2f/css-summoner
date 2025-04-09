@@ -1,3 +1,20 @@
+/**
+ * @fileoverview CSS Summonerで使用されるスタイル修飾子（モディファイア）のオプションを定義します。
+ * これらのオプションは、コンポーネントの外観や動作を微調整するために使用されます。
+ *
+ * @exports modifiers - モディファイアオプションを含むオブジェクト。
+ *   キーはコンポーネントタイプ（`common`, `button`, `card`, `heading`, `text`, `form`, `image`, `badge`, `infobox`, `tooltip`）で、
+ *   値はそのコンポーネントタイプに適用可能なモディファイアオプションの配列です。
+ *   各モディファイアオプションは `{ value: string, label: string, description: string }` の形式です。
+ * @default
+ *
+ * @example
+ * import modifiers from './modifiers.mjs';
+ * const buttonModifiers = modifiers.button;
+ *
+ * @dependency なし
+ */
+
 // configs/modifiers.js
 // モディファイア設定の管理
 

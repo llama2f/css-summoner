@@ -2,8 +2,8 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 // import { getComponentReactTemplate } from '@/css-summoner/templates/componentFactory.jsx'; // 削除
-import { combineClasses } from '@/css-summoner/templates/handlers/common.jsx' // これは引き続き使用
-import TemplateRenderer from '@/css-summoner/templates/core/templateEngine.jsx' // 追加
+import { combineClasses } from '@templates/handlers/common.jsx' // これは引き続き使用
+import TemplateRenderer from '@templates/core/templateEngine.jsx' // 追加
 
 /**
  * 選択されたクラスに基づいてコンポーネントをプレビューするコンポーネント

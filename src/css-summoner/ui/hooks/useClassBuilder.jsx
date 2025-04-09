@@ -2,8 +2,9 @@
 import { useReducer, useEffect, useCallback } from 'react'
 // autoClassMappings.js の代わりに classMappings.js からインポート
 import { componentVariants, baseClasses } from '@/css-summoner/classMappings.js'
-import { combineClasses } from '@/css-summoner/templates/handlers/common'
+import { combineClasses } from '@templates/handlers/common'
 import { defaultCustomColor } from '@/css-summoner/configs/colors'
+import { ACTIONS } from '@/css-summoner/ui/hooks/actions'
 
 // ローカルストレージのキー
 const STORAGE_KEY = 'css-summoner-custom-colors'
@@ -37,7 +38,10 @@ const saveCustomColors = (colorSettings) => {
 }
 
 // アクション定義
-export const ACTIONS = {
+
+/* 
+	hooks/actions.js から ACTIONS オブジェクトをインポート
+	export const ACTIONS = {
 	SET_COMPONENT_TYPE: 'SET_COMPONENT_TYPE',
 	SET_COMPONENT_VARIANT: 'SET_COMPONENT_VARIANT',
 	SET_SIZE: 'SET_SIZE',
@@ -49,7 +53,7 @@ export const ACTIONS = {
 	SET_COLOR: 'SET_COLOR', // 色設定アクション
 	SET_CUSTOM_COLOR_SETTINGS: 'SET_CUSTOM_COLOR_SETTINGS', // カスタム色設定アクション
 	RESET_SETTINGS: 'RESET_SETTINGS',
-}
+} */
 
 // 初期状態
 const initialState = {
