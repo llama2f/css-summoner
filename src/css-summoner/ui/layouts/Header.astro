@@ -1,10 +1,13 @@
 ---
 import ThemeSwitcher from '@components/astro/ThemeSwitcher.astro'
+import siteData from '@configs/siteData.json'
 
-const { title = 'title', desc = 'description' } = Astro.props
+const { title = siteData.siteName } = Astro.props
 ---
 
-<header>
-	header-aria
+<header
+	class='flex items-center justify-between p-4 bg-neutral text-neutral-content'
+>
+	<h1 class='text-xl font-bold'>{title}</h1>
 	<ThemeSwitcher />
 </header>
