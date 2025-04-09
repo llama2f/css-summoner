@@ -1,5 +1,5 @@
 // src/css-summoner/ClassBuilder.jsx
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 // import './styles.css' // スタイルシートをインポート
 
 // 独自フック
@@ -51,6 +51,13 @@ const ClassBuilder = () => {
 
 	// CSS変数エディタの表示状態
 	const [showCssVarEditor, setShowCssVarEditor] = useState(true)
+
+	// スマホビュー用ドロワーの状態
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+	/** @type {[('components' | 'settings' | null), React.Dispatch<React.SetStateAction<'components' | 'settings' | null>>]} */
+	const [activeDrawer, setActiveDrawer] = useState(null)
+	/** @type {React.RefObject<HTMLDivElement>} */
+	const drawerRef = useRef(null) // ドロワー要素への参照
 
 	// ツールチップを表示する（メモ化）
 	const showTooltip = useCallback(
@@ -159,13 +166,56 @@ const ClassBuilder = () => {
 				actions.setSize(sizeToSet)
 			}
 		}
-	}, [state.componentType])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [state.componentType, actions.setSize]) // actions.setSize も依存配列に追加
+
+	// ドロワーを開く関数
+	/** @param {'components' | 'settings'} drawerType */
+	const openDrawer = useCallback((drawerType) => {
+		setActiveDrawer(drawerType)
+		setIsDrawerOpen(true)
+	}, [])
+
+	// ドロワーを閉じる関数
+	const closeDrawer = useCallback(() => {
+		setIsDrawerOpen(false)
+		// アニメーション完了後にアクティブなドロワーをリセットする方がスムーズな場合がある
+		// setTimeout(() => setActiveDrawer(null), 300); // 例: 300msのアニメーション時間
+		setActiveDrawer(null) // 一旦即時リセット
+	}, [])
+
+	// ドロワー外クリックで閉じる処理
+	useEffect(() => {
+		/** @param {MouseEvent} event */
+		const handleClickOutside = (event) => {
+			if (
+				drawerRef.current &&
+				!drawerRef.current.contains(/** @type {Node} */ (event.target))
+			) {
+				// トリガーボタン自体をクリックした場合は閉じないようにする (別途制御)
+				const targetElement = /** @type {Element} */ (event.target)
+				if (!targetElement.closest('.drawer-trigger-button')) {
+					closeDrawer()
+				}
+			}
+		}
+
+		if (isDrawerOpen) {
+			document.addEventListener('mousedown', handleClickOutside)
+		} else {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [isDrawerOpen, closeDrawer])
 
 	return (
 		<div className='max-w-7xl mx-auto'>
 			<div className='grid grid-cols-1 lg:grid-cols-10 gap-4'>
-				{/* 左側: コンポーネント選択パネル */}
-				<div className='panel panel-components'>
+				{/* 左側: コンポーネント選択パネル (lg以上で表示) */}
+				<div className='panel panel-components hidden lg:block'>
 					{/* コンポーネント選択 */}
 					<ComponentSelector
 						componentTypes={componentTypes}
@@ -175,7 +225,9 @@ const ClassBuilder = () => {
 				</div>
 
 				{/* 中央: 設定パネル */}
-				<div className='panel panel-settings'>
+				{/* 中央: 設定パネル (lg以上で表示) */}
+				<div className='panel panel-settings hidden lg:block'>
+					{/* --- 設定項目 --- */}
 					{/* バリアント選択 */}
 					{componentVariants[state.componentType] &&
 						componentVariants[state.componentType].length > 0 && (
@@ -187,7 +239,6 @@ const ClassBuilder = () => {
 								classDescriptions={classDescriptions}
 							/>
 						)}
-
 					{/* カラー選択 */}
 					<ColorSelector
 						colors={colorOptions}
@@ -196,7 +247,6 @@ const ClassBuilder = () => {
 						onTooltip={showTooltip}
 						onCustomColorChange={handleCustomColorChange}
 					/>
-
 					{/* サイズ選択 */}
 					{getSizeOptions().length > 0 && (
 						<SizeSelector
@@ -205,7 +255,6 @@ const ClassBuilder = () => {
 							onSelect={actions.setSize}
 						/>
 					)}
-
 					{/* 角丸選択 */}
 					{getBorderRadiusOptions().length > 0 && (
 						<BorderRadiusSelector
@@ -214,7 +263,6 @@ const ClassBuilder = () => {
 							onSelect={actions.setBorderRadius}
 						/>
 					)}
-
 					{/* モディファイア選択 */}
 					{getModifierOptions().length > 0 && (
 						<ModifierSelector
@@ -224,7 +272,6 @@ const ClassBuilder = () => {
 							onTooltip={showTooltip}
 						/>
 					)}
-
 					{/* 特殊効果クラス選択 */}
 					<SpecialClassSelector
 						specialClasses={specialClasses}
@@ -232,6 +279,7 @@ const ClassBuilder = () => {
 						onToggle={actions.toggleSpecialClass}
 						onTooltip={showTooltip}
 					/>
+					{/* --- 設定項目ここまで --- */}
 				</div>
 
 				{/* 右側: プレビューと生成コード */}
@@ -358,6 +406,115 @@ const ClassBuilder = () => {
 			{showCssVarEditor && (
 				<CssVarEditor onClose={() => setShowCssVarEditor(false)} />
 			)}
+
+			{/* --- スマホビュー用ドロワー --- */}
+			<div
+				ref={drawerRef}
+				className={`mobile-drawer ${isDrawerOpen ? 'open' : ''} lg:hidden`}
+			>
+				<div className='mobile-drawer-content'>
+					<button
+						onClick={closeDrawer}
+						className='mobile-drawer-close-button'
+						aria-label='閉じる'
+					>
+						&times; {/* シンプルな閉じるアイコン */}
+					</button>
+					{/* ドロワーの内容を動的に表示 */}
+					{activeDrawer === 'components' && (
+						<div className='panel panel-components'>
+							{/* コンポーネント選択 */}
+							<ComponentSelector
+								componentTypes={componentTypes}
+								selectedComponent={state.componentType}
+								onSelect={(type) => {
+									actions.setComponentType(type)
+									// コンポーネント選択後、設定ドロワーに切り替えるか、閉じるか検討
+									// closeDrawer(); // 例: 選択したら閉じる
+									openDrawer('settings') // 例: 設定に進む
+								}}
+							/>
+						</div>
+					)}
+					{activeDrawer === 'settings' && (
+						<div className='panel panel-settings'>
+							{/* --- 設定項目 (ドロワー内) --- */}
+							{/* バリアント選択 */}
+							{componentVariants[state.componentType] &&
+								componentVariants[state.componentType].length > 0 && (
+									<VariantSelector
+										variants={componentVariants[state.componentType]}
+										selectedVariant={state.componentVariant}
+										onSelect={actions.setComponentVariant}
+										onTooltip={showTooltip}
+										classDescriptions={classDescriptions}
+									/>
+								)}
+							{/* カラー選択 */}
+							<ColorSelector
+								colors={colorOptions}
+								selectedColor={state.selectedColor}
+								onSelect={actions.setColor}
+								onTooltip={showTooltip}
+								onCustomColorChange={handleCustomColorChange}
+							/>
+							{/* サイズ選択 */}
+							{getSizeOptions().length > 0 && (
+								<SizeSelector
+									sizes={getSizeOptions()}
+									selectedSize={state.size}
+									onSelect={actions.setSize}
+								/>
+							)}
+							{/* 角丸選択 */}
+							{getBorderRadiusOptions().length > 0 && (
+								<BorderRadiusSelector
+									options={getBorderRadiusOptions()}
+									selectedRadius={state.borderRadius}
+									onSelect={actions.setBorderRadius}
+								/>
+							)}
+							{/* モディファイア選択 */}
+							{getModifierOptions().length > 0 && (
+								<ModifierSelector
+									modifiers={getModifierOptions()}
+									selectedModifiers={state.selectedModifiers}
+									onToggle={actions.toggleModifier}
+									onTooltip={showTooltip}
+								/>
+							)}
+							{/* 特殊効果クラス選択 */}
+							<SpecialClassSelector
+								specialClasses={specialClasses}
+								selectedSpecialClasses={state.selectedSpecialClasses}
+								onToggle={actions.toggleSpecialClass}
+								onTooltip={showTooltip}
+							/>
+							{/* --- 設定項目ここまで --- */}
+						</div>
+					)}
+				</div>
+			</div>
+
+			{/* --- スマホビュー用トリガーボタン --- */}
+			<div className='mobile-drawer-triggers lg:hidden'>
+				<p className='text-xs'>↓からコンポーネント選択と設定を行います</p>
+				<div className='mobile-drawer-buttons-container'>
+					<button
+						className='drawer-trigger-button btn-base btn-link'
+						onClick={() => openDrawer('components')}
+					>
+						Components
+					</button>
+					<button
+						className='drawer-trigger-button btn-base btn-link'
+						onClick={() => openDrawer('settings')}
+					>
+						Settings
+					</button>
+				</div>
+			</div>
+			{/* --- スマホビュー用ここまで --- */}
 		</div>
 	)
 }

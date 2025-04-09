@@ -27,9 +27,9 @@
 		@apply font-mono;
 		font-size: 0.8rem;
 		letter-spacing: 0.02em;
-		background-color: var(--neutral-dark);
+		background-color: #0d1117;
 		color: var(--neutral-light);
-		border: var(--border) 1px solid;
+		border: #3f4753 1px solid;
 		border-radius: 4px;
 		padding: 0.5rem;
 	}
@@ -45,22 +45,21 @@
 
 	/* パネル */
 	.panel {
-		@apply lg:col-span-2 space-y-4 lg:p-3 rounded-lg;
+		@apply space-y-4 rounded-lg;
+		@apply lg:col-span-2 lg:p-3;
 	}
 
 	.panel-preview {
-		@apply lg:order-2 lg:col-span-6  lg:sticky lg:top-[2rem];
 		@apply order-none space-y-4 self-start;
+		@apply lg:order-2 lg:col-span-6 lg:sticky lg:top-[2rem];
 	}
 
 	.panel-settings {
-		@apply lg:order-1;
-		@apply order-2;
+		@apply lg:order-1 lg:col-span-2;
 	}
 
 	.panel-components {
-		@apply lg:order-none;
-		@apply order-1;
+		@apply lg:order-none lg:col-span-2;
 	}
 
 	/* セレクタークラス */
@@ -304,5 +303,43 @@
 
 	/* ボタンスタイル */
 	.button-css-edit {
+	}
+
+	/* --- スマホビュー用ドロワー --- */
+	.mobile-drawer {
+		@apply fixed bottom-0 left-0 right-0 z-40 bg-neutral-100 shadow-lg;
+		@apply transform translate-y-full transition-transform duration-300 ease-in-out;
+		max-height: 80vh; /* 高さを制限 */
+		overflow-y: auto; /* 内容が多い場合にスクロール */
+		border-top: 1px solid var(--neutral); /* ライトモードのボーダー */
+		@apply dark:bg-neutral-800 dark:text-neutral-light dark:border-neutral-700;
+	}
+
+	.mobile-drawer.open {
+		@apply translate-y-0;
+	}
+
+	.mobile-drawer-content {
+		@apply p-4 relative;
+	}
+
+	.mobile-drawer-close-button {
+		@apply absolute top-2 right-2 text-neutral-500 hover:text-neutral-800;
+		@apply dark:text-neutral-400 dark:hover:text-white;
+	}
+
+	/* --- スマホビュー用トリガーボタン --- */
+	.mobile-drawer-triggers {
+		@apply fixed bottom-0 left-0 right-0 z-30 flex justify-around p-2 bg-neutral-200/80 backdrop-blur-sm border-t border-neutral;
+		@apply flex flex-col;
+		@apply bg-neutral-dark dark:border-neutral-700;
+	}
+
+	.mobile-drawer-buttons-container {
+		@apply flex flex-row;
+	}
+
+	.drawer-trigger-button {
+		@apply flex-1 mx-1 py-1 text-sm;
 	}
 }
