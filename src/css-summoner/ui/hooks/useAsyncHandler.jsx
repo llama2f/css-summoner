@@ -18,8 +18,13 @@
  * @exports useAsyncHandler - このカスタムフック。
  */
 import { useState, useEffect } from 'react'
-// コンポーネントタイプとハンドラーファイルのパスをマッピングしたJSONマニフェストをインポート
-import handlersManifest from '@/css-summoner/configs/handler-manifest.json'
+
+// Vite/Astro の機能を使って、指定されたパターンのモジュールを動的にインポートする準備
+// キーはファイルパス (例: '/src/css-summoner/ui/templates/handlers/auto/button.jsx')
+// 値は () => import('...') 形式の非同期関数
+const handlerModules = import.meta.glob(
+	'/src/css-summoner/ui/templates/handlers/auto/*.jsx'
+)
 
 function useAsyncHandler(componentType) {
 	// --- 状態管理 (useState) ---
@@ -50,29 +55,30 @@ function useAsyncHandler(componentType) {
 				return
 			}
 
-			// マニフェストから componentType に対応するハンドラー情報を取得
-			const handlerInfo = handlersManifest[componentType]
+			// componentType から期待されるファイルパスを構築
+			// 例: 'button' -> '/src/css-summoner/ui/templates/handlers/auto/button.jsx'
+			const expectedPath = `/src/css-summoner/ui/templates/handlers/auto/${componentType}.jsx`
 
-			// マニフェストに情報がない、またはパスが定義されていない場合
-			if (!handlerInfo || !handlerInfo.path) {
-				// エラーを作成し、コンソールに警告を出力
+			// import.meta.glob の結果から対応するモジュールローダー関数を取得
+			const moduleLoader = handlerModules[expectedPath]
+
+			// 対応するローダー関数が見つからない場合
+			if (!moduleLoader) {
 				const notFoundError = new Error(
-					`Handler not found in manifest for type: ${componentType}`
+					`Handler module not found for type: ${componentType} (expected path: ${expectedPath})`
 				)
 				console.warn(`[useAsyncHandler] ${notFoundError.message}`)
-				// コンポーネントがまだマウントされていれば、エラー状態を設定しロード終了
 				if (isMounted) {
 					setError(notFoundError)
 					setLoading(false)
 				}
-				return // 処理終了
+				return
 			}
 
 			// 動的インポートを実行
 			try {
-				// Vite/Webpackなどが処理する動的インポート構文
-				// handlerInfo.path は '@templates/handlers/auto/button.jsx' のような相対パス
-				const module = await import(/* @vite-ignore */ handlerInfo.path)
+				// 取得したローダー関数を実行してモジュールを動的にインポート
+				const module = await moduleLoader()
 
 				// コンポーネントがまだマウントされている場合
 				if (isMounted) {
@@ -99,8 +105,8 @@ function useAsyncHandler(componentType) {
 			} catch (err) {
 				// 動的インポート自体が失敗した場合 (ファイルが存在しない、構文エラーなど)
 				console.error(
-					`[useAsyncHandler] Failed to load handler for ${componentType} from ${handlerInfo.path}:`,
-					err // エラーオブジェクトをログに出力
+					`[useAsyncHandler] Failed to load handler for ${componentType} (path: ${expectedPath}):`,
+					err
 				)
 				// コンポーネントがまだマウントされていれば、エラー状態を設定しロード終了
 				if (isMounted) {

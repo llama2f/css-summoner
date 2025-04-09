@@ -95,7 +95,6 @@ async function generateManifest() {
 
 					manifest[handlerType] = {
 						metadata: metadata,
-						path: importPath, // ルートからの絶対パス形式を保存
 						sourceFile: fileRelativePath,
 					}
 					console.log(
