@@ -38,6 +38,7 @@ pnpm-debug.log*
 .mf
 .rollup.cache
 tsconfig.tsbuildinfo
+*.bak
 
 # テスト関連
 coverage/
@@ -58,6 +59,11 @@ yarn.lock
 
 #ai
 .clinerules
+.clinerules.bak
 .rooignore
+.roo/
+.roomodes
 
 handler-manifest.json
+todo.md
+.gitmodules

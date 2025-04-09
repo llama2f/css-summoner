@@ -15,18 +15,18 @@ git commit -m "Add css-summoner as a submodule"
 
 ## 機能
 
--   CSSファイル内のアノテーションからコンポーネント情報を抽出
--   TypeScript型定義ファイルの自動生成
--   Astroドキュメントページの生成
--   Astroコンポーネントの生成
--   自動生成データと設定を統合するマッピングファイルの生成
--   **ハンドラーの自動検出とマニフェスト生成**
--   プロジェクトルートの自動検出
--   ファイルタイプ別上書き設定
--   カスタムクラスビルダーUI（コンポーネントのプレビューと構築）
--   モノクロベースのスタイル設計とカラーセレクタによる柔軟なカラー適用
--   カスタムカラーピッカーによるカラーカスタマイズ
--   **選択されたカスタムCSSクラスに対応するルールの表示**
+- CSSファイル内のアノテーションからコンポーネント情報を抽出
+- TypeScript型定義ファイルの自動生成
+- Astroドキュメントページの生成
+- Astroコンポーネントの生成
+- 自動生成データと設定を統合するマッピングファイルの生成
+- **ハンドラーの自動検出とマニフェスト生成**
+- プロジェクトルートの自動検出
+- ファイルタイプ別上書き設定
+- カスタムクラスビルダーUI（コンポーネントのプレビューと構築）
+- モノクロベースのスタイル設計とカラーセレクタによる柔軟なカラー適用
+- カスタムカラーピッカーによるカラーカスタマイズ
+- **選択されたカスタムCSSクラスに対応するルールの表示**
 
 ## データフロー
 
@@ -103,13 +103,9 @@ CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-summoner/scripts/
 
 ## CSSアノテーションの書き方
 
-(このセクションは変更なし)
-
 ... (アノテーションの説明は省略) ...
 
 ## モノクロベースのスタイルとカラーセレクタ
-
-(このセクションは変更なし)
 
 ... (モノクロベースとカラーセレクタの説明は省略) ...
 
@@ -118,12 +114,12 @@ CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-summoner/scripts/
 カスタムクラスビルダーUIで新しいコンポーネントタイプをサポートするには、対応する「ハンドラー」を作成します。
 
 1.  **ハンドラーファイルを作成**:
-    *   `src/css-summoner/templates/handlers/auto/` ディレクトリ内に、コンポーネントタイプに合わせた名前で `.jsx` ファイルを作成します (例: `myComponent.jsx`)。
+    - `src/css-summoner/templates/handlers/auto/` ディレクトリ内に、コンポーネントタイプに合わせた名前で `.jsx` ファイルを作成します (例: `myComponent.jsx`)。
 2.  **必須のエクスポートを実装**:
-    *   `export const metadata = { type: 'my-component', ... };` を定義します (`type` は一意)。
-    *   `render` 関数または `variants` オブジェクトの少なくとも一方を実装し、`{ reactElement, htmlString }` を返すようにします。
-    *   `export default { metadata, render, variants, samples };` を定義します。
-    *   詳細は `src/css-summoner/docs/handler-guide.md` を参照してください。
+    - `export const metadata = { type: 'my-component', ... };` を定義します (`type` は一意)。
+    - `render` 関数または `variants` オブジェクトの少なくとも一方を実装し、`{ reactElement, htmlString }` を返すようにします。
+    - `export default { metadata, render, variants, samples };` を定義します。
+    - 詳細は `src/css-summoner/docs/handler-guide.md` を参照してください。
 3.  **(自動登録)**: ファイルを保存すると、次回 `npm run dev` または `npm run build` (内部で `npm run generate:handlers` が実行される) 時に自動的に検出され、`handler-manifest.json` に登録されます。**手動での登録作業は不要です。**
 4.  **UIで確認**: 開発サーバーを再起動またはページをリロードすると、新しいコンポーネントタイプがUIの選択肢に表示されます。
 
@@ -142,13 +138,13 @@ CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-summoner/scripts/
 
 ## 生成されるファイル
 
--   `src/css-summoner/configs/handler-manifest.json`: **(New!)** 自動検出されたハンドラーの情報（メタデータ、パス）を格納するJSONファイル。ビルド時に生成/更新されます。
--   `src/css-summoner/extracted-annotations.json`: CSSアノテーションから抽出されたコンポーネント情報（クラス名、バリアント、説明、CSSルールテキストなど）。
--   `src/css-summoner/classMappings.js`: インポート統合用ファイル。extracted-annotationsのデータとconfigs/index.jsの設定を統合します。
--   `src/css-summoner/classMappingsConfig.js`: 手動設定ファイル（サイズ、モディファイア等）。
--   `src/css-summoner/types/`: 型定義ファイル（`npm run css -- --types` などで生成）。
--   `src/pages/css-summoner/`: Astroドキュメントページ（`npm run css -- --docs` などで生成）。
--   `src/css-summoner/dist/components/`: Astroコンポーネント（`npm run css -- --components` などで生成、非推奨の可能性あり）。
+- `src/css-summoner/configs/handler-manifest.json`: **(New!)** 自動検出されたハンドラーの情報（メタデータ、パス）を格納するJSONファイル。ビルド時に生成/更新されます。
+- `src/css-summoner/extracted-annotations.json`: CSSアノテーションから抽出されたコンポーネント情報（クラス名、バリアント、説明、CSSルールテキストなど）。
+- `src/css-summoner/classMappings.js`: インポート統合用ファイル。extracted-annotationsのデータとconfigs/index.jsの設定を統合します。
+- `src/css-summoner/classMappingsConfig.js`: 手動設定ファイル（サイズ、モディファイア等）。
+- `src/css-summoner/types/`: 型定義ファイル（`npm run css -- --types` などで生成）。
+- `src/pages/css-summoner/`: Astroドキュメントページ（`npm run css -- --docs` などで生成）。
+- `src/css-summoner/dist/components/`: Astroコンポーネント（`npm run css -- --components` などで生成、非推奨の可能性あり）。
 
 ## カスタマイズ
 
@@ -159,14 +155,20 @@ CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-summoner/scripts/
 ```javascript
 // src/css-summoner/classMappingsConfig.js の例
 export const sizes = {
-  button: [ /* ... */ ],
-  // ...
-};
+	button: [
+		/* ... */
+	],
+	// ...
+}
 export const modifiers = {
-  button: [ /* ... */ ],
-  // ...
-};
-export const colorOptions = [ /* ... */ ];
+	button: [
+		/* ... */
+	],
+	// ...
+}
+export const colorOptions = [
+	/* ... */
+]
 ```
 
 ### プロジェクト設定
@@ -181,16 +183,16 @@ AstroやTailwind CSSに関する設定は、プロジェクトルートの `astr
 
 ### ハンドラーがUIに表示されない / プレビューが機能しない
 
--   `npm run generate:handlers` を実行し、エラーが出ていないか確認します。
--   `src/css-summoner/configs/handler-manifest.json` を確認し、対象ハンドラーが正しく登録され、`path` が `/src/...` 形式になっているか確認します。
--   ハンドラーファイル (`auto/` 内の `.jsx`) の `export const metadata` と `export default` が規約通りか確認します。
--   `render` または `variants` 関数が `{ reactElement, htmlString }` を返しているか確認します。
--   ブラウザの開発者ツールでコンソールエラーを確認します (`useAsyncHandler` や `TemplateRenderer` からのエラーが出ていないか)。
+- `npm run generate:handlers` を実行し、エラーが出ていないか確認します。
+- `src/css-summoner/configs/handler-manifest.json` を確認し、対象ハンドラーが正しく登録され、`path` が `/src/...` 形式になっているか確認します。
+- ハンドラーファイル (`auto/` 内の `.jsx`) の `export const metadata` と `export default` が規約通りか確認します。
+- `render` または `variants` 関数が `{ reactElement, htmlString }` を返しているか確認します。
+- ブラウザの開発者ツールでコンソールエラーを確認します (`useAsyncHandler` や `TemplateRenderer` からのエラーが出ていないか)。
 
 ### クラスが認識されない場合 (CSSアノテーション)
 
--   アノテーション形式が正しいか確認します。
--   アノテーションブロックの直後にクラスセレクタがあるか確認します。
--   CSSファイルが `src/css-summoner/styles/` 以下の適切な場所にあるか確認します。
+- アノテーション形式が正しいか確認します。
+- アノテーションブロックの直後にクラスセレクタがあるか確認します。
+- CSSファイルが `src/css-summoner/styles/` 以下の適切な場所にあるか確認します。
 
 (カスタムカラー、ファイル上書き、パス関連のトラブルシューティングは省略)
