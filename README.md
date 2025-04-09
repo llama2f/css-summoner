@@ -1,5 +1,13 @@
 # CSS Summoner 型定義・コンポーネント生成ツール
 
+## ⚠️注意!!Warning!!
+
+このシステムは開発途中です。内容も未完成です。あくまで参考程度に御覧ください。
+
+This system is under development. The content is incomplete. Please use it only as a reference.
+
+## 概要
+
 CSSファイルからコンポーネント情報を抽出し、TypeScript型定義、Astroドキュメントページ、Astroコンポーネントを生成するツールです。また、カスタムクラスビルダーUIも含んでおり、コンポーネントを視覚的に構築することができます。
 
 サブモジュールとしてメインプロジェクトに組み込み可能です。
