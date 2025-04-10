@@ -61,8 +61,8 @@ interface ClassDescriptions {
  * カスタムクラスビルダーのメインコンポーネント
  */
 const ClassBuilder: React.FC = () => {
-	const { state, actions } = useClassBuilder();
-	const { getSizeOptions, getBorderRadiusOptions, getModifierOptions } =
+ const { state, actions, dispatch } = useClassBuilder(); // dispatch を受け取る
+ const { getSizeOptions, getBorderRadiusOptions, getModifierOptions } =
 		useComponentOptions(state.componentType, sizes, borderRadiusOptions, modifiers);
 
     // ダミーの onTooltip 関数
@@ -70,7 +70,7 @@ const ClassBuilder: React.FC = () => {
 
 	const {
 		showCssVarEditor,
-		toggleCssVarEditor, // この関数を window に公開する
+		toggleCssVarEditor, // この関数をイベントリスナー内で呼び出す
 		closeCssVarEditor,
 		DesktopTrigger: CssVarEditorDesktopTrigger,
 		EditorComponent: CssVarEditorComponent,
@@ -86,7 +86,7 @@ const ClassBuilder: React.FC = () => {
 		[actions, state.selectedColor]
 	);
 
-	// デフォルトサイズ設定の useEffect (コメントアウト解除)
+	// デフォルトサイズ設定の useEffect
 	useEffect(() => {
 		if (state.componentType) {
 			const sizeOptions = getSizeOptions();
@@ -106,45 +106,33 @@ const ClassBuilder: React.FC = () => {
 				}
 			}
 		}
-	// }, [state.componentType, actions, getSizeOptions]); // 依存配列を元に戻す
-    // getSizeOptions が componentType に依存するため、これでOK
 	}, [state.componentType, actions, getSizeOptions]);
 
-    // Header.astro のスクリプトから呼び出すための関数を window に登録
+    // Header.astro との連携用 useEffect
     useEffect(() => {
-        // 型安全のため、既存のオブジェクトがあればマージする
-        (window as any).cssBuilderActions = {
-            ...(window as any).cssBuilderActions, // 既存のプロパティを保持
-            toggleMobileMenu: actions.toggleMobileMenu,
-            toggleCssVarEditor: toggleCssVarEditor, // CssVarEditorManager から取得した関数
-            getMobileMenuState: () => state.isMobileMenuOpen, // 現在の状態を返す関数
-        };
-
-        // isMobileMenuOpen の変更を Header.astro に通知するカスタムイベント
-        const menuButton = document.getElementById('mobile-menu-button');
-        if (menuButton) {
-            menuButton.setAttribute('aria-expanded', String(state.isMobileMenuOpen));
-        }
-        // カスタムイベントを発行して Header.astro 側で購読させる方がより堅牢
-        // window.dispatchEvent(new CustomEvent('cssBuilderMobileMenuToggle', { detail: { isOpen: state.isMobileMenuOpen } }));
-
-
-        // クリーンアップ関数: コンポーネントがアンマウントされるときに window から削除
-        return () => {
-            // 他の機能が cssBuilderActions を使っている可能性を考慮し、
-            // このコンポーネントが追加した関数のみ削除する
-            if ((window as any).cssBuilderActions) {
-                delete (window as any).cssBuilderActions.toggleMobileMenu;
-                delete (window as any).cssBuilderActions.toggleCssVarEditor;
-                delete (window as any).cssBuilderActions.getMobileMenuState;
-                // オブジェクトが空になったらオブジェクト自体も削除する (任意)
-                if (Object.keys((window as any).cssBuilderActions).length === 0) {
-                    delete (window as any).cssBuilderActions;
-                }
+        // Header からのアクション要求を購読
+        const handleDispatchAction = (event: CustomEvent) => {
+            const actionName = event.detail?.action;
+            if (actionName === 'toggleMobileMenu' && actions.toggleMobileMenu) {
+                actions.toggleMobileMenu();
+            } else if (actionName === 'toggleCssVarEditor' && toggleCssVarEditor) {
+                toggleCssVarEditor();
             }
         };
-    // }, [actions.toggleMobileMenu, toggleCssVarEditor, state.isMobileMenuOpen]);
-    // toggleCssVarEditor は CssVarEditorManager から取得するため依存配列に含める
+
+        window.addEventListener('dispatch-css-builder-action', handleDispatchAction as EventListener);
+
+        // isMobileMenuOpen の変更を Header に通知
+        // （state.isMobileMenuOpen が変更されたときにこの useEffect が再実行される）
+        window.dispatchEvent(new CustomEvent('css-builder-mobile-menu-state', {
+            detail: { isOpen: state.isMobileMenuOpen }
+        }));
+
+        // クリーンアップ
+        return () => {
+            window.removeEventListener('dispatch-css-builder-action', handleDispatchAction as EventListener);
+        };
+    // toggleCssVarEditor は外部フック由来なので依存配列に含める
     }, [actions.toggleMobileMenu, toggleCssVarEditor, state.isMobileMenuOpen]);
 
 
@@ -156,8 +144,6 @@ const ClassBuilder: React.FC = () => {
     const availableSpecialClasses = specialClasses.filter(opt => opt.value !== '');
 
 	return (
-		// ルート要素に ID を追加 (Header.astro の代替案で使う場合)
-        // <div id="class-builder-root" className='max-w-7xl mx-auto'>
 		<div className='max-w-7xl mx-auto'>
             {/* モバイル用ヘッダーは Header.astro に移動済み */}
 			<div className='grid grid-cols-1 lg:grid-cols-10 gap-4 p-4 lg:p-0'>
@@ -284,9 +270,9 @@ const ClassBuilder: React.FC = () => {
 			{/* モバイルサイドメニュー */}
             <MobileSideMenu
                 isOpen={state.isMobileMenuOpen}
-                onClose={actions.toggleMobileMenu}
+                onClose={actions.toggleMobileMenu} // 直接アクションを渡す
                 state={state}
-                dispatch={actions as any}
+                dispatch={dispatch} // 正しい dispatch 関数を渡す
                 componentConfig={componentVariants[state.componentType as keyof typeof componentVariants]}
                 availableColors={availableColors}
                 availableVariants={availableVariants}
@@ -295,6 +281,8 @@ const ClassBuilder: React.FC = () => {
                 availableModifiers={availableModifiers}
                 availableSpecialClasses={availableSpecialClasses}
                 classDescriptions={classDescriptions as ClassDescriptions}
+                componentTypes={componentTypes} // 追加
+                onComponentSelect={actions.setComponentType} // 追加
             />
 		</div>
 	);

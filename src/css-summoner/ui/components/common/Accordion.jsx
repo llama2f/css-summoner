@@ -43,7 +43,7 @@ const Accordion = ({
 			<div
 				className={`transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden  ${isOpen ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}
 			>
-				<div className={`p-3 ${contentClassName}`}>
+				<div className={`${contentClassName}`}>
 					<div className='overflow-y-auto max-h-[400px]'>{children}</div>
 				</div>
 			</div>

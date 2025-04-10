@@ -1,24 +1,19 @@
+// src/css-summoner/ui/components/mobile/MobileSideMenu.tsx
 import React, { useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import ComponentSelector from '../selectors/ComponentSelector'; // 追加
 import ColorSelector from '../selectors/ColorSelector';
-import SizeSelector from '../selectors/SizeSelector'; // .tsx をインポート
+import SizeSelector from '../selectors/SizeSelector';
 import BorderRadiusSelector from '../selectors/BorderRadiusSelector';
 import ModifierSelector from '../selectors/ModifierSelector';
 import SpecialClassSelector from '../selectors/SpecialClassSelector';
 import VariantSelector from '../selectors/VariantSelector';
 import Accordion from '../common/Accordion';
+import type { Option } from '@hooks/component/useComponentOptions.tsx';
+import { ACTIONS } from '@hooks/actions.ts'; // ACTIONS をインポート (type import ではなく通常の import)
 
-// 仮の型定義 - 実際の型に合わせて調整が必要
-interface Option {
-  value: string;
-  label: string;
-  description?: string;
-  isCustom?: boolean;
-  cssVar?: string;
-}
-
-// 実際の classDescriptions の型に合わせる
+// classDescriptions の型
 interface ClassDescriptionDetail {
     component: string;
     variant: string;
@@ -29,19 +24,28 @@ interface ClassDescription {
   [key: string]: ClassDescriptionDetail;
 }
 
+// ComponentType の型 (仮。必要なら classMappings などから取得)
+interface ComponentType {
+    value: string;
+    label: string;
+    category?: string;
+}
+
 interface MobileSideMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  state: any; // useClassBuilder の state を想定
-  dispatch: React.Dispatch<any>; // useClassBuilder の dispatch を想定
-  componentConfig: any; // 選択中のコンポーネント設定
+  state: any;
+  dispatch: React.Dispatch<any>;
+  componentConfig: any;
   availableColors: Option[];
-  availableVariants: Option[]; // Option型に変更
-  availableSizes: Option[]; // Option型に変更
-  availableBorderRadii: Option[]; // Option型に変更
-  availableModifiers: Option[]; // Option型に変更
-  availableSpecialClasses: Option[]; // Option型に変更
-  classDescriptions: ClassDescription; // 追加: クラスの説明
+  availableVariants: Option[];
+  availableSizes: Option[];
+  availableBorderRadii: Option[];
+  availableModifiers: Option[];
+  availableSpecialClasses: Option[];
+  classDescriptions: ClassDescription;
+  componentTypes: ComponentType[]; // 追加
+  onComponentSelect: (type: string) => void; // 追加 (actions.setComponentType を想定)
 }
 
 const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
@@ -57,6 +61,8 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
   availableModifiers,
   availableSpecialClasses,
   classDescriptions,
+  componentTypes, // 追加
+  onComponentSelect, // 追加
 }) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -82,7 +88,6 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
   }, [isOpen, onClose]);
   // --- useEffect フック ここまで ---
 
-  // ダミーの onTooltip 関数
   const handleTooltip = () => {};
 
   return (
@@ -99,14 +104,14 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
       {/* Side Menu */}
       <div
         ref={menuRef}
-        className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-neutral-light dark:bg-neutral-dark shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-3/5 max-w-sm bg-neutral-light dark:bg-neutral-dark shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden overflow-y-auto`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-menu-title"
       >
-        <div className="p-4">
+        <div className="p-2">
           <div className="flex justify-between items-center mb-4">
             <h2 id="mobile-menu-title" className="text-lg font-semibold text-neutral-dark dark:text-neutral-light">設定</h2>
             <button
@@ -120,68 +125,74 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
 
           {/* --- セレクターコンポーネント --- */}
           <div className="space-y-4">
-            <Accordion title="カラー">
+            {/* コンポーネント選択を最初に追加 */}
+            <Accordion title="component" initialOpen={true}> {/* defaultOpen を initialOpen に修正 */}
+                <ComponentSelector
+                    componentTypes={componentTypes}
+                    selectedComponent={state.componentType}
+                    onSelect={onComponentSelect} // Props経由で受け取った関数を使用
+                />
+            </Accordion>
+
+             <Accordion title="color">
               <ColorSelector
                 colors={availableColors}
                 selectedColor={state.selectedColor}
-                onSelect={(color: string) => dispatch({ type: 'SET_COLOR', payload: color })}
-                onTooltip={handleTooltip} // 修正: ダミー関数を渡す
+                onSelect={(color: string) => dispatch({ type: ACTIONS.SET_COLOR, payload: color })} // ACTIONS 定数を使用
+                onTooltip={handleTooltip}
               />
             </Accordion>
 
             {availableVariants && availableVariants.length > 0 && (
-              <Accordion title="バリアント">
+              <Accordion title="variant">
                 <VariantSelector
-                  variants={availableVariants} // 修正: Props名を変更
-                  selectedVariant={state.selectedVariant}
-                  onSelect={(variant: string) => dispatch({ type: 'SET_VARIANT', payload: variant })} // 修正: Props名を変更
-                  onTooltip={handleTooltip} // 修正: ダミー関数を渡す
-                  classDescriptions={classDescriptions} // 追加
+                  variants={availableVariants}
+                  selectedVariant={state.componentVariant}
+                  onSelect={(variant: string) => dispatch({ type: ACTIONS.SET_COMPONENT_VARIANT, payload: variant })} // ACTIONS 定数を使用
+                  onTooltip={handleTooltip}
+                  classDescriptions={classDescriptions}
                 />
               </Accordion>
             )}
 
             {availableSizes && availableSizes.length > 0 && (
-               <Accordion title="サイズ">
+               <Accordion title="size">
                 <SizeSelector
-                  sizes={availableSizes} // any キャストを削除
-                  selectedSize={state.selectedSize}
-                  onSelect={(size: string) => dispatch({ type: 'SET_SIZE', payload: size })}
+                  sizes={availableSizes}
+                  selectedSize={state.size}
+                  onSelect={(size: string) => dispatch({ type: ACTIONS.SET_SIZE, payload: size })} // ACTIONS 定数を使用
                 />
               </Accordion>
             )}
 
             {availableBorderRadii && availableBorderRadii.length > 0 && (
-              <Accordion title="角丸">
+              <Accordion title="radius">
                 <BorderRadiusSelector
-                  options={availableBorderRadii} // 修正: Props名を変更
-                  selectedRadius={state.selectedBorderRadius} // 修正: Props名を変更
-                  onSelect={(radius: string) => dispatch({ type: 'SET_BORDER_RADIUS', payload: radius })} // 修正: Props名を変更
+                  options={availableBorderRadii}
+                  selectedRadius={state.selectedBorderRadius}
+                  onSelect={(radius: string) => dispatch({ type: ACTIONS.SET_BORDER_RADIUS, payload: radius })} // ACTIONS 定数を使用
                 />
               </Accordion>
             )}
 
             {availableModifiers && availableModifiers.length > 0 && (
-              <Accordion title="修飾子">
+              <Accordion title="modifier">
                 <ModifierSelector
-                  modifiers={availableModifiers} // 修正: Props名を変更
-                  // selectedModifiers は配列を期待するが、state.selectedModifier は単一の値。
-                  // useClassBuilder 側の修正が必要。一旦 string[] にキャストしてエラー回避。
-                  selectedModifiers={state.selectedModifier ? [state.selectedModifier] as string[] : []}
-                  onToggle={(modifier: string) => dispatch({ type: 'SET_MODIFIER', payload: modifier })} // 修正: Props名とアクションタイプを変更 (要確認)
-                  onTooltip={handleTooltip} // 修正: ダミー関数を渡す
-                  // componentConfig, selectedColor は ModifierSelector では不要なため削除
+                  modifiers={availableModifiers}
+                  selectedModifiers={state.selectedModifiers} // useClassBuilder側で配列に変更が必要
+                  onToggle={(modifier: string) => dispatch({ type: ACTIONS.TOGGLE_MODIFIER, payload: modifier })} // ACTIONS 定数を使用
+                  onTooltip={handleTooltip}
                 />
               </Accordion>
             )}
 
             {availableSpecialClasses && availableSpecialClasses.length > 0 && (
-              <Accordion title="特殊クラス">
+              <Accordion title="special">
                 <SpecialClassSelector
-                  specialClasses={availableSpecialClasses} // 修正: Props名を変更
-                  selectedSpecialClasses={state.selectedSpecialClasses} // これは配列のはず
-                  onToggle={(specialClass: string) => dispatch({ type: 'TOGGLE_SPECIAL_CLASS', payload: specialClass })} // 修正: Props名を変更
-                  onTooltip={handleTooltip} // 修正: ダミー関数を渡す
+                  specialClasses={availableSpecialClasses}
+                  selectedSpecialClasses={state.selectedSpecialClasses}
+                  onToggle={(specialClass: string) => dispatch({ type: ACTIONS.TOGGLE_SPECIAL_CLASS, payload: specialClass })} // ACTIONS 定数を使用
+                  onTooltip={handleTooltip}
                 />
               </Accordion>
             )}
