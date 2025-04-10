@@ -90,7 +90,7 @@
 	/* フォーカス状態の共通スタイル */
 	.btn-base:focus-visible {
 		@apply outline-none ring-2 ring-offset-2;
-		/* フォーカスリングの色はカラーセレクタから取得 */
-		ring-color: var(--focus-ring-color, var(--primary, #1a568e));
+		/* フォーカスリングの色はテーマ変数を使用 */
+		ring-color: var(--component-color, var(--primary, #1a568e));
 	}
 }

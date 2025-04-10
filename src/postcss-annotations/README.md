@@ -1,21 +1,24 @@
 # postcss-css-annotations
 
-PostCSSプラグインとして、CSSファイルからコンポーネントアノテーションを抽出します。CSS内の特別なコメント形式からコンポーネント情報を抽出し、構造化データとして提供します。
+PostCSSプラグインとして、CSSファイルからコンポーネントアノテーションを抽出します。CSS内の特別なコメント形式からコンポーネント情報を抽出し、構造化データとして提供します。ホバー状態や子孫セレクタなどの関連ルールも自動的に収集します。
 
 ## 主な機能
 
 - CSSファイル内のアノテーションコメントからコンポーネント情報を抽出
 - コンポーネントタイプ、バリアント、説明文などの構造化データを生成
+- 関連するセレクタ（:hover、子孫セレクタなど）も自動的に収集
 - 抽出データをPostCSSメッセージまたはJSONファイルとして出力
 
 ## インストール
 
 npmを使用する場合:
+
 ```bash
 npm install --save-dev postcss postcss-css-annotations
 ```
 
 yarnを使用する場合:
+
 ```bash
 yarn add --dev postcss postcss-css-annotations
 ```
@@ -25,49 +28,49 @@ yarn add --dev postcss postcss-css-annotations
 ### PostCSS設定ファイル (`postcss.config.js`) での使用例
 
 ```js
-const cssAnnotations = require('postcss-css-annotations');
+const cssAnnotations = require('postcss-css-annotations')
 
 module.exports = {
-  plugins: [
-    cssAnnotations({
-      // オプション (詳細は後述)
-      // outputPath: './extracted-annotations.json' 
-    })
-  ]
+	plugins: [
+		cssAnnotations({
+			// オプション (詳細は後述)
+			// outputPath: './extracted-annotations.json'
+		}),
+	],
 }
 ```
 
 ### Node.js スクリプトでの使用例
 
 ```js
-const postcss = require('postcss');
-const cssAnnotations = require('postcss-css-annotations');
-const fs = require('fs');
+const postcss = require('postcss')
+const cssAnnotations = require('postcss-css-annotations')
+const fs = require('fs')
 
-const yourCSS = fs.readFileSync('input.css', 'utf8');
+const yourCSS = fs.readFileSync('input.css', 'utf8')
 
 postcss([
-  cssAnnotations({
-    // オプション
-  })
+	cssAnnotations({
+		// オプション
+	}),
 ])
-  .process(yourCSS, { from: 'input.css' })
-  .then((result) => {
-    // 抽出データを取得
-    const dataMessage = result.messages.find(
-      (msg) => msg.type === 'css-annotations-data',
-    );
-    if (dataMessage) {
-      const extractedData = dataMessage.data;
-      console.log(extractedData);
-      // 必要に応じて extractedData を利用
-    }
+	.process(yourCSS, { from: 'input.css' })
+	.then((result) => {
+		// 抽出データを取得
+		const dataMessage = result.messages.find(
+			(msg) => msg.type === 'css-annotations-data'
+		)
+		if (dataMessage) {
+			const extractedData = dataMessage.data
+			console.log(extractedData)
+			// 必要に応じて extractedData を利用
+		}
 
-    // 警告やエラーの確認
-    result.warnings().forEach(warn => {
-      console.warn(warn.toString());
-    });
-  });
+		// 警告やエラーの確認
+		result.warnings().forEach((warn) => {
+			console.warn(warn.toString())
+		})
+	})
 ```
 
 ### コマンドラインインターフェース (CLI)
@@ -101,30 +104,26 @@ npx postcss-css-annotations --help
 
 ```js
 cssAnnotations({
-  // 抽出データの出力先JSONファイルパス。
-  // 指定しない場合、データはPostCSSのresult.messagesに含まれるのみ。
-  outputPath: null, 
+	// 抽出データの出力先JSONファイルパス。
+	// 指定しない場合、データはPostCSSのresult.messagesに含まれるのみ。
+	outputPath: null,
 
-  // 認識するアノテーションタグのリスト。
-  recognizedTags: [
-    '@component:',
-    '@variant:',
-    '@description:',
-    '@category:',
-    '@example:',
-  ],
+	// 認識するアノテーションタグのリスト。
+	recognizedTags: [
+		'@component:',
+		'@variant:',
+		'@description:',
+		'@category:',
+		'@example:',
+	],
 
-  // 必須のアノテーションタグのリスト。
-  // これらのタグがコメント内に存在しない場合、警告が出力されます。
-  requiredTags: [
-    '@component:',
-    '@variant:',
-    '@description:',
-  ],
+	// 必須のアノテーションタグのリスト。
+	// これらのタグがコメント内に存在しない場合、警告が出力されます。
+	requiredTags: ['@component:', '@variant:', '@description:'],
 
-  // 詳細なログをコンソールに出力するかどうか。
-  // CLIでは -v オプションで有効になります。
-  verbose: false, 
+	// 詳細なログをコンソールに出力するかどうか。
+	// CLIでは -v オプションで有効になります。
+	verbose: false,
 })
 ```
 
@@ -140,7 +139,7 @@ CSS内の以下のような特別なコメント形式を認識します。各�
  * @category: interactive
  */
 .btn-base {
-  /* スタイル定義 */
+	/* スタイル定義 */
 }
 
 /* 
@@ -151,7 +150,7 @@ CSS内の以下のような特別なコメント形式を認識します。各�
  @example: <button class="btn-base btn-primary">プライマリボタン</button>
 */
 .btn-primary {
-  /* スタイル定義 */
+	/* スタイル定義 */
 }
 ```
 
@@ -162,10 +161,11 @@ CSS内の以下のような特別なコメント形式を認識します。各�
 | `@component:`   | コンポーネントタイプ（例: button, card, alert）                    |  ✅  |     なし     |
 | `@variant:`     | バリアント名（例: primary, secondary, base）                       |  ✅  |     なし     |
 | `@description:` | クラスの説明文                                                     |  ✅  |     なし     |
-| `@category:`    | コンポーネントのカテゴリ（例: interactive, container, typography） |  ❌  |   `'other'`  |
+| `@category:`    | コンポーネントのカテゴリ（例: interactive, container, typography） |  ❌  |  `'other'`   |
 | `@example:`     | 使用例のHTMLコード                                                 |  ❌  |     なし     |
 
-**注意**: 
+**注意**:
+
 - `@variant: base` は特別な意味を持ち、そのクラスがコンポーネントのベースクラスであることを示します。各コンポーネントにはベースクラスが1つ定義されていることが期待されます。
 - `@category:` が指定されていない場合、デフォルトで `'other'` が設定されます。
 
@@ -183,13 +183,13 @@ CSS内の以下のような特別なコメント形式を認識します。各�
     ],
     "card": ["card"]
   },
-  
+
   // コンポーネントのベースクラス (variant: base)
   "baseClasses": {
     "button": "btn-base",
     "card": "card"
   },
-  
+
   // コンポーネントのバリアントと対応するクラス名
   "componentVariants": {
     "button": {
@@ -200,7 +200,7 @@ CSS内の以下のような特別なコメント形式を認識します。各�
       "base": "card"
     }
   },
-  
+
   // クラスの詳細情報
   "classDescriptions": {
     "btn-base": {
@@ -222,7 +222,7 @@ CSS内の以下のような特別なコメント形式を認識します。各�
        "category": "other" // デフォルトカテゴリ
      }
   },
-  
+
   // コンポーネントの使用例（@exampleタグがある場合）
   "componentExamples": {
     "button": [
@@ -234,17 +234,29 @@ CSS内の以下のような特別なコメント形式を認識します。各�
     ]
     // cardにはexampleがないため、キーが存在しない
   },
-  
+
   // CSSルールの詳細情報
   "classRuleDetails": {
     "btn-base": {
       "ruleText": ".btn-base {\n  display: inline-block;\n  padding: 0.5rem 1rem;\n}",
       "selector": ".btn-base",
-      "sourceFile": "input.css" // 処理されたファイルパス
+      "sourceFile": "input.css", // 処理されたファイルパス
+      "relatedRules": [
+        {
+          "selector": ".btn-base:hover",
+          "ruleText": ".btn-base:hover {\n  background-color: #f0f0f0;\n}",
+          "sourceFile": "input.css"
+        },
+        {
+          "selector": ".parent .btn-base",
+          "ruleText": ".parent .btn-base {\n  margin: 0.5rem;\n}",
+          "sourceFile": "input.css"
+        }
+      ]
     },
     // ... 他のクラスのルール詳細
   },
-  
+
   // メタ情報
   "meta": {
     "totalClasses": 3, // 抽出されたアノテーション付きクラスの総数
@@ -255,18 +267,34 @@ CSS内の以下のような特別なコメント形式を認識します。各�
   }
 }
 ```
-*注意:* CLIで複数のファイルを処理した場合、`meta.source` は配列 (`sources`) になり、各データはマージされます。
+
+_注意:_ CLIで複数のファイルを処理した場合、`meta.source` は配列 (`sources`) になり、各データはマージされます。
+
+## 関連セレクタの収集
+
+このプラグインは各クラスに関連するセレクタも自動的に収集します。以下のようなケースが含まれます：
+
+- **疑似クラス・疑似要素**: `.className:hover`, `.className::before` など
+- **子孫セレクタ（親の場合）**: `.className .child`, `.className > .child` など
+- **子孫セレクタ（子の場合）**: `.parent .className`, `.parent > .className` など
+- **複合セレクタ**: `.className.anotherClass` など
+
+これらの関連ルールは `classRuleDetails` の `relatedRules` 配列に格納され、カスタムクラスビルダーUIなどで使用できます。
 
 ## 開発
 
 ### テストの実行
+
 ```bash
-yarn test 
+yarn test
 ```
+
 または
+
 ```bash
 npm test
 ```
+
 Vitestによるテストが実行されます。ウォッチモードで起動します。
 
 ## 貢献

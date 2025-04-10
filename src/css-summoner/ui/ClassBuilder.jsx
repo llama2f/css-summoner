@@ -312,45 +312,45 @@ const ClassBuilder = () => {
 					<div className='flex flex-wrap items-center justify-between gap-4 pb-2 border-b'>
 						{/* 背景色設定 */}
 						<div className='flex items-center gap-2'>
-							<span className='text-sm font-medium'>背景:</span>
-							<div className='flex gap-1'>
+							<span className='text-sm font-medium'>background:</span>
+							<div className='flex gap-4'>
 								<button
 									onClick={() => actions.setPreviewBg('bg-transparent')}
-									className={`w-5 h-5 rounded-full border border-dashed ${state.previewBg === 'bg-transparent' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									className={`w-8 h-8 rounded-full border border-dashed ${state.previewBg === 'bg-transparent' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
 									aria-label='透過背景'
 									title='透過背景'
 								></button>
 								<button
 									onClick={() => actions.setPreviewBg('bg-white')}
-									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-white' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									className={`w-8 h-8 rounded-full border ${state.previewBg === 'bg-white' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
 									style={{ backgroundColor: 'white' }}
 									aria-label='白背景'
 									title='白背景'
 								></button>
 								<button
 									onClick={() => actions.setPreviewBg('bg-neutral-200')}
-									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-neutral-200' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									className={`w-8 h-8 rounded-full border ${state.previewBg === 'bg-neutral-200' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
 									style={{ backgroundColor: '#e5e5e5' }}
 									aria-label='グレー背景'
 									title='グレー背景'
 								></button>
 								<button
 									onClick={() => actions.setPreviewBg('bg-neutral-800')}
-									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-neutral-800' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									className={`w-8 h-8 rounded-full border ${state.previewBg === 'bg-neutral-800' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
 									style={{ backgroundColor: '#262626' }}
 									aria-label='黒背景'
 									title='黒背景'
 								></button>
 								<button
 									onClick={() => actions.setPreviewBg('bg-primary-light')}
-									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-primary-light' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									className={`w-8 h-8 rounded-full border ${state.previewBg === 'bg-primary-light' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
 									style={{ backgroundColor: 'var(--primary-light)' }}
 									aria-label='プライマリライト背景'
 									title='プライマリライト背景'
 								></button>
 								<button
 									onClick={() => actions.setPreviewBg('bg-secondary-light')}
-									className={`w-5 h-5 rounded-full border ${state.previewBg === 'bg-secondary-light' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									className={`w-8 h-8 rounded-full border ${state.previewBg === 'bg-secondary-light' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
 									style={{ backgroundColor: 'var(--secondary-light)' }}
 									aria-label='セカンダリライト背景'
 									title='セカンダリライト背景'

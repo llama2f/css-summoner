@@ -2,15 +2,15 @@ import React, { useState, useCallback, useMemo, useEffect } from 'react'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
-import xml from 'highlight.js/lib/languages/xml' // HTML用
-import 'highlight.js/styles/github-dark.css' // テーマCSSをインポート (例: github-dark)
+import xml from 'highlight.js/lib/languages/xml'
+import 'highlight.js/styles/github-dark.css'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
-hljs.registerLanguage('html', xml) // HTMLはxmlとして登録
+hljs.registerLanguage('html', xml)
 import PropTypes from 'prop-types'
-import useAsyncHandler from '@hooks/useAsyncHandler' // カスタムフックをインポート
-import { classRuleDetails } from '@/css-summoner/classMappings' // CSSルール詳細をインポート
+import useAsyncHandler from '@hooks/useAsyncHandler'
+import { classRuleDetails } from '@/css-summoner/classMappings'
 
 /**
  * 生成されたクラス文字列とHTMLコードを表示するコンポーネント
@@ -58,7 +58,7 @@ const ClassCodeDisplay = ({
 				})
 		},
 		[setCopySuccess]
-	) // 変更なしだが、後続の変更のため再記述
+	)
 
 	// ベースクラスを決定
 	const baseClass = useMemo(() => {
@@ -187,20 +187,40 @@ const ClassCodeDisplay = ({
 		targetClasses.forEach((className) => {
 			// classRuleDetails からルールを検索
 			const details = classRuleDetails[className]
-			if (details && details.ruleText) {
-				// 既に同じルールが追加されていないか確認
-				if (!foundRules.includes(details.ruleText)) {
+			if (details) {
+				// メインルールを追加
+				if (details.ruleText && !foundRules.includes(details.ruleText)) {
 					foundRules.push(details.ruleText)
+				}
+
+				// 関連ルール（hover、子孫セレクタなど）を追加
+				if (details.relatedRules && details.relatedRules.length > 0) {
+					details.relatedRules.forEach((relatedRule) => {
+						if (!foundRules.includes(relatedRule.ruleText)) {
+							foundRules.push(relatedRule.ruleText)
+						}
+					})
 				}
 			}
 			// baseClass のルールも検索 (variant が base の場合)
 			else if (className === baseClass && classRuleDetails[baseClass]) {
 				const baseDetails = classRuleDetails[baseClass]
+
+				// メインのベースクラスルールを追加
 				if (
 					baseDetails.ruleText &&
 					!foundRules.includes(baseDetails.ruleText)
 				) {
 					foundRules.push(baseDetails.ruleText)
+				}
+
+				// ベースクラスの関連ルールも追加
+				if (baseDetails.relatedRules && baseDetails.relatedRules.length > 0) {
+					baseDetails.relatedRules.forEach((relatedRule) => {
+						if (!foundRules.includes(relatedRule.ruleText)) {
+							foundRules.push(relatedRule.ruleText)
+						}
+					})
 				}
 			}
 		})
