@@ -296,10 +296,10 @@
 	}
 
 	/* アコーディオン */
-	.overflow-y-auto {
+	/* .overflow-y-auto {
 		scrollbar-width: thin;
 		scrollbar-color: var(--neutral) transparent;
-	}
+	} */
 
 	/* ボタンスタイル */
 	.button-css-edit {
@@ -330,9 +330,9 @@
 
 	/* --- スマホビュー用トリガーボタン --- */
 	.mobile-drawer-triggers {
-		@apply fixed bottom-0 left-0 right-0 z-30 flex justify-around p-2 bg-neutral-200/80 backdrop-blur-sm border-t border-neutral;
+		@apply fixed bottom-0 left-0 right-0 z-30 flex justify-around p-2 backdrop-blur-sm border-t border-neutral;
 		@apply flex flex-col;
-		@apply bg-neutral-dark dark:border-neutral-700;
+		@apply bg-primary lg:bg-neutral-dark;
 	}
 
 	.mobile-drawer-buttons-container {

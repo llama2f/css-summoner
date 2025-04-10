@@ -93,10 +93,10 @@ const ClassBuilder = () => {
 		[actions, state.selectedColor]
 	)
 
-	// コンポーネントタイプが変更されたときにサイズを設定するuseEffect
+	// コンポーネントタイプが変更されたときにデフォルトサイズを設定するuseEffect
 	useEffect(() => {
 		if (state.componentType) {
-			const sizeOptions = getSizeOptions()
+			const sizeOptions = getSizeOptions() // useEffect内で呼び出す
 			if (sizeOptions.length > 0) {
 				// 'sm'または'small'のサイズオプションを探す
 				const smallOption = sizeOptions.find(
@@ -104,11 +104,21 @@ const ClassBuilder = () => {
 				)
 				// 見つかった場合はそれを、なければ最初のオプションを設定
 				const sizeToSet = smallOption ? smallOption.value : sizeOptions[0].value
-				actions.setSize(sizeToSet)
+				// 現在のサイズと比較し、異なる場合のみ更新
+				if (state.size !== sizeToSet) {
+					actions.setSize(sizeToSet)
+				}
+			} else {
+				// サイズオプションがない場合はnullを設定（現在のサイズがnullでない場合のみ更新）
+				if (state.size !== null) {
+					actions.setSize(null)
+				}
 			}
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [state.componentType, actions.setSize, getSizeOptions]) // getSizeOptionsも依存配列に追加
+		// state.componentType が変更されたとき、または state.size が変更されたときに実行
+		// actions と getSizeOptions は通常メモ化されているため依存配列に含めるが、
+		// これらが不安定な場合は useClassBuilder や useComponentOptions の実装を見直す必要がある
+	}, [state.componentType, state.size, actions, getSizeOptions])
 
 	return (
 		<div className='max-w-7xl mx-auto'>
@@ -124,9 +134,7 @@ const ClassBuilder = () => {
 				</div>
 
 				{/* 中央: 設定パネル */}
-				{/* 中央: 設定パネル (lg以上で表示) */}
 				<div className='panel panel-settings hidden lg:block'>
-					{/* --- 設定項目 --- */}
 					{/* バリアント選択 */}
 					{componentVariants[state.componentType] &&
 						componentVariants[state.componentType].length > 0 && (
@@ -183,17 +191,16 @@ const ClassBuilder = () => {
 
 				{/* 右側: プレビューと生成コード */}
 				<div className='panel-preview'>
-					{/* 上部コントロール: 背景色設定とテーマ切り替え */}
 					<div className='flex flex-wrap items-center justify-between gap-4 pb-2 border-b'>
 						{/* 背景色設定 */}
 						<div className='flex items-center gap-2'>
 							<span className='text-sm font-medium'>background:</span>
 							<div className='flex gap-4'>
 								<button
-									onClick={() => actions.setPreviewBg('bg-transparent')}
-									className={`w-8 h-8 rounded-full border border-dashed ${state.previewBg === 'bg-transparent' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
-									aria-label='透過背景'
-									title='透過背景'
+									onClick={() => actions.setPreviewBg('bg-neutral-400/30')}
+									className={`w-8 h-8 rounded-full border border-dashed ${state.previewBg === 'bg-neutral-400/30' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									aria-label='半透過'
+									title='半透過'
 								></button>
 								<button
 									onClick={() => actions.setPreviewBg('bg-white')}
@@ -233,9 +240,6 @@ const ClassBuilder = () => {
 							</div>
 						</div>
 					</div>
-
-					{/* --- CSS変数エディタ トグルボタンは削除され、別の場所に移動しました --- */}
-
 					{/* プレビュー */}
 					<ClassPreview
 						componentType={state.componentType}

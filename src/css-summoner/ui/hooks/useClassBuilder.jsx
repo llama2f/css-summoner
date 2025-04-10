@@ -37,24 +37,6 @@ const saveCustomColors = (colorSettings) => {
 	}
 }
 
-// アクション定義
-
-/* 
-	hooks/actions.js から ACTIONS オブジェクトをインポート
-	export const ACTIONS = {
-	SET_COMPONENT_TYPE: 'SET_COMPONENT_TYPE',
-	SET_COMPONENT_VARIANT: 'SET_COMPONENT_VARIANT',
-	SET_SIZE: 'SET_SIZE',
-	SET_BORDER_RADIUS: 'SET_BORDER_RADIUS',
-	TOGGLE_MODIFIER: 'TOGGLE_MODIFIER',
-	SET_ADDITIONAL_CLASSES: 'SET_ADDITIONAL_CLASSES',
-	TOGGLE_SPECIAL_CLASS: 'TOGGLE_SPECIAL_CLASS',
-	SET_PREVIEW_BG: 'SET_PREVIEW_BG',
-	SET_COLOR: 'SET_COLOR', // 色設定アクション
-	SET_CUSTOM_COLOR_SETTINGS: 'SET_CUSTOM_COLOR_SETTINGS', // カスタム色設定アクション
-	RESET_SETTINGS: 'RESET_SETTINGS',
-} */
-
 // 初期状態
 const initialState = {
 	componentType: 'button',
@@ -64,7 +46,7 @@ const initialState = {
 	selectedModifiers: [],
 	additionalClasses: '',
 	selectedSpecialClasses: [],
-	previewBg: 'bg-transparent',
+	previewBg: 'bg-neutral-400/30',
 	selectedColor: 'theme-primary', // 選択中の色クラス
 	customColorSettings: defaultCustomColor, // デフォルト値を設定
 	generatedClassString: '',

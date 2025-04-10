@@ -23,9 +23,7 @@ const ClassPreview = ({
 }) => {
 	// すべてのクラスを結合（メモ化）- これは TemplateRenderer に渡す classString のために必要
 	const combinedClasses = useMemo(() => {
-		// baseClass は TemplateRenderer 側でハンドラーに渡して処理させるため、ここでは結合しない
 		return combineClasses({
-			// baseClass, // 除外
 			variant: componentVariant,
 			size,
 			radius: borderRadius,
@@ -35,7 +33,6 @@ const ClassPreview = ({
 			additional: additionalClasses,
 		})
 	}, [
-		// baseClass, // 除外
 		componentVariant,
 		size,
 		borderRadius,
@@ -49,15 +46,11 @@ const ClassPreview = ({
 	const rendererOptions = useMemo(
 		() => ({
 			classString: combinedClasses,
-			selectedModifiers: selectedModifiers, // ハンドラーがモディファイアを必要とする場合
-			// プレビュー用の固定プロパティ (必要に応じて調整)
-			// ハンドラー側でデフォルト値を持つことが多いので、ここでは必須ではない場合もある
+			selectedModifiers: selectedModifiers,
 			children: `${componentType} Preview`,
-			// variant は TemplateRenderer が options から取り出して処理する想定
 			variant: componentVariant,
-			color: selectedColor, // ハンドラーが必要とする場合
-			// forPreview: true, // 以前あったが、新しいハンドラーで必要か確認
-			baseClass: baseClass, // TemplateRenderer に渡す
+			color: selectedColor,
+			baseClass: baseClass,
 		}),
 		[
 			combinedClasses,
@@ -65,11 +58,9 @@ const ClassPreview = ({
 			componentType,
 			componentVariant,
 			selectedColor,
-			baseClass, // 依存配列に追加
+			baseClass,
 		]
 	)
-
-	// reactElement を生成する useMemo は不要になった
 
 	return (
 		<div
