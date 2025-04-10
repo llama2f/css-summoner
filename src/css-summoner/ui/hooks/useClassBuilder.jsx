@@ -46,7 +46,7 @@ const initialState = {
 	selectedModifiers: [],
 	additionalClasses: '',
 	selectedSpecialClasses: [],
-	previewBg: 'bg-neutral-400/30',
+	previewBg: 'bg-transparent',
 	selectedColor: 'theme-primary', // 選択中の色クラス
 	customColorSettings: defaultCustomColor, // デフォルト値を設定
 	generatedClassString: '',

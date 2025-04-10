@@ -197,8 +197,8 @@ const ClassBuilder = () => {
 							<span className='text-sm font-medium'>background:</span>
 							<div className='flex gap-4'>
 								<button
-									onClick={() => actions.setPreviewBg('bg-neutral-400/30')}
-									className={`w-8 h-8 rounded-full border border-dashed ${state.previewBg === 'bg-neutral-400/30' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
+									onClick={() => actions.setPreviewBg('bg-transparent')}
+									className={`w-8 h-8 rounded-full border border-dashed ${state.previewBg === 'bg-transparent' ? 'ring-2 ring-primary ring-offset-1' : ''}`}
 									aria-label='半透過'
 									title='半透過'
 								></button>
