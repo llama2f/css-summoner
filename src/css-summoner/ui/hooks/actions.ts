@@ -40,4 +40,5 @@ export const ACTIONS = {
 	// 外部コンポーネントから直接ディスパッチされることは通常ないが、
 	// アクションタイプを一元管理するためにここに含めている。
 	UPDATE_GENERATED_CLASS: 'UPDATE_GENERATED_CLASS', // 生成クラス文字列更新
-}
+	TOGGLE_MOBILE_MENU: 'TOGGLE_MOBILE_MENU', // モバイルメニュー開閉トグル
+} as const // Add 'as const' assertion

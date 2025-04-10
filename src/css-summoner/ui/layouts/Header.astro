@@ -1,13 +1,81 @@
 ---
 import ThemeSwitcher from '@components/astro/ThemeSwitcher.astro'
 import siteData from '@configs/siteData.json'
+import FontAwesomeIcon from '@components/astro/FontAwesomeIcon.astro'
+import { faBars, faPalette } from '@fortawesome/free-solid-svg-icons'
 
 const { title = siteData.siteName } = Astro.props
 ---
 
 <header
-	class='flex items-center justify-between sticky top-0 z-30 p-4 text-neutral bg-neutral-dark'
+	class='flex items-center justify-between sticky top-0 z-30 p-4 bg-neutral-light dark:bg-neutral-dark border-b border-neutral-200 dark:border-neutral-700'
 >
-	<h1 class='text-xl font-bold text-neutral-100'>{title}</h1>
-	<ThemeSwitcher />
+	<h1
+		class='text-lg md:text-xl font-bold text-neutral-dark dark:text-neutral-light'
+	>
+		{title}
+	</h1>
+
+	<div class='flex items-center gap-2'>
+		{/* 右側の要素をまとめるコンテナ */}
+		{/* テーマスイッチャーを先に配置 (position プロパティを削除) */}
+		<ThemeSwitcher position='' />
+
+		{/* モバイル用ボタン (md未満で表示) */}
+		<div class='md:hidden flex items-center gap-1'>
+			{/* gap-1 でボタン間のスペースを調整 */}
+			<button
+				id='mobile-palette-button'
+				class='btn btn-ghost btn-sm p-1 text-neutral-dark dark:text-neutral-light hover:bg-neutral-200 dark:hover:bg-neutral-600'
+				aria-label='カラーパレットを開く'
+				title='カラーパレット'
+			>
+				<FontAwesomeIcon
+					icon={faPalette}
+					params={{ classes: ['h-5', 'w-5'] }}
+				/>
+			</button>
+			<button
+				id='mobile-menu-button'
+				class='btn btn-ghost btn-sm p-1 text-neutral-dark dark:text-neutral-light hover:bg-neutral-200 dark:hover:bg-neutral-600'
+				aria-label='メニューを開く'
+				title='メニュー'
+				aria-expanded='false'
+			>
+				<FontAwesomeIcon icon={faBars} params={{ classes: ['h-5', 'w-5'] }} />
+			</button>
+		</div>
+	</div>
 </header>
+
+<script>
+	// クライアントサイドスクリプトは変更なし
+	document.addEventListener('DOMContentLoaded', () => {
+		const menuButton = document.getElementById('mobile-menu-button')
+		const paletteButton = document.getElementById('mobile-palette-button')
+		const classBuilderActions = (window as any).cssBuilderActions
+
+		if (menuButton && classBuilderActions?.toggleMobileMenu) {
+			menuButton.addEventListener('click', () => {
+				classBuilderActions.toggleMobileMenu()
+				const currentState = menuButton.getAttribute('aria-expanded') === 'true'
+				menuButton.setAttribute('aria-expanded', String(!currentState))
+			})
+		}
+
+		if (paletteButton && classBuilderActions?.toggleCssVarEditor) {
+			paletteButton.addEventListener('click', () => {
+				classBuilderActions.toggleCssVarEditor()
+			})
+		}
+
+		if (menuButton && classBuilderActions?.getMobileMenuState) {
+			const updateAriaExpanded = () => {
+				const isOpen = classBuilderActions.getMobileMenuState()
+				menuButton.setAttribute('aria-expanded', String(isOpen))
+			}
+			updateAriaExpanded()
+			window.addEventListener('cssBuilderMobileMenuToggle', updateAriaExpanded)
+		}
+	})
+</script>

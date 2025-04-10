@@ -55,6 +55,7 @@
 		"@fortawesome/react-fontawesome": "^0.2.2",
 		"@playform/compress": "^0.1.1",
 		"@tailwindcss/typography": "^0.5.16",
+		"@types/react": "^19.1.0",
 		"@typescript-eslint/parser": "^8.2.0",
 		"alpinejs": "^3.14.8",
 		"astro-breadcrumbs": "^3.3.1",
