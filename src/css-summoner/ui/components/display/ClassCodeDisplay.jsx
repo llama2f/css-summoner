@@ -342,7 +342,7 @@ const ClassCodeDisplay = ({
 					<button
 						onClick={() => copyToClipboard(displayClassString)}
 						disabled={!displayClassString}
-						className='btn-base btn-solid btn-sm rounded color-accent'
+						className='btn-base btn-solid btn-sm rounded theme-accent'
 						title='クラスをコピー'
 					>
 						<svg
@@ -368,7 +368,7 @@ const ClassCodeDisplay = ({
 					<button
 						onClick={copyCssToClipboard}
 						disabled={!cssRulesString || cssRulesString.startsWith('/*')}
-						className='btn-base btn-solid btn-xs rounded color-neutral flex justify-center'
+						className='btn-base btn-solid btn-xs rounded theme-neutral flex justify-center'
 					>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
@@ -407,7 +407,7 @@ const ClassCodeDisplay = ({
 							!initialClassString || // props 名変更
 							htmlString.startsWith('<!--')
 						}
-						className='btn-base btn-solid btn-xs rounded color-neutral'
+						className='btn-base btn-solid btn-xs rounded theme-neutral'
 					>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'

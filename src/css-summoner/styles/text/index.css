@@ -10,10 +10,10 @@
  * - ユーティリティ（影、ぼかし、アウトライン、縦書き）
  * 
  * 使用例:
- * <span class="text-marker color-primary">マーカー付きテキスト</span>
- * <span class="text-underline-wavy color-secondary">波線下線テキスト</span>
- * <p class="text-quote color-neutral">引用符付きテキスト</p>
- * <span class="text-highlight color-accent">ハイライトされたテキスト</span>
+ * <span class="text-marker theme-primary">マーカー付きテキスト</span>
+ * <span class="text-underline-wavy theme-secondary">波線下線テキスト</span>
+ * <p class="text-quote theme-neutral">引用符付きテキスト</p>
+ * <span class="text-highlight theme-accent">ハイライトされたテキスト</span>
  * <span class="text-shadow">影付きテキスト</span>
  */
 @import './base.css';

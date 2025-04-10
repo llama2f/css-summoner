@@ -58,7 +58,7 @@
    * @variant: base
    * @description: すべてのカードの基本スタイル。コンテナとしての基本的な構造とレイアウトを提供します。
    * @category: container
-   * @example: <div class="card-base card-solid color-neutral">...</div>
+   * @example: <div class="card-base card-solid theme-neutral">...</div>
    */
 	.card-base {
 		@apply block overflow-hidden; /* レイアウトと内容のクリッピング */

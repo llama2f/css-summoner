@@ -15,8 +15,8 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 │   └── index.css     # インポート管理
 ├── card/             # カードコンポーネント
 ├── colors/           # カラー定義
-│   ├── color-system.css      
-│   ├── custom-colors.css 
+│   ├── color-system.css
+│   ├── custom-colors.css
 ├── ...
 ├── styles.css        # 全体スタイル
 ├── class-sumonner.css # カスタムクラスビルダーUI用スタイル
@@ -76,19 +76,20 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 ```css
 /* モノクロベースのボタン定義例 */
 .btn-base {
-  @apply inline-flex items-center justify-center;
-  @apply font-medium text-center whitespace-nowrap;
-  @apply select-none cursor-pointer;
-  @apply transition-all duration-200;
-  
-  /* カラー関連のスタイルをここでは定義しない */
-  /* 代わりにカラークラスで上書きできるようにする */
+	@apply inline-flex items-center justify-center;
+	@apply font-medium text-center whitespace-nowrap;
+	@apply select-none cursor-pointer;
+	@apply transition-all duration-200;
+
+	/* カラー関連のスタイルをここでは定義しない */
+	/* 代わりにカラークラスで上書きできるようにする */
 }
 
 /* ホバー/フォーカスのベース振る舞い（カラー非依存） */
-.btn-base:hover, .btn-base:focus-visible {
-  @apply outline-none;
-  /* 個別カラークラスで色を定義 */
+.btn-base:hover,
+.btn-base:focus-visible {
+	@apply outline-none;
+	/* 個別カラークラスで色を定義 */
 }
 ```
 
@@ -99,51 +100,103 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 - **カラーシステムの統一**: アプリケーション全体で一貫したカラーシステムを維持できます
 - **アクセシビリティの向上**: コントラスト比を一元管理しやすくなります
 
-### 2. カラーセレクタ
+### 2. テーマクラスとカラーセレクタ
 
-カラーセレクタを使用して、モノクロベースのコンポーネントに色を適用します。これは `.color-[variant]` クラスを使用して実現されます。
+テーマクラスとカラーセレクタを使用して、モノクロベースのコンポーネントに色を適用します。新しいアプローチでは、意味に基づいた命名（`.theme-[variant]`）と下位互換性のための旧式命名（`.color-[variant]`）の両方をサポートしています。
 
 ```css
-/* カラーセレクタクラスの例 */
+/* 意味ベースのテーマクラスの例 */
+.theme-primary {
+	--component-color: var(--primary, #1b6e79);
+	--component-text: var(--on-primary, #ffffff);
+	--component-border: var(--primary, #1b6e79);
+	--component-hover-color: color-mix(
+		in srgb,
+		var(--primary, #1b6e79),
+		var(--hover-light-mix, #000) var(--hover-amount, 10%)
+	);
+	--component-active-color: color-mix(
+		in srgb,
+		var(--primary, #1b6e79),
+		var(--hover-light-mix, #000) var(--active-amount, 20%)
+	);
+	--component-mix: var(--hover-light-mix, #000);
+}
+
+/* 機能ベースのテーマクラスの例 */
+.theme-base {
+	--component-color: var(--bg-base);
+	--component-text: var(--text-base);
+	--component-border: var(--bg-base);
+	--component-hover-color: color-mix(
+		in srgb,
+		var(--bg-base),
+		var(--hover-light-mix, #000) var(--hover-amount, 10%)
+	);
+	--component-active-color: color-mix(
+		in srgb,
+		var(--bg-base),
+		var(--hover-light-mix, #000) var(--active-amount, 20%)
+	);
+	--component-mix: var(--hover-light-mix, #000);
+}
+
+/* 下位互換性のための古い命名規則 */
 .color-primary {
-  background-color: var(--primary);
-  color: var(--primary-text);
-  border-color: var(--primary-border, var(--primary));
+	--component-color: var(--primary, #1b6e79);
+	--component-text: var(--on-primary, #ffffff);
+	--component-border: var(--primary, #1b6e79);
+	--component-hover-color: color-mix(
+		in srgb,
+		var(--primary, #1b6e79),
+		var(--hover-light-mix, #000) var(--hover-amount, 10%)
+	);
+	--component-active-color: color-mix(
+		in srgb,
+		var(--primary, #1b6e79),
+		var(--hover-light-mix, #000) var(--active-amount, 20%)
+	);
+	--component-mix: var(--hover-light-mix, #000);
 }
 
-.color-secondary {
-  background-color: var(--secondary);
-  color: var(--secondary-text);
-  border-color: var(--secondary-border, var(--secondary));
+/* バリアントがコンポーネント変数を参照する例 */
+.btn-solid {
+	background-color: var(--component-color, #333);
+	color: var(--component-text, #fff);
+	border-color: var(--component-border, #333);
 }
 
-/* バリエーション（アウトライン、ゴーストなど）のためのクラス */
-.btn-outline.color-primary {
-  background-color: transparent;
-  color: var(--primary);
-  border: 1px solid var(--primary);
-}
-
-/* ホバー状態 */
-.color-primary:hover {
-  background-color: var(--primary-hover, var(--primary-dark, var(--primary)));
+.btn-solid:hover {
+	background-color: var(
+		--component-hover-color,
+		color-mix(
+			in srgb,
+			var(--component-color, #333),
+			var(--component-mix, #000) var(--hover-amount, 10%)
+		)
+	);
 }
 ```
 
-#### カラーセレクタの使用例
+#### テーマクラスの使用例
 
 ```html
-<!-- プライマリカラーのボタン -->
-<button class="btn-base btn-solid color-primary">プライマリボタン</button>
+<!-- 新しい命名規則でのプライマリカラーのボタン -->
+<button class="btn-base btn-solid theme-primary">プライマリボタン</button>
 
-<!-- セカンダリカラーのアウトラインボタン -->
-<button class="btn-base btn-outline color-secondary">セカンダリアウトライン</button>
+<!-- 新しい命名規則でのセカンダリカラーのアウトラインボタン -->
+<button class="btn-base btn-outline theme-secondary">
+	セカンダリアウトライン
+</button>
 
-<!-- アクセントカラーのカード -->
-<div class="card-base color-accent">
-  <div class="card-header">アクセントカード</div>
-  <div class="card-body">内容</div>
+<!-- 機能ベースの命名でのカード（現在のテーマの反転色） -->
+<div class="card-base theme-inverse">
+	<div class="card-header">反転テーマカード</div>
+	<div class="card-body">内容</div>
 </div>
+
+<!-- 下位互換性のための古い命名規則（引き続き動作します） -->
+<button class="btn-base btn-solid color-accent">アクセントボタン</button>
 ```
 
 ### 3. カスタムカラー設定
@@ -166,6 +219,7 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 ```
 
 カスタムカラーは次のCSS変数を自動的に設定します：
+
 - `--custom-color`: メインのカスタムカラー
 - `--custom-text-color`: テキスト色
 - `--custom-border-color`: ボーダー色
@@ -181,34 +235,34 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 ```css
 /* base.cssでの使用例 */
 @layer base {
-  :root {
-    /* 基本変数定義 */
-    --primary: #1a568e;
-    --secondary: #95c75d;
-    --accent: #ef6428;
-  }
-  
-  /* ベースコンポーネントスタイル */
-  .btn-base {
-    @apply inline-flex items-center justify-center;
-    @apply font-medium text-center whitespace-nowrap;
-    @apply select-none cursor-pointer;
-  }
+	:root {
+		/* 基本変数定義 */
+		--primary: #1a568e;
+		--secondary: #95c75d;
+		--accent: #ef6428;
+	}
+
+	/* ベースコンポーネントスタイル */
+	.btn-base {
+		@apply inline-flex items-center justify-center;
+		@apply font-medium text-center whitespace-nowrap;
+		@apply select-none cursor-pointer;
+	}
 }
 
 /* variants.cssでの使用例 */
 @layer components {
-  .btn-primary {
-    background-color: var(--btn-primary-bg);
-    color: var(--btn-primary-text);
-  }
+	.btn-primary {
+		background-color: var(--btn-primary-bg);
+		color: var(--btn-primary-text);
+	}
 }
 
 /* utilities.cssでの使用例 */
 @layer utilities {
-  .btn-shadow {
-    box-shadow: var(--btn-shadow-md);
-  }
+	.btn-shadow {
+		box-shadow: var(--btn-shadow-md);
+	}
 }
 ```
 
@@ -219,9 +273,9 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 コンポーネント情報を抽出するためのアノテーションが各クラスに付与されています：
 
 ```css
-/* 
+/*
  * @component: [コンポーネント名]  // コンポーネント名
- * @variant: [バリアント名]       // バリアント名 
+ * @variant: [バリアント名]       // バリアント名
  * @description: [説明文]         // 説明
  * @category: [カテゴリ名]        // カテゴリ
  * @example: [使用例のHTMLコード]  // 使用例
@@ -232,6 +286,7 @@ CSS Builderのスタイルコンポーネントは以下のような構造にな
 ```
 
 このアノテーションは以下の目的で使用されます：
+
 - TypeScript型定義ファイルの自動生成
 - Astroドキュメントページの生成
 - Astroコンポーネントの生成
@@ -244,45 +299,46 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 ```css
 /* グローバル変数定義の例 */
 :root {
-  /* カラー変数（プロジェクト全体で使用） */
-  --primary: #1a568e;
-  --secondary: #95c75d;
-  --accent: #ef6428;
-  --neutral-light: #fafafa;
-  --neutral: #e4e4e4;
-  --neutral-dark: #242424;
+	/* カラー変数（プロジェクト全体で使用） */
+	--primary: #1a568e;
+	--secondary: #95c75d;
+	--accent: #ef6428;
+	--neutral-light: #fafafa;
+	--neutral: #e4e4e4;
+	--neutral-dark: #242424;
 }
 
 /* コンポーネント固有の変数定義の例 */
 :root {
-  /* ボタン用変数 - フォールバック値を含む */
-  --btn-font-family: var(--font, sans-serif);
-  --btn-padding-x-md: 1rem;
-  --btn-padding-y-md: 0.625rem;
-  
-  /* カラー変数 - グローバル変数の参照とフォールバック */
-  --btn-primary-bg: var(--primary, #1a568e);
-  --btn-primary-text: var(--neutral-light, #fafafa);
-  --btn-shadow-md: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+	/* ボタン用変数 - フォールバック値を含む */
+	--btn-font-family: var(--font, sans-serif);
+	--btn-padding-x-md: 1rem;
+	--btn-padding-y-md: 0.625rem;
+
+	/* カラー変数 - グローバル変数の参照とフォールバック */
+	--btn-primary-bg: var(--primary, #1a568e);
+	--btn-primary-text: var(--neutral-light, #fafafa);
+	--btn-shadow-md: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
 }
 
 /* ダークモード用の変数上書き */
 :root.dark {
-  --btn-primary-bg: var(--primary-dark, #0e2c47);
-  --btn-primary-text: var(--neutral-light, #fafafa);
+	--btn-primary-bg: var(--primary-dark, #0e2c47);
+	--btn-primary-text: var(--neutral-light, #fafafa);
 }
 
 /* 印刷用の変数上書き */
 @media print {
-  :root {
-    --btn-padding-x-md: 0.5rem;
-    --btn-padding-y-md: 0.25rem;
-    --btn-shadow-md: none;
-  }
+	:root {
+		--btn-padding-x-md: 0.5rem;
+		--btn-padding-y-md: 0.25rem;
+		--btn-shadow-md: none;
+	}
 }
 ```
 
 変数の命名規則：
+
 - グローバル変数：`--[property-name]`
 - コンポーネント変数：`--[component]-[property-name]`
 - 状態変数：`--[component]-[state]-[property-name]`
@@ -295,20 +351,20 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 ```css
 /* Tailwindユーティリティの使用例 */
 .card-header {
-  @apply p-4 border-b font-semibold;
+	@apply p-4 border-b font-semibold;
 }
 
 .btn-base {
-  @apply inline-flex items-center justify-center;
-  @apply font-medium text-center whitespace-nowrap;
-  @apply select-none cursor-pointer;
+	@apply inline-flex items-center justify-center;
+	@apply font-medium text-center whitespace-nowrap;
+	@apply select-none cursor-pointer;
 }
 
 /* カスタム値が必要な場合はTailwindの値を参照 */
 :root {
-  --btn-border-radius: 0.375rem; /* rounded-md */
-  --btn-border-radius-sm: 0.25rem; /* rounded-sm */
-  --btn-border-radius-lg: 0.5rem; /* rounded-lg */
+	--btn-border-radius: 0.375rem; /* rounded-md */
+	--btn-border-radius-sm: 0.25rem; /* rounded-sm */
+	--btn-border-radius-lg: 0.5rem; /* rounded-lg */
 }
 ```
 
@@ -317,21 +373,27 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 コンポーネントは以下のようなクラスの組み合わせで構築します：
 
 1. **ベースクラス**（必須）
+
    - `[component]-base` - すべてのコンポーネントに必要な基本スタイル
 
 2. **スタイルバリアント**（必須）
+
    - `[component]-solid`, `[component]-outline` など
 
 3. **カラーセレクタ**（必須）
+
    - `color-primary`, `color-secondary`, `color-custom` など
 
 4. **サイズクラス**（オプション）
+
    - `[component]-xs`, `[component]-sm`, `[component]-md` など
 
 5. **形状クラス**（オプション）
+
    - `[component]-rounded-sm`, `[component]-rounded-lg` など
 
 6. **エフェクトクラス**（オプション）
+
    - `[component]-shadow`, `[component]-full` など
 
 7. **アニメーションクラス**（オプション）
@@ -346,14 +408,14 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 ```css
 /* レスポンシブデザインの例 */
 .btn-full {
-  @apply w-full;
+	@apply w-full;
 }
 
 /* モバイル向け調整 */
 @media (max-width: 640px) {
-  .class-sumonner-option {
-    @apply text-xs px-2 py-0.5;
-  }
+	.class-sumonner-option {
+		@apply text-xs px-2 py-0.5;
+	}
 }
 ```
 
@@ -362,34 +424,43 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 ```css
 /* 印刷用のスタイル調整 */
 @media print {
-  .btn-animate-up {
-    transform: none !important;
-    animation: none !important;
-  }
+	.btn-animate-up {
+		transform: none !important;
+		animation: none !important;
+	}
 }
 
-/* ダークモード用のスタイル */
+/* ダークモード用のスタイル - 新しいアプローチ */
+:root.dark {
+	/* テーマトークンの切り替え */
+	--bg-base: var(--neutral-dark);
+	--text-base: var(--neutral-light);
+	--bg-inverse: var(--neutral-light);
+	--text-inverse: var(--neutral-dark);
+}
+
+/* 下位互換性のため - 古いアプローチ */
 .dark .color-primary {
-  --primary: var(--primary-dark, #0e2c47);
-  --primary-text: var(--neutral-light, #fafafa);
+	--primary: var(--primary-dark, #0e2c47);
+	--primary-text: var(--neutral-light, #fafafa);
 }
 
 /* または */
 :root.dark {
-  --primary: #0e2c47;
-  --neutral-light: #fafafa;
+	--primary: #0e2c47;
+	--neutral-light: #fafafa;
 }
 ```
 
 ## アノテーション項目の説明
 
-| 項目         | 説明                                                     | 必須 |
-| ------------ | -------------------------------------------------------- | ---- |
-| @component   | コンポーネントタイプ（例: button, card, heading）        | ✅   |
-| @variant     | バリアント名（例: primary, secondary, base）             | ✅   |
-| @description | クラスの説明文                                           | ✅   |
-| @category    | コンポーネントのカテゴリ (例: interactive, container)    | ❌   |
-| @example     | 使用例のHTMLコード                                       | ❌   |
+| 項目         | 説明                                                  | 必須 |
+| ------------ | ----------------------------------------------------- | ---- |
+| @component   | コンポーネントタイプ（例: button, card, heading）     | ✅   |
+| @variant     | バリアント名（例: primary, secondary, base）          | ✅   |
+| @description | クラスの説明文                                        | ✅   |
+| @category    | コンポーネントのカテゴリ (例: interactive, container) | ❌   |
+| @example     | 使用例のHTMLコード                                    | ❌   |
 
 ### 注意点
 
@@ -408,9 +479,9 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
  * @example: <button class="btn-base btn-solid color-primary">プライマリボタン</button>
  */
 .color-primary {
-  background-color: var(--primary);
-  color: var(--primary-text);
-  border-color: var(--primary-border, var(--primary));
+	background-color: var(--primary);
+	color: var(--primary-text);
+	border-color: var(--primary-border, var(--primary));
 }
 
 /* 
@@ -421,9 +492,9 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
  * @example: <button class="btn-base btn-solid color-custom">カスタムカラーボタン</button>
  */
 .color-custom {
-  background-color: var(--custom-color, #6366f1);
-  color: var(--custom-text-color, #ffffff);
-  border-color: var(--custom-border-color, var(--custom-color, #6366f1));
+	background-color: var(--custom-color, #6366f1);
+	color: var(--custom-text-color, #ffffff);
+	border-color: var(--custom-border-color, var(--custom-color, #6366f1));
 }
 ```
 
@@ -439,20 +510,20 @@ CSS変数を使用して、テーマやコンポーネントの設定を一元�
 
 ```javascript
 export const colorRegistry = {
-  primary: {
-    value: 'color-primary',
-    label: 'プライマリ',
-    description: '主要なアクションに使用する色',
-    cssVar: '--primary'
-  },
-  // ... 他のカラー
-  custom: {
-    value: 'color-custom',
-    label: 'カスタム',
-    description: 'カラーピッカーで選択したカスタム色',
-    cssVar: '--custom-color',
-    isCustom: true
-  }
+	primary: {
+		value: 'color-primary',
+		label: 'プライマリ',
+		description: '主要なアクションに使用する色',
+		cssVar: '--primary',
+	},
+	// ... 他のカラー
+	custom: {
+		value: 'color-custom',
+		label: 'カスタム',
+		description: 'カラーピッカーで選択したカスタム色',
+		cssVar: '--custom-color',
+		isCustom: true,
+	},
 }
 ```
 
@@ -466,13 +537,13 @@ export const colorRegistry = {
 ```css
 /* アクセシビリティ対応の例 */
 .btn-base:focus-visible {
-  @apply outline-none ring-2 ring-offset-2;
-  ring-color: var(--focus-ring-color, var(--primary, #1a568e));
+	@apply outline-none ring-2 ring-offset-2;
+	ring-color: var(--focus-ring-color, var(--primary, #1a568e));
 }
 
 .btn-base[aria-disabled='true'] {
-  @apply cursor-not-allowed;
-  opacity: var(--btn-disabled-opacity, 0.6);
+	@apply cursor-not-allowed;
+	opacity: var(--btn-disabled-opacity, 0.6);
 }
 ```
 
@@ -483,41 +554,46 @@ export const colorRegistry = {
 ```javascript
 // コントラスト比に基づいてテキスト色を決定（白or黒）
 export const getContrastTextColor = (bgColor) => {
-  // カラーコードからRGB値を取得
-  const r = parseInt(bgColor.slice(1, 3), 16);
-  const g = parseInt(bgColor.slice(3, 5), 16);
-  const b = parseInt(bgColor.slice(5, 7), 16);
-  
-  // 明度の計算（W3C方式）
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  
-  // 明度が0.5より大きい（明るい色）なら黒、そうでなければ白
-  return luminance > 0.5 ? '#000000' : '#ffffff';
+	// カラーコードからRGB値を取得
+	const r = parseInt(bgColor.slice(1, 3), 16)
+	const g = parseInt(bgColor.slice(3, 5), 16)
+	const b = parseInt(bgColor.slice(5, 7), 16)
+
+	// 明度の計算（W3C方式）
+	const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+
+	// 明度が0.5より大きい（明るい色）なら黒、そうでなければ白
+	return luminance > 0.5 ? '#000000' : '#ffffff'
 }
 ```
 
 ## ベストプラクティス
 
 1. **モノクロベースとカラーセレクタの分離**
+
    - コンポーネントの構造と色を分離して設計する
    - カラーセレクタクラスを使用して色を適用する
    - カスタムカラーが必要な場合はカラーピッカーを活用する
 
 2. **一貫性を保つ**
+
    - 命名規則に従う（[component]-[variant]）
    - 変数の命名規則を守る（--[component]-[property]）
    - アノテーションを正確に記述する
 
 3. **コンポーネントの分割**
+
    - 関連する機能ごとにファイルを分割
    - base.css, variants.css, utilities.cssの役割を遵守
 
 4. **変数の活用**
+
    - ハードコーディングされた値は避け、変数を使用
-   - コンポーネント固有の変数は接頭辞をつける（--btn-*, --card-*）
+   - コンポーネント固有の変数は接頭辞をつける（--btn-_, --card-_）
    - フォールバック値を指定する（var(--primary, #1a568e)）
 
 5. **コメントの活用**
+
    - コードの意図を説明するコメントを追加
    - 複雑なセレクタや計算にはコメントを付ける
 
@@ -534,15 +610,17 @@ export const getContrastTextColor = (bgColor) => {
 <button class="btn-base btn-solid color-primary">プライマリボタン</button>
 
 <!-- アウトラインのセカンダリボタン -->
-<button class="btn-base btn-outline color-secondary">セカンダリアウトライン</button>
+<button class="btn-base btn-outline color-secondary">
+	セカンダリアウトライン
+</button>
 
 <!-- カスタムカラーのボタン -->
 <button class="btn-base btn-solid color-custom">カスタムカラーボタン</button>
 
 <!-- サイズ付きのカード -->
 <div class="card-base color-neutral card-lg">
-  <div class="card-header">タイトル</div>
-  <div class="card-body">内容がここに入ります</div>
+	<div class="card-header">タイトル</div>
+	<div class="card-body">内容がここに入ります</div>
 </div>
 
 <!-- アクセントカラーの見出し -->
@@ -554,24 +632,28 @@ export const getContrastTextColor = (bgColor) => {
 ```html
 <!-- 角丸と影付きのゴーストボタン -->
 <button class="btn-base btn-ghost color-primary btn-rounded-full btn-shadow">
-  角丸と影付きゴーストボタン
+	角丸と影付きゴーストボタン
 </button>
 
 <!-- アイコン付きのフォーム入力 -->
 <div class="form-group">
-  <label class="form-label color-dark" for="username">ユーザー名</label>
-  <div class="form-input-wrapper form-input-icon-left">
-    <input type="text" id="username" class="form-input-base form-input-outlined color-neutral">
-    <span class="form-input-icon">
-      <svg>...</svg>
-    </span>
-  </div>
+	<label class="form-label color-dark" for="username">ユーザー名</label>
+	<div class="form-input-wrapper form-input-icon-left">
+		<input
+			type="text"
+			id="username"
+			class="form-input-base form-input-outlined color-neutral"
+		/>
+		<span class="form-input-icon">
+			<svg>...</svg>
+		</span>
+	</div>
 </div>
 
 <!-- アニメーション付きのカード -->
 <div class="card-base color-primary card-shadow card-animate-up">
-  <div class="card-header">アニメーションカード</div>
-  <div class="card-body">ホバーすると上に移動します</div>
+	<div class="card-header">アニメーションカード</div>
+	<div class="card-body">ホバーすると上に移動します</div>
 </div>
 ```
 

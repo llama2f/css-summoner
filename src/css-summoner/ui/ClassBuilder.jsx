@@ -146,8 +146,8 @@ const ClassBuilder = () => {
 		(colorSettings) => {
 			actions.setCustomColorSettings(colorSettings)
 			// カスタムカラーが選択されていない場合は自動的に選択
-			if (state.selectedColor !== 'color-custom') {
-				actions.setColor('color-custom')
+			if (state.selectedColor !== 'theme-custom') {
+				actions.setColor('theme-custom')
 			}
 		},
 		[actions, state.selectedColor]
@@ -518,13 +518,13 @@ const ClassBuilder = () => {
 				</p>
 				<div className='mobile-drawer-buttons-container'>
 					<button
-						className='drawer-trigger-button btn-base btn-link color-light'
+						className='drawer-trigger-button btn-base btn-link theme-light'
 						onClick={() => openDrawer('components')}
 					>
 						Components
 					</button>
 					<button
-						className='drawer-trigger-button btn-base btn-link color-light'
+						className='drawer-trigger-button btn-base btn-link theme-light'
 						onClick={() => openDrawer('settings')}
 					>
 						Settings
@@ -532,7 +532,7 @@ const ClassBuilder = () => {
 					{/* --- スマホビュー用 CSS変数エディタ トグル --- */}
 					<button
 						onClick={() => setShowCssVarEditor((prev) => !prev)}
-						className='css-var-editor-toggle-mobile btn-base btn-link color-light'
+						className='css-var-editor-toggle-mobile btn-base btn-link theme-light'
 					>
 						CSS Vars
 					</button>

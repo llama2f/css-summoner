@@ -7,7 +7,7 @@
    * @variant: solid
    * @description: 塗りつぶしスタイルのバッジ。背景色が適用されます。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="badge-base badge-solid color-primary">ソリッドバッジ</span>
+   * @example: <span class="badge-base badge-solid theme-primary">ソリッドバッジ</span>
    */
 	.badge-solid {
 		background-color: var(
@@ -26,7 +26,7 @@
    * @variant: outline
    * @description: アウトラインスタイルのバッジ。枠線のみが表示されます。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="badge-base badge-outline color-primary">アウトラインバッジ</span>
+   * @example: <span class="badge-base badge-outline theme-primary">アウトラインバッジ</span>
    */
 	.badge-outline {
 		background-color: transparent;
@@ -45,7 +45,7 @@
    * @variant: subtle
    * @description: 控えめなスタイルのバッジ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="badge-base badge-subtle color-primary">サブトルバッジ</span>
+   * @example: <span class="badge-base badge-subtle theme-primary">サブトルバッジ</span>
    */
 	.badge-subtle {
 		background-color: color-mix(

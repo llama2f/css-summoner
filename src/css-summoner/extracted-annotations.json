@@ -1146,22 +1146,22 @@
       {
         "variant": "solid",
         "className": "tooltip-solid",
-        "example": "<span class=\"tooltip-base tooltip-solid color-neutral\" data-tooltip=\"これは塗りつぶしツールチップです\">ホバーしてください</span>"
+        "example": "<span class=\"tooltip-base tooltip-solid theme-neutral\" data-tooltip=\"これは塗りつぶしツールチップです\">ホバーしてください</span>"
       },
       {
         "variant": "outline",
         "className": "tooltip-outline",
-        "example": "<span class=\"tooltip-base tooltip-outline color-neutral\" data-tooltip=\"これはアウトラインツールチップです\">ホバーしてください</span>"
+        "example": "<span class=\"tooltip-base tooltip-outline theme-neutral\" data-tooltip=\"これはアウトラインツールチップです\">ホバーしてください</span>"
       },
       {
         "variant": "subtle",
         "className": "tooltip-subtle",
-        "example": "<span class=\"tooltip-base tooltip-subtle color-primary\" data-tooltip=\"サブトルツールチップ\">ホバーしてください</span>"
+        "example": "<span class=\"tooltip-base tooltip-subtle theme-primary\" data-tooltip=\"サブトルツールチップ\">ホバーしてください</span>"
       },
       {
         "variant": "ghost",
         "className": "tooltip-ghost",
-        "example": "<span class=\"tooltip-base tooltip-ghost color-primary\" data-tooltip=\"ゴーストツールチップ\">ホバーしてください</span>"
+        "example": "<span class=\"tooltip-base tooltip-ghost theme-primary\" data-tooltip=\"ゴーストツールチップ\">ホバーしてください</span>"
       },
       {
         "variant": "base",
@@ -1173,57 +1173,57 @@
       {
         "variant": "marker",
         "className": "text-marker",
-        "example": "<span class=\"text-marker color-primary\">マーカー付きテキスト</span>"
+        "example": "<span class=\"text-marker theme-primary\">マーカー付きテキスト</span>"
       },
       {
         "variant": "marker-full",
         "className": "text-marker-full",
-        "example": "<span class=\"text-marker-full color-secondary\">全面マーカーテキスト</span>"
+        "example": "<span class=\"text-marker-full theme-secondary\">全面マーカーテキスト</span>"
       },
       {
         "variant": "marker-stripe",
         "className": "text-marker-stripe",
-        "example": "<span class=\"text-marker-stripe color-accent\">ストライプマーカー</span>"
+        "example": "<span class=\"text-marker-stripe theme-accent\">ストライプマーカー</span>"
       },
       {
         "variant": "marker-double",
         "className": "text-marker-double",
-        "example": "<span class=\"text-marker-double color-primary\">二重マーカーテキスト</span>"
+        "example": "<span class=\"text-marker-double theme-primary\">二重マーカーテキスト</span>"
       },
       {
         "variant": "underline",
         "className": "text-underline",
-        "example": "<span class=\"text-underline color-primary\">下線付きテキスト</span>"
+        "example": "<span class=\"text-underline theme-primary\">下線付きテキスト</span>"
       },
       {
         "variant": "underline-dotted",
         "className": "text-underline-dotted",
-        "example": "<span class=\"text-underline-dotted color-secondary\">点線下線</span>"
+        "example": "<span class=\"text-underline-dotted theme-secondary\">点線下線</span>"
       },
       {
         "variant": "underline-dashed",
         "className": "text-underline-dashed",
-        "example": "<span class=\"text-underline-dashed color-accent\">破線下線</span>"
+        "example": "<span class=\"text-underline-dashed theme-accent\">破線下線</span>"
       },
       {
         "variant": "underline-wavy",
         "className": "text-underline-wavy",
-        "example": "<span class=\"text-underline-wavy color-neutral\">波線下線</span>"
+        "example": "<span class=\"text-underline-wavy theme-neutral\">波線下線</span>"
       },
       {
         "variant": "underline-thick",
         "className": "text-underline-thick",
-        "example": "<span class=\"text-underline-thick color-primary\">太線下線</span>"
+        "example": "<span class=\"text-underline-thick theme-primary\">太線下線</span>"
       },
       {
         "variant": "quote",
         "className": "text-quote",
-        "example": "<p class=\"text-quote color-neutral\">これは引用です。</p>"
+        "example": "<p class=\"text-quote theme-neutral\">これは引用です。</p>"
       },
       {
         "variant": "highlight",
         "className": "text-highlight",
-        "example": "<span class=\"text-highlight color-accent\">ハイライトされたテキスト</span>"
+        "example": "<span class=\"text-highlight theme-accent\">ハイライトされたテキスト</span>"
       },
       {
         "variant": "base",
@@ -1434,112 +1434,112 @@
       {
         "variant": "formal-primary",
         "className": "heading-formal-primary",
-        "example": "<h2 class=\"heading-base heading-formal-primary color-primary\">プライマリフォーマル見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-formal-primary theme-primary\">プライマリフォーマル見出し</h2>"
       },
       {
         "variant": "formal-underline",
         "className": "heading-formal-underline",
-        "example": "<h2 class=\"heading-base heading-formal-underline color-primary\">下線付きフォーマル見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-formal-underline theme-primary\">下線付きフォーマル見出し</h2>"
       },
       {
         "variant": "formal-full",
         "className": "heading-formal-full",
-        "example": "<h2 class=\"heading-base heading-formal-full color-primary\">フルバックグラウンド見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-formal-full theme-primary\">フルバックグラウンド見出し</h2>"
       },
       {
         "variant": "casual-dotted",
         "className": "heading-casual-dotted",
-        "example": "<h2 class=\"heading-base heading-casual-dotted color-secondary\">ドット下線カジュアル見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-casual-dotted theme-secondary\">ドット下線カジュアル見出し</h2>"
       },
       {
         "variant": "casual-badge",
         "className": "heading-casual-badge",
-        "example": "<h2 class=\"heading-base heading-casual-badge color-secondary\">バッジスタイル見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-casual-badge theme-secondary\">バッジスタイル見出し</h2>"
       },
       {
         "variant": "casual-wavy",
         "className": "heading-casual-wavy",
-        "example": "<h2 class=\"heading-base heading-casual-wavy color-secondary\">波線下線カジュアル見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-casual-wavy theme-secondary\">波線下線カジュアル見出し</h2>"
       },
       {
         "variant": "technical-code",
         "className": "heading-technical-code",
-        "example": "<h2 class=\"heading-base heading-technical-code color-neutral\">コード風見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-technical-code theme-neutral\">コード風見出し</h2>"
       },
       {
         "variant": "technical-tag",
         "className": "heading-technical-tag",
-        "example": "<h2 class=\"heading-base heading-technical-tag color-neutral\">タグ風見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-technical-tag theme-neutral\">タグ風見出し</h2>"
       },
       {
         "variant": "technical-bracket",
         "className": "heading-technical-bracket",
-        "example": "<h2 class=\"heading-base heading-technical-bracket color-neutral\">角括弧付き見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-technical-bracket theme-neutral\">角括弧付き見出し</h2>"
       },
       {
         "variant": "accent-gradient",
         "className": "heading-accent-gradient",
-        "example": "<h2 class=\"heading-base heading-accent-gradient color-accent\">グラデーション見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-accent-gradient theme-accent\">グラデーション見出し</h2>"
       },
       {
         "variant": "accent-border",
         "className": "heading-accent-border",
-        "example": "<h2 class=\"heading-base heading-accent-border color-accent\">強調ボーダー見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-accent-border theme-accent\">強調ボーダー見出し</h2>"
       },
       {
         "variant": "accent-stripe",
         "className": "heading-accent-stripe",
-        "example": "<h2 class=\"heading-base heading-accent-stripe color-accent\">ストライプ背景見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-accent-stripe theme-accent\">ストライプ背景見出し</h2>"
       },
       {
         "variant": "modern-minimal",
         "className": "heading-modern-minimal",
-        "example": "<h2 class=\"heading-base heading-modern-minimal color-neutral\">ミニマルな見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-modern-minimal theme-neutral\">ミニマルな見出し</h2>"
       },
       {
         "variant": "modern-split",
         "className": "heading-modern-split",
-        "example": "<h2 class=\"heading-base heading-modern-split color-primary\">分割デザインの見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-modern-split theme-primary\">分割デザインの見出し</h2>"
       },
       {
         "variant": "modern-oversized",
         "className": "heading-modern-oversized",
-        "example": "<h2 class=\"heading-base heading-modern-oversized color-neutral\">オーバーサイズ見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-modern-oversized theme-neutral\">オーバーサイズ見出し</h2>"
       },
       {
         "variant": "japanesque-brush",
         "className": "heading-japanesque-brush",
-        "example": "<h2 class=\"heading-base heading-japanesque-brush color-accent2\">筆文字風見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-japanesque-brush theme-accent2\">筆文字風見出し</h2>"
       },
       {
         "variant": "japanesque-vertical",
         "className": "heading-japanesque-vertical",
-        "example": "<h2 class=\"heading-base heading-japanesque-vertical color-accent2\">縦書き見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-japanesque-vertical theme-accent2\">縦書き見出し</h2>"
       },
       {
         "variant": "formal-boxed",
         "className": "heading-formal-boxed",
-        "example": "<h2 class=\"heading-base heading-formal-boxed color-primary\">囲み枠付き見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-formal-boxed theme-primary\">囲み枠付き見出し</h2>"
       },
       {
         "variant": "formal-double",
         "className": "heading-formal-double",
-        "example": "<h2 class=\"heading-base heading-formal-double color-primary\">二重下線見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-formal-double theme-primary\">二重下線見出し</h2>"
       },
       {
         "variant": "casual-handwritten",
         "className": "heading-casual-handwritten",
-        "example": "<h2 class=\"heading-base heading-casual-handwritten color-secondary\">手書き風見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-casual-handwritten theme-secondary\">手書き風見出し</h2>"
       },
       {
         "variant": "casual-highlight",
         "className": "heading-casual-highlight",
-        "example": "<h2 class=\"heading-base heading-casual-highlight color-secondary\">ハイライト見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-casual-highlight theme-secondary\">ハイライト見出し</h2>"
       },
       {
         "variant": "technical-comment",
         "className": "heading-technical-comment",
-        "example": "<h2 class=\"heading-base heading-technical-comment color-neutral\">コメント風見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-technical-comment theme-neutral\">コメント風見出し</h2>"
       },
       {
         "variant": "base",
@@ -1551,32 +1551,32 @@
       {
         "variant": "input",
         "className": "form-input",
-        "example": "<input type=\"text\" class=\"form-input color-neutral\" placeholder=\"入力してください\">"
+        "example": "<input type=\"text\" class=\"form-input theme-neutral\" placeholder=\"入力してください\">"
       },
       {
         "variant": "textarea",
         "className": "form-textarea",
-        "example": "<textarea class=\"form-textarea color-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>"
+        "example": "<textarea class=\"form-textarea theme-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>"
       },
       {
         "variant": "select",
         "className": "form-select",
-        "example": "<select class=\"form-select color-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>"
+        "example": "<select class=\"form-select theme-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>"
       },
       {
         "variant": "checkbox",
         "className": "form-checkbox",
-        "example": "<input type=\"checkbox\" class=\"form-checkbox color-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>"
+        "example": "<input type=\"checkbox\" class=\"form-checkbox theme-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>"
       },
       {
         "variant": "radio",
         "className": "form-radio",
-        "example": "<input type=\"radio\" class=\"form-radio color-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>"
+        "example": "<input type=\"radio\" class=\"form-radio theme-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>"
       },
       {
         "variant": "switch",
         "className": "form-switch",
-        "example": "<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label color-neutral\" for=\"darkmode\"></label> <!-- color-* を指定 -->\n</div>"
+        "example": "<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label theme-neutral\" for=\"darkmode\"></label> <!-- theme-* を指定 -->\n</div>"
       },
       {
         "variant": "feedback",
@@ -1586,128 +1586,128 @@
       {
         "variant": "search",
         "className": "form-search",
-        "example": "<input type=\"search\" class=\"form-input form-search color-neutral\" placeholder=\"検索...\">"
+        "example": "<input type=\"search\" class=\"form-input form-search theme-neutral\" placeholder=\"検索...\">"
       }
     ],
     "card": [
       {
         "variant": "solid",
         "className": "card-solid",
-        "example": "<div class=\"card-base card-solid color-neutral\">ソリッドカード</div>"
+        "example": "<div class=\"card-base card-solid theme-neutral\">ソリッドカード</div>"
       },
       {
         "variant": "outline",
         "className": "card-outline",
-        "example": "<div class=\"card-base card-outline color-primary\">アウトラインカード</div>"
+        "example": "<div class=\"card-base card-outline theme-primary\">アウトラインカード</div>"
       },
       {
         "variant": "ghost",
         "className": "card-ghost",
-        "example": "<div class=\"card-base card-ghost color-secondary\">ゴーストカード</div>"
+        "example": "<div class=\"card-base card-ghost theme-secondary\">ゴーストカード</div>"
       },
       {
         "variant": "subtle",
         "className": "card-subtle",
-        "example": "<div class=\"card-base card-subtle color-accent\">サブトルカード</div>"
+        "example": "<div class=\"card-base card-subtle theme-accent\">サブトルカード</div>"
       },
       {
         "variant": "bordered",
         "className": "card-bordered",
-        "example": "<div class=\"card-base card-solid color-neutral card-bordered\">境界線付きカード</div>"
+        "example": "<div class=\"card-base card-solid theme-neutral card-bordered\">境界線付きカード</div>"
       },
       {
         "variant": "compact",
         "className": "card-compact",
-        "example": "<div class=\"card-base card-solid color-neutral card-compact\">コンパクトカード</div>"
+        "example": "<div class=\"card-base card-solid theme-neutral card-compact\">コンパクトカード</div>"
       },
       {
         "variant": "horizontal",
         "className": "card-horizontal",
-        "example": "<div class=\"card-base card-solid color-neutral card-horizontal\">...</div>"
+        "example": "<div class=\"card-base card-solid theme-neutral card-horizontal\">...</div>"
       },
       {
         "variant": "actions",
         "className": "card-actions",
-        "example": "<div class=\"card-base card-solid color-neutral\">\n<div class=\"card-body\">...</div>\n<div class=\"card-actions\">...</div>\n</div>"
+        "example": "<div class=\"card-base card-solid theme-neutral\">\n<div class=\"card-body\">...</div>\n<div class=\"card-actions\">...</div>\n</div>"
       },
       {
         "variant": "base",
         "className": "card-base",
-        "example": "<div class=\"card-base card-solid color-neutral\">...</div>"
+        "example": "<div class=\"card-base card-solid theme-neutral\">...</div>"
       }
     ],
     "button": [
       {
         "variant": "solid",
         "className": "btn-solid",
-        "example": "<button class=\"btn-base btn-solid color-primary\">ソリッドボタン</button>"
+        "example": "<button class=\"btn-base btn-solid theme-primary\">ソリッドボタン</button>"
       },
       {
         "variant": "outline",
         "className": "btn-outline",
-        "example": "<button class=\"btn-base btn-outline color-primary\">アウトラインボタン</button>"
+        "example": "<button class=\"btn-base btn-outline theme-primary\">アウトラインボタン</button>"
       },
       {
         "variant": "ghost",
         "className": "btn-ghost",
-        "example": "<button class=\"btn-base btn-ghost color-primary\">ゴーストボタン</button>"
+        "example": "<button class=\"btn-base btn-ghost theme-primary\">ゴーストボタン</button>"
       },
       {
         "variant": "link",
         "className": "btn-link",
-        "example": "<button class=\"btn-base btn-link color-primary\">リンクボタン</button>"
+        "example": "<button class=\"btn-base btn-link theme-primary\">リンクボタン</button>"
       },
       {
         "variant": "gradient",
         "className": "btn-gradient",
-        "example": "<button class=\"btn-base btn-gradient color-primary\">グラデーションボタン</button>"
+        "example": "<button class=\"btn-base btn-gradient theme-primary\">グラデーションボタン</button>"
       },
       {
         "variant": "subtle",
         "className": "btn-subtle",
-        "example": "<button class=\"btn-base btn-subtle color-primary\">サブトルボタン</button>"
+        "example": "<button class=\"btn-base btn-subtle theme-primary\">サブトルボタン</button>"
       },
       {
         "variant": "icon",
         "className": "btn-icon",
-        "example": "<button class=\"btn-base btn-icon color-primary\"><svg>...</svg></button>"
+        "example": "<button class=\"btn-base btn-icon theme-primary\"><svg>...</svg></button>"
       },
       {
         "variant": "icon-outline",
         "className": "btn-icon-outline",
-        "example": "<button class=\"btn-base btn-icon-outline color-primary\"><svg>...</svg></button>"
+        "example": "<button class=\"btn-base btn-icon-outline theme-primary\"><svg>...</svg></button>"
       },
       {
         "variant": "icon-ghost",
         "className": "btn-icon-ghost",
-        "example": "<button class=\"btn-base btn-icon-ghost color-primary\"><svg>...</svg></button>"
+        "example": "<button class=\"btn-base btn-icon-ghost theme-primary\"><svg>...</svg></button>"
       },
       {
         "variant": "btn-group",
         "className": "btn-group",
-        "example": "<div class=\"btn-group\"><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm color-primary\">ボタン</button></div>"
+        "example": "<div class=\"btn-group\"><button class=\"btn-base btn-solid btn-sm theme-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm theme-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm theme-primary\">ボタン</button></div>"
       },
       {
         "variant": "base",
         "className": "btn-base",
-        "example": "<button class=\"btn-base btn-solid color-primary\">ボタン</button>"
+        "example": "<button class=\"btn-base btn-solid theme-primary\">ボタン</button>"
       }
     ],
     "badge": [
       {
         "variant": "solid",
         "className": "badge-solid",
-        "example": "<span class=\"badge-base badge-solid color-primary\">ソリッドバッジ</span>"
+        "example": "<span class=\"badge-base badge-solid theme-primary\">ソリッドバッジ</span>"
       },
       {
         "variant": "outline",
         "className": "badge-outline",
-        "example": "<span class=\"badge-base badge-outline color-primary\">アウトラインバッジ</span>"
+        "example": "<span class=\"badge-base badge-outline theme-primary\">アウトラインバッジ</span>"
       },
       {
         "variant": "subtle",
         "className": "badge-subtle",
-        "example": "<span class=\"badge-base badge-subtle color-primary\">サブトルバッジ</span>"
+        "example": "<span class=\"badge-base badge-subtle theme-primary\">サブトルバッジ</span>"
       },
       {
         "variant": "base",
@@ -2128,7 +2128,7 @@
       "sourceFile": "form/variants.css"
     },
     "form-feedback": {
-      "ruleText": ".form-feedback {\n\t\t@apply mt-1 text-sm;\n\t\t/* デフォルトのテキスト色は親要素から継承 or color-neutral相当 */\n\t\tcolor: var(--neutral-dark, #242424);\n\t}",
+      "ruleText": ".form-feedback {\n\t\t@apply mt-1 text-sm;\n\t\t/* デフォルトのテキスト色は親要素から継承 or theme-neutral相当 */\n\t\tcolor: var(--neutral-dark, #242424);\n\t}",
       "selector": ".form-feedback",
       "sourceFile": "form/variants.css"
     },
@@ -2188,7 +2188,7 @@
       "sourceFile": "button/variants-monochrome.css"
     },
     "btn-outline": {
-      "ruleText": ".btn-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--component-color, #333);\n\t\tborder-color: var(--component-border, #333);\n\t}",
+      "ruleText": ".btn-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 1px solid var(--component-border, #333);\n\t}",
       "selector": ".btn-outline",
       "sourceFile": "button/variants-monochrome.css"
     },
@@ -2208,7 +2208,7 @@
       "sourceFile": "button/variants-monochrome.css"
     },
     "btn-subtle": {
-      "ruleText": ".btn-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder-color: transparent;\n\t}",
+      "ruleText": ".btn-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 85%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder-color: transparent;\n\t}",
       "selector": ".btn-subtle",
       "sourceFile": "button/variants-monochrome.css"
     },
@@ -2218,7 +2218,7 @@
       "sourceFile": "button/variants-monochrome.css"
     },
     "btn-icon-outline": {
-      "ruleText": ".btn-icon-outline {\n\t\taspect-ratio: 1 / 1;\n\t\tpadding: 0.5rem;\n\t\tdisplay: inline-flex;\n\t\talign-items: center;\n\t\tjustify-content: center;\n\t\tbackground-color: transparent;\n\t\tcolor: var(--component-color, #333);\n\t\tborder-color: var(--component-border, #333);\n\t}",
+      "ruleText": ".btn-icon-outline {\n\t\taspect-ratio: 1 / 1;\n\t\tpadding: 0.5rem;\n\t\tdisplay: inline-flex;\n\t\talign-items: center;\n\t\tjustify-content: center;\n\t\tbackground-color: transparent;\n\t\tcolor: var(--component-color, #333);\n\t\tborder-color: var(--component-border, #333);\n\t\tborder: 1px solid var(--component-border, #333);\n\t}",
       "selector": ".btn-icon-outline",
       "sourceFile": "button/variants-monochrome.css"
     },
@@ -2228,7 +2228,7 @@
       "sourceFile": "button/variants-monochrome.css"
     },
     "btn-group": {
-      "ruleText": ".btn-group {\n\t\tdisplay: flex;\n\t\tgap: 0.5rem;\n\t}",
+      "ruleText": ".btn-group {\n\t\tdisplay: flex;\n\t\tflex-wrap: wrap;\n\t\tgap: 0.5rem;\n\t}",
       "selector": ".btn-group",
       "sourceFile": "button/variants-monochrome.css"
     },

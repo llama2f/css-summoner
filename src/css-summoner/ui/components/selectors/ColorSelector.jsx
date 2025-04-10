@@ -68,7 +68,7 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 								style={{
 									backgroundColor: color.isCustom
 										? `var(--custom-color)`
-										: `var(${color.value.replace('color-', '--')})`,
+										: `var(${color.cssVar || color.value.replace('color-', '--')})`,
 									boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
 								}}
 							></div>
@@ -85,7 +85,7 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 			{/* カラーホイールセクション */}
 			<div className='color-wheel-section '>
 				<button
-					className='color-wheel-btn btn-base btn-solid btn-sm color-primary leading-tight'
+					className='color-wheel-btn btn-base btn-solid btn-sm theme-primary leading-tight'
 					onClick={() => setIsColorPickerOpen(true)}
 				>
 					<span>

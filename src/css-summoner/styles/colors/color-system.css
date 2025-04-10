@@ -1,106 +1,233 @@
 @layer components {
-	.color-primary {
-		--component-color: var(--primary, #1a568e);
-		--component-text: var(--primary-contrasting-text, #fafafa);
-		--component-border: var(--primary-border, var(--primary, #1a568e));
+	/* 機能に基づくテーマクラス - 意味的な命名 */
+
+	/* プライマリカラー */
+	.theme-primary {
+		--component-color: var(--primary, #1b6e79);
+		--component-text: var(--on-primary, #ffffff);
+		--component-border: var(--primary, #1b6e79);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--primary, #1b6e79),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+		);
+		--component-active-color: color-mix(
+			in srgb,
+			var(--primary, #1b6e79),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
+		);
+		--component-mix: var(--hover-light-mix, #000);
+	}
+
+	/* セカンダリカラー */
+	.theme-secondary {
+		--component-color: var(--secondary, #5a994d);
+		--component-text: var(--on-secondary, #ffffff);
+		--component-border: var(--secondary, #5a994d);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--secondary, #5a994d),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+		);
+		--component-active-color: color-mix(
+			in srgb,
+			var(--secondary, #5a994d),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
+		);
+		--component-mix: var(--hover-light-mix, #000);
+	}
+
+	/* アクセントカラー */
+	.theme-accent {
+		--component-color: var(--accent, #b11b1b);
+		--component-text: var(--on-accent, #ffffff);
+		--component-border: var(--accent, #b11b1b);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--accent, #b11b1b),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+		);
+		--component-active-color: color-mix(
+			in srgb,
+			var(--accent, #b11b1b),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
+		);
+		--component-mix: var(--hover-light-mix, #000);
+	}
+
+	/* ニュートラルカラー */
+	.theme-neutral {
+		--component-color: var(--neutral, #d4d4d4);
+		--component-text: var(--on-neutral, #333333);
+		--component-border: var(--neutral, #d4d4d4);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--neutral, #d4d4d4),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+		);
+		--component-active-color: color-mix(
+			in srgb,
+			var(--neutral, #d4d4d4),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
+		);
+		--component-mix: var(--hover-light-mix, #000);
+	}
+
+	/* 基本テーマ - 現在のモードのベース色 */
+	.theme-base {
+		--component-color: var(--bg-base);
+		--component-text: var(--text-base);
+		--component-border: var(--bg-base);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--bg-base),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+		);
+		--component-active-color: color-mix(
+			in srgb,
+			var(--bg-base),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
+		);
+		--component-mix: var(--hover-light-mix, #000);
+	}
+
+	/* 反転テーマ - 現在のモードの反転色 */
+	.theme-inverse {
+		--component-color: var(--bg-inverse);
+		--component-text: var(--text-inverse);
+		--component-border: var(--bg-inverse);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--bg-inverse),
+			var(--hover-dark-mix, #fff) var(--hover-amount, 10%)
+		);
+		--component-active-color: color-mix(
+			in srgb,
+			var(--bg-inverse),
+			var(--hover-dark-mix, #fff) var(--active-amount, 20%)
+		);
+		--component-mix: var(--hover-dark-mix, #fff);
+	}
+
+	/* カスタムテーマ - カラーピッカーで設定した色 */
+	.theme-custom {
+		--component-color: var(--custom-color, #6366f1);
+		--component-text: var(--custom-text-color, #ffffff);
+		--component-border: var(
+			--custom-border-color,
+			var(--custom-color, #6366f1)
+		);
 		--component-hover-color: var(
-			--primary-hover,
-			color-mix(in srgb, var(--primary, #1a568e), #000 10%)
+			--custom-hover-color,
+			color-mix(in srgb, var(--custom-color, #6366f1), #000 10%)
 		);
 		--component-active-color: var(
-			--primary-active,
-			color-mix(in srgb, var(--primary, #1a568e), #000 20%)
+			--custom-active-color,
+			color-mix(in srgb, var(--custom-color, #6366f1), #000 20%)
 		);
+		--component-mix: var(--hover-light-mix, #000);
+	}
+
+	/* 下位互換性のための旧クラス名マッピング */
+	.color-primary {
+		--component-color: var(--primary, #1b6e79);
+		--component-text: var(--on-primary, #ffffff);
+		--component-border: var(--primary, #1b6e79);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--primary, #1b6e79),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+		);
+		--component-active-color: color-mix(
+			in srgb,
+			var(--primary, #1b6e79),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
+		);
+		--component-mix: var(--hover-light-mix, #000);
 	}
 
 	.color-secondary {
-		--component-color: var(--secondary, #95c75d);
-		--component-text: var(--secondary-contrasting-text, #fafafa);
-		--component-border: var(--secondary-border, var(--secondary, #95c75d));
-		--component-hover-color: var(
-			--secondary-hover,
-			color-mix(in srgb, var(--secondary, #95c75d), #000 10%)
+		--component-color: var(--secondary, #5a994d);
+		--component-text: var(--on-secondary, #ffffff);
+		--component-border: var(--secondary, #5a994d);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--secondary, #5a994d),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
 		);
-		--component-active-color: var(
-			--secondary-active,
-			color-mix(in srgb, var(--secondary, #95c75d), #000 20%)
+		--component-active-color: color-mix(
+			in srgb,
+			var(--secondary, #5a994d),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
 		);
+		--component-mix: var(--hover-light-mix, #000);
 	}
 
 	.color-accent {
-		--component-color: var(--accent, #ef6428);
-		--component-text: var(--accent-contrasting-text, #fafafa);
-		--component-border: var(--accent-border, var(--accent, #ef6428));
-		--component-hover-color: var(
-			--accent-hover,
-			color-mix(in srgb, var(--accent, #ef6428), #000 10%)
+		--component-color: var(--accent, #b11b1b);
+		--component-text: var(--on-accent, #ffffff);
+		--component-border: var(--accent, #b11b1b);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--accent, #b11b1b),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
 		);
-		--component-active-color: var(
-			--accent-active,
-			color-mix(in srgb, var(--accent, #ef6428), #000 20%)
+		--component-active-color: color-mix(
+			in srgb,
+			var(--accent, #b11b1b),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
 		);
+		--component-mix: var(--hover-light-mix, #000);
 	}
 
 	.color-neutral {
-		--component-color: var(--neutral, #e4e4e4);
-		--component-text: var(--neutral-contrasting-text, #242424);
-		--component-border: var(--neutral-border, var(--neutral, #e4e4e4));
-		--component-hover-color: var(
-			--neutral-hover,
-			color-mix(in srgb, var(--neutral, #e4e4e4), #000 10%)
+		--component-color: var(--neutral, #d4d4d4);
+		--component-text: var(--on-neutral, #333333);
+		--component-border: var(--neutral, #d4d4d4);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--neutral, #d4d4d4),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
 		);
-		--component-active-color: var(
-			--neutral-active,
-			color-mix(in srgb, var(--neutral, #e4e4e4), #000 20%)
+		--component-active-color: color-mix(
+			in srgb,
+			var(--neutral, #d4d4d4),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
 		);
+		--component-mix: var(--hover-light-mix, #000);
 	}
 
 	.color-dark {
-		--component-color: var(--neutral-dark, #242424);
-		--component-text: var(--neutral-light, #fafafa);
-		--component-border: var(
-			--neutral-dark-border,
-			var(--neutral-dark, #242424)
+		--component-color: var(--bg-inverse);
+		--component-text: var(--text-inverse);
+		--component-border: var(--bg-inverse);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--bg-inverse),
+			var(--hover-dark-mix, #fff) var(--hover-amount, 10%)
 		);
-		--component-hover-color: var(
-			--neutral-dark-hover,
-			color-mix(in srgb, var(--neutral-dark, #242424), #fff 10%)
+		--component-active-color: color-mix(
+			in srgb,
+			var(--bg-inverse),
+			var(--hover-dark-mix, #fff) var(--active-amount, 20%)
 		);
-		--component-active-color: var(
-			--neutral-dark-active,
-			color-mix(in srgb, var(--neutral-dark, #242424), #fff 20%)
-		);
+		--component-mix: var(--hover-dark-mix, #fff);
 	}
+
 	.color-light {
-		--component-color: var(--neutral-light, #fafafa);
-		--component-text: var(--neutral-dark, #242424);
-		--component-border: var(
-			--neutral-light-border,
-			var(--neutral-light, #fafafa)
+		--component-color: var(--bg-base);
+		--component-text: var(--text-base);
+		--component-border: var(--bg-base);
+		--component-hover-color: color-mix(
+			in srgb,
+			var(--bg-base),
+			var(--hover-light-mix, #000) var(--hover-amount, 10%)
 		);
-		--component-hover-color: var(
-			--neutral-light-hover,
-			color-mix(in srgb, var(--neutral-light, #fafafa), #000 10%)
+		--component-active-color: color-mix(
+			in srgb,
+			var(--bg-base),
+			var(--hover-light-mix, #000) var(--active-amount, 20%)
 		);
-		--component-active-color: var(
-			--neutral-light-active,
-			color-mix(in srgb, var(--neutral-light, #fafafa), #000 20%)
-		);
-	}
-
-	/* ダークモード対応 */
-	.dark .color-neutral {
-	}
-
-	.dark .color-light {
-		/* ダークモード時も色を維持 */
-		/* --component-color: var(--neutral-dark, #242424);
-		--component-text: var(--neutral-light, #fafafa); */
-	}
-
-	.dark .color-dark {
-		/* ダークモード時も色を維持 */
-		/* --component-color: var(--neutral-light, #fafafa);
-		--component-text: var(--neutral-dark, #242424); */
+		--component-mix: var(--hover-light-mix, #000);
 	}
 }

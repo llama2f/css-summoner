@@ -6,7 +6,7 @@
    * @variant: solid
    * @description: 塗りつぶしスタイルのボタン。背景色が適用されます。
    * @category: interactive
-   * @example: <button class="btn-base btn-solid color-primary">ソリッドボタン</button>
+   * @example: <button class="btn-base btn-solid theme-primary">ソリッドボタン</button>
    */
 	.btn-solid {
 		background-color: var(--component-color, #333);
@@ -15,25 +15,11 @@
 	}
 
 	.btn-solid:hover {
-		background-color: var(
-			--component-hover-color,
-			color-mix(in srgb, var(--component-color, #333), #000 10%)
-		);
+		background-color: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));
 	}
 
 	.btn-solid:active {
-		background-color: var(
-			--component-active-color,
-			color-mix(in srgb, var(--component-color, #333), #000 20%)
-		);
-	}
-
-	/* ダークモード時も色を維持 */
-	.dark .color-light.btn-solid,
-	.dark .color-dark.btn-solid {
-		color: var(--component-text);
-		background-color: var(--component-color);
-		border-color: var(--component-border);
+		background-color: var(--component-active-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 20%)));
 	}
 
 	/* 
@@ -41,7 +27,7 @@
    * @variant: outline
    * @description: アウトラインスタイルのボタン。枠線のみで、ホバー時に背景色が表示されます。
    * @category: interactive
-   * @example: <button class="btn-base btn-outline color-primary">アウトラインボタン</button>
+   * @example: <button class="btn-base btn-outline theme-primary">アウトラインボタン</button>
    */
 	.btn-outline {
 		background-color: transparent;
@@ -70,7 +56,7 @@
    * @variant: ghost
    * @description: ゴーストスタイルのボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。
    * @category: interactive
-   * @example: <button class="btn-base btn-ghost color-primary">ゴーストボタン</button>
+   * @example: <button class="btn-base btn-ghost theme-primary">ゴーストボタン</button>
    */
 	.btn-ghost {
 		background-color: transparent;
@@ -94,15 +80,12 @@
 		);
 	}
 
-	.dark .btn-ghost {
-	}
-
 	/* 
    * @component: button
    * @variant: link
    * @description: リンク風ボタン。通常のテキストリンクのような見た目で、ホバー時に下線が表示されます。
    * @category: interactive
-   * @example: <button class="btn-base btn-link color-primary">リンクボタン</button>
+   * @example: <button class="btn-base btn-link theme-primary">リンクボタン</button>
    */
 	.btn-link {
 		background-color: transparent;
@@ -114,10 +97,7 @@
 	}
 
 	.btn-link:hover {
-		color: var(
-			--component-hover-color,
-			color-mix(in srgb, var(--component-color, #333), #000 10%)
-		);
+		color: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));
 		text-decoration: underline;
 	}
 
@@ -126,7 +106,7 @@
    * @variant: gradient
    * @description: グラデーションスタイルのボタン。グラデーション効果が適用されます。
    * @category: interactive
-   * @example: <button class="btn-base btn-gradient color-primary">グラデーションボタン</button>
+   * @example: <button class="btn-base btn-gradient theme-primary">グラデーションボタン</button>
    */
 	.btn-gradient {
 		position: relative; /* 疑似要素の配置基準 */
@@ -151,7 +131,7 @@
 		background-image: linear-gradient(
 			135deg,
 			var(--component-color, #333),
-			color-mix(in srgb, var(--component-color, #333), #000 30%)
+			color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 30%))
 		);
 		transition: opacity var(--btn-transition-duration, 200ms) ease-in-out;
 		z-index: -1; /* テキストの後ろに配置 */
@@ -161,7 +141,7 @@
 	.btn-gradient::after {
 		background-image: linear-gradient(
 			135deg,
-			color-mix(in srgb, var(--component-color, #333), #000 30%),
+			color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 30%)),
 			var(--component-color, #333)
 		);
 		opacity: 0;
@@ -180,7 +160,7 @@
    * @variant: subtle
    * @description: 控えめなボタン。薄い背景色が適用され、ホバー時に色が濃くなります。
    * @category: interactive
-   * @example: <button class="btn-base btn-subtle color-primary">サブトルボタン</button>
+   * @example: <button class="btn-base btn-subtle theme-primary">サブトルボタン</button>
    */
 	.btn-subtle {
 		background-color: color-mix(
@@ -190,33 +170,6 @@
 		);
 		color: var(--component-color, #333);
 		border-color: transparent;
-	}
-
-	.color-neutral.btn-subtle {
-		background-color: color-mix(
-			in srgb,
-			var(--component-color, #333),
-			transparent 80%
-		);
-		color: var(--neutral-dark, #242424);
-	}
-
-	.color-light.btn-subtle {
-		background-color: color-mix(
-			in srgb,
-			var(--neutral, #333),
-			var(--neutral-light, #fafafa) 95%
-		);
-		color: color-mix(in srgb, var(--component-text, #fafafa), transparent 20%);
-	}
-
-	.color-dark.btn-subtle {
-		background-color: color-mix(
-			in srgb,
-			var(--component-color, #333),
-			transparent 20%
-		);
-		color: var(--neutral-light, #fff);
 	}
 
 	.btn-subtle:hover {
@@ -235,33 +188,12 @@
 		);
 	}
 
-	/* ダークモード時のsubtleかつneutral */
-	.dark .color-neutral.btn-subtle {
-		background-color: color-mix(
-			in srgb,
-			var(--component-color, #333),
-			var(--neutral-light, #fafafa) 80%
-		);
-	}
-
-	/* ダークモード時のsubtleかつdark */
-	.dark .color-dark.btn-subtle {
-		background-color: color-mix(
-			in srgb,
-			var(--component-text, #333),
-			var(--component-color) 90%
-		);
-	}
-
-	.dark .color-light.btn-subtle {
-	}
-
 	/* 
    * @component: button
    * @variant: icon
    * @description: アイコン用ボタン。正方形で、アイコンを中央に配置します。
    * @category: interactive
-   * @example: <button class="btn-base btn-icon color-primary"><svg>...</svg></button>
+   * @example: <button class="btn-base btn-icon theme-primary"><svg>...</svg></button>
    */
 	.btn-icon {
 		aspect-ratio: 1 / 1;
@@ -275,10 +207,7 @@
 	}
 
 	.btn-icon:hover {
-		background-color: var(
-			--component-hover-color,
-			color-mix(in srgb, var(--component-color, #333), #000 10%)
-		);
+		background-color: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));
 	}
 
 	/* 
@@ -286,7 +215,7 @@
    * @variant: icon-outline
    * @description: アウトラインスタイルのアイコン用ボタン。枠線のみで、ホバー時に背景色が表示されます。
    * @category: interactive
-   * @example: <button class="btn-base btn-icon-outline color-primary"><svg>...</svg></button>
+   * @example: <button class="btn-base btn-icon-outline theme-primary"><svg>...</svg></button>
    */
 	.btn-icon-outline {
 		aspect-ratio: 1 / 1;
@@ -313,7 +242,7 @@
    * @variant: icon-ghost
    * @description: ゴーストスタイルのアイコン用ボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。
    * @category: interactive
-   * @example: <button class="btn-base btn-icon-ghost color-primary"><svg>...</svg></button>
+   * @example: <button class="btn-base btn-icon-ghost theme-primary"><svg>...</svg></button>
    */
 	.btn-icon-ghost {
 		aspect-ratio: 1 / 1;
@@ -339,7 +268,7 @@
    * @variant: btn-group
    * @description: ボタンをグループ化して表示します。
    * @category: interactive
-   * @example: <div class="btn-group"><button class="btn-base btn-solid btn-sm color-primary">ボタン</button><button class="btn-base btn-solid btn-sm color-primary">ボタン</button><button class="btn-base btn-solid btn-sm color-primary">ボタン</button></div>
+   * @example: <div class="btn-group"><button class="btn-base btn-solid btn-sm theme-primary">ボタン</button><button class="btn-base btn-solid btn-sm theme-primary">ボタン</button><button class="btn-base btn-solid btn-sm theme-primary">ボタン</button></div>
    */
 	.btn-group {
 		display: flex;

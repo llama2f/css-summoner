@@ -19,7 +19,7 @@
    * @variant: marker
    * @description: コンポーネントカラーを使用して、テキスト背景の下部に蛍光ペン効果を適用します。
    * @category: typography
-   * @example: <span class="text-marker color-primary">マーカー付きテキスト</span>
+   * @example: <span class="text-marker theme-primary">マーカー付きテキスト</span>
    */
 	.text-marker {
 		/* color-mixを使用して微妙な背景色を作成。必要に応じて透明度を調整。 */
@@ -38,7 +38,7 @@
    * @variant: marker-full
    * @description: コンポーネントカラーを使用して、テキスト背景全体に蛍光ペン効果を適用します。
    * @category: typography
-   * @example: <span class="text-marker-full color-secondary">全面マーカーテキスト</span>
+   * @example: <span class="text-marker-full theme-secondary">全面マーカーテキスト</span>
    */
 	.text-marker-full {
 		/* color-mixを使用して薄い背景塗りつぶしを作成。透明度を調整。 */
@@ -56,7 +56,7 @@
    * @variant: marker-stripe
    * @description: コンポーネントカラーを使用して、テキスト下部にストライプ状のマーカー効果を適用します。
    * @category: typography
-   * @example: <span class="text-marker-stripe color-accent">ストライプマーカー</span>
+   * @example: <span class="text-marker-stripe theme-accent">ストライプマーカー</span>
    */
 	.text-marker-stripe {
 		background-image: repeating-linear-gradient(
@@ -77,7 +77,7 @@
    * @variant: marker-double
    * @description: コンポーネントカラーを使用して、二重線のマーカー効果を適用します。
    * @category: typography
-   * @example: <span class="text-marker-double color-primary">二重マーカーテキスト</span>
+   * @example: <span class="text-marker-double theme-primary">二重マーカーテキスト</span>
    */
 	.text-marker-double {
 		background-image:
@@ -108,7 +108,7 @@
    * @variant: underline
    * @description: コンポーネントカラーを使用して、標準的な実線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline color-primary">下線付きテキスト</span>
+   * @example: <span class="text-underline theme-primary">下線付きテキスト</span>
    */
 	.text-underline {
 		@apply underline;
@@ -122,7 +122,7 @@
    * @variant: underline-dotted
    * @description: コンポーネントカラーを使用して、点線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-dotted color-secondary">点線下線</span>
+   * @example: <span class="text-underline-dotted theme-secondary">点線下線</span>
    */
 	.text-underline-dotted {
 		text-decoration: underline dotted;
@@ -136,7 +136,7 @@
    * @variant: underline-dashed
    * @description: コンポーネントカラーを使用して、破線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-dashed color-accent">破線下線</span>
+   * @example: <span class="text-underline-dashed theme-accent">破線下線</span>
    */
 	.text-underline-dashed {
 		text-decoration: underline dashed;
@@ -150,7 +150,7 @@
    * @variant: underline-wavy
    * @description: コンポーネントカラーを使用して、波線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-wavy color-neutral">波線下線</span>
+   * @example: <span class="text-underline-wavy theme-neutral">波線下線</span>
    */
 	.text-underline-wavy {
 		@apply leading-loose;
@@ -165,7 +165,7 @@
    * @variant: underline-thick
    * @description: コンポーネントカラーを使用して、太い実線の下線を適用します。
    * @category: typography
-   * @example: <span class="text-underline-thick color-primary">太線下線</span>
+   * @example: <span class="text-underline-thick theme-primary">太線下線</span>
    */
 	.text-underline-thick {
 		@apply underline;
@@ -186,7 +186,7 @@
    * @variant: quote
    * @description: コンポーネントカラーを使用して、テキスト（通常は引用）に左ボーダーを適用します。
    * @category: typography
-   * @example: <p class="text-quote color-neutral">これは引用です。</p>
+   * @example: <p class="text-quote theme-neutral">これは引用です。</p>
    */
 	.text-quote {
 		@apply relative pl-4 italic;
@@ -206,7 +206,7 @@
    * @variant: highlight
    * @description: コンポーネントカラーを使用して、微妙な背景ハイライトを適用します。marker-fullに似ていますが、異なるスタイル設定が可能です。
    * @category: typography
-   * @example: <span class="text-highlight color-accent">ハイライトされたテキスト</span>
+   * @example: <span class="text-highlight theme-accent">ハイライトされたテキスト</span>
    */
 	.text-highlight {
 		background-color: color-mix(

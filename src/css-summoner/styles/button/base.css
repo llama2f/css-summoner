@@ -1,7 +1,6 @@
-/* ダークモード用の変数 (レイヤー外) */
 @layer base {
 	:root.dark {
-		/* ゴーストボタン用の基本設定 - 他はカラーセレクタで対応 */
+		/* ダークモード時のホバー効果調整 */
 		--btn-ghost-hover-opacity: 0.1;
 		--btn-outline-hover-opacity: 0.2;
 	}
@@ -65,7 +64,7 @@
 	 * @variant: base
 	 * @description: すべてのボタンの基本スタイル。インタラクティブ要素に必要な共通のスタイルとレイアウトを提供します。
 	 * @category: interactive
-	 * @example: <button class="btn-base btn-solid color-primary">ボタン</button>
+	 * @example: <button class="btn-base btn-solid theme-primary">ボタン</button>
 	 */
 	.btn-base {
 		@apply inline-flex items-center justify-center;

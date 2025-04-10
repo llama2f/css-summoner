@@ -45,61 +45,128 @@
 
 // カラーレジストリ：UIから選択できる色の設定
 export const colorRegistry = {
-	primary: {
-		value: 'color-primary',
+	// 新しい意味ベースの命名規則（推奨）
+	themePrimary: {
+		value: 'theme-primary',
 		label: 'Primary',
 		description: '主要なアクションに使用する色',
 		cssVar: '--primary',
 	},
-	secondary: {
-		value: 'color-secondary',
+	themeSecondary: {
+		value: 'theme-secondary',
 		label: 'Secondary',
 		description: '補助的なアクションに使用する色',
 		cssVar: '--secondary',
 	},
-	accent: {
-		value: 'color-accent',
+	themeAccent: {
+		value: 'theme-accent',
 		label: 'Accent',
 		description: '注目を集めるアクションに使用する色',
 		cssVar: '--accent',
 	},
-	neutral: {
-		value: 'color-neutral',
+	themeNeutral: {
+		value: 'theme-neutral',
 		label: 'Neutral',
 		description: '一般的なアクションに使用する色',
 		cssVar: '--neutral',
 	},
-	dark: {
-		value: 'color-dark',
-		label: 'Dark',
-		description: '明るい背景上での表示に適した暗い色',
-		cssVar: '--neutral-dark',
+	themeBase: {
+		value: 'theme-base',
+		label: 'Base',
+		description: '現在のテーマのベース色（ライトモード/ダークモード対応）',
+		cssVar: '--bg-base',
 	},
-	light: {
-		value: 'color-light',
-		label: 'Light',
-		description: '暗い背景上での表示に適した明るい色',
-		cssVar: '--neutral-light',
+	themeInverse: {
+		value: 'theme-inverse',
+		label: 'Inverse',
+		description: '現在のテーマの反転色（ライトモード/ダークモード対応）',
+		cssVar: '--bg-inverse',
 	},
-	custom: {
-		value: 'color-custom',
+	themeCustom: {
+		value: 'theme-custom',
 		label: 'Custom',
 		description: 'カラーピッカーで選択したカスタム色',
 		cssVar: '--custom-color',
 		isCustom: true,
 	},
+
+	// 下位互換性のための古い命名規則（引き続きサポート）
+	/* primary: {
+		value: 'color-primary',
+		label: 'Primary (Legacy)',
+		description: '主要なアクションに使用する色（旧命名規則）',
+		cssVar: '--primary',
+		legacy: true,
+	},
+	secondary: {
+		value: 'color-secondary',
+		label: 'Secondary (Legacy)',
+		description: '補助的なアクションに使用する色（旧命名規則）',
+		cssVar: '--secondary',
+		legacy: true,
+	},
+	accent: {
+		value: 'color-accent',
+		label: 'Accent (Legacy)',
+		description: '注目を集めるアクションに使用する色（旧命名規則）',
+		cssVar: '--accent',
+		legacy: true,
+	},
+	neutral: {
+		value: 'color-neutral',
+		label: 'Neutral (Legacy)',
+		description: '一般的なアクションに使用する色（旧命名規則）',
+		cssVar: '--neutral',
+		legacy: true,
+	},
+	dark: {
+		value: 'color-dark',
+		label: 'Dark (Legacy)',
+		description: '明るい背景上での表示に適した暗い色（旧命名規則）',
+		cssVar: '--neutral-dark',
+		legacy: true,
+	},
+	light: {
+		value: 'color-light',
+		label: 'Light (Legacy)',
+		description: '暗い背景上での表示に適した明るい色（旧命名規則）',
+		cssVar: '--neutral-light',
+		legacy: true,
+	},
+	custom: {
+		value: 'color-custom',
+		label: 'Custom (Legacy)',
+		description: 'カラーピッカーで選択したカスタム色（旧命名規則）',
+		cssVar: '--custom-color',
+		isCustom: true,
+		legacy: true,
+	}, */
 }
 
 // 他のカラー関連の設定
 export const colorOptions = [
 	{ value: '', label: 'None', description: '色を指定しない' },
-	...Object.entries(colorRegistry).map(([key, color]) => ({
-		value: color.value,
-		label: color.label,
-		description: color.description,
-		cssVar: color.cssVar,
-		isCustom: color.isCustom || false,
-	})),
+	// 新しい命名規則のオプションを先に表示
+	...Object.entries(colorRegistry)
+		.filter(([key, color]) => !color.legacy)
+		.map(([key, color]) => ({
+			value: color.value,
+			label: color.label,
+			description: color.description,
+			cssVar: color.cssVar,
+			isCustom: color.isCustom || false,
+		})),
+	// 古い命名規則のオプションは後に表示
+	...Object.entries(colorRegistry)
+		.filter(([key, color]) => color.legacy)
+		.map(([key, color]) => ({
+			value: color.value,
+			label: color.label,
+			description: color.description,
+			cssVar: color.cssVar,
+			isCustom: color.isCustom || false,
+			legacy: true,
+		})),
 ]
 
 // カスタムカラー設定のデフォルト値

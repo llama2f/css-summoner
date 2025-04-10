@@ -6,7 +6,7 @@
    * @variant: solid
    * @description: 塗りつぶしスタイルのカード。背景色とテキスト色が適用されます。
    * @category: container
-   * @example: <div class="card-base card-solid color-neutral">ソリッドカード</div>
+   * @example: <div class="card-base card-solid theme-neutral">ソリッドカード</div>
    */
 	.card-solid {
 		background-color: var(--component-color, #fff); /* デフォルトは白背景 */
@@ -24,7 +24,7 @@
    * @variant: outline
    * @description: アウトラインスタイルのカード。枠線のみで背景は透明です。
    * @category: container
-   * @example: <div class="card-base card-outline color-primary">アウトラインカード</div>
+   * @example: <div class="card-base card-outline theme-primary">アウトラインカード</div>
    */
 	.card-outline {
 		background-color: transparent;
@@ -52,7 +52,7 @@
    * @variant: ghost
    * @description: ゴーストスタイルのカード。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。
    * @category: container
-   * @example: <div class="card-base card-ghost color-secondary">ゴーストカード</div>
+   * @example: <div class="card-base card-ghost theme-secondary">ゴーストカード</div>
    */
 	.card-ghost {
 		background-color: transparent;
@@ -73,7 +73,7 @@
    * @variant: subtle
    * @description: 控えめなカード。薄い背景色が適用され、ホバー時に色が濃くなります。
    * @category: container
-   * @example: <div class="card-base card-subtle color-accent">サブトルカード</div>
+   * @example: <div class="card-base card-subtle theme-accent">サブトルカード</div>
    */
 	.card-subtle {
 		background-color: color-mix(
@@ -101,7 +101,7 @@
    * @variant: bordered
    * @description: カードに明示的な境界線を追加します。
    * @category: appearance
-   * @example: <div class="card-base card-solid color-neutral card-bordered">境界線付きカード</div>
+   * @example: <div class="card-base card-solid theme-neutral card-bordered">境界線付きカード</div>
    */
 	.card-bordered {
 		/* base.css で border-width は設定済みなので、ここでは色のみ（カラーセレクタで上書きされる想定） */
@@ -113,7 +113,7 @@
    * @variant: compact
    * @description: カード内のパディングを減らし、コンパクトな表示にします。
    * @category: layout
-   * @example: <div class="card-base card-solid color-neutral card-compact">コンパクトカード</div>
+   * @example: <div class="card-base card-solid theme-neutral card-compact">コンパクトカード</div>
    */
 	.card-compact .card-body,
 	.card-compact .card-header,
@@ -126,7 +126,7 @@
    * @variant: horizontal
    * @description: 画像とコンテンツが横並びになるカード。モバイルでは縦並びになるレスポンシブ対応です。
    * @category: layout
-   * @example: <div class="card-base card-solid color-neutral card-horizontal">...</div>
+   * @example: <div class="card-base card-solid theme-neutral card-horizontal">...</div>
    */
 	.card-horizontal {
 		@apply flex flex-col md:flex-row;
@@ -146,7 +146,7 @@
    * @variant: actions
    * @description: カード内でのアクションボタンをグループ化するための領域。
    * @category: layout
-   * @example: <div class="card-base card-solid color-neutral">
+   * @example: <div class="card-base card-solid theme-neutral">
    *  <div class="card-body">...</div>
    *  <div class="card-actions">...</div>
    * </div>

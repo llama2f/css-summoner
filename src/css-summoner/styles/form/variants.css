@@ -10,7 +10,7 @@
    * @variant: input
    * @description: テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。
    * @category: form-controls
-   * @example: <input type="text" class="form-input color-neutral" placeholder="入力してください">
+   * @example: <input type="text" class="form-input theme-neutral" placeholder="入力してください">
    */
 	.form-input,
 	.form-select,
@@ -61,7 +61,7 @@
    * @variant: textarea
    * @description: 複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。
    * @category: form-controls
-   * @example: <textarea class="form-textarea color-neutral" placeholder="ご質問やご意見をお書きください"></textarea>
+   * @example: <textarea class="form-textarea theme-neutral" placeholder="ご質問やご意見をお書きください"></textarea>
    */
 	.form-textarea {
 		min-height: 6rem;
@@ -73,7 +73,7 @@
    * @variant: select
    * @description: ドロップダウン選択フィールド。オプションから1つを選ぶ場合に使用します。
    * @category: form-controls
-   * @example: <select class="form-select color-neutral">
+   * @example: <select class="form-select theme-neutral">
    *   <option>選択してください</option>
    *   <option>オプション1</option>
    *   <option>オプション2</option>
@@ -96,7 +96,7 @@
    * @variant: checkbox
    * @description: カスタムスタイルのチェックボックス。オン/オフの選択に使用します。
    * @category: form-controls
-   * @example: <input type="checkbox" class="form-checkbox color-neutral" id="terms">
+   * @example: <input type="checkbox" class="form-checkbox theme-neutral" id="terms">
    *   <label for="terms">利用規約に同意します</label>
    */
 	.form-checkbox,
@@ -124,7 +124,7 @@
    * @variant: radio
    * @description: カスタムスタイルのラジオボタン。複数の選択肢から1つを選ぶ場合に使用します。
    * @category: form-controls
-   * @example: <input type="radio" class="form-radio color-neutral" name="option" id="option1">
+   * @example: <input type="radio" class="form-radio theme-neutral" name="option" id="option1">
    *   <label for="option1">オプション1</label>
    */
 	.form-radio {
@@ -152,7 +152,7 @@
    * @category: form-controls
    * @example: <div class="form-switch">
    *   <input type="checkbox" class="form-switch-input" id="darkmode">
-   *   <label class="form-switch-label color-neutral" for="darkmode"></label> <!-- color-* を指定 -->
+   *   <label class="form-switch-label theme-neutral" for="darkmode"></label> <!-- theme-* を指定 -->
    * </div>
    */
 	.form-switch {
@@ -211,7 +211,7 @@
    */
 	.form-feedback {
 		@apply mt-1 text-sm;
-		/* デフォルトのテキスト色は親要素から継承 or color-neutral相当 */
+		/* デフォルトのテキスト色は親要素から継承 or theme-neutral相当 */
 		color: var(--neutral-dark, #242424);
 	}
 	.dark .form-feedback {
@@ -234,7 +234,7 @@
    * @variant: search
    * @description: 検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。
    * @category: form-controls
-   * @example: <input type="search" class="form-input form-search color-neutral" placeholder="検索...">
+   * @example: <input type="search" class="form-input form-search theme-neutral" placeholder="検索...">
    */
 	.form-search {
 		/* アイコンの色をテキスト色に追従させる (stroke='currentColor') */

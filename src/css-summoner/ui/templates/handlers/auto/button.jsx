@@ -150,7 +150,7 @@ export const variants = {
 		const reactElement = (
 			<div className={classString} data-skip-decoration='true'>
 				<button
-					className='btn-base btn-solid btn-sm color-primary'
+					className='btn-base btn-solid btn-sm theme-primary'
 					title={title}
 					disabled={disabled}
 					type={type}
@@ -160,7 +160,7 @@ export const variants = {
 					{children}
 				</button>
 				<button
-					className='btn-base btn-solid btn-sm color-primary'
+					className='btn-base btn-solid btn-sm theme-primary'
 					title={title}
 					disabled={disabled}
 					type={type}
@@ -170,7 +170,7 @@ export const variants = {
 					{children}
 				</button>
 				<button
-					className='btn-base btn-solid btn-sm color-primary'
+					className='btn-base btn-solid btn-sm theme-primary'
 					title={title}
 					disabled={disabled}
 					type={type}

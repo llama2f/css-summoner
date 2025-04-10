@@ -1,6 +1,7 @@
 /* グローバル変数の定義 */
 @layer base {
 	:root {
+		/* ベースカラートークン - セマンティックな定義 */
 		--primary: #1b6e79;
 		--primary-light: #dae2e2;
 		--primary-dark: #2e4652;
@@ -21,21 +22,49 @@
 		--error: #c03831;
 		--error-rgb: rgb(192, 56, 49);
 
-		/*ベースの変数*/
+		/* コントラスト保証のためのペア - 各色の上に表示するテキスト色 */
+		--on-primary: #ffffff;
+		--on-secondary: #ffffff;
+		--on-accent: #ffffff;
+		--on-neutral: #333333;
+		--on-success: #ffffff;
+		--on-warning: #333333;
+		--on-error: #ffffff;
 
+		/* テーマトークン - ライトモード (デフォルト) */
+		--bg-base: var(--neutral-light);
+		--text-base: var(--neutral-dark);
+		--bg-inverse: var(--neutral-dark);
+		--text-inverse: var(--neutral-light);
+		
+		/* ホバー効果の設定 */
+		--hover-light-mix: #000; /* 明るい背景のホバー効果 (暗くする) */
+		--hover-dark-mix: #fff;  /* 暗い背景のホバー効果 (明るくする) */
+		--hover-amount: 10%;     /* ホバー時の混合量 */
+		--active-amount: 20%;    /* アクティブ時の混合量 */
+
+		/*その他のベース変数*/
 		--font:
 			'Noto Sans JP', sans-serif, 'Noto Sans', 'Helvetica Neue', 'Helvetica',
 			'Arial', sans-serif;
-		--background: var(--neutral-light);
-		--foreground: var(--neutral-dark);
+		--background: var(--bg-base);
+		--foreground: var(--text-base);
 		--border: var(--neutral);
 		--muted: var(--neutral-light);
 		--muted-foreground: var(--neutral-dark);
 	}
 
+	/* ダークモードのテーマトークン */
 	:root.dark {
-		--background: var(--neutral-dark);
-		--foreground: var(--neutral-light);
+		--bg-base: var(--neutral-dark);
+		--text-base: var(--neutral-light);
+		--bg-inverse: var(--neutral-light);
+		--text-inverse: var(--neutral-dark);
+		
+		--background: var(--bg-base);
+		--foreground: var(--text-base);
+		--muted: var(--neutral-dark);
+		--muted-foreground: var(--neutral-light);
 	}
 
 	html {

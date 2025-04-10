@@ -218,7 +218,7 @@ const ColorPicker = ({
 				<div className='flex justify-end gap-2 mt-6'>
 					<button
 						onClick={onClose}
-						className='btn-base btn-ghost color-primary px-4 py-2 rounded'
+						className='btn-base btn-ghost theme-primary px-4 py-2 rounded'
 					>
 						閉じる
 					</button>
@@ -227,7 +227,7 @@ const ColorPicker = ({
 							handleColorChange()
 							onClose()
 						}}
-						className='btn-base btn-solid color-primary px-4 py-2 rounded'
+						className='btn-base btn-solid theme-primary px-4 py-2 rounded'
 					>
 						適用
 					</button>

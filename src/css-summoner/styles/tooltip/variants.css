@@ -6,7 +6,7 @@
    * @variant: solid
    * @description: 塗りつぶしスタイルのツールチップ。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="tooltip-base tooltip-solid color-neutral" data-tooltip="これは塗りつぶしツールチップです">ホバーしてください</span>
+   * @example: <span class="tooltip-base tooltip-solid theme-neutral" data-tooltip="これは塗りつぶしツールチップです">ホバーしてください</span>
    */
 	.tooltip-solid {
 		&::after {
@@ -36,7 +36,7 @@
    * @variant: outline
    * @description: 枠線スタイルのツールチップ。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="tooltip-base tooltip-outline color-neutral" data-tooltip="これはアウトラインツールチップです">ホバーしてください</span>
+   * @example: <span class="tooltip-base tooltip-outline theme-neutral" data-tooltip="これはアウトラインツールチップです">ホバーしてください</span>
    */
 	.tooltip-outline {
 		&::after {
@@ -87,7 +87,7 @@
 	  * @variant: subtle
 	  * @description: 控えめなスタイルのツールチップ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。
 	  * @category: display
-	  * @example: <span class="tooltip-base tooltip-subtle color-primary" data-tooltip="サブトルツールチップ">ホバーしてください</span>
+	  * @example: <span class="tooltip-base tooltip-subtle theme-primary" data-tooltip="サブトルツールチップ">ホバーしてください</span>
 	  */
 	.tooltip-subtle {
 		&::after {
@@ -119,7 +119,7 @@
 	  * @variant: ghost
 	  * @description: ゴーストスタイルのツールチップ。背景がなく、ホバー時にテキスト色のみ変化します（ホバー効果は utilities.css で定義推奨）。カラーセレクタと組み合わせて使用します。
 	  * @category: display
-	  * @example: <span class="tooltip-base tooltip-ghost color-primary" data-tooltip="ゴーストツールチップ">ホバーしてください</span>
+	  * @example: <span class="tooltip-base tooltip-ghost theme-primary" data-tooltip="ゴーストツールチップ">ホバーしてください</span>
 	  */
 	.tooltip-ghost {
 		&::after {
