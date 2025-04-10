@@ -50,7 +50,7 @@ const ClassBuilder = () => {
 	const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
 
 	// CSS変数エディタの表示状態
-	const [showCssVarEditor, setShowCssVarEditor] = useState(true)
+	const [showCssVarEditor, setShowCssVarEditor] = useState(false)
 
 	// スマホビュー用ドロワーの状態
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -359,17 +359,7 @@ const ClassBuilder = () => {
 						</div>
 					</div>
 
-					{/* CSS変数エディタボタン */}
-					<div className='flex justify-end mb-2'>
-						<button
-							onClick={() => setShowCssVarEditor((prev) => !prev)}
-							className='button-css-edit btn-primary btn-xs btn-animate-down'
-						>
-							{showCssVarEditor
-								? 'CSS変数エディタを閉じる☓'
-								: 'CSS変数エディタを開く>'}
-						</button>
-					</div>
+					{/* --- CSS変数エディタ トグルボタンは削除され、別の場所に移動しました --- */}
 
 					{/* プレビュー */}
 					<ClassPreview
@@ -408,7 +398,7 @@ const ClassBuilder = () => {
 						componentType={state.componentType}
 						componentVariant={state.componentVariant}
 						selectedModifiers={state.selectedModifiers}
-						selectedColor={state.selectedColor} // 色クラスの受け渡し
+						selectedColor={state.selectedColor}
 					/>
 				</div>
 			</div>
@@ -435,7 +425,7 @@ const ClassBuilder = () => {
 			<div
 				ref={drawerRef}
 				className={`mobile-drawer ${isDrawerOpen ? 'open' : ''} lg:hidden`}
-				// ★インラインスタイルで高さを設定
+				// ★インラインスタイルで高さを設定(css指定がandroidで動作しないため)
 				style={{ maxHeight: drawerMaxHeight }}
 			>
 				<div className='mobile-drawer-content'>
@@ -516,7 +506,6 @@ const ClassBuilder = () => {
 								onToggle={actions.toggleSpecialClass}
 								onTooltip={showTooltip}
 							/>
-							{/* --- 設定項目ここまで --- */}
 						</div>
 					)}
 				</div>
@@ -540,7 +529,32 @@ const ClassBuilder = () => {
 					>
 						Settings
 					</button>
+					{/* --- スマホビュー用 CSS変数エディタ トグル --- */}
+					<button
+						onClick={() => setShowCssVarEditor((prev) => !prev)}
+						className='css-var-editor-toggle-mobile btn-base btn-link color-light'
+					>
+						CSS Vars
+					</button>
 				</div>
+			</div>
+			{/* --- PCビュー用 CSS変数エディタ トグル --- */}
+			<div className='css-var-editor-toggle-desktop-container hidden lg:block'>
+				<button
+					onClick={() => setShowCssVarEditor((prev) => !prev)}
+					className='css-var-editor-toggle-desktop btn-base btn-primary btn-sm flex items-center gap-1' /* flex, items-center, gap-1 を追加 */
+				>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='0 0 512 512'
+						className='w-4 h-4 fill-current' /* サイズを w-4 h-4 に変更 */
+					>
+						{/* !Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */}
+						<path d='M352 320c88.4 0 160-71.6 160-160c0-15.3-2.2-30.1-6.2-44.2c-3.1-10.8-16.4-13.2-24.3-5.3l-76.8 76.8c-3 3-7.1 4.7-11.3 4.7L336 192c-8.8 0-16-7.2-16-16l0-57.4c0-4.2 1.7-8.3 4.7-11.3l76.8-76.8c7.9-7.9 5.4-21.2-5.3-24.3C382.1 2.2 367.3 0 352 0C263.6 0 192 71.6 192 160c0 19.1 3.4 37.5 9.5 54.5L19.9 396.1C7.2 408.8 0 426.1 0 444.1C0 481.6 30.4 512 67.9 512c18 0 35.3-7.2 48-19.9L297.5 310.5c17 6.2 35.4 9.5 54.5 9.5zM80 408a24 24 0 1 1 0 48 24 24 0 1 1 0-48z' />
+					</svg>
+					<span className='text-xs font-medium'>CSS Vars</span>{' '}
+					{/* テキスト追加 */}
+				</button>
 			</div>
 			{/* --- スマホビュー用ここまで --- */}
 		</div>

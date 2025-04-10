@@ -90,17 +90,17 @@
 
 	/* ダークモード対応 */
 	.dark .color-neutral {
+	}
+
+	.dark .color-light {
+		/* ダークモード時も色を維持 */
 		/* --component-color: var(--neutral-dark, #242424);
 		--component-text: var(--neutral-light, #fafafa); */
 	}
 
-	.dark .color-light {
-		--component-color: var(--neutral-dark, #242424);
-		--component-text: var(--neutral-light, #fafafa);
-	}
-
 	.dark .color-dark {
-		--component-color: var(--neutral-light, #fafafa);
-		--component-text: var(--neutral-dark, #242424);
+		/* ダークモード時も色を維持 */
+		/* --component-color: var(--neutral-light, #fafafa);
+		--component-text: var(--neutral-dark, #242424); */
 	}
 }

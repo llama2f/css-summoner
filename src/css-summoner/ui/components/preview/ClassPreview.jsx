@@ -88,7 +88,7 @@ const ClassPreview = ({
 				<div className='mt-4 text-xs text-neutral-500 dark:text-neutral-300 text-center max-w-xs'>
 					<div>
 						適用クラス:{' '}
-						<code className='bg-neutral-200 p-1 rounded'>
+						<code className='bg-neutral-200/30 p-1 rounded'>
 							{combinedClasses || 'N/A'}
 						</code>
 					</div>

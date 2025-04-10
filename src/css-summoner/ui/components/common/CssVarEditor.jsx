@@ -23,7 +23,7 @@ const CssVarEditor = ({ onClose }) => {
 		'neutral-dark': '',
 	})
 
-	const [isExpanded, setIsExpanded] = useState(false)
+	const [isExpanded, setIsExpanded] = useState(true)
 	const [contrastColors, setContrastColors] = useState({
 		text: null,
 		background: null,

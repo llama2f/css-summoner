@@ -28,6 +28,14 @@
 		);
 	}
 
+	/* ダークモード時も色を維持 */
+	.dark .color-light.btn-solid,
+	.dark .color-dark.btn-solid {
+		color: var(--component-text);
+		background-color: var(--component-color);
+		border-color: var(--component-border);
+	}
+
 	/* 
    * @component: button
    * @variant: outline
@@ -38,7 +46,7 @@
 	.btn-outline {
 		background-color: transparent;
 		color: var(--component-color, #333);
-		border-color: var(--component-border, #333);
+		border: 1px solid var(--component-border, #333);
 	}
 
 	.btn-outline:hover {
@@ -84,6 +92,9 @@
 			var(--component-color, #333),
 			transparent 90%
 		);
+	}
+
+	.dark .btn-ghost {
 	}
 
 	/* 
@@ -153,15 +164,15 @@
 			color-mix(in srgb, var(--component-color, #333), #000 30%),
 			var(--component-color, #333)
 		);
-		opacity: 0; /* 通常時は非表示 */
+		opacity: 0;
 	}
 
 	.btn-gradient:hover::before {
-		opacity: 0; /* ホバー時は通常グラデーションを非表示 */
+		opacity: 0;
 	}
 
 	.btn-gradient:hover::after {
-		opacity: 1; /* ホバー時はホバーグラデーションを表示 */
+		opacity: 1;
 	}
 
 	/* 
@@ -175,17 +186,44 @@
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
-			transparent 90%
+			transparent 85%
 		);
 		color: var(--component-color, #333);
 		border-color: transparent;
+	}
+
+	.color-neutral.btn-subtle {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 80%
+		);
+		color: var(--neutral-dark, #242424);
+	}
+
+	.color-light.btn-subtle {
+		background-color: color-mix(
+			in srgb,
+			var(--neutral, #333),
+			var(--neutral-light, #fafafa) 95%
+		);
+		color: color-mix(in srgb, var(--component-text, #fafafa), transparent 20%);
+	}
+
+	.color-dark.btn-subtle {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 20%
+		);
+		color: var(--neutral-light, #fff);
 	}
 
 	.btn-subtle:hover {
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
-			transparent 80%
+			transparent 75%
 		);
 	}
 
@@ -193,8 +231,29 @@
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
-			transparent 70%
+			transparent 65%
 		);
+	}
+
+	/* ダークモード時のsubtleかつneutral */
+	.dark .color-neutral.btn-subtle {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			var(--neutral-light, #fafafa) 80%
+		);
+	}
+
+	/* ダークモード時のsubtleかつdark */
+	.dark .color-dark.btn-subtle {
+		background-color: color-mix(
+			in srgb,
+			var(--component-text, #333),
+			var(--component-color) 90%
+		);
+	}
+
+	.dark .color-light.btn-subtle {
 	}
 
 	/* 
@@ -286,15 +345,5 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
-	}
-
-	/* ダークモード調整 */
-	.dark .btn-outline,
-	.dark .btn-ghost,
-	.dark .btn-link,
-	.dark .btn-subtle,
-	.dark .btn-icon-outline,
-	.dark .btn-icon-ghost {
-		color: var(--component-text, #fff);
 	}
 }

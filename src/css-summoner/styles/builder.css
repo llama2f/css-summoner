@@ -324,7 +324,7 @@
 	}
 
 	.mobile-drawer-close-button {
-		@apply absolute top-2 right-2 text-neutral-500 hover:text-neutral-800;
+		@apply absolute top-2 right-2 w-10 h-10 text-neutral-500 hover:text-neutral-800 z-50; /* z-index を追加 */
 		@apply dark:text-neutral-400 dark:hover:text-white;
 	}
 
@@ -336,10 +336,23 @@
 	}
 
 	.mobile-drawer-buttons-container {
-		@apply flex flex-row;
+		@apply flex flex-row justify-around;
 	}
 
 	.drawer-trigger-button {
-		@apply flex-1 mx-1 py-1 text-sm;
+		@apply mx-1 py-1 text-sm;
+	}
+
+	/* --- CSS変数エディタ トグルボタン --- */
+	.css-var-editor-toggle-mobile {
+		@apply text-sm;
+	}
+
+	.css-var-editor-toggle-desktop-container {
+		@apply fixed bottom-4 right-4 z-50;
+	}
+
+	.css-var-editor-toggle-desktop {
+		@apply bg-neutral-300/80 rounded-full shadow-lg px-3 py-2;
 	}
 }

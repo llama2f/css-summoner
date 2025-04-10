@@ -82,7 +82,14 @@ const BorderRadiusSelector = ({ options = [], selectedRadius, onSelect }) => {
 		// セレクター全体のコンテナ
 		<div>
 			{/* セクションタイトル */}
-			<h2 className='label-config label-radius text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1'>
+			<h2 className='label-config label-radius text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1 flex items-center gap-x-1.5'>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					viewBox='0 0 448 512'
+					className='h-4 w-4 fill-current'
+				>
+					<path d='M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z' />
+				</svg>
 				Radius
 			</h2>
 
@@ -96,8 +103,8 @@ const BorderRadiusSelector = ({ options = [], selectedRadius, onSelect }) => {
 						<button
 							// ボタンのスタイルクラス: 基本スタイル、サイズ、形状、視覚的角丸、選択状態
 							className={`btn btn-outline btn-xs btn-square selector-button selector-radius transition-all duration-150 ease-in-out
-			                             ${option.value ? getRadiusVisual(option.value) : 'rounded'} {/* ボタン自体の角丸 */}
-			                             ${selectedRadius === option.value ? 'btn-active border-primary text-primary' : 'border-neutral-300 dark:border-neutral-600 text-neutral-600 dark:text-neutral-400 hover:border-neutral-400 dark:hover:border-neutral-500'} {/* 選択/非選択/ホバー状態 */}
+			                             ${option.value ? getRadiusVisual(option.value) : 'rounded'}
+			                             ${selectedRadius === option.value ? 'btn-active border-primary-light text-primary-light bg-primary' : 'border-neutral-300 dark:border-neutral-400 text-neutral-600 dark:text-neutral-200 hover:text-primary hover:border-neutral-400 dark:hover:border-neutral-500'}
 			                           `}
 							onClick={(e) => handleSelect(e, option.value)} // クリックハンドラ
 							aria-pressed={selectedRadius === option.value} // アクセシビリティ: 選択状態を示す

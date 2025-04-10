@@ -55,9 +55,16 @@ const SizeSelector = ({ sizes = [], selectedSize, onSelect }) => {
 		// セレクター全体のコンテナ
 		<div className='mb-4'>
 			{' '}
-			{/* 下マージン追加 */}
 			{/* セクションタイトル */}
-			<h2 className='label-config label-size text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1'>
+			<h2 className='label-config label-size text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1 flex items-center gap-x-1.5'>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					viewBox='0 0 512 512'
+					className='h-4 w-4 fill-current'
+				>
+					{/* Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */}
+					<path d='M344 0L488 0c13.3 0 24 10.7 24 24l0 144c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM168 512L24 512c-13.3 0-24-10.7-24-24L0 344c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z' />
+				</svg>
 				Size
 			</h2>
 			{/* サイズ選択ボタンを配置するコンテナ */}
@@ -70,7 +77,7 @@ const SizeSelector = ({ sizes = [], selectedSize, onSelect }) => {
 						<button
 							// ボタンのスタイルクラス: 基本スタイル、サイズ、形状、選択状態
 							className={`btn btn-outline btn-xs btn-square selector-button selector-size transition-all duration-150 ease-in-out
-			                             ${selectedSize === option.value ? 'btn-active border-primary text-primary' : 'border-neutral-300 dark:border-neutral-600 text-neutral-600 dark:text-neutral-400 hover:border-neutral-400 dark:hover:border-neutral-500'} {/* 選択/非選択/ホバー状態 */}
+			                             ${selectedSize === option.value ? 'btn-active border-primary-light text-primary-light bg-primary' : 'border-neutral-300 dark:border-neutral-400 text-neutral-600 dark:text-neutral-200 hover:text-primary hover:border-neutral-400 dark:hover:border-neutral-500'}
 			                           `}
 							onClick={(e) => handleSelect(e, option.value)} // クリックハンドラ
 							aria-pressed={selectedSize === option.value} // アクセシビリティ: 選択状態
