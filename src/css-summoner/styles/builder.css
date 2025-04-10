@@ -309,7 +309,7 @@
 	.mobile-drawer {
 		@apply fixed bottom-0 left-0 right-0 z-40 bg-neutral-100 shadow-lg;
 		@apply transform translate-y-full transition-transform duration-300 ease-in-out;
-		max-height: 80vh; /* 高さを制限 */
+		max-height: 70vh; /* 高さを制限 */
 		overflow-y: auto; /* 内容が多い場合にスクロール */
 		border-top: 1px solid var(--neutral); /* ライトモードのボーダー */
 		@apply dark:bg-neutral-800 dark:text-neutral-light dark:border-neutral-700;

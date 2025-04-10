@@ -56,6 +56,7 @@ const ClassBuilder = () => {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 	/** @type {[('components' | 'settings' | null), React.Dispatch<React.SetStateAction<'components' | 'settings' | null>>]} */
 	const [activeDrawer, setActiveDrawer] = useState(null)
+	const [drawerMaxHeight, setDrawerMaxHeight] = useState('70vh') // 初期値はCSSと同じ
 	/** @type {React.RefObject<HTMLDivElement>} */
 	const drawerRef = useRef(null) // ドロワー要素への参照
 
@@ -210,6 +211,29 @@ const ClassBuilder = () => {
 			document.removeEventListener('mousedown', handleClickOutside)
 		}
 	}, [isDrawerOpen, closeDrawer])
+
+	// ウィンドウリサイズ時に高さを再計算
+	useEffect(() => {
+		const calculateHeight = () => {
+			// window.innerHeight を使うことで、アドレスバーなどを考慮した実際の表示領域の高さを取得
+			const calculatedHeight = window.innerHeight * 0.7
+			setDrawerMaxHeight(`${calculatedHeight}px`)
+			console.log(
+				'[ClassBuilder] Calculated drawer max height:',
+				calculatedHeight,
+				'px'
+			) // ログ追加
+		}
+
+		calculateHeight() // 初期計算
+		window.addEventListener('resize', calculateHeight) // リサイズ時にも再計算
+		window.addEventListener('orientationchange', calculateHeight) // 画面回転時にも再計算
+
+		return () => {
+			window.removeEventListener('resize', calculateHeight)
+			window.removeEventListener('orientationchange', calculateHeight)
+		}
+	}, [])
 
 	return (
 		<div className='max-w-7xl mx-auto'>
@@ -411,6 +435,8 @@ const ClassBuilder = () => {
 			<div
 				ref={drawerRef}
 				className={`mobile-drawer ${isDrawerOpen ? 'open' : ''} lg:hidden`}
+				// ★インラインスタイルで高さを設定
+				style={{ maxHeight: drawerMaxHeight }}
 			>
 				<div className='mobile-drawer-content'>
 					<button
