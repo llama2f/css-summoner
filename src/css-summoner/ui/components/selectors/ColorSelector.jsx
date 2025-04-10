@@ -54,9 +54,7 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 					<button
 						key={color.value}
 						className={`p-1  rounded flex items-center gap-2 ${
-							selectedColor === color.value
-								? 'border border-primary bg-primary-light/20'
-								: ''
+							selectedColor === color.value ? 'bg-primary ' : ''
 						}`}
 						onClick={() => handleCustomColorClick(color)}
 						onMouseEnter={(e) => onTooltip && onTooltip(e, color.description)}
@@ -64,7 +62,7 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 					>
 						{color.value ? (
 							<div
-								className='w-4 h-4 rounded-full border border-neutral-200'
+								className='w-4 h-4 rounded-full border border-neutral-200 '
 								style={{
 									backgroundColor: color.isCustom
 										? `var(--custom-color)`
@@ -75,7 +73,9 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 						) : (
 							<div className='w-4 h-4 rounded-full border border-dashed border-neutral-400'></div>
 						)}
-						<span className='btn-base btn-ghost btn-xs label-color dark:text-neutral-light'>
+						<span
+							className={`btn-base btn-ghost btn-xs label-color  dark:text-neutral-light ${selectedColor === color.value ? 'text-white font-bold' : ''}`}
+						>
 							{color.label}
 						</span>
 					</button>
