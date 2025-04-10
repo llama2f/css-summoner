@@ -11,6 +11,7 @@ hljs.registerLanguage('html', xml)
 import PropTypes from 'prop-types'
 import useAsyncHandler from '@hooks/useAsyncHandler'
 import { classRuleDetails } from '@/css-summoner/classMappings'
+import Accordion from '@components/common/Accordion'
 
 /**
  * 生成されたクラス文字列とHTMLコードを表示するコンポーネント
@@ -381,10 +382,12 @@ const ClassCodeDisplay = ({
 				)}
 			</div>
 
-			{/* 適用されるCSSルール */}
-			<div>
-				<div className='flex items-center justify-between mb-1'>
-					<h3 className='label-config label-css-rules'>適用されるCSSルール</h3>
+			{/* 適用されるCSSルール - アコーディオン形式 */}
+			<Accordion
+				title='適用されるCSSルール'
+				className='mb-4'
+				initialOpen={false}
+				headerRight={
 					<button
 						onClick={copyCssToClipboard}
 						disabled={!cssRulesString || cssRulesString.startsWith('/*')}
@@ -395,28 +398,25 @@ const ClassCodeDisplay = ({
 							viewBox='0 0 448 512'
 							className='h-4 w-4 fill-current'
 						>
-							{/* Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */}
 							<path d='M208 0L332.1 0c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9L448 336c0 26.5-21.5 48-48 48l-192 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48zM48 128l80 0 0 64-64 0 0 256 192 0 0-32 64 0 0 48c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 176c0-26.5 21.5-48 48-48z' />
 						</svg>
-						<span class='sr-only'>copy style</span>
+						<span className='sr-only'>copy style</span>
 					</button>
-				</div>
-				<div className='overflow-x-auto min-h-[100px] max-h-[300px]'>
-					{renderCssRulesContent()}
-				</div>
+				}
+				contentClassName=''
+			>
+				{renderCssRulesContent()}
 				{cssCopySuccess && (
 					<p className='text-green-600 text-sm mt-1'>{cssCopySuccess}</p>
 				)}
-			</div>
+			</Accordion>
 
-			{/* HTMLコード */}
-			<div>
-				{' '}
-				{/* HTMLコード全体を囲むdivを追加 */}
-				<div className='flex items-center justify-between mb-1'>
-					{' '}
-					{/* ヘッダー (mb-1を追加してCSSルール部分と合わせる) */}
-					<h3 className='label-config label-html'>HTMLコード</h3>
+			{/* HTMLコード - アコーディオン形式 */}
+			<Accordion
+				title='HTMLコード'
+				className='mb-4'
+				initialOpen={false}
+				headerRight={
 					<button
 						onClick={() => copyToClipboard(htmlString)}
 						disabled={
@@ -424,7 +424,7 @@ const ClassCodeDisplay = ({
 							generatingHtml ||
 							!!handlerError ||
 							!!htmlError ||
-							!initialClassString || // props 名変更
+							!initialClassString ||
 							htmlString.startsWith('<!--')
 						}
 						className='btn-base btn-solid btn-xs rounded theme-neutral'
@@ -434,18 +434,15 @@ const ClassCodeDisplay = ({
 							viewBox='0 0 448 512'
 							className='h-4 w-4 fill-current'
 						>
-							{/* Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */}
 							<path d='M208 0L332.1 0c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9L448 336c0 26.5-21.5 48-48 48l-192 0c-26.5 0-48-21.5-48-48l0-288c0-26.5 21.5-48 48-48zM48 128l80 0 0 64-64 0 0 256 192 0 0-32 64 0 0 48c0 26.5-21.5 48-48 48L48 512c-26.5 0-48-21.5-48-48L0 176c0-26.5 21.5-48 48-48z' />
 						</svg>
-						<span class='sr-only'>copy html</span>
+						<span className='sr-only'>copy html</span>
 					</button>
-				</div>
-				<div className='overflow-x-auto'>
-					{' '}
-					{/* コード表示エリア */}
-					{renderHtmlContent()}
-				</div>
-			</div>
+				}
+				contentClassName=''
+			>
+				{renderHtmlContent()}
+			</Accordion>
 		</div>
 	)
 }
