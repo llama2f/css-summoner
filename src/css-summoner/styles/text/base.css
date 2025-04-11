@@ -1,27 +1,22 @@
 @layer base {
 	:root {
-		/* テキスト装飾の基本変数 */
+		
 		--text-font-family: var(--font, sans-serif);
 
-		/* マーカー関連 (透明度は variants で調整する可能性あり) */
 		--text-marker-thickness: 0.5em;
-		/* --text-marker-opacity: 0.3; */ /* variants側で color-mix を使うためコメントアウト */
-		/* アンダーライン関連 */
+
 		--text-underline-thickness: 2px;
 		--text-underline-offset: 0.2em;
 
-		/* ハイライト関連 */
 		--text-highlight-padding-x: 0.25em;
 		--text-highlight-padding-y: 0.1em;
 		--text-highlight-opacity: 0.15;
 
-		/* カラーパレット（リファレンス用） - variants.css で --component-color 等を参照するため削除 */
 	}
 
-	/* ダークモード */
 	:root.dark {
-		/* ダークモード固有の調整 */
-		--text-highlight-opacity: 0.25; /* ハイライトの透明度調整 */
+		
+		--text-highlight-opacity: 0.25; 
 	}
 
 	/* 
@@ -39,10 +34,9 @@
 		overflow-wrap: break-word;
 	}
 
-	/* 印刷時 */
 	@media print {
 		:root {
-			/* --text-marker-opacity: 0.2; */ /* variants側で color-mix を使うためコメントアウト */
+			 
 			--text-underline-thickness: 0.75px;
 		}
 	}

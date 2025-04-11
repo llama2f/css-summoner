@@ -1,11 +1,9 @@
 @layer utilities {
-	/* 印刷時のページブレイク防止 */
 	@media print {
 		.infobox-base {
 			page-break-inside: avoid;
 			break-inside: avoid;
 		}
-		/* 印刷時はホバー効果を無効化 */
 		.infobox-hover:hover,
 		.infobox-hover-down:hover,
 		.infobox-hover-scale:hover {
@@ -16,32 +14,24 @@
 			opacity: 0 !important;
 		}
 		.infobox-hover-border:hover {
-			border-color: transparent !important; /* 印刷時はボーダー変化なし */
+			border-color: transparent !important;
 		}
 	}
 
-	/* ghost のホバーは背景を薄く表示 (utilities.css の infobox-hover-ghost と連携) */
-	/* .infobox-ghost:hover スタイルは utilities.css の .infobox-hover-ghost で定義 */
-
-	/*
-	 * =========================================
-	 * Infobox Content & Icon Styles
-	 * =========================================
-	 */
+	.infobox-title {
+		@apply font-bold text-lg mb-2;
+	}
 
 	.infobox-icon {
 		position: absolute;
 		left: var(--infobox-icon-position-left);
 		top: var(--infobox-icon-position-top);
-		/* width/height は削除し、コンテナとしての役割に */
-		display: inline-flex; /* SVGをインライン要素のように扱い、中央揃えなどを可能に */
-		align-items: center; /* 垂直方向の中央揃え */
-		justify-content: center; /* 水平方向の中央揃え */
-		/* アイコンの色は通常、親要素の color を継承するか、個別に設定 */
-		color: currentColor; /* デフォルト */
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: currentColor;
 	}
 
-	/* .infobox-icon 内の svg 要素にサイズを指定 */
 	.infobox-icon svg {
 		width: var(--infobox-icon-size);
 		height: var(--infobox-icon-size);
@@ -51,77 +41,47 @@
 		padding-left: var(--infobox-padding-left-icon);
 	}
 
-	/* ----- ホバーエフェクト ----- */
-
-	/* 上に浮き上がる効果 */
-	.infobox-hover {
-		/* transition は base.css で定義済み */
-	}
 	.infobox-hover:hover {
-		transform: translateY(-3px); /* card より少し控えめに */
-		/* box-shadow はオプションで infobox-shadow クラスと組み合わせる想定 */
-		/* box-shadow: var(--shadow-md); */
+		transform: translateY(-3px);
 	}
 
-	/* 下に沈む効果 */
-	.infobox-hover-down {
-		/* transition は base.css で定義済み */
-	}
 	.infobox-hover-down:hover {
-		transform: translateY(3px); /* card より少し控えめに */
-		/* box-shadow: var(--shadow-sm); */ /* 必要であれば */
+		transform: translateY(3px);
 	}
 
-	/* 拡大する効果 */
-	.infobox-hover-scale {
-		/* transition は base.css で定義済み */
-	}
 	.infobox-hover-scale:hover {
-		transform: scale(1.02); /* card より少し控えめに */
-		/* box-shadow: var(--shadow-md); */ /* 必要であれば */
+		transform: scale(1.02);
 	}
 
-	/* 半透明オーバーレイ効果 */
 	.infobox-hover-overlay {
-		position: relative; /* 疑似要素の基準 */
-		overflow: hidden; /* 疑似要素がはみ出さないように */
+		position: relative;
+		overflow: hidden;
 	}
 	.infobox-hover-overlay::after {
 		content: '';
 		position: absolute;
 		inset: 0;
-		background-color: color-mix(
-			in srgb,
-			currentColor 15%,
-			transparent
-		); /* テキスト色を薄く重ねる */
+		background-color: color-mix(in srgb, currentColor 15%, transparent);
 		opacity: 0;
 		transition: opacity var(--infobox-transition-duration)
 			var(--infobox-transition-timing-function);
 		pointer-events: none;
-		z-index: 1; /* コンテンツより手前 */
+		z-index: 1;
 	}
 	.infobox-hover-overlay:hover::after {
 		opacity: 1;
 	}
-	/* ダークモードでは白を薄く重ねる */
 	.dark .infobox-hover-overlay::after {
 		background-color: rgba(255, 255, 255, 0.1);
 	}
 
-	/* ボーダー強調効果 (outline/ghost バリアント向け) */
-	.infobox-hover-border {
-		/* transition は base.css で定義済み */
-	}
 	.infobox-hover-border:hover {
-		/* 現在のボーダー色を少し濃くする (例: 黒を10%混ぜる) */
 		border-color: color-mix(
 			in srgb,
 			var(--component-border, currentColor) 90%,
 			black 10%
 		);
 	}
-	/* ダークモードでのボーダーホバー (白を混ぜるなど調整が必要な場合) */
 	.dark .infobox-hover-border:hover {
 		border-color: color-mix(
 			in srgb,
@@ -130,61 +90,40 @@
 		);
 	}
 
-	/* ゴーストホバー (ghost バリアント向け) */
-	.infobox-hover-ghost {
-		/* transition は base.css で定義済み */
-	}
 	.infobox-hover-ghost:hover {
-		/* カラーセレクタで設定されたテキスト色を背景に薄く表示 */
 		background-color: color-mix(in srgb, currentColor 10%, transparent);
 	}
-	/* ダークモードでのゴーストホバー */
 	.dark .infobox-hover-ghost:hover {
 		background-color: rgba(255, 255, 255, 0.08);
 	}
 
-	/* ----- サイズユーティリティ ----- */
-
-	/* .infobox-sm: 小さなサイズのインフォボックス用 */
 	.infobox-sm {
-		--infobox-padding-y: 0.5rem; /* py-2 */
-		--infobox-padding-x: 0.75rem; /* px-3 */
-		--infobox-padding-left-icon: 2rem; /* アイコン用 */
-		--infobox-icon-size: 1rem; /* アイコンサイズ調整 (text-base 相当) */
-		--infobox-icon-position-left: 0.5rem; /* アイコン位置調整 */
-		--infobox-icon-position-top: 0.5rem; /* アイコン位置調整 */
-		@apply text-xs; /* テキストサイズ調整 */
+		--infobox-padding-y: 0.5rem;
+		--infobox-padding-x: 0.75rem;
+		--infobox-padding-left-icon: 2rem;
+		--infobox-icon-size: 1rem;
+		--infobox-icon-position-left: 0.5rem;
+		--infobox-icon-position-top: 0.5rem;
+		@apply text-xs;
 	}
 
-	/* .infobox-md: 中くらいのサイズのインフォボックス用 */
 	.infobox-md {
-		--infobox-padding-y: 1rem; /* py-4 */
-		--infobox-padding-x: 1.25rem; /* px-5 */
-		--infobox-padding-left-icon: 3rem; /* アイコン用 */
-		--infobox-icon-size: 1.25rem; /* アイコンサイズ調整 */
-		--infobox-icon-position-left: 1rem; /* アイコン位置調整 */
-		--infobox-icon-position-top: 1rem; /* アイコン位置調整 */
-		@apply text-sm; /* テキストサイズ調整 */
-	}
-
-	/* .infobox-lg: 大きなサイズのインフォボックス用 */
-	.infobox-lg {
-		--infobox-padding-y: 1.5rem; /* py-6 */
-		--infobox-padding-x: 1.75rem; /* px-7 */
-		--infobox-padding-left-icon: 4rem; /* アイコン用 */
-		--infobox-icon-size: 1.75rem; /* アイコンサイズ調整 */
-		--infobox-icon-position-left: 1.25rem; /* アイコン位置調整 */
-		--infobox-icon-position-top: 1.5rem; /* アイコン位置調整 */
-		@apply text-lg; /* テキストサイズ調整 */
-	}
-
-	.infobox-compact {
-		--infobox-padding-y: 0.75rem; /* py-3 */
-		--infobox-padding-x: 1rem; /* px-4 */
-		--infobox-padding-left-icon: 2.5rem; /* アイコン用 */
-		--infobox-icon-size: 1.25rem; /* text-xl 相当 */
-		--infobox-icon-position-left: 0.75rem; /* left-3 */
-		--infobox-icon-position-top: 0.75rem; /* top-3 */
+		--infobox-padding-y: 1rem;
+		--infobox-padding-x: 1.25rem;
+		--infobox-padding-left-icon: 3rem;
+		--infobox-icon-size: 1.25rem;
+		--infobox-icon-position-left: 1rem;
+		--infobox-icon-position-top: 1rem;
 		@apply text-sm;
+	}
+
+	.infobox-lg {
+		--infobox-padding-y: 1.5rem;
+		--infobox-padding-x: 1.75rem;
+		--infobox-padding-left-icon: 4rem;
+		--infobox-icon-size: 1.75rem;
+		--infobox-icon-position-left: 1.25rem;
+		--infobox-icon-position-top: 1.5rem;
+		@apply text-lg;
 	}
 }

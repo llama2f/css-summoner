@@ -1,40 +1,34 @@
-/* ダークモード用の変数 */
+
 @layer base {
-	:root.dark {
-	}
+	:root
 }
 
 @layer base {
 	:root {
-		/* ツールチップ用変数 - カスタマイズ可能 */
+		
 		--tooltip-font-family: var(--font, sans-serif);
 
-		/* サイズと余白 */
-		--tooltip-padding-x: 0.5rem; /* px-2 */
-		--tooltip-padding-y: 0.5rem; /* py-2 */
+		--tooltip-padding-x: 0.5rem; 
+		--tooltip-padding-y: 0.5rem; 
 		--tooltip-max-width: 20rem;
 		--tooltip-min-width: 6rem;
 		--tooltip-z-index: 50;
 		--tooltip-arrow-size: 0.5rem;
 		--tooltip-distance: 0.5rem;
 
-		/* 境界線 */
 		--tooltip-border-width: 1px;
-		--tooltip-border-radius: 0.375rem; /* rounded-md */
+		--tooltip-border-radius: 0.375rem; 
 
-		/* 影 */
 		--tooltip-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 		--tooltip-shadow:
 			0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
 		--tooltip-shadow-lg:
 			0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 
-		/* アニメーション */
 		--tooltip-transition-duration: 200ms;
 		--tooltip-transition-timing: ease-out;
 	}
 
-	/* 印刷用スタイル */
 	@media print {
 		:root {
 			--tooltip-bg: transparent;
@@ -42,7 +36,6 @@
 			--tooltip-padding-x: 0.25rem;
 			--tooltip-padding-y: 0.125rem;
 
-			/* 印刷時はシンプルな表示に */
 			--tooltip-info-bg: transparent;
 			--tooltip-info-text: var(--primary-dark, #1a568e);
 			--tooltip-info-border: var(--primary-dark, #1a568e);
@@ -71,13 +64,12 @@
 	.tooltip-base {
 		@apply relative inline-flex cursor-pointer;
 
-		/* ツールチップ本体 - data-tooltip属性の内容を表示 */
 		&::after {
 			position: absolute;
-			visibility: hidden; /* invisible */
+			visibility: hidden; 
 			opacity: 0;
 			white-space: normal;
-			overflow-wrap: break-word; /* break-words */
+			overflow-wrap: break-word; 
 			text-align: center;
 			content: attr(data-tooltip);
 			z-index: var(--tooltip-z-index);
@@ -85,8 +77,8 @@
 			min-width: var(--tooltip-min-width);
 			padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
 			font-family: var(--tooltip-font-family);
-			font-size: 0.875rem; /* text-sm */
-			font-weight: 400; /* font-normal */
+			font-size: 0.875rem; 
+			font-weight: 400; 
 			line-height: 1.25;
 			border-radius: var(--tooltip-border-radius);
 			border-width: var(--tooltip-border-width);
@@ -97,10 +89,9 @@
 			pointer-events: none;
 		}
 
-		/* 三角形の矢印 */
 		&::before {
 			position: absolute;
-			visibility: hidden; /* invisible */
+			visibility: hidden; 
 			opacity: 0;
 			content: '';
 			z-index: var(--tooltip-z-index);
@@ -113,7 +104,6 @@
 			pointer-events: none;
 		}
 
-		/* ホバー時の表示 */
 		&:hover::after,
 		&:hover::before,
 		&:focus::after,
@@ -123,22 +113,20 @@
 		}
 	}
 
-	/* ツールチップの位置 - デフォルトは上に表示、三角形は下向き */
 	.tooltip-base {
-		/* ツールチップ本体は上に表示 */
+		
 		&::after {
 			bottom: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
 			left: 50%;
 			transform: translateX(-50%);
 		}
 
-		/* 三角形は下向き */
 		&::before {
 			bottom: calc(100% + var(--tooltip-distance));
 			left: 50%;
 			transform: translateX(-50%);
 			border-bottom-width: 0;
-			/* border-top-color: inherit; */ /* variants.css で制御するため削除 */
+			 
 		}
 	}
 }

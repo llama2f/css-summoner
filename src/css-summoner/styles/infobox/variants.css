@@ -1,13 +1,5 @@
 @layer components {
-	/*
-	 * =========================================
-	 * Infobox Variants (Structure & Appearance)
-	 * =========================================
-	 * These variants define the basic structure and appearance,
-	 * intended to be combined with color selector classes (e.g., .color-info).
-	 */
-
-	/*
+	/**
 	 * @component: infobox
 	 * @variant: solid
 	 * @description: 背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。
@@ -15,18 +7,12 @@
 	 * @example: <div class="infobox-base infobox-solid color-info">...</div>
 	 */
 	.infobox-solid {
-		background-color: var(
-			--component-color,
-			#e4e4e4
-		); /* デフォルトはニュートラル系 */
+		background-color: var(--component-color, #e4e4e4);
 		color: var(--component-text, #242424);
-		border-color: var(
-			--component-border,
-			var(--component-color, #e4e4e4)
-		); /* ボーダーもコンポーネントカラーに依存 */
+		border-color: var(--component-border, var(--component-color, #e4e4e4));
 	}
 
-	/*
+	/**
 	 * @component: infobox
 	 * @variant: outline
 	 * @description: 背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。
@@ -35,37 +21,28 @@
 	 */
 	.infobox-outline {
 		background-color: transparent;
-		color: var(
-			--component-color,
-			#242424
-		); /* テキスト色はコンポーネントカラー */
-		border-color: var(
-			--component-border,
-			var(--component-color, #242424)
-		); /* ボーダー色もコンポーネントカラー */
+		color: var(--component-color, #242424);
+		border-color: var(--component-border, var(--component-color, #242424));
 	}
 
-	/* outline のホバーは背景を薄く表示 (card を参考に) */
 	.infobox-outline:hover {
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #242424),
 			transparent calc(100% - var(--infobox-outline-hover-opacity, 0.1) * 100%)
-				/* base.css で定義予定 or デフォルト値 */
 		);
 	}
-	/* ダークモードでの outline ホバー */
+
 	.dark .infobox-outline:hover {
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #fafafa),
 			transparent
 				calc(100% - var(--infobox-outline-hover-opacity-dark, 0.15) * 100%)
-				/* ダークモード用変数 */
 		);
 	}
 
-	/*
+	/**
 	 * @component: infobox
 	 * @variant: ghost
 	 * @description: 背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。
@@ -74,21 +51,7 @@
 	 */
 	.infobox-ghost {
 		background-color: transparent;
-		color: var(
-			--component-color,
-			#242424
-		); /* テキスト色はコンポーネントカラー */
+		color: var(--component-color, #242424);
 		border-color: transparent;
-	}
-
-	/*
-	 * @component: infobox
-	 * @variant: title
-	 * @description: タイトル要素のスタイル。
-	 * @category: notification
-	 * @example: <div class="infobox-base infobox-solid color-error"><h4 class="infobox-title">エラー</h4>...</div>
-	 */
-	.infobox-title {
-		@apply font-bold text-lg mb-2; /* 必要に応じて調整 */
 	}
 }

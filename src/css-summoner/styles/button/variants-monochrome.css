@@ -1,5 +1,4 @@
 @layer components {
-	/* ----- モノクロバリエーション（形状バリアント） ----- */
 
 	/* 
    * @component: button
@@ -130,15 +129,15 @@
    * @example: <button class="btn-base btn-gradient theme-primary">グラデーションボタン</button>
    */
 	.btn-gradient {
-		position: relative; /* 疑似要素の配置基準 */
-		overflow: hidden; /* 疑似要素がはみ出さないように */
+		position: relative; 
+		overflow: hidden; 
 		background-color: var(
 			--component-color,
 			#333
-		); /* ちらつき防止のため背景色を設定 */
-		color: var(--component-text, #fff); /* 背景色に合わせてテキスト色を調整 */
+		); 
+		color: var(--component-text, #fff); 
 		border-color: transparent;
-		z-index: 1; /* テキストが疑似要素より手前に来るように */
+		z-index: 1; 
 	}
 
 	.btn-gradient::before,
@@ -159,10 +158,9 @@
 			)
 		);
 		transition: opacity var(--btn-transition-duration, 200ms) ease-in-out;
-		z-index: -1; /* テキストの後ろに配置 */
+		z-index: -1; 
 	}
 
-	/* ホバー時のグラデーション（::afterを使用） */
 	.btn-gradient::after {
 		background-image: linear-gradient(
 			135deg,

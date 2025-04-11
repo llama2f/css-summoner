@@ -1,5 +1,5 @@
-/* Buttonコンポーネントのスタイル */
+
 @import './base.css';
-@import './variants-monochrome.css'; /* モノクロバリアント - 新システム */
-/* @import './variants.css';  */ /* 従来のカラーバリアント - 互換性のため残す */
+@import './variants-monochrome.css'; 
+ 
 @import './utilities.css';

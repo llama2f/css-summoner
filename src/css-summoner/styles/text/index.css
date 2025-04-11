@@ -1,21 +1,4 @@
-/* 
- * text/index.css
- * テキスト装飾スタイルコレクション (モノクロベース)
- * 
- * 機能:
- * - 様々なテキスト装飾（マーカー、アンダーライン、引用符、ハイライトなど）
- * - モノクロベースの構造とカラーセレクタによる色付け
- * - CSS変数によるカスタマイズ性
- * - 印刷時の対応
- * - ユーティリティ（影、ぼかし、アウトライン、縦書き）
- * 
- * 使用例:
- * <span class="text-marker theme-primary">マーカー付きテキスト</span>
- * <span class="text-underline-wavy theme-secondary">波線下線テキスト</span>
- * <p class="text-quote theme-neutral">引用符付きテキスト</p>
- * <span class="text-highlight theme-accent">ハイライトされたテキスト</span>
- * <span class="text-shadow">影付きテキスト</span>
- */
+
 @import './base.css';
-@import './variants.css'; /* モノクロバリアント */
+@import './variants.css'; 
 @import './utilities.css';

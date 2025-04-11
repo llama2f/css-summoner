@@ -1,18 +1,4 @@
-/* 
- * infobox/index.css
- * 情報ボックス用スタイルコレクション
- * 
- * 機能:
- * - 用途別の情報ボックススタイル (info, success, warning, error, note)
- * - ボーダー有無、背景色、アイコン設定
- * - レスポンシブ対応
- * - CSS変数によるカスタマイズ性
- * - 印刷用スタイル
- * 
- * 使用例:
- * <div class="infobox-info">通常の情報ボックス</div>
- * <div class="infobox-warning infobox-outline">警告ボックス (枠線のみ)</div>
- */
+
 @import './base.css';
 @import './variants.css';
 @import './utilities.css';

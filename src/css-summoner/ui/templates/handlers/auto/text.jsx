@@ -40,7 +40,7 @@ export function render(props) {
 	})
 	const reactElement = (
 		<p className={finalClassString} {...restDomProps} {...commonProps}>
-			{sampleText}
+			{samples.default || children}
 		</p>
 	)
 
@@ -80,7 +80,7 @@ export const variants = {
 				{...restDomProps}
 				{...commonProps}
 			>
-				{sampleText}
+				{samples.quote || children}
 			</blockquote>
 		)
 
@@ -90,8 +90,10 @@ export const variants = {
 
 // プレビュー用サンプル
 export const samples = {
-	default: '通常テキスト',
-	quote: '引用テキスト',
+	default:
+		'通常テキストです　ダミーの文章がここに入っています。改行を見るためにある程度長い文章を入れています。もう少し長い文章にしてみます。',
+	quote:
+		'引用テキストです　ダミーの文章がここに入っています。改行を見るためにある程度長い文章を入れています。もう少し長い文章にしてみます。',
 }
 
 // デフォルトエクスポート

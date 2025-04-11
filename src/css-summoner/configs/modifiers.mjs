@@ -248,20 +248,18 @@ export const modifiers = {
 		// 影関連は common にあるため、ここでは不要
 	],
 
-	// インフォボックス専用のモディファイア (variants.css, utilities.css に基づく)
+	// インフォボックス専用のモディファイア
 	infobox: [
 		{
 			value: 'infobox-with-icon',
 			label: 'アイコンつき',
 			description: 'アイコンを表示します',
 		},
-		// サイズ (variants.css)
 		{
-			value: 'infobox-compact',
-			label: 'コンパクト',
-			description: '余白が少ないコンパクトスタイル',
+			value: 'infobox-with-title',
+			label: 'タイトル付き',
+			description: 'タイトルを表示します',
 		},
-		// ホバー効果 (utilities.css)
 		{
 			value: 'infobox-hover',
 			label: 'ホバー(上)',

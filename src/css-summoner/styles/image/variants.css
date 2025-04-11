@@ -13,12 +13,9 @@
 		max-width: 100%;
 	}
 
-	/* 基本的な画像スタイル */
 	.img-container img {
 		@apply w-full h-auto block;
 	}
-
-	/* ----- 角丸バリエーション ----- */
 
 	/* 
 	 * @component: img
@@ -85,8 +82,6 @@
 		border-radius: 50%;
 	}
 
-	/* ----- 影バリエーション ----- */
-
 	/* 
 	 * @component: img
 	 * @variant: shadow-sm
@@ -125,8 +120,6 @@
 	.img-shadow-lg {
 		box-shadow: var(--img-shadow-lg);
 	}
-
-	/* ----- ボーダーバリエーション ----- */
 
 	/* 
 	 * @component: img
@@ -195,8 +188,6 @@
 			0 0 0 5px var(--img-border-color);
 	}
 
-	/* ----- キャプションスタイル ----- */
-
 	/* 
 	 * @component: img
 	 * @variant: caption
@@ -249,8 +240,6 @@
 	.img-caption-hover:hover figcaption {
 		@apply opacity-100;
 	}
-
-	/* ----- サイズとアスペクト比 ----- */
 
 	/* 
 	 * @component: img

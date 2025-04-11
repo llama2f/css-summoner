@@ -54,7 +54,7 @@ export function render(props) {
 			'これは長いテキストを含むツールチップです。複数行にわたる内容を表示する場合に使用します。'
 
 	// 位置に応じたコンテナクラス
-	let containerClass = 'tooltip-container-top'
+	let containerClass = 'tooltip-container-top flex flex-row gap-4 mt-12 text-sm'
 	if (isBottom) containerClass = 'tooltip-container-bottom'
 	if (isLeft) containerClass = 'tooltip-container-left'
 	if (isRight) containerClass = 'tooltip-container-right'
@@ -68,26 +68,26 @@ export function render(props) {
 	// SpecialContainerを使ってデコレーション回避
 	const reactElement = (
 		<SpecialContainer layoutClass={containerClass}>
-			<div className='tooltip-demo-container'>
+			<div className='tooltip-demo-container flex flex-col items-center justify-center'>
 				<span
-					className={finalClassString}
+					className={`font-bold ${finalClassString}`}
 					data-tooltip={tooltipText}
 					{...rest}
 				>
 					ホバーしてください
 				</span>
-				<p className='tooltip-help-text'>↑ ホバーすると表示</p>
+				<p className='tooltip-help-text text-xs'>↑ ホバーすると表示</p>
 			</div>
 
-			<div className='tooltip-demo-container'>
+			<div className='tooltip-demo-container flex flex-col items-center justify-center '>
 				<span
-					className={alwaysClassString}
+					className={`font-bold ${alwaysClassString}`}
 					data-tooltip={tooltipText}
 					{...rest}
 				>
 					表示例
 				</span>
-				<p className='tooltip-help-text'>↑ 表示されたツールチップ</p>
+				<p className='tooltip-help-text text-xs'>↑ 表示されたツールチップ</p>
 			</div>
 		</SpecialContainer>
 	)
@@ -95,7 +95,7 @@ export function render(props) {
 	// skipDecoration フラグを渡す
 	return {
 		...createHandlerResult(reactElement),
-		skipDecoration: true
+		skipDecoration: true,
 	}
 }
 
@@ -138,11 +138,7 @@ export const variants = {
 		// SpecialContainerを使ってデコレーション回避
 		const reactElement = (
 			<SpecialContainer>
-				<span
-					className={finalClassString}
-					data-tooltip={tooltipText}
-					{...rest}
-				>
+				<span className={finalClassString} data-tooltip={tooltipText} {...rest}>
 					{displayText}
 				</span>
 			</SpecialContainer>
@@ -151,15 +147,9 @@ export const variants = {
 		// skipDecoration フラグを渡す
 		return {
 			...createHandlerResult(reactElement),
-			skipDecoration: true
+			skipDecoration: true,
 		}
 	},
-}
-
-// プレビュー用サンプル
-export const samples = {
-	default: 'デモ表示',
-	hover: 'ホバー表示',
 }
 
 // デフォルトエクスポート
@@ -167,5 +157,4 @@ export default {
 	metadata,
 	render,
 	variants,
-	samples,
 }

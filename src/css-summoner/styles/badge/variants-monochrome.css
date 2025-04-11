@@ -1,6 +1,5 @@
-/* src/css-summoner/styles/badge/variants-monochrome.css */
+
 @layer components {
-	/* ----- モノクロバリエーション（形状バリアント） ----- */
 
 	/*
    * @component: badge
@@ -13,12 +12,12 @@
 		background-color: var(
 			--component-color,
 			var(--neutral)
-		); /* カラーセレクタから色を取得 */
+		); 
 		color: var(
 			--component-text,
 			var(--neutral-dark)
-		); /* カラーセレクタからテキスト色を取得 */
-		border-color: transparent; /* 通常、塗りつぶしには枠線は不要 */
+		); 
+		border-color: transparent; 
 	}
 
 	/*
@@ -52,18 +51,12 @@
 			in srgb,
 			var(--component-color, var(--neutral)),
 			transparent 90%
-		); /* カラーセレクタの色を薄くして背景に */
+		); 
 		color: var(
 			--component-color,
 			var(--neutral-dark)
-		); /* カラーセレクタから色を取得（テキスト色として使用） */
+		); 
 		border-color: transparent;
 	}
 
-	/* ダークモード時のテキスト色調整 (必要に応じて) */
-	/* .dark .badge-outline,
-    .dark .badge-subtle {
-        color: var(--component-text-dark, var(--component-color));
-    } */
-	/* Note: カラーセレクタ側でダークモードの色変数を定義するため、ここでは通常不要 */
 }

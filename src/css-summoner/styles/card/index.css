@@ -1,21 +1,4 @@
-/* 
- * card/index.css
- * カードコンポーネント用スタイルコレクション
- * 
- * 機能:
- * - shadcn UIのカードスタイルと互換性を持つ基本スタイル
- * - 追加のバリエーションとカスタマイズオプション
- * - CSS変数によるデザインシステムとの連携
- * 
- * 使用例:
- * <div class="card card-bordered card-hover">
- *   <div class="card-header">
- *     <h3 class="card-title">カードタイトル</h3>
- *   </div>
- *   <div class="card-body">コンテンツ</div>
- *   <div class="card-footer">フッター</div>
- * </div>
- */
+
 @import './base.css';
 @import './variants.css';
 @import './utilities.css';

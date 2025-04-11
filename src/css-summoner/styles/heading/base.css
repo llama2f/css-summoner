@@ -1,35 +1,27 @@
 @layer base {
 	:root {
-		/* 見出し用変数 - カスタマイズ可能 */
+		
 		--heading-font-family: var(--font, sans-serif);
 
-		/* 余白 */
 		--heading-margin-top: 2rem;
 		--heading-margin-bottom: 1.5rem;
 		--heading-padding-x: 1rem;
 		--heading-padding-y: 0.5rem;
 
-		/* 境界線 */
 		--heading-border-width: 4px;
 		--heading-border-radius: 0.25rem;
 
-		/* フォントサイズ (レスポンシブ) */
 		--heading-font-size-xl: clamp(1.5rem, 5vw, 2rem);
 		--heading-font-size-lg: clamp(1.25rem, 4vw, 1.75rem);
 		--heading-font-size-md: clamp(1.125rem, 3vw, 1.5rem);
 		--heading-font-size-sm: clamp(1rem, 2vw, 1.25rem);
 
-		/* 日本語フォント設定 */
 		--font-ja-mincho: 'Hiragino Mincho ProN', 'Yu Mincho', serif;
 		--font-handwritten: 'Comic Sans MS', 'Segoe Print', cursive;
 	}
 
-	/* ダークモード用の変数 */
-	:root.dark {
-		/* ダークモード固有のスタイルはカラーセレクタ側で定義するため、ここでは削除 */
-	}
+	:root
 
-	/* 印刷用スタイル */
 	@media print {
 		:root {
 			--heading-font-size-xl: 18pt;
@@ -42,8 +34,6 @@
 			--heading-padding-x: 0;
 			--heading-padding-y: 4pt;
 
-			/* 印刷時は背景色を薄く、境界線をはっきりと */
-			/* 印刷時の背景色調整は variants-monochrome.css で行う */
 			--heading-border-width: 1pt;
 		}
 	}
@@ -62,4 +52,4 @@
 		font-family: var(--heading-font-family);
 	}
 }
-/* 色関連のスタイルは削除し、カラーセレクタで適用 */
+

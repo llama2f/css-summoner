@@ -8,8 +8,6 @@
 }
 
 @layer components {
-	/* 追加クラスラベル */
-
 	.color-selector-container {
 		@apply grid grid-cols-1 gap-2 mb-4;
 		@apply overflow-y-auto max-h-56;
@@ -43,7 +41,6 @@
 		background-color: var(--accent);
 	}
 
-	/* パネル */
 	.panel {
 		@apply space-y-4 rounded-lg;
 		@apply lg:col-span-2 lg:p-3;
@@ -62,7 +59,6 @@
 		@apply lg:order-none lg:col-span-2;
 	}
 
-	/* セレクタークラス */
 	.selector-check {
 		@apply text-xs flex-grow;
 	}
@@ -96,16 +92,10 @@
 		@apply bg-primary text-white font-medium shadow-sm;
 	}
 
-	/* .selector-button.active::after {
-		background-color: var(--primary-dark) !important;
-	} */
-
-	/* コンポーネントセレクター */
 	.selector-component {
 		@apply w-full;
 	}
 
-	/* バリアントセレクター */
 	.selector-variant {
 		@apply w-full;
 	}
@@ -114,7 +104,6 @@
 		background-color: var(--primary);
 	}
 
-	/* サイズセレクター */
 	.selector-size {
 		@apply min-w-[60px] text-center;
 
@@ -129,7 +118,6 @@
 		@apply border-primary-dark;
 	}
 
-	/* 角丸セレクター */
 	.selector-radius {
 		@apply min-w-[60px] text-center;
 
@@ -144,9 +132,6 @@
 		@apply border-primary-dark;
 	}
 
-	/* クラスビルダー用のスタイル定義 */
-
-	/* 共通のセクションラベルスタイル */
 	.label-config {
 		color: var(--foreground);
 		padding-bottom: 0.3rem;
@@ -165,7 +150,6 @@
 		background-color: var(--primary);
 	}
 
-	/* セクション別の調整スタイル */
 	.label-variant::after {
 		background-color: var(--primary);
 	}
@@ -178,12 +162,10 @@
 		background-color: var(--accent);
 	}
 
-	/* タイトルラベル */
 	.label-component::after {
 		background-color: var(--neutral-dark);
 	}
 
-	/* セレクターコンテナ */
 	.container-config {
 		@apply flex flex-row flex-wrap gap-2;
 
@@ -193,20 +175,8 @@
 		&.container-config-variants {
 			@apply flex-col flex-nowrap gap-0 max-h-60 overflow-y-auto;
 		}
-		&.container-config-radius {
-		}
-
-		&.container-config-size {
-		}
-
-		&.container-config-modifiers {
-		}
-
-		&.container-config-special {
-		}
 	}
 
-	/* カテゴリーヘッダー */
 	.category-header {
 		font-weight: 500;
 		border-left: 3px solid transparent;
@@ -226,7 +196,6 @@
 		border-left-color: var(--primary);
 	}
 
-	/* アニメーション */
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
@@ -242,7 +211,6 @@
 		animation: fadeIn 0.3s ease-in-out;
 	}
 
-	/* セレクター内のリスト項目 */
 	.selector-item {
 		transition: all 0.2s ease-in-out;
 	}
@@ -251,7 +219,6 @@
 		transform: translateX(2px);
 	}
 
-	/* ボタンスタイル */
 	.option-button {
 		position: relative;
 		z-index: 1;
@@ -276,7 +243,6 @@
 		transform: scaleX(1);
 	}
 
-	/* スクロールバーのカスタマイズ */
 	.overflow-y-auto::-webkit-scrollbar {
 		width: 6px;
 	}
@@ -295,23 +261,12 @@
 		background: var(--primary-light);
 	}
 
-	/* アコーディオン */
-	/* .overflow-y-auto {
-		scrollbar-width: thin;
-		scrollbar-color: var(--neutral) transparent;
-	} */
-
-	/* ボタンスタイル */
-	.button-css-edit {
-	}
-
-	/* --- スマホビュー用ドロワー --- */
 	.mobile-drawer {
 		@apply fixed bottom-0 left-0 right-0 z-40 bg-neutral-100 shadow-lg;
 		@apply transform translate-y-full transition-transform duration-300 ease-in-out;
-		max-height: 70vh; /* 高さを制限 */
-		overflow-y: auto; /* 内容が多い場合にスクロール */
-		border-top: 1px solid var(--neutral); /* ライトモードのボーダー */
+		max-height: 70vh;
+		overflow-y: auto;
+		border-top: 1px solid var(--neutral);
 		@apply dark:bg-neutral-800 dark:text-neutral-light dark:border-neutral-700;
 	}
 
@@ -324,11 +279,10 @@
 	}
 
 	.mobile-drawer-close-button {
-		@apply absolute top-2 right-2 w-10 h-10 text-neutral-500 hover:text-neutral-800 z-50; /* z-index を追加 */
+		@apply absolute top-2 right-2 w-10 h-10 text-neutral-500 hover:text-neutral-800 z-50;
 		@apply dark:text-neutral-400 dark:hover:text-white;
 	}
 
-	/* --- スマホビュー用トリガーボタン --- */
 	.mobile-drawer-triggers {
 		@apply fixed bottom-0 left-0 right-0 z-30 flex justify-around p-2 backdrop-blur-sm border-t border-neutral;
 		@apply flex flex-col;
@@ -343,7 +297,6 @@
 		@apply mx-1 py-1 text-sm;
 	}
 
-	/* --- CSS変数エディタ トグルボタン --- */
 	.css-var-editor-toggle-mobile {
 		@apply text-sm;
 	}
@@ -356,7 +309,6 @@
 		@apply bg-neutral-200/95 text-primary rounded-full shadow-lg px-3 py-2;
 	}
 
-	/* --- CSS変数エディタ --- */
 	.css-var-editor {
 		@apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 		@apply p-0 bg-white dark:bg-neutral-800 shadow-lg rounded-lg z-50;

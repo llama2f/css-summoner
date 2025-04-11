@@ -1,7 +1,5 @@
 @layer components {
-	/* 機能に基づくテーマクラス - 意味的な命名 */
 
-	/* プライマリカラー */
 	.theme-primary {
 		--component-color: var(--primary, #1b6e79);
 		--component-text: var(--on-primary, #ffffff);
@@ -19,7 +17,6 @@
 		--component-mix: var(--hover-light-mix, #000);
 	}
 
-	/* セカンダリカラー */
 	.theme-secondary {
 		--component-color: var(--secondary, #5a994d);
 		--component-text: var(--on-secondary, #ffffff);
@@ -37,7 +34,6 @@
 		--component-mix: var(--hover-light-mix, #000);
 	}
 
-	/* アクセントカラー */
 	.theme-accent {
 		--component-color: var(--accent, #b11b1b);
 		--component-text: var(--on-accent, #ffffff);
@@ -55,7 +51,6 @@
 		--component-mix: var(--hover-light-mix, #000);
 	}
 
-	/* ニュートラルカラー */
 	.theme-neutral {
 		--component-color: var(--neutral, #d4d4d4);
 		--component-text: var(--on-neutral, #333333);
@@ -73,7 +68,6 @@
 		--component-mix: var(--hover-light-mix, #000);
 	}
 
-	/* 基本テーマ - 現在のモードのベース色 */
 	.theme-base {
 		--component-color: var(--bg-base);
 		--component-text: var(--text-base);
@@ -91,7 +85,6 @@
 		--component-mix: var(--hover-light-mix, #000);
 	}
 
-	/* 反転テーマ - 現在のモードの反転色 */
 	.theme-inverse {
 		--component-color: var(--bg-inverse);
 		--component-text: var(--text-inverse);
@@ -109,7 +102,6 @@
 		--component-mix: var(--hover-dark-mix, #fff);
 	}
 
-	/* カスタムテーマ - カラーピッカーで設定した色 */
 	.theme-custom {
 		--component-color: var(--custom-color, #6366f1);
 		--component-text: var(--custom-text-color, #ffffff);
@@ -128,7 +120,6 @@
 		--component-mix: var(--hover-light-mix, #000);
 	}
 
-	/* 下位互換性のための旧クラス名マッピング */
 	.color-primary {
 		--component-color: var(--primary, #1b6e79);
 		--component-text: var(--on-primary, #ffffff);

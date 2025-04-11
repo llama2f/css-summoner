@@ -7,7 +7,6 @@
    * @example: <span class="text-marker theme-primary">マーカー付きテキスト</span>
    */
 	.text-marker {
-		/* color-mixを使用して微妙な背景色を作成。必要に応じて透明度を調整。 */
 		background-image: linear-gradient(
 			transparent 60%,
 			color-mix(in srgb, var(--component-color, #333), transparent 70%) 40%
@@ -15,7 +14,6 @@
 		background-size: 100% 100%;
 		background-position: 0 0;
 		background-repeat: no-repeat;
-		/* 透明度はcolor-mixで処理 */
 	}
 
 	/* 
@@ -26,14 +24,13 @@
    * @example: <span class="text-marker-full theme-secondary">全面マーカーテキスト</span>
    */
 	.text-marker-full {
-		/* color-mixを使用して薄い背景塗りつぶしを作成。透明度を調整。 */
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
 			transparent 85%
 		);
 		padding: var(--text-highlight-padding-y) var(--text-highlight-padding-x);
-		border-radius: 0.2em; /* オプション: わずかな角丸を追加 */
+		border-radius: 0.2em;
 	}
 
 	/* 
@@ -53,8 +50,8 @@
 		);
 		background-repeat: no-repeat;
 		background-position: left bottom;
-		background-size: 100% 10px; /* ストライプ領域の高さを調整 */
-		padding-bottom: 4px; /* ストライプのためのスペースを確保 */
+		background-size: 100% 10px;
+		padding-bottom: 4px;
 	}
 
 	/* 
@@ -80,13 +77,6 @@
 		background-position: 0 0;
 		background-repeat: no-repeat;
 	}
-
-	/* 
-   * --------------------------------------------------------------------------
-   * Underline Styles
-   * --------------------------------------------------------------------------
-   * 様々な下線スタイルを提供します。色はカラーセレクタによって決定されます。
-   */
 
 	/* 
    * @component: text
@@ -160,13 +150,6 @@
 	}
 
 	/* 
-   * --------------------------------------------------------------------------
-   * Quote Styles
-   * --------------------------------------------------------------------------
-   * ブロック引用要素のスタイル。色はカラーセレクタによって決定されます。
-   */
-
-	/* 
    * @component: text
    * @variant: quote
    * @description: コンポーネントカラーを使用して、テキスト（通常は引用）に左ボーダーを適用します。
@@ -179,12 +162,6 @@
 		border-left-style: solid;
 		border-left-color: var(--component-color, #333);
 	}
-
-	/* 
-   * --------------------------------------------------------------------------
-   * Highlight Styles (Example - can be expanded)
-   * --------------------------------------------------------------------------
-   */
 
 	/* 
    * @component: text
@@ -201,19 +178,5 @@
 		);
 		padding: var(--text-highlight-padding-y) var(--text-highlight-padding-x);
 		border-radius: 0.2em;
-	}
-
-	/* ダークモード調整 */
-	:root.dark .text-marker,
-	:root.dark .text-marker-stripe,
-	:root.dark .text-marker-double {
-		/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */
-		/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */
-	}
-
-	:root.dark .text-marker-full,
-	:root.dark .text-highlight {
-		/* ダークモード用にミックスの割合を調整 */
-		/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */
 	}
 }

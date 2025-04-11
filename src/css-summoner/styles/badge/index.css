@@ -1,4 +1,4 @@
-/* src/css-summoner/styles/badge/index.css */
+
 @import './base.css';
-@import './variants-monochrome.css'; /* モノクロバリアントを使用 */
+@import './variants-monochrome.css'; 
 @import './utilities.css';

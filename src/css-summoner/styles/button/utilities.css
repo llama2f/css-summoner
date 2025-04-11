@@ -1,5 +1,4 @@
 @layer utilities {
-	/* ----- サイズバリエーション（手動設定） ----- */
 
 	.btn-xs {
 		font-size: var(--btn-font-size-xs);
@@ -26,7 +25,6 @@
 		padding: var(--btn-padding-y-xl) var(--btn-padding-x-xl);
 	}
 
-	/* ----- 形状バリエーション(手動追加) ----- */
 	.btn-base {
 		&.btn-rounded-sm {
 			border-radius: var(--btn-border-radius-sm);
@@ -93,8 +91,6 @@
 		}
 	}
 
-	/* ----- アイコン配置 ----- */
-
 	.btn-icon-left {
 		@apply inline-flex items-center;
 	}
@@ -128,7 +124,6 @@
 	}
 }
 
-/* 印刷時のアニメーション無効化 */
 @media print {
 	.btn-animate-up,
 	.btn-animate-pulse {

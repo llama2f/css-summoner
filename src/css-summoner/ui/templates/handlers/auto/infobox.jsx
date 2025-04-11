@@ -24,14 +24,11 @@ export function render(props) {
 		['role'] // DOM要素プロパティ
 	)
 
-	// Reactプロパティから必要な値を取得
-	const {
-		classString = '',
-		children = 'インフォメーションメッセージのサンプルです。重要な情報や注意事項を表示するために使用します。',
-		title = 'インフォボックスタイトル',
-		selectedModifiers = [],
-		baseClass = 'infobox-base', // baseClassを取得
-	} = reactProps
+	const classString = reactProps.classString || ''
+	const children = samples.default
+	const title = samples.title
+	const selectedModifiers = reactProps.selectedModifiers || []
+	const baseClass = reactProps.baseClass || 'infobox-base'
 
 	// DOMプロパティから必要な値を取得
 	const { role = 'alert' } = domProps
@@ -69,8 +66,15 @@ export function render(props) {
 	return createHandlerResult(reactElement)
 }
 
-// デフォルトエクスポート
+// プレビュー用サンプルデータ
+export const samples = {
+	default:
+		'インフォメーションメッセージのサンプルです。重要な情報や注意事項を表示するために使用します。',
+	title: 'インフォボックスのタイトル',
+}
+
 export default {
 	metadata,
 	render,
+	samples,
 }

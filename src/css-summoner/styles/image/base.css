@@ -1,11 +1,11 @@
 @layer base {
 	:root {
-		/* 画像スタイル用変数 - カスタマイズ可能 */
+		
 		--img-border-width: 1px;
 		--img-border-color: var(--neutral, rgb(228, 228, 228));
-		--img-border-radius-sm: 0.25rem; /* rounded-sm */
-		--img-border-radius-md: 0.375rem; /* rounded-md */
-		--img-border-radius-lg: 0.5rem; /* rounded-lg */
+		--img-border-radius-sm: 0.25rem; 
+		--img-border-radius-md: 0.375rem; 
+		--img-border-radius-lg: 0.5rem; 
 		--img-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 		--img-shadow-md:
 			0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -17,7 +17,6 @@
 		--img-caption-font-size: 0.875rem;
 	}
 
-	/* ダークモード用の変数 */
 	:root.dark {
 		--img-border-color: rgba(255, 255, 255, 0.1);
 		--img-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
@@ -28,7 +27,6 @@
 		--img-caption-bg: rgba(0, 0, 0, 0.8);
 	}
 
-	/* 印刷用スタイル */
 	@media print {
 		:root {
 			--img-border-width: 0.5pt;

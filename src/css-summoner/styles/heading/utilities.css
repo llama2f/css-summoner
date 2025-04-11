@@ -1,5 +1,4 @@
 @layer utilities {
-	/* === 追加機能クラス(手動追加) === */
 
 	.heading-with-icon {
 		@apply flex items-center gap-2;
@@ -18,8 +17,6 @@
 		@apply w-full;
 	}
 
-	/* サイズバリエーション(手動追加) */
-
 	.heading-xl {
 		font-size: var(--heading-font-size-xl);
 	}
@@ -36,7 +33,6 @@
 		font-size: var(--heading-font-size-sm);
 	}
 
-	/* 印刷時のページブレイク防止 */
 	@media print {
 		h1,
 		h2,

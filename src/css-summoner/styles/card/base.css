@@ -1,17 +1,15 @@
 @layer base {
 	:root {
-		/* カード用変数 - モノクロベース */
+		
 		--card-font-family: var(--font, sans-serif);
 
-		/* 余白とサイズ */
-		--card-padding: 1.25rem; /* p-5 */
-		--card-header-padding: 1rem 1.25rem; /* px-5 py-4 */
-		--card-footer-padding: 1rem 1.25rem; /* px-5 py-4 */
-		--card-margin: 1.5rem; /* m-6 */
-		--card-border-radius: 0.375rem; /* rounded-md */
+		--card-padding: 1.25rem; 
+		--card-header-padding: 1rem 1.25rem; 
+		--card-footer-padding: 1rem 1.25rem; 
+		--card-margin: 1.5rem; 
+		--card-border-radius: 0.375rem; 
 		--card-border-width: 1px;
 
-		/* 影 (Tailwindの値を参照) */
 		--card-shadow-sm: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
 		--card-shadow-md: var(
 			--shadow-md,
@@ -24,20 +22,17 @@
 			0 4px 6px -2px rgba(0, 0, 0, 0.05)
 		);
 
-		/* 透明度 (ボタンと共通化も検討) */
 		--card-outline-hover-opacity: 0.1;
-		--card-ghost-hover-opacity: 0.05; /* ボタンより控えめに */
+		--card-ghost-hover-opacity: 0.05; 
 		--card-disabled-opacity: 0.6;
 	}
 
-	/* ダークモード用の変数上書き */
 	:root.dark {
-		/* ダークモード固有の効果調整 */
+		
 		--card-outline-hover-opacity: 0.2;
 		--card-ghost-hover-opacity: 0.1;
 	}
 
-	/* 印刷用スタイル */
 	@media print {
 		:root {
 			--card-padding: 0.5rem;
@@ -49,7 +44,7 @@
 			--card-shadow-lg: none;
 		}
 		.card-base {
-			page-break-inside: avoid; /* カードがページ間で分割されないように */
+			page-break-inside: avoid; 
 		}
 	}
 
@@ -61,23 +56,21 @@
    * @example: <div class="card-base card-solid theme-neutral">...</div>
    */
 	.card-base {
-		@apply block overflow-hidden; /* レイアウトと内容のクリッピング */
+		@apply block overflow-hidden; 
 		font-family: var(--card-font-family);
 		border-width: var(--card-border-width);
 		border-style: solid;
 		border-radius: var(--card-border-radius);
-		/* カラー関連のスタイルはバリアントとカラーセレクタで定義 */
-		/* background-color, color, border-color はここでは設定しない */
+
 		transition:
 			box-shadow var(--transition-duration, 200ms) ease-in-out,
-			border-color var(--transition-duration, 200ms) ease; /* 影の変化をアニメーション */
+			border-color var(--transition-duration, 200ms) ease; 
 	}
 
-	/* カードのセクション */
 	.card-header {
 		@apply block;
 		padding: var(--card-header-padding);
-		/* ヘッダー固有のスタイル（例：下線）はバリアントで定義 */
+		
 	}
 
 	.card-body {
@@ -88,10 +81,9 @@
 	.card-footer {
 		@apply block;
 		padding: var(--card-footer-padding);
-		/* フッター固有のスタイル（例：上線）はバリアントで定義 */
+		
 	}
 
-	/* 無効状態 (カード全体に適用する場合) */
 	.card-base[aria-disabled='true'] {
 		opacity: var(--card-disabled-opacity);
 		pointer-events: none;

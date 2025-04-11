@@ -1,7 +1,4 @@
-/* 
- * class-builder.css
- * カスタムクラスビルダー用スタイル
- */
+
 
 @layer components {
 	.class-builder-option {
@@ -44,22 +41,18 @@
 		@apply bg-primary-light !border-primary text-primary-dark;
 	}
 
-	/* プレビューカード用 */
 	.preview-card {
 		@apply p-4 rounded;
 	}
 
-	/* プレビューバッジ用 */
 	.preview-badge {
 		@apply px-2 py-1 inline-flex items-center rounded font-semibold;
 	}
 
-	/* プレビューパネル用 */
 	.preview-panel {
 		@apply w-full;
 	}
 
-	/* テーマクラス（theme.tsの簡易版） */
 	.theme-light {
 		@apply bg-neutral-light text-neutral-dark;
 	}
@@ -80,7 +73,6 @@
 		@apply bg-transparent text-neutral-dark;
 	}
 
-	/* メディアクエリ対応 */
 	@media (max-width: 640px) {
 		.class-builder-option {
 			@apply text-xs px-2 py-0.5;
@@ -91,7 +83,6 @@
 		}
 	}
 
-	/* 印刷対応 */
 	@media print {
 		.class-builder-preview-area {
 			@apply border border-black;

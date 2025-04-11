@@ -1,5 +1,4 @@
 @layer components {
-	/* === フォーマル/ビジネス向けスタイル === */
 
 	/* 
 	 * @component: heading
@@ -13,14 +12,14 @@
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		padding-left: calc(var(--heading-padding-x) + var(--heading-border-width));
 		border-left: var(--heading-border-width) solid var(--component-border, #333);
-		/* 背景色をカラーセレクタの色を薄めたものに変更 */
+		
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
 			transparent 90%
 		);
 		color: var(--component-color, #333);
-		/* テキスト色はそのまま component-color を使用 */
+		
 	}
 
 	/* 
@@ -49,10 +48,8 @@
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		background-color: var(--component-color, #333);
 		color: var(--component-text, #fff);
-		/* ホバー/アクティブ時の色調整はカラーセレクタ側で行う */
+		
 	}
-
-	/* === カジュアル向けスタイル === */
 
 	/* 
 	 * @component: heading
@@ -78,7 +75,7 @@
 	.heading-casual-badge {
 		@apply heading-base inline-block rounded-full;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
-		/* 背景色をカラーセレクタの色を薄めたものに変更 */
+		
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
@@ -104,8 +101,6 @@
 		color: var(--component-color, #333);
 	}
 
-	/* === テクニカル向けスタイル === */
-
 	/* 
 	 * @component: heading
 	 * @variant: technical-code
@@ -116,7 +111,7 @@
 	.heading-technical-code {
 		@apply heading-base font-mono rounded;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
-		/* 背景色をカラーセレクタの色を薄めたものに変更 */
+		
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
@@ -169,8 +164,6 @@
 		color: var(--component-border, #aaa);
 	}
 
-	/* === アクセント向けスタイル === */
-
 	/* 
 	 * @component: heading
 	 * @variant: accent-gradient
@@ -186,7 +179,7 @@
 			var(--component-border, #f00),
 			transparent
 		);
-		/* グラデーション背景なのでテキスト色は component-text を使用 */
+		
 		color: var(--component-text, #fff);
 	}
 
@@ -218,15 +211,13 @@
 		color: var(--component-color, #333);
 		background-image: repeating-linear-gradient(
 			-45deg,
-			/* 角度 */ /* component-bg を少し暗くした色 */
+			 
 				color-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),
 			color-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,
-			/* 3pxまで同じ色 */ transparent 3px,
+			 transparent 3px,
 			transparent 6px
 		);
 	}
-
-	/* === モダン/ミニマル向けスタイル === */
 
 	/* 
 	 * @component: heading
@@ -265,17 +256,9 @@
 		left: 0;
 		width: 100%;
 		height: 3px;
-		/* グラデーションはカラーセレクタ側で定義 */
+		
 		background-color: var(--component-border, #ccc);
-		/*
-		background: linear-gradient(
-			to right,
-			var(--heading-modern-border) 0%,
-			var(--heading-modern-border) 50%,
-			var(--heading-accent-border) 50%,
-			var(--heading-accent-border) 100%
-		);
-		*/
+		
 	}
 
 	/* 
@@ -294,8 +277,6 @@
 		letter-spacing: -0.02em;
 		line-height: 1.1;
 	}
-
-	/* === 和風/和モダン向けスタイル === */
 
 	/* 
 	 * @component: heading
@@ -319,16 +300,9 @@
 		left: 0;
 		width: 100%;
 		height: 2px;
-		/* グラデーションはカラーセレクタ側で定義 */
+		
 		background-color: var(--component-border, #aaa);
-		/*
-		background: linear-gradient(
-			to right,
-			var(--heading-japanesque-border),
-			var(--heading-japanesque-border) 70%,
-			transparent
-		);
-		*/
+		
 	}
 
 	/* 
@@ -351,10 +325,6 @@
 		margin-right: auto;
 		border-left: 1px solid var(--component-border, #aaa);
 	}
-
-	/* === 既存カテゴリへの追加バリエーション === */
-
-	/* フォーマル追加バリエーション */
 
 	/* 
 	 * @component: heading
@@ -395,8 +365,6 @@
 		background-color: var(--component-border, #333);
 	}
 
-	/* カジュアル追加バリエーション */
-
 	/* 
 	 * @component: heading
 	 * @variant: casual-handwritten
@@ -425,7 +393,7 @@
 		color: var(--component-color, #333);
 		background: linear-gradient(
 			transparent 60%,
-			/* 上部60%は透明 */ /* 下部40%は component-color を透過させた色 */
+			 
 				color-mix(in srgb, var(--component-color, #333), transparent 50%) 60%
 		);
 		box-decoration-break: clone;

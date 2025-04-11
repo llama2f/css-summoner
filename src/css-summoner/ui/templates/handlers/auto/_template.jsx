@@ -32,11 +32,10 @@ export function render(props) {
 		['id', 'role']
 	)
 
-	const {
-		classString = '',
-		children = `${metadata.type} Preview`,
-		baseClass = `${metadata.type}-base`,
-	} = reactProps
+	const classString = reactProps.classString || ''
+	const children =
+		samples.default || reactProps.children || `${metadata.type} Preview`
+	const baseClass = reactProps.baseClass || `${metadata.type}-base`
 
 	const { id, role } = domProps
 
@@ -68,8 +67,10 @@ export const variants = {
 	//     ['id', 'role'] // DOM要素プロパティ
 	//   );
 	//
-	//   // 必要なプロパティを取得
-	//   const { classString = '', baseClass = `${metadata.type}-base` } = reactProps;
+	//   // サンプルから値を取得するか、デフォルト値を使用
+	//   const classString = reactProps.classString || '';
+	//   const children = samples.special || reactProps.children || '特別な表示';
+	//   const baseClass = reactProps.baseClass || `${metadata.type}-base`;
 	//   const { id, role } = domProps;
 	//
 	//   // クラス文字列を結合
@@ -89,9 +90,11 @@ export const variants = {
 
 // --- プレビュー用サンプルデータ (オプション) ---
 // ClassBuilder UI のプレビュー表示で使用されるサンプルテキストなど。
+// サンプルデータを提供することで、プレビュー時に常に特定のテキストや値を表示できます。
 export const samples = {
-	// default: 'デフォルトテキスト',
-	// variantName: 'バリアント用テキスト',
+	default: 'デフォルトのサンプルテキスト', // コンポーネントのデフォルト表示テキスト
+	title: 'サンプルタイトル', // タイトルが必要なコンポーネント用
+	// variantName: 'バリアント用テキスト', // 特定のバリアント用
 }
 
 // --- Astroコンポーネント カスタム生成関数 (オプション) ---

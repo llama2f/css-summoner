@@ -1,5 +1,4 @@
 @layer components {
-	/* ----- モノクロバリエーション（形状バリアント） ----- */
 
 	/*
    * @component: card
@@ -9,15 +8,13 @@
    * @example: <div class="card-base card-solid theme-neutral">ソリッドカード</div>
    */
 	.card-solid {
-		background-color: var(--component-color, #fff); /* デフォルトは白背景 */
-		color: var(--component-text, #333); /* デフォルトは濃いグレーテキスト */
+		background-color: var(--component-color, #fff); 
+		color: var(--component-text, #333); 
 		border-color: var(
 			--component-border,
 			#e4e4e4
-		); /* デフォルトは薄いグレーボーダー */
+		); 
 	}
-
-	/* solidのホバー/アクティブは通常変化なし。必要なら追加 */
 
 	/*
    * @component: card
@@ -31,14 +28,13 @@
 		color: var(
 			--component-color,
 			#333
-		); /* テキスト色はコンポーネントカラーに合わせる */
+		); 
 		border-color: var(
 			--component-border,
 			#333
-		); /* ボーダー色はコンポーネントカラー */
+		); 
 	}
 
-	/* outlineのホバーは背景を薄く表示 */
 	.card-outline:hover {
 		background-color: color-mix(
 			in srgb,
@@ -79,7 +75,7 @@
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #e4e4e4),
-			/* デフォルトはニュートラル */ transparent 90%
+			 transparent 90%
 		);
 		color: var(--component-color, #333);
 		border-color: transparent;
@@ -93,9 +89,6 @@
 		);
 	}
 
-	/* ----- レイアウト・装飾バリアント（既存クラスの維持） ----- */
-	/* 注: これらのクラスは本来 utilities.css に配置するのが望ましい */
-
 	/*
    * @component: card
    * @variant: bordered
@@ -104,7 +97,7 @@
    * @example: <div class="card-base card-solid theme-neutral card-bordered">境界線付きカード</div>
    */
 	.card-bordered {
-		/* base.css で border-width は設定済みなので、ここでは色のみ（カラーセレクタで上書きされる想定） */
+		
 		border-color: var(--component-border, var(--card-border, #e4e4e4));
 	}
 
@@ -134,7 +127,7 @@
 
 	.card-horizontal .card-image {
 		@apply w-full md:w-1/3 flex-shrink-0;
-		/* 画像コンポーネント側で object-cover を推奨 */
+		
 	}
 
 	.card-horizontal .card-body {
@@ -152,11 +145,9 @@
    * </div>
    */
 	.card-actions {
-		@apply flex justify-end mt-4 space-x-2 p-4; /* アクション領域にもパディングを追加 */
+		@apply flex justify-end mt-4 space-x-2 p-4; 
 	}
 
-	/* ----- ダークモード調整 ----- */
-	/* テキスト色やボーダー色はカラーセレクタ側で管理 */
 	:root.dark .card-outline:hover {
 		background-color: color-mix(
 			in srgb,

@@ -1,4 +1,4 @@
-/* コンポーネントスタイル */
+
 @import './button/index.css';
 @import './card/index.css';
 @import './text/index.css';
@@ -9,6 +9,5 @@
 @import './tooltip/index.css';
 @import './infobox/index.css';
 
-/* カラーシステム */
 @import './colors/color-system.css';
 @import './colors/custom-color.css';

@@ -132,10 +132,6 @@
       {
         "value": "infobox-solid",
         "label": "Solid"
-      },
-      {
-        "value": "infobox-title",
-        "label": "Title"
       }
     ],
     "img": [
@@ -606,12 +602,6 @@
       "component": "infobox",
       "variant": "ghost",
       "description": "背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。",
-      "category": "notification"
-    },
-    "infobox-title": {
-      "component": "infobox",
-      "variant": "title",
-      "description": "タイトル要素のスタイル。",
       "category": "notification"
     },
     "infobox-base": {
@@ -1238,11 +1228,6 @@
         "example": "<div class=\"infobox-base infobox-ghost color-neutral\">...</div>"
       },
       {
-        "variant": "title",
-        "className": "infobox-title",
-        "example": "<div class=\"infobox-base infobox-solid color-error\"><h4 class=\"infobox-title\">エラー</h4>...</div>"
-      },
-      {
         "variant": "base",
         "className": "infobox-base",
         "example": "<div class=\"infobox-base infobox-solid color-info\">...</div>"
@@ -1738,13 +1723,13 @@
       "sourceFile": "text/variants.css",
       "relatedRules": [
         {
-          "selector": ".dark .text-marker,\n\t.dark .text-marker-stripe,\n\t.dark .text-marker-double",
-          "ruleText": ".dark .text-marker,\n\t.dark .text-marker-stripe,\n\t.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
+          "selector": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double",
+          "ruleText": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
           "sourceFile": "text/variants.css"
         },
         {
-          "selector": ".dark .text-marker-full,\n\t.dark .text-highlight",
-          "ruleText": ".dark .text-marker-full,\n\t.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
+          "selector": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight",
+          "ruleText": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
           "sourceFile": "text/variants.css"
         }
       ]
@@ -1755,8 +1740,8 @@
       "sourceFile": "text/variants.css",
       "relatedRules": [
         {
-          "selector": ".dark .text-marker-full,\n\t.dark .text-highlight",
-          "ruleText": ".dark .text-marker-full,\n\t.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
+          "selector": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight",
+          "ruleText": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
           "sourceFile": "text/variants.css"
         }
       ]
@@ -1767,8 +1752,8 @@
       "sourceFile": "text/variants.css",
       "relatedRules": [
         {
-          "selector": ".dark .text-marker,\n\t.dark .text-marker-stripe,\n\t.dark .text-marker-double",
-          "ruleText": ".dark .text-marker,\n\t.dark .text-marker-stripe,\n\t.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
+          "selector": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double",
+          "ruleText": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
           "sourceFile": "text/variants.css"
         }
       ]
@@ -1779,8 +1764,8 @@
       "sourceFile": "text/variants.css",
       "relatedRules": [
         {
-          "selector": ".dark .text-marker,\n\t.dark .text-marker-stripe,\n\t.dark .text-marker-double",
-          "ruleText": ".dark .text-marker,\n\t.dark .text-marker-stripe,\n\t.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
+          "selector": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double",
+          "ruleText": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
           "sourceFile": "text/variants.css"
         }
       ]
@@ -1827,8 +1812,8 @@
       "sourceFile": "text/variants.css",
       "relatedRules": [
         {
-          "selector": ".dark .text-marker-full,\n\t.dark .text-highlight",
-          "ruleText": ".dark .text-marker-full,\n\t.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
+          "selector": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight",
+          "ruleText": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
           "sourceFile": "text/variants.css"
         }
       ]
@@ -1865,12 +1850,6 @@
     "infobox-ghost": {
       "ruleText": ".infobox-ghost {\n\t\tbackground-color: transparent;\n\t\tcolor: var(\n\t\t\t--component-color,\n\t\t\t#242424\n\t\t); /* テキスト色はコンポーネントカラー */\n\t\tborder-color: transparent;\n\t}",
       "selector": ".infobox-ghost",
-      "sourceFile": "infobox/variants.css",
-      "relatedRules": []
-    },
-    "infobox-title": {
-      "ruleText": ".infobox-title {\n\t\t@apply font-bold text-lg mb-2; /* 必要に応じて調整 */\n\t}",
-      "selector": ".infobox-title",
       "sourceFile": "infobox/variants.css",
       "relatedRules": []
     },
@@ -2490,8 +2469,8 @@
           "sourceFile": "card/variants.css"
         },
         {
-          "selector": ".dark .card-outline:hover",
-          "ruleText": ".dark .card-outline:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #fff),\n\t\t\t/* ダークモードでは白系が基本色になる想定 */ transparent\n\t\t\t\tcalc(100% - var(--card-outline-hover-opacity, 0.2) * 100%)\n\t\t);\n\t}",
+          "selector": ":root.dark .card-outline:hover",
+          "ruleText": ":root.dark .card-outline:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #fff),\n\t\t\ttransparent calc(100% - var(--card-outline-hover-opacity, 0.2) * 100%)\n\t\t);\n\t}",
           "sourceFile": "card/variants.css"
         }
       ]
@@ -2507,8 +2486,8 @@
           "sourceFile": "card/variants.css"
         },
         {
-          "selector": ".dark .card-ghost:hover",
-          "ruleText": ".dark .card-ghost:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #fff),\n\t\t\ttransparent calc(100% - var(--card-ghost-hover-opacity, 0.1) * 100%)\n\t\t);\n\t}",
+          "selector": ":root.dark .card-ghost:hover",
+          "ruleText": ":root.dark .card-ghost:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #fff),\n\t\t\ttransparent calc(100% - var(--card-ghost-hover-opacity, 0.1) * 100%)\n\t\t);\n\t}",
           "sourceFile": "card/variants.css"
         }
       ]
@@ -2524,13 +2503,13 @@
           "sourceFile": "card/variants.css"
         },
         {
-          "selector": ".dark .card-subtle",
-          "ruleText": ".dark .card-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #ccc),\n\t\t\t/* ダークモードのサブトル背景 */ transparent 90%\n\t\t);\n\t}",
+          "selector": ":root.dark .card-subtle",
+          "ruleText": ":root.dark .card-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #ccc),\n\t\t\ttransparent 90%\n\t\t);\n\t}",
           "sourceFile": "card/variants.css"
         },
         {
-          "selector": ".dark .card-subtle:hover",
-          "ruleText": ".dark .card-subtle:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #ccc),\n\t\t\ttransparent 80%\n\t\t);\n\t}",
+          "selector": ":root.dark .card-subtle:hover",
+          "ruleText": ":root.dark .card-subtle:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #ccc),\n\t\t\ttransparent 80%\n\t\t);\n\t}",
           "sourceFile": "card/variants.css"
         }
       ]
@@ -2775,7 +2754,7 @@
   },
   "meta": {
     "totalFiles": 29,
-    "totalClasses": 110,
+    "totalClasses": 109,
     "errors": [
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
@@ -2846,7 +2825,6 @@
       "infobox-solid",
       "infobox-outline",
       "infobox-ghost",
-      "infobox-title",
       "infobox-base"
     ],
     "img": [
@@ -3110,14 +3088,6 @@
         "variant": "ghost",
         "className": "infobox-ghost",
         "description": "背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。",
-        "category": "notification",
-        "sourceFile": "infobox/variants.css"
-      },
-      {
-        "component": "infobox",
-        "variant": "title",
-        "className": "infobox-title",
-        "description": "タイトル要素のスタイル。",
         "category": "notification",
         "sourceFile": "infobox/variants.css"
       },

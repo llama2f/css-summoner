@@ -1,5 +1,4 @@
 @layer utilities {
-	/* ----- 表示エフェクト ----- */
 
 	/* 
 	 * @component: img
@@ -102,7 +101,6 @@
 		filter: contrast(1.2);
 	}
 
-	/* 印刷時のページブレイク防止 */
 	@media print {
 		.img-container {
 			page-break-inside: avoid;

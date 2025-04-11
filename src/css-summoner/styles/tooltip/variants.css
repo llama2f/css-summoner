@@ -1,5 +1,4 @@
 @layer components {
-	/* ----- 見た目ベースのバリエーション ----- */
 
 	/*
    * @component: tooltip
@@ -13,22 +12,21 @@
 			background-color: var(
 				--component-color,
 				var(--neutral-dark)
-			); /* Use component color or fallback */
+			); 
 			color: var(
 				--component-text,
 				var(--neutral-light)
-			); /* Use component text color or fallback */
+			); 
 			border-color: var(
 				--component-border,
 				transparent
-			); /* Use component border or transparent */
+			); 
 		}
 
-		/* Default arrow (top) */
 		&::before {
 			border-top-color: var(--component-color, var(--neutral-dark));
 		}
-		/* 他の方向の色指定は削除 */
+		
 	}
 
 	/*
@@ -44,41 +42,40 @@
 			color: var(
 				--component-color,
 				var(--neutral-dark)
-			); /* Use component color for text */
+			); 
 			border-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
-			); /* Use component border or color */
+			); 
 		}
 
-		/* Default arrow (top) */
 		&::before {
 			border-top-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
 			);
 		}
-		/* Arrow adjustments for other directions */
+		
 		&.tooltip-bottom::before {
 			border-bottom-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
 			);
-			border-top-color: transparent; /* !important を削除 */
+			border-top-color: transparent; 
 		}
 		&.tooltip-left::before {
 			border-left-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
 			);
-			border-top-color: transparent; /* !important を削除 */
+			border-top-color: transparent; 
 		}
 		&.tooltip-right::before {
 			border-right-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
 			);
-			border-top-color: transparent; /* !important を削除 */
+			border-top-color: transparent; 
 		}
 	}
 
@@ -95,15 +92,14 @@
 				in srgb,
 				var(--component-color, var(--neutral)) 10%,
 				transparent
-			); /* Use component color mixed with transparent */
+			); 
 			color: var(
 				--component-color,
 				var(--neutral-dark)
-			); /* Use component color for text */
+			); 
 			border-color: transparent;
 		}
 
-		/* Default arrow (top) */
 		&::before {
 			border-top-color: color-mix(
 				in srgb,
@@ -111,7 +107,7 @@
 				transparent
 			);
 		}
-		/* 他の方向の色指定は削除 */
+		
 	}
 
 	/*
@@ -127,16 +123,14 @@
 			color: var(
 				--component-color,
 				var(--neutral-dark)
-			); /* Use component color for text */
+			); 
 			border-color: transparent;
-			/* ホバー時のスタイルは utilities.css で .tooltip-hover-ghost などで定義することを推奨 */
+			
 		}
 
-		/* Ghost usually doesn't have an arrow, but if needed, make it transparent or match text */
 		&::before {
-			border-top-color: transparent; /* Or match text color if design requires */
+			border-top-color: transparent; 
 		}
-		/* 他の方向の色指定は削除 */
-		/* Consider adding .tooltip-no-arrow modifier for ghost style */
+
 	}
 }

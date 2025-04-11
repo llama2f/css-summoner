@@ -83,7 +83,7 @@ export const variants = {
 		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
-			label = 'ラベル',
+			label = samples.input,
 			placeholder = 'テキストを入力',
 			baseClass = 'form-input',
 		} = reactProps
@@ -135,7 +135,7 @@ export const variants = {
 		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
-			label = 'ラベル',
+			label = samples.select,
 			baseClass = 'form-select',
 			options = [
 				{ value: '', label: '項目を選択' },
@@ -181,21 +181,18 @@ export const variants = {
 
 	// Checkbox
 	'form-checkbox': (props) => {
-		// プロパティ分離
 		const { reactProps, domProps, commonProps } = separateProps(
 			props,
 			['classString', 'label', 'baseClass', 'selectedModifiers', 'children'], // Reactプロパティ
 			['id', 'type'] // DOM要素プロパティ
 		)
 
-		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
-			label = 'チェックボックスラベル',
+			label = samples.checkbox,
 			baseClass = 'form-checkbox',
 		} = reactProps
 
-		// DOMプロパティから必要な値を取得
 		const {
 			id = 'sample-checkbox',
 			type = 'checkbox',
@@ -228,7 +225,6 @@ export const variants = {
 
 	// Radio
 	'form-radio': (props) => {
-		// プロパティ分離
 		const { reactProps, domProps, commonProps } = separateProps(
 			props,
 			['classString', 'label', 'baseClass', 'selectedModifiers', 'children'], // Reactプロパティ
@@ -238,7 +234,7 @@ export const variants = {
 		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
-			label = 'ラジオボタンラベル',
+			label = samples.radio,
 			baseClass = 'form-radio',
 		} = reactProps
 
@@ -294,7 +290,7 @@ export const variants = {
 		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
-			label = 'テキストエリアラベル',
+			label = samples.textarea,
 			placeholder = '複数行のテキストを入力',
 			baseClass = 'form-textarea',
 		} = reactProps
@@ -346,7 +342,7 @@ export const variants = {
 		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
-			label = '検索',
+			label = samples.search,
 			placeholder = '検索キーワードを入力',
 			baseClass = 'form-search',
 		} = reactProps
@@ -394,7 +390,7 @@ export const variants = {
 		// Reactプロパティから必要な値を取得
 		const {
 			classString = '', // スイッチコンテナ用クラス
-			label = 'スイッチラベル',
+			label = samples.switch,
 			baseClass = 'form-switch', // スイッチコンテナ用ベースクラス
 		} = reactProps
 

@@ -1,20 +1,4 @@
-/* 
- * form/index.css
- * フォーム要素用スタイルコレクション
- * 
- * 機能:
- * - プロジェクト固有のフォームデザインシステムに合わせたスタイル
- * - CSS変数によるカスタマイズ性
- * - Tailwindとの連携を考慮した必要最小限の追加スタイル
- * 
- * 使用例:
- * <input type="text" class="form-input" placeholder="入力してください">
- * <select class="form-select">...</select>
- * <div class="form-switch">
- *   <input type="checkbox" class="form-switch-input" id="switch">
- *   <label class="form-switch-label" for="switch"></label>
- * </div>
- */
+
 @import './base.css';
 @import './variants.css';
 @import './utilities.css';
