@@ -63,8 +63,8 @@ const ClassCodeDisplay = ({
 
 	// ベースクラスを決定
 	const baseClass = useMemo(() => {
-		// baseClasses マッピングから取得、存在しない場合はフォールバックとしてコンポーネント名から生成
-		return baseClasses[componentType] || `${componentType}-base`
+		// baseClasses マッピングから取得するのみ、存在しない場合は空文字列を返す
+		return baseClasses[componentType] || ''
 	}, [componentType])
 
 	// HTML文字列を生成する useEffect (ハンドラーがロードされた後に実行)
