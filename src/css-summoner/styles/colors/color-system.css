@@ -9,12 +9,12 @@
 		--component-hover-color: color-mix(
 			in srgb,
 			var(--primary, #1b6e79),
-			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+			var(--hover-light-mix, #000) var(--hover-amount, 20%)
 		);
 		--component-active-color: color-mix(
 			in srgb,
 			var(--primary, #1b6e79),
-			var(--hover-light-mix, #000) var(--active-amount, 20%)
+			var(--hover-light-mix, #000) var(--active-amount, 30%)
 		);
 		--component-mix: var(--hover-light-mix, #000);
 	}
@@ -27,12 +27,12 @@
 		--component-hover-color: color-mix(
 			in srgb,
 			var(--secondary, #5a994d),
-			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+			var(--hover-light-mix, #000) var(--hover-amount, 20%)
 		);
 		--component-active-color: color-mix(
 			in srgb,
 			var(--secondary, #5a994d),
-			var(--hover-light-mix, #000) var(--active-amount, 20%)
+			var(--hover-light-mix, #000) var(--active-amount, 30%)
 		);
 		--component-mix: var(--hover-light-mix, #000);
 	}
@@ -45,12 +45,12 @@
 		--component-hover-color: color-mix(
 			in srgb,
 			var(--accent, #b11b1b),
-			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+			var(--hover-light-mix, #000) var(--hover-amount, 20%)
 		);
 		--component-active-color: color-mix(
 			in srgb,
 			var(--accent, #b11b1b),
-			var(--hover-light-mix, #000) var(--active-amount, 20%)
+			var(--hover-light-mix, #000) var(--active-amount, 30%)
 		);
 		--component-mix: var(--hover-light-mix, #000);
 	}
@@ -63,12 +63,12 @@
 		--component-hover-color: color-mix(
 			in srgb,
 			var(--neutral, #d4d4d4),
-			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+			var(--hover-light-mix, #000) var(--hover-amount, 20%)
 		);
 		--component-active-color: color-mix(
 			in srgb,
 			var(--neutral, #d4d4d4),
-			var(--hover-light-mix, #000) var(--active-amount, 20%)
+			var(--hover-light-mix, #000) var(--active-amount, 30%)
 		);
 		--component-mix: var(--hover-light-mix, #000);
 	}
@@ -81,12 +81,12 @@
 		--component-hover-color: color-mix(
 			in srgb,
 			var(--bg-base),
-			var(--hover-light-mix, #000) var(--hover-amount, 10%)
+			var(--hover-light-mix, #000) var(--hover-amount, 20%)
 		);
 		--component-active-color: color-mix(
 			in srgb,
 			var(--bg-base),
-			var(--hover-light-mix, #000) var(--active-amount, 20%)
+			var(--hover-light-mix, #000) var(--active-amount, 30%)
 		);
 		--component-mix: var(--hover-light-mix, #000);
 	}
@@ -99,12 +99,12 @@
 		--component-hover-color: color-mix(
 			in srgb,
 			var(--bg-inverse),
-			var(--hover-dark-mix, #fff) var(--hover-amount, 10%)
+			var(--hover-dark-mix, #fff) var(--hover-amount, 20%)
 		);
 		--component-active-color: color-mix(
 			in srgb,
 			var(--bg-inverse),
-			var(--hover-dark-mix, #fff) var(--active-amount, 20%)
+			var(--hover-dark-mix, #fff) var(--active-amount, 30%)
 		);
 		--component-mix: var(--hover-dark-mix, #fff);
 	}

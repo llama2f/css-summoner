@@ -8,11 +8,9 @@ const { title = siteData.siteName } = Astro.props
 ---
 
 <header
-	class='flex items-center justify-between sticky top-0 z-30 p-4 bg-neutral-light dark:bg-neutral-dark border-b border-neutral-200 dark:border-neutral-700'
+	class='flex items-center justify-between sticky top-0 z-30 p-4 bg-neutral-dark border-b border-neutral-200 dark:border-neutral-700'
 >
-	<h1
-		class='text-lg md:text-xl font-bold text-neutral-dark dark:text-neutral-light'
-	>
+	<h1 class='text-lg md:text-xl font-bold text-neutral-light'>
 		{title}
 	</h1>
 
@@ -24,7 +22,7 @@ const { title = siteData.siteName } = Astro.props
 		<div class='md:hidden flex items-center gap-1'>
 			<button
 				id='mobile-palette-button'
-				class='btn btn-ghost btn-sm p-1 text-neutral-dark dark:text-neutral-light hover:bg-neutral-200 dark:hover:bg-neutral-600'
+				class='btn btn-icon btn-sm p-1'
 				aria-label='カラーパレットを開く'
 				title='カラーパレット'
 			>
@@ -35,7 +33,7 @@ const { title = siteData.siteName } = Astro.props
 			</button>
 			<button
 				id='mobile-menu-button'
-				class='btn btn-ghost btn-sm p-1 text-neutral-dark dark:text-neutral-light hover:bg-neutral-200 dark:hover:bg-neutral-600'
+				class='btn btn-icon btn-sm p-1'
 				aria-label='メニューを開く'
 				title='メニュー'
 				aria-expanded='false'
