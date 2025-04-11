@@ -48,7 +48,7 @@
   ],
   "baseClasses": {
     "tooltip": "tooltip-base",
-    "text": "text-deco-base",
+    "text": "text-base",
     "infobox": "infobox-base",
     "heading": "heading-base",
     "card": "card-base",
@@ -584,7 +584,7 @@
       "description": "コンポーネントカラーを使用して、微妙な背景ハイライトを適用します。marker-fullに似ていますが、異なるスタイル設定が可能です。",
       "category": "typography"
     },
-    "text-deco-base": {
+    "text-base": {
       "component": "text",
       "variant": "base",
       "description": "テキストデコレーションの基本スタイルを提供します。",
@@ -1217,8 +1217,8 @@
       },
       {
         "variant": "base",
-        "className": "text-deco-base",
-        "example": "<span class=\"text-deco-base\">ベースデコレーション</span>"
+        "className": "text-base",
+        "example": "<span class=\"text-base\">ベースデコレーション</span>"
       }
     ],
     "infobox": [
@@ -1833,9 +1833,9 @@
         }
       ]
     },
-    "text-deco-base": {
-      "ruleText": ".text-deco-base {\n\t\tfont-family: var(--text-font-family);\n\t\tfont-size: 1rem;\n\t\tletter-spacing: 0.05em;\n\t\tline-height: 1.75;\n\t\toverflow-wrap: break-word;\n\t}",
-      "selector": ".text-deco-base",
+    "text-base": {
+      "ruleText": ".text-base {\n\t\tfont-family: var(--text-font-family);\n\t\tfont-size: 1rem;\n\t\tletter-spacing: 0.05em;\n\t\tline-height: 1.75;\n\t\toverflow-wrap: break-word;\n\t}",
+      "selector": ".text-base",
       "sourceFile": "text/base.css",
       "relatedRules": []
     },
@@ -2840,7 +2840,7 @@
       "text-underline-thick",
       "text-quote",
       "text-highlight",
-      "text-deco-base"
+      "text-base"
     ],
     "infobox": [
       "infobox-solid",
@@ -3082,7 +3082,7 @@
       {
         "component": "text",
         "variant": "base",
-        "className": "text-deco-base",
+        "className": "text-base",
         "description": "テキストデコレーションの基本スタイルを提供します。",
         "category": "typography",
         "sourceFile": "text/base.css"

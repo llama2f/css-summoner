@@ -151,14 +151,15 @@ export const useClassBuilder = (): UseClassBuilderReturn => {
      }, [state.componentType]);
     useEffect(() => {
         const combinedClasses = combineClasses({
-			baseClass: '', variant: state.componentVariant, size: state.size, radius: state.borderRadius,
+			baseClass: baseClasses[state.componentType as keyof typeof baseClasses] || '', // 実際のベースクラスを使用
+			variant: state.componentVariant, size: state.size, radius: state.borderRadius,
 			modifiers: state.selectedModifiers, specialClasses: state.selectedSpecialClasses,
 			color: state.selectedColor, additional: state.additionalClasses,
 		});
 		dispatch({ type: ACTIONS.UPDATE_GENERATED_CLASS, payload: combinedClasses });
      }, [
-		state.componentVariant, state.size, state.borderRadius, state.selectedModifiers,
-		state.selectedSpecialClasses, state.additionalClasses, state.selectedColor,
+		state.componentType, state.componentVariant, state.size, state.borderRadius, state.selectedModifiers,
+		state.selectedSpecialClasses, state.additionalClasses, state.selectedColor, baseClasses,
 	]);
     useEffect(() => {
         if (JSON.stringify(state.customColorSettings) === JSON.stringify(defaultCustomColor)) return;

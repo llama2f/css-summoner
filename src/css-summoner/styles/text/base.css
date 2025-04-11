@@ -1,6 +1,5 @@
 @layer base {
 	:root {
-		/* カラー関連変数は variants.css または カラーセレクタ側で管理 */
 		/* テキスト装飾の基本変数 */
 		--text-font-family: var(--font, sans-serif);
 
@@ -33,9 +32,9 @@
    * @variant: base
    * @description: テキストデコレーションの基本スタイルを提供します。
    * @category: typography
-   * @example: <span class="text-deco-base">ベースデコレーション</span>
+   * @example: <span class="text-base">ベースデコレーション</span>
    */
-	.text-deco-base {
+	.text-base {
 		font-family: var(--text-font-family);
 		font-size: 1rem;
 		letter-spacing: 0.05em;

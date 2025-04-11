@@ -24,7 +24,6 @@ const CssVarEditor = ({ onClose }) => {
 		'neutral-dark': '',
 	})
 
-	const [isExpanded, setIsExpanded] = useState(true)
 	const [contrastColors, setContrastColors] = useState({
 		text: null,
 		background: null,
@@ -342,12 +341,6 @@ const CssVarEditor = ({ onClose }) => {
 				<h3 className='text-sm'>CSS変数エディタ</h3>
 				<div className='flex gap-2'>
 					<button
-						onClick={() => setIsExpanded(!isExpanded)}
-						className='text-sm bg-white/10 hover:bg-white/30 px-2 py-1 rounded'
-					>
-						{isExpanded ? 'minimize-' : 'open+'}
-					</button>
-					<button
 						onClick={onClose}
 						className='text-sm bg-white/10 hover:bg-white/30 px-2 py-1 rounded'
 					>
@@ -356,191 +349,170 @@ const CssVarEditor = ({ onClose }) => {
 				</div>
 			</div>
 
-			{isExpanded && (
-				<div className='p-4 max-h-[calc(70vh-4rem)] md:max-h-[70vh] overflow-y-auto rounded-b-lg'>
-					{' '}
-					{/* コンテンツ部分 (角丸は構造に合わせて残す) */}
-					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-						{Object.entries(colorVars).map(([varName, value]) => (
-							<div key={varName} className='flex flex-col'>
-								<label className='text-xs mb-1 text-neutral-dark'>
-									{getColorLabel(varName)}
-								</label>
-								<div className='flex gap-2 items-center'>
-									<input
-										type='color'
-										value={value}
-										onChange={(e) => handleColorChange(varName, e.target.value)}
-										className='w-8 h-8 p-0 border rounded bg-transparent'
-									/>
-									<input
-										type='text'
-										value={value}
-										onChange={(e) => handleColorChange(varName, e.target.value)}
-										className='flex-1 p-1 text-xs border rounded'
-									/>
-								</div>
-							</div>
-						))}
-					</div>
-					{/* コントラスト比計算セクション */}
-					<div className='mt-6 border-t pt-4'>
-						<h4 className='text-sm font-medium mb-3  text-neutral-dark'>
-							カラーコントラスト計算
-						</h4>
-
-						<div className='mb-4'>
-							<div className='text-xs font-medium mb-2  text-neutral-dark'>
-								テキスト色
-							</div>
-							<div className='flex flex-wrap gap-2'>
-								{renderColorButton(
-									colorVars['neutral-dark'],
-									'neutral-dark',
-									selectTextColor,
-									contrastColors.text === colorVars['neutral-dark']
-								)}
-								{renderColorButton(
-									colorVars['primary-dark'],
-									'primary-dark',
-									selectTextColor,
-									contrastColors.text === colorVars['primary-dark']
-								)}
-								{renderColorButton(
-									colorVars['secondary-dark'],
-									'secondary-dark',
-									selectTextColor,
-									contrastColors.text === colorVars['secondary-dark']
-								)}
-								{renderColorButton(
-									colorVars['accent-dark'],
-									'accent-dark',
-									selectTextColor,
-									contrastColors.text === colorVars['accent-dark']
-								)}
-								{renderColorButton(
-									colorVars['neutral-light'],
-									'neutral-light',
-									selectTextColor,
-									contrastColors.text === colorVars['neutral-light']
-								)}
-								{renderColorButton(
-									colorVars.primary,
-									'primary',
-									selectTextColor,
-									contrastColors.text === colorVars.primary
-								)}
-								{renderColorButton(
-									colorVars.secondary,
-									'secondary',
-									selectTextColor,
-									contrastColors.text === colorVars.secondary
-								)}
-								{renderColorButton(
-									colorVars.accent,
-									'accent',
-									selectTextColor,
-									contrastColors.text === colorVars.accent
-								)}
+			{/* isExpanded 条件を削除 */}
+			<div className='p-4 max-h-[calc(70vh-4rem)] md:max-h-[70vh] overflow-y-auto rounded-b-lg'>
+				{' '}
+				{/* コンテンツ部分 (角丸は構造に合わせて残す) */}
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+					{Object.entries(colorVars).map(([varName, value]) => (
+						<div key={varName} className='flex flex-col'>
+							<label className='text-xs mb-1 text-neutral-dark'>
+								{getColorLabel(varName)}
+							</label>
+							<div className='flex gap-2 items-center'>
+								<input
+									type='color'
+									value={value}
+									onChange={(e) => handleColorChange(varName, e.target.value)}
+									className='w-8 h-8 p-0 border rounded bg-transparent'
+								/>
+								<input
+									type='text'
+									value={value}
+									onChange={(e) => handleColorChange(varName, e.target.value)}
+									className='flex-1 p-1 text-xs border rounded'
+								/>
 							</div>
 						</div>
+					))}
+				</div>
+				{/* コントラスト比計算セクション */}
+				<div className='mt-6 border-t pt-4'>
+					<h4 className='text-sm font-medium mb-3  text-neutral-dark'>
+						カラーコントラスト計算
+					</h4>
 
-						<div className='mb-4'>
-							<div className='text-xs font-medium mb-2 text-neutral-dark'>
-								背景色
-							</div>
-							<div className='flex flex-wrap gap-2'>
-								{renderColorButton(
-									colorVars['neutral-light'],
-									'neutral-light',
-									selectBgColor,
-									contrastColors.background === colorVars['neutral-light']
-								)}
-								{renderColorButton(
-									colorVars['primary-light'],
-									'primary-light',
-									selectBgColor,
-									contrastColors.background === colorVars['primary-light']
-								)}
-								{renderColorButton(
-									colorVars['secondary-light'],
-									'secondary-light',
-									selectBgColor,
-									contrastColors.background === colorVars['secondary-light']
-								)}
-								{renderColorButton(
-									colorVars['accent-light'],
-									'accent-light',
-									selectBgColor,
-									contrastColors.background === colorVars['accent-light']
-								)}
-								{renderColorButton(
-									colorVars['neutral-dark'],
-									'neutral-dark',
-									selectBgColor,
-									contrastColors.background === colorVars['neutral-dark']
-								)}
-								{renderColorButton(
-									colorVars.primary,
-									'primary',
-									selectBgColor,
-									contrastColors.background === colorVars.primary
-								)}
-								{renderColorButton(
-									colorVars.secondary,
-									'secondary',
-									selectBgColor,
-									contrastColors.background === colorVars.secondary
-								)}
-								{renderColorButton(
-									colorVars.accent,
-									'accent',
-									selectBgColor,
-									contrastColors.background === colorVars.accent
-								)}
-							</div>
+					<div className='mb-4'>
+						<div className='text-xs font-medium mb-2  text-neutral-dark'>
+							テキスト色
 						</div>
-
-						{/* コントラスト結果表示 */}
-						{renderContrastInfo()}
+						<div className='flex flex-wrap gap-2'>
+							{renderColorButton(
+								colorVars['neutral-dark'],
+								'neutral-dark',
+								selectTextColor,
+								contrastColors.text === colorVars['neutral-dark']
+							)}
+							{renderColorButton(
+								colorVars['primary-dark'],
+								'primary-dark',
+								selectTextColor,
+								contrastColors.text === colorVars['primary-dark']
+							)}
+							{renderColorButton(
+								colorVars['secondary-dark'],
+								'secondary-dark',
+								selectTextColor,
+								contrastColors.text === colorVars['secondary-dark']
+							)}
+							{renderColorButton(
+								colorVars['accent-dark'],
+								'accent-dark',
+								selectTextColor,
+								contrastColors.text === colorVars['accent-dark']
+							)}
+							{renderColorButton(
+								colorVars['neutral-light'],
+								'neutral-light',
+								selectTextColor,
+								contrastColors.text === colorVars['neutral-light']
+							)}
+							{renderColorButton(
+								colorVars.primary,
+								'primary',
+								selectTextColor,
+								contrastColors.text === colorVars.primary
+							)}
+							{renderColorButton(
+								colorVars.secondary,
+								'secondary',
+								selectTextColor,
+								contrastColors.text === colorVars.secondary
+							)}
+							{renderColorButton(
+								colorVars.accent,
+								'accent',
+								selectTextColor,
+								contrastColors.text === colorVars.accent
+							)}
+						</div>
 					</div>
-					<div className='mt-4 flex justify-end gap-2'>
-						<button
-							onClick={handleReset}
-							className='px-3 py-1 bg-neutral-200 text-neutral-800 rounded hover:bg-neutral-300'
-						>
-							リセット
-						</button>
-						<button
-							onClick={handleSave}
-							className='px-3 py-1 bg-primary text-white rounded hover:bg-primary-dark'
-						>
-							コピー
-						</button>
-					</div>
-				</div>
-			)}
 
-			{!isExpanded && (
-				<div className='p-3 flex flex-wrap gap-2 rounded-b-lg'>
-					{' '}
-					{/* 縮小表示時 (角丸は構造に合わせて残す) */}
-					{Object.entries(colorVars)
-						.filter(
-							([name]) => !name.includes('-light') && !name.includes('-dark')
-						)
-						.map(([varName, value]) => (
-							<div
-								key={varName}
-								className='w-6 h-6 rounded border cursor-pointer tooltip-container'
-								style={{ backgroundColor: value }}
-								onClick={() => setIsExpanded(true)}
-							>
-								<span className='tooltip-text'>{getColorLabel(varName)}</span>
-							</div>
-						))}
+					<div className='mb-4'>
+						<div className='text-xs font-medium mb-2 text-neutral-dark'>
+							背景色
+						</div>
+						<div className='flex flex-wrap gap-2'>
+							{renderColorButton(
+								colorVars['neutral-light'],
+								'neutral-light',
+								selectBgColor,
+								contrastColors.background === colorVars['neutral-light']
+							)}
+							{renderColorButton(
+								colorVars['primary-light'],
+								'primary-light',
+								selectBgColor,
+								contrastColors.background === colorVars['primary-light']
+							)}
+							{renderColorButton(
+								colorVars['secondary-light'],
+								'secondary-light',
+								selectBgColor,
+								contrastColors.background === colorVars['secondary-light']
+							)}
+							{renderColorButton(
+								colorVars['accent-light'],
+								'accent-light',
+								selectBgColor,
+								contrastColors.background === colorVars['accent-light']
+							)}
+							{renderColorButton(
+								colorVars['neutral-dark'],
+								'neutral-dark',
+								selectBgColor,
+								contrastColors.background === colorVars['neutral-dark']
+							)}
+							{renderColorButton(
+								colorVars.primary,
+								'primary',
+								selectBgColor,
+								contrastColors.background === colorVars.primary
+							)}
+							{renderColorButton(
+								colorVars.secondary,
+								'secondary',
+								selectBgColor,
+								contrastColors.background === colorVars.secondary
+							)}
+							{renderColorButton(
+								colorVars.accent,
+								'accent',
+								selectBgColor,
+								contrastColors.background === colorVars.accent
+							)}
+						</div>
+					</div>
+
+					{/* コントラスト結果表示 */}
+					{renderContrastInfo()}
 				</div>
-			)}
+				<div className='mt-4 flex justify-end gap-2'>
+					<button
+						onClick={handleReset}
+						className='px-3 py-1 bg-neutral-200 text-neutral-800 rounded hover:bg-neutral-300'
+					>
+						リセット
+					</button>
+					<button
+						onClick={handleSave}
+						className='px-3 py-1 bg-primary text-white rounded hover:bg-primary-dark'
+					>
+						コピー
+					</button>
+				</div>
+			</div>
+			{/* isExpanded 条件と縮小表示を削除 */}
 
 			<style>{`
 				.tooltip-container {

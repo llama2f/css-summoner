@@ -1,9 +1,8 @@
 // components/preview/ClassPreview.jsx
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-// import { getComponentReactTemplate } from '@/css-summoner/templates/componentFactory.jsx'; // 削除
-import { combineClasses } from '@templates/handlers/common.jsx' // これは引き続き使用
-import TemplateRenderer from '@templates/core/templateEngine.jsx' // 追加
+import { combineClasses } from '@templates/handlers/common.jsx'
+import TemplateRenderer from '@templates/core/templateEngine.jsx'
 
 /**
  * 選択されたクラスに基づいてコンポーネントをプレビューするコンポーネント
@@ -24,6 +23,7 @@ const ClassPreview = ({
 	// すべてのクラスを結合（メモ化）- これは TemplateRenderer に渡す classString のために必要
 	const combinedClasses = useMemo(() => {
 		return combineClasses({
+			baseClass, // ベースクラスを追加
 			variant: componentVariant,
 			size,
 			radius: borderRadius,
@@ -33,6 +33,7 @@ const ClassPreview = ({
 			additional: additionalClasses,
 		})
 	}, [
+		baseClass,
 		componentVariant,
 		size,
 		borderRadius,
