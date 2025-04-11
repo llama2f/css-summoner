@@ -10,7 +10,7 @@ hljs.registerLanguage('css', css)
 hljs.registerLanguage('html', xml)
 import PropTypes from 'prop-types'
 import useAsyncHandler from '@hooks/useAsyncHandler'
-import { classRuleDetails } from '@/css-summoner/classMappings'
+import { classRuleDetails, baseClasses } from '@/css-summoner/classMappings'
 import Accordion from '@components/common/Accordion'
 
 /**
@@ -63,12 +63,8 @@ const ClassCodeDisplay = ({
 
 	// ベースクラスを決定
 	const baseClass = useMemo(() => {
-		if (componentType === 'tooltip') return 'tooltip-base'
-		if (componentType === 'button') return 'btn-base'
-		if (componentType === 'card') return 'card-base'
-		if (componentType === 'badge') return 'badge-base'
-		if (componentType === 'infobox') return 'infobox-base'
-		return `${componentType}-base`
+		// baseClasses マッピングから取得、存在しない場合はフォールバックとしてコンポーネント名から生成
+		return baseClasses[componentType] || `${componentType}-base`
 	}, [componentType])
 
 	// HTML文字列を生成する useEffect (ハンドラーがロードされた後に実行)
