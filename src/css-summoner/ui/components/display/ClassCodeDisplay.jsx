@@ -159,13 +159,55 @@ const ClassCodeDisplay = ({
 			return initialClassString || ''
 		}
 		// skipDecoration が true の場合は、ハンドラーに渡した initialClassString を使う
-		// (または result.reactElement.props.className を使う方がより正確だが複雑になる)
 		if (handlerResult.skipDecoration) {
 			return initialClassString || ''
 		}
 
-		// skipDecoration が false または未定義の場合、baseClass を追加するロジック
-		// ハンドラー結果の React 要素からクラスを取得試行、なければ初期値
+		// 選択されたバリアントを含むクラス名を持つ要素を検索
+		const findClassWithVariant = (element) => {
+			if (!element || !element.props) return null
+
+			// 現在の要素のクラス名を確認
+			const className = element.props.className || ''
+			// componentVariantが存在し、要素のクラス名にバリアントが含まれる場合
+			if (
+				componentVariant &&
+				className &&
+				className.includes(componentVariant)
+			) {
+				return className
+			}
+
+			// 子要素を検索
+			const { children } = element.props
+			if (!children) return null
+
+			if (Array.isArray(children)) {
+				// 配列の場合は各子要素を検索
+				for (const child of children) {
+					// React要素の場合のみ再帰的に検索
+					if (React.isValidElement(child)) {
+						const result = findClassWithVariant(child)
+						if (result) return result
+					}
+				}
+			} else if (React.isValidElement(children)) {
+				// 単一の子要素の場合
+				return findClassWithVariant(children)
+			}
+
+			return null
+		}
+
+		// コンポーネントバリアントが選択されている場合、その要素のクラス名を優先
+		if (componentVariant) {
+			const variantClass = findClassWithVariant(handlerResult.reactElement)
+			if (variantClass) {
+				return variantClass
+			}
+		}
+
+		// バリアントによる検索で見つからない場合は従来の処理
 		const currentClassString =
 			handlerResult.reactElement?.props?.className || initialClassString || ''
 		return (
@@ -173,7 +215,7 @@ const ClassCodeDisplay = ({
 				? `${baseClass} ${currentClassString}`
 				: currentClassString
 		).trim()
-	}, [handlerResult, baseClass, initialClassString]) // initialClassString も依存に追加
+	}, [handlerResult, baseClass, initialClassString, componentVariant]) // componentVariant も依存に追加
 
 	// 選択されたクラスに対応するCSSルールを取得する useEffect
 	useEffect(() => {
