@@ -30,9 +30,9 @@
 		--card-disabled-opacity: 0.6;
 	}
 
-	/* ダークモード用の変数上書き (カラーセレクタ側で処理するため、ここでは最小限に) */
+	/* ダークモード用の変数上書き */
 	:root.dark {
-		/* 必要に応じてダークモード固有の非カラー変数を設定 */
+		/* ダークモード固有の効果調整 */
 		--card-outline-hover-opacity: 0.2;
 		--card-ghost-hover-opacity: 0.1;
 	}

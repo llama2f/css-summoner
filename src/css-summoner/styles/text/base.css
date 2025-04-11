@@ -20,10 +20,7 @@
 
 	/* ダークモード */
 	:root.dark {
-		/* マーカー背景色はカラーセレクタ側で管理 */
-		/* --marker-primary-bg: var(--primary-dark, #2a3a2b); */
-		/* --marker-secondary-bg: var(--secondary-dark, #3f3938); */
-		/* --marker-accent-bg: var(--accent-dark, #77320d); */
+		/* ダークモード固有の調整 */
 		--text-highlight-opacity: 0.25; /* ハイライトの透明度調整 */
 	}
 

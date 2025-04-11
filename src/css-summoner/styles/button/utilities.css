@@ -140,9 +140,9 @@
 		box-shadow: none !important;
 	}
 
-	.btn-gradient-primary,
-	.btn-gradient-secondary,
-	.btn-gradient-accent {
+	.btn-gradient.theme-primary,
+	.btn-gradient.theme-secondary,
+	.btn-gradient.theme-accent {
 		background: transparent !important;
 		color: var(--neutral-dark, #242424) !important;
 		border: var(--btn-border-width) solid currentColor !important;

@@ -156,17 +156,16 @@
 	}
 
 	/* ----- ダークモード調整 ----- */
-	/* テキスト色やボーダー色はカラーセレクタ側で管理するため、ここでは透明度などの調整のみ */
-	.dark .card-outline:hover {
+	/* テキスト色やボーダー色はカラーセレクタ側で管理 */
+	:root.dark .card-outline:hover {
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #fff),
-			/* ダークモードでは白系が基本色になる想定 */ transparent
-				calc(100% - var(--card-outline-hover-opacity, 0.2) * 100%)
+			transparent calc(100% - var(--card-outline-hover-opacity, 0.2) * 100%)
 		);
 	}
 
-	.dark .card-ghost:hover {
+	:root.dark .card-ghost:hover {
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #fff),
@@ -174,15 +173,15 @@
 		);
 	}
 
-	.dark .card-subtle {
+	:root.dark .card-subtle {
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #ccc),
-			/* ダークモードのサブトル背景 */ transparent 90%
+			transparent 90%
 		);
 	}
 
-	.dark .card-subtle:hover {
+	:root.dark .card-subtle:hover {
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #ccc),

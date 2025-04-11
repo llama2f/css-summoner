@@ -203,16 +203,16 @@
 		border-radius: 0.2em;
 	}
 
-	/* Dark mode adjustments for non-solid variants if needed */
-	.dark .text-marker,
-	.dark .text-marker-stripe,
-	.dark .text-marker-double {
+	/* ダークモード調整 */
+	:root.dark .text-marker,
+	:root.dark .text-marker-stripe,
+	:root.dark .text-marker-double {
 		/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */
 		/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */
 	}
 
-	.dark .text-marker-full,
-	.dark .text-highlight {
+	:root.dark .text-marker-full,
+	:root.dark .text-highlight {
 		/* ダークモード用にミックスの割合を調整 */
 		/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */
 	}
