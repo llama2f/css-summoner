@@ -114,62 +114,6 @@ export const variants = {
 	'btn-icon': (props) => renderIconButton(props),
 	'btn-icon-ghost': (props) => renderIconButton(props),
 	'btn-icon-outline': (props) => renderIconButton(props),
-
-	'btn-group': (props) => {
-		const { reactProps, domProps, commonProps } = separateProps(
-			props,
-			['classString', 'children', 'title', 'baseClass', 'onClick'],
-			['disabled', 'type']
-		)
-
-		const {
-			classString = '',
-			children = 'buttons',
-			title = '',
-			onClick = null,
-		} = reactProps
-		const { disabled = false, type = 'button' } = domProps
-
-		const reactElement = (
-			<div className={classString} data-skip-decoration='true'>
-				<button
-					className='btn-base btn-solid btn-sm theme-primary'
-					title={title}
-					disabled={disabled}
-					type={type}
-					onClick={onClick}
-					{...commonProps}
-				>
-					{children}
-				</button>
-				<button
-					className='btn-base btn-solid btn-sm theme-primary'
-					title={title}
-					disabled={disabled}
-					type={type}
-					onClick={onClick}
-					{...commonProps}
-				>
-					{children}
-				</button>
-				<button
-					className='btn-base btn-solid btn-sm theme-primary'
-					title={title}
-					disabled={disabled}
-					type={type}
-					onClick={onClick}
-					{...commonProps}
-				>
-					{children}
-				</button>
-			</div>
-		)
-
-		return {
-			...createHandlerResult(reactElement),
-			skipDecoration: true,
-		}
-	},
 }
 
 export const samples = {

@@ -342,9 +342,6 @@ export async function processCssFiles(options = {}) {
 		})
 	}
 
-	// AutoClassMappingsを生成
-	// writeAutoClassMappings(extractedData, opts.autoMappingsPath); // autoMappings.js は不要になったため削除 (行をコメントアウト)
-
 	// 型定義の生成
 	if (opts.generateTypes) {
 		console.log('TypeScript型定義を生成します...')

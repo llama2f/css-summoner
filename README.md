@@ -1,6 +1,6 @@
 # CSS Summoner 型定義・コンポーネント生成ツール
 
-## ⚠️注意!!Warning!!
+## ⚠️注意Warning
 
 このシステムは開発途中です。内容も未完成です。あくまで参考程度に御覧ください。
 
@@ -24,9 +24,9 @@ git commit -m "Add css-summoner as a submodule"
 ## 機能
 
 - CSSファイル内のアノテーションからコンポーネント情報を抽出
-- TypeScript型定義ファイルの自動生成
-- Astroドキュメントページの生成
-- Astroコンポーネントの生成
+- TypeScript型定義ファイルの自動生成 (`src/css-summoner/dist/types/`)
+- Astroドキュメントページの生成 (`src/pages/css-summoner/`)
+- Astroコンポーネントの生成 (`src/css-summoner/dist/components/`)。ハンドラーで `generateAstroTemplate` 関数をエクスポートすることでカスタマイズ可能。
 - 自動生成データと設定を統合するマッピングファイルの生成
 - **ハンドラーの自動検出とマニフェスト生成**
 - プロジェクトルートの自動検出
@@ -59,16 +59,17 @@ CSSファイル（アノテーション付き） → PostCSSプラグイン → 
 	"scripts": {
 		"dev": "astro dev --host --port 5000",
 		"start": "astro dev",
-		"build": "npm run generate:handlers && astro build",
+		"build": "npm run generate:handlers && npm run generate:all && astro build",
 		"preview": "astro preview",
 		"astro": "astro",
 		"lint": "eslint .",
 		"check": "astro check",
 		"map": "node src/css-summoner/scripts/simple-file-mapper.js",
-		"css": "node src/css-summoner/scripts/index.js",
-		"css-docs": "node src/css-summoner/scripts/index.js --docs",
-		"css-components": "node src/css-summoner/scripts/index.js --components",
-		"css-all": "node src/css-summoner/scripts/index.js --all",
+		"css": "npm run generate:all", // 互換性のため残す
+		"generate:types": "node src/css-summoner/scripts/generate-types.js",
+		"generate:docs": "node src/css-summoner/scripts/generate-docs.js",
+		"generate:astro": "node src/css-summoner/scripts/generate-astro.js",
+		"generate:all": "npm run generate:types && npm run generate:docs && npm run generate:astro",
 		"generate:handlers": "node src/css-summoner/scripts/generate-handler-manifest.js"
 	}
 }
@@ -83,11 +84,12 @@ npm run dev
 # ハンドラーマニフェストを生成 (ビルド時に自動実行される)
 npm run generate:handlers
 
-# CSS情報から各種ファイルを生成 (型定義、ドキュメントなど)
-npm run css       # デフォルト (型定義、ドキュメント)
-npm run css-docs  # ドキュメントのみ
-npm run css-components # Astroコンポーネントのみ (注意: 現在の推奨構成ではない可能性)
-npm run css-all   # すべて生成
+# CSS情報から各種ファイルを生成
+npm run generate:types      # 型定義のみ生成 (`dist/types/`)
+npm run generate:docs       # ドキュメントのみ生成 (`src/pages/css-summoner/`)
+npm run generate:astro      # Astroコンポーネントのみ生成 (`dist/components/`)
+npm run generate:all        # すべて生成 (型定義、ドキュメント、Astroコンポーネント)
+npm run css                 # 互換性のため: `generate:all` を実行
 
 # 本番ビルド (ハンドラーマニフェスト生成後にAstroビルド)
 npm run build
@@ -150,33 +152,45 @@ CSS_BUILDER_OUTPUT_PATH=/path/to/output/directory node src/css-summoner/scripts/
 - `src/css-summoner/extracted-annotations.json`: CSSアノテーションから抽出されたコンポーネント情報（クラス名、バリアント、説明、CSSルールテキストなど）。
 - `src/css-summoner/classMappings.js`: インポート統合用ファイル。extracted-annotationsのデータとconfigs/index.jsの設定を統合します。
 - `src/css-summoner/classMappingsConfig.js`: 手動設定ファイル（サイズ、モディファイア等）。
-- `src/css-summoner/types/`: 型定義ファイル（`npm run css -- --types` などで生成）。
-- `src/pages/css-summoner/`: Astroドキュメントページ（`npm run css -- --docs` などで生成）。
-- `src/css-summoner/dist/components/`: Astroコンポーネント（`npm run css -- --components` などで生成、非推奨の可能性あり）。
+- `src/css-summoner/dist/types/`: 型定義ファイル（`npm run generate:types` で生成）。コンポーネント固有のサイズ定義も反映されます。
+- `src/pages/css-summoner/`: Astroドキュメントページ（`npm run generate:docs` で生成）。
+- `src/css-summoner/dist/components/`: Astroコンポーネント（`npm run generate:astro` で生成）。ハンドラーで `generateAstroTemplate` をエクスポートすることでカスタマイズ可能です。
 
 ## カスタマイズ
 
-### コンポーネント固有の設定
+### コンポーネント固有のUIオプション設定
 
-`src/css-summoner/classMappingsConfig.js` ファイルを編集して、各コンポーネントのUIオプション（サイズ、モディファイア、色など）をカスタマイズできます。
+`src/css-summoner/configs/` ディレクトリ内の各設定ファイル (`sizes.mjs`, `modifiers.mjs`, `colors.js` など) を編集して、カスタムクラスビルダーUIで利用可能なオプションをカスタマイズできます。
+
+### 生成される Astro コンポーネントのカスタマイズ
+
+デフォルトで生成される Astro コンポーネント (`src/css-summoner/dist/components/*.astro`) の内容を変更したい場合は、対応するハンドラーファイル (`src/css-summoner/ui/templates/handlers/auto/*.jsx`) で `generateAstroTemplate` 関数をエクスポートします。
+
+この関数は、コンポーネントのデータ (`componentData`) を引数として受け取り、生成したい Astro コンポーネントの完全なコードを文字列として返す必要があります。詳細は `src/css-summoner/docs/handler-guide.md` を参照してください。
 
 ```javascript
-// src/css-summoner/classMappingsConfig.js の例
-export const sizes = {
-	button: [
-		/* ... */
-	],
-	// ...
+// 例: src/css-summoner/ui/templates/handlers/auto/button.jsx
+import type { ComponentData } from '../../../../dist/types/button'; // 生成された型定義をインポート
+
+export function generateAstroTemplate(componentData: ComponentData) {
+  // componentData を利用して Astro コンポーネントのコードを生成
+  const propsInterface = `interface Props extends HTMLAttributes<'button'> ${JSON.stringify(componentData.props, null, 2)}`;
+  return `---
+import type { HTMLAttributes } from 'astro/types';
+${propsInterface}
+
+const { ...rest } = Astro.props;
+---
+<button {...rest}>
+  <slot />
+</button>
+`;
 }
-export const modifiers = {
-	button: [
-		/* ... */
-	],
-	// ...
-}
-export const colorOptions = [
-	/* ... */
-]
+
+// 他のハンドラーの export も必要
+export const metadata = { /* ... */ };
+export function render() { /* ... */ }
+export default { metadata, render, generateAstroTemplate };
 ```
 
 ### プロジェクト設定

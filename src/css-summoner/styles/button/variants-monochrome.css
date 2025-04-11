@@ -15,11 +15,25 @@
 	}
 
 	.btn-solid:hover {
-		background-color: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));
+		background-color: var(
+			--component-hover-color,
+			color-mix(
+				in srgb,
+				var(--component-color, #333),
+				var(--component-mix, #000) var(--hover-amount, 10%)
+			)
+		);
 	}
 
 	.btn-solid:active {
-		background-color: var(--component-active-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 20%)));
+		background-color: var(
+			--component-active-color,
+			color-mix(
+				in srgb,
+				var(--component-color, #333),
+				var(--component-mix, #000) var(--active-amount, 20%)
+			)
+		);
 	}
 
 	/* 
@@ -97,7 +111,14 @@
 	}
 
 	.btn-link:hover {
-		color: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));
+		color: var(
+			--component-hover-color,
+			color-mix(
+				in srgb,
+				var(--component-color, #333),
+				var(--component-mix, #000) var(--hover-amount, 10%)
+			)
+		);
 		text-decoration: underline;
 	}
 
@@ -131,7 +152,11 @@
 		background-image: linear-gradient(
 			135deg,
 			var(--component-color, #333),
-			color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 30%))
+			color-mix(
+				in srgb,
+				var(--component-color, #333),
+				var(--component-mix, #000) var(--active-amount, 30%)
+			)
 		);
 		transition: opacity var(--btn-transition-duration, 200ms) ease-in-out;
 		z-index: -1; /* テキストの後ろに配置 */
@@ -141,7 +166,11 @@
 	.btn-gradient::after {
 		background-image: linear-gradient(
 			135deg,
-			color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 30%)),
+			color-mix(
+				in srgb,
+				var(--component-color, #333),
+				var(--component-mix, #000) var(--active-amount, 30%)
+			),
 			var(--component-color, #333)
 		);
 		opacity: 0;
@@ -207,7 +236,14 @@
 	}
 
 	.btn-icon:hover {
-		background-color: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));
+		background-color: var(
+			--component-hover-color,
+			color-mix(
+				in srgb,
+				var(--component-color, #333),
+				var(--component-mix, #000) var(--hover-amount, 10%)
+			)
+		);
 	}
 
 	/* 
@@ -261,18 +297,5 @@
 			var(--component-color, #333),
 			transparent calc(100% - var(--btn-ghost-hover-opacity, 0.1) * 100%)
 		);
-	}
-
-	/* 
-   * @component: button
-   * @variant: btn-group
-   * @description: ボタンをグループ化して表示します。
-   * @category: interactive
-   * @example: <div class="btn-group"><button class="btn-base btn-solid btn-sm theme-primary">ボタン</button><button class="btn-base btn-solid btn-sm theme-primary">ボタン</button><button class="btn-base btn-solid btn-sm theme-primary">ボタン</button></div>
-   */
-	.btn-group {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
 	}
 }

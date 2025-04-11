@@ -436,10 +436,6 @@
     ],
     "button": [
       {
-        "value": "btn-group",
-        "label": "Btn Group"
-      },
-      {
         "value": "btn-ghost",
         "label": "Ghost"
       },
@@ -1104,12 +1100,6 @@
       "description": "ゴーストスタイルのアイコン用ボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
       "category": "interactive"
     },
-    "btn-group": {
-      "component": "button",
-      "variant": "btn-group",
-      "description": "ボタンをグループ化して表示します。",
-      "category": "interactive"
-    },
     "btn-base": {
       "component": "button",
       "variant": "base",
@@ -1681,11 +1671,6 @@
         "variant": "icon-ghost",
         "className": "btn-icon-ghost",
         "example": "<button class=\"btn-base btn-icon-ghost theme-primary\"><svg>...</svg></button>"
-      },
-      {
-        "variant": "btn-group",
-        "className": "btn-group",
-        "example": "<div class=\"btn-group\"><button class=\"btn-base btn-solid btn-sm theme-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm theme-primary\">ボタン</button><button class=\"btn-base btn-solid btn-sm theme-primary\">ボタン</button></div>"
       },
       {
         "variant": "base",
@@ -2604,12 +2589,12 @@
       "relatedRules": [
         {
           "selector": ".btn-solid:hover",
-          "ruleText": ".btn-solid:hover {\n\t\tbackground-color: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));\n\t}",
+          "ruleText": ".btn-solid:hover {\n\t\tbackground-color: var(\n\t\t\t--component-hover-color,\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--hover-amount, 10%)\n\t\t\t)\n\t\t);\n\t}",
           "sourceFile": "button/variants-monochrome.css"
         },
         {
           "selector": ".btn-solid:active",
-          "ruleText": ".btn-solid:active {\n\t\tbackground-color: var(--component-active-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 20%)));\n\t}",
+          "ruleText": ".btn-solid:active {\n\t\tbackground-color: var(\n\t\t\t--component-active-color,\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--active-amount, 20%)\n\t\t\t)\n\t\t);\n\t}",
           "sourceFile": "button/variants-monochrome.css"
         }
       ]
@@ -2655,7 +2640,7 @@
       "relatedRules": [
         {
           "selector": ".btn-link:hover",
-          "ruleText": ".btn-link:hover {\n\t\tcolor: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));\n\t\ttext-decoration: underline;\n\t}",
+          "ruleText": ".btn-link:hover {\n\t\tcolor: var(\n\t\t\t--component-hover-color,\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--hover-amount, 10%)\n\t\t\t)\n\t\t);\n\t\ttext-decoration: underline;\n\t}",
           "sourceFile": "button/variants-monochrome.css"
         }
       ]
@@ -2667,12 +2652,12 @@
       "relatedRules": [
         {
           "selector": ".btn-gradient::before,\n\t.btn-gradient::after",
-          "ruleText": ".btn-gradient::before,\n\t.btn-gradient::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tright: 0;\n\t\tbottom: 0;\n\t\tbackground-image: linear-gradient(\n\t\t\t135deg,\n\t\t\tvar(--component-color, #333),\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 30%))\n\t\t);\n\t\ttransition: opacity var(--btn-transition-duration, 200ms) ease-in-out;\n\t\tz-index: -1; /* テキストの後ろに配置 */\n\t}",
+          "ruleText": ".btn-gradient::before,\n\t.btn-gradient::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tright: 0;\n\t\tbottom: 0;\n\t\tbackground-image: linear-gradient(\n\t\t\t135deg,\n\t\t\tvar(--component-color, #333),\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--active-amount, 30%)\n\t\t\t)\n\t\t);\n\t\ttransition: opacity var(--btn-transition-duration, 200ms) ease-in-out;\n\t\tz-index: -1; /* テキストの後ろに配置 */\n\t}",
           "sourceFile": "button/variants-monochrome.css"
         },
         {
           "selector": ".btn-gradient::after",
-          "ruleText": ".btn-gradient::after {\n\t\tbackground-image: linear-gradient(\n\t\t\t135deg,\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--active-amount, 30%)),\n\t\t\tvar(--component-color, #333)\n\t\t);\n\t\topacity: 0;\n\t}",
+          "ruleText": ".btn-gradient::after {\n\t\tbackground-image: linear-gradient(\n\t\t\t135deg,\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--active-amount, 30%)\n\t\t\t),\n\t\t\tvar(--component-color, #333)\n\t\t);\n\t\topacity: 0;\n\t}",
           "sourceFile": "button/variants-monochrome.css"
         },
         {
@@ -2711,7 +2696,7 @@
       "relatedRules": [
         {
           "selector": ".btn-icon:hover",
-          "ruleText": ".btn-icon:hover {\n\t\tbackground-color: var(--component-hover-color, color-mix(in srgb, var(--component-color, #333), var(--component-mix, #000) var(--hover-amount, 10%)));\n\t}",
+          "ruleText": ".btn-icon:hover {\n\t\tbackground-color: var(\n\t\t\t--component-hover-color,\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--hover-amount, 10%)\n\t\t\t)\n\t\t);\n\t}",
           "sourceFile": "button/variants-monochrome.css"
         }
       ]
@@ -2739,12 +2724,6 @@
           "sourceFile": "button/variants-monochrome.css"
         }
       ]
-    },
-    "btn-group": {
-      "ruleText": ".btn-group {\n\t\tdisplay: flex;\n\t\tflex-wrap: wrap;\n\t\tgap: 0.5rem;\n\t}",
-      "selector": ".btn-group",
-      "sourceFile": "button/variants-monochrome.css",
-      "relatedRules": []
     },
     "btn-base": {
       "ruleText": ".btn-base {\n\t\t@apply inline-flex items-center justify-center;\n\t\t@apply font-medium text-center whitespace-nowrap;\n\t\t@apply select-none cursor-pointer;\n\t\t@apply no-underline;\n\t\tfont-family: var(--btn-font-family);\n\t\tborder-width: var(--btn-border-width);\n\t\tborder-style: solid;\n\t\tborder-radius: var(--btn-border-radius);\n\t\ttransition-property: all;\n\t\ttransition-duration: var(--btn-transition-duration);\n\t}",
@@ -2796,7 +2775,7 @@
   },
   "meta": {
     "totalFiles": 29,
-    "totalClasses": 111,
+    "totalClasses": 110,
     "errors": [
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
@@ -2959,7 +2938,6 @@
       "btn-icon",
       "btn-icon-outline",
       "btn-icon-ghost",
-      "btn-group",
       "btn-base"
     ],
     "badge": [
@@ -3798,14 +3776,6 @@
         "variant": "icon-ghost",
         "className": "btn-icon-ghost",
         "description": "ゴーストスタイルのアイコン用ボタン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
-        "category": "interactive",
-        "sourceFile": "button/variants-monochrome.css"
-      },
-      {
-        "component": "button",
-        "variant": "btn-group",
-        "className": "btn-group",
-        "description": "ボタンをグループ化して表示します。",
         "category": "interactive",
         "sourceFile": "button/variants-monochrome.css"
       },

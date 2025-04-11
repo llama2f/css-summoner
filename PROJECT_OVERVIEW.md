@@ -2,15 +2,15 @@
 
 ## 1. 目的
 
-- CSSファイル内のアノテーションからコンポーネント情報を抽出し、TypeScriptの型定義、Astroのドキュメントページ、およびAstroコンポーネントを自動生成するツールです。
+- CSSファイル内のアノテーションからコンポーネント情報を抽出し、TypeScriptの型定義、Astroのドキュメントページ、およびAstroコンポーネントを自動生成するツールです。ハンドラーを通じて Astro コンポーネントの生成内容をカスタマイズすることも可能です。
 - カスタムクラスビルダーUIを提供し、コンポーネントの視覚的な構築とプレビューを可能にします。
 
 ## 2. 主な機能
 
 - **CSSアノテーション抽出:** `postcss-annotations` プラグインを利用し、CSSファイルから情報を抽出して `extracted-annotations.json` を生成します。
-- **TypeScript型定義生成:** 抽出情報と設定に基づき、`src/css-summoner/types/` に型定義ファイル (`*.d.ts`) を生成します。
+- **TypeScript型定義生成:** 抽出情報と設定に基づき、`src/css-summoner/dist/types/` に型定義ファイル (`*.d.ts`) を生成します（コンポーネント固有のサイズ定義も反映）。
 - **Astroドキュメント生成:** `src/pages/css-summoner/` にコンポーネントのドキュメントページ (`*.astro`) を生成します。
-- **Astroコンポーネント生成:** (非推奨の可能性あり) `src/css-summoner/dist/components/` にAstroコンポーネント (`*.astro`) を生成します。
+- **Astroコンポーネント生成:** `src/css-summoner/dist/components/` にAstroコンポーネント (`*.astro`) を生成します。ハンドラーファイル (`templates/handlers/auto/*.jsx`) で `generateAstroTemplate` 関数をエクスポートすることで、生成されるコンポーネントの内容をカスタマイズできます。
 - **マッピングファイル生成:** 設定ファイル (`configs/`) と抽出データ (`extracted-annotations.json`) を統合した `classMappings.js` を生成します。
 - **ハンドラー自動検出:** プレビュー用ハンドラー (`templates/handlers/auto/*.jsx`) を自動検出し、`configs/handler-manifest.json` を生成・更新します。
 - **カスタムクラスビルダーUI:** (`ui/ClassBuilder.jsx` および `ui/` ディレクトリ)
@@ -35,9 +35,9 @@ graph LR
     E["ハンドラー (templates/handlers/auto/*.jsx)"] -- scripts/generate-handler-manifest.js --> F(configs/handler-manifest.json);
     B -- scripts/index.js --> G[classMappings.js];
     D -- scripts/index.js --> G;
-    G -- scripts/generators/type-generator.js --> H1[types/*.d.ts];
+    G -- scripts/generators/type-generator.js --> H1[dist/types/*.d.ts];
     G -- scripts/generators/generate-docs.js --> H2[src/pages/css-summoner/*.astro];
-    G -- scripts/generators/astroComponentGenerator.js --> H3[dist/components/*.astro];
+    G -- scripts/generators/astroComponentGenerator.js &lt;-- E --> H3[dist/components/*.astro]; {ハンドラーによるカスタマイズ}
     G -- ui/ClassBuilder.jsx --> I[カスタムクラスビルダーUI];
     F -- ui/ClassBuilder.jsx --> I;
     I -- ユーザー --> J["プレビュー表示 / クラス文字列"];
@@ -68,7 +68,8 @@ graph LR
 - `docs/`: ドキュメント
 - `scripts/`: ビルド・自動化スクリプト (generators含む)
 - `styles/`: CSSスタイルファイル
-- `types/`: 生成されたTypeScript型定義
+- `dist/types/`: 生成されたTypeScript型定義
+- `dist/components/`: 生成されたAstroコンポーネント
 - `utils/`: ユーティリティ関数
 - `classMappings.js` (生成物)
 - `extracted-annotations.json` (生成物)
@@ -78,9 +79,10 @@ graph LR
 
 - `npm run dev`: 開発サーバー起動 (UIアクセス用)
 - `npm run build`: 本番ビルド (ハンドラー生成 + Astroビルド)
-- `npm run css`: 型定義、ドキュメントなどを生成
-- `npm run css-docs`: ドキュメントのみ生成
-- `npm run css-components`: Astroコンポーネントのみ生成
-- `npm run css-all`: すべて生成
+- `npm run css`: 型定義、ドキュメント、Astroコンポーネントなどを生成 (実質 `css-all` と同等)
+- `npm run generate:types`: 型定義のみ生成 (`dist/types/`)
+- `npm run generate:docs`: ドキュメントのみ生成 (`src/pages/css-summoner/`)
+- `npm run generate:astro`: Astroコンポーネントのみ生成 (`dist/components/`)。ハンドラーの `generateAstroTemplate` があればそれを使用。
+- `npm run generate:all`: 型定義、ドキュメント、Astroコンポーネントをすべて生成
 - `npm run generate:handlers`: ハンドラーマニフェスト生成
 - `npm run map`: ファイルマップ (`file-map.md`) 更新

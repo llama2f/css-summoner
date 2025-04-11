@@ -1,26 +1,15 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-07T13:47:21.100Z*
+*自動生成: 2025-04-11T05:48:03.951Z*
 
 ## ディレクトリ構造
 
 ```
 .
-  ├── components (UIコンポーネント (React))
-  │ ├── accessibility (components/accessibilityディレクトリ)
-  │ ├── astro (UIコンポーネント (Astro))
-  │ ├── color (components/colorディレクトリ)
-  │ ├── color-picker (components/color-pickerディレクトリ)
-  │ ├── common (共通UIコンポーネント)
-  │ ├── display (コード表示関連コンポーネント)
-  │ ├── preview (プレビュー関連コンポーネント)
-  │ ├── selectors (選択UIコンポーネント)
   ├── configs (設定ファイル群 (クラスビルダーUI用))
   ├── docs (ドキュメントファイル)
-  ├── generators (generatorsディレクトリ)
-  ├── hooks (Reactカスタムフック)
-  ├── layouts (Astroレイアウトコンポーネント)
   ├── scripts (ビルド・自動化スクリプト)
+  │ ├── generators (scripts/generatorsディレクトリ)
   ├── styles (CSSスタイルファイル)
   │ ├── badge (styles/badgeディレクトリ)
   │ ├── button (Buttonコンポーネント用スタイル)
@@ -32,11 +21,23 @@
   │ ├── infobox (Infoboxコンポーネント用スタイル)
   │ ├── text (Text装飾用スタイル)
   │ ├── tooltip (styles/tooltipディレクトリ)
-  ├── templates (コンポーネントプレビューテンプレートシステム)
-  │ ├── core (テンプレートエンジンのコア機能)
-  │ ├── handlers (コンポーネントタイプ別のプレビューハンドラー)
-  │ │ ├── auto (templates/handlers/autoディレクトリ)
-  ├── types (TypeScript型定義)
+  ├── ui (uiディレクトリ)
+  │ ├── components (ui/componentsディレクトリ)
+  │ │ ├── accessibility (ui/components/accessibilityディレクトリ)
+  │ │ ├── astro (ui/components/astroディレクトリ)
+  │ │ ├── color (ui/components/colorディレクトリ)
+  │ │ ├── color-picker (ui/components/color-pickerディレクトリ)
+  │ │ ├── common (ui/components/commonディレクトリ)
+  │ │ ├── display (ui/components/displayディレクトリ)
+  │ │ ├── mobile (ui/components/mobileディレクトリ)
+  │ │ ├── preview (ui/components/previewディレクトリ)
+  │ │ ├── selectors (ui/components/selectorsディレクトリ)
+  │ ├── hooks (ui/hooksディレクトリ)
+  │ ├── layouts (ui/layoutsディレクトリ)
+  │ ├── templates (ui/templatesディレクトリ)
+  │ │ ├── core (ui/templates/coreディレクトリ)
+  │ │ ├── handlers (ui/templates/handlersディレクトリ)
+  │ │ │ ├── auto (ui/templates/handlers/autoディレクトリ)
   ├── utils (utilsディレクトリ)
 ```
 
@@ -46,68 +47,7 @@
 
 | ファイル | 役割 |
 |---------|------|
-| `ClassBuilder.jsx` | メインアプリケーションコンポーネント |
 | `classMappings.js` | 設定とマッピングのエントリポイント |
-
-### components/accessibility/
-
-| ファイル | 役割 |
-|---------|------|
-| `ContrastChecker.jsx` | React UIコンポーネント - ContrastChecker |
-
-### components/astro/
-
-| ファイル | 役割 |
-|---------|------|
-| `ExamplePreview.astro` | Astro UIコンポーネント - ExamplePreview |
-| `FontAwesomeIcon.astro` | Astro UIコンポーネント - FontAwesomeIcon |
-| `ThemeSwitcher.astro` | Astro UIコンポーネント - ThemeSwitcher |
-| `ToggleSwitch.astro` | Astro UIコンポーネント - ToggleSwitch |
-| `VariantPreview.astro` | Astro UIコンポーネント - VariantPreview |
-| `theme.ts` | その他のファイル |
-
-### components/color/
-
-| ファイル | 役割 |
-|---------|------|
-| `CustomColorPicker.jsx` | React UIコンポーネント - CustomColorPicker |
-
-### components/color-picker/
-
-| ファイル | 役割 |
-|---------|------|
-| `ColorPicker.jsx` | React UIコンポーネント - ColorPicker |
-
-### components/common/
-
-| ファイル | 役割 |
-|---------|------|
-| `CssVarEditor.jsx` | React UIコンポーネント - CssVarEditor |
-| `Tooltip.jsx` | React UIコンポーネント - Tooltip |
-
-### components/display/
-
-| ファイル | 役割 |
-|---------|------|
-| `ClassCodeDisplay.jsx` | ClassCodeDisplay - コード表示コンポーネント |
-
-### components/preview/
-
-| ファイル | 役割 |
-|---------|------|
-| `ClassPreview.jsx` | ClassPreview - プレビュー表示コンポーネント |
-
-### components/selectors/
-
-| ファイル | 役割 |
-|---------|------|
-| `BorderRadiusSelector.jsx` | BorderRadiusSelector - 選択UIコンポーネント |
-| `ColorSelector.jsx` | ColorSelector - 選択UIコンポーネント |
-| `ComponentSelector.jsx` | ComponentSelector - 選択UIコンポーネント |
-| `ModifierSelector.jsx` | ModifierSelector - 選択UIコンポーネント |
-| `SizeSelector.jsx` | SizeSelector - 選択UIコンポーネント |
-| `SpecialClassSelector.jsx` | SpecialClassSelector - 選択UIコンポーネント |
-| `VariantSelector.jsx` | VariantSelector - 選択UIコンポーネント |
 
 ### configs/
 
@@ -124,7 +64,6 @@
 
 | ファイル | 役割 |
 |---------|------|
-| `CSSコンポーネントの修正依頼.md` | Markdownドキュメント |
 | `color-system.md` | Markdownドキュメント |
 | `css-summoner-system.md` | Markdownドキュメント |
 | `file-map.md` | Markdownドキュメント |
@@ -132,43 +71,26 @@
 | `stylingGuide.md` | Markdownドキュメント |
 | `todo.md` | Markdownドキュメント |
 
-### generators/
-
-| ファイル | 役割 |
-|---------|------|
-| `astroComponentGenerator.js` | JavaScriptモジュール |
-
-### hooks/
-
-| ファイル | 役割 |
-|---------|------|
-| `useAsyncHandler.jsx` | Reactコンポーネント |
-| `useClassBuilder.jsx` | Reactコンポーネント |
-
-### layouts/
-
-| ファイル | 役割 |
-|---------|------|
-| `DocLayout.astro` | Astroレイアウト - DocLayout |
-| `Footer.astro` | Astroレイアウト - Footer |
-| `Head.astro` | Astroレイアウト - Head |
-| `Header.astro` | Astroレイアウト - Header |
-| `Layout.astro` | Astroレイアウト - Layout |
-| `Menu.astro` | Astroレイアウト - Menu |
-
 ### scripts/
 
 | ファイル | 役割 |
 |---------|------|
 | `config.js` | スクリプト設定ファイル |
-| `css-builder.cjs` | JavaScript CommonJS Module |
 | `extract-jsx.js` | JavaScriptモジュール |
 | `generate-astro.js` | JavaScriptモジュール |
 | `generate-docs.js` | JavaScriptモジュール |
 | `generate-handler-manifest.js` | JavaScriptモジュール |
+| `generate-types.js` | JavaScriptモジュール |
 | `simple-file-mapper.js` | このファイルマップ生成スクリプト |
-| `type-generator.js` | 型定義生成スクリプト |
 | `utils.js` | スクリプト共通ユーティリティ |
+
+### scripts/generators/
+
+| ファイル | 役割 |
+|---------|------|
+| `astroComponentGenerator.js` | JavaScriptモジュール |
+| `componentInterface.js` | JavaScriptモジュール |
+| `type-generator.js` | 型定義生成スクリプト |
 
 ### styles/
 
@@ -268,27 +190,112 @@
 | `utilities.css` | スタイルシート |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 
-### templates/
+### ui/components/accessibility/
+
+| ファイル | 役割 |
+|---------|------|
+| `ContrastChecker.jsx` | Reactコンポーネント |
+
+### ui/components/astro/
+
+| ファイル | 役割 |
+|---------|------|
+| `ExamplePreview.astro` | Astroコンポーネント - ExamplePreview |
+| `FontAwesomeIcon.astro` | Astroコンポーネント - FontAwesomeIcon |
+| `ThemeSwitcher.astro` | Astroコンポーネント - ThemeSwitcher |
+| `ToggleSwitch.astro` | Astroコンポーネント - ToggleSwitch |
+| `VariantPreview.astro` | Astroコンポーネント - VariantPreview |
+| `theme.ts` | その他のファイル |
+
+### ui/components/color/
+
+| ファイル | 役割 |
+|---------|------|
+| `CustomColorPicker.jsx` | Reactコンポーネント |
+
+### ui/components/color-picker/
+
+| ファイル | 役割 |
+|---------|------|
+| `ColorPicker.jsx` | Reactコンポーネント |
+
+### ui/components/common/
+
+| ファイル | 役割 |
+|---------|------|
+| `Accordion.jsx` | Reactコンポーネント |
+| `CssVarEditor.jsx` | Reactコンポーネント |
+| `CssVarEditorManager.jsx` | Reactコンポーネント |
+| `Tooltip.jsx` | Reactコンポーネント |
+
+### ui/components/display/
+
+| ファイル | 役割 |
+|---------|------|
+| `ClassCodeDisplay.jsx` | ClassCodeDisplay - コード表示コンポーネント |
+
+### ui/components/mobile/
+
+| ファイル | 役割 |
+|---------|------|
+| `MobileDrawer.jsx` | Reactコンポーネント |
+
+### ui/components/preview/
+
+| ファイル | 役割 |
+|---------|------|
+| `ClassPreview.jsx` | ClassPreview - プレビュー表示コンポーネント |
+
+### ui/components/selectors/
+
+| ファイル | 役割 |
+|---------|------|
+| `BorderRadiusSelector.jsx` | BorderRadiusSelector - 選択UIコンポーネント |
+| `ColorSelector.jsx` | ColorSelector - 選択UIコンポーネント |
+| `ComponentSelector.jsx` | ComponentSelector - 選択UIコンポーネント |
+| `ModifierSelector.jsx` | ModifierSelector - 選択UIコンポーネント |
+| `SpecialClassSelector.jsx` | SpecialClassSelector - 選択UIコンポーネント |
+| `VariantSelector.jsx` | VariantSelector - 選択UIコンポーネント |
+
+### ui/hooks/
+
+| ファイル | 役割 |
+|---------|------|
+| `actions.ts` | その他のファイル |
+| `useAsyncHandler.jsx` | Reactコンポーネント |
+
+### ui/layouts/
+
+| ファイル | 役割 |
+|---------|------|
+| `DocLayout.astro` | Astroコンポーネント - DocLayout |
+| `Footer.astro` | Astroコンポーネント - Footer |
+| `Head.astro` | Astroコンポーネント - Head |
+| `Header.astro` | Astroコンポーネント - Header |
+| `Layout.astro` | Astroコンポーネント - Layout |
+| `Menu.astro` | Astroコンポーネント - Menu |
+
+### ui/templates/
 
 | ファイル | 役割 |
 |---------|------|
 | `componentFactory.jsx` | Reactコンポーネント |
 | `componentHandlers.jsx` | Reactコンポーネント |
 
-### templates/core/
+### ui/templates/core/
 
 | ファイル | 役割 |
 |---------|------|
 | `templateEngine.jsx` | テンプレート生成エンジン |
 
-### templates/handlers/
+### ui/templates/handlers/
 
 | ファイル | 役割 |
 |---------|------|
 | `common.jsx` | 共通ユーティリティと定数 |
 | `index.jsx` | Reactコンポーネント |
 
-### templates/handlers/auto/
+### ui/templates/handlers/auto/
 
 | ファイル | 役割 |
 |---------|------|
@@ -303,21 +310,6 @@
 | `infobox.jsx` | Reactコンポーネント |
 | `text.jsx` | Reactコンポーネント |
 | `tooltip.jsx` | Reactコンポーネント |
-
-### types/
-
-| ファイル | 役割 |
-|---------|------|
-| `Badge.d.ts` | その他のファイル |
-| `Button.d.ts` | その他のファイル |
-| `Card.d.ts` | その他のファイル |
-| `Form.d.ts` | その他のファイル |
-| `Heading.d.ts` | その他のファイル |
-| `Img.d.ts` | その他のファイル |
-| `Infobox.d.ts` | その他のファイル |
-| `Text.d.ts` | その他のファイル |
-| `Tooltip.d.ts` | その他のファイル |
-| `index.d.ts` | その他のファイル |
 
 ### utils/
 

@@ -1,5 +1,5 @@
 // components/common/CssVarEditor.jsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react' // useRef をインポート
 import PropTypes from 'prop-types'
 
 /**
@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
  * ブラウザ上でCSS変数をリアルタイムに変更できる
  */
 const CssVarEditor = ({ onClose }) => {
+	const editorRef = useRef(null) // ref を作成
 	// CSS変数の状態管理
 	const [colorVars, setColorVars] = useState({
 		primary: '',
@@ -48,7 +49,25 @@ const CssVarEditor = ({ onClose }) => {
 			text: initialVars['neutral-dark'],
 			background: initialVars['neutral-light'],
 		})
-	}, [])
+	}, []) // colorVars を依存配列から削除（初期読み込みのみ実行）
+
+	// 画面外クリックで閉じる処理
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			// ref.current が存在し、クリックされた要素が editorRef の要素の外側にある場合
+			if (editorRef.current && !editorRef.current.contains(event.target)) {
+				onClose() // onClose を呼び出す
+			}
+		}
+
+		// mousedown イベントリスナーを追加
+		document.addEventListener('mousedown', handleClickOutside)
+
+		// クリーンアップ関数: コンポーネントのアンマウント時にリスナーを削除
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [onClose]) // 依存配列に onClose を追加
 
 	// 色変更ハンドラ
 	const handleColorChange = (varName, value) => {
@@ -318,8 +337,8 @@ const CssVarEditor = ({ onClose }) => {
 	}
 
 	return (
-		<div className='fixed bottom-20 right-4 z-50 bg-neutral-100 shadow-lg rounded-lg overflow-hidden max-w-md  md:w-auto'>
-			<div className='p-3 bg-neutral-dark text-neutral-light flex justify-between items-center gap-2'>
+		<div ref={editorRef} className='css-var-editor'>
+			<div className='p-3 bg-neutral-dark text-neutral-light flex justify-between items-center gap-2 rounded-t-lg'>
 				<h3 className='text-sm'>CSS変数エディタ</h3>
 				<div className='flex gap-2'>
 					<button
@@ -338,7 +357,9 @@ const CssVarEditor = ({ onClose }) => {
 			</div>
 
 			{isExpanded && (
-				<div className='p-4 max-h-[70vh] overflow-y-auto'>
+				<div className='p-4 max-h-[calc(70vh-4rem)] md:max-h-[70vh] overflow-y-auto rounded-b-lg'>
+					{' '}
+					{/* コンテンツ部分 (角丸は構造に合わせて残す) */}
 					<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 						{Object.entries(colorVars).map(([varName, value]) => (
 							<div key={varName} className='flex flex-col'>
@@ -362,7 +383,6 @@ const CssVarEditor = ({ onClose }) => {
 							</div>
 						))}
 					</div>
-
 					{/* コントラスト比計算セクション */}
 					<div className='mt-6 border-t pt-4'>
 						<h4 className='text-sm font-medium mb-3  text-neutral-dark'>
@@ -484,7 +504,6 @@ const CssVarEditor = ({ onClose }) => {
 						{/* コントラスト結果表示 */}
 						{renderContrastInfo()}
 					</div>
-
 					<div className='mt-4 flex justify-end gap-2'>
 						<button
 							onClick={handleReset}
@@ -503,7 +522,9 @@ const CssVarEditor = ({ onClose }) => {
 			)}
 
 			{!isExpanded && (
-				<div className='p-3 flex flex-wrap gap-2'>
+				<div className='p-3 flex flex-wrap gap-2 rounded-b-lg'>
+					{' '}
+					{/* 縮小表示時 (角丸は構造に合わせて残す) */}
 					{Object.entries(colorVars)
 						.filter(
 							([name]) => !name.includes('-light') && !name.includes('-dark')
