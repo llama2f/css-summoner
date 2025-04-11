@@ -1,4 +1,3 @@
-// templates/handlers/auto/_template.jsx
 // 新しいコンポーネントハンドラーのテンプレートファイルです。
 // このファイルをコピーして、'component-name.jsx' のようにリネームして使用してください。
 
@@ -9,15 +8,12 @@
 //   のように `skipDecoration: true` を含めてください。
 
 import React from 'react'
-// combineClasses: baseClass と他のクラス文字列を結合するヘルパー関数
-// sampleIcon: プレビュー用のサンプルSVGアイコン
-// separateProps: プロパティを分離するユーティリティ
 import {
 	createHandlerResult,
 	combineClasses,
 	sampleIcon,
 	separateProps,
-} from '../common' // 必要に応じてインポート
+} from '../common'
 
 // --- メタデータ (必須) ---
 // ハンドラー自動登録システムが使用します。
@@ -30,50 +26,34 @@ export const metadata = {
 // --- 基本レンダラー (必須) ---
 // コンポーネントの基本的な表示を定義します。
 export function render(props) {
-	// プロパティを分離
 	const { reactProps, domProps, commonProps } = separateProps(
 		props,
-		['classString', 'children', 'selectedModifiers', 'baseClass'], // React特有のプロパティ
-		['id', 'role'] // DOM要素に直接渡すプロパティ
+		['classString', 'children', 'selectedModifiers', 'baseClass'],
+		['id', 'role']
 	)
 
-	// Reactプロパティを取得
 	const {
-		classString = '', // ClassPreview から渡される、baseClass 以外の結合済みクラス
-		children = `${metadata.type} Preview`, // デフォルトのプレビューテキスト
-		baseClass = `${metadata.type}-base`, // デフォルトのベースクラス (必要に応じて調整)
+		classString = '',
+		children = `${metadata.type} Preview`,
+		baseClass = `${metadata.type}-base`,
 	} = reactProps
 
-	// DOM要素プロパティを取得
 	const { id, role } = domProps
 
-	// --- 最終的なクラス文字列の生成 ---
-	// baseClass と ClassPreview から渡された classString を結合
 	const finalClassString = combineClasses({
 		baseClass,
 		additional: classString,
 	})
 
-	// --- React要素の生成 ---
 	const reactElement = (
-		// finalClassString を className に適用
-		<div
-			className={finalClassString}
-			id={id}
-			role={role}
-			{...commonProps} // その他のプロパティを展開
-		>
+		<div className={finalClassString} id={id} role={role} {...commonProps}>
 			{/* ★ 適切なHTML要素に変更 */}
 			{children}
-			{/* 必要に応じてアイコンなどを追加: <span dangerouslySetInnerHTML={{ __html: sampleIcon }} /> */}
 		</div>
 	)
 
-	// --- 結果を返す ---
-	// HTML文字列はJSXから自動生成されるので、第2引数を省略します
 	return createHandlerResult(reactElement)
-	// ベースクラス付与をスキップする場合:
-	// return { ...createHandlerResult(reactElement), skipDecoration: true };
+	// return { ...createHandlerResult(reactElement), skipDecoration: true }; // ベースクラス付与をスキップする場合
 }
 
 // --- バリアント固有のレンダラー (オプション) ---
@@ -114,11 +94,72 @@ export const samples = {
 	// variantName: 'バリアント用テキスト',
 }
 
+// --- Astroコンポーネント カスタム生成関数 (オプション) ---
+// この関数をエクスポートすると、generate-astro.js はデフォルトの生成ロジックをスキップし、
+// この関数が返す文字列をそのまま .astro ファイルとして書き出します。
+// componentData には、componentInterface.js で定義された Props 情報などが含まれます。
+/*
+export async function generateAstroTemplate(componentData, options = {}) {
+	const { componentName, propsInterface, defaultProps, description, variants } = componentData;
+
+	// propsInterface を元に Astro の Props 定義を生成
+	const propsDefinition = Object.entries(propsInterface)
+		.map(([name, prop]) => {
+			// デフォルト値の処理を追加
+			const defaultValue = defaultProps[name] ? ` = ${JSON.stringify(defaultProps[name])}` : '';
+			// コメントを追加
+			const comment = prop.description ? ` // ${prop.description}` : '';
+			return `  ${name}${prop.required ? '' : '?'}: ${prop.type}${defaultValue};${comment}`;
+		})
+		.join('\\n'); // 改行をエスケープ
+
+	// バリアントが存在する場合、variant プロパティの型を生成
+	const variantType = variants && variants.length > 0
+		? `\\n  variant?: ${variants.map(v => `'${v.value}'`).join(' | ')}; // Component Variants` // 改行をエスケープ
+		: '';
+
+	// Astro コンポーネントのテンプレート文字列
+	// テンプレートリテラル内の特殊文字をエスケープ
+	const template = \`---
+// \${componentName}.astro - Generated Astro Component
+// \${description || ''}
+
+interface Props \${'{'}
+\${propsDefinition}\${variantType}
+  // 必要に応じて他の Props を追加
+  [key: string]: any; // スロットなどのための追加プロパティを許可
+}
+
+const \${'{'}
+  class: className, // 'class' は予約語なので 'className' にリネーム
+  \${Object.keys(propsInterface).join(',\\n  ')}\${variants && variants.length > 0 ? ',\\n  variant' : ''} // 改行をエスケープ
+  ...rest // スロットやその他の属性用
+} = Astro.props;
+
+// ここでクラスの結合ロジックなどを実装
+// 例: const combinedClasses = [baseClass, variantClass, sizeClass, className].filter(Boolean).join(' ');
+const combinedClasses = \`\\\${className || ''}\`; // ★ 実際のクラス結合ロジックに置き換える (バッククォートをエスケープ)
+
+---
+// Astro マークアップをここに記述
+<div class={combinedClasses} {...rest}>
+  <slot /> // デフォルトスロット
+</div>
+
+<style>
+// 必要に応じてコンポーネント固有のスタイルを記述
+</style>
+\`; // テンプレートリテラルを閉じる
+	return template;
+}
+*/
+
 // --- デフォルトエクスポート (必須) ---
 // ハンドラー自動登録システムが使用します。
 export default {
 	metadata,
 	render,
 	variants, // 不要な場合は削除可
-	samples, // 不要な場合は削除可
+	samples,
+	// generateAstroTemplate, // カスタム生成を使用する場合はコメント解除
 }

@@ -1,27 +1,20 @@
-// templates/handlers/auto/button.jsx
-// プレビュー、コード表示を行います
-// baseクラス付与をスキップする場合はvariantでreturn {skipDecoration: true}を渡してください
-
 import React from 'react'
 import { sampleIcon, createHandlerResult, separateProps } from '../common'
+import { colorRegistry } from '../../../../configs/colors.js'
 
-// メタデータ（必須）- 自動登録の鍵
 export const metadata = {
-	type: 'button', // コンポーネントタイプ（必須）
-	category: 'interactive', // カテゴリ（任意）
-	description: 'インタラクティブなボタンコンポーネント', // 説明（任意）
+	type: 'button',
+	category: 'interactive',
+	description: 'インタラクティブなボタンコンポーネント',
 }
 
-// 基本レンダラー（必須）
 export function render(props) {
-	// プロパティ分離
 	const { reactProps, domProps, commonProps } = separateProps(
 		props,
-		['classString', 'children', 'selectedModifiers', 'baseClass', 'onClick'], // Reactプロパティ
-		['disabled', 'type'] // DOM要素プロパティ
+		['classString', 'children', 'selectedModifiers', 'baseClass', 'onClick'],
+		['disabled', 'type']
 	)
 
-	// Reactプロパティから必要な値を取得
 	const {
 		classString = '',
 		children = 'ボタンテキスト',
@@ -29,17 +22,14 @@ export function render(props) {
 		onClick = null,
 	} = reactProps
 
-	// DOMプロパティから必要な値を取得
 	const { disabled = false, type = 'button' } = domProps
 
-	// モディファイア処理ロジック
 	const hasIconLeft = selectedModifiers.includes('btn-icon-left')
 	const hasIconRight = selectedModifiers.includes('btn-icon-right')
 	const hasIconOnly = selectedModifiers.includes('btn-icon-only')
 
 	let reactElement
 
-	// アイコン処理
 	if (hasIconOnly) {
 		reactElement = (
 			<button
@@ -87,18 +77,15 @@ export function render(props) {
 		)
 	}
 
-	// HTML文字列は自動生成されるようにする
 	return createHandlerResult(reactElement)
 }
 
 export function renderIconButton(props) {
-	// プロパティ分離
 	const { reactProps, domProps, commonProps } = separateProps(
 		props,
-		['classString', 'icon', 'title', 'onClick'], // Reactプロパティ
-		['disabled', 'type'] // DOM要素プロパティ
+		['classString', 'icon', 'title', 'onClick'],
+		['disabled', 'type']
 	)
-	// 各種値を取得
 	const {
 		classString = '',
 		icon = '⚙️',
@@ -124,21 +111,17 @@ export function renderIconButton(props) {
 }
 
 export const variants = {
-	// バリアント固有のレンダラー（オプション）
-
 	'btn-icon': (props) => renderIconButton(props),
 	'btn-icon-ghost': (props) => renderIconButton(props),
 	'btn-icon-outline': (props) => renderIconButton(props),
 
 	'btn-group': (props) => {
-		// プロパティ分離
 		const { reactProps, domProps, commonProps } = separateProps(
 			props,
-			['classString', 'children', 'title', 'baseClass', 'onClick'], // Reactプロパティ
-			['disabled', 'type'] // DOM要素プロパティ
+			['classString', 'children', 'title', 'baseClass', 'onClick'],
+			['disabled', 'type']
 		)
 
-		// 各種値を取得
 		const {
 			classString = '',
 			children = 'buttons',
@@ -189,17 +172,60 @@ export const variants = {
 	},
 }
 
-// プレビュー用サンプル（オプション）
 export const samples = {
 	default: 'ボタン',
 	primary: 'プライマリボタン',
 	icon: '⚙️',
 }
 
-// デフォルトエクスポート（すべての機能を含む）
 export default {
 	metadata,
 	render,
 	variants,
 	samples,
+	generateAstroTemplate,
+}
+
+export function generateAstroTemplate(componentData, options) {
+	const astroCode = `---
+import type { ButtonProps } from '../types/Button';
+import { twMerge } from 'tailwind-merge';
+
+
+const {
+  variant,
+  size,
+  color = '${colorRegistry.themePrimary.value}',
+  radius,
+  modifiers,
+  modifier,
+  disabled,
+  class: className,
+  ...rest
+} = Astro.props as ButtonProps;
+
+const baseClasses = 'btn';
+const variantClasses = variant ? \`btn-\${variant}\` : '';
+const sizeClasses = size ? \`btn-\${size}\` : '';
+const colorClasses = color || '';
+const radiusClasses = radius ? \`rounded-\${radius}\` : '';
+const modifierClasses = modifier ? \`btn-\${modifier}\` : '';
+const modifiersClasses = Array.isArray(modifiers) ? modifiers.join(' ') : '';
+
+const combinedClasses = twMerge(
+  baseClasses,
+  variantClasses,
+  sizeClasses,
+  colorClasses,
+  radiusClasses,
+  modifierClasses,
+  modifiersClasses,
+  className
+);
+---
+<button class={combinedClasses} {disabled} {...rest}>
+  <slot />
+</button>
+`
+	return astroCode
 }

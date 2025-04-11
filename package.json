@@ -18,9 +18,10 @@
 		"css-components": "node src/css-summoner/scripts/css-summoner-integration.js --components",
 		"css-all": "node src/css-summoner/scripts/css-summoner-integration.js --all",
 		"generate:handlers": "node src/css-summoner/scripts/generate-handler-manifest.js",
-		"generate:astro": "node src/css-summoner/scripts/generate-astro.js",
-		"generate:astro-force": "node src/css-summoner/scripts/generate-astro.js --force",
-		"extract-jsx": "node src/css-summoner/scripts/extract-jsx.js src/css-summoner/templates/handlers/auto"
+		"generate:astro": "tsx src/css-summoner/scripts/generate-astro.js",
+		"generate:astro-force": "tsx src/css-summoner/scripts/generate-astro.js --force",
+		"extract-jsx": "node src/css-summoner/scripts/extract-jsx.js src/css-summoner/templates/handlers/auto",
+		"generate:types": "node src/css-summoner/scripts/generate-types.js"
 	},
 	"dependencies": {
 		"@astrojs/react": "4.2.2",
@@ -91,6 +92,7 @@
 		"tailwindcss": "^3.4.17",
 		"tailwindcss-animate": "^1.0.7",
 		"tailwindcss-content-visibility": "^1.0.2",
+		"tsx": "^4.19.3",
 		"typescript": "^5.7.2"
 	}
 }
