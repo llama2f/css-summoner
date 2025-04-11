@@ -1,42 +1,68 @@
 /**
  * Heading コンポーネントのプロパティ型定義
+ * 
  * カテゴリ: typography
+ * 自動生成されたインターフェース定義 - 2025-04-11T01:16:08.274Z
  */
 export interface HeadingProps {
   /**
-   * コンポーネントの視覚的なスタイルバリアント。
-   * @default "accent-border"
+   * コンポーネントの視覚的なスタイルバリアント
+   * @default "heading-accent-border"
+   * * - `heading-accent-border`: heading-accent-border variant
+   * - `heading-accent-gradient`: heading-accent-gradient variant
+   * - `heading-accent-stripe`: heading-accent-stripe variant
+   * - `heading-casual-badge`: heading-casual-badge variant
+   * - `heading-casual-dotted`: heading-casual-dotted variant
+   * - `heading-casual-handwritten`: heading-casual-handwritten variant
+   * - `heading-casual-highlight`: heading-casual-highlight variant
+   * - `heading-casual-wavy`: heading-casual-wavy variant
+   * - `heading-formal-boxed`: heading-formal-boxed variant
+   * - `heading-formal-double`: heading-formal-double variant
+   * - `heading-formal-full`: heading-formal-full variant
+   * - `heading-formal-primary`: heading-formal-primary variant
+   * - `heading-formal-underline`: heading-formal-underline variant
+   * - `heading-japanesque-brush`: heading-japanesque-brush variant
+   * - `heading-japanesque-vertical`: heading-japanesque-vertical variant
+   * - `heading-modern-minimal`: heading-modern-minimal variant
+   * - `heading-modern-oversized`: heading-modern-oversized variant
+   * - `heading-modern-split`: heading-modern-split variant
+   * - `heading-technical-bracket`: heading-technical-bracket variant
+   * - `heading-technical-code`: heading-technical-code variant
+   * - `heading-technical-comment`: heading-technical-comment variant
+   * - `heading-technical-tag`: heading-technical-tag variant
    */
-  variant?: 'accent-border' | 'accent-gradient' | 'accent-stripe' | 'casual-badge' | 'casual-dotted' | 'casual-handwritten' | 'casual-highlight' | 'casual-wavy' | 'formal-boxed' | 'formal-double' | 'formal-full' | 'formal-primary' | 'formal-underline' | 'japanesque-brush' | 'japanesque-vertical' | 'modern-minimal' | 'modern-oversized' | 'modern-split' | 'technical-bracket' | 'technical-code' | 'technical-comment' | 'technical-tag';
+  variant?: "border" | "gradient" | "stripe" | "badge" | "dotted" | "handwritten" | "highlight" | "wavy" | "boxed" | "double" | "full" | "primary" | "underline" | "brush" | "vertical" | "minimal" | "oversized" | "split" | "bracket" | "code" | "comment" | "tag";
 
   /**
-   * コンポーネントのサイズ。
-   * @default ""
+   * カラースキーム (例: color-primary, color-secondary)
+   * @default "color-neutral"
+   */
+  color?: string;
+
+  /**
+   * コンポーネントのサイズ
    */
   size?: string;
 
   /**
-   * コンポーネントの角丸の程度。
+   * 角丸の設定
    */
   radius?: string;
 
   /**
-   * 追加のスタイル修飾子 (例: 影、アニメーション)。
-   * @example ["shadow", "animate-up"]
+   * 追加のスタイル修飾子 (例: shadow, animate-up)
+   * @default "[]"
    */
   modifiers?: Array<string>;
 
   /**
-   * Tailwindクラスなど、追加で適用するCSSクラス文字列。
+   * 追加のCSSクラス名
+   * @default """"
    */
-  addClass?: string;
+  class?: string;
 
   /**
-   * コンポーネント内に表示される子要素 (Reactノード)。
+   * その他のHTML属性
    */
-  children?: React.ReactNode; // any より React.ReactNode が望ましい
-
-  // 必要に応じて他の共通プロパティを追加 (例: id, aria-label など)
-  // id?: string;
-  // 'aria-label'?: string;
+  [key: string]: any;
 }

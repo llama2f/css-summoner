@@ -1,42 +1,56 @@
 /**
  * Button コンポーネントのプロパティ型定義
+ * 
  * カテゴリ: interactive
+ * 自動生成されたインターフェース定義 - 2025-04-11T01:16:08.275Z
  */
 export interface ButtonProps {
   /**
-   * コンポーネントの視覚的なスタイルバリアント。
-   * @default "group"
+   * コンポーネントの視覚的なスタイルバリアント
+   * @default "btn-group"
+   * * - `btn-group`: btn-group variant
+   * - `btn-ghost`: btn-ghost variant
+   * - `btn-gradient`: btn-gradient variant
+   * - `btn-icon`: btn-icon variant
+   * - `btn-icon-ghost`: btn-icon-ghost variant
+   * - `btn-icon-outline`: btn-icon-outline variant
+   * - `btn-link`: btn-link variant
+   * - `btn-outline`: btn-outline variant
+   * - `btn-solid`: btn-solid variant
+   * - `btn-subtle`: btn-subtle variant
    */
-  variant?: 'group' | 'ghost' | 'gradient' | 'icon' | 'icon-ghost' | 'icon-outline' | 'link' | 'outline' | 'solid' | 'subtle';
+  variant?: "group" | "ghost" | "gradient" | "icon" | "ghost" | "outline" | "link" | "outline" | "solid" | "subtle";
 
   /**
-   * コンポーネントのサイズ。
-   * @default ""
+   * カラースキーム (例: color-primary, color-secondary)
+   * @default "color-neutral"
+   */
+  color?: string;
+
+  /**
+   * コンポーネントのサイズ
    */
   size?: string;
 
   /**
-   * コンポーネントの角丸の程度。
+   * 角丸の設定
    */
   radius?: string;
 
   /**
-   * 追加のスタイル修飾子 (例: 影、アニメーション)。
-   * @example ["shadow", "animate-up"]
+   * 追加のスタイル修飾子 (例: shadow, animate-up)
+   * @default "[]"
    */
   modifiers?: Array<string>;
 
   /**
-   * Tailwindクラスなど、追加で適用するCSSクラス文字列。
+   * 追加のCSSクラス名
+   * @default """"
    */
-  addClass?: string;
+  class?: string;
 
   /**
-   * コンポーネント内に表示される子要素 (Reactノード)。
+   * その他のHTML属性
    */
-  children?: React.ReactNode; // any より React.ReactNode が望ましい
-
-  // 必要に応じて他の共通プロパティを追加 (例: id, aria-label など)
-  // id?: string;
-  // 'aria-label'?: string;
+  [key: string]: any;
 }

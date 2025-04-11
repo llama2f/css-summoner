@@ -1,42 +1,50 @@
 /**
  * Infobox コンポーネントのプロパティ型定義
+ * 
  * カテゴリ: notification
+ * 自動生成されたインターフェース定義 - 2025-04-11T01:16:08.273Z
  */
 export interface InfoboxProps {
   /**
-   * コンポーネントの視覚的なスタイルバリアント。
-   * @default "ghost"
+   * コンポーネントの視覚的なスタイルバリアント
+   * @default "infobox-ghost"
+   * * - `infobox-ghost`: infobox-ghost variant
+   * - `infobox-outline`: infobox-outline variant
+   * - `infobox-solid`: infobox-solid variant
+   * - `infobox-title`: infobox-title variant
    */
-  variant?: 'ghost' | 'outline' | 'solid' | 'title';
+  variant?: "ghost" | "outline" | "solid" | "title";
 
   /**
-   * コンポーネントのサイズ。
-   * @default ""
+   * カラースキーム (例: color-primary, color-secondary)
+   * @default "color-neutral"
+   */
+  color?: string;
+
+  /**
+   * コンポーネントのサイズ
    */
   size?: string;
 
   /**
-   * コンポーネントの角丸の程度。
+   * 角丸の設定
    */
   radius?: string;
 
   /**
-   * 追加のスタイル修飾子 (例: 影、アニメーション)。
-   * @example ["shadow", "animate-up"]
+   * 追加のスタイル修飾子 (例: shadow, animate-up)
+   * @default "[]"
    */
   modifiers?: Array<string>;
 
   /**
-   * Tailwindクラスなど、追加で適用するCSSクラス文字列。
+   * 追加のCSSクラス名
+   * @default """"
    */
-  addClass?: string;
+  class?: string;
 
   /**
-   * コンポーネント内に表示される子要素 (Reactノード)。
+   * その他のHTML属性
    */
-  children?: React.ReactNode; // any より React.ReactNode が望ましい
-
-  // 必要に応じて他の共通プロパティを追加 (例: id, aria-label など)
-  // id?: string;
-  // 'aria-label'?: string;
+  [key: string]: any;
 }
