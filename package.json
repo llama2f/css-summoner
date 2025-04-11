@@ -5,7 +5,7 @@
 	"description": "CSS Summoner",
 	"type": "module",
 	"scripts": {
-		"dev": "npm run generate:handlers && astro dev --host --port 5000",
+		"dev": "npm run generate:handlers && npm run generate:astro-force && astro dev --host --port 5000",
 		"start": "astro dev",
 		"build": "npm run generate:handlers && astro build",
 		"preview": "astro preview",
@@ -16,7 +16,6 @@
 		"css": "node src/css-summoner-integration.js --all",
 		"css-docs": "node src/css-summoner/scripts/css-summoner-integration.js --docs",
 		"css-components": "node src/css-summoner/scripts/css-summoner-integration.js --components",
-		"css-all": "node src/css-summoner/scripts/css-summoner-integration.js --all",
 		"generate:handlers": "node src/css-summoner/scripts/generate-handler-manifest.js",
 		"generate:astro": "tsx src/css-summoner/scripts/generate-astro.js",
 		"generate:astro-force": "tsx src/css-summoner/scripts/generate-astro.js --force",

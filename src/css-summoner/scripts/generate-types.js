@@ -2,7 +2,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import config from './config.js'
-import typeGenerator from './type-generator.js'
+import typeGenerator from './generators/type-generator.js'
 import { logger, fileUtils } from './utils.js'
 
 const __filename = fileURLToPath(import.meta.url)

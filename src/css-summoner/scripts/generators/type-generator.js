@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
-import config from './config.js'
-import { logger, fileUtils, stringUtils } from './utils.js'
-import componentInterface from './generators/componentInterface.js'
+import config from '../config.js'
+import { logger, fileUtils, stringUtils } from '../utils.js'
+import componentInterface from './componentInterface.js'
 /**
  * 型定義生成モジュール
  */

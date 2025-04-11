@@ -14,13 +14,12 @@ import cssAnnotationsPlugin from './postcss-annotations/src/index.js'
 import config from './css-summoner/scripts/config.js'
 
 // 型生成機能
-import typeGenerator from './css-summoner/scripts/type-generator.js'
+import typeGenerator from './css-summoner/scripts/generators/type-generator.js'
 
 // Astroドキュメント生成
 import docGenerator from './css-summoner/scripts/generate-docs.js'
 
-// コンポーネント生成機能 - ハンドラーから生成するため、正しいジェネレータを使用
-import { generateAstroComponents } from './css-summoner/scripts/generators/astroComponentGenerator.js'
+// コンポーネント生成機能は generate-astro.js に移行
 
 // プラグインオプション
 const pluginOptions = {
@@ -374,22 +373,7 @@ export async function processCssFiles(options = {}) {
 		)
 	}
 
-	// コンポーネントの生成
-	if (opts.generateComponents) {
-		console.log('Astroコンポーネントを生成します...')
-		// 使用する force 値: まず opts.force を確認し、次に各ファイルタイプごとの設定も確認
-		const useComponentForce =
-			opts.force || config.fileOperations.forceByType.components
-
-		await generateAstroComponents(
-			config.paths.handlersDir,
-			config.paths.output.components,
-			{
-				force: useComponentForce, // 修正：config.fileOperations.forceByType.componentsも考慮
-				autoConfirm: useComponentForce, // 修正：同様に
-			}
-		)
-	}
+	// コンポーネント生成は generate-astro.js スクリプトに移行されました
 
 	return extractedData
 }
@@ -401,7 +385,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 	const options = {
 		generateTypes: args.includes('--types') || args.includes('-t'),
 		generateDocs: args.includes('--docs') || args.includes('-d'),
-		generateComponents: args.includes('--components') || args.includes('-c'),
+		// generateComponents: args.includes('--components') || args.includes('-c'), // 移行済み
 		all: args.includes('--all') || args.includes('-a'),
 		force: args.includes('--force') || args.includes('-f'),
 	}
@@ -410,7 +394,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 	if (options.all) {
 		options.generateTypes = true
 		options.generateDocs = true
-		options.generateComponents = true
+		// options.generateComponents = true; // 移行済み
 		options.force = options.force || config.fileOperations.force // --all でも明示的に指定されていなければconfigの値を使用
 	}
 
