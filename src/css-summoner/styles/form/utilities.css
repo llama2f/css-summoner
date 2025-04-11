@@ -1,14 +1,13 @@
 @layer utilities {
-	
 	.form-checkbox.form-checkbox-square:checked::after {
 		content: '';
 		position: absolute;
 		display: block;
-		background-color: white; 
+		background-color: white;
 		top: 50%;
 		left: 50%;
-		width: 0.5rem; 
-		height: 0.5rem; 
+		width: 0.5rem;
+		height: 0.5rem;
 		transform: translate(-50%, -50%);
 	}
 
@@ -26,32 +25,96 @@
 	.form-textarea.is-invalid {
 		border-color: var(--error, red);
 	}
-
-	.form-sm {
-		@apply text-sm; 
-		padding: 0.25rem 0.5rem; 
-	}
-
-	.form-lg {
-		@apply text-lg; 
-		padding: 0.5rem 1rem; 
-	}
-
 	.form-xs {
-		@apply text-xs; 
-		padding: 0.125rem 0.375rem; 
-		
+		@apply text-xs;
+		padding: 0.125rem 0.375rem;
+
 		&.form-checkbox,
 		&.form-radio {
-			width: 0.875rem; 
-			height: 0.875rem; 
+			width: 0.875rem;
+			height: 0.875rem;
+			aspect-ratio: 1;
+			padding: 0;
+		}
+	}
+	.form-sm {
+		@apply text-sm;
+		padding: 0.25rem 0.5rem;
+
+		&.form-checkbox,
+		&.form-radio {
+			width: 1rem;
+			height: 1rem;
+			aspect-ratio: 1;
+			padding: 0;
 		}
 	}
 
-	.form-rounded {
-		border-radius: 9999px; 
+	.form-md {
+		@apply text-md;
+		padding: 0.375rem 0.75rem;
+
+		&.form-checkbox,
+		&.form-radio {
+			width: 1.25rem;
+			height: 1.25rem;
+			aspect-ratio: 1;
+			padding: 0;
+		}
 	}
-	
+
+	.form-lg {
+		@apply text-lg;
+		padding: 0.5rem 1rem;
+
+		&.form-checkbox,
+		&.form-radio {
+			width: 1.5rem;
+			height: 1.5rem;
+			aspect-ratio: 1;
+			padding: 0;
+		}
+	}
+
+	.form-xl {
+		@apply text-xl;
+		padding: 0.75rem 1.5rem;
+
+		&.form-checkbox,
+		&.form-radio {
+			width: 1.75rem;
+			height: 1.75rem;
+			aspect-ratio: 1;
+			padding: 0;
+		}
+	}
+
+	.form-checkbox,
+	.form-radio {
+		&.rounded {
+			border-radius: 0.25rem;
+		}
+		&.rounded-sm {
+			border-radius: 0.125rem;
+		}
+		&.rounded-lg {
+			border-radius: 0.5rem;
+		}
+		&.rounded-xl {
+			border-radius: 1rem;
+		}
+		&.rounded-full {
+			border-radius: 9999px;
+		}
+	}
+
+	.form-success {
+		color: var(--success-text, var(--success, green)) !important;
+	}
+	.form-error {
+		color: var(--error-text, var(--error, red)) !important;
+	}
+
 	@media print {
 		.form-input,
 		.form-select,

@@ -10,8 +10,10 @@
 4.  [ハンドラーの実装詳細](#ハンドラーの実装詳細)
 5.  [JSXからHTMLの自動生成](#jsxからhtmlの自動生成)
 6.  [Astroコンポーネント生成のカスタマイズ (`generateAstroTemplate`)](#astroコンポーネント生成のカスタマイズ-generateastrotemplate)
-7.  [ベストプラクティス](#ベストプラクティス)
-8.  [デバッグ](#デバッグ)
+7.  [ベースクラスの付与](#ベースクラスの付与)
+8.  [ベストプラクティス](#ベストプラクティス)
+9.  [デバッグ](#デバッグ)
+10. [デバッグ](#デバッグ)
 
 ## ハンドラーの基本概念
 
@@ -447,6 +449,49 @@ export default {
 ```
 
 この例では、`componentData` を利用して `Props` インターフェースを動的に生成し、デフォルト値も設定しています。また、クラス名の組み立てロジックも含まれています（実際のプロジェクトではより洗練されたロジックが必要になる場合があります）。
+
+## ベースクラスの付与
+
+CSS Builderでは、コンポーネントタイプに応じたベースクラスが付与される仕組みがあります：
+
+1. **基本的な仕組み：** `src/css-summoner/classMappings.js` の `baseClasses` オブジェクトに定義されたベースクラスのみが対応するコンポーネントタイプに付与されます。マッピングに存在しないコンポーネントタイプには自動でベースクラスは生成されません。
+
+2. **付与をスキップする方法：** `baseClasses` マッピングに定義されているベースクラスの付与をスキップしたい場合は、ハンドラー内で `skipDecoration: true` フラグを使用できます：
+   ```jsx
+   return { ...createHandlerResult(reactElement), skipDecoration: true }
+   ```
+
+**ベースクラスの動作例：**
+
+```jsx
+// 例: 通常の場合（baseClassesマッピングに定義されている場合のみ付与される）
+export function render(props) {
+	// ...props の処理...
+	const reactElement = <div className={classString}>...</div>
+	return createHandlerResult(reactElement)
+	// 結果：classNameに baseClass が追加される（baseClassesマッピングに定義されている場合のみ）
+}
+
+// 例: 付与をスキップする場合
+export function render(props) {
+	// ...props の処理...
+	const reactElement = <div className={classString}>...</div>
+	return { ...createHandlerResult(reactElement), skipDecoration: true }
+	// 結果：classNameはそのまま保持される（baseClass は追加されない）
+}
+
+const reactElement = <div className={classString}>...</div>
+return createHandlerResult(reactElement)
+// 結果：classNameに baseClass が自動的に追加される（存在する場合）
+
+// 例: 自動付与をスキップする場合
+export function render(props) {
+	// ...props の処...
+	const reactElement = <div className={classString}>...</div>
+	return { ...createHandlerResult(reactElement), skipDecoration: true }
+	// 結果：classNameはそのまま保持される（baseClass は追加されない）
+}
+```
 
 ## ベストプラクティス
 

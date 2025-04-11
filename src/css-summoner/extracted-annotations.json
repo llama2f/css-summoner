@@ -368,10 +368,6 @@
         "label": "Checkbox"
       },
       {
-        "value": "form-feedback",
-        "label": "Feedback"
-      },
-      {
         "value": "form-input",
         "label": "Input"
       },
@@ -970,12 +966,6 @@
       "description": "トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。",
       "category": "form-controls"
     },
-    "form-feedback": {
-      "component": "form",
-      "variant": "feedback",
-      "description": "フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。",
-      "category": "form-validation"
-    },
     "form-search": {
       "component": "form",
       "variant": "search",
@@ -1554,11 +1544,6 @@
         "example": "<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label theme-neutral\" for=\"darkmode\"></label> <!-- theme-* を指定 -->\n</div>"
       },
       {
-        "variant": "feedback",
-        "className": "form-feedback",
-        "example": "<div class=\"form-feedback color-success\">入力内容は有効です</div>\n<div class=\"form-feedback color-error\">必須項目です</div>"
-      },
-      {
         "variant": "search",
         "className": "form-search",
         "example": "<input type=\"search\" class=\"form-input form-search theme-neutral\" placeholder=\"検索...\">"
@@ -1688,87 +1673,58 @@
   },
   "classRuleDetails": {
     "tooltip-solid": {
-      "ruleText": ".tooltip-solid {\n\t\t&::after {\n\t\t\tbackground-color: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); /* Use component color or fallback */\n\t\t\tcolor: var(\n\t\t\t\t--component-text,\n\t\t\t\tvar(--neutral-light)\n\t\t\t); /* Use component text color or fallback */\n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\ttransparent\n\t\t\t); /* Use component border or transparent */\n\t\t}\n\n\t\t/* Default arrow (top) */\n\t\t&::before {\n\t\t\tborder-top-color: var(--component-color, var(--neutral-dark));\n\t\t}\n\t\t/* 他の方向の色指定は削除 */\n\t}",
+      "ruleText": ".tooltip-solid {\n\t\t&::after {\n\t\t\tbackground-color: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); \n\t\t\tcolor: var(\n\t\t\t\t--component-text,\n\t\t\t\tvar(--neutral-light)\n\t\t\t); \n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\ttransparent\n\t\t\t); \n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: var(--component-color, var(--neutral-dark));\n\t\t}\n\t\t\n\t}",
       "selector": ".tooltip-solid",
       "sourceFile": "tooltip/variants.css",
       "relatedRules": []
     },
     "tooltip-outline": {
-      "ruleText": ".tooltip-outline {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); /* Use component color for text */\n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t); /* Use component border or color */\n\t\t}\n\n\t\t/* Default arrow (top) */\n\t\t&::before {\n\t\t\tborder-top-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t}\n\t\t/* Arrow adjustments for other directions */\n\t\t&.tooltip-bottom::before {\n\t\t\tborder-bottom-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-left::before {\n\t\t\tborder-left-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t\t&.tooltip-right::before {\n\t\t\tborder-right-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; /* !important を削除 */\n\t\t}\n\t}",
+      "ruleText": ".tooltip-outline {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); \n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t); \n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t}\n\t\t\n\t\t&.tooltip-bottom::before {\n\t\t\tborder-bottom-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; \n\t\t}\n\t\t&.tooltip-left::before {\n\t\t\tborder-left-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; \n\t\t}\n\t\t&.tooltip-right::before {\n\t\t\tborder-right-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; \n\t\t}\n\t}",
       "selector": ".tooltip-outline",
       "sourceFile": "tooltip/variants.css",
       "relatedRules": []
     },
     "tooltip-subtle": {
-      "ruleText": ".tooltip-subtle {\n\t\t&::after {\n\t\t\tbackground-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 10%,\n\t\t\t\ttransparent\n\t\t\t); /* Use component color mixed with transparent */\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); /* Use component color for text */\n\t\t\tborder-color: transparent;\n\t\t}\n\n\t\t/* Default arrow (top) */\n\t\t&::before {\n\t\t\tborder-top-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 90%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t}\n\t\t/* 他の方向の色指定は削除 */\n\t}",
+      "ruleText": ".tooltip-subtle {\n\t\t&::after {\n\t\t\tbackground-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 10%,\n\t\t\t\ttransparent\n\t\t\t); \n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); \n\t\t\tborder-color: transparent;\n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 90%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t}\n\t\t\n\t}",
       "selector": ".tooltip-subtle",
       "sourceFile": "tooltip/variants.css",
       "relatedRules": []
     },
     "tooltip-ghost": {
-      "ruleText": ".tooltip-ghost {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); /* Use component color for text */\n\t\t\tborder-color: transparent;\n\t\t\t/* ホバー時のスタイルは utilities.css で .tooltip-hover-ghost などで定義することを推奨 */\n\t\t}\n\n\t\t/* Ghost usually doesn't have an arrow, but if needed, make it transparent or match text */\n\t\t&::before {\n\t\t\tborder-top-color: transparent; /* Or match text color if design requires */\n\t\t}\n\t\t/* 他の方向の色指定は削除 */\n\t\t/* Consider adding .tooltip-no-arrow modifier for ghost style */\n\t}",
+      "ruleText": ".tooltip-ghost {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); \n\t\t\tborder-color: transparent;\n\t\t\t\n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: transparent; \n\t\t}\n\n\t}",
       "selector": ".tooltip-ghost",
       "sourceFile": "tooltip/variants.css",
       "relatedRules": []
     },
     "tooltip-base": {
-      "ruleText": ".tooltip-base {\n\t\t@apply relative inline-flex cursor-pointer;\n\n\t\t/* ツールチップ本体 - data-tooltip属性の内容を表示 */\n\t\t&::after {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; /* invisible */\n\t\t\topacity: 0;\n\t\t\twhite-space: normal;\n\t\t\toverflow-wrap: break-word; /* break-words */\n\t\t\ttext-align: center;\n\t\t\tcontent: attr(data-tooltip);\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\tmax-width: var(--tooltip-max-width);\n\t\t\tmin-width: var(--tooltip-min-width);\n\t\t\tpadding: var(--tooltip-padding-y) var(--tooltip-padding-x);\n\t\t\tfont-family: var(--tooltip-font-family);\n\t\t\tfont-size: 0.875rem; /* text-sm */\n\t\t\tfont-weight: 400; /* font-normal */\n\t\t\tline-height: 1.25;\n\t\t\tborder-radius: var(--tooltip-border-radius);\n\t\t\tborder-width: var(--tooltip-border-width);\n\t\t\tborder-style: solid;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t/* 三角形の矢印 */\n\t\t&::before {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; /* invisible */\n\t\t\topacity: 0;\n\t\t\tcontent: '';\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\twidth: 0;\n\t\t\theight: 0;\n\t\t\tborder: var(--tooltip-arrow-size) solid transparent;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t/* ホバー時の表示 */\n\t\t&:hover::after,\n\t\t&:hover::before,\n\t\t&:focus::after,\n\t\t&:focus::before {\n\t\t\tvisibility: visible;\n\t\t\topacity: 1;\n\t\t}\n\t}",
+      "ruleText": ".tooltip-base {\n\t\t@apply relative inline-flex cursor-pointer;\n\n\t\t&::after {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; \n\t\t\topacity: 0;\n\t\t\twhite-space: normal;\n\t\t\toverflow-wrap: break-word; \n\t\t\ttext-align: center;\n\t\t\tcontent: attr(data-tooltip);\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\tmax-width: var(--tooltip-max-width);\n\t\t\tmin-width: var(--tooltip-min-width);\n\t\t\tpadding: var(--tooltip-padding-y) var(--tooltip-padding-x);\n\t\t\tfont-family: var(--tooltip-font-family);\n\t\t\tfont-size: 0.875rem; \n\t\t\tfont-weight: 400; \n\t\t\tline-height: 1.25;\n\t\t\tborder-radius: var(--tooltip-border-radius);\n\t\t\tborder-width: var(--tooltip-border-width);\n\t\t\tborder-style: solid;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t&::before {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; \n\t\t\topacity: 0;\n\t\t\tcontent: '';\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\twidth: 0;\n\t\t\theight: 0;\n\t\t\tborder: var(--tooltip-arrow-size) solid transparent;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t&:hover::after,\n\t\t&:hover::before,\n\t\t&:focus::after,\n\t\t&:focus::before {\n\t\t\tvisibility: visible;\n\t\t\topacity: 1;\n\t\t}\n\t}",
       "selector": ".tooltip-base",
       "sourceFile": "tooltip/base.css",
       "relatedRules": []
     },
     "text-marker": {
-      "ruleText": ".text-marker {\n\t\t/* color-mixを使用して微妙な背景色を作成。必要に応じて透明度を調整。 */\n\t\tbackground-image: linear-gradient(\n\t\t\ttransparent 60%,\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 40%\n\t\t);\n\t\tbackground-size: 100% 100%;\n\t\tbackground-position: 0 0;\n\t\tbackground-repeat: no-repeat;\n\t\t/* 透明度はcolor-mixで処理 */\n\t}",
+      "ruleText": ".text-marker {\n\t\tbackground-image: linear-gradient(\n\t\t\ttransparent 60%,\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 40%\n\t\t);\n\t\tbackground-size: 100% 100%;\n\t\tbackground-position: 0 0;\n\t\tbackground-repeat: no-repeat;\n\t}",
       "selector": ".text-marker",
       "sourceFile": "text/variants.css",
-      "relatedRules": [
-        {
-          "selector": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double",
-          "ruleText": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
-          "sourceFile": "text/variants.css"
-        },
-        {
-          "selector": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight",
-          "ruleText": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
-          "sourceFile": "text/variants.css"
-        }
-      ]
+      "relatedRules": []
     },
     "text-marker-full": {
-      "ruleText": ".text-marker-full {\n\t\t/* color-mixを使用して薄い背景塗りつぶしを作成。透明度を調整。 */\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 85%\n\t\t);\n\t\tpadding: var(--text-highlight-padding-y) var(--text-highlight-padding-x);\n\t\tborder-radius: 0.2em; /* オプション: わずかな角丸を追加 */\n\t}",
+      "ruleText": ".text-marker-full {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 85%\n\t\t);\n\t\tpadding: var(--text-highlight-padding-y) var(--text-highlight-padding-x);\n\t\tborder-radius: 0.2em;\n\t}",
       "selector": ".text-marker-full",
       "sourceFile": "text/variants.css",
-      "relatedRules": [
-        {
-          "selector": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight",
-          "ruleText": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
-          "sourceFile": "text/variants.css"
-        }
-      ]
+      "relatedRules": []
     },
     "text-marker-stripe": {
-      "ruleText": ".text-marker-stripe {\n\t\tbackground-image: repeating-linear-gradient(\n\t\t\t-45deg,\n\t\t\ttransparent 0,\n\t\t\ttransparent 2px,\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 2px,\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 4px\n\t\t);\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-position: left bottom;\n\t\tbackground-size: 100% 10px; /* ストライプ領域の高さを調整 */\n\t\tpadding-bottom: 4px; /* ストライプのためのスペースを確保 */\n\t}",
+      "ruleText": ".text-marker-stripe {\n\t\tbackground-image: repeating-linear-gradient(\n\t\t\t-45deg,\n\t\t\ttransparent 0,\n\t\t\ttransparent 2px,\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 2px,\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 4px\n\t\t);\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-position: left bottom;\n\t\tbackground-size: 100% 10px;\n\t\tpadding-bottom: 4px;\n\t}",
       "selector": ".text-marker-stripe",
       "sourceFile": "text/variants.css",
-      "relatedRules": [
-        {
-          "selector": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double",
-          "ruleText": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
-          "sourceFile": "text/variants.css"
-        }
-      ]
+      "relatedRules": []
     },
     "text-marker-double": {
       "ruleText": ".text-marker-double {\n\t\tbackground-image:\n\t\t\tlinear-gradient(\n\t\t\t\ttransparent 40%,\n\t\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 40%,\n\t\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 60%,\n\t\t\t\ttransparent 60%\n\t\t\t),\n\t\t\tlinear-gradient(\n\t\t\t\ttransparent 80%,\n\t\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 70%) 80%\n\t\t\t);\n\t\tbackground-size: 100% 100%;\n\t\tbackground-position: 0 0;\n\t\tbackground-repeat: no-repeat;\n\t}",
       "selector": ".text-marker-double",
       "sourceFile": "text/variants.css",
-      "relatedRules": [
-        {
-          "selector": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double",
-          "ruleText": ":root.dark .text-marker,\n\t:root.dark .text-marker-stripe,\n\t:root.dark .text-marker-double {\n\t\t/* ダークモードで背景が強すぎる/弱すぎる場合にミックスの割合を調整 */\n\t\t/* 例: background-image: linear-gradient(transparent 60%, color-mix(in srgb, var(--component-color, #eee), transparent 80%) 40%); */\n\t}",
-          "sourceFile": "text/variants.css"
-        }
-      ]
+      "relatedRules": []
     },
     "text-underline": {
       "ruleText": ".text-underline {\n\t\t@apply underline;\n\t\ttext-decoration-thickness: var(--text-underline-thickness);\n\t\ttext-underline-offset: var(--text-underline-offset);\n\t\ttext-decoration-color: var(--component-color, #333);\n\t}",
@@ -1810,13 +1766,7 @@
       "ruleText": ".text-highlight {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent calc(100% - var(--text-highlight-opacity, 0.15) * 100%)\n\t\t);\n\t\tpadding: var(--text-highlight-padding-y) var(--text-highlight-padding-x);\n\t\tborder-radius: 0.2em;\n\t}",
       "selector": ".text-highlight",
       "sourceFile": "text/variants.css",
-      "relatedRules": [
-        {
-          "selector": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight",
-          "ruleText": ":root.dark .text-marker-full,\n\t:root.dark .text-highlight {\n\t\t/* ダークモード用にミックスの割合を調整 */\n\t\t/* 例: background-color: color-mix(in srgb, var(--component-color, #eee), transparent 75%); */\n\t}",
-          "sourceFile": "text/variants.css"
-        }
-      ]
+      "relatedRules": []
     },
     "text-base": {
       "ruleText": ".text-base {\n\t\tfont-family: var(--text-font-family);\n\t\tfont-size: 1rem;\n\t\tletter-spacing: 0.05em;\n\t\tline-height: 1.75;\n\t\toverflow-wrap: break-word;\n\t}",
@@ -1825,36 +1775,36 @@
       "relatedRules": []
     },
     "infobox-solid": {
-      "ruleText": ".infobox-solid {\n\t\tbackground-color: var(\n\t\t\t--component-color,\n\t\t\t#e4e4e4\n\t\t); /* デフォルトはニュートラル系 */\n\t\tcolor: var(--component-text, #242424);\n\t\tborder-color: var(\n\t\t\t--component-border,\n\t\t\tvar(--component-color, #e4e4e4)\n\t\t); /* ボーダーもコンポーネントカラーに依存 */\n\t}",
+      "ruleText": ".infobox-solid {\n\t\tbackground-color: var(--component-color, #e4e4e4);\n\t\tcolor: var(--component-text, #242424);\n\t\tborder-color: var(--component-border, var(--component-color, #e4e4e4));\n\t}",
       "selector": ".infobox-solid",
       "sourceFile": "infobox/variants.css",
       "relatedRules": []
     },
     "infobox-outline": {
-      "ruleText": ".infobox-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(\n\t\t\t--component-color,\n\t\t\t#242424\n\t\t); /* テキスト色はコンポーネントカラー */\n\t\tborder-color: var(\n\t\t\t--component-border,\n\t\t\tvar(--component-color, #242424)\n\t\t); /* ボーダー色もコンポーネントカラー */\n\t}",
+      "ruleText": ".infobox-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--component-color, #242424);\n\t\tborder-color: var(--component-border, var(--component-color, #242424));\n\t}",
       "selector": ".infobox-outline",
       "sourceFile": "infobox/variants.css",
       "relatedRules": [
         {
           "selector": ".infobox-outline:hover",
-          "ruleText": ".infobox-outline:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #242424),\n\t\t\ttransparent calc(100% - var(--infobox-outline-hover-opacity, 0.1) * 100%)\n\t\t\t\t/* base.css で定義予定 or デフォルト値 */\n\t\t);\n\t}",
+          "ruleText": ".infobox-outline:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #242424),\n\t\t\ttransparent calc(100% - var(--infobox-outline-hover-opacity, 0.1) * 100%)\n\t\t);\n\t}",
           "sourceFile": "infobox/variants.css"
         },
         {
           "selector": ".dark .infobox-outline:hover",
-          "ruleText": ".dark .infobox-outline:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #fafafa),\n\t\t\ttransparent\n\t\t\t\tcalc(100% - var(--infobox-outline-hover-opacity-dark, 0.15) * 100%)\n\t\t\t\t/* ダークモード用変数 */\n\t\t);\n\t}",
+          "ruleText": ".dark .infobox-outline:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #fafafa),\n\t\t\ttransparent\n\t\t\t\tcalc(100% - var(--infobox-outline-hover-opacity-dark, 0.15) * 100%)\n\t\t);\n\t}",
           "sourceFile": "infobox/variants.css"
         }
       ]
     },
     "infobox-ghost": {
-      "ruleText": ".infobox-ghost {\n\t\tbackground-color: transparent;\n\t\tcolor: var(\n\t\t\t--component-color,\n\t\t\t#242424\n\t\t); /* テキスト色はコンポーネントカラー */\n\t\tborder-color: transparent;\n\t}",
+      "ruleText": ".infobox-ghost {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--component-color, #242424);\n\t\tborder-color: transparent;\n\t}",
       "selector": ".infobox-ghost",
       "sourceFile": "infobox/variants.css",
       "relatedRules": []
     },
     "infobox-base": {
-      "ruleText": ".infobox-base {\n\t\t@apply relative w-full rounded; /* 基本レイアウト */\n\t\tfont-family: var(--infobox-font-family);\n\t\tmargin-top: var(--infobox-margin-y);\n\t\tmargin-bottom: var(--infobox-margin-y);\n\t\tpadding: var(--infobox-padding-y) var(--infobox-padding-x);\n\t\tborder-width: var(--infobox-border-width);\n\t\tborder-style: solid; /* card に合わせて追加 */\n\t\tborder-radius: var(--infobox-border-radius);\n\t\t/* カラー関連のスタイルはバリアントとカラーセレクタで定義 */\n\t\t/* background-color, color, border-color はここでは設定しない */\n\t\ttransition: all var(--infobox-transition-duration)\n\t\t\tvar(--infobox-transition-timing-function);\n\t}",
+      "ruleText": ".infobox-base {\n\t\t@apply relative w-full rounded;\n\t\tfont-family: var(--infobox-font-family);\n\t\tmargin-top: var(--infobox-margin-y);\n\t\tmargin-bottom: var(--infobox-margin-y);\n\t\tpadding: var(--infobox-padding-y) var(--infobox-padding-x);\n\t\tborder-width: var(--infobox-border-width);\n\t\tborder-style: solid;\n\t\tborder-radius: var(--infobox-border-radius);\n\t\ttransition: all var(--infobox-transition-duration)\n\t\t\tvar(--infobox-transition-timing-function);\n\t}",
       "selector": ".infobox-base",
       "sourceFile": "infobox/base.css",
       "relatedRules": [
@@ -2150,7 +2100,7 @@
       "relatedRules": []
     },
     "heading-formal-primary": {
-      "ruleText": ".heading-formal-primary {\n\t\t@apply heading-base rounded-r;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tpadding-left: calc(var(--heading-padding-x) + var(--heading-border-width));\n\t\tborder-left: var(--heading-border-width) solid var(--component-border, #333);\n\t\t/* 背景色をカラーセレクタの色を薄めたものに変更 */\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\t/* テキスト色はそのまま component-color を使用 */\n\t}",
+      "ruleText": ".heading-formal-primary {\n\t\t@apply heading-base rounded-r;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tpadding-left: calc(var(--heading-padding-x) + var(--heading-border-width));\n\t\tborder-left: var(--heading-border-width) solid var(--component-border, #333);\n\t\t\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\t\n\t}",
       "selector": ".heading-formal-primary",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2162,7 +2112,7 @@
       "relatedRules": []
     },
     "heading-formal-full": {
-      "ruleText": ".heading-formal-full {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t\t/* ホバー/アクティブ時の色調整はカラーセレクタ側で行う */\n\t}",
+      "ruleText": ".heading-formal-full {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t\t\n\t}",
       "selector": ".heading-formal-full",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2174,7 +2124,7 @@
       "relatedRules": []
     },
     "heading-casual-badge": {
-      "ruleText": ".heading-casual-badge {\n\t\t@apply heading-base inline-block rounded-full;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\t/* 背景色をカラーセレクタの色を薄めたものに変更 */\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 2px solid var(--component-border, #aaa);\n\t}",
+      "ruleText": ".heading-casual-badge {\n\t\t@apply heading-base inline-block rounded-full;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\t\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 2px solid var(--component-border, #aaa);\n\t}",
       "selector": ".heading-casual-badge",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2186,7 +2136,7 @@
       "relatedRules": []
     },
     "heading-technical-code": {
-      "ruleText": ".heading-technical-code {\n\t\t@apply heading-base font-mono rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\t/* 背景色をカラーセレクタの色を薄めたものに変更 */\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 95%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 1px solid var(--component-border, #ccc);\n\t}",
+      "ruleText": ".heading-technical-code {\n\t\t@apply heading-base font-mono rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\t\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 95%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 1px solid var(--component-border, #ccc);\n\t}",
       "selector": ".heading-technical-code",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2221,7 +2171,7 @@
       ]
     },
     "heading-accent-gradient": {
-      "ruleText": ".heading-accent-gradient {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground: linear-gradient(\n\t\t\tto right,\n\t\t\tvar(--component-border, #f00),\n\t\t\ttransparent\n\t\t);\n\t\t/* グラデーション背景なのでテキスト色は component-text を使用 */\n\t\tcolor: var(--component-text, #fff);\n\t}",
+      "ruleText": ".heading-accent-gradient {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground: linear-gradient(\n\t\t\tto right,\n\t\t\tvar(--component-border, #f00),\n\t\t\ttransparent\n\t\t);\n\t\t\n\t\tcolor: var(--component-text, #fff);\n\t}",
       "selector": ".heading-accent-gradient",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2233,7 +2183,7 @@
       "relatedRules": []
     },
     "heading-accent-stripe": {
-      "ruleText": ".heading-accent-stripe {\n\t\t@apply heading-base relative rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tcolor: var(--component-color, #333);\n\t\tbackground-image: repeating-linear-gradient(\n\t\t\t-45deg,\n\t\t\t/* 角度 */ /* component-bg を少し暗くした色 */\n\t\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,\n\t\t\t/* 3pxまで同じ色 */ transparent 3px,\n\t\t\ttransparent 6px\n\t\t);\n\t}",
+      "ruleText": ".heading-accent-stripe {\n\t\t@apply heading-base relative rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tcolor: var(--component-color, #333);\n\t\tbackground-image: repeating-linear-gradient(\n\t\t\t-45deg,\n\t\t\t \n\t\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,\n\t\t\t transparent 3px,\n\t\t\ttransparent 6px\n\t\t);\n\t}",
       "selector": ".heading-accent-stripe",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2251,7 +2201,7 @@
       "relatedRules": [
         {
           "selector": ".heading-modern-split::after",
-          "ruleText": ".heading-modern-split::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tbottom: 0;\n\t\tleft: 0;\n\t\twidth: 100%;\n\t\theight: 3px;\n\t\t/* グラデーションはカラーセレクタ側で定義 */\n\t\tbackground-color: var(--component-border, #ccc);\n\t\t/*\n\t\tbackground: linear-gradient(\n\t\t\tto right,\n\t\t\tvar(--heading-modern-border) 0%,\n\t\t\tvar(--heading-modern-border) 50%,\n\t\t\tvar(--heading-accent-border) 50%,\n\t\t\tvar(--heading-accent-border) 100%\n\t\t);\n\t\t*/\n\t}",
+          "ruleText": ".heading-modern-split::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tbottom: 0;\n\t\tleft: 0;\n\t\twidth: 100%;\n\t\theight: 3px;\n\t\t\n\t\tbackground-color: var(--component-border, #ccc);\n\t\t\n\t}",
           "sourceFile": "heading/variants-monochrome.css"
         }
       ]
@@ -2269,7 +2219,7 @@
       "relatedRules": [
         {
           "selector": ".heading-japanesque-brush::after",
-          "ruleText": ".heading-japanesque-brush::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tbottom: 0;\n\t\tleft: 0;\n\t\twidth: 100%;\n\t\theight: 2px;\n\t\t/* グラデーションはカラーセレクタ側で定義 */\n\t\tbackground-color: var(--component-border, #aaa);\n\t\t/*\n\t\tbackground: linear-gradient(\n\t\t\tto right,\n\t\t\tvar(--heading-japanesque-border),\n\t\t\tvar(--heading-japanesque-border) 70%,\n\t\t\ttransparent\n\t\t);\n\t\t*/\n\t}",
+          "ruleText": ".heading-japanesque-brush::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tbottom: 0;\n\t\tleft: 0;\n\t\twidth: 100%;\n\t\theight: 2px;\n\t\t\n\t\tbackground-color: var(--component-border, #aaa);\n\t\t\n\t}",
           "sourceFile": "heading/variants-monochrome.css"
         }
       ]
@@ -2305,7 +2255,7 @@
       "relatedRules": []
     },
     "heading-casual-highlight": {
-      "ruleText": ".heading-casual-highlight {\n\t\t@apply heading-base inline;\n\t\tpadding: 0.2em 0;\n\t\tcolor: var(--component-color, #333);\n\t\tbackground: linear-gradient(\n\t\t\ttransparent 60%,\n\t\t\t/* 上部60%は透明 */ /* 下部40%は component-color を透過させた色 */\n\t\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 50%) 60%\n\t\t);\n\t\tbox-decoration-break: clone;\n\t\t-webkit-box-decoration-break: clone;\n\t}",
+      "ruleText": ".heading-casual-highlight {\n\t\t@apply heading-base inline;\n\t\tpadding: 0.2em 0;\n\t\tcolor: var(--component-color, #333);\n\t\tbackground: linear-gradient(\n\t\t\ttransparent 60%,\n\t\t\t \n\t\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 50%) 60%\n\t\t);\n\t\tbox-decoration-break: clone;\n\t\t-webkit-box-decoration-break: clone;\n\t}",
       "selector": ".heading-casual-highlight",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2329,18 +2279,18 @@
       "relatedRules": []
     },
     "form-input": {
-      "ruleText": ".form-input,\n\t.form-select,\n\t.form-textarea {\n\t\tfont-family: var(--form-font-family);\n\t\tcolor: var(--component-text); /* カラーセレクタから供給 */\n\t\tbackground-color: var(--component-color); /* カラーセレクタから供給 */\n\t\tborder: var(--form-border-width) solid\n\t\t\tvar(--component-border, var(--neutral)); /* カラーセレクタから供給 */\n\t\tborder-radius: var(--form-border-radius);\n\t\tpadding: var(--form-padding-y) var(--form-padding-x);\n\t\ttransition:\n\t\t\tborder-color 0.2s ease-in-out,\n\t\t\tbox-shadow 0.2s ease-in-out;\n\t\t/* 注: Tailwindのw-full, block, テキストサイズなどは直接クラスで指定可能 */\n\t}",
+      "ruleText": ".form-input,\n\t.form-select,\n\t.form-textarea {\n\t\tfont-family: var(--form-font-family);\n\t\tcolor: var(--component-text);\n\t\tbackground-color: var(--component-color);\n\t\tborder: var(--form-border-width) solid\n\t\t\tvar(--component-border, var(--neutral));\n\t\tborder-radius: var(--form-border-radius);\n\t\tpadding: var(--form-padding-y) var(--form-padding-x);\n\t\ttransition:\n\t\t\tborder-color 0.2s ease-in-out,\n\t\t\tbox-shadow 0.2s ease-in-out;\n\t}",
       "selector": ".form-input,\n\t.form-select,\n\t.form-textarea",
       "sourceFile": "form/variants.css",
       "relatedRules": [
         {
           "selector": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus",
-          "ruleText": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus {\n\t\t@apply outline-none ring-2 ring-offset-1; /* Tailwindのringを使用 */\n\t\t/* ring-color は color-* クラスや theme で設定 */\n\t\tborder-color: var(\n\t\t\t--component-hover-color,\n\t\t\tvar(--component-color)\n\t\t); /* ホバー色をボーダーに適用 */\n\t}",
+          "ruleText": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus {\n\t\t@apply outline-none ring-2 ring-offset-1;\n\n\t\tborder-color: var(--component-hover-color, var(--component-color));\n\t}",
           "sourceFile": "form/variants.css"
         },
         {
           "selector": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled",
-          "ruleText": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled {\n\t\t/* background-color: color-mix(in srgb, var(--component-color), transparent 50%); */\n\t\t/* color: color-mix(in srgb, var(--component-text), transparent 40%); */\n\t\t@apply disabled:opacity-60 disabled:cursor-not-allowed; /* Tailwindで代替 */\n\t}",
+          "ruleText": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled {\n\t\t@apply disabled:opacity-60 disabled:cursor-not-allowed;\n\t}",
           "sourceFile": "form/variants.css"
         }
       ]
@@ -2352,35 +2302,35 @@
       "relatedRules": [
         {
           "selector": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus",
-          "ruleText": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus {\n\t\t@apply outline-none ring-2 ring-offset-1; /* Tailwindのringを使用 */\n\t\t/* ring-color は color-* クラスや theme で設定 */\n\t\tborder-color: var(\n\t\t\t--component-hover-color,\n\t\t\tvar(--component-color)\n\t\t); /* ホバー色をボーダーに適用 */\n\t}",
+          "ruleText": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus {\n\t\t@apply outline-none ring-2 ring-offset-1;\n\n\t\tborder-color: var(--component-hover-color, var(--component-color));\n\t}",
           "sourceFile": "form/variants.css"
         },
         {
           "selector": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled",
-          "ruleText": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled {\n\t\t/* background-color: color-mix(in srgb, var(--component-color), transparent 50%); */\n\t\t/* color: color-mix(in srgb, var(--component-text), transparent 40%); */\n\t\t@apply disabled:opacity-60 disabled:cursor-not-allowed; /* Tailwindで代替 */\n\t}",
+          "ruleText": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled {\n\t\t@apply disabled:opacity-60 disabled:cursor-not-allowed;\n\t}",
           "sourceFile": "form/variants.css"
         }
       ]
     },
     "form-select": {
-      "ruleText": ".form-select {\n\t\t/* アイコンの色をテキスト色に追従させる (stroke='currentColor') */\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E\");\n\t\tbackground-position: right 0.75rem center; /* Tailwind pr-10 と合わせる */\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1.25em 1.25em; /* Tailwind w-5 h-5 相当 */\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t\tappearance: none;\n\t\tpadding-right: 2.5rem; /* Tailwind pr-10 */\n\t}",
+      "ruleText": ".form-select {\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E\");\n\t\tbackground-position: right 0.75rem center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1.25em 1.25em;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t\tappearance: none;\n\t\tpadding-right: 2.5rem;\n\t}",
       "selector": ".form-select",
       "sourceFile": "form/variants.css",
       "relatedRules": [
         {
           "selector": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus",
-          "ruleText": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus {\n\t\t@apply outline-none ring-2 ring-offset-1; /* Tailwindのringを使用 */\n\t\t/* ring-color は color-* クラスや theme で設定 */\n\t\tborder-color: var(\n\t\t\t--component-hover-color,\n\t\t\tvar(--component-color)\n\t\t); /* ホバー色をボーダーに適用 */\n\t}",
+          "ruleText": ".form-input:focus,\n\t.form-select:focus,\n\t.form-textarea:focus {\n\t\t@apply outline-none ring-2 ring-offset-1;\n\n\t\tborder-color: var(--component-hover-color, var(--component-color));\n\t}",
           "sourceFile": "form/variants.css"
         },
         {
           "selector": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled",
-          "ruleText": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled {\n\t\t/* background-color: color-mix(in srgb, var(--component-color), transparent 50%); */\n\t\t/* color: color-mix(in srgb, var(--component-text), transparent 40%); */\n\t\t@apply disabled:opacity-60 disabled:cursor-not-allowed; /* Tailwindで代替 */\n\t}",
+          "ruleText": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled {\n\t\t@apply disabled:opacity-60 disabled:cursor-not-allowed;\n\t}",
           "sourceFile": "form/variants.css"
         }
       ]
     },
     "form-checkbox": {
-      "ruleText": ".form-checkbox,\n\t.form-radio {\n\t\twidth: 1.25rem; /* Tailwind w-5 */\n\t\theight: 1.25rem; /* Tailwind h-5 */\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color),\n\t\t\ttransparent 70%\n\t\t);\n\t\tborder: var(--form-border-width) solid\n\t\t\tvar(--component-border, var(--neutral)); /* カラーセレクタから供給 */\n\t\tappearance: none;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t}",
+      "ruleText": ".form-checkbox,\n\t.form-radio {\n\t\twidth: 1.25rem;\n\t\theight: 1.25rem;\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color),\n\t\t\ttransparent 70%\n\t\t);\n\t\tborder: var(--form-border-width) solid\n\t\t\tvar(--component-border, var(--neutral));\n\t\tappearance: none;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t}",
       "selector": ".form-checkbox,\n\t.form-radio",
       "sourceFile": "form/variants.css",
       "relatedRules": []
@@ -2392,7 +2342,7 @@
       "relatedRules": [
         {
           "selector": ".form-radio:checked::after",
-          "ruleText": ".form-radio:checked::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tdisplay: block;\n\t\tbackground-color: white;\n\t\ttop: 50%;\n\t\tleft: 50%;\n\t\twidth: 0.5rem; /* Tailwind w-2 */\n\t\theight: 0.5rem; /* Tailwind h-2 */\n\t\tborder-radius: 50%; /* 円形 */\n\t\ttransform: translate(-50%, -50%);\n\t}",
+          "ruleText": ".form-radio:checked::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tdisplay: block;\n\t\tbackground-color: white;\n\t\ttop: 50%;\n\t\tleft: 50%;\n\t\twidth: 0.5rem;\n\t\theight: 0.5rem;\n\t\tborder-radius: 50%;\n\t\ttransform: translate(-50%, -50%);\n\t}",
           "sourceFile": "form/variants.css"
         }
       ]
@@ -2414,52 +2364,30 @@
         },
         {
           "selector": ".form-switch-input:checked + .form-switch-label",
-          "ruleText": ".form-switch-input:checked + .form-switch-label {\n\t\t/* チェック時はカラーセレクタのアクティブ色 */\n\t\tbackground-color: var(--component-active-color, var(--component-color));\n\t}",
+          "ruleText": ".form-switch-input:checked + .form-switch-label {\n\t\tbackground-color: var(--component-active-color, var(--component-color));\n\t}",
           "sourceFile": "form/variants.css"
         },
         {
           "selector": ".form-switch-input:checked + .form-switch-label::after",
-          "ruleText": ".form-switch-input:checked + .form-switch-label::after {\n\t\t/* チェック時は円の色を白固定に変更 */\n\t\tbackground-color: white;\n\t\ttransform: translateX(1.5rem); /* Tailwind translate-x-6 */\n\t}",
-          "sourceFile": "form/variants.css"
-        }
-      ]
-    },
-    "form-feedback": {
-      "ruleText": ".form-feedback {\n\t\t@apply mt-1 text-sm;\n\t\t/* デフォルトのテキスト色は親要素から継承 or theme-neutral相当 */\n\t\tcolor: var(--neutral-dark, #242424);\n\t}",
-      "selector": ".form-feedback",
-      "sourceFile": "form/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".dark .form-feedback",
-          "ruleText": ".dark .form-feedback {\n\t\tcolor: var(--neutral-light, #fafafa);\n\t}",
-          "sourceFile": "form/variants.css"
-        },
-        {
-          "selector": ".form-feedback.color-success",
-          "ruleText": ".form-feedback.color-success {\n\t\t/* --success-text 変数がなければ --success を使う */\n\t\tcolor: var(--success-text, var(--success, green));\n\t}",
-          "sourceFile": "form/variants.css"
-        },
-        {
-          "selector": ".form-feedback.color-error",
-          "ruleText": ".form-feedback.color-error {\n\t\t/* --error-text 変数がなければ --error を使う */\n\t\tcolor: var(--error-text, var(--error, red));\n\t}",
+          "ruleText": ".form-switch-input:checked + .form-switch-label::after {\n\t\tbackground-color: white;\n\t\ttransform: translateX(1.5rem);\n\t}",
           "sourceFile": "form/variants.css"
         }
       ]
     },
     "form-search": {
-      "ruleText": ".form-search {\n\t\t/* アイコンの色をテキスト色に追従させる (stroke='currentColor') */\n\t\t/* color プロパティを継承させることで currentColor が機能するようにする */\n\t\tcolor: inherit;\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'%3E%3C/path%3E%3C/svg%3E\");\n\t\tbackground-position: 0.75rem center; /* Tailwind pl-10 と合わせる */\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1rem 1rem; /* Tailwind text-base 相当 */\n\t\tpadding-left: 2.5rem; /* Tailwind pl-10 */\n\t\tborder-radius: var(--form-border-radius);\n\t}",
+      "ruleText": ".form-search {\n\t\tcolor: inherit;\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'%3E%3C/path%3E%3C/svg%3E\");\n\t\tbackground-position: 0.75rem center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1rem 1rem;\n\t\tpadding-left: 2.5rem;\n\t\tborder-radius: var(--form-border-radius);\n\t}",
       "selector": ".form-search",
       "sourceFile": "form/variants.css",
       "relatedRules": []
     },
     "card-solid": {
-      "ruleText": ".card-solid {\n\t\tbackground-color: var(--component-color, #fff); /* デフォルトは白背景 */\n\t\tcolor: var(--component-text, #333); /* デフォルトは濃いグレーテキスト */\n\t\tborder-color: var(\n\t\t\t--component-border,\n\t\t\t#e4e4e4\n\t\t); /* デフォルトは薄いグレーボーダー */\n\t}",
+      "ruleText": ".card-solid {\n\t\tbackground-color: var(--component-color, #fff); \n\t\tcolor: var(--component-text, #333); \n\t\tborder-color: var(\n\t\t\t--component-border,\n\t\t\t#e4e4e4\n\t\t); \n\t}",
       "selector": ".card-solid",
       "sourceFile": "card/variants.css",
       "relatedRules": []
     },
     "card-outline": {
-      "ruleText": ".card-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(\n\t\t\t--component-color,\n\t\t\t#333\n\t\t); /* テキスト色はコンポーネントカラーに合わせる */\n\t\tborder-color: var(\n\t\t\t--component-border,\n\t\t\t#333\n\t\t); /* ボーダー色はコンポーネントカラー */\n\t}",
+      "ruleText": ".card-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(\n\t\t\t--component-color,\n\t\t\t#333\n\t\t); \n\t\tborder-color: var(\n\t\t\t--component-border,\n\t\t\t#333\n\t\t); \n\t}",
       "selector": ".card-outline",
       "sourceFile": "card/variants.css",
       "relatedRules": [
@@ -2493,7 +2421,7 @@
       ]
     },
     "card-subtle": {
-      "ruleText": ".card-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #e4e4e4),\n\t\t\t/* デフォルトはニュートラル */ transparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder-color: transparent;\n\t}",
+      "ruleText": ".card-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #e4e4e4),\n\t\t\t transparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder-color: transparent;\n\t}",
       "selector": ".card-subtle",
       "sourceFile": "card/variants.css",
       "relatedRules": [
@@ -2515,7 +2443,7 @@
       ]
     },
     "card-bordered": {
-      "ruleText": ".card-bordered {\n\t\t/* base.css で border-width は設定済みなので、ここでは色のみ（カラーセレクタで上書きされる想定） */\n\t\tborder-color: var(--component-border, var(--card-border, #e4e4e4));\n\t}",
+      "ruleText": ".card-bordered {\n\t\t\n\t\tborder-color: var(--component-border, var(--card-border, #e4e4e4));\n\t}",
       "selector": ".card-bordered",
       "sourceFile": "card/variants.css",
       "relatedRules": []
@@ -2539,7 +2467,7 @@
       "relatedRules": [
         {
           "selector": ".card-horizontal .card-image",
-          "ruleText": ".card-horizontal .card-image {\n\t\t@apply w-full md:w-1/3 flex-shrink-0;\n\t\t/* 画像コンポーネント側で object-cover を推奨 */\n\t}",
+          "ruleText": ".card-horizontal .card-image {\n\t\t@apply w-full md:w-1/3 flex-shrink-0;\n\t\t\n\t}",
           "sourceFile": "card/variants.css"
         },
         {
@@ -2550,13 +2478,13 @@
       ]
     },
     "card-actions": {
-      "ruleText": ".card-actions {\n\t\t@apply flex justify-end mt-4 space-x-2 p-4; /* アクション領域にもパディングを追加 */\n\t}",
+      "ruleText": ".card-actions {\n\t\t@apply flex justify-end mt-4 space-x-2 p-4; \n\t}",
       "selector": ".card-actions",
       "sourceFile": "card/variants.css",
       "relatedRules": []
     },
     "card-base": {
-      "ruleText": ".card-base {\n\t\t@apply block overflow-hidden; /* レイアウトと内容のクリッピング */\n\t\tfont-family: var(--card-font-family);\n\t\tborder-width: var(--card-border-width);\n\t\tborder-style: solid;\n\t\tborder-radius: var(--card-border-radius);\n\t\t/* カラー関連のスタイルはバリアントとカラーセレクタで定義 */\n\t\t/* background-color, color, border-color はここでは設定しない */\n\t\ttransition:\n\t\t\tbox-shadow var(--transition-duration, 200ms) ease-in-out,\n\t\t\tborder-color var(--transition-duration, 200ms) ease; /* 影の変化をアニメーション */\n\t}",
+      "ruleText": ".card-base {\n\t\t@apply block overflow-hidden; \n\t\tfont-family: var(--card-font-family);\n\t\tborder-width: var(--card-border-width);\n\t\tborder-style: solid;\n\t\tborder-radius: var(--card-border-radius);\n\n\t\ttransition:\n\t\t\tbox-shadow var(--transition-duration, 200ms) ease-in-out,\n\t\t\tborder-color var(--transition-duration, 200ms) ease; \n\t}",
       "selector": ".card-base",
       "sourceFile": "card/base.css",
       "relatedRules": []
@@ -2625,13 +2553,13 @@
       ]
     },
     "btn-gradient": {
-      "ruleText": ".btn-gradient {\n\t\tposition: relative; /* 疑似要素の配置基準 */\n\t\toverflow: hidden; /* 疑似要素がはみ出さないように */\n\t\tbackground-color: var(\n\t\t\t--component-color,\n\t\t\t#333\n\t\t); /* ちらつき防止のため背景色を設定 */\n\t\tcolor: var(--component-text, #fff); /* 背景色に合わせてテキスト色を調整 */\n\t\tborder-color: transparent;\n\t\tz-index: 1; /* テキストが疑似要素より手前に来るように */\n\t}",
+      "ruleText": ".btn-gradient {\n\t\tposition: relative; \n\t\toverflow: hidden; \n\t\tbackground-color: var(\n\t\t\t--component-color,\n\t\t\t#333\n\t\t); \n\t\tcolor: var(--component-text, #fff); \n\t\tborder-color: transparent;\n\t\tz-index: 1; \n\t}",
       "selector": ".btn-gradient",
       "sourceFile": "button/variants-monochrome.css",
       "relatedRules": [
         {
           "selector": ".btn-gradient::before,\n\t.btn-gradient::after",
-          "ruleText": ".btn-gradient::before,\n\t.btn-gradient::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tright: 0;\n\t\tbottom: 0;\n\t\tbackground-image: linear-gradient(\n\t\t\t135deg,\n\t\t\tvar(--component-color, #333),\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--active-amount, 30%)\n\t\t\t)\n\t\t);\n\t\ttransition: opacity var(--btn-transition-duration, 200ms) ease-in-out;\n\t\tz-index: -1; /* テキストの後ろに配置 */\n\t}",
+          "ruleText": ".btn-gradient::before,\n\t.btn-gradient::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tright: 0;\n\t\tbottom: 0;\n\t\tbackground-image: linear-gradient(\n\t\t\t135deg,\n\t\t\tvar(--component-color, #333),\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--active-amount, 30%)\n\t\t\t)\n\t\t);\n\t\ttransition: opacity var(--btn-transition-duration, 200ms) ease-in-out;\n\t\tz-index: -1; \n\t}",
           "sourceFile": "button/variants-monochrome.css"
         },
         {
@@ -2716,13 +2644,13 @@
         },
         {
           "selector": ".btn-base:focus-visible",
-          "ruleText": ".btn-base:focus-visible {\n\t\t@apply outline-none ring-2 ring-offset-2;\n\t\t/* フォーカスリングの色はテーマ変数を使用 */\n\t\tring-color: var(--component-color, var(--primary, #1a568e));\n\t}",
+          "ruleText": ".btn-base:focus-visible {\n\t\t@apply outline-none ring-2 ring-offset-2;\n\t\t\n\t\tring-color: var(--component-color, var(--primary, #1a568e));\n\t}",
           "sourceFile": "button/base.css"
         }
       ]
     },
     "badge-solid": {
-      "ruleText": ".badge-solid {\n\t\tbackground-color: var(\n\t\t\t--component-color,\n\t\t\tvar(--neutral)\n\t\t); /* カラーセレクタから色を取得 */\n\t\tcolor: var(\n\t\t\t--component-text,\n\t\t\tvar(--neutral-dark)\n\t\t); /* カラーセレクタからテキスト色を取得 */\n\t\tborder-color: transparent; /* 通常、塗りつぶしには枠線は不要 */\n\t}",
+      "ruleText": ".badge-solid {\n\t\tbackground-color: var(\n\t\t\t--component-color,\n\t\t\tvar(--neutral)\n\t\t); \n\t\tcolor: var(\n\t\t\t--component-text,\n\t\t\tvar(--neutral-dark)\n\t\t); \n\t\tborder-color: transparent; \n\t}",
       "selector": ".badge-solid",
       "sourceFile": "badge/variants-monochrome.css",
       "relatedRules": []
@@ -2740,13 +2668,13 @@
       ]
     },
     "badge-subtle": {
-      "ruleText": ".badge-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, var(--neutral)),\n\t\t\ttransparent 90%\n\t\t); /* カラーセレクタの色を薄くして背景に */\n\t\tcolor: var(\n\t\t\t--component-color,\n\t\t\tvar(--neutral-dark)\n\t\t); /* カラーセレクタから色を取得（テキスト色として使用） */\n\t\tborder-color: transparent;\n\t}",
+      "ruleText": ".badge-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, var(--neutral)),\n\t\t\ttransparent 90%\n\t\t); \n\t\tcolor: var(\n\t\t\t--component-color,\n\t\t\tvar(--neutral-dark)\n\t\t); \n\t\tborder-color: transparent;\n\t}",
       "selector": ".badge-subtle",
       "sourceFile": "badge/variants-monochrome.css",
       "relatedRules": []
     },
     "badge-base": {
-      "ruleText": ".badge-base {\n\t\tdisplay: inline-flex;\n\t\talign-items: center;\n\t\tjustify-content: center;\n\t\tfont-family: var(--badge-font-family);\n\t\tfont-weight: var(--badge-font-weight);\n\t\tfont-size: var(--badge-font-size);\n\t\tline-height: var(--badge-line-height);\n\t\tborder-radius: var(--badge-border-radius);\n\t\tpadding: var(--badge-padding-y) var(--badge-padding-x);\n\t\tborder-width: var(--badge-border-width);\n\t\tborder-style: solid;\n\t\tborder-color: transparent; /* Default to transparent, variants will override */\n\t\ttransition-property: color, background-color, border-color;\n\t\ttransition-duration: var(--badge-transition-duration);\n\t\ttransition-timing-function: ease-in-out;\n\t\twhite-space: nowrap; /* Prevent wrapping */\n\t}",
+      "ruleText": ".badge-base {\n\t\tdisplay: inline-flex;\n\t\talign-items: center;\n\t\tjustify-content: center;\n\t\tfont-family: var(--badge-font-family);\n\t\tfont-weight: var(--badge-font-weight);\n\t\tfont-size: var(--badge-font-size);\n\t\tline-height: var(--badge-line-height);\n\t\tborder-radius: var(--badge-border-radius);\n\t\tpadding: var(--badge-padding-y) var(--badge-padding-x);\n\t\tborder-width: var(--badge-border-width);\n\t\tborder-style: solid;\n\t\tborder-color: transparent; \n\t\ttransition-property: color, background-color, border-color;\n\t\ttransition-duration: var(--badge-transition-duration);\n\t\ttransition-timing-function: ease-in-out;\n\t\twhite-space: nowrap; \n\t}",
       "selector": ".badge-base",
       "sourceFile": "badge/base.css",
       "relatedRules": []
@@ -2754,7 +2682,7 @@
   },
   "meta": {
     "totalFiles": 29,
-    "totalClasses": 109,
+    "totalClasses": 108,
     "errors": [
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
@@ -2892,7 +2820,6 @@
       "form-checkbox",
       "form-radio",
       "form-switch",
-      "form-feedback",
       "form-search"
     ],
     "card": [
@@ -3583,14 +3510,6 @@
         "className": "form-switch",
         "description": "トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。",
         "category": "form-controls",
-        "sourceFile": "form/variants.css"
-      },
-      {
-        "component": "form",
-        "variant": "feedback",
-        "className": "form-feedback",
-        "description": "フォーム入力に対するフィードバックメッセージ。バリデーション結果を表示します。",
-        "category": "form-validation",
         "sourceFile": "form/variants.css"
       },
       {

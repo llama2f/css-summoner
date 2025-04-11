@@ -3,9 +3,10 @@
 
 // --- 仕様 ---
 // - プレビュー、HTMLコード表示を行います。
-// - baseクラスの自動付与をスキップしたい場合は、render関数またはvariant関数内で
-//   `return { ...createHandlerResult(reactElement), skipDecoration: true }`
-//   のように `skipDecoration: true` を含めてください。
+// - クラス名は基本的に classMappings.js の baseClasses からベースクラスが自動的に適用されます。
+// - ベースクラスの自動付与が不要な場合は、以下のいずれかの方法を使用します：
+//   1. ハンドラー内で: `return { ...createHandlerResult(reactElement), skipDecoration: true }`
+//   2. CSSでベースクラスを定義せず、classMappings.js の baseClasses にも登録しない
 
 import React from 'react'
 import {
@@ -52,7 +53,9 @@ export function render(props) {
 	)
 
 	return createHandlerResult(reactElement)
-	// return { ...createHandlerResult(reactElement), skipDecoration: true }; // ベースクラス付与をスキップする場合
+	// 注: ベースクラス付与をスキップする方法は2つあります:
+	// 1. ハンドラー内でフラグを指定: return { ...createHandlerResult(reactElement), skipDecoration: true }
+	// 2. コンポーネントに対応するCSSでbaseクラスを定義せず、classMappings.jsのbaseClassesにも登録しない
 }
 
 // --- バリアント固有のレンダラー (オプション) ---
