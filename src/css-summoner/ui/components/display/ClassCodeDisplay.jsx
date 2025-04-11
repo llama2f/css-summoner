@@ -165,11 +165,14 @@ const ClassCodeDisplay = ({
 
 			// 現在の要素のクラス名を確認
 			const className = element.props.className || ''
-			// componentVariantが存在し、要素のクラス名にバリアントが含まれる場合
+			// クラス名を空白で分割
+			const classNames = className.split(/\s+/)
+
+			// componentVariantが存在し、要素のクラス名に完全一致するバリアントが含まれる場合
 			if (
 				componentVariant &&
 				className &&
-				className.includes(componentVariant)
+				classNames.includes(componentVariant)
 			) {
 				return className
 			}
