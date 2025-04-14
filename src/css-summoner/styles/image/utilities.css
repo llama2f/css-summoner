@@ -1,13 +1,5 @@
 @layer utilities {
-
-	/* 
-	 * @component: img
-	 * @variant: zoom-hover
-	 * @description: ホバー時に画像をズームするエフェクト。インタラクティブな要素として注目を集めます。
-	 * @category: media
-	 * @example: <figure class="img-container img-zoom-hover">
-	 *   <img src="image.jpg" alt="ホバーでズームする画像" />
-	 * </figure>
+	/* ホバー時に画像をズームするエフェクト。インタラクティブな要素として注目を集めます。
 	 */
 	.img-zoom-hover {
 		@apply overflow-hidden;
@@ -19,27 +11,13 @@
 		@apply scale-110;
 	}
 
-	/* 
-	 * @component: img
-	 * @variant: grayscale
-	 * @description: 画像をグレースケール（白黒）で表示するエフェクト。古い写真や落ち着いた印象を与えます。
-	 * @category: media
-	 * @example: <figure class="img-container img-grayscale">
-	 *   <img src="image.jpg" alt="グレースケール画像" />
-	 * </figure>
+	/* 画像をグレースケール（白黒）で表示するエフェクト。古い写真や落ち着いた印象を与えます。
 	 */
 	.img-grayscale {
 		filter: grayscale(100%);
 	}
 
-	/* 
-	 * @component: img
-	 * @variant: grayscale-hover
-	 * @description: ホバー時にグレースケールが解除されるエフェクト。色の変化で注目を集めます。
-	 * @category: media
-	 * @example: <figure class="img-container img-grayscale-hover">
-	 *   <img src="image.jpg" alt="ホバーでカラーになる画像" />
-	 * </figure>
+	/* ホバー時にグレースケールが解除されるエフェクト。色の変化で注目を集めます。
 	 */
 	.img-grayscale-hover {
 		filter: grayscale(100%);
@@ -49,53 +27,25 @@
 		filter: grayscale(0%);
 	}
 
-	/* 
-	 * @component: img
-	 * @variant: sepia
-	 * @description: 画像をセピア調で表示するエフェクト。ヴィンテージ感や温かみのある印象を与えます。
-	 * @category: media
-	 * @example: <figure class="img-container img-sepia">
-	 *   <img src="image.jpg" alt="セピア調画像" />
-	 * </figure>
+	/* 画像をセピア調で表示するエフェクト。ヴィンテージ感や温かみのある印象を与えます。
 	 */
 	.img-sepia {
 		filter: sepia(80%);
 	}
 
-	/* 
-	 * @component: img
-	 * @variant: brightness-low
-	 * @description: 画像の明度を下げて暗めに表示するエフェクト。落ち着いた印象や重厚感を与えます。
-	 * @category: media
-	 * @example: <figure class="img-container img-brightness-low">
-	 *   <img src="image.jpg" alt="暗めの画像" />
-	 * </figure>
+	/* 画像の明度を下げて暗めに表示するエフェクト。落ち着いた印象や重厚感を与えます。
 	 */
 	.img-brightness-low {
 		filter: brightness(0.8);
 	}
 
-	/* 
-	 * @component: img
-	 * @variant: brightness-high
-	 * @description: 画像の明度を上げて明るめに表示するエフェクト。鮮やかさや軽快感を強調します。
-	 * @category: media
-	 * @example: <figure class="img-container img-brightness-high">
-	 *   <img src="image.jpg" alt="明るめの画像" />
-	 * </figure>
+	/* 画像の明度を上げて明るめに表示するエフェクト。鮮やかさや軽快感を強調します。
 	 */
 	.img-brightness-high {
 		filter: brightness(1.2);
 	}
 
-	/* 
-	 * @component: img
-	 * @variant: contrast-high
-	 * @description: 画像のコントラストを上げて鮮明に表示するエフェクト。はっきりとした印象を与えます。
-	 * @category: media
-	 * @example: <figure class="img-container img-contrast-high">
-	 *   <img src="image.jpg" alt="高コントラスト画像" />
-	 * </figure>
+	/* 画像のコントラストを上げて鮮明に表示するエフェクト。はっきりとした印象を与えます。
 	 */
 	.img-contrast-high {
 		filter: contrast(1.2);

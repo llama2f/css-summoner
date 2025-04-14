@@ -5,7 +5,7 @@
 	 * @description: 画像コンテナの基本スタイル。すべての画像要素の親要素に適用します。
 	 * @category: media
 	 * @example: <figure class="img-container">
-	 *   <img src="image.jpg" alt="説明" />
+	 *   <img src="/images/sample-girl.png" alt="説明" />
 	 * </figure>
 	 */
 	.img-container {
@@ -23,7 +23,7 @@
 	 * @description: 小さい角丸を適用した画像スタイル。控えめな角丸が必要な場合に使用します。
 	 * @category: media
 	 * @example: <figure class="img-container img-rounded-sm">
-	 *   <img src="image.jpg" alt="小さい角丸画像" />
+	 *   <img src="/images/sample-girl.png"" alt="小さい角丸画像" />
 	 * </figure>
 	 */
 	.img-rounded-sm {
@@ -39,7 +39,7 @@
 	 * @description: 標準的な角丸を適用した画像スタイル。一般的に使用する角丸スタイルです。
 	 * @category: media
 	 * @example: <figure class="img-container img-rounded">
-	 *   <img src="image.jpg" alt="角丸画像" />
+	 *   <img src="/images/sample-girl.png"" alt="角丸画像" />
 	 * </figure>
 	 */
 	.img-rounded {
@@ -55,7 +55,7 @@
 	 * @description: 大きい角丸を適用した画像スタイル。より強調された角丸が必要な場合に使用します。
 	 * @category: media
 	 * @example: <figure class="img-container img-rounded-lg">
-	 *   <img src="image.jpg" alt="大きい角丸画像" />
+	 *   <img src="/images/sample-girl.png"" alt="大きい角丸画像" />
 	 * </figure>
 	 */
 	.img-rounded-lg {
@@ -88,7 +88,7 @@
 	 * @description: 小さな影を適用した画像スタイル。控えめな立体感を与えます。
 	 * @category: media
 	 * @example: <figure class="img-container img-shadow-sm">
-	 *   <img src="image.jpg" alt="小さい影付き画像" />
+	 *   <img src="/images/sample-girl.png"" alt="小さい影付き画像" />
 	 * </figure>
 	 */
 	.img-shadow-sm {
@@ -101,7 +101,7 @@
 	 * @description: 標準的な影を適用した画像スタイル。一般的に使用する影の強さです。
 	 * @category: media
 	 * @example: <figure class="img-container img-shadow">
-	 *   <img src="image.jpg" alt="影付き画像" />
+	 *   <img src="/images/sample-girl.png"" alt="影付き画像" />
 	 * </figure>
 	 */
 	.img-shadow {
@@ -114,7 +114,7 @@
 	 * @description: 大きな影を適用した画像スタイル。強い立体感を与え、目立たせます。
 	 * @category: media
 	 * @example: <figure class="img-container img-shadow-lg">
-	 *   <img src="image.jpg" alt="大きい影付き画像" />
+	 *   <img src="/images/sample-girl.png"" alt="大きい影付き画像" />
 	 * </figure>
 	 */
 	.img-shadow-lg {
@@ -127,7 +127,7 @@
 	 * @description: 標準的なボーダーを適用した画像スタイル。画像に枠線を追加します。
 	 * @category: media
 	 * @example: <figure class="img-container img-border">
-	 *   <img src="image.jpg" alt="ボーダー付き画像" />
+	 *   <img src="/images/sample-girl.png"" alt="ボーダー付き画像" />
 	 * </figure>
 	 */
 	.img-border {
@@ -140,7 +140,7 @@
 	 * @description: プライマリカラーのボーダーを適用した画像スタイル。主要なコンテンツの画像に使用します。
 	 * @category: media
 	 * @example: <figure class="img-container img-border-primary">
-	 *   <img src="image.jpg" alt="プライマリボーダー画像" />
+	 *   <img src="/images/sample-girl.png"" alt="プライマリボーダー画像" />
 	 * </figure>
 	 */
 	.img-border-primary {
@@ -153,7 +153,7 @@
 	 * @description: セカンダリカラーのボーダーを適用した画像スタイル。補助的なコンテンツの画像に使用します。
 	 * @category: media
 	 * @example: <figure class="img-container img-border-secondary">
-	 *   <img src="image.jpg" alt="セカンダリボーダー画像" />
+	 *   <img src="/images/sample-girl.png"" alt="セカンダリボーダー画像" />
 	 * </figure>
 	 */
 	.img-border-secondary {
@@ -166,7 +166,7 @@
 	 * @description: アクセントカラーのボーダーを適用した画像スタイル。注目させたいコンテンツの画像に使用します。
 	 * @category: media
 	 * @example: <figure class="img-container img-border-accent">
-	 *   <img src="image.jpg" alt="アクセントボーダー画像" />
+	 *   <img src="/images/sample-girl.png"" alt="アクセントボーダー画像" />
 	 * </figure>
 	 */
 	.img-border-accent {
@@ -179,7 +179,7 @@
 	 * @description: 二重ボーダーを適用した画像スタイル。特別感を出したい画像に使用します。
 	 * @category: media
 	 * @example: <figure class="img-container img-border-double">
-	 *   <img src="image.jpg" alt="二重ボーダー画像" />
+	 *   <img src="/images/sample-girl.png"" alt="二重ボーダー画像" />
 	 * </figure>
 	 */
 	.img-border-double {
@@ -194,7 +194,7 @@
 	 * @description: 画像の下部にキャプションを表示するスタイル。figcaption要素と組み合わせて使用します。
 	 * @category: media
 	 * @example: <figure class="img-container">
-	 *   <img src="image.jpg" alt="画像説明" />
+	 *   <img src="/images/sample-girl.png"" alt="画像説明" />
 	 *   <figcaption>画像のキャプション</figcaption>
 	 * </figure>
 	 */
@@ -209,7 +209,7 @@
 	 * @description: 画像の上にキャプションをオーバーレイ表示するスタイル。画像の視認性を維持しながら説明を追加します。
 	 * @category: media
 	 * @example: <figure class="img-container img-caption-overlay">
-	 *   <img src="image.jpg" alt="画像説明" />
+	 *   <img src="/images/sample-girl.png"" alt="画像説明" />
 	 *   <figcaption>オーバーレイキャプション</figcaption>
 	 * </figure>
 	 */
@@ -228,7 +228,7 @@
 	 * @description: ホバー時にのみキャプションを表示するスタイル。ユーザーが画像にマウスを乗せた時に追加情報を表示します。
 	 * @category: media
 	 * @example: <figure class="img-container img-caption-hover">
-	 *   <img src="image.jpg" alt="画像説明" />
+	 *   <img src="/images/sample-girl.png"" alt="画像説明" />
 	 *   <figcaption>ホバー時に表示されるキャプション</figcaption>
 	 * </figure>
 	 */
@@ -247,7 +247,7 @@
 	 * @description: 画像を親要素の幅いっぱいに表示するスタイル。レスポンシブなレイアウトに適しています。
 	 * @category: media
 	 * @example: <figure class="img-container img-w-full">
-	 *   <img src="image.jpg" alt="幅いっぱいの画像" />
+	 *   <img src="/images/sample-girl.png"" alt="幅いっぱいの画像" />
 	 * </figure>
 	 */
 	.img-w-full {
@@ -260,7 +260,7 @@
 	 * @description: 画像を親要素の幅の3/4サイズで中央揃えにするスタイル。
 	 * @category: media
 	 * @example: <figure class="img-container img-w-3/4">
-	 *   <img src="image.jpg" alt="幅3/4の画像" />
+	 *   <img src="/images/sample-girl.png"" alt="幅3/4の画像" />
 	 * </figure>
 	 */
 	.img-w-3\/4 {
@@ -273,7 +273,7 @@
 	 * @description: 画像を親要素の幅の1/2サイズで中央揃えにするスタイル。
 	 * @category: media
 	 * @example: <figure class="img-container img-w-1/2">
-	 *   <img src="image.jpg" alt="幅1/2の画像" />
+	 *   <img src="/images/sample-girl.png"" alt="幅1/2の画像" />
 	 * </figure>
 	 */
 	.img-w-1\/2 {
@@ -286,7 +286,7 @@
 	 * @description: 画像を親要素の幅の1/3サイズで中央揃えにするスタイル。
 	 * @category: media
 	 * @example: <figure class="img-container img-w-1/3">
-	 *   <img src="image.jpg" alt="幅1/3の画像" />
+	 *   <img src="/images/sample-girl.png"" alt="幅1/3の画像" />
 	 * </figure>
 	 */
 	.img-w-1\/3 {
@@ -299,7 +299,7 @@
 	 * @description: 画像を親要素の幅の1/4サイズで中央揃えにするスタイル。
 	 * @category: media
 	 * @example: <figure class="img-container img-w-1/4">
-	 *   <img src="image.jpg" alt="幅1/4の画像" />
+	 *   <img src="/images/sample-girl.png"" alt="幅1/4の画像" />
 	 * </figure>
 	 */
 	.img-w-1\/4 {
@@ -312,7 +312,7 @@
 	 * @description: 画像を正方形（1:1）のアスペクト比で表示するスタイル。プロフィール画像やグリッドレイアウトに適しています。
 	 * @category: media
 	 * @example: <figure class="img-container img-aspect-square">
-	 *   <img src="image.jpg" alt="正方形画像" />
+	 *   <img src="/images/sample-girl.png"" alt="正方形画像" />
 	 * </figure>
 	 */
 	.img-aspect-square {
@@ -328,7 +328,7 @@
 	 * @description: 画像をビデオ（16:9）のアスペクト比で表示するスタイル。横長のコンテンツやメディア表示に適しています。
 	 * @category: media
 	 * @example: <figure class="img-container img-aspect-video">
-	 *   <img src="image.jpg" alt="ビデオ比率画像" />
+	 *   <img src="/images/sample-girl.png"" alt="ビデオ比率画像" />
 	 * </figure>
 	 */
 	.img-aspect-video {
@@ -344,7 +344,7 @@
 	 * @description: 画像をポートレート（3:4）のアスペクト比で表示するスタイル。縦長のコンテンツに適しています。
 	 * @category: media
 	 * @example: <figure class="img-container img-aspect-portrait">
-	 *   <img src="image.jpg" alt="ポートレート比率画像" />
+	 *   <img src="/images/sample-girl.png"" alt="ポートレート比率画像" />
 	 * </figure>
 	 */
 	.img-aspect-portrait {
@@ -379,7 +379,7 @@
 	 * @description: 画像を左側に配置し、テキストを右側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。
 	 * @category: media
 	 * @example: <figure class="img-container img-float-left">
-	 *   <img src="image.jpg" alt="左配置画像" />
+	 *   <img src="/images/sample-girl.png"" alt="左配置画像" />
 	 * </figure>
 	 * <p>この文章は画像の右側に回り込みます...</p>
 	 */
@@ -394,7 +394,7 @@
 	 * @description: 画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。
 	 * @category: media
 	 * @example: <figure class="img-container img-float-right">
-	 *   <img src="image.jpg" alt="右配置画像" />
+	 *   <img src="/images/sample-girl.png"" alt="右配置画像" />
 	 * </figure>
 	 * <p>この文章は画像の左側に回り込みます...</p>
 	 */

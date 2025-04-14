@@ -1,9 +1,8 @@
 @layer components {
-
 	/* 
 	 * @component: heading
 	 * @variant: formal-primary
-	 * @description: 左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-formal-primary theme-primary">プライマリフォーマル見出し</h2>
 	 */
@@ -12,20 +11,19 @@
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		padding-left: calc(var(--heading-padding-x) + var(--heading-border-width));
 		border-left: var(--heading-border-width) solid var(--component-border, #333);
-		
+
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
 			transparent 90%
 		);
 		color: var(--component-color, #333);
-		
 	}
 
 	/* 
 	 * @component: heading
 	 * @variant: formal-underline
-	 * @description: 下線付きのフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 下線付きのフォーマルな見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-formal-underline theme-primary">下線付きフォーマル見出し</h2>
 	 */
@@ -39,7 +37,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: formal-full
-	 * @description: 背景色が全体に適用されたフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 背景色が全体に適用されたフォーマルな見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-formal-full theme-primary">フルバックグラウンド見出し</h2>
 	 */
@@ -48,13 +46,12 @@
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		background-color: var(--component-color, #333);
 		color: var(--component-text, #fff);
-		
 	}
 
 	/* 
 	 * @component: heading
 	 * @variant: casual-dotted
-	 * @description: ドット下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: ドット下線付きのカジュアルな見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-casual-dotted theme-secondary">ドット下線カジュアル見出し</h2>
 	 */
@@ -68,14 +65,14 @@
 	/* 
 	 * @component: heading
 	 * @variant: casual-badge
-	 * @description: バッジスタイルのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: バッジスタイルのカジュアルな見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-casual-badge theme-secondary">バッジスタイル見出し</h2>
 	 */
 	.heading-casual-badge {
 		@apply heading-base inline-block rounded-full;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
-		
+
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
@@ -88,7 +85,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: casual-wavy
-	 * @description: 波線下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 波線下線付きのカジュアルな見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-casual-wavy theme-secondary">波線下線カジュアル見出し</h2>
 	 */
@@ -104,29 +101,29 @@
 	/* 
 	 * @component: heading
 	 * @variant: technical-code
-	 * @description: コード風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: コード風の技術的な見出し（モノクロベース）。
 	 * @category: typography
-	 * @example: <h2 class="heading-base heading-technical-code theme-neutral">コード風見出し</h2>
+	 * @example: <h2 class="heading-base heading-technical-code theme-inverse">コード風見出し</h2>
 	 */
 	.heading-technical-code {
 		@apply heading-base font-mono rounded;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
-		
+
 		background-color: color-mix(
 			in srgb,
 			var(--component-color, #333),
-			transparent 95%
+			transparent 5%
 		);
-		color: var(--component-color, #333);
+		color: var(--component-bg, #fafafa);
 		border: 1px solid var(--component-border, #ccc);
 	}
 
 	/* 
 	 * @component: heading
 	 * @variant: technical-tag
-	 * @description: HTMLタグ風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: HTMLタグ風の技術的な見出し（モノクロベース）。
 	 * @category: typography
-	 * @example: <h2 class="heading-base heading-technical-tag theme-neutral">タグ風見出し</h2>
+	 * @example: <h2 class="heading-base heading-technical-tag theme-inverse">タグ風見出し</h2>
 	 */
 	.heading-technical-tag {
 		@apply heading-base;
@@ -145,9 +142,9 @@
 	/* 
 	 * @component: heading
 	 * @variant: technical-bracket
-	 * @description: 角括弧付きの技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 角括弧付きの技術的な見出し（モノクロベース）。
 	 * @category: typography
-	 * @example: <h2 class="heading-base heading-technical-bracket theme-neutral">角括弧付き見出し</h2>
+	 * @example: <h2 class="heading-base heading-technical-bracket theme-inverse">角括弧付き見出し</h2>
 	 */
 	.heading-technical-bracket {
 		@apply heading-base;
@@ -167,7 +164,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: accent-gradient
-	 * @description: グラデーション背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: グラデーション背景の強調見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-accent-gradient theme-accent">グラデーション見出し</h2>
 	 */
@@ -179,14 +176,14 @@
 			var(--component-border, #f00),
 			transparent
 		);
-		
+
 		color: var(--component-text, #fff);
 	}
 
 	/* 
 	 * @component: heading
 	 * @variant: accent-border
-	 * @description: 強調されたボーダーを持つ見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 強調されたボーダーを持つ見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-accent-border theme-accent">強調ボーダー見出し</h2>
 	 */
@@ -201,7 +198,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: accent-stripe
-	 * @description: ストライプ背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: ストライプ背景の強調見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-accent-stripe theme-accent">ストライプ背景見出し</h2>
 	 */
@@ -211,10 +208,10 @@
 		color: var(--component-color, #333);
 		background-image: repeating-linear-gradient(
 			-45deg,
-			 
-				color-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),
+
+			color-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),
 			color-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,
-			 transparent 3px,
+			transparent 3px,
 			transparent 6px
 		);
 	}
@@ -222,9 +219,9 @@
 	/* 
 	 * @component: heading
 	 * @variant: modern-minimal
-	 * @description: 余白と細い線のみで構成されたミニマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 余白と細い線のみで構成されたミニマルな見出し（モノクロベース）。
 	 * @category: typography
-	 * @example: <h2 class="heading-base heading-modern-minimal theme-neutral">ミニマルな見出し</h2>
+	 * @example: <h2 class="heading-base heading-modern-minimal theme-inverse">ミニマルな見出し</h2>
 	 */
 	.heading-modern-minimal {
 		@apply heading-base;
@@ -238,7 +235,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: modern-split
-	 * @description: 2色に分かれたモダンな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 2色に分かれたモダンな見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-modern-split theme-primary">分割デザインの見出し</h2>
 	 */
@@ -256,17 +253,16 @@
 		left: 0;
 		width: 100%;
 		height: 3px;
-		
+
 		background-color: var(--component-border, #ccc);
-		
 	}
 
 	/* 
 	 * @component: heading
 	 * @variant: modern-oversized
-	 * @description: 大きめのフォントが特徴の現代的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 大きめのフォントが特徴の現代的な見出し（モノクロベース）。
 	 * @category: typography
-	 * @example: <h2 class="heading-base heading-modern-oversized theme-neutral">オーバーサイズ見出し</h2>
+	 * @example: <h2 class="heading-base heading-modern-oversized theme-inverse">オーバーサイズ見出し</h2>
 	 */
 	.heading-modern-oversized {
 		@apply heading-base;
@@ -281,7 +277,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: japanesque-brush
-	 * @description: 筆文字風の和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 筆文字風の和風見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-japanesque-brush theme-accent2">筆文字風見出し</h2>
 	 */
@@ -300,15 +296,14 @@
 		left: 0;
 		width: 100%;
 		height: 2px;
-		
+
 		background-color: var(--component-border, #aaa);
-		
 	}
 
 	/* 
 	 * @component: heading
 	 * @variant: japanesque-vertical
-	 * @description: 縦書きレイアウトの和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 縦書きレイアウトの和風見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-japanesque-vertical theme-accent2">縦書き見出し</h2>
 	 */
@@ -329,7 +324,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: formal-boxed
-	 * @description: 四方をボーダーで囲んだビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 四方をボーダーで囲んだビジネス向け見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-formal-boxed theme-primary">囲み枠付き見出し</h2>
 	 */
@@ -343,7 +338,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: formal-double
-	 * @description: 二重下線のフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 二重下線のフォーマルな見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-formal-double theme-primary">二重下線見出し</h2>
 	 */
@@ -368,7 +363,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: casual-handwritten
-	 * @description: 手書き風フォントを使用したカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: 手書き風フォントを使用したカジュアルな見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-casual-handwritten theme-secondary">手書き風見出し</h2>
 	 */
@@ -383,7 +378,7 @@
 	/* 
 	 * @component: heading
 	 * @variant: casual-highlight
-	 * @description: マーカーでハイライトしたような見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: マーカーでハイライトしたような見出し（モノクロベース）。
 	 * @category: typography
 	 * @example: <h2 class="heading-base heading-casual-highlight theme-secondary">ハイライト見出し</h2>
 	 */
@@ -393,8 +388,8 @@
 		color: var(--component-color, #333);
 		background: linear-gradient(
 			transparent 60%,
-			 
-				color-mix(in srgb, var(--component-color, #333), transparent 50%) 60%
+
+			color-mix(in srgb, var(--component-color, #333), transparent 50%) 60%
 		);
 		box-decoration-break: clone;
 		-webkit-box-decoration-break: clone;
@@ -403,9 +398,9 @@
 	/* 
 	 * @component: heading
 	 * @variant: technical-comment
-	 * @description: コードコメント風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。
+	 * @description: コードコメント風の技術的な見出し（モノクロベース）。
 	 * @category: typography
-	 * @example: <h2 class="heading-base heading-technical-comment theme-neutral">コメント風見出し</h2>
+	 * @example: <h2 class="heading-base heading-technical-comment theme-inverse">コメント風見出し</h2>
 	 */
 	.heading-technical-comment {
 		@apply heading-base font-mono;

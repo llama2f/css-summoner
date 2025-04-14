@@ -169,14 +169,6 @@
         "label": "Border Secondary"
       },
       {
-        "value": "img-brightness-high",
-        "label": "Brightness High"
-      },
-      {
-        "value": "img-brightness-low",
-        "label": "Brightness Low"
-      },
-      {
         "value": "img-container",
         "label": "Caption"
       },
@@ -197,24 +189,12 @@
         "label": "Container"
       },
       {
-        "value": "img-contrast-high",
-        "label": "Contrast High"
-      },
-      {
         "value": "img-float-left",
         "label": "Float Left"
       },
       {
         "value": "img-float-right",
         "label": "Float Right"
-      },
-      {
-        "value": "img-grayscale",
-        "label": "Grayscale"
-      },
-      {
-        "value": "img-grayscale-hover",
-        "label": "Grayscale Hover"
       },
       {
         "value": "img-grid",
@@ -231,10 +211,6 @@
       {
         "value": "img-rounded-sm",
         "label": "Rounded Sm"
-      },
-      {
-        "value": "img-sepia",
-        "label": "Sepia"
       },
       {
         "value": "img-shadow",
@@ -267,10 +243,6 @@
       {
         "value": "img-w-full",
         "label": "W Full"
-      },
-      {
-        "value": "img-zoom-hover",
-        "label": "Zoom Hover"
       }
     ],
     "heading": [
@@ -743,178 +715,136 @@
       "description": "画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。",
       "category": "media"
     },
-    "img-zoom-hover": {
-      "component": "img",
-      "variant": "zoom-hover",
-      "description": "ホバー時に画像をズームするエフェクト。インタラクティブな要素として注目を集めます。",
-      "category": "media"
-    },
-    "img-grayscale": {
-      "component": "img",
-      "variant": "grayscale",
-      "description": "画像をグレースケール（白黒）で表示するエフェクト。古い写真や落ち着いた印象を与えます。",
-      "category": "media"
-    },
-    "img-grayscale-hover": {
-      "component": "img",
-      "variant": "grayscale-hover",
-      "description": "ホバー時にグレースケールが解除されるエフェクト。色の変化で注目を集めます。",
-      "category": "media"
-    },
-    "img-sepia": {
-      "component": "img",
-      "variant": "sepia",
-      "description": "画像をセピア調で表示するエフェクト。ヴィンテージ感や温かみのある印象を与えます。",
-      "category": "media"
-    },
-    "img-brightness-low": {
-      "component": "img",
-      "variant": "brightness-low",
-      "description": "画像の明度を下げて暗めに表示するエフェクト。落ち着いた印象や重厚感を与えます。",
-      "category": "media"
-    },
-    "img-brightness-high": {
-      "component": "img",
-      "variant": "brightness-high",
-      "description": "画像の明度を上げて明るめに表示するエフェクト。鮮やかさや軽快感を強調します。",
-      "category": "media"
-    },
-    "img-contrast-high": {
-      "component": "img",
-      "variant": "contrast-high",
-      "description": "画像のコントラストを上げて鮮明に表示するエフェクト。はっきりとした印象を与えます。",
-      "category": "media"
-    },
     "heading-formal-primary": {
       "component": "heading",
       "variant": "formal-primary",
-      "description": "左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-formal-underline": {
       "component": "heading",
       "variant": "formal-underline",
-      "description": "下線付きのフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "下線付きのフォーマルな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-formal-full": {
       "component": "heading",
       "variant": "formal-full",
-      "description": "背景色が全体に適用されたフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "背景色が全体に適用されたフォーマルな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-casual-dotted": {
       "component": "heading",
       "variant": "casual-dotted",
-      "description": "ドット下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "ドット下線付きのカジュアルな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-casual-badge": {
       "component": "heading",
       "variant": "casual-badge",
-      "description": "バッジスタイルのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "バッジスタイルのカジュアルな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-casual-wavy": {
       "component": "heading",
       "variant": "casual-wavy",
-      "description": "波線下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "波線下線付きのカジュアルな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-technical-code": {
       "component": "heading",
       "variant": "technical-code",
-      "description": "コード風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "コード風の技術的な見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-technical-tag": {
       "component": "heading",
       "variant": "technical-tag",
-      "description": "HTMLタグ風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "HTMLタグ風の技術的な見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-technical-bracket": {
       "component": "heading",
       "variant": "technical-bracket",
-      "description": "角括弧付きの技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "角括弧付きの技術的な見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-accent-gradient": {
       "component": "heading",
       "variant": "accent-gradient",
-      "description": "グラデーション背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "グラデーション背景の強調見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-accent-border": {
       "component": "heading",
       "variant": "accent-border",
-      "description": "強調されたボーダーを持つ見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "強調されたボーダーを持つ見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-accent-stripe": {
       "component": "heading",
       "variant": "accent-stripe",
-      "description": "ストライプ背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "ストライプ背景の強調見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-modern-minimal": {
       "component": "heading",
       "variant": "modern-minimal",
-      "description": "余白と細い線のみで構成されたミニマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "余白と細い線のみで構成されたミニマルな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-modern-split": {
       "component": "heading",
       "variant": "modern-split",
-      "description": "2色に分かれたモダンな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "2色に分かれたモダンな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-modern-oversized": {
       "component": "heading",
       "variant": "modern-oversized",
-      "description": "大きめのフォントが特徴の現代的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "大きめのフォントが特徴の現代的な見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-japanesque-brush": {
       "component": "heading",
       "variant": "japanesque-brush",
-      "description": "筆文字風の和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "筆文字風の和風見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-japanesque-vertical": {
       "component": "heading",
       "variant": "japanesque-vertical",
-      "description": "縦書きレイアウトの和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "縦書きレイアウトの和風見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-formal-boxed": {
       "component": "heading",
       "variant": "formal-boxed",
-      "description": "四方をボーダーで囲んだビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "四方をボーダーで囲んだビジネス向け見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-formal-double": {
       "component": "heading",
       "variant": "formal-double",
-      "description": "二重下線のフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "二重下線のフォーマルな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-casual-handwritten": {
       "component": "heading",
       "variant": "casual-handwritten",
-      "description": "手書き風フォントを使用したカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "手書き風フォントを使用したカジュアルな見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-casual-highlight": {
       "component": "heading",
       "variant": "casual-highlight",
-      "description": "マーカーでハイライトしたような見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "マーカーでハイライトしたような見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-technical-comment": {
       "component": "heading",
       "variant": "technical-comment",
-      "description": "コードコメント風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+      "description": "コードコメント風の技術的な見出し（モノクロベース）。",
       "category": "typography"
     },
     "heading-base": {
@@ -1214,22 +1144,22 @@
       {
         "variant": "container",
         "className": "img-container",
-        "example": "<figure class=\"img-container\">\n<img src=\"image.jpg\" alt=\"説明\" />\n</figure>"
+        "example": "<figure class=\"img-container\">\n<img src=\"/images/sample-girl.png\" alt=\"説明\" />\n</figure>"
       },
       {
         "variant": "rounded-sm",
         "className": "img-rounded-sm",
-        "example": "<figure class=\"img-container img-rounded-sm\">\n<img src=\"image.jpg\" alt=\"小さい角丸画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-rounded-sm\">\n<img src=\"/images/sample-girl.png\"\" alt=\"小さい角丸画像\" />\n</figure>"
       },
       {
         "variant": "rounded",
         "className": "img-rounded",
-        "example": "<figure class=\"img-container img-rounded\">\n<img src=\"image.jpg\" alt=\"角丸画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-rounded\">\n<img src=\"/images/sample-girl.png\"\" alt=\"角丸画像\" />\n</figure>"
       },
       {
         "variant": "rounded-lg",
         "className": "img-rounded-lg",
-        "example": "<figure class=\"img-container img-rounded-lg\">\n<img src=\"image.jpg\" alt=\"大きい角丸画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-rounded-lg\">\n<img src=\"/images/sample-girl.png\"\" alt=\"大きい角丸画像\" />\n</figure>"
       },
       {
         "variant": "circle",
@@ -1239,97 +1169,97 @@
       {
         "variant": "shadow-sm",
         "className": "img-shadow-sm",
-        "example": "<figure class=\"img-container img-shadow-sm\">\n<img src=\"image.jpg\" alt=\"小さい影付き画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-shadow-sm\">\n<img src=\"/images/sample-girl.png\"\" alt=\"小さい影付き画像\" />\n</figure>"
       },
       {
         "variant": "shadow",
         "className": "img-shadow",
-        "example": "<figure class=\"img-container img-shadow\">\n<img src=\"image.jpg\" alt=\"影付き画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-shadow\">\n<img src=\"/images/sample-girl.png\"\" alt=\"影付き画像\" />\n</figure>"
       },
       {
         "variant": "shadow-lg",
         "className": "img-shadow-lg",
-        "example": "<figure class=\"img-container img-shadow-lg\">\n<img src=\"image.jpg\" alt=\"大きい影付き画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-shadow-lg\">\n<img src=\"/images/sample-girl.png\"\" alt=\"大きい影付き画像\" />\n</figure>"
       },
       {
         "variant": "border",
         "className": "img-border",
-        "example": "<figure class=\"img-container img-border\">\n<img src=\"image.jpg\" alt=\"ボーダー付き画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-border\">\n<img src=\"/images/sample-girl.png\"\" alt=\"ボーダー付き画像\" />\n</figure>"
       },
       {
         "variant": "border-primary",
         "className": "img-border-primary",
-        "example": "<figure class=\"img-container img-border-primary\">\n<img src=\"image.jpg\" alt=\"プライマリボーダー画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-border-primary\">\n<img src=\"/images/sample-girl.png\"\" alt=\"プライマリボーダー画像\" />\n</figure>"
       },
       {
         "variant": "border-secondary",
         "className": "img-border-secondary",
-        "example": "<figure class=\"img-container img-border-secondary\">\n<img src=\"image.jpg\" alt=\"セカンダリボーダー画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-border-secondary\">\n<img src=\"/images/sample-girl.png\"\" alt=\"セカンダリボーダー画像\" />\n</figure>"
       },
       {
         "variant": "border-accent",
         "className": "img-border-accent",
-        "example": "<figure class=\"img-container img-border-accent\">\n<img src=\"image.jpg\" alt=\"アクセントボーダー画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-border-accent\">\n<img src=\"/images/sample-girl.png\"\" alt=\"アクセントボーダー画像\" />\n</figure>"
       },
       {
         "variant": "border-double",
         "className": "img-border-double",
-        "example": "<figure class=\"img-container img-border-double\">\n<img src=\"image.jpg\" alt=\"二重ボーダー画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-border-double\">\n<img src=\"/images/sample-girl.png\"\" alt=\"二重ボーダー画像\" />\n</figure>"
       },
       {
         "variant": "caption",
         "className": "img-container",
-        "example": "<figure class=\"img-container\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>画像のキャプション</figcaption>\n</figure>"
+        "example": "<figure class=\"img-container\">\n<img src=\"/images/sample-girl.png\"\" alt=\"画像説明\" />\n<figcaption>画像のキャプション</figcaption>\n</figure>"
       },
       {
         "variant": "caption-overlay",
         "className": "img-caption-overlay",
-        "example": "<figure class=\"img-container img-caption-overlay\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>"
+        "example": "<figure class=\"img-container img-caption-overlay\">\n<img src=\"/images/sample-girl.png\"\" alt=\"画像説明\" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>"
       },
       {
         "variant": "caption-hover",
         "className": "img-caption-hover",
-        "example": "<figure class=\"img-container img-caption-hover\">\n<img src=\"image.jpg\" alt=\"画像説明\" />\n<figcaption>ホバー時に表示されるキャプション</figcaption>\n</figure>"
+        "example": "<figure class=\"img-container img-caption-hover\">\n<img src=\"/images/sample-girl.png\"\" alt=\"画像説明\" />\n<figcaption>ホバー時に表示されるキャプション</figcaption>\n</figure>"
       },
       {
         "variant": "w-full",
         "className": "img-w-full",
-        "example": "<figure class=\"img-container img-w-full\">\n<img src=\"image.jpg\" alt=\"幅いっぱいの画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-w-full\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅いっぱいの画像\" />\n</figure>"
       },
       {
         "variant": "w-3/4",
         "className": "img-w-3",
-        "example": "<figure class=\"img-container img-w-3/4\">\n<img src=\"image.jpg\" alt=\"幅3/4の画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-w-3/4\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅3/4の画像\" />\n</figure>"
       },
       {
         "variant": "w-1/2",
         "className": "img-w-1",
-        "example": "<figure class=\"img-container img-w-1/2\">\n<img src=\"image.jpg\" alt=\"幅1/2の画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-w-1/2\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅1/2の画像\" />\n</figure>"
       },
       {
         "variant": "w-1/3",
         "className": "img-w-1",
-        "example": "<figure class=\"img-container img-w-1/3\">\n<img src=\"image.jpg\" alt=\"幅1/3の画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-w-1/3\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅1/3の画像\" />\n</figure>"
       },
       {
         "variant": "w-1/4",
         "className": "img-w-1",
-        "example": "<figure class=\"img-container img-w-1/4\">\n<img src=\"image.jpg\" alt=\"幅1/4の画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-w-1/4\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅1/4の画像\" />\n</figure>"
       },
       {
         "variant": "aspect-square",
         "className": "img-aspect-square",
-        "example": "<figure class=\"img-container img-aspect-square\">\n<img src=\"image.jpg\" alt=\"正方形画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-aspect-square\">\n<img src=\"/images/sample-girl.png\"\" alt=\"正方形画像\" />\n</figure>"
       },
       {
         "variant": "aspect-video",
         "className": "img-aspect-video",
-        "example": "<figure class=\"img-container img-aspect-video\">\n<img src=\"image.jpg\" alt=\"ビデオ比率画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-aspect-video\">\n<img src=\"/images/sample-girl.png\"\" alt=\"ビデオ比率画像\" />\n</figure>"
       },
       {
         "variant": "aspect-portrait",
         "className": "img-aspect-portrait",
-        "example": "<figure class=\"img-container img-aspect-portrait\">\n<img src=\"image.jpg\" alt=\"ポートレート比率画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-aspect-portrait\">\n<img src=\"/images/sample-girl.png\"\" alt=\"ポートレート比率画像\" />\n</figure>"
       },
       {
         "variant": "grid",
@@ -1339,47 +1269,12 @@
       {
         "variant": "float-left",
         "className": "img-float-left",
-        "example": "<figure class=\"img-container img-float-left\">\n<img src=\"image.jpg\" alt=\"左配置画像\" />\n</figure>\n<p>この文章は画像の右側に回り込みます...</p>"
+        "example": "<figure class=\"img-container img-float-left\">\n<img src=\"/images/sample-girl.png\"\" alt=\"左配置画像\" />\n</figure>\n<p>この文章は画像の右側に回り込みます...</p>"
       },
       {
         "variant": "float-right",
         "className": "img-float-right",
-        "example": "<figure class=\"img-container img-float-right\">\n<img src=\"image.jpg\" alt=\"右配置画像\" />\n</figure>\n<p>この文章は画像の左側に回り込みます...</p>"
-      },
-      {
-        "variant": "zoom-hover",
-        "className": "img-zoom-hover",
-        "example": "<figure class=\"img-container img-zoom-hover\">\n<img src=\"image.jpg\" alt=\"ホバーでズームする画像\" />\n</figure>"
-      },
-      {
-        "variant": "grayscale",
-        "className": "img-grayscale",
-        "example": "<figure class=\"img-container img-grayscale\">\n<img src=\"image.jpg\" alt=\"グレースケール画像\" />\n</figure>"
-      },
-      {
-        "variant": "grayscale-hover",
-        "className": "img-grayscale-hover",
-        "example": "<figure class=\"img-container img-grayscale-hover\">\n<img src=\"image.jpg\" alt=\"ホバーでカラーになる画像\" />\n</figure>"
-      },
-      {
-        "variant": "sepia",
-        "className": "img-sepia",
-        "example": "<figure class=\"img-container img-sepia\">\n<img src=\"image.jpg\" alt=\"セピア調画像\" />\n</figure>"
-      },
-      {
-        "variant": "brightness-low",
-        "className": "img-brightness-low",
-        "example": "<figure class=\"img-container img-brightness-low\">\n<img src=\"image.jpg\" alt=\"暗めの画像\" />\n</figure>"
-      },
-      {
-        "variant": "brightness-high",
-        "className": "img-brightness-high",
-        "example": "<figure class=\"img-container img-brightness-high\">\n<img src=\"image.jpg\" alt=\"明るめの画像\" />\n</figure>"
-      },
-      {
-        "variant": "contrast-high",
-        "className": "img-contrast-high",
-        "example": "<figure class=\"img-container img-contrast-high\">\n<img src=\"image.jpg\" alt=\"高コントラスト画像\" />\n</figure>"
+        "example": "<figure class=\"img-container img-float-right\">\n<img src=\"/images/sample-girl.png\"\" alt=\"右配置画像\" />\n</figure>\n<p>この文章は画像の左側に回り込みます...</p>"
       }
     ],
     "heading": [
@@ -1416,17 +1311,17 @@
       {
         "variant": "technical-code",
         "className": "heading-technical-code",
-        "example": "<h2 class=\"heading-base heading-technical-code theme-neutral\">コード風見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-technical-code theme-inverse\">コード風見出し</h2>"
       },
       {
         "variant": "technical-tag",
         "className": "heading-technical-tag",
-        "example": "<h2 class=\"heading-base heading-technical-tag theme-neutral\">タグ風見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-technical-tag theme-inverse\">タグ風見出し</h2>"
       },
       {
         "variant": "technical-bracket",
         "className": "heading-technical-bracket",
-        "example": "<h2 class=\"heading-base heading-technical-bracket theme-neutral\">角括弧付き見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-technical-bracket theme-inverse\">角括弧付き見出し</h2>"
       },
       {
         "variant": "accent-gradient",
@@ -1446,7 +1341,7 @@
       {
         "variant": "modern-minimal",
         "className": "heading-modern-minimal",
-        "example": "<h2 class=\"heading-base heading-modern-minimal theme-neutral\">ミニマルな見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-modern-minimal theme-inverse\">ミニマルな見出し</h2>"
       },
       {
         "variant": "modern-split",
@@ -1456,7 +1351,7 @@
       {
         "variant": "modern-oversized",
         "className": "heading-modern-oversized",
-        "example": "<h2 class=\"heading-base heading-modern-oversized theme-neutral\">オーバーサイズ見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-modern-oversized theme-inverse\">オーバーサイズ見出し</h2>"
       },
       {
         "variant": "japanesque-brush",
@@ -1491,7 +1386,7 @@
       {
         "variant": "technical-comment",
         "className": "heading-technical-comment",
-        "example": "<h2 class=\"heading-base heading-technical-comment theme-neutral\">コメント風見出し</h2>"
+        "example": "<h2 class=\"heading-base heading-technical-comment theme-inverse\">コメント風見出し</h2>"
       },
       {
         "variant": "base",
@@ -2017,67 +1912,8 @@
       "sourceFile": "image/variants.css",
       "relatedRules": []
     },
-    "img-zoom-hover": {
-      "ruleText": ".img-zoom-hover {\n\t\t@apply overflow-hidden;\n\t}",
-      "selector": ".img-zoom-hover",
-      "sourceFile": "image/utilities.css",
-      "relatedRules": [
-        {
-          "selector": ".img-zoom-hover img",
-          "ruleText": ".img-zoom-hover img {\n\t\t@apply transition-transform duration-300;\n\t}",
-          "sourceFile": "image/utilities.css"
-        },
-        {
-          "selector": ".img-zoom-hover:hover img",
-          "ruleText": ".img-zoom-hover:hover img {\n\t\t@apply scale-110;\n\t}",
-          "sourceFile": "image/utilities.css"
-        }
-      ]
-    },
-    "img-grayscale": {
-      "ruleText": ".img-grayscale {\n\t\tfilter: grayscale(100%);\n\t}",
-      "selector": ".img-grayscale",
-      "sourceFile": "image/utilities.css",
-      "relatedRules": []
-    },
-    "img-grayscale-hover": {
-      "ruleText": ".img-grayscale-hover {\n\t\tfilter: grayscale(100%);\n\t\t@apply transition-all duration-300;\n\t}",
-      "selector": ".img-grayscale-hover",
-      "sourceFile": "image/utilities.css",
-      "relatedRules": [
-        {
-          "selector": ".img-grayscale-hover:hover",
-          "ruleText": ".img-grayscale-hover:hover {\n\t\tfilter: grayscale(0%);\n\t}",
-          "sourceFile": "image/utilities.css"
-        }
-      ]
-    },
-    "img-sepia": {
-      "ruleText": ".img-sepia {\n\t\tfilter: sepia(80%);\n\t}",
-      "selector": ".img-sepia",
-      "sourceFile": "image/utilities.css",
-      "relatedRules": []
-    },
-    "img-brightness-low": {
-      "ruleText": ".img-brightness-low {\n\t\tfilter: brightness(0.8);\n\t}",
-      "selector": ".img-brightness-low",
-      "sourceFile": "image/utilities.css",
-      "relatedRules": []
-    },
-    "img-brightness-high": {
-      "ruleText": ".img-brightness-high {\n\t\tfilter: brightness(1.2);\n\t}",
-      "selector": ".img-brightness-high",
-      "sourceFile": "image/utilities.css",
-      "relatedRules": []
-    },
-    "img-contrast-high": {
-      "ruleText": ".img-contrast-high {\n\t\tfilter: contrast(1.2);\n\t}",
-      "selector": ".img-contrast-high",
-      "sourceFile": "image/utilities.css",
-      "relatedRules": []
-    },
     "heading-formal-primary": {
-      "ruleText": ".heading-formal-primary {\n\t\t@apply heading-base rounded-r;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tpadding-left: calc(var(--heading-padding-x) + var(--heading-border-width));\n\t\tborder-left: var(--heading-border-width) solid var(--component-border, #333);\n\t\t\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\t\n\t}",
+      "ruleText": ".heading-formal-primary {\n\t\t@apply heading-base rounded-r;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tpadding-left: calc(var(--heading-padding-x) + var(--heading-border-width));\n\t\tborder-left: var(--heading-border-width) solid var(--component-border, #333);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t}",
       "selector": ".heading-formal-primary",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2089,7 +1925,7 @@
       "relatedRules": []
     },
     "heading-formal-full": {
-      "ruleText": ".heading-formal-full {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t\t\n\t}",
+      "ruleText": ".heading-formal-full {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t}",
       "selector": ".heading-formal-full",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2101,7 +1937,7 @@
       "relatedRules": []
     },
     "heading-casual-badge": {
-      "ruleText": ".heading-casual-badge {\n\t\t@apply heading-base inline-block rounded-full;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\t\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 2px solid var(--component-border, #aaa);\n\t}",
+      "ruleText": ".heading-casual-badge {\n\t\t@apply heading-base inline-block rounded-full;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 2px solid var(--component-border, #aaa);\n\t}",
       "selector": ".heading-casual-badge",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2113,7 +1949,7 @@
       "relatedRules": []
     },
     "heading-technical-code": {
-      "ruleText": ".heading-technical-code {\n\t\t@apply heading-base font-mono rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\t\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 95%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 1px solid var(--component-border, #ccc);\n\t}",
+      "ruleText": ".heading-technical-code {\n\t\t@apply heading-base font-mono rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 5%\n\t\t);\n\t\tcolor: var(--component-bg, #fafafa);\n\t\tborder: 1px solid var(--component-border, #ccc);\n\t}",
       "selector": ".heading-technical-code",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2148,7 +1984,7 @@
       ]
     },
     "heading-accent-gradient": {
-      "ruleText": ".heading-accent-gradient {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground: linear-gradient(\n\t\t\tto right,\n\t\t\tvar(--component-border, #f00),\n\t\t\ttransparent\n\t\t);\n\t\t\n\t\tcolor: var(--component-text, #fff);\n\t}",
+      "ruleText": ".heading-accent-gradient {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground: linear-gradient(\n\t\t\tto right,\n\t\t\tvar(--component-border, #f00),\n\t\t\ttransparent\n\t\t);\n\n\t\tcolor: var(--component-text, #fff);\n\t}",
       "selector": ".heading-accent-gradient",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2160,7 +1996,7 @@
       "relatedRules": []
     },
     "heading-accent-stripe": {
-      "ruleText": ".heading-accent-stripe {\n\t\t@apply heading-base relative rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tcolor: var(--component-color, #333);\n\t\tbackground-image: repeating-linear-gradient(\n\t\t\t-45deg,\n\t\t\t \n\t\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,\n\t\t\t transparent 3px,\n\t\t\ttransparent 6px\n\t\t);\n\t}",
+      "ruleText": ".heading-accent-stripe {\n\t\t@apply heading-base relative rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tcolor: var(--component-color, #333);\n\t\tbackground-image: repeating-linear-gradient(\n\t\t\t-45deg,\n\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,\n\t\t\ttransparent 3px,\n\t\t\ttransparent 6px\n\t\t);\n\t}",
       "selector": ".heading-accent-stripe",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2178,7 +2014,7 @@
       "relatedRules": [
         {
           "selector": ".heading-modern-split::after",
-          "ruleText": ".heading-modern-split::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tbottom: 0;\n\t\tleft: 0;\n\t\twidth: 100%;\n\t\theight: 3px;\n\t\t\n\t\tbackground-color: var(--component-border, #ccc);\n\t\t\n\t}",
+          "ruleText": ".heading-modern-split::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tbottom: 0;\n\t\tleft: 0;\n\t\twidth: 100%;\n\t\theight: 3px;\n\n\t\tbackground-color: var(--component-border, #ccc);\n\t}",
           "sourceFile": "heading/variants-monochrome.css"
         }
       ]
@@ -2196,7 +2032,7 @@
       "relatedRules": [
         {
           "selector": ".heading-japanesque-brush::after",
-          "ruleText": ".heading-japanesque-brush::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tbottom: 0;\n\t\tleft: 0;\n\t\twidth: 100%;\n\t\theight: 2px;\n\t\t\n\t\tbackground-color: var(--component-border, #aaa);\n\t\t\n\t}",
+          "ruleText": ".heading-japanesque-brush::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tbottom: 0;\n\t\tleft: 0;\n\t\twidth: 100%;\n\t\theight: 2px;\n\n\t\tbackground-color: var(--component-border, #aaa);\n\t}",
           "sourceFile": "heading/variants-monochrome.css"
         }
       ]
@@ -2232,7 +2068,7 @@
       "relatedRules": []
     },
     "heading-casual-highlight": {
-      "ruleText": ".heading-casual-highlight {\n\t\t@apply heading-base inline;\n\t\tpadding: 0.2em 0;\n\t\tcolor: var(--component-color, #333);\n\t\tbackground: linear-gradient(\n\t\t\ttransparent 60%,\n\t\t\t \n\t\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 50%) 60%\n\t\t);\n\t\tbox-decoration-break: clone;\n\t\t-webkit-box-decoration-break: clone;\n\t}",
+      "ruleText": ".heading-casual-highlight {\n\t\t@apply heading-base inline;\n\t\tpadding: 0.2em 0;\n\t\tcolor: var(--component-color, #333);\n\t\tbackground: linear-gradient(\n\t\t\ttransparent 60%,\n\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 50%) 60%\n\t\t);\n\t\tbox-decoration-break: clone;\n\t\t-webkit-box-decoration-break: clone;\n\t}",
       "selector": ".heading-casual-highlight",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -2667,12 +2503,11 @@
   },
   "meta": {
     "totalFiles": 29,
-    "totalClasses": 107,
+    "totalClasses": 100,
     "errors": [
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: infobox",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: img",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: img",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: heading",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: form",
@@ -2764,14 +2599,7 @@
       "img-aspect-portrait",
       "img-grid",
       "img-float-left",
-      "img-float-right",
-      "img-zoom-hover",
-      "img-grayscale",
-      "img-grayscale-hover",
-      "img-sepia",
-      "img-brightness-low",
-      "img-brightness-high",
-      "img-contrast-high"
+      "img-float-right"
     ],
     "heading": [
       "heading-formal-primary",
@@ -3203,62 +3031,6 @@
         "description": "画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。",
         "category": "media",
         "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "zoom-hover",
-        "className": "img-zoom-hover",
-        "description": "ホバー時に画像をズームするエフェクト。インタラクティブな要素として注目を集めます。",
-        "category": "media",
-        "sourceFile": "image/utilities.css"
-      },
-      {
-        "component": "img",
-        "variant": "grayscale",
-        "className": "img-grayscale",
-        "description": "画像をグレースケール（白黒）で表示するエフェクト。古い写真や落ち着いた印象を与えます。",
-        "category": "media",
-        "sourceFile": "image/utilities.css"
-      },
-      {
-        "component": "img",
-        "variant": "grayscale-hover",
-        "className": "img-grayscale-hover",
-        "description": "ホバー時にグレースケールが解除されるエフェクト。色の変化で注目を集めます。",
-        "category": "media",
-        "sourceFile": "image/utilities.css"
-      },
-      {
-        "component": "img",
-        "variant": "sepia",
-        "className": "img-sepia",
-        "description": "画像をセピア調で表示するエフェクト。ヴィンテージ感や温かみのある印象を与えます。",
-        "category": "media",
-        "sourceFile": "image/utilities.css"
-      },
-      {
-        "component": "img",
-        "variant": "brightness-low",
-        "className": "img-brightness-low",
-        "description": "画像の明度を下げて暗めに表示するエフェクト。落ち着いた印象や重厚感を与えます。",
-        "category": "media",
-        "sourceFile": "image/utilities.css"
-      },
-      {
-        "component": "img",
-        "variant": "brightness-high",
-        "className": "img-brightness-high",
-        "description": "画像の明度を上げて明るめに表示するエフェクト。鮮やかさや軽快感を強調します。",
-        "category": "media",
-        "sourceFile": "image/utilities.css"
-      },
-      {
-        "component": "img",
-        "variant": "contrast-high",
-        "className": "img-contrast-high",
-        "description": "画像のコントラストを上げて鮮明に表示するエフェクト。はっきりとした印象を与えます。",
-        "category": "media",
-        "sourceFile": "image/utilities.css"
       }
     ],
     "heading": [
@@ -3266,7 +3038,7 @@
         "component": "heading",
         "variant": "formal-primary",
         "className": "heading-formal-primary",
-        "description": "左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "左側に太いボーダーを持つビジネス向け見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3274,7 +3046,7 @@
         "component": "heading",
         "variant": "formal-underline",
         "className": "heading-formal-underline",
-        "description": "下線付きのフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "下線付きのフォーマルな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3282,7 +3054,7 @@
         "component": "heading",
         "variant": "formal-full",
         "className": "heading-formal-full",
-        "description": "背景色が全体に適用されたフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "背景色が全体に適用されたフォーマルな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3290,7 +3062,7 @@
         "component": "heading",
         "variant": "casual-dotted",
         "className": "heading-casual-dotted",
-        "description": "ドット下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "ドット下線付きのカジュアルな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3298,7 +3070,7 @@
         "component": "heading",
         "variant": "casual-badge",
         "className": "heading-casual-badge",
-        "description": "バッジスタイルのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "バッジスタイルのカジュアルな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3306,7 +3078,7 @@
         "component": "heading",
         "variant": "casual-wavy",
         "className": "heading-casual-wavy",
-        "description": "波線下線付きのカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "波線下線付きのカジュアルな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3314,7 +3086,7 @@
         "component": "heading",
         "variant": "technical-code",
         "className": "heading-technical-code",
-        "description": "コード風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "コード風の技術的な見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3322,7 +3094,7 @@
         "component": "heading",
         "variant": "technical-tag",
         "className": "heading-technical-tag",
-        "description": "HTMLタグ風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "HTMLタグ風の技術的な見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3330,7 +3102,7 @@
         "component": "heading",
         "variant": "technical-bracket",
         "className": "heading-technical-bracket",
-        "description": "角括弧付きの技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "角括弧付きの技術的な見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3338,7 +3110,7 @@
         "component": "heading",
         "variant": "accent-gradient",
         "className": "heading-accent-gradient",
-        "description": "グラデーション背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "グラデーション背景の強調見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3346,7 +3118,7 @@
         "component": "heading",
         "variant": "accent-border",
         "className": "heading-accent-border",
-        "description": "強調されたボーダーを持つ見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "強調されたボーダーを持つ見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3354,7 +3126,7 @@
         "component": "heading",
         "variant": "accent-stripe",
         "className": "heading-accent-stripe",
-        "description": "ストライプ背景の強調見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "ストライプ背景の強調見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3362,7 +3134,7 @@
         "component": "heading",
         "variant": "modern-minimal",
         "className": "heading-modern-minimal",
-        "description": "余白と細い線のみで構成されたミニマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "余白と細い線のみで構成されたミニマルな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3370,7 +3142,7 @@
         "component": "heading",
         "variant": "modern-split",
         "className": "heading-modern-split",
-        "description": "2色に分かれたモダンな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "2色に分かれたモダンな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3378,7 +3150,7 @@
         "component": "heading",
         "variant": "modern-oversized",
         "className": "heading-modern-oversized",
-        "description": "大きめのフォントが特徴の現代的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "大きめのフォントが特徴の現代的な見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3386,7 +3158,7 @@
         "component": "heading",
         "variant": "japanesque-brush",
         "className": "heading-japanesque-brush",
-        "description": "筆文字風の和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "筆文字風の和風見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3394,7 +3166,7 @@
         "component": "heading",
         "variant": "japanesque-vertical",
         "className": "heading-japanesque-vertical",
-        "description": "縦書きレイアウトの和風見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "縦書きレイアウトの和風見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3402,7 +3174,7 @@
         "component": "heading",
         "variant": "formal-boxed",
         "className": "heading-formal-boxed",
-        "description": "四方をボーダーで囲んだビジネス向け見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "四方をボーダーで囲んだビジネス向け見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3410,7 +3182,7 @@
         "component": "heading",
         "variant": "formal-double",
         "className": "heading-formal-double",
-        "description": "二重下線のフォーマルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "二重下線のフォーマルな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3418,7 +3190,7 @@
         "component": "heading",
         "variant": "casual-handwritten",
         "className": "heading-casual-handwritten",
-        "description": "手書き風フォントを使用したカジュアルな見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "手書き風フォントを使用したカジュアルな見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3426,7 +3198,7 @@
         "component": "heading",
         "variant": "casual-highlight",
         "className": "heading-casual-highlight",
-        "description": "マーカーでハイライトしたような見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "マーカーでハイライトしたような見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
@@ -3434,7 +3206,7 @@
         "component": "heading",
         "variant": "technical-comment",
         "className": "heading-technical-comment",
-        "description": "コードコメント風の技術的な見出し（モノクロベース）。カラーセレクタと組み合わせて使用します。",
+        "description": "コードコメント風の技術的な見出し（モノクロベース）。",
         "category": "typography",
         "sourceFile": "heading/variants-monochrome.css"
       },
