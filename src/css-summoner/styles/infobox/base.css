@@ -35,7 +35,7 @@
 	 * @component: infobox
 	 * @variant: base
 	 * @description: すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。
-	 * @category: notification
+	 * @category: container
 	 * @example: <div class="infobox-base infobox-solid color-info">...</div>
 	 */
 	.infobox-base {

@@ -1,32 +1,21 @@
 @layer components {
-
 	/*
    * @component: tooltip
    * @variant: solid
    * @description: 塗りつぶしスタイルのツールチップ。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="tooltip-base tooltip-solid theme-neutral" data-tooltip="これは塗りつぶしツールチップです">ホバーしてください</span>
+   * @example: <span class="tooltip-base tooltip-sm tooltip-solid theme-neutral" data-tooltip="これは塗りつぶしツールチップです">ホバーしてください</span>
    */
 	.tooltip-solid {
 		&::after {
-			background-color: var(
-				--component-color,
-				var(--neutral-dark)
-			); 
-			color: var(
-				--component-text,
-				var(--neutral-light)
-			); 
-			border-color: var(
-				--component-border,
-				transparent
-			); 
+			background-color: var(--component-color, var(--neutral-dark));
+			color: var(--component-text, var(--neutral-light));
+			border-color: var(--component-border, transparent);
 		}
 
 		&::before {
 			border-top-color: var(--component-color, var(--neutral-dark));
 		}
-		
 	}
 
 	/*
@@ -34,19 +23,16 @@
    * @variant: outline
    * @description: 枠線スタイルのツールチップ。カラーセレクタと組み合わせて使用します。
    * @category: display
-   * @example: <span class="tooltip-base tooltip-outline theme-neutral" data-tooltip="これはアウトラインツールチップです">ホバーしてください</span>
+   * @example: <span class="tooltip-base tooltip-sm tooltip-outline theme-neutral" data-tooltip="これはアウトラインツールチップです">ホバーしてください</span>
    */
 	.tooltip-outline {
 		&::after {
 			background-color: transparent;
-			color: var(
-				--component-color,
-				var(--neutral-dark)
-			); 
+			color: var(--component-color, var(--neutral-dark));
 			border-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
-			); 
+			);
 		}
 
 		&::before {
@@ -55,27 +41,27 @@
 				var(--component-color, var(--neutral-dark))
 			);
 		}
-		
+
 		&.tooltip-bottom::before {
 			border-bottom-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
 			);
-			border-top-color: transparent; 
+			border-top-color: transparent;
 		}
 		&.tooltip-left::before {
 			border-left-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
 			);
-			border-top-color: transparent; 
+			border-top-color: transparent;
 		}
 		&.tooltip-right::before {
 			border-right-color: var(
 				--component-border,
 				var(--component-color, var(--neutral-dark))
 			);
-			border-top-color: transparent; 
+			border-top-color: transparent;
 		}
 	}
 
@@ -84,7 +70,7 @@
 	  * @variant: subtle
 	  * @description: 控えめなスタイルのツールチップ。薄い背景色が適用されます。カラーセレクタと組み合わせて使用します。
 	  * @category: display
-	  * @example: <span class="tooltip-base tooltip-subtle theme-primary" data-tooltip="サブトルツールチップ">ホバーしてください</span>
+	  * @example: <span class="tooltip-base tooltip-sm tooltip-subtle theme-primary" data-tooltip="サブトルツールチップ">ホバーしてください</span>
 	  */
 	.tooltip-subtle {
 		&::after {
@@ -92,11 +78,8 @@
 				in srgb,
 				var(--component-color, var(--neutral)) 10%,
 				transparent
-			); 
-			color: var(
-				--component-color,
-				var(--neutral-dark)
-			); 
+			);
+			color: var(--component-color, var(--neutral-dark));
 			border-color: transparent;
 		}
 
@@ -107,7 +90,6 @@
 				transparent
 			);
 		}
-		
 	}
 
 	/*
@@ -115,22 +97,17 @@
 	  * @variant: ghost
 	  * @description: ゴーストスタイルのツールチップ。背景がなく、ホバー時にテキスト色のみ変化します（ホバー効果は utilities.css で定義推奨）。カラーセレクタと組み合わせて使用します。
 	  * @category: display
-	  * @example: <span class="tooltip-base tooltip-ghost theme-primary" data-tooltip="ゴーストツールチップ">ホバーしてください</span>
+	  * @example: <span class="tooltip-base tooltip-sm tooltip-ghost theme-primary" data-tooltip="ゴーストツールチップ">ホバーしてください</span>
 	  */
 	.tooltip-ghost {
 		&::after {
 			background-color: transparent;
-			color: var(
-				--component-color,
-				var(--neutral-dark)
-			); 
+			color: var(--component-color, var(--neutral-dark));
 			border-color: transparent;
-			
 		}
 
 		&::before {
-			border-top-color: transparent; 
+			border-top-color: transparent;
 		}
-
 	}
 }

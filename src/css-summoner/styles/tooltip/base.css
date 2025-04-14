@@ -1,15 +1,9 @@
-
-@layer base {
-	:root
-}
-
 @layer base {
 	:root {
-		
 		--tooltip-font-family: var(--font, sans-serif);
 
-		--tooltip-padding-x: 0.5rem; 
-		--tooltip-padding-y: 0.5rem; 
+		--tooltip-padding-x: 0.5rem;
+		--tooltip-padding-y: 0.5rem;
 		--tooltip-max-width: 20rem;
 		--tooltip-min-width: 6rem;
 		--tooltip-z-index: 50;
@@ -17,7 +11,7 @@
 		--tooltip-distance: 0.5rem;
 
 		--tooltip-border-width: 1px;
-		--tooltip-border-radius: 0.375rem; 
+		--tooltip-border-radius: 0.375rem;
 
 		--tooltip-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 		--tooltip-shadow:
@@ -66,10 +60,10 @@
 
 		&::after {
 			position: absolute;
-			visibility: hidden; 
+			visibility: hidden;
 			opacity: 0;
 			white-space: normal;
-			overflow-wrap: break-word; 
+			overflow-wrap: break-word;
 			text-align: center;
 			content: attr(data-tooltip);
 			z-index: var(--tooltip-z-index);
@@ -77,8 +71,8 @@
 			min-width: var(--tooltip-min-width);
 			padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
 			font-family: var(--tooltip-font-family);
-			font-size: 0.875rem; 
-			font-weight: 400; 
+			font-size: 0.875rem;
+			font-weight: 400;
 			line-height: 1.25;
 			border-radius: var(--tooltip-border-radius);
 			border-width: var(--tooltip-border-width);
@@ -91,7 +85,7 @@
 
 		&::before {
 			position: absolute;
-			visibility: hidden; 
+			visibility: hidden;
 			opacity: 0;
 			content: '';
 			z-index: var(--tooltip-z-index);
@@ -114,7 +108,6 @@
 	}
 
 	.tooltip-base {
-		
 		&::after {
 			bottom: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));
 			left: 50%;
@@ -126,7 +119,6 @@
 			left: 50%;
 			transform: translateX(-50%);
 			border-bottom-width: 0;
-			 
 		}
 	}
 }

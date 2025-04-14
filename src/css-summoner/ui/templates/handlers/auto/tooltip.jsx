@@ -28,7 +28,7 @@ export function render(props) {
 	const {
 		classString = '',
 		selectedModifiers = [],
-		baseClass = 'tooltip-base',
+		baseClass = '',
 		...rest
 	} = props
 
@@ -57,10 +57,7 @@ export function render(props) {
 	if (isRight) containerClass = 'tooltip-container-right'
 
 	// 常時表示用のクラス結合
-	const alwaysClassString = combineClasses({
-		baseClass,
-		additional: `${classString} tooltip-always`,
-	})
+	const alwaysClassString = `${classString} tooltip-always`
 
 	// SpecialContainerを使ってデコレーション回避
 	const reactElement = (

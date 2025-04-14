@@ -6,6 +6,11 @@
       "category": "container"
     },
     {
+      "value": "infobox",
+      "label": "Infobox",
+      "category": "container"
+    },
+    {
       "value": "badge",
       "label": "Badge",
       "category": "display"
@@ -29,11 +34,6 @@
       "value": "img",
       "label": "Img",
       "category": "media"
-    },
-    {
-      "value": "infobox",
-      "label": "Infobox",
-      "category": "notification"
     },
     {
       "value": "heading",
@@ -464,25 +464,25 @@
       "component": "infobox",
       "variant": "solid",
       "description": "背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。",
-      "category": "notification"
+      "category": "container"
     },
     "infobox-outline": {
       "component": "infobox",
       "variant": "outline",
       "description": "背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。",
-      "category": "notification"
+      "category": "container"
     },
     "infobox-ghost": {
       "component": "infobox",
       "variant": "ghost",
       "description": "背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。",
-      "category": "notification"
+      "category": "container"
     },
     "infobox-base": {
       "component": "infobox",
       "variant": "base",
       "description": "すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。",
-      "category": "notification"
+      "category": "container"
     },
     "img-border": {
       "component": "img",
@@ -838,22 +838,22 @@
       {
         "variant": "solid",
         "className": "tooltip-solid",
-        "example": "<span class=\"tooltip-base tooltip-solid theme-neutral\" data-tooltip=\"これは塗りつぶしツールチップです\">ホバーしてください</span>"
+        "example": "<span class=\"tooltip-base tooltip-sm tooltip-solid theme-neutral\" data-tooltip=\"これは塗りつぶしツールチップです\">ホバーしてください</span>"
       },
       {
         "variant": "outline",
         "className": "tooltip-outline",
-        "example": "<span class=\"tooltip-base tooltip-outline theme-neutral\" data-tooltip=\"これはアウトラインツールチップです\">ホバーしてください</span>"
+        "example": "<span class=\"tooltip-base tooltip-sm tooltip-outline theme-neutral\" data-tooltip=\"これはアウトラインツールチップです\">ホバーしてください</span>"
       },
       {
         "variant": "subtle",
         "className": "tooltip-subtle",
-        "example": "<span class=\"tooltip-base tooltip-subtle theme-primary\" data-tooltip=\"サブトルツールチップ\">ホバーしてください</span>"
+        "example": "<span class=\"tooltip-base tooltip-sm tooltip-subtle theme-primary\" data-tooltip=\"サブトルツールチップ\">ホバーしてください</span>"
       },
       {
         "variant": "ghost",
         "className": "tooltip-ghost",
-        "example": "<span class=\"tooltip-base tooltip-ghost theme-primary\" data-tooltip=\"ゴーストツールチップ\">ホバーしてください</span>"
+        "example": "<span class=\"tooltip-base tooltip-sm tooltip-ghost theme-primary\" data-tooltip=\"ゴーストツールチップ\">ホバーしてください</span>"
       },
       {
         "variant": "base",
@@ -1245,31 +1245,31 @@
   },
   "classRuleDetails": {
     "tooltip-solid": {
-      "ruleText": ".tooltip-solid {\n\t\t&::after {\n\t\t\tbackground-color: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); \n\t\t\tcolor: var(\n\t\t\t\t--component-text,\n\t\t\t\tvar(--neutral-light)\n\t\t\t); \n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\ttransparent\n\t\t\t); \n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: var(--component-color, var(--neutral-dark));\n\t\t}\n\t\t\n\t}",
+      "ruleText": ".tooltip-solid {\n\t\t&::after {\n\t\t\tbackground-color: var(--component-color, var(--neutral-dark));\n\t\t\tcolor: var(--component-text, var(--neutral-light));\n\t\t\tborder-color: var(--component-border, transparent);\n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: var(--component-color, var(--neutral-dark));\n\t\t}\n\t}",
       "selector": ".tooltip-solid",
       "sourceFile": "tooltip/variants.css",
       "relatedRules": []
     },
     "tooltip-outline": {
-      "ruleText": ".tooltip-outline {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); \n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t); \n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t}\n\t\t\n\t\t&.tooltip-bottom::before {\n\t\t\tborder-bottom-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; \n\t\t}\n\t\t&.tooltip-left::before {\n\t\t\tborder-left-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; \n\t\t}\n\t\t&.tooltip-right::before {\n\t\t\tborder-right-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent; \n\t\t}\n\t}",
+      "ruleText": ".tooltip-outline {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(--component-color, var(--neutral-dark));\n\t\t\tborder-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t}\n\n\t\t&.tooltip-bottom::before {\n\t\t\tborder-bottom-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent;\n\t\t}\n\t\t&.tooltip-left::before {\n\t\t\tborder-left-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent;\n\t\t}\n\t\t&.tooltip-right::before {\n\t\t\tborder-right-color: var(\n\t\t\t\t--component-border,\n\t\t\t\tvar(--component-color, var(--neutral-dark))\n\t\t\t);\n\t\t\tborder-top-color: transparent;\n\t\t}\n\t}",
       "selector": ".tooltip-outline",
       "sourceFile": "tooltip/variants.css",
       "relatedRules": []
     },
     "tooltip-subtle": {
-      "ruleText": ".tooltip-subtle {\n\t\t&::after {\n\t\t\tbackground-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 10%,\n\t\t\t\ttransparent\n\t\t\t); \n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); \n\t\t\tborder-color: transparent;\n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 90%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t}\n\t\t\n\t}",
+      "ruleText": ".tooltip-subtle {\n\t\t&::after {\n\t\t\tbackground-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 10%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t\tcolor: var(--component-color, var(--neutral-dark));\n\t\t\tborder-color: transparent;\n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: color-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, var(--neutral)) 90%,\n\t\t\t\ttransparent\n\t\t\t);\n\t\t}\n\t}",
       "selector": ".tooltip-subtle",
       "sourceFile": "tooltip/variants.css",
       "relatedRules": []
     },
     "tooltip-ghost": {
-      "ruleText": ".tooltip-ghost {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(\n\t\t\t\t--component-color,\n\t\t\t\tvar(--neutral-dark)\n\t\t\t); \n\t\t\tborder-color: transparent;\n\t\t\t\n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: transparent; \n\t\t}\n\n\t}",
+      "ruleText": ".tooltip-ghost {\n\t\t&::after {\n\t\t\tbackground-color: transparent;\n\t\t\tcolor: var(--component-color, var(--neutral-dark));\n\t\t\tborder-color: transparent;\n\t\t}\n\n\t\t&::before {\n\t\t\tborder-top-color: transparent;\n\t\t}\n\t}",
       "selector": ".tooltip-ghost",
       "sourceFile": "tooltip/variants.css",
       "relatedRules": []
     },
     "tooltip-base": {
-      "ruleText": ".tooltip-base {\n\t\t@apply relative inline-flex cursor-pointer;\n\n\t\t&::after {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; \n\t\t\topacity: 0;\n\t\t\twhite-space: normal;\n\t\t\toverflow-wrap: break-word; \n\t\t\ttext-align: center;\n\t\t\tcontent: attr(data-tooltip);\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\tmax-width: var(--tooltip-max-width);\n\t\t\tmin-width: var(--tooltip-min-width);\n\t\t\tpadding: var(--tooltip-padding-y) var(--tooltip-padding-x);\n\t\t\tfont-family: var(--tooltip-font-family);\n\t\t\tfont-size: 0.875rem; \n\t\t\tfont-weight: 400; \n\t\t\tline-height: 1.25;\n\t\t\tborder-radius: var(--tooltip-border-radius);\n\t\t\tborder-width: var(--tooltip-border-width);\n\t\t\tborder-style: solid;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t&::before {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden; \n\t\t\topacity: 0;\n\t\t\tcontent: '';\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\twidth: 0;\n\t\t\theight: 0;\n\t\t\tborder: var(--tooltip-arrow-size) solid transparent;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t&:hover::after,\n\t\t&:hover::before,\n\t\t&:focus::after,\n\t\t&:focus::before {\n\t\t\tvisibility: visible;\n\t\t\topacity: 1;\n\t\t}\n\t}",
+      "ruleText": ".tooltip-base {\n\t\t@apply relative inline-flex cursor-pointer;\n\n\t\t&::after {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden;\n\t\t\topacity: 0;\n\t\t\twhite-space: normal;\n\t\t\toverflow-wrap: break-word;\n\t\t\ttext-align: center;\n\t\t\tcontent: attr(data-tooltip);\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\tmax-width: var(--tooltip-max-width);\n\t\t\tmin-width: var(--tooltip-min-width);\n\t\t\tpadding: var(--tooltip-padding-y) var(--tooltip-padding-x);\n\t\t\tfont-family: var(--tooltip-font-family);\n\t\t\tfont-size: 0.875rem;\n\t\t\tfont-weight: 400;\n\t\t\tline-height: 1.25;\n\t\t\tborder-radius: var(--tooltip-border-radius);\n\t\t\tborder-width: var(--tooltip-border-width);\n\t\t\tborder-style: solid;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t&::before {\n\t\t\tposition: absolute;\n\t\t\tvisibility: hidden;\n\t\t\topacity: 0;\n\t\t\tcontent: '';\n\t\t\tz-index: var(--tooltip-z-index);\n\t\t\twidth: 0;\n\t\t\theight: 0;\n\t\t\tborder: var(--tooltip-arrow-size) solid transparent;\n\t\t\ttransition-property: opacity, visibility;\n\t\t\ttransition-duration: var(--tooltip-transition-duration);\n\t\t\ttransition-timing-function: var(--tooltip-transition-timing);\n\t\t\tpointer-events: none;\n\t\t}\n\n\t\t&:hover::after,\n\t\t&:hover::before,\n\t\t&:focus::after,\n\t\t&:focus::before {\n\t\t\tvisibility: visible;\n\t\t\topacity: 1;\n\t\t}\n\t}",
       "selector": ".tooltip-base",
       "sourceFile": "tooltip/base.css",
       "relatedRules": []
@@ -2333,7 +2333,7 @@
         "variant": "solid",
         "className": "infobox-solid",
         "description": "背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。",
-        "category": "notification",
+        "category": "container",
         "sourceFile": "infobox/variants.css"
       },
       {
@@ -2341,7 +2341,7 @@
         "variant": "outline",
         "className": "infobox-outline",
         "description": "背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。",
-        "category": "notification",
+        "category": "container",
         "sourceFile": "infobox/variants.css"
       },
       {
@@ -2349,7 +2349,7 @@
         "variant": "ghost",
         "className": "infobox-ghost",
         "description": "背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。",
-        "category": "notification",
+        "category": "container",
         "sourceFile": "infobox/variants.css"
       },
       {
@@ -2357,7 +2357,7 @@
         "variant": "base",
         "className": "infobox-base",
         "description": "すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。",
-        "category": "notification",
+        "category": "container",
         "sourceFile": "infobox/base.css"
       }
     ],

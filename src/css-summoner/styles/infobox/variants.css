@@ -3,7 +3,7 @@
 	 * @component: infobox
 	 * @variant: solid
 	 * @description: 背景色とテキスト色を持つ標準的なスタイル。カラーセレクタと組み合わせて使用します。
-	 * @category: notification
+	 * @category: container
 	 * @example: <div class="infobox-base infobox-solid color-info">...</div>
 	 */
 	.infobox-solid {
@@ -16,7 +16,7 @@
 	 * @component: infobox
 	 * @variant: outline
 	 * @description: 背景は透明で、枠線を持つスタイル。カラーセレクタで枠線の色を指定します。
-	 * @category: notification
+	 * @category: container
 	 * @example: <div class="infobox-base infobox-outline color-warning">...</div>
 	 */
 	.infobox-outline {
@@ -46,7 +46,7 @@
 	 * @component: infobox
 	 * @variant: ghost
 	 * @description: 背景も枠線も透明なスタイル。ホバーエフェクトなどで使用します。
-	 * @category: notification
+	 * @category: container
 	 * @example: <div class="infobox-base infobox-ghost color-neutral">...</div>
 	 */
 	.infobox-ghost {
