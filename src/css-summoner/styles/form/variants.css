@@ -4,7 +4,9 @@
    * @variant: input
    * @description: テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。
    * @category: form-controls
-   * @example: <input type="text" class="form-input theme-neutral" placeholder="入力してください">
+   * @example: <div class="form-field"><label for="sample-input" class="form-label">入力 (Input)</label><input id="sample-input" type="text" class="form-base form-base form-input form-sm theme-primary" placeholder="テキストを入力" color="theme-primary"/>
+  
+</div>
    */
 	.form-input,
 	.form-select,
@@ -42,7 +44,7 @@
    * @variant: textarea
    * @description: 複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。
    * @category: form-controls
-   * @example: <textarea class="form-textarea theme-neutral" placeholder="ご質問やご意見をお書きください"></textarea>
+   * @example: <div class="form-field"><label for="sample-textarea" class="form-label">テキストエリア</label><textarea id="sample-textarea" class="form-base form-base form-textarea form-sm theme-primary" rows="4" placeholder="複数行のテキストを入力" color="theme-primary"></textarea></div>
    */
 	.form-textarea {
 		min-height: 6rem;
@@ -54,11 +56,7 @@
    * @variant: select
    * @description: ドロップダウン選択フィールド。オプションから1つを選ぶ場合に使用します。
    * @category: form-controls
-   * @example: <select class="form-select theme-neutral">
-   *   <option>選択してください</option>
-   *   <option>オプション1</option>
-   *   <option>オプション2</option>
-   * </select>
+   * @example: <div class="form-field"><label for="sample-select" class="form-label">選択 (Select)</label><select id="sample-select" class="form-base form-base form-select form-sm theme-primary" color="theme-primary"><option value="">項目を選択</option><option value="1">選択肢1</option><option value="2">選択肢2</option><option value="3">選択肢3</option></select></div>
    */
 	.form-select {
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor' %3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
@@ -86,8 +84,7 @@
    * @variant: checkbox
    * @description: カスタムスタイルのチェックボックス。オン/オフの選択に使用します。
    * @category: form-controls
-   * @example: <input type="checkbox" class="form-checkbox theme-neutral" id="terms">
-   *   <label for="terms">利用規約に同意します</label>
+   * @example: <div class="form-field-inline"><input id="sample-checkbox" type="checkbox" class="form-base form-base form-checkbox form-sm theme-primary" color="theme-primary"/><label for="sample-checkbox" class="form-label-inline">チェックボックス</label></div>
    */
 	.form-checkbox,
 	.form-radio {
@@ -107,8 +104,9 @@
    * @variant: radio
    * @description: カスタムスタイルのラジオボタン。複数の選択肢から1つを選ぶ場合に使用します。
    * @category: form-controls
-   * @example: <input type="radio" class="form-radio theme-neutral" name="option" id="option1">
-   *   <label for="option1">オプション1</label>
+   * @example: <div class="form-field-inline"><input id="sample-radio" type="radio" class="form-base form-base form-radio form-sm theme-primary" color="theme-primary" name="sample-radio-group"/><label for="sample-radio" class="form-label-inline">ラジオボタン</label>
+  
+</div>
    */
 	.form-radio {
 		border-radius: 50%;
@@ -132,10 +130,7 @@
    * @variant: switch
    * @description: トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。
    * @category: form-controls
-   * @example: <div class="form-switch">
-   *   <input type="checkbox" class="form-switch-input" id="darkmode">
-   *   <label class="form-switch-label theme-neutral" for="darkmode"></label> <!-- theme-* を指定 -->
-   * </div>
+   * @example: <div class="form-field-inline"><div class="form-base form-base form-switch form-sm theme-primary"><input type="checkbox" class="form-switch-input" id="sample-switch" color="theme-primary"/><label class="form-switch-label" for="sample-switch"></label></div><label for="sample-switch" class="form-label-inline">スイッチ</label></div>
    */
 	.form-switch {
 		@apply relative inline-block align-middle;
@@ -143,6 +138,14 @@
 		background-color: transparent;
 		width: 3rem;
 		height: 1.5rem;
+		padding: 0 !important;
+
+		&.form-xs .form-switch-label {
+			@apply scale-75;
+		}
+		&.form-sm .form-switch-label {
+			@apply scale-90;
+		}
 	}
 
 	.form-switch-input {
@@ -192,7 +195,7 @@
    * @variant: search
    * @description: 検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。
    * @category: form-controls
-   * @example: <input type="search" class="form-input form-search theme-neutral" placeholder="検索...">
+   * @example: <div class="form-field"><label for="sample-search" class="form-label">検索フォーム</label><div class="form-search-container"><input id="sample-search" type="search" class="form-base form-base form-search form-sm theme-primary" placeholder="検索キーワードを入力" color="theme-primary"/><span class="form-search-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="text-current w-5 h-5"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg></span></div></div>
    */
 	.form-search {
 		color: inherit;

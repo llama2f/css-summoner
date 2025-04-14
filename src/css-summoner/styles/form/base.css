@@ -13,8 +13,7 @@
    * @component: form
    * @variant: base
    * @description: フォーム関連のベーススタイル。フォーム要素のベースとなるスタイルを定義します。
-   * @category: form-controls
-   * @example: <input class="form-base" placeholder="プレースホルダーテキスト"></input>
+   * @category: form-controls   
    */
 	.form-base {
 		--form-input-bg-color: color-mix(
@@ -41,7 +40,6 @@
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
-		justify-content: center;
 		align-items: center;
 	}
 
@@ -49,7 +47,6 @@
 		display: flex;
 		flex-direction: row;
 		gap: 0.5rem;
-		justify-content: center;
 		align-items: center;
 	}
 

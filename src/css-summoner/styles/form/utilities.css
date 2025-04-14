@@ -43,6 +43,10 @@
 			aspect-ratio: 1;
 			padding: 0;
 		}
+		&.form-select {
+			padding: 0.5rem;
+			padding-right: 2rem;
+		}
 	}
 
 	.form-md {
@@ -55,6 +59,10 @@
 			height: 1.25rem;
 			aspect-ratio: 1;
 			padding: 0;
+		}
+		&.form-select {
+			padding: 0.5rem;
+			padding-right: 2.5rem;
 		}
 	}
 
@@ -69,6 +77,10 @@
 			aspect-ratio: 1;
 			padding: 0;
 		}
+		&.form-select {
+			padding: 0.5rem;
+			padding-right: 3rem;
+		}
 	}
 
 	.form-xl {
@@ -81,6 +93,10 @@
 			height: 1.75rem;
 			aspect-ratio: 1;
 			padding: 0;
+		}
+		&.form-select {
+			padding: 0.5rem;
+			padding-right: 2rem;
 		}
 	}
 
