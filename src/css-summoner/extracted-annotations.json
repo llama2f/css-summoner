@@ -1384,6 +1384,11 @@
           "selector": ".infobox-base.has-icon",
           "ruleText": ".infobox-base.has-icon {\n\t\tpadding-left: var(--infobox-padding-left-icon);\n\t}",
           "sourceFile": "infobox/base.css"
+        },
+        {
+          "selector": ".infobox-base[aria-disabled='true']",
+          "ruleText": ".infobox-base[aria-disabled='true'] {\n\t\topacity: var(--infobox-disabled-opacity);\n\t\tpointer-events: none;\n\t\tuser-select: none;\n\t}",
+          "sourceFile": "infobox/base.css"
         }
       ]
     },
@@ -1714,38 +1719,7 @@
       "ruleText": ".form-switch {\n\t\t@apply relative inline-block align-middle;\n\t\tborder: 0;\n\t\tbackground-color: transparent;\n\t\twidth: 3rem;\n\t\theight: 1.5rem;\n\t\tpadding: 0 !important;\n\n\t\t&.form-xs .form-switch-label {\n\t\t\t@apply scale-75;\n\t\t}\n\t\t&.form-sm .form-switch-label {\n\t\t\t@apply scale-90;\n\t\t}\n\t}",
       "selector": ".form-switch",
       "sourceFile": "form/variants.css",
-      "relatedRules": [
-        {
-          "selector": "&.form-xs .form-switch-label",
-          "ruleText": "&.form-xs .form-switch-label {\n\t\t\t@apply scale-75;\n\t\t}",
-          "sourceFile": "form/variants.css"
-        },
-        {
-          "selector": "&.form-sm .form-switch-label",
-          "ruleText": "&.form-sm .form-switch-label {\n\t\t\t@apply scale-90;\n\t\t}",
-          "sourceFile": "form/variants.css"
-        },
-        {
-          "selector": ":root.dark .form-switch-label",
-          "ruleText": ":root.dark .form-switch-label {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--neutral-dark),\n\t\t\tvar(--neutral-light) 50%\n\t\t);\n\t}",
-          "sourceFile": "form/variants.css"
-        },
-        {
-          "selector": ".dark .form-switch-label::after",
-          "ruleText": ".dark .form-switch-label::after {\n\t\tbackground-color: var(--neutral-dark-contrasting-text, #fafafa);\n\t}",
-          "sourceFile": "form/variants.css"
-        },
-        {
-          "selector": ".form-switch-input:checked + .form-switch-label",
-          "ruleText": ".form-switch-input:checked + .form-switch-label {\n\t\tbackground-color: var(--component-active-color, var(--component-color));\n\t}",
-          "sourceFile": "form/variants.css"
-        },
-        {
-          "selector": ".form-switch-input:checked + .form-switch-label::after",
-          "ruleText": ".form-switch-input:checked + .form-switch-label::after {\n\t\tbackground-color: white;\n\t\ttransform: translateX(1.5rem);\n\t}",
-          "sourceFile": "form/variants.css"
-        }
-      ]
+      "relatedRules": []
     },
     "form-search": {
       "ruleText": ".form-search {\n\t\tcolor: inherit;\n\t\tbackground-position: 0.75rem center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1rem 1rem;\n\t\tpadding-left: 2.5rem;\n\t\tborder-radius: var(--form-border-radius);\n\t}",
@@ -1848,7 +1822,13 @@
       "ruleText": ".card-base {\n\t\t@apply block overflow-hidden; \n\t\tfont-family: var(--card-font-family);\n\t\tborder-width: var(--card-border-width);\n\t\tborder-style: solid;\n\t\tborder-radius: var(--card-border-radius);\n\n\t\ttransition:\n\t\t\tbox-shadow var(--transition-duration, 200ms) ease-in-out,\n\t\t\tborder-color var(--transition-duration, 200ms) ease; \n\t}",
       "selector": ".card-base",
       "sourceFile": "card/base.css",
-      "relatedRules": []
+      "relatedRules": [
+        {
+          "selector": ".card-base[aria-disabled='true']",
+          "ruleText": ".card-base[aria-disabled='true'] {\n\t\topacity: var(--card-disabled-opacity);\n\t\tpointer-events: none;\n\t\tuser-select: none;\n\t}",
+          "sourceFile": "card/base.css"
+        }
+      ]
     },
     "btn-solid": {
       "ruleText": ".btn-solid {\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t\tborder-color: var(--component-border, #333);\n\t}",
@@ -2086,6 +2066,530 @@
       "badge/utilities.css",
       "badge/base.css"
     ]
+  },
+  "themeRules": {
+    "theme-primary": {
+      "ruleText": ".theme-primary {\n\t\t--component-color: var(--primary, #1b6e79);\n\t\t--component-text: var(--on-primary, #ffffff);\n\t\t--component-border: var(--primary, #1b6e79);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--primary, #1b6e79),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--primary, #1b6e79),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".theme-primary",
+      "sourceFile": "colors/color-system.css"
+    },
+    "theme-secondary": {
+      "ruleText": ".theme-secondary {\n\t\t--component-color: var(--secondary, #5a994d);\n\t\t--component-text: var(--on-secondary, #ffffff);\n\t\t--component-border: var(--secondary, #5a994d);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--secondary, #5a994d),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--secondary, #5a994d),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".theme-secondary",
+      "sourceFile": "colors/color-system.css"
+    },
+    "theme-accent": {
+      "ruleText": ".theme-accent {\n\t\t--component-color: var(--accent, #b11b1b);\n\t\t--component-text: var(--on-accent, #ffffff);\n\t\t--component-border: var(--accent, #b11b1b);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--accent, #b11b1b),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--accent, #b11b1b),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".theme-accent",
+      "sourceFile": "colors/color-system.css"
+    },
+    "theme-neutral": {
+      "ruleText": ".theme-neutral {\n\t\t--component-color: var(--neutral, #d4d4d4);\n\t\t--component-text: var(--on-neutral, #333333);\n\t\t--component-border: var(--neutral, #d4d4d4);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--neutral, #d4d4d4),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--neutral, #d4d4d4),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".theme-neutral",
+      "sourceFile": "colors/color-system.css"
+    },
+    "theme-base": {
+      "ruleText": ".theme-base {\n\t\t--component-color: var(--bg-base);\n\t\t--component-text: var(--text-base);\n\t\t--component-border: var(--bg-base);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--bg-base),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--bg-base),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".theme-base",
+      "sourceFile": "colors/color-system.css"
+    },
+    "theme-inverse": {
+      "ruleText": ".theme-inverse {\n\t\t--component-color: var(--bg-inverse);\n\t\t--component-text: var(--text-inverse);\n\t\t--component-border: var(--bg-inverse);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--bg-inverse),\n\t\t\tvar(--hover-dark-mix, #fff) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--bg-inverse),\n\t\t\tvar(--hover-dark-mix, #fff) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-dark-mix, #fff);\n\t}",
+      "selector": ".theme-inverse",
+      "sourceFile": "colors/color-system.css"
+    },
+    "theme-custom": {
+      "ruleText": ".theme-custom {\n\t\t--component-color: var(--custom-color, #6366f1);\n\t\t--component-text: var(--custom-text-color, #ffffff);\n\t\t--component-border: var(\n\t\t\t--custom-border-color,\n\t\t\tvar(--custom-color, #6366f1)\n\t\t);\n\t\t--component-hover-color: var(\n\t\t\t--custom-hover-color,\n\t\t\tcolor-mix(in srgb, var(--custom-color, #6366f1), #000 10%)\n\t\t);\n\t\t--component-active-color: var(\n\t\t\t--custom-active-color,\n\t\t\tcolor-mix(in srgb, var(--custom-color, #6366f1), #000 20%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".theme-custom",
+      "sourceFile": "colors/color-system.css"
+    }
+  },
+  "utilityRules": {
+    "tooltip-bottom": {
+      "ruleText": ".tooltip-bottom {\n\t\t&::after {\n\t\t\ttop: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));\n\t\t\tbottom: auto;\n\t\t\tleft: 50%;\n\t\t\ttransform: translateX(-50%);\n\t\t}\n\n\t\t&::before {\n\t\t\ttop: calc(100% + var(--tooltip-distance));\n\t\t\tbottom: auto;\n\t\t\tleft: 50%;\n\t\t\ttransform: translateX(-50%);\n\t\t\tborder-top-width: 0;\n\t\t\t \n\t\t}\n\t}",
+      "selector": ".tooltip-bottom",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-left": {
+      "ruleText": ".tooltip-left {\n\t\t&::after {\n\t\t\ttop: 50%;\n\t\t\tright: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));\n\t\t\tbottom: auto;\n\t\t\tleft: auto;\n\t\t\ttransform: translateY(-50%);\n\t\t}\n\n\t\t&::before {\n\t\t\ttop: 50%;\n\t\t\tright: calc(100% + var(--tooltip-distance));\n\t\t\tbottom: auto;\n\t\t\tleft: auto;\n\t\t\ttransform: translateY(-50%);\n\t\t\tborder-right-width: 0;\n\t\t\t \n\t\t}\n\t}",
+      "selector": ".tooltip-left",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-right": {
+      "ruleText": ".tooltip-right {\n\t\t&::after {\n\t\t\ttop: 50%;\n\t\t\tleft: calc(100% + var(--tooltip-arrow-size) + var(--tooltip-distance));\n\t\t\tbottom: auto;\n\t\t\tright: auto;\n\t\t\ttransform: translateY(-50%);\n\t\t}\n\n\t\t&::before {\n\t\t\ttop: 50%;\n\t\t\tleft: calc(100% + var(--tooltip-distance));\n\t\t\tbottom: auto;\n\t\t\tright: auto;\n\t\t\ttransform: translateY(-50%);\n\t\t\tborder-left-width: 0;\n\t\t\t \n\t\t}\n\t}",
+      "selector": ".tooltip-right",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-sm": {
+      "ruleText": ".tooltip-sm {\n\t\t&::after {\n\t\t\t--tooltip-padding-x: 0.5rem; \n\t\t\t--tooltip-padding-y: 0.25rem; \n\t\t\tfont-size: 0.75rem; \n\t\t}\n\t}",
+      "selector": ".tooltip-sm",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-lg": {
+      "ruleText": ".tooltip-lg {\n\t\t&::after {\n\t\t\t--tooltip-padding-x: 1rem; \n\t\t\t--tooltip-padding-y: 0.625rem; \n\t\t\tfont-size: 1rem; \n\t\t\tmin-width: 8rem;\n\t\t}\n\n\t\t&::before {\n\t\t\t--tooltip-arrow-size: 0.625rem;\n\t\t}\n\t}",
+      "selector": ".tooltip-lg",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-fade": {
+      "ruleText": ".tooltip-fade {\n\t\t&::after,\n\t\t&::before {\n\t\t\ttransition-property: opacity, visibility;\n\t\t}\n\t}",
+      "selector": ".tooltip-fade",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-scale": {
+      "ruleText": ".tooltip-scale {\n\t\t&::after {\n\t\t\ttransform-origin: center bottom;\n\t\t\ttransform: translateX(-50%) scale(0.8);\n\t\t\ttransition-property: opacity, visibility, transform;\n\t\t}\n\n\t\t&:hover::after {\n\t\t\ttransform: translateX(-50%) scale(1);\n\t\t}\n\n\t\t&.tooltip-bottom::after {\n\t\t\ttransform-origin: center top;\n\t\t}\n\n\t\t&.tooltip-left::after {\n\t\t\ttransform-origin: right center;\n\t\t\ttransform: translateY(-50%) scale(0.8);\n\t\t}\n\n\t\t&.tooltip-left:hover::after {\n\t\t\ttransform: translateY(-50%) scale(1);\n\t\t}\n\n\t\t&.tooltip-right::after {\n\t\t\ttransform-origin: left center;\n\t\t\ttransform: translateY(-50%) scale(0.8);\n\t\t}\n\n\t\t&.tooltip-right:hover::after {\n\t\t\ttransform: translateY(-50%) scale(1);\n\t\t}\n\t}",
+      "selector": ".tooltip-scale",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-always": {
+      "ruleText": ".tooltip-always {\n\t\t&::after,\n\t\t&::before {\n\t\t\t@apply visible opacity-100;\n\t\t}\n\t}",
+      "selector": ".tooltip-always",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-wide": {
+      "ruleText": ".tooltip-wide {\n\t\t&::after {\n\t\t\tmin-width: var(--tooltip-max-width);\n\t\t\ttext-align: left;\n\t\t\twhite-space: normal;\n\t\t}\n\t}",
+      "selector": ".tooltip-wide",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-no-arrow": {
+      "ruleText": ".tooltip-no-arrow {\n\t\t&::before {\n\t\t\t@apply hidden;\n\t\t}\n\n\t\t&::after {\n\t\t\tbottom: calc(100% + var(--tooltip-distance));\n\t\t}\n\n\t\t&.tooltip-bottom::after {\n\t\t\ttop: calc(100% + var(--tooltip-distance));\n\t\t\tbottom: auto;\n\t\t}\n\n\t\t&.tooltip-left::after {\n\t\t\tright: calc(100% + var(--tooltip-distance));\n\t\t}\n\n\t\t&.tooltip-right::after {\n\t\t\tleft: calc(100% + var(--tooltip-distance));\n\t\t}\n\t}",
+      "selector": ".tooltip-no-arrow",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "tooltip-base": {
+      "ruleText": ".tooltip-base.tooltip-shadow-sm::after {\n\t\tbox-shadow: var(--tooltip-shadow-sm);\n\t}",
+      "selector": ".tooltip-base.tooltip-shadow-sm::after",
+      "sourceFile": "tooltip/utilities.css"
+    },
+    "text-shadow-sm": {
+      "ruleText": ".text-shadow-sm {\n\t\ttext-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);\n\t}",
+      "selector": ".text-shadow-sm",
+      "sourceFile": "text/utilities.css"
+    },
+    "text-shadow": {
+      "ruleText": ".text-shadow {\n\t\ttext-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);\n\t}",
+      "selector": ".text-shadow",
+      "sourceFile": "text/utilities.css"
+    },
+    "text-blur": {
+      "ruleText": ".text-blur {\n\t\tcolor: transparent;\n\t\t\n\t\ttext-shadow: 0 0 5px rgba(0, 0, 0, 0.75);\n\t}",
+      "selector": ".text-blur",
+      "sourceFile": "text/utilities.css"
+    },
+    "text-outlined": {
+      "ruleText": ".text-outlined {\n\t\t\n\t\t-webkit-text-stroke: 1px currentColor; \n\t\ttext-stroke: 1px currentColor;\n\t}",
+      "selector": ".text-outlined",
+      "sourceFile": "text/utilities.css"
+    },
+    "text-vertical": {
+      "ruleText": ".text-vertical {\n\t\twriting-mode: vertical-rl;\n\t\ttext-orientation: mixed;\n\t}",
+      "selector": ".text-vertical",
+      "sourceFile": "text/utilities.css"
+    },
+    "infobox-hover-ghost": {
+      "ruleText": ".infobox-hover-ghost:hover {\n\t\tbackground-color: color-mix(in srgb, currentColor 10%, transparent);\n\t}",
+      "selector": ".infobox-hover-ghost:hover",
+      "sourceFile": "infobox/utilities.css"
+    },
+    "infobox-sm": {
+      "ruleText": ".infobox-sm {\n\t\t--infobox-padding-y: 0.5rem;\n\t\t--infobox-padding-x: 0.75rem;\n\t\t--infobox-padding-left-icon: 2rem;\n\t\t--infobox-icon-size: 1rem;\n\t\t--infobox-icon-position-left: 0.5rem;\n\t\t--infobox-icon-position-top: 0.5rem;\n\t\t@apply text-xs;\n\t}",
+      "selector": ".infobox-sm",
+      "sourceFile": "infobox/utilities.css"
+    },
+    "infobox-md": {
+      "ruleText": ".infobox-md {\n\t\t--infobox-padding-y: 1rem;\n\t\t--infobox-padding-x: 1.25rem;\n\t\t--infobox-padding-left-icon: 3rem;\n\t\t--infobox-icon-size: 1.25rem;\n\t\t--infobox-icon-position-left: 1rem;\n\t\t--infobox-icon-position-top: 1rem;\n\t\t@apply text-sm;\n\t}",
+      "selector": ".infobox-md",
+      "sourceFile": "infobox/utilities.css"
+    },
+    "infobox-lg": {
+      "ruleText": ".infobox-lg {\n\t\t--infobox-padding-y: 1.5rem;\n\t\t--infobox-padding-x: 1.75rem;\n\t\t--infobox-padding-left-icon: 4rem;\n\t\t--infobox-icon-size: 1.75rem;\n\t\t--infobox-icon-position-left: 1.25rem;\n\t\t--infobox-icon-position-top: 1.5rem;\n\t\t@apply text-lg;\n\t}",
+      "selector": ".infobox-lg",
+      "sourceFile": "infobox/utilities.css"
+    },
+    "img-overlay": {
+      "ruleText": ".img-overlay {\n\t\t@apply relative;\n\t}",
+      "selector": ".img-overlay",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-overlay-hover": {
+      "ruleText": ".img-overlay-hover {\n\t\t@apply relative;\n\t}",
+      "selector": ".img-overlay-hover",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-zoom-hover": {
+      "ruleText": ".img-zoom-hover {\n\t\t@apply overflow-hidden;\n\t}",
+      "selector": ".img-zoom-hover",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-grayscale": {
+      "ruleText": ".img-grayscale {\n\t\tfilter: grayscale(100%);\n\t}",
+      "selector": ".img-grayscale",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-grayscale-hover": {
+      "ruleText": ".img-grayscale-hover {\n\t\tfilter: grayscale(100%);\n\t\t@apply transition-all duration-300;\n\t}",
+      "selector": ".img-grayscale-hover",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-sepia": {
+      "ruleText": ".img-sepia {\n\t\tfilter: sepia(80%);\n\t}",
+      "selector": ".img-sepia",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-sepia-hover": {
+      "ruleText": ".img-sepia-hover {\n\t\t@apply transition-all duration-300;\n\t\tfilter: sepia(80%);\n\t}",
+      "selector": ".img-sepia-hover",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-brightness-low": {
+      "ruleText": ".img-brightness-low {\n\t\tfilter: brightness(0.8);\n\t}",
+      "selector": ".img-brightness-low",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-brightness-high": {
+      "ruleText": ".img-brightness-high {\n\t\tfilter: brightness(1.2);\n\t}",
+      "selector": ".img-brightness-high",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-contrast-high": {
+      "ruleText": ".img-contrast-high {\n\t\tfilter: contrast(1.2);\n\t}",
+      "selector": ".img-contrast-high",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-w-full": {
+      "ruleText": ".img-w-full {\n\t\t@apply w-full;\n\t}",
+      "selector": ".img-w-full",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-w-3_4": {
+      "ruleText": ".img-w-3_4 {\n\t\t@apply w-3/4 mx-auto;\n\t}",
+      "selector": ".img-w-3_4",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-w-1_2": {
+      "ruleText": ".img-w-1_2 {\n\t\t@apply w-1/2 mx-auto;\n\t}",
+      "selector": ".img-w-1_2",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-w-1_3": {
+      "ruleText": ".img-w-1_3 {\n\t\t@apply w-1/3 mx-auto;\n\t}",
+      "selector": ".img-w-1_3",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-w-1_4": {
+      "ruleText": ".img-w-1_4 {\n\t\t@apply w-1/4 mx-auto;\n\t}",
+      "selector": ".img-w-1_4",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-aspect-square": {
+      "ruleText": ".img-aspect-square {\n\t\t@apply aspect-square;\n\t}",
+      "selector": ".img-aspect-square",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-aspect-video": {
+      "ruleText": ".img-aspect-video {\n\t\t@apply aspect-video;\n\t}",
+      "selector": ".img-aspect-video",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-aspect-portrait": {
+      "ruleText": ".img-aspect-portrait {\n\t\t@apply aspect-[3/4];\n\t}",
+      "selector": ".img-aspect-portrait",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-grid": {
+      "ruleText": ".img-grid {\n\t\t@apply grid gap-4 my-6;\n\t\tgrid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n\t}",
+      "selector": ".img-grid",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-float-left": {
+      "ruleText": ".img-float-left {\n\t\t@apply float-left mr-6 mb-2;\n\t\tmax-width: 50%;\n\t}",
+      "selector": ".img-float-left",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-float-right": {
+      "ruleText": ".img-float-right {\n\t\t@apply float-right ml-6 mb-2;\n\t\tmax-width: 50%;\n\t}",
+      "selector": ".img-float-right",
+      "sourceFile": "image/utilities.css"
+    },
+    "img-container": {
+      "ruleText": ".img-container {\n\t\t\tpage-break-inside: avoid;\n\t\t\tbreak-inside: avoid;\n\t\t}",
+      "selector": ".img-container",
+      "sourceFile": "image/utilities.css"
+    },
+    "heading-with-icon": {
+      "ruleText": ".heading-with-icon {\n\t\t@apply flex items-center gap-2;\n\t}",
+      "selector": ".heading-with-icon",
+      "sourceFile": "heading/utilities.css"
+    },
+    "heading-animated": {
+      "ruleText": ".heading-animated {\n\t\t@apply relative pb-2 inline-block;\n\t}",
+      "selector": ".heading-animated",
+      "sourceFile": "heading/utilities.css"
+    },
+    "heading-xl": {
+      "ruleText": ".heading-xl {\n\t\tfont-size: var(--heading-font-size-xl);\n\t}",
+      "selector": ".heading-xl",
+      "sourceFile": "heading/utilities.css"
+    },
+    "heading-lg": {
+      "ruleText": ".heading-lg {\n\t\tfont-size: var(--heading-font-size-lg);\n\t}",
+      "selector": ".heading-lg",
+      "sourceFile": "heading/utilities.css"
+    },
+    "heading-md": {
+      "ruleText": ".heading-md {\n\t\tfont-size: var(--heading-font-size-md);\n\t}",
+      "selector": ".heading-md",
+      "sourceFile": "heading/utilities.css"
+    },
+    "heading-sm": {
+      "ruleText": ".heading-sm {\n\t\tfont-size: var(--heading-font-size-sm);\n\t}",
+      "selector": ".heading-sm",
+      "sourceFile": "heading/utilities.css"
+    },
+    "form-switch-input": {
+      "ruleText": ".form-switch-input {\n\t\t@apply sr-only;\n\t}",
+      "selector": ".form-switch-input",
+      "sourceFile": "form/variants.css"
+    },
+    "form-switch-label": {
+      "ruleText": ".form-switch-label {\n\t\t@apply block h-full cursor-pointer rounded-full;\n\n\t\tbackground-color: var(--neutral, #e4e4e4);\n\t\ttransition: background-color 0.2s ease;\n\t}",
+      "selector": ".form-switch-label",
+      "sourceFile": "form/variants.css"
+    },
+    "form-checkbox": {
+      "ruleText": ".form-checkbox.form-checkbox-square:checked::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\tdisplay: block;\n\t\tbackground-color: white;\n\t\ttop: 50%;\n\t\tleft: 50%;\n\t\twidth: 0.5rem;\n\t\theight: 0.5rem;\n\t\ttransform: translate(-50%, -50%);\n\t}",
+      "selector": ".form-checkbox.form-checkbox-square:checked::after",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-xs": {
+      "ruleText": ".form-xs {\n\t\t@apply text-xs;\n\t\tpadding: 0.125rem 0.375rem;\n\n\t\t&.form-checkbox,\n\t\t&.form-radio {\n\t\t\twidth: 0.875rem;\n\t\t\theight: 0.875rem;\n\t\t\taspect-ratio: 1;\n\t\t\tpadding: 0;\n\t\t}\n\n\t\t&.form-select {\n\t\t\tpadding: 0.5rem;\n\t\t\tpadding-right: 2rem;\n\t\t}\n\t}",
+      "selector": ".form-xs",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-sm": {
+      "ruleText": ".form-sm {\n\t\t@apply text-sm;\n\t\tpadding: 0.25rem 0.5rem;\n\n\t\t&.form-checkbox,\n\t\t&.form-radio {\n\t\t\twidth: 1rem;\n\t\t\theight: 1rem;\n\t\t\taspect-ratio: 1;\n\t\t\tpadding: 0;\n\t\t}\n\t\t&.form-select {\n\t\t\tpadding: 0.5rem;\n\t\t\tpadding-right: 2rem;\n\t\t}\n\t}",
+      "selector": ".form-sm",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-md": {
+      "ruleText": ".form-md {\n\t\t@apply text-md;\n\t\tpadding: 0.375rem 0.75rem;\n\n\t\t&.form-checkbox,\n\t\t&.form-radio {\n\t\t\twidth: 1.25rem;\n\t\t\theight: 1.25rem;\n\t\t\taspect-ratio: 1;\n\t\t\tpadding: 0;\n\t\t}\n\t\t&.form-select {\n\t\t\tpadding: 0.5rem;\n\t\t\tpadding-right: 2.5rem;\n\t\t}\n\t}",
+      "selector": ".form-md",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-lg": {
+      "ruleText": ".form-lg {\n\t\t@apply text-lg;\n\t\tpadding: 0.5rem 1rem;\n\n\t\t&.form-checkbox,\n\t\t&.form-radio {\n\t\t\twidth: 1.5rem;\n\t\t\theight: 1.5rem;\n\t\t\taspect-ratio: 1;\n\t\t\tpadding: 0;\n\t\t}\n\t\t&.form-select {\n\t\t\tpadding: 0.5rem;\n\t\t\tpadding-right: 3rem;\n\t\t}\n\t}",
+      "selector": ".form-lg",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-xl": {
+      "ruleText": ".form-xl {\n\t\t@apply text-xl;\n\t\tpadding: 0.75rem 1.5rem;\n\n\t\t&.form-checkbox,\n\t\t&.form-radio {\n\t\t\twidth: 1.75rem;\n\t\t\theight: 1.75rem;\n\t\t\taspect-ratio: 1;\n\t\t\tpadding: 0;\n\t\t}\n\t\t&.form-select {\n\t\t\tpadding: 0.5rem;\n\t\t\tpadding-right: 2rem;\n\t\t}\n\t}",
+      "selector": ".form-xl",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-success": {
+      "ruleText": ".form-success {\n\t\tcolor: var(--success-text, var(--success, green)) !important;\n\t}",
+      "selector": ".form-success",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-error": {
+      "ruleText": ".form-error {\n\t\tcolor: var(--error-text, var(--error, red)) !important;\n\t}",
+      "selector": ".form-error",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-input": {
+      "ruleText": ".form-input,\n\t\t.form-select,\n\t\t.form-textarea {\n\t\t\tborder-color: #000;\n\t\t\tbackground-color: transparent;\n\t\t}",
+      "selector": ".form-input,\n\t\t.form-select,\n\t\t.form-textarea",
+      "sourceFile": "form/utilities.css"
+    },
+    "form-field": {
+      "ruleText": ".form-field {\n\t\tdisplay: flex;\n\t\tflex-direction: row;\n\t\tgap: 0.5rem;\n\t\talign-items: center;\n\t}",
+      "selector": ".form-field",
+      "sourceFile": "form/base.css"
+    },
+    "form-field-inline": {
+      "ruleText": ".form-field-inline {\n\t\tdisplay: flex;\n\t\tflex-direction: row;\n\t\tgap: 0.5rem;\n\t\talign-items: center;\n\t}",
+      "selector": ".form-field-inline",
+      "sourceFile": "form/base.css"
+    },
+    "form-search-container": {
+      "ruleText": ".form-search-container {\n\t\tdisplay: flex;\n\t\tflex-direction: row;\n\t\tgap: 0.5rem;\n\t\tjustify-content: center;\n\t\talign-items: center;\n\t}",
+      "selector": ".form-search-container",
+      "sourceFile": "form/base.css"
+    },
+    "color-primary": {
+      "ruleText": ".color-primary {\n\t\t--component-color: var(--primary, #1b6e79);\n\t\t--component-text: var(--on-primary, #ffffff);\n\t\t--component-border: var(--primary, #1b6e79);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--primary, #1b6e79),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 10%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--primary, #1b6e79),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 20%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".color-primary",
+      "sourceFile": "colors/color-system.css"
+    },
+    "color-secondary": {
+      "ruleText": ".color-secondary {\n\t\t--component-color: var(--secondary, #5a994d);\n\t\t--component-text: var(--on-secondary, #ffffff);\n\t\t--component-border: var(--secondary, #5a994d);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--secondary, #5a994d),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 10%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--secondary, #5a994d),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 20%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".color-secondary",
+      "sourceFile": "colors/color-system.css"
+    },
+    "color-accent": {
+      "ruleText": ".color-accent {\n\t\t--component-color: var(--accent, #b11b1b);\n\t\t--component-text: var(--on-accent, #ffffff);\n\t\t--component-border: var(--accent, #b11b1b);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--accent, #b11b1b),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 10%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--accent, #b11b1b),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 20%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".color-accent",
+      "sourceFile": "colors/color-system.css"
+    },
+    "color-neutral": {
+      "ruleText": ".color-neutral {\n\t\t--component-color: var(--neutral, #d4d4d4);\n\t\t--component-text: var(--on-neutral, #333333);\n\t\t--component-border: var(--neutral, #d4d4d4);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--neutral, #d4d4d4),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 10%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--neutral, #d4d4d4),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 20%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
+      "selector": ".color-neutral",
+      "sourceFile": "colors/color-system.css"
+    },
+    "card-hover": {
+      "ruleText": ".card-hover {\n\t\ttransition:\n\t\t\ttransform var(--transition-duration, 200ms) ease,\n\t\t\tbox-shadow var(--transition-duration, 200ms) ease;\n\t}",
+      "selector": ".card-hover",
+      "sourceFile": "card/utilities.css"
+    },
+    "card-hover-down": {
+      "ruleText": ".card-hover-down {\n\t\ttransition:\n\t\t\ttransform var(--transition-duration, 200ms) ease,\n\t\t\tbox-shadow var(--transition-duration, 200ms) ease;\n\t}",
+      "selector": ".card-hover-down",
+      "sourceFile": "card/utilities.css"
+    },
+    "card-hover-scale": {
+      "ruleText": ".card-hover-scale {\n\t\ttransition:\n\t\t\ttransform var(--transition-duration, 200ms) ease,\n\t\t\tbox-shadow var(--transition-duration, 200ms) ease;\n\t}",
+      "selector": ".card-hover-scale",
+      "sourceFile": "card/utilities.css"
+    },
+    "card-hover-overlay": {
+      "ruleText": ".card-hover-overlay {\n\t\tposition: relative; \n\t\toverflow: hidden; \n\t}",
+      "selector": ".card-hover-overlay",
+      "sourceFile": "card/utilities.css"
+    },
+    "card-hover-border": {
+      "ruleText": ".card-hover-border {\n\t\tborder-style: solid;\n\t\tborder-width: var(--card-border-width);\n\t}",
+      "selector": ".card-hover-border",
+      "sourceFile": "card/utilities.css"
+    },
+    "card-header": {
+      "ruleText": ".card-header {\n\t\t@apply block;\n\t\tpadding: var(--card-header-padding);\n\t\t\n\t}",
+      "selector": ".card-header",
+      "sourceFile": "card/base.css"
+    },
+    "card-body": {
+      "ruleText": ".card-body {\n\t\t@apply block;\n\t\tpadding: var(--card-padding);\n\t}",
+      "selector": ".card-body",
+      "sourceFile": "card/base.css"
+    },
+    "card-footer": {
+      "ruleText": ".card-footer {\n\t\t@apply block;\n\t\tpadding: var(--card-footer-padding);\n\t\t\n\t}",
+      "selector": ".card-footer",
+      "sourceFile": "card/base.css"
+    },
+    "btn-xs": {
+      "ruleText": ".btn-xs {\n\t\tfont-size: var(--btn-font-size-xs);\n\t\tpadding: var(--btn-padding-y-xs) var(--btn-padding-x-xs);\n\t}",
+      "selector": ".btn-xs",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-sm": {
+      "ruleText": ".btn-sm {\n\t\tfont-size: var(--btn-font-size-sm);\n\t\tpadding: var(--btn-padding-y-sm) var(--btn-padding-x-sm);\n\t}",
+      "selector": ".btn-sm",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-md": {
+      "ruleText": ".btn-md {\n\t\tfont-size: var(--btn-font-size-md);\n\t\tpadding: var(--btn-padding-y-md) var(--btn-padding-x-md);\n\t}",
+      "selector": ".btn-md",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-lg": {
+      "ruleText": ".btn-lg {\n\t\tfont-size: var(--btn-font-size-lg);\n\t\tpadding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);\n\t}",
+      "selector": ".btn-lg",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-xl": {
+      "ruleText": ".btn-xl {\n\t\tfont-size: var(--btn-font-size-xl);\n\t\tpadding: var(--btn-padding-y-xl) var(--btn-padding-x-xl);\n\t}",
+      "selector": ".btn-xl",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-base": {
+      "ruleText": ".btn-base {\n\t\t&.btn-rounded-sm {\n\t\t\tborder-radius: var(--btn-border-radius-sm);\n\t\t}\n\n\t\t&.btn-rounded-lg {\n\t\t\tborder-radius: var(--btn-border-radius-lg);\n\t\t}\n\t\t&.btn-rounded-full {\n\t\t\tborder-radius: var(--btn-border-radius-full);\n\t\t}\n\n\t\t&.btn-square {\n\t\t\tborder-radius: 0;\n\t\t}\n\t}",
+      "selector": ".btn-base",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-shadow": {
+      "ruleText": ".btn-shadow {\n\t\tbox-shadow: var(--btn-shadow-md);\n\t}",
+      "selector": ".btn-shadow",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-full": {
+      "ruleText": ".btn-full {\n\t\t@apply w-full;\n\t}",
+      "selector": ".btn-full",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-animate-up": {
+      "ruleText": ".btn-animate-up {\n\t\ttransition: transform 0.2s ease;\n\t}",
+      "selector": ".btn-animate-up",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-animate-down": {
+      "ruleText": ".btn-animate-down {\n\t\ttransition: transform 0.2s ease;\n\t}",
+      "selector": ".btn-animate-down",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-animate-pulse": {
+      "ruleText": ".btn-animate-pulse {\n\t\ttransition: transform 0.2s ease;\n\t}",
+      "selector": ".btn-animate-pulse",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-icon-left": {
+      "ruleText": ".btn-icon-left {\n\t\t@apply inline-flex items-center;\n\t}",
+      "selector": ".btn-icon-left",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-icon-right": {
+      "ruleText": ".btn-icon-right {\n\t\t@apply inline-flex items-center;\n\t}",
+      "selector": ".btn-icon-right",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-icon-only": {
+      "ruleText": ".btn-icon-only {\n\t\t@apply inline-flex items-center justify-center;\n\t\taspect-ratio: 1 / 1;\n\t\tpadding: 0.5em;\n\t}",
+      "selector": ".btn-icon-only",
+      "sourceFile": "button/utilities.css"
+    },
+    "btn-gradient": {
+      "ruleText": ".btn-gradient.theme-primary,\n\t.btn-gradient.theme-secondary,\n\t.btn-gradient.theme-accent {\n\t\tbackground: transparent !important;\n\t\tcolor: var(--neutral-dark, #242424) !important;\n\t\tborder: var(--btn-border-width) solid currentColor !important;\n\t}",
+      "selector": ".btn-gradient.theme-primary,\n\t.btn-gradient.theme-secondary,\n\t.btn-gradient.theme-accent",
+      "sourceFile": "button/utilities.css"
+    },
+    "badge-xs": {
+      "ruleText": ".badge-xs {\n\t\tfont-size: var(--badge-font-size-xs);\n\t\tpadding: var(--badge-padding-y-xs) var(--badge-padding-x-xs);\n\t}",
+      "selector": ".badge-xs",
+      "sourceFile": "badge/utilities.css"
+    },
+    "badge-sm": {
+      "ruleText": ".badge-sm {\n\t\tfont-size: var(--badge-font-size-sm);\n\t\tpadding: var(--badge-padding-y-sm) var(--badge-padding-x-sm);\n\t}",
+      "selector": ".badge-sm",
+      "sourceFile": "badge/utilities.css"
+    },
+    "badge-md": {
+      "ruleText": ".badge-md {\n\t\tfont-size: var(--badge-font-size);\n\t\tpadding: var(--badge-padding-y) var(--badge-padding-x);\n\t}",
+      "selector": ".badge-md",
+      "sourceFile": "badge/utilities.css"
+    },
+    "badge-lg": {
+      "ruleText": ".badge-lg {\n\t\tfont-size: var(--badge-font-size-lg);\n\t\tpadding: var(--badge-padding-y-lg) var(--badge-padding-x-lg);\n\t}",
+      "selector": ".badge-lg",
+      "sourceFile": "badge/utilities.css"
+    },
+    "badge-icon": {
+      "ruleText": ".badge-icon {\n\t\tdisplay: inline-block; \n\t\twidth: 1em; \n\t\theight: 1em; \n\t\tvertical-align: middle; \n\t\tfill: currentColor; \n\t}",
+      "selector": ".badge-icon",
+      "sourceFile": "badge/utilities.css"
+    },
+    "badge-icon-left": {
+      "ruleText": ".badge-icon-left {\n\t\t\n\t\tgap: 0.4em;\n\t}",
+      "selector": ".badge-icon-left",
+      "sourceFile": "badge/utilities.css"
+    },
+    "badge-icon-right": {
+      "ruleText": ".badge-icon-right {\n\t\t\n\t\tgap: 0.4em;\n\t\tflex-direction: row-reverse; \n\t}",
+      "selector": ".badge-icon-right",
+      "sourceFile": "badge/utilities.css"
+    },
+    "badge-icon-only": {
+      "ruleText": ".badge-icon-only {\n\t\tpadding: 0.5em; \n\t\t\n\t}",
+      "selector": ".badge-icon-only",
+      "sourceFile": "badge/utilities.css"
+    }
   },
   "originalComponentTypes": {
     "tooltip": [

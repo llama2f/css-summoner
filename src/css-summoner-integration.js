@@ -168,6 +168,24 @@ function mergeExtractedData(target, source) {
 	if (source.classRuleDetails) {
 		Object.assign(target.classRuleDetails, source.classRuleDetails)
 	}
+
+	// ↓↓↓ 追加: themeRules と utilityRules のマージ処理 ↓↓↓
+	// themeRules のマージ
+	if (source.themeRules) {
+		if (!target.themeRules) {
+			target.themeRules = {}
+		}
+		Object.assign(target.themeRules, source.themeRules)
+	}
+
+	// utilityRules のマージ
+	if (source.utilityRules) {
+		if (!target.utilityRules) {
+			target.utilityRules = {}
+		}
+		Object.assign(target.utilityRules, source.utilityRules)
+	}
+	// ↑↑↑ 追加完了 ↑↑↑
 }
 
 /**

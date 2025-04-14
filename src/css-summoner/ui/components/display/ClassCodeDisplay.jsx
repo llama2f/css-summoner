@@ -10,7 +10,14 @@ hljs.registerLanguage('css', css)
 hljs.registerLanguage('html', xml)
 import PropTypes from 'prop-types'
 import useAsyncHandler from '@hooks/useAsyncHandler'
-import { classRuleDetails, baseClasses } from '@/css-summoner/classMappings'
+import {
+	classRuleDetails,
+	baseClasses,
+	themeRules, // 追加
+	utilityRules, // 追加
+} from '@/css-summoner/extracted-annotations.json' // JSONを直接インポートする場合 (パス確認)
+// もし classMappings.js がラッパーなら:
+// import { classRuleDetails, baseClasses, themeRules, utilityRules } from '@/css-summoner/classMappings'
 import Accordion from '@components/common/Accordion'
 
 /**
@@ -223,59 +230,72 @@ const ClassCodeDisplay = ({
 		}
 
 		const targetClasses = displayClassString.split(' ').filter(Boolean)
-		const foundRules = []
+		const rulesByType = {
+			base: [],
+			variant: [],
+			theme: [],
+			utility: [],
+			related: [],
+		}
+		const addedRuleTexts = new Set() // 重複ルールテキストを追跡
+
+		// ルールを追加するヘルパー関数 (重複チェックのみ)
+		const addRule = (type, ruleText) => {
+			if (ruleText && !addedRuleTexts.has(ruleText)) {
+				rulesByType[type].push(ruleText) // コメントなしでルールテキストのみ追加
+				addedRuleTexts.add(ruleText)
+			}
+		}
 
 		targetClasses.forEach((className) => {
-			// classRuleDetails からルールを検索
+			// 1. classRuleDetails から検索 (Base or Variant)
 			const details = classRuleDetails[className]
 			if (details) {
-				// メインルールを追加
-				if (details.ruleText && !foundRules.includes(details.ruleText)) {
-					foundRules.push(details.ruleText)
-				}
+				const isBase = className === baseClasses[details.component]
+				const ruleType = isBase ? 'base' : 'variant'
+				addRule(ruleType, details.ruleText) // コメント引数を削除
 
-				// 関連ルール（hover、子孫セレクタなど）を追加
+				// 関連ルール
 				if (details.relatedRules && details.relatedRules.length > 0) {
 					details.relatedRules.forEach((relatedRule) => {
-						if (!foundRules.includes(relatedRule.ruleText)) {
-							foundRules.push(relatedRule.ruleText)
-						}
+						addRule('related', relatedRule.ruleText) // コメント引数を削除
 					})
 				}
 			}
-			// baseClass のルールも検索 (variant が base の場合)
-			else if (className === baseClass && classRuleDetails[baseClass]) {
-				const baseDetails = classRuleDetails[baseClass]
-
-				// メインのベースクラスルールを追加
-				if (
-					baseDetails.ruleText &&
-					!foundRules.includes(baseDetails.ruleText)
-				) {
-					foundRules.push(baseDetails.ruleText)
-				}
-
-				// ベースクラスの関連ルールも追加
-				if (baseDetails.relatedRules && baseDetails.relatedRules.length > 0) {
-					baseDetails.relatedRules.forEach((relatedRule) => {
-						if (!foundRules.includes(relatedRule.ruleText)) {
-							foundRules.push(relatedRule.ruleText)
-						}
-					})
-				}
+			// 2. themeRules から検索
+			else if (className.startsWith('theme-') && themeRules[className]) {
+				const themeDetail = themeRules[className]
+				addRule('theme', themeDetail.ruleText) // コメント引数を削除
+				// ToDo: themeRules にも relatedRules が必要か検討
+			}
+			// 3. utilityRules から検索
+			else if (utilityRules[className]) {
+				const utilityDetail = utilityRules[className]
+				addRule('utility', utilityDetail.ruleText) // コメント引数を削除
+				// ToDo: utilityRules にも relatedRules が必要か検討
 			}
 		})
 
-		if (foundRules.length > 0) {
-			setCssRulesString(foundRules.join('\n\n'))
+		// ルールを結合して整形
+		let finalCssString = ''
+		const ruleOrder = ['base', 'variant', 'theme', 'utility', 'related'] // 表示順序
+
+		ruleOrder.forEach((type) => {
+			if (rulesByType[type].length > 0) {
+				finalCssString += rulesByType[type].join('\n\n') + '\n\n' // コメントなしで結合
+			}
+		})
+
+		finalCssString = finalCssString.trim() // 末尾の余分な改行を削除
+
+		if (finalCssString) {
+			setCssRulesString(finalCssString)
 		} else {
-			// classRuleDetails に見つからない場合は、Tailwindクラス等の可能性がある
 			setCssRulesString(
 				`/* No specific CSS rules found for: ${displayClassString} */\n/* (May be Tailwind utility classes or base browser styles) */`
 			)
 		}
-		// displayClassString が変更された時のみ実行
-	}, [displayClassString, baseClass]) // baseClass も依存配列に追加
+	}, [displayClassString, baseClass]) // 依存配列は変更なし
 
 	// CSSルールコピー用のハンドラー
 	const copyCssToClipboard = useCallback(() => {
@@ -430,7 +450,11 @@ const ClassCodeDisplay = ({
 				headerRight={
 					<button
 						onClick={copyCssToClipboard}
-						disabled={!cssRulesString || cssRulesString.startsWith('/*')}
+						// disabled 条件を修正: cssRulesString が存在し、かつ初期メッセージでない場合に有効化
+						disabled={
+							!cssRulesString ||
+							cssRulesString.startsWith('/* No specific CSS rules found')
+						}
 						className='btn-base btn-solid btn-xs rounded theme-neutral flex justify-center'
 					>
 						<svg

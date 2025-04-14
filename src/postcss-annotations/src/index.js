@@ -78,12 +78,14 @@ function getNextTagIndex(text, tags) {
  */
 function structureComponentData(classes) {
 	// データ構造の初期化
-	const componentTypes = {}
-	const baseClasses = {}
-	const componentVariants = {}
-	const classDescriptions = {}
-	const componentExamples = {}
-	const classRuleDetails = {}
+	const componentTypes = {} // { componentName: [className1, className2] }
+	const baseClasses = {} // { componentName: baseClassName }
+	const componentVariants = {} // { componentName: { variantName: className } }
+	const classDescriptions = {} // { className: { component, variant, description, category } }
+	const componentExamples = {} // { componentName: [{ variant, className, example }] }
+	const classRuleDetails = {} // { className: { ruleText, selector, sourceFile, relatedRules: [] } }
+	const themeRules = {} // { themeClassName: { ruleText, selector, sourceFile } }
+	const utilityRules = {} // { utilityClassName: { ruleText, selector, sourceFile } }
 
 	// データの集約
 	classes.forEach((cls) => {
@@ -156,6 +158,8 @@ function structureComponentData(classes) {
 		classDescriptions,
 		componentExamples,
 		classRuleDetails,
+		themeRules,
+		utilityRules,
 	}
 }
 
@@ -180,6 +184,110 @@ module.exports = (opts = {}) => {
 		recognizedTags: DEFAULT_RECOGNIZED_TAGS,
 		requiredTags: DEFAULT_REQUIRED_TAGS,
 		verbose: false,
+		// Utility class patterns (prefixes, suffixes, keywords) to identify standalone utility rules
+		utilityPatterns: [
+			// General Prefixes
+			'util-',
+			'u-',
+			'is-',
+			'has-',
+			'js-',
+			'qa-',
+			'data-',
+			'flex-',
+			'grid-',
+			'border-',
+			'shadow-',
+			'animate-',
+			'transition-',
+			'hover-',
+			'focus-',
+			'active-',
+			'disabled-',
+			'sr-',
+			'print-',
+			'text-',
+			'bg-',
+			'font-',
+			'p-',
+			'm-',
+			'w-',
+			'h-',
+			'max-w-',
+			'min-w-',
+			'max-h-',
+			'min-h-',
+			// Component-specific Prefixes (ensure variants/base are annotated)
+			'btn-',
+			'card-',
+			'badge-',
+			'form-',
+			'input-',
+			'select-',
+			'textarea-',
+			'label-',
+			'checkbox-',
+			'radio-',
+			'switch-',
+			'alert-',
+			'modal-',
+			'tooltip-',
+			'popover-',
+			'dropdown-',
+			'menu-',
+			'nav-',
+			'tab-',
+			'accordion-',
+			'progress-',
+			'spinner-',
+			'avatar-',
+			'icon-',
+			'img-',
+			'image-',
+			'aspect-',
+			'heading-',
+			'link-',
+			// Suffixes / Keywords (might need more specific regex later)
+			'-xs',
+			'-sm',
+			'-md',
+			'-lg',
+			'-xl',
+			'-2xl', // Common sizes
+			'-start',
+			'-end',
+			'-center',
+			'-between',
+			'-around',
+			'-evenly', // Alignment
+			'-top',
+			'-bottom',
+			'-left',
+			'-right', // Positioning
+			'-primary',
+			'-secondary',
+			'-accent',
+			'-neutral', // Colors (excluding theme-)
+			'-success',
+			'-info',
+			'-warning',
+			'-error', // States
+			'-outline',
+			'-ghost',
+			'-link', // Button/Link styles
+			'-vertical',
+			'-horizontal', // Orientation
+			'-full',
+			'-screen', // Sizing
+			'-auto', // Sizing/Spacing
+			'-visible',
+			'-invisible', // Visibility
+			'-rounded',
+			'-circle',
+			'-square', // Shapes
+			'-with-', // Combination indicator
+			'-animated', // Animation indicator
+		],
 		...opts,
 	}
 
@@ -350,66 +458,136 @@ module.exports = (opts = {}) => {
 			// 抽出したデータを構造化
 			const structuredData = structureComponentData(classes)
 
-			// 関連ルールの収集（hover、子孫セレクタなど）
-			// 各クラスに関連するすべてのセレクタを探して関連付ける
-			if (structuredData.classRuleDetails) {
-				const classNames = Object.keys(structuredData.classRuleDetails)
+			// テーマルール、ユーティリティルール、関連ルールの収集
+			const annotatedClassNames = Object.keys(structuredData.classRuleDetails)
+			const allKnownClasses = new Set(annotatedClassNames) // Keep track of classes handled by annotations
 
-				// root内のすべてのルールを走査して関連セレクタを探す
-				root.walkRules((rule) => {
-					const ruleSelector = rule.selector
-					const ruleText = rule.toString()
+			// Add base classes and variant classes to known classes to avoid re-classifying them as utilities
+			Object.values(structuredData.baseClasses).forEach((cls) =>
+				allKnownClasses.add(cls)
+			)
+			Object.values(structuredData.componentVariants).forEach((variants) => {
+				Object.values(variants).forEach((cls) => allKnownClasses.add(cls))
+			})
 
-					// 各登録済みクラスについて、関連する可能性のあるセレクタをチェック
-					classNames.forEach((className) => {
-						// 1. 完全一致のセレクタは既にclassRuleDetailsに登録済みなので除外
-						if (ruleSelector === `.${className}`) {
-							return
+			root.walkRules((rule) => {
+				const ruleSelector = rule.selector
+				const ruleText = rule.toString()
+				const sourceFile = result.opts.from || 'unknown'
+
+				// --- 1. テーマルールとユーティリティルールの特定 ---
+				// セレクタが単一クラスか、クラスで始まるかチェック
+				const firstClassMatch = ruleSelector.match(/^\s*\.([\w-]+)/)
+				const isSimpleClassSelector =
+					firstClassMatch &&
+					/^\s*\.[\w-]+(\s*|,|$)/.test(ruleSelector.split(/[:[>+~ ]/)[0]) // Check if the first part is just a class
+
+				if (firstClassMatch) {
+					const potentialClassName = firstClassMatch[1]
+
+					// アノテーションで既に処理されたクラスはスキップ
+					if (allKnownClasses.has(potentialClassName)) {
+						// Continue to related rule check below
+					}
+					// テーマクラスか？ (例: .theme-primary)
+					else if (potentialClassName.startsWith('theme-')) {
+						if (!structuredData.themeRules[potentialClassName]) {
+							structuredData.themeRules[potentialClassName] = {
+								ruleText,
+								selector: ruleSelector,
+								sourceFile,
+							}
+							allKnownClasses.add(potentialClassName) // Mark as handled
 						}
+					}
+					// ユーティリティクラスか？ (パターンに基づいて判定)
+					else {
+						const isUtility = options.utilityPatterns.some((pattern) => {
+							if (pattern.endsWith('-')) {
+								// Prefix check
+								return potentialClassName.startsWith(pattern)
+							} else if (pattern.startsWith('-')) {
+								// Suffix check
+								return potentialClassName.endsWith(pattern)
+							} else {
+								// Keyword check (contains)
+								return potentialClassName.includes(pattern)
+							}
+						})
 
-						// 2. 関連するセレクタをチェック (疑似要素、子孫、ネストなど)
-						const isPseudoSelector =
-							ruleSelector.startsWith(`.${className}:`) || // 疑似クラス: .btn:hover
-							ruleSelector.includes(`:${className}`) || // 特殊疑似クラス: :not(.btn)
-							ruleSelector.match(new RegExp(`\\.${className}::?[\\w-]+`)) // 疑似要素: .btn::before
+						// Check if it's a simple utility class selector and not already handled
+						if (
+							isUtility &&
+							isSimpleClassSelector &&
+							!structuredData.utilityRules[potentialClassName]
+						) {
+							structuredData.utilityRules[potentialClassName] = {
+								ruleText,
+								selector: ruleSelector,
+								sourceFile,
+							}
+							allKnownClasses.add(potentialClassName) // Mark as handled
+						}
+					}
+				}
 
-						const isChildSelector =
-							ruleSelector.includes(` .${className}`) || // 子要素: .parent .btn
-							ruleSelector.includes(`>.${className}`) || // 直接の子: .parent>.btn
-							ruleSelector.includes(`+.${className}`) || // 隣接要素: .sibling+.btn
-							ruleSelector.includes(`~.${className}`) // 兄弟要素: .sibling~.btn
+				// --- 2. 関連ルールの収集 (既存ロジックの拡張) ---
+				annotatedClassNames.forEach((className) => {
+					// a) 元々の関連ルールチェック (疑似クラス、子孫など)
+					const isDirectRule = ruleSelector === `.${className}`
+					if (isDirectRule) return // Skip the rule directly associated with the annotation
 
-						const isParentSelector =
-							ruleSelector.includes(`.${className} `) || // 親要素: .btn .icon
-							ruleSelector.includes(`.${className}>`) // 直接の親: .btn>span
+					const isPseudoSelector =
+						ruleSelector.startsWith(`.${className}:`) ||
+						ruleSelector.includes(`:${className}`) || // Includes cases like :not(.className)
+						ruleSelector.match(new RegExp(`\\.${className}::?[\\w-]+`))
 
-						const isCompoundSelector =
-							ruleSelector.includes(`.${className}.`) || // 複合クラス: .btn.large
-							ruleSelector.includes(`[class*=${className}]`) // 属性セレクタ
+					const isDescendantOrSibling = // Renamed for clarity
+						ruleSelector.includes(` .${className}`) ||
+						ruleSelector.includes(`>.${className}`) ||
+						ruleSelector.includes(`+.${className}`) ||
+						ruleSelector.includes(`~.${className}`)
 
-						// いずれかの条件に一致したら関連ルールとして登録
+					const isParentContext = // Renamed for clarity
+						ruleSelector.includes(`.${className} `) ||
+						ruleSelector.includes(`.${className}>`)
+
+					// b) 複合セレクタのチェック (アノテーションクラス + 他のクラス)
+					// Example: .btn.theme-primary, .card.card-hover, .btn.btn-lg, .btn:hover, .btn.is-active
+					// Ensure the rule selector *contains* the annotated class name as a whole word/class
+					// Use a regex that checks for the class name surrounded by non-word characters or start/end of string
+					const containsAnnotatedClassRegex = new RegExp(
+						`(^|[^\\w-])${className}([^\\w-]|$)`
+					)
+					const containsAnnotatedClass =
+						containsAnnotatedClassRegex.test(ruleSelector)
+
+					if (containsAnnotatedClass && !isDirectRule) {
+						// Check if it contains the class but isn't the direct rule
+						// Add to relatedRules if any of the conditions match OR it's a compound selector involving the annotated class
+						// (e.g., .btn.btn-primary, .btn:hover, .btn .icon, .parent .btn, .btn[disabled])
 						if (
 							isPseudoSelector ||
-							isChildSelector ||
-							isParentSelector ||
-							isCompoundSelector
+							isDescendantOrSibling ||
+							isParentContext ||
+							ruleSelector.includes(`.${className}.`) ||
+							ruleSelector.includes(`.${className}:`) ||
+							ruleSelector.includes(`.${className}[`)
 						) {
-							// 既に同じルールが登録されていないことを確認
 							const isRuleAlreadyAdded = structuredData.classRuleDetails[
 								className
 							].relatedRules.some((r) => r.ruleText === ruleText)
-
 							if (!isRuleAlreadyAdded) {
 								structuredData.classRuleDetails[className].relatedRules.push({
 									selector: ruleSelector,
 									ruleText: ruleText,
-									sourceFile: result.opts.from || 'unknown',
+									sourceFile: sourceFile,
 								})
 							}
 						}
-					})
+					}
 				})
-			}
+			})
 
 			// 追加情報
 			structuredData.meta = {
