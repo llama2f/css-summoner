@@ -111,10 +111,10 @@ const examplesData = ${JSON.stringify(examplesData)}; // 使用例データの�
 <DocLayout title={pageTitle} desc={pageDesc}>
 		<div class="container mx-auto px-4 py-8">
 			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
-			 <p class="text-lg text-neutral-600 mb-6">
+			 <p class="text-lg mb-6">
 			   ${baseClassDescription}
 			   {/* フロントマターの baseClassName を参照 */}
-			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
+			   {baseClassName && <code class="ml-2 text-sm p-1 border border-neutral-500/40 rounded">.{baseClassName}</code>}
 			 </p>
 			
 

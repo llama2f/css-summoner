@@ -4,7 +4,7 @@
 	*
 	* このファイルはスクリプトによって自動生成されました。
 	* 元のCSSファイルのアノテーション、または generate-astro.js を編集してください。
-	* ソース: form/variants.css
+	* ソース: form/variants.css, form/base.css
 	*/
 import DocLayout from '@layouts/DocLayout.astro'; // 正しいエイリアスを使用
 import VariantPreview from '@components/astro/VariantPreview.astro';
@@ -14,18 +14,18 @@ const pageTitle = "Form コンポーネント";
 const pageDesc = "Form コンポーネントのスタイルバリエーションと使用例。";
 
 // --- フロントマターに変数を渡す ---
-const baseClassName = ""; // baseClassName を文字列として渡す
+const baseClassName = "form-base"; // baseClassName を文字列として渡す
 const variantsData = [{"variant":"checkbox","className":"form-checkbox","description":"カスタムスタイルのチェックボックス。オン/オフの選択に使用します。","previewHtml":"<input type=\"checkbox\" class=\"form-checkbox theme-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>"},{"variant":"input","className":"form-input","description":"テキスト入力フィールドのベーススタイル。テキスト、メール、番号、パスワードなどの入力に使用します。","previewHtml":"<input type=\"text\" class=\"form-input theme-neutral\" placeholder=\"入力してください\">"},{"variant":"radio","className":"form-radio","description":"カスタムスタイルのラジオボタン。複数の選択肢から1つを選ぶ場合に使用します。","previewHtml":"<input type=\"radio\" class=\"form-radio theme-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>"},{"variant":"search","className":"form-search","description":"検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。","previewHtml":"<input type=\"search\" class=\"form-input form-search theme-neutral\" placeholder=\"検索...\">"},{"variant":"select","className":"form-select","description":"ドロップダウン選択フィールド。オプションから1つを選ぶ場合に使用します。","previewHtml":"<select class=\"form-select theme-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>"},{"variant":"switch","className":"form-switch","description":"トグルスイッチコンポーネント。オン/オフの切り替えをビジュアル的に表現します。","previewHtml":"<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label theme-neutral\" for=\"darkmode\"></label> <!-- theme-* を指定 -->\n</div>"},{"variant":"textarea","className":"form-textarea","description":"複数行テキスト入力フィールド。コメント、説明文など長文入力に使用します。","previewHtml":"<textarea class=\"form-textarea theme-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>"}]; // バリアントデータの配列を渡す
-const examplesData = [{"exampleHtml":"<input type=\"text\" class=\"form-input theme-neutral\" placeholder=\"入力してください\">","index":0},{"exampleHtml":"<textarea class=\"form-textarea theme-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>","index":1},{"exampleHtml":"<select class=\"form-select theme-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>","index":2},{"exampleHtml":"<input type=\"checkbox\" class=\"form-checkbox theme-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>","index":3},{"exampleHtml":"<input type=\"radio\" class=\"form-radio theme-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>","index":4},{"exampleHtml":"<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label theme-neutral\" for=\"darkmode\"></label> <!-- theme-* を指定 -->\n</div>","index":5},{"exampleHtml":"<input type=\"search\" class=\"form-input form-search theme-neutral\" placeholder=\"検索...\">","index":6}]; // 使用例データの配列を渡す
+const examplesData = [{"exampleHtml":"<input type=\"text\" class=\"form-input theme-neutral\" placeholder=\"入力してください\">","index":0},{"exampleHtml":"<textarea class=\"form-textarea theme-neutral\" placeholder=\"ご質問やご意見をお書きください\"></textarea>","index":1},{"exampleHtml":"<select class=\"form-select theme-neutral\">\n<option>選択してください</option>\n<option>オプション1</option>\n<option>オプション2</option>\n</select>","index":2},{"exampleHtml":"<input type=\"checkbox\" class=\"form-checkbox theme-neutral\" id=\"terms\">\n<label for=\"terms\">利用規約に同意します</label>","index":3},{"exampleHtml":"<input type=\"radio\" class=\"form-radio theme-neutral\" name=\"option\" id=\"option1\">\n<label for=\"option1\">オプション1</label>","index":4},{"exampleHtml":"<div class=\"form-switch\">\n<input type=\"checkbox\" class=\"form-switch-input\" id=\"darkmode\">\n<label class=\"form-switch-label theme-neutral\" for=\"darkmode\"></label> <!-- theme-* を指定 -->\n</div>","index":5},{"exampleHtml":"<input type=\"search\" class=\"form-input form-search theme-neutral\" placeholder=\"検索...\">","index":6},{"exampleHtml":"<input class=\"form-base\" placeholder=\"プレースホルダーテキスト\"></input>","index":7}]; // 使用例データの配列を渡す
 ---
 
 <DocLayout title={pageTitle} desc={pageDesc}>
 		<div class="container mx-auto px-4 py-8">
 			 <h1 class="text-3xl font-bold mb-4">{pageTitle}</h1>
-			 <p class="text-lg text-neutral-600 mb-6">
-			   Form の基本スタイル
+			 <p class="text-lg mb-6">
+			   フォーム関連のベーススタイル。フォーム要素のベースとなるスタイルを定義します。
 			   {/* フロントマターの baseClassName を参照 */}
-			   {baseClassName && <code class="ml-2 text-sm bg-neutral-200 p-1 rounded">.{baseClassName}</code>}
+			   {baseClassName && <code class="ml-2 text-sm p-1 border border-neutral-500/40 rounded">.{baseClassName}</code>}
 			 </p>
 			
 

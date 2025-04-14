@@ -51,6 +51,7 @@
     "text": "text-base",
     "infobox": "infobox-base",
     "heading": "heading-base",
+    "form": "form-base",
     "card": "card-base",
     "button": "btn-base",
     "badge": "badge-base"
@@ -972,6 +973,12 @@
       "description": "検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。",
       "category": "form-controls"
     },
+    "form-base": {
+      "component": "form",
+      "variant": "base",
+      "description": "フォーム関連のベーススタイル。フォーム要素のベースとなるスタイルを定義します。",
+      "category": "form-controls"
+    },
     "card-solid": {
       "component": "card",
       "variant": "solid",
@@ -1547,6 +1554,11 @@
         "variant": "search",
         "className": "form-search",
         "example": "<input type=\"search\" class=\"form-input form-search theme-neutral\" placeholder=\"検索...\">"
+      },
+      {
+        "variant": "base",
+        "className": "form-base",
+        "example": "<input class=\"form-base\" placeholder=\"プレースホルダーテキスト\"></input>"
       }
     ],
     "card": [
@@ -1600,47 +1612,47 @@
       {
         "variant": "solid",
         "className": "btn-solid",
-        "example": "<button class=\"btn-base btn-solid theme-primary\">ソリッドボタン</button>"
+        "example": "<button class=\"btn-base btn-solid theme-primary p-2\">ソリッドボタン</button>"
       },
       {
         "variant": "outline",
         "className": "btn-outline",
-        "example": "<button class=\"btn-base btn-outline theme-primary\">アウトラインボタン</button>"
+        "example": "<button class=\"btn-base btn-outline theme-primary p-2\">アウトラインボタン</button>"
       },
       {
         "variant": "ghost",
         "className": "btn-ghost",
-        "example": "<button class=\"btn-base btn-ghost theme-primary\">ゴーストボタン</button>"
+        "example": "<button class=\"btn-base btn-ghost theme-primary p-2\">ゴーストボタン</button>"
       },
       {
         "variant": "link",
         "className": "btn-link",
-        "example": "<button class=\"btn-base btn-link theme-primary\">リンクボタン</button>"
+        "example": "<button class=\"btn-base btn-link theme-primary p-2\">リンクボタン</button>"
       },
       {
         "variant": "gradient",
         "className": "btn-gradient",
-        "example": "<button class=\"btn-base btn-gradient theme-primary\">グラデーションボタン</button>"
+        "example": "<button class=\"btn-base btn-gradient theme-primary p-2\">グラデーションボタン</button>"
       },
       {
         "variant": "subtle",
         "className": "btn-subtle",
-        "example": "<button class=\"btn-base btn-subtle theme-primary\">サブトルボタン</button>"
+        "example": "<button class=\"btn-base btn-subtle theme-primary p-2\">サブトルボタン</button>"
       },
       {
         "variant": "icon",
         "className": "btn-icon",
-        "example": "<button class=\"btn-base btn-icon theme-primary\"><svg>...</svg></button>"
+        "example": "<button class=\"btn-base btn-icon theme-primary \">♥️</button>"
       },
       {
         "variant": "icon-outline",
         "className": "btn-icon-outline",
-        "example": "<button class=\"btn-base btn-icon-outline theme-primary\"><svg>...</svg></button>"
+        "example": "<button class=\"btn-base btn-icon-outline theme-primary\">♥️</button>"
       },
       {
         "variant": "icon-ghost",
         "className": "btn-icon-ghost",
-        "example": "<button class=\"btn-base btn-icon-ghost theme-primary\"><svg>...</svg></button>"
+        "example": "<button class=\"btn-base btn-icon-ghost theme-primary\">♥️</button>"
       },
       {
         "variant": "base",
@@ -2279,7 +2291,7 @@
       "relatedRules": []
     },
     "form-input": {
-      "ruleText": ".form-input,\n\t.form-select,\n\t.form-textarea {\n\t\tfont-family: var(--form-font-family);\n\t\tcolor: var(--component-text);\n\t\tbackground-color: var(--component-color);\n\t\tborder: var(--form-border-width) solid\n\t\t\tvar(--component-border, var(--neutral));\n\t\tborder-radius: var(--form-border-radius);\n\t\tpadding: var(--form-padding-y) var(--form-padding-x);\n\t\ttransition:\n\t\t\tborder-color 0.2s ease-in-out,\n\t\t\tbox-shadow 0.2s ease-in-out;\n\t}",
+      "ruleText": ".form-input,\n\t.form-select,\n\t.form-textarea {\n\t\tcolor: var(--neutral-dark);\n\t\ttransition:\n\t\t\tborder-color 0.2s ease-in-out,\n\t\t\tbox-shadow 0.2s ease-in-out;\n\t}",
       "selector": ".form-input,\n\t.form-select,\n\t.form-textarea",
       "sourceFile": "form/variants.css",
       "relatedRules": [
@@ -2313,7 +2325,7 @@
       ]
     },
     "form-select": {
-      "ruleText": ".form-select {\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E\");\n\t\tbackground-position: right 0.75rem center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1.25em 1.25em;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t\tappearance: none;\n\t\tpadding-right: 2.5rem;\n\t}",
+      "ruleText": ".form-select {\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor' %3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E\");\n\t\tborder-color: var(--neutral);\n\t\tbackground-position: right 0.75rem center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1.25em 1.25em;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t\tappearance: none;\n\t\tpadding-right: 2.5rem;\n\t\tposition: relative;\n\t}",
       "selector": ".form-select",
       "sourceFile": "form/variants.css",
       "relatedRules": [
@@ -2326,11 +2338,21 @@
           "selector": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled",
           "ruleText": ".form-input:disabled,\n\t.form-select:disabled,\n\t.form-textarea:disabled {\n\t\t@apply disabled:opacity-60 disabled:cursor-not-allowed;\n\t}",
           "sourceFile": "form/variants.css"
+        },
+        {
+          "selector": ".form-select option",
+          "ruleText": ".form-select option {\n\t\tbackground-color: var(--form-input-bg-color, #7e7e7e);\n\t}",
+          "sourceFile": "form/variants.css"
+        },
+        {
+          "selector": ":root.dark .form-select option",
+          "ruleText": ":root.dark .form-select option {\n\t\tbackground-color: var(--neutral-dark, #7e7e7e);\n\t}",
+          "sourceFile": "form/variants.css"
         }
       ]
     },
     "form-checkbox": {
-      "ruleText": ".form-checkbox,\n\t.form-radio {\n\t\twidth: 1.25rem;\n\t\theight: 1.25rem;\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color),\n\t\t\ttransparent 70%\n\t\t);\n\t\tborder: var(--form-border-width) solid\n\t\t\tvar(--component-border, var(--neutral));\n\t\tappearance: none;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t}",
+      "ruleText": ".form-checkbox,\n\t.form-radio {\n\t\twidth: 1.25rem;\n\t\theight: 1.25rem;\n\t\tappearance: none;\n\t\t-webkit-appearance: none;\n\t\t-moz-appearance: none;\n\t}",
       "selector": ".form-checkbox,\n\t.form-radio",
       "sourceFile": "form/variants.css",
       "relatedRules": []
@@ -2348,13 +2370,13 @@
       ]
     },
     "form-switch": {
-      "ruleText": ".form-switch {\n\t\t@apply relative inline-block align-middle;\n\t\twidth: 3rem;\n\t\theight: 1.5rem;\n\t}",
+      "ruleText": ".form-switch {\n\t\t@apply relative inline-block align-middle;\n\t\tborder: 0;\n\t\tbackground-color: transparent;\n\t\twidth: 3rem;\n\t\theight: 1.5rem;\n\t}",
       "selector": ".form-switch",
       "sourceFile": "form/variants.css",
       "relatedRules": [
         {
-          "selector": ".dark .form-switch-label",
-          "ruleText": ".dark .form-switch-label {\n\t\tbackground-color: var(--neutral-dark, #242424);\n\t}",
+          "selector": ":root.dark .form-switch-label",
+          "ruleText": ":root.dark .form-switch-label {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--neutral-dark),\n\t\t\tvar(--neutral-light) 50%\n\t\t);\n\t}",
           "sourceFile": "form/variants.css"
         },
         {
@@ -2375,9 +2397,15 @@
       ]
     },
     "form-search": {
-      "ruleText": ".form-search {\n\t\tcolor: inherit;\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'%3E%3C/path%3E%3C/svg%3E\");\n\t\tbackground-position: 0.75rem center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1rem 1rem;\n\t\tpadding-left: 2.5rem;\n\t\tborder-radius: var(--form-border-radius);\n\t}",
+      "ruleText": ".form-search {\n\t\tcolor: inherit;\n\t\tbackground-position: 0.75rem center;\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-size: 1rem 1rem;\n\t\tpadding-left: 2.5rem;\n\t\tborder-radius: var(--form-border-radius);\n\t}",
       "selector": ".form-search",
       "sourceFile": "form/variants.css",
+      "relatedRules": []
+    },
+    "form-base": {
+      "ruleText": ".form-base {\n\t\t--form-input-bg-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color),\n\t\t\ttransparent 90%\n\t\t);\n\n\t\tfont-family: var(--form-font-family);\n\t\tfont-size: var(--form-font-size);\n\t\tline-height: var(--form-line-height);\n\t\tcolor: var(--component-text);\n\t\tbackground-color: var(--form-input-bg-color);\n\t\tborder: var(--form-border-width) solid\n\t\t\tvar(--component-border, var(--neutral));\n\t\tborder-radius: var(--form-border-radius);\n\t\tpadding: var(--form-padding-y) var(--form-padding-x);\n\t\ttransition:\n\t\t\tborder-color 0.2s ease-in-out,\n\t\t\tbox-shadow 0.2s ease-in-out;\n\t}",
+      "selector": ".form-base",
+      "sourceFile": "form/base.css",
       "relatedRules": []
     },
     "card-solid": {
@@ -2553,13 +2581,13 @@
       ]
     },
     "btn-gradient": {
-      "ruleText": ".btn-gradient {\n\t\tposition: relative; \n\t\toverflow: hidden; \n\t\tbackground-color: var(\n\t\t\t--component-color,\n\t\t\t#333\n\t\t); \n\t\tcolor: var(--component-text, #fff); \n\t\tborder-color: transparent;\n\t\tz-index: 1; \n\t}",
+      "ruleText": ".btn-gradient {\n\t\tposition: relative;\n\t\toverflow: hidden;\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t\tborder-color: transparent;\n\t\tz-index: 1;\n\t}",
       "selector": ".btn-gradient",
       "sourceFile": "button/variants-monochrome.css",
       "relatedRules": [
         {
           "selector": ".btn-gradient::before,\n\t.btn-gradient::after",
-          "ruleText": ".btn-gradient::before,\n\t.btn-gradient::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tright: 0;\n\t\tbottom: 0;\n\t\tbackground-image: linear-gradient(\n\t\t\t135deg,\n\t\t\tvar(--component-color, #333),\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--active-amount, 30%)\n\t\t\t)\n\t\t);\n\t\ttransition: opacity var(--btn-transition-duration, 200ms) ease-in-out;\n\t\tz-index: -1; \n\t}",
+          "ruleText": ".btn-gradient::before,\n\t.btn-gradient::after {\n\t\tcontent: '';\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\tright: 0;\n\t\tbottom: 0;\n\t\tbackground-image: linear-gradient(\n\t\t\t135deg,\n\t\t\tvar(--component-color, #333),\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--active-amount, 30%)\n\t\t\t)\n\t\t);\n\t\ttransition: opacity var(--btn-transition-duration, 200ms) ease-in-out;\n\t\tz-index: -1;\n\t}",
           "sourceFile": "button/variants-monochrome.css"
         },
         {
@@ -2682,7 +2710,7 @@
   },
   "meta": {
     "totalFiles": 29,
-    "totalClasses": 108,
+    "totalClasses": 109,
     "errors": [
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
@@ -2820,7 +2848,8 @@
       "form-checkbox",
       "form-radio",
       "form-switch",
-      "form-search"
+      "form-search",
+      "form-base"
     ],
     "card": [
       "card-solid",
@@ -3519,6 +3548,14 @@
         "description": "検索用の入力フィールド。虫眼鏡アイコン付きで検索機能を視覚的に示します。",
         "category": "form-controls",
         "sourceFile": "form/variants.css"
+      },
+      {
+        "component": "form",
+        "variant": "base",
+        "className": "form-base",
+        "description": "フォーム関連のベーススタイル。フォーム要素のベースとなるスタイルを定義します。",
+        "category": "form-controls",
+        "sourceFile": "form/base.css"
       }
     ],
     "card": [

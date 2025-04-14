@@ -9,6 +9,34 @@
 		--form-line-height: 1.5;
 	}
 
+	/* 
+   * @component: form
+   * @variant: base
+   * @description: フォーム関連のベーススタイル。フォーム要素のベースとなるスタイルを定義します。
+   * @category: form-controls
+   * @example: <input class="form-base" placeholder="プレースホルダーテキスト"></input>
+   */
+	.form-base {
+		--form-input-bg-color: color-mix(
+			in srgb,
+			var(--component-color),
+			transparent 90%
+		);
+
+		font-family: var(--form-font-family);
+		font-size: var(--form-font-size);
+		line-height: var(--form-line-height);
+		color: var(--component-text);
+		background-color: var(--form-input-bg-color);
+		border: var(--form-border-width) solid
+			var(--component-border, var(--neutral));
+		border-radius: var(--form-border-radius);
+		padding: var(--form-padding-y) var(--form-padding-x);
+		transition:
+			border-color 0.2s ease-in-out,
+			box-shadow 0.2s ease-in-out;
+	}
+
 	.form-field {
 		display: flex;
 		flex-direction: row;
@@ -31,19 +59,5 @@
 		gap: 0.5rem;
 		justify-content: center;
 		align-items: center;
-	}
-
-	.form-checkbox:checked {
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='white'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
-		background-size: 80%;
-		background-repeat: no-repeat;
-		background-position: center;
-	}
-
-	.form-checkbox:checked,
-	.form-radio:checked {
-		background-color: var(--component-active-color, var(--component-color));
-		border-color: var(--component-active-color, var(--component-color));
-		position: relative;
 	}
 }

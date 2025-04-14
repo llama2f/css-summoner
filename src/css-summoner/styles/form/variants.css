@@ -9,16 +9,18 @@
 	.form-input,
 	.form-select,
 	.form-textarea {
-		font-family: var(--form-font-family);
-		color: var(--component-text);
-		background-color: var(--component-color);
-		border: var(--form-border-width) solid
-			var(--component-border, var(--neutral));
-		border-radius: var(--form-border-radius);
-		padding: var(--form-padding-y) var(--form-padding-x);
+		color: var(--neutral-dark);
 		transition:
 			border-color 0.2s ease-in-out,
 			box-shadow 0.2s ease-in-out;
+	}
+
+	:root.dark {
+		.form-input,
+		.form-select,
+		.form-textarea {
+			color: var(--neutral-light);
+		}
 	}
 
 	.form-input:focus,
@@ -59,7 +61,8 @@
    * </select>
    */
 	.form-select {
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='currentColor' %3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+		border-color: var(--neutral);
 		background-position: right 0.75rem center;
 		background-repeat: no-repeat;
 		background-size: 1.25em 1.25em;
@@ -67,6 +70,15 @@
 		-moz-appearance: none;
 		appearance: none;
 		padding-right: 2.5rem;
+		position: relative;
+	}
+
+	.form-select option {
+		background-color: var(--form-input-bg-color, #7e7e7e);
+	}
+
+	:root.dark .form-select option {
+		background-color: var(--neutral-dark, #7e7e7e);
 	}
 
 	/* 
@@ -81,13 +93,6 @@
 	.form-radio {
 		width: 1.25rem;
 		height: 1.25rem;
-		background-color: color-mix(
-			in srgb,
-			var(--component-color),
-			transparent 70%
-		);
-		border: var(--form-border-width) solid
-			var(--component-border, var(--neutral));
 		appearance: none;
 		-webkit-appearance: none;
 		-moz-appearance: none;
@@ -134,6 +139,8 @@
    */
 	.form-switch {
 		@apply relative inline-block align-middle;
+		border: 0;
+		background-color: transparent;
 		width: 3rem;
 		height: 1.5rem;
 	}
@@ -149,8 +156,12 @@
 		transition: background-color 0.2s ease;
 	}
 
-	.dark .form-switch-label {
-		background-color: var(--neutral-dark, #242424);
+	:root.dark .form-switch-label {
+		background-color: color-mix(
+			in srgb,
+			var(--neutral-dark),
+			var(--neutral-light) 50%
+		);
 	}
 
 	.form-switch-label::after {
@@ -185,7 +196,6 @@
    */
 	.form-search {
 		color: inherit;
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'%3E%3C/path%3E%3C/svg%3E");
 		background-position: 0.75rem center;
 		background-repeat: no-repeat;
 		background-size: 1rem 1rem;
