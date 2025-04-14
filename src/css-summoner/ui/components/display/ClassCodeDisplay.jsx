@@ -207,13 +207,12 @@ const ClassCodeDisplay = ({
 		}
 
 		// バリアントによる検索で見つからない場合は従来の処理
+		// ハンドラーが生成したreactElementからクラス文字列を取得
 		const currentClassString =
 			handlerResult.reactElement?.props?.className || initialClassString || ''
-		return (
-			baseClass && currentClassString && !currentClassString.includes(baseClass)
-				? `${baseClass} ${currentClassString}`
-				: currentClassString
-		).trim()
+
+		// ハンドラーが既にbaseClassを含めて生成しているため、追加処理は不要
+		return currentClassString.trim()
 	}, [handlerResult, baseClass, initialClassString, componentVariant]) // componentVariant も依存に追加
 
 	// 選択されたクラスに対応するCSSルールを取得する useEffect

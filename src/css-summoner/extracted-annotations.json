@@ -1400,37 +1400,37 @@
       "relatedRules": []
     },
     "img-caption": {
-      "ruleText": ".img-caption figcaption {\n\t\t@apply w-full text-center mt-2;\n\t\tcolor: var(--component-text, #333);\n\t\tfont-size: var(--img-caption-font-size);\n\t}",
+      "ruleText": ".img-caption figcaption {\n\t\t@apply w-full text-center mt-2;\n\t\tcolor: var(--component-color, #333);\n\t\tfont-size: var(--img-caption-font-size);\n\t}",
       "selector": ".img-caption figcaption",
       "sourceFile": "image/variants.css",
       "relatedRules": [
         {
           "selector": ".img-caption figcaption",
-          "ruleText": ".img-caption figcaption {\n\t\t@apply w-full text-center mt-2;\n\t\tcolor: var(--component-text, #333);\n\t\tfont-size: var(--img-caption-font-size);\n\t}",
+          "ruleText": ".img-caption figcaption {\n\t\t@apply w-full text-center mt-2;\n\t\tcolor: var(--component-color, #333);\n\t\tfont-size: var(--img-caption-font-size);\n\t}",
           "sourceFile": "image/variants.css"
         }
       ]
     },
     "img-caption-overlay": {
-      "ruleText": ".img-caption-overlay {\n\t\tposition: relative;\n\t}",
+      "ruleText": ".img-caption-overlay {\n\t\tposition: relative;\n\t\ttext-align: center;\n\t}",
       "selector": ".img-caption-overlay",
       "sourceFile": "image/variants.css",
       "relatedRules": [
         {
           "selector": ".img-caption-overlay figcaption",
-          "ruleText": ".img-caption-overlay figcaption {\n\t\t@apply absolute bottom-0 left-0 right-0 m-0 px-4 py-2;\n\t\tbackground-color: var(--img-caption-bg);\n\t\tcolor: var(--img-caption-color);\n\t}",
+          "ruleText": ".img-caption-overlay figcaption {\n\t\t@apply absolute bottom-0 left-0 right-0 m-0 px-4 py-2;\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color),\n\t\t\ttransparent 20%\n\t\t);\n\t\tcolor: var(--component-text);\n\t}",
           "sourceFile": "image/variants.css"
         }
       ]
     },
     "img-caption-hover": {
-      "ruleText": ".img-caption-hover figcaption {\n\t\t@apply absolute bottom-0 left-0 right-0 m-0 px-4 py-2 opacity-0 transition-opacity duration-300;\n\t\tbackground-color: var(--img-caption-bg);\n\t\tcolor: var(--img-caption-color);\n\t}",
-      "selector": ".img-caption-hover figcaption",
+      "ruleText": ".img-caption-hover {\n\t\tposition: relative;\n\t\ttext-align: center;\n\t}",
+      "selector": ".img-caption-hover",
       "sourceFile": "image/variants.css",
       "relatedRules": [
         {
           "selector": ".img-caption-hover figcaption",
-          "ruleText": ".img-caption-hover figcaption {\n\t\t@apply absolute bottom-0 left-0 right-0 m-0 px-4 py-2 opacity-0 transition-opacity duration-300;\n\t\tbackground-color: var(--img-caption-bg);\n\t\tcolor: var(--img-caption-color);\n\t}",
+          "ruleText": ".img-caption-hover figcaption {\n\t\t@apply absolute bottom-0 left-0 right-0 m-0 px-4 py-2 opacity-0 transition-opacity duration-300;\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color),\n\t\t\ttransparent 20%\n\t\t);\n\t\tcolor: var(--component-text);\n\t}",
           "sourceFile": "image/variants.css"
         },
         {

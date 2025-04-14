@@ -221,6 +221,11 @@ export const modifiers = {
 			description: '画像の上に半透明のオーバーレイを追加します',
 		},
 		{
+			value: 'img-overlay-hover',
+			label: 'ホバー時にオーバーレイ解除',
+			description: 'ホバー時にオーバーレイを解除します',
+		},
+		{
 			value: 'img-zoom-hover',
 			label: 'ホバー時に拡大',
 			description: 'ホバー時に画像を拡大します',

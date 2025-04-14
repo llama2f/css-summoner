@@ -50,11 +50,7 @@ export function render(props) {
 
 	// React要素の生成
 	const reactElement = (
-		<div
-			className={combineClasses({ baseClass, additional: classString })}
-			role={role}
-			{...commonProps}
-		>
+		<div className={classString} role={role} {...commonProps}>
 			{iconReact}
 			<div className='infobox-content'>
 				{titleReact}

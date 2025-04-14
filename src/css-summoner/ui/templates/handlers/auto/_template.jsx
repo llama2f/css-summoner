@@ -47,10 +47,10 @@ export function render(props) {
 
 	const { id, role } = domProps
 
-	const finalClassString = combineClasses({
-		baseClass,
-		additional: classString,
-	})
+	// ClassBuilderから渡されたクラス文字列をそのまま使用
+	// ※注意: combineClasses関数はClassBuilderで既に使用されているため、
+	// ハンドラー側で再度クラスを結合すると重複の問題が発生します
+	const finalClassString = classString
 
 	const reactElement = (
 		<div className={finalClassString} id={id} role={role} {...commonProps}>

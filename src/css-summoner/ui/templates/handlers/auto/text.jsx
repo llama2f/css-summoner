@@ -33,11 +33,8 @@ export function render(props) {
 	// DOMプロパティから必要な値を取得
 	const { ...restDomProps } = domProps
 
-	// baseClassとclassStringを結合
-	const finalClassString = combineClasses({
-		baseClass,
-		additional: classString,
-	})
+	// 渡されたクラス文字列をそのまま使用
+	const finalClassString = classString
 	const reactElement = (
 		<p className={finalClassString} {...restDomProps} {...commonProps}>
 			{samples.default || children}

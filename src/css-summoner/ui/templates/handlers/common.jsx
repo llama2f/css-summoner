@@ -272,7 +272,10 @@ export const combineClasses = ({
  */
 export const ensureBaseClass = (classString, baseClass) => {
 	if (!baseClass) return classString // ベースクラスがない場合は何もしない
-	if (!classString.includes(baseClass)) {
+
+	// より厳密なチェック - 単語として完全一致するかを確認
+	const classNames = classString.split(/\s+/)
+	if (!classNames.includes(baseClass)) {
 		return `${baseClass} ${classString}`.trim()
 	}
 	return classString

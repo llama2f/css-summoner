@@ -20,25 +20,19 @@ export function render(props) {
 	)
 
 	// Reactプロパティから必要な値を取得 (コンテナdiv用)
-	const {
-		classString = '',
-		baseClass = '', // baseClassを取得
-	} = reactProps
+	const { classString = '', baseClass = '' } = reactProps
 
 	// DOMプロパティから必要な値を取得 (img要素用)
 	const {
 		src = '/images/sample-girl.png',
 		alt = 'サンプル画像',
-		width = '200',
-		height = '150',
+		width = '250',
+		height = '250',
 		...restDomProps // img要素に適用する可能性のあるその他のDOM属性
 	} = domProps
 
-	// baseClassとclassStringを結合
-	const finalClassString = combineClasses({
-		baseClass,
-		additional: classString,
-	})
+	// 渡されたクラス文字列をそのまま使用
+	const finalClassString = classString
 
 	const reactElement = (
 		<div className={finalClassString} {...commonProps}>
@@ -84,11 +78,8 @@ export const variants = {
 			...restDomProps
 		} = domProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// 渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		// キャプション付き画像（サンプルテキストを使用）
 		const reactElement = (

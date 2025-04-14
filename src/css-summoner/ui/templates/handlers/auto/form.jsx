@@ -37,11 +37,8 @@ export function render(props) {
 	// DOMプロパティから必要な値を取得 (idは必須なのでデフォルトを設定)
 	const { id = 'sample-input', type = 'text', ...restDomProps } = domProps
 
-	// baseClassとclassStringを結合
-	const finalClassString = combineClasses({
-		baseClass,
-		additional: classString,
-	})
+	// ClassBuilderから渡されたクラス文字列をそのまま使用
+	const finalClassString = classString
 
 	const reactElement = (
 		<div className='form-field'>
@@ -91,11 +88,8 @@ export const variants = {
 		// DOMプロパティから必要な値を取得
 		const { id = 'sample-input', type = 'text', ...restDomProps } = domProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// ClassBuilderから渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div className='form-field'>
@@ -148,11 +142,8 @@ export const variants = {
 		// DOMプロパティから必要な値を取得
 		const { id = 'sample-select', ...restDomProps } = domProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// ClassBuilderから渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactOptions = options.map((opt) => (
 			<option key={opt.value} value={opt.value}>
@@ -199,11 +190,8 @@ export const variants = {
 			...restDomProps
 		} = domProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// ClassBuilderから渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div className='form-field-inline'>
@@ -246,11 +234,8 @@ export const variants = {
 			...restDomProps
 		} = domProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// ClassBuilderから渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div className='form-field-inline'>
@@ -298,11 +283,8 @@ export const variants = {
 		// DOMプロパティから必要な値を取得
 		const { id = 'sample-textarea', rows = '4', ...restDomProps } = domProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// ClassBuilderから渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div className='form-field'>
@@ -350,11 +332,8 @@ export const variants = {
 		// DOMプロパティから必要な値を取得
 		const { id = 'sample-search', type = 'search', ...restDomProps } = domProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// ClassBuilderから渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div className='form-field'>
@@ -449,11 +428,8 @@ export const variants = {
 		// Reactプロパティから必要な値を取得
 		const { classString = '', baseClass = 'form-feedback' } = reactProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// ClassBuilderから渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div {...domProps} {...commonProps}>

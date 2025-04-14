@@ -32,11 +32,8 @@ export function render(props) {
 		baseClass = 'badge-base',
 	} = reactProps
 
-	// baseClassとclassStringを結合
-	const finalClassString = combineClasses({
-		baseClass,
-		additional: classString,
-	})
+	// 渡されたクラス文字列をそのまま使用
+	const finalClassString = classString
 
 	const isIconOnly = selectedModifiers.includes('badge-icon-only')
 	const hasIconLeft = selectedModifiers.includes('badge-icon-left')

@@ -32,11 +32,8 @@ export function render(props) {
 		...rest
 	} = props
 
-	// baseClassとclassStringを結合
-	const finalClassString = combineClasses({
-		baseClass,
-		additional: classString,
-	})
+	// ClassBuilderから渡されたクラス文字列をそのまま使用
+	const finalClassString = classString
 
 	// モディファイアによる条件分岐
 	const isBottom = selectedModifiers.includes('tooltip-bottom')

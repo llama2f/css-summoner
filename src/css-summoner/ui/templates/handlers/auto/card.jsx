@@ -38,11 +38,8 @@ export function render(props) {
 		baseClass = 'card-base',
 	} = reactProps
 
-	// baseClassとclassStringを結合
-	const finalClassString = combineClasses({
-		baseClass,
-		additional: classString,
-	})
+	// 渡されたクラス文字列をそのまま使用
+	const finalClassString = classString
 
 	// カードの基本構造
 	const reactElement = (
@@ -96,11 +93,8 @@ export const variants = {
 			baseClass = 'card-base',
 		} = reactProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// 渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div className={finalClassString} {...commonProps}>
@@ -146,11 +140,8 @@ export const variants = {
 			baseClass = 'card-base',
 		} = reactProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// 渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div className={finalClassString} {...commonProps}>
@@ -192,11 +183,8 @@ export const variants = {
 			baseClass = 'card-base',
 		} = reactProps
 
-		// baseClassとclassStringを結合
-		const finalClassString = combineClasses({
-			baseClass,
-			additional: classString,
-		})
+		// 渡されたクラス文字列をそのまま使用
+		const finalClassString = classString
 
 		const reactElement = (
 			<div className={finalClassString} {...commonProps}>

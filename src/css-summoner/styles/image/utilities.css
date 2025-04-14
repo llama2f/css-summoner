@@ -1,4 +1,34 @@
 @layer utilities {
+	.img-overlay {
+		@apply relative;
+	}
+	.img-overlay::before {
+		@apply absolute inset-0 block content-[''];
+		background-color: color-mix(
+			in srgb,
+			var(--component-color),
+			transparent 50%
+		);
+	}
+
+	.img-overlay-hover {
+		@apply relative;
+	}
+	.img-overlay-hover::before {
+		@apply absolute inset-0 block content-[''];
+		background-color: color-mix(
+			in srgb,
+			var(--component-color),
+			transparent 50%
+		);
+		opacity: 1;
+		@apply transition-opacity duration-300;
+	}
+
+	.img-overlay-hover:hover::before {
+		opacity: 0;
+	}
+
 	/* ホバー時に画像をズームするエフェクト。インタラクティブな要素として注目を集めます。
 	 */
 	.img-zoom-hover {
