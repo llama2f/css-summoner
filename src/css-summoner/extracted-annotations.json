@@ -50,6 +50,7 @@
     "tooltip": "tooltip-base",
     "text": "text-base",
     "infobox": "infobox-base",
+    "img": "img-base",
     "heading": "heading-base",
     "form": "form-base",
     "card": "card-base",
@@ -137,39 +138,15 @@
     ],
     "img": [
       {
-        "value": "img-aspect-portrait",
-        "label": "Aspect Portrait"
-      },
-      {
-        "value": "img-aspect-square",
-        "label": "Aspect Square"
-      },
-      {
-        "value": "img-aspect-video",
-        "label": "Aspect Video"
-      },
-      {
         "value": "img-border",
         "label": "Border"
-      },
-      {
-        "value": "img-border-accent",
-        "label": "Border Accent"
       },
       {
         "value": "img-border-double",
         "label": "Border Double"
       },
       {
-        "value": "img-border-primary",
-        "label": "Border Primary"
-      },
-      {
-        "value": "img-border-secondary",
-        "label": "Border Secondary"
-      },
-      {
-        "value": "img-container",
+        "value": "img-caption",
         "label": "Caption"
       },
       {
@@ -179,70 +156,6 @@
       {
         "value": "img-caption-overlay",
         "label": "Caption Overlay"
-      },
-      {
-        "value": "img-circle",
-        "label": "Circle"
-      },
-      {
-        "value": "img-container",
-        "label": "Container"
-      },
-      {
-        "value": "img-float-left",
-        "label": "Float Left"
-      },
-      {
-        "value": "img-float-right",
-        "label": "Float Right"
-      },
-      {
-        "value": "img-grid",
-        "label": "Grid"
-      },
-      {
-        "value": "img-rounded",
-        "label": "Rounded"
-      },
-      {
-        "value": "img-rounded-lg",
-        "label": "Rounded Lg"
-      },
-      {
-        "value": "img-rounded-sm",
-        "label": "Rounded Sm"
-      },
-      {
-        "value": "img-shadow",
-        "label": "Shadow"
-      },
-      {
-        "value": "img-shadow-lg",
-        "label": "Shadow Lg"
-      },
-      {
-        "value": "img-shadow-sm",
-        "label": "Shadow Sm"
-      },
-      {
-        "value": "img-w-1",
-        "label": "W 1/2"
-      },
-      {
-        "value": "img-w-1",
-        "label": "W 1/3"
-      },
-      {
-        "value": "img-w-1",
-        "label": "W 1/4"
-      },
-      {
-        "value": "img-w-3",
-        "label": "W 3/4"
-      },
-      {
-        "value": "img-w-full",
-        "label": "W Full"
       }
     ],
     "heading": [
@@ -571,82 +484,22 @@
       "description": "すべての情報ボックスの基本スタイル。通知やメッセージの表示に使用します。",
       "category": "notification"
     },
-    "img-container": {
-      "component": "img",
-      "variant": "caption",
-      "description": "画像の下部にキャプションを表示するスタイル。figcaption要素と組み合わせて使用します。",
-      "category": "media"
-    },
-    "img-rounded-sm": {
-      "component": "img",
-      "variant": "rounded-sm",
-      "description": "小さい角丸を適用した画像スタイル。控えめな角丸が必要な場合に使用します。",
-      "category": "media"
-    },
-    "img-rounded": {
-      "component": "img",
-      "variant": "rounded",
-      "description": "標準的な角丸を適用した画像スタイル。一般的に使用する角丸スタイルです。",
-      "category": "media"
-    },
-    "img-rounded-lg": {
-      "component": "img",
-      "variant": "rounded-lg",
-      "description": "大きい角丸を適用した画像スタイル。より強調された角丸が必要な場合に使用します。",
-      "category": "media"
-    },
-    "img-circle": {
-      "component": "img",
-      "variant": "circle",
-      "description": "円形に切り抜いた画像スタイル。プロフィール画像やアイコンに適しています。",
-      "category": "media"
-    },
-    "img-shadow-sm": {
-      "component": "img",
-      "variant": "shadow-sm",
-      "description": "小さな影を適用した画像スタイル。控えめな立体感を与えます。",
-      "category": "media"
-    },
-    "img-shadow": {
-      "component": "img",
-      "variant": "shadow",
-      "description": "標準的な影を適用した画像スタイル。一般的に使用する影の強さです。",
-      "category": "media"
-    },
-    "img-shadow-lg": {
-      "component": "img",
-      "variant": "shadow-lg",
-      "description": "大きな影を適用した画像スタイル。強い立体感を与え、目立たせます。",
-      "category": "media"
-    },
     "img-border": {
       "component": "img",
       "variant": "border",
-      "description": "標準的なボーダーを適用した画像スタイル。画像に枠線を追加します。",
-      "category": "media"
-    },
-    "img-border-primary": {
-      "component": "img",
-      "variant": "border-primary",
-      "description": "プライマリカラーのボーダーを適用した画像スタイル。主要なコンテンツの画像に使用します。",
-      "category": "media"
-    },
-    "img-border-secondary": {
-      "component": "img",
-      "variant": "border-secondary",
-      "description": "セカンダリカラーのボーダーを適用した画像スタイル。補助的なコンテンツの画像に使用します。",
-      "category": "media"
-    },
-    "img-border-accent": {
-      "component": "img",
-      "variant": "border-accent",
-      "description": "アクセントカラーのボーダーを適用した画像スタイル。注目させたいコンテンツの画像に使用します。",
+      "description": "ボーダーを適用した画像スタイル。画像に枠線を追加します。",
       "category": "media"
     },
     "img-border-double": {
       "component": "img",
       "variant": "border-double",
       "description": "二重ボーダーを適用した画像スタイル。特別感を出したい画像に使用します。",
+      "category": "media"
+    },
+    "img-caption": {
+      "component": "img",
+      "variant": "caption",
+      "description": "画像の下部にキャプションを表示するスタイル。figcaption要素と組み合わせて使用します。",
       "category": "media"
     },
     "img-caption-overlay": {
@@ -661,58 +514,10 @@
       "description": "ホバー時にのみキャプションを表示するスタイル。ユーザーが画像にマウスを乗せた時に追加情報を表示します。",
       "category": "media"
     },
-    "img-w-full": {
+    "img-base": {
       "component": "img",
-      "variant": "w-full",
-      "description": "画像を親要素の幅いっぱいに表示するスタイル。レスポンシブなレイアウトに適しています。",
-      "category": "media"
-    },
-    "img-w-3": {
-      "component": "img",
-      "variant": "w-3/4",
-      "description": "画像を親要素の幅の3/4サイズで中央揃えにするスタイル。",
-      "category": "media"
-    },
-    "img-w-1": {
-      "component": "img",
-      "variant": "w-1/4",
-      "description": "画像を親要素の幅の1/4サイズで中央揃えにするスタイル。",
-      "category": "media"
-    },
-    "img-aspect-square": {
-      "component": "img",
-      "variant": "aspect-square",
-      "description": "画像を正方形（1:1）のアスペクト比で表示するスタイル。プロフィール画像やグリッドレイアウトに適しています。",
-      "category": "media"
-    },
-    "img-aspect-video": {
-      "component": "img",
-      "variant": "aspect-video",
-      "description": "画像をビデオ（16:9）のアスペクト比で表示するスタイル。横長のコンテンツやメディア表示に適しています。",
-      "category": "media"
-    },
-    "img-aspect-portrait": {
-      "component": "img",
-      "variant": "aspect-portrait",
-      "description": "画像をポートレート（3:4）のアスペクト比で表示するスタイル。縦長のコンテンツに適しています。",
-      "category": "media"
-    },
-    "img-grid": {
-      "component": "img",
-      "variant": "grid",
-      "description": "複数の画像をグリッドレイアウトで表示するコンテナ。ギャラリーやポートフォリオの表示に適しています。",
-      "category": "media"
-    },
-    "img-float-left": {
-      "component": "img",
-      "variant": "float-left",
-      "description": "画像を左側に配置し、テキストを右側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。",
-      "category": "media"
-    },
-    "img-float-right": {
-      "component": "img",
-      "variant": "float-right",
-      "description": "画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。",
+      "variant": "base",
+      "description": "画像コンテナの基本スタイル。すべての画像要素の親要素に適用します。",
       "category": "media"
     },
     "heading-formal-primary": {
@@ -1142,139 +947,34 @@
     ],
     "img": [
       {
-        "variant": "container",
-        "className": "img-container",
-        "example": "<figure class=\"img-container\">\n<img src=\"/images/sample-girl.png\" alt=\"説明\" />\n</figure>"
-      },
-      {
-        "variant": "rounded-sm",
-        "className": "img-rounded-sm",
-        "example": "<figure class=\"img-container img-rounded-sm\">\n<img src=\"/images/sample-girl.png\"\" alt=\"小さい角丸画像\" />\n</figure>"
-      },
-      {
-        "variant": "rounded",
-        "className": "img-rounded",
-        "example": "<figure class=\"img-container img-rounded\">\n<img src=\"/images/sample-girl.png\"\" alt=\"角丸画像\" />\n</figure>"
-      },
-      {
-        "variant": "rounded-lg",
-        "className": "img-rounded-lg",
-        "example": "<figure class=\"img-container img-rounded-lg\">\n<img src=\"/images/sample-girl.png\"\" alt=\"大きい角丸画像\" />\n</figure>"
-      },
-      {
-        "variant": "circle",
-        "className": "img-circle",
-        "example": "<figure class=\"img-container img-circle\">\n<img src=\"profile.jpg\" alt=\"プロフィール画像\" />\n</figure>"
-      },
-      {
-        "variant": "shadow-sm",
-        "className": "img-shadow-sm",
-        "example": "<figure class=\"img-container img-shadow-sm\">\n<img src=\"/images/sample-girl.png\"\" alt=\"小さい影付き画像\" />\n</figure>"
-      },
-      {
-        "variant": "shadow",
-        "className": "img-shadow",
-        "example": "<figure class=\"img-container img-shadow\">\n<img src=\"/images/sample-girl.png\"\" alt=\"影付き画像\" />\n</figure>"
-      },
-      {
-        "variant": "shadow-lg",
-        "className": "img-shadow-lg",
-        "example": "<figure class=\"img-container img-shadow-lg\">\n<img src=\"/images/sample-girl.png\"\" alt=\"大きい影付き画像\" />\n</figure>"
-      },
-      {
         "variant": "border",
         "className": "img-border",
-        "example": "<figure class=\"img-container img-border\">\n<img src=\"/images/sample-girl.png\"\" alt=\"ボーダー付き画像\" />\n</figure>"
-      },
-      {
-        "variant": "border-primary",
-        "className": "img-border-primary",
-        "example": "<figure class=\"img-container img-border-primary\">\n<img src=\"/images/sample-girl.png\"\" alt=\"プライマリボーダー画像\" />\n</figure>"
-      },
-      {
-        "variant": "border-secondary",
-        "className": "img-border-secondary",
-        "example": "<figure class=\"img-container img-border-secondary\">\n<img src=\"/images/sample-girl.png\"\" alt=\"セカンダリボーダー画像\" />\n</figure>"
-      },
-      {
-        "variant": "border-accent",
-        "className": "img-border-accent",
-        "example": "<figure class=\"img-container img-border-accent\">\n<img src=\"/images/sample-girl.png\"\" alt=\"アクセントボーダー画像\" />\n</figure>"
+        "example": "<figure class=\"img-base img-border theme-neutral\">\n<img src=\"/images/sample-girl.png\" width=250 height=250 alt=\"ボーダー付き画像\" />\n</figure>"
       },
       {
         "variant": "border-double",
         "className": "img-border-double",
-        "example": "<figure class=\"img-container img-border-double\">\n<img src=\"/images/sample-girl.png\"\" alt=\"二重ボーダー画像\" />\n</figure>"
+        "example": "<figure class=\"img-base img-border-double theme-primary\">\n<img src=\"/images/sample-girl.png\" width=250 height=250 alt=\"二重ボーダー画像\" />\n</figure>"
       },
       {
         "variant": "caption",
-        "className": "img-container",
-        "example": "<figure class=\"img-container\">\n<img src=\"/images/sample-girl.png\"\" alt=\"画像説明\" />\n<figcaption>画像のキャプション</figcaption>\n</figure>"
+        "className": "img-caption",
+        "example": "<figure class=\"img-base img-caption theme-neutral\"><img src=\"/images/sample-girl.png\" width=250 height=250 alt=\"画像説明\" /><figcaption>画像のキャプション</figcaption></figure>"
       },
       {
         "variant": "caption-overlay",
         "className": "img-caption-overlay",
-        "example": "<figure class=\"img-container img-caption-overlay\">\n<img src=\"/images/sample-girl.png\"\" alt=\"画像説明\" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>"
+        "example": "<figure class=\"img-base img-caption-overlay theme-neutral\">\n<img src=\"/images/sample-girl.png\" width=250 height=250 alt=\"画像説明\" />\n<figcaption>オーバーレイキャプション</figcaption>\n</figure>"
       },
       {
         "variant": "caption-hover",
         "className": "img-caption-hover",
-        "example": "<figure class=\"img-container img-caption-hover\">\n<img src=\"/images/sample-girl.png\"\" alt=\"画像説明\" />\n<figcaption>ホバー時に表示されるキャプション</figcaption>\n</figure>"
+        "example": "<figure class=\"img-base img-caption-hover theme-neutral\">\n<img src=\"/images/sample-girl.png\" width=250 height=250 alt=\"画像説明\" />\n<figcaption>ホバー時に表示されるキャプション</figcaption>\n</figure>"
       },
       {
-        "variant": "w-full",
-        "className": "img-w-full",
-        "example": "<figure class=\"img-container img-w-full\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅いっぱいの画像\" />\n</figure>"
-      },
-      {
-        "variant": "w-3/4",
-        "className": "img-w-3",
-        "example": "<figure class=\"img-container img-w-3/4\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅3/4の画像\" />\n</figure>"
-      },
-      {
-        "variant": "w-1/2",
-        "className": "img-w-1",
-        "example": "<figure class=\"img-container img-w-1/2\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅1/2の画像\" />\n</figure>"
-      },
-      {
-        "variant": "w-1/3",
-        "className": "img-w-1",
-        "example": "<figure class=\"img-container img-w-1/3\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅1/3の画像\" />\n</figure>"
-      },
-      {
-        "variant": "w-1/4",
-        "className": "img-w-1",
-        "example": "<figure class=\"img-container img-w-1/4\">\n<img src=\"/images/sample-girl.png\"\" alt=\"幅1/4の画像\" />\n</figure>"
-      },
-      {
-        "variant": "aspect-square",
-        "className": "img-aspect-square",
-        "example": "<figure class=\"img-container img-aspect-square\">\n<img src=\"/images/sample-girl.png\"\" alt=\"正方形画像\" />\n</figure>"
-      },
-      {
-        "variant": "aspect-video",
-        "className": "img-aspect-video",
-        "example": "<figure class=\"img-container img-aspect-video\">\n<img src=\"/images/sample-girl.png\"\" alt=\"ビデオ比率画像\" />\n</figure>"
-      },
-      {
-        "variant": "aspect-portrait",
-        "className": "img-aspect-portrait",
-        "example": "<figure class=\"img-container img-aspect-portrait\">\n<img src=\"/images/sample-girl.png\"\" alt=\"ポートレート比率画像\" />\n</figure>"
-      },
-      {
-        "variant": "grid",
-        "className": "img-grid",
-        "example": "<div class=\"img-grid\">\n<figure class=\"img-container\"><img src=\"image1.jpg\" alt=\"画像1\" /></figure>\n<figure class=\"img-container\"><img src=\"image2.jpg\" alt=\"画像2\" /></figure>\n<figure class=\"img-container\"><img src=\"image3.jpg\" alt=\"画像3\" /></figure>\n</div>"
-      },
-      {
-        "variant": "float-left",
-        "className": "img-float-left",
-        "example": "<figure class=\"img-container img-float-left\">\n<img src=\"/images/sample-girl.png\"\" alt=\"左配置画像\" />\n</figure>\n<p>この文章は画像の右側に回り込みます...</p>"
-      },
-      {
-        "variant": "float-right",
-        "className": "img-float-right",
-        "example": "<figure class=\"img-container img-float-right\">\n<img src=\"/images/sample-girl.png\"\" alt=\"右配置画像\" />\n</figure>\n<p>この文章は画像の左側に回り込みます...</p>"
+        "variant": "base",
+        "className": "img-base",
+        "example": "<figure class=\"img-base theme-neutral\">\n<img src=\"/images/sample-girl.png\" width=250 height=250 alt=\"説明\" />\n</figure>"
       }
     ],
     "heading": [
@@ -1687,123 +1387,29 @@
         }
       ]
     },
-    "img-container": {
-      "ruleText": ".img-container figcaption {\n\t\t@apply w-full text-center mt-2 text-neutral-dark;\n\t\tfont-size: var(--img-caption-font-size);\n\t}",
-      "selector": ".img-container figcaption",
-      "sourceFile": "image/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".img-container img",
-          "ruleText": ".img-container img {\n\t\t@apply w-full h-auto block;\n\t}",
-          "sourceFile": "image/variants.css"
-        },
-        {
-          "selector": ".img-container figcaption",
-          "ruleText": ".img-container figcaption {\n\t\t@apply w-full text-center mt-2 text-neutral-dark;\n\t\tfont-size: var(--img-caption-font-size);\n\t}",
-          "sourceFile": "image/variants.css"
-        },
-        {
-          "selector": ".img-grid .img-container",
-          "ruleText": ".img-grid .img-container {\n\t\t@apply my-0;\n\t}",
-          "sourceFile": "image/variants.css"
-        }
-      ]
-    },
-    "img-rounded-sm": {
-      "ruleText": ".img-rounded-sm {\n\t\tborder-radius: var(--img-border-radius-sm);\n\t}",
-      "selector": ".img-rounded-sm",
-      "sourceFile": "image/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".img-rounded-sm img",
-          "ruleText": ".img-rounded-sm img {\n\t\tborder-radius: var(--img-border-radius-sm);\n\t}",
-          "sourceFile": "image/variants.css"
-        }
-      ]
-    },
-    "img-rounded": {
-      "ruleText": ".img-rounded {\n\t\tborder-radius: var(--img-border-radius-md);\n\t}",
-      "selector": ".img-rounded",
-      "sourceFile": "image/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".img-rounded img",
-          "ruleText": ".img-rounded img {\n\t\tborder-radius: var(--img-border-radius-md);\n\t}",
-          "sourceFile": "image/variants.css"
-        }
-      ]
-    },
-    "img-rounded-lg": {
-      "ruleText": ".img-rounded-lg {\n\t\tborder-radius: var(--img-border-radius-lg);\n\t}",
-      "selector": ".img-rounded-lg",
-      "sourceFile": "image/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".img-rounded-lg img",
-          "ruleText": ".img-rounded-lg img {\n\t\tborder-radius: var(--img-border-radius-lg);\n\t}",
-          "sourceFile": "image/variants.css"
-        }
-      ]
-    },
-    "img-circle": {
-      "ruleText": ".img-circle {\n\t\t@apply overflow-hidden;\n\t\tborder-radius: 50%;\n\t}",
-      "selector": ".img-circle",
-      "sourceFile": "image/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".img-circle img",
-          "ruleText": ".img-circle img {\n\t\tborder-radius: 50%;\n\t}",
-          "sourceFile": "image/variants.css"
-        }
-      ]
-    },
-    "img-shadow-sm": {
-      "ruleText": ".img-shadow-sm {\n\t\tbox-shadow: var(--img-shadow-sm);\n\t}",
-      "selector": ".img-shadow-sm",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
-    "img-shadow": {
-      "ruleText": ".img-shadow {\n\t\tbox-shadow: var(--img-shadow-md);\n\t}",
-      "selector": ".img-shadow",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
-    "img-shadow-lg": {
-      "ruleText": ".img-shadow-lg {\n\t\tbox-shadow: var(--img-shadow-lg);\n\t}",
-      "selector": ".img-shadow-lg",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
     "img-border": {
-      "ruleText": ".img-border {\n\t\tborder: var(--img-border-width) solid var(--img-border-color);\n\t}",
+      "ruleText": ".img-border {\n\t\tborder: var(--img-border-width) solid\n\t\t\tvar(--component-border, var(--img-border-color));\n\t}",
       "selector": ".img-border",
       "sourceFile": "image/variants.css",
       "relatedRules": []
     },
-    "img-border-primary": {
-      "ruleText": ".img-border-primary {\n\t\tborder: var(--img-border-width) solid var(--primary-dark, #1a568e);\n\t}",
-      "selector": ".img-border-primary",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
-    "img-border-secondary": {
-      "ruleText": ".img-border-secondary {\n\t\tborder: var(--img-border-width) solid var(--secondary, #95c75d);\n\t}",
-      "selector": ".img-border-secondary",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
-    "img-border-accent": {
-      "ruleText": ".img-border-accent {\n\t\tborder: var(--img-border-width) solid var(--accent, #ef6428);\n\t}",
-      "selector": ".img-border-accent",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
     "img-border-double": {
-      "ruleText": ".img-border-double {\n\t\tbox-shadow:\n\t\t\t0 0 0 4px var(--neutral-light, #fafafa),\n\t\t\t0 0 0 5px var(--img-border-color);\n\t}",
+      "ruleText": ".img-border-double {\n\t\tbox-shadow:\n\t\t\t0 0 0 4px var(--neutral, #fafafa),\n\t\t\t0 0 0 5px var(--component-border, var(--img-border-color));\n\t}",
       "selector": ".img-border-double",
       "sourceFile": "image/variants.css",
       "relatedRules": []
+    },
+    "img-caption": {
+      "ruleText": ".img-caption figcaption {\n\t\t@apply w-full text-center mt-2;\n\t\tcolor: var(--component-text, #333);\n\t\tfont-size: var(--img-caption-font-size);\n\t}",
+      "selector": ".img-caption figcaption",
+      "sourceFile": "image/variants.css",
+      "relatedRules": [
+        {
+          "selector": ".img-caption figcaption",
+          "ruleText": ".img-caption figcaption {\n\t\t@apply w-full text-center mt-2;\n\t\tcolor: var(--component-text, #333);\n\t\tfont-size: var(--img-caption-font-size);\n\t}",
+          "sourceFile": "image/variants.css"
+        }
+      ]
     },
     "img-caption-overlay": {
       "ruleText": ".img-caption-overlay {\n\t\tposition: relative;\n\t}",
@@ -1834,83 +1440,17 @@
         }
       ]
     },
-    "img-w-full": {
-      "ruleText": ".img-w-full {\n\t\t@apply w-full;\n\t}",
-      "selector": ".img-w-full",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
-    "img-w-3": {
-      "ruleText": ".img-w-3\\/4 {\n\t\t@apply w-3/4 mx-auto;\n\t}",
-      "selector": ".img-w-3\\/4",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
-    "img-w-1": {
-      "ruleText": ".img-w-1\\/4 {\n\t\t@apply w-1/4 mx-auto;\n\t}",
-      "selector": ".img-w-1\\/4",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
-    "img-aspect-square": {
-      "ruleText": ".img-aspect-square {\n\t\t@apply aspect-square;\n\t}",
-      "selector": ".img-aspect-square",
-      "sourceFile": "image/variants.css",
+    "img-base": {
+      "ruleText": ".img-base {\n\t\t@apply relative overflow-hidden;\n\t\tmax-width: fit-content;\n\t}",
+      "selector": ".img-base",
+      "sourceFile": "image/base.css",
       "relatedRules": [
         {
-          "selector": ".img-aspect-square img",
-          "ruleText": ".img-aspect-square img {\n\t\t@apply object-cover h-full;\n\t}",
-          "sourceFile": "image/variants.css"
+          "selector": ".img-base img",
+          "ruleText": ".img-base img {\n\t\t@apply h-auto block;\n\t}",
+          "sourceFile": "image/base.css"
         }
       ]
-    },
-    "img-aspect-video": {
-      "ruleText": ".img-aspect-video {\n\t\t@apply aspect-video;\n\t}",
-      "selector": ".img-aspect-video",
-      "sourceFile": "image/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".img-aspect-video img",
-          "ruleText": ".img-aspect-video img {\n\t\t@apply object-cover h-full;\n\t}",
-          "sourceFile": "image/variants.css"
-        }
-      ]
-    },
-    "img-aspect-portrait": {
-      "ruleText": ".img-aspect-portrait {\n\t\t@apply aspect-[3/4];\n\t}",
-      "selector": ".img-aspect-portrait",
-      "sourceFile": "image/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".img-aspect-portrait img",
-          "ruleText": ".img-aspect-portrait img {\n\t\t@apply object-cover h-full;\n\t}",
-          "sourceFile": "image/variants.css"
-        }
-      ]
-    },
-    "img-grid": {
-      "ruleText": ".img-grid {\n\t\t@apply grid gap-4 my-6;\n\t\tgrid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n\t}",
-      "selector": ".img-grid",
-      "sourceFile": "image/variants.css",
-      "relatedRules": [
-        {
-          "selector": ".img-grid .img-container",
-          "ruleText": ".img-grid .img-container {\n\t\t@apply my-0;\n\t}",
-          "sourceFile": "image/variants.css"
-        }
-      ]
-    },
-    "img-float-left": {
-      "ruleText": ".img-float-left {\n\t\t@apply float-left mr-6 mb-2;\n\t\tmax-width: 50%;\n\t}",
-      "selector": ".img-float-left",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
-    },
-    "img-float-right": {
-      "ruleText": ".img-float-right {\n\t\t@apply float-right ml-6 mb-2;\n\t\tmax-width: 50%;\n\t}",
-      "selector": ".img-float-right",
-      "sourceFile": "image/variants.css",
-      "relatedRules": []
     },
     "heading-formal-primary": {
       "ruleText": ".heading-formal-primary {\n\t\t@apply heading-base rounded-r;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tpadding-left: calc(var(--heading-padding-x) + var(--heading-border-width));\n\t\tborder-left: var(--heading-border-width) solid var(--component-border, #333);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t}",
@@ -2503,7 +2043,7 @@
   },
   "meta": {
     "totalFiles": 29,
-    "totalClasses": 100,
+    "totalClasses": 79,
     "errors": [
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
@@ -2576,30 +2116,12 @@
       "infobox-base"
     ],
     "img": [
-      "img-container",
-      "img-rounded-sm",
-      "img-rounded",
-      "img-rounded-lg",
-      "img-circle",
-      "img-shadow-sm",
-      "img-shadow",
-      "img-shadow-lg",
       "img-border",
-      "img-border-primary",
-      "img-border-secondary",
-      "img-border-accent",
       "img-border-double",
+      "img-caption",
       "img-caption-overlay",
       "img-caption-hover",
-      "img-w-full",
-      "img-w-3",
-      "img-w-1",
-      "img-aspect-square",
-      "img-aspect-video",
-      "img-aspect-portrait",
-      "img-grid",
-      "img-float-left",
-      "img-float-right"
+      "img-base"
     ],
     "heading": [
       "heading-formal-primary",
@@ -2842,97 +2364,9 @@
     "img": [
       {
         "component": "img",
-        "variant": "caption",
-        "className": "img-container",
-        "description": "画像の下部にキャプションを表示するスタイル。figcaption要素と組み合わせて使用します。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "rounded-sm",
-        "className": "img-rounded-sm",
-        "description": "小さい角丸を適用した画像スタイル。控えめな角丸が必要な場合に使用します。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "rounded",
-        "className": "img-rounded",
-        "description": "標準的な角丸を適用した画像スタイル。一般的に使用する角丸スタイルです。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "rounded-lg",
-        "className": "img-rounded-lg",
-        "description": "大きい角丸を適用した画像スタイル。より強調された角丸が必要な場合に使用します。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "circle",
-        "className": "img-circle",
-        "description": "円形に切り抜いた画像スタイル。プロフィール画像やアイコンに適しています。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "shadow-sm",
-        "className": "img-shadow-sm",
-        "description": "小さな影を適用した画像スタイル。控えめな立体感を与えます。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "shadow",
-        "className": "img-shadow",
-        "description": "標準的な影を適用した画像スタイル。一般的に使用する影の強さです。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "shadow-lg",
-        "className": "img-shadow-lg",
-        "description": "大きな影を適用した画像スタイル。強い立体感を与え、目立たせます。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
         "variant": "border",
         "className": "img-border",
-        "description": "標準的なボーダーを適用した画像スタイル。画像に枠線を追加します。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "border-primary",
-        "className": "img-border-primary",
-        "description": "プライマリカラーのボーダーを適用した画像スタイル。主要なコンテンツの画像に使用します。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "border-secondary",
-        "className": "img-border-secondary",
-        "description": "セカンダリカラーのボーダーを適用した画像スタイル。補助的なコンテンツの画像に使用します。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "border-accent",
-        "className": "img-border-accent",
-        "description": "アクセントカラーのボーダーを適用した画像スタイル。注目させたいコンテンツの画像に使用します。",
+        "description": "ボーダーを適用した画像スタイル。画像に枠線を追加します。",
         "category": "media",
         "sourceFile": "image/variants.css"
       },
@@ -2941,6 +2375,14 @@
         "variant": "border-double",
         "className": "img-border-double",
         "description": "二重ボーダーを適用した画像スタイル。特別感を出したい画像に使用します。",
+        "category": "media",
+        "sourceFile": "image/variants.css"
+      },
+      {
+        "component": "img",
+        "variant": "caption",
+        "className": "img-caption",
+        "description": "画像の下部にキャプションを表示するスタイル。figcaption要素と組み合わせて使用します。",
         "category": "media",
         "sourceFile": "image/variants.css"
       },
@@ -2962,75 +2404,11 @@
       },
       {
         "component": "img",
-        "variant": "w-full",
-        "className": "img-w-full",
-        "description": "画像を親要素の幅いっぱいに表示するスタイル。レスポンシブなレイアウトに適しています。",
+        "variant": "base",
+        "className": "img-base",
+        "description": "画像コンテナの基本スタイル。すべての画像要素の親要素に適用します。",
         "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "w-3/4",
-        "className": "img-w-3",
-        "description": "画像を親要素の幅の3/4サイズで中央揃えにするスタイル。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "w-1/4",
-        "className": "img-w-1",
-        "description": "画像を親要素の幅の1/4サイズで中央揃えにするスタイル。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "aspect-square",
-        "className": "img-aspect-square",
-        "description": "画像を正方形（1:1）のアスペクト比で表示するスタイル。プロフィール画像やグリッドレイアウトに適しています。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "aspect-video",
-        "className": "img-aspect-video",
-        "description": "画像をビデオ（16:9）のアスペクト比で表示するスタイル。横長のコンテンツやメディア表示に適しています。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "aspect-portrait",
-        "className": "img-aspect-portrait",
-        "description": "画像をポートレート（3:4）のアスペクト比で表示するスタイル。縦長のコンテンツに適しています。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "grid",
-        "className": "img-grid",
-        "description": "複数の画像をグリッドレイアウトで表示するコンテナ。ギャラリーやポートフォリオの表示に適しています。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "float-left",
-        "className": "img-float-left",
-        "description": "画像を左側に配置し、テキストを右側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
-      },
-      {
-        "component": "img",
-        "variant": "float-right",
-        "className": "img-float-right",
-        "description": "画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。",
-        "category": "media",
-        "sourceFile": "image/variants.css"
+        "sourceFile": "image/base.css"
       }
     ],
     "heading": [

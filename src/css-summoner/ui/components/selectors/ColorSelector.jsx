@@ -74,7 +74,7 @@ const ColorSelector = ({ colors, selectedColor, onSelect, onTooltip }) => {
 							<div className='w-4 h-4 rounded-full border border-dashed border-neutral-400'></div>
 						)}
 						<span
-							className={`btn-base btn-ghost btn-xs label-color  dark:text-neutral-light ${selectedColor === color.value ? 'text-white font-bold' : ''}`}
+							className={`btn-base btn-ghost theme-inverse btn-xs label-color ${selectedColor === color.value ? 'text-white font-bold' : ''}`}
 						>
 							{color.label}
 						</span>

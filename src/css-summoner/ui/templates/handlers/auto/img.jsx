@@ -22,12 +22,12 @@ export function render(props) {
 	// Reactプロパティから必要な値を取得 (コンテナdiv用)
 	const {
 		classString = '',
-		baseClass = 'img-base', // baseClassを取得
+		baseClass = '', // baseClassを取得
 	} = reactProps
 
 	// DOMプロパティから必要な値を取得 (img要素用)
 	const {
-		src = '/placeholder-image.jpg',
+		src = '/images/sample-girl.png',
 		alt = 'サンプル画像',
 		width = '200',
 		height = '150',
@@ -60,29 +60,29 @@ export function render(props) {
 
 // バリアント特化処理
 export const variants = {
-	// 画像ギャラリー
-	gallery: (props) => {
+	// キャプション付き画像（通常・オーバーレイ・ホバー共通ハンドラ）
+	'img-caption': (props) => {
 		// プロパティ分離
 		const { reactProps, domProps, commonProps } = separateProps(
 			props,
-			['classString', 'images', 'baseClass', 'selectedModifiers', 'children'], // Reactプロパティ (コンテナdiv用)
-			[] // DOM要素プロパティ (ギャラリーコンテナ用)
+			['classString', 'baseClass', 'selectedModifiers', 'children'], // Reactプロパティ
+			['src', 'alt', 'width', 'height'] // DOM要素プロパティ
 		)
 
 		// Reactプロパティから必要な値を取得
 		const {
 			classString = '',
-			images = [
-				{ src: '/placeholder-image.jpg', alt: '画像1' },
-				{ src: '/placeholder-image.jpg', alt: '画像2' },
-				{ src: '/placeholder-image.jpg', alt: '画像3' },
-				{ src: '/placeholder-image.jpg', alt: '画像4' },
-			],
-			baseClass = 'img-gallery', // baseClassを取得
+			baseClass = '', // baseClassを取得
 		} = reactProps
 
 		// DOMプロパティから必要な値を取得
-		const { ...restDomProps } = domProps
+		const {
+			src = '/images/sample-girl.png',
+			alt = 'サンプル画像',
+			width = '250',
+			height = '250',
+			...restDomProps
+		} = domProps
 
 		// baseClassとclassStringを結合
 		const finalClassString = combineClasses({
@@ -90,27 +90,38 @@ export const variants = {
 			additional: classString,
 		})
 
-		const reactImages = images.map((img, index) => (
-			<img key={index} src={img.src} alt={img.alt} className='img-item' />
-		))
-
-		// グリッドレイアウトで表示
+		// キャプション付き画像（サンプルテキストを使用）
 		const reactElement = (
-			<div className={finalClassString} {...restDomProps} {...commonProps}>
-				{' '}
-				{/* コンテナdivに展開 */}
-				<div className='img-grid'>{reactImages}</div>
-			</div>
+			<figure className={finalClassString} {...commonProps}>
+				<img
+					src={src}
+					alt={alt}
+					width={width}
+					height={height}
+					{...restDomProps}
+				/>
+				<figcaption>{samples.caption}</figcaption>
+			</figure>
 		)
 
 		return createHandlerResult(reactElement)
+	},
+
+	// キャプションオーバーレイ
+	'img-caption-overlay': (props) => {
+		return variants['img-caption'](props)
+	},
+
+	// ホバーキャプション
+	'img-caption-hover': (props) => {
+		return variants['img-caption'](props)
 	},
 }
 
 // プレビュー用サンプル
 export const samples = {
 	default: '基本画像',
-	gallery: '画像ギャラリー',
+	caption: '画像キャプション',
 }
 
 // デフォルトエクスポート

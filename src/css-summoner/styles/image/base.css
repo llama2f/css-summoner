@@ -1,18 +1,14 @@
 @layer base {
 	:root {
-		
 		--img-border-width: 1px;
-		--img-border-color: var(--neutral, rgb(228, 228, 228));
-		--img-border-radius-sm: 0.25rem; 
-		--img-border-radius-md: 0.375rem; 
-		--img-border-radius-lg: 0.5rem; 
+		--img-border-radius-sm: 0.25rem;
+		--img-border-radius-md: 0.375rem;
+		--img-border-radius-lg: 0.5rem;
 		--img-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 		--img-shadow-md:
 			0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 		--img-shadow-lg:
 			0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-		--img-caption-bg: rgba(0, 0, 0, 0.7);
-		--img-caption-color: white;
 		--img-caption-padding: 0.5rem;
 		--img-caption-font-size: 0.875rem;
 	}
@@ -30,7 +26,6 @@
 	@media print {
 		:root {
 			--img-border-width: 0.5pt;
-			--img-border-color: #000;
 			--img-shadow-sm: none;
 			--img-shadow-md: none;
 			--img-shadow-lg: none;
@@ -38,5 +33,23 @@
 			--img-caption-color: #000;
 			--img-caption-padding: 0.25rem;
 		}
+	}
+
+	/* 
+	 * @component: img
+	 * @variant: base
+	 * @description: 画像コンテナの基本スタイル。すべての画像要素の親要素に適用します。
+	 * @category: media
+	 * @example: <figure class="img-base theme-neutral">
+	 *   <img src="/images/sample-girl.png" width=250 height=250 alt="説明" />
+	 * </figure>
+	 */
+	.img-base {
+		@apply relative overflow-hidden;
+		max-width: fit-content;
+	}
+
+	.img-base img {
+		@apply h-auto block;
 	}
 }

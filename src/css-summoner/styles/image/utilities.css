@@ -33,6 +33,14 @@
 		filter: sepia(80%);
 	}
 
+	.img-sepia-hover {
+		@apply transition-all duration-300;
+		filter: sepia(80%);
+	}
+	.img-sepia-hover:hover {
+		filter: sepia(0%);
+	}
+
 	/* 画像の明度を下げて暗めに表示するエフェクト。落ち着いた印象や重厚感を与えます。
 	 */
 	.img-brightness-low {
@@ -49,6 +57,87 @@
 	 */
 	.img-contrast-high {
 		filter: contrast(1.2);
+	}
+
+	/* 画像を親要素の幅いっぱいに表示するスタイル。レスポンシブなレイアウトに適しています。
+	 */
+	.img-w-full {
+		@apply w-full;
+	}
+
+	/* 画像を親要素の幅の3/4サイズで中央揃えにするスタイル。
+	 */
+	.img-w-3_4 {
+		@apply w-3/4 mx-auto;
+	}
+
+	/* 画像を親要素の幅の1/2サイズで中央揃えにするスタイル。
+	 */
+	.img-w-1_2 {
+		@apply w-1/2 mx-auto;
+	}
+
+	/* 画像を親要素の幅の1/3サイズで中央揃えにするスタイル。
+	 */
+	.img-w-1_3 {
+		@apply w-1/3 mx-auto;
+	}
+
+	/* 画像を親要素の幅の1/4サイズで中央揃えにするスタイル。
+	 */
+	.img-w-1_4 {
+		@apply w-1/4 mx-auto;
+	}
+
+	/* 画像を正方形（1:1）のアスペクト比で表示するスタイル。プロフィール画像やグリッドレイアウトに適しています。
+	 */
+	.img-aspect-square {
+		@apply aspect-square;
+	}
+	.img-aspect-square img {
+		@apply object-cover h-full;
+	}
+
+	/* 画像をビデオ（16:9）のアスペクト比で表示するスタイル。横長のコンテンツやメディア表示に適しています。
+	 */
+	.img-aspect-video {
+		@apply aspect-video;
+	}
+	.img-aspect-video img {
+		@apply object-cover h-full;
+	}
+
+	/* 画像をポートレート（3:4）のアスペクト比で表示するスタイル。縦長のコンテンツに適しています。
+	 */
+	.img-aspect-portrait {
+		@apply aspect-[3/4];
+	}
+	.img-aspect-portrait img {
+		@apply object-cover h-full;
+	}
+
+	/* 複数の画像をグリッドレイアウトで表示するコンテナ。ギャラリーやポートフォリオの表示に適しています。
+	 */
+	.img-grid {
+		@apply grid gap-4 my-6;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	}
+	.img-grid .img-container {
+		@apply my-0;
+	}
+
+	/* 画像を左側に配置し、テキストを右側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。
+	 */
+	.img-float-left {
+		@apply float-left mr-6 mb-2;
+		max-width: 50%;
+	}
+
+	/* 画像を右側に配置し、テキストを左側に回り込ませるスタイル。テキストと画像を組み合わせた記事に適しています。
+	 */
+	.img-float-right {
+		@apply float-right ml-6 mb-2;
+		max-width: 50%;
 	}
 
 	@media print {

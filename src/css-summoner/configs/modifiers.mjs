@@ -214,17 +214,81 @@ export const modifiers = {
 	],
 
 	// 画像専用のモディファイア
-	image: [
-		{ value: 'img-shadow', label: '影付き', description: '画像に影を付けます' },
-		{
-			value: 'img-bordered',
-			label: '枠線付き',
-			description: '画像に枠線を追加します',
-		},
+	img: [
 		{
 			value: 'img-overlay',
 			label: 'オーバーレイ',
 			description: '画像の上に半透明のオーバーレイを追加します',
+		},
+		{
+			value: 'img-zoom-hover',
+			label: 'ホバー時に拡大',
+			description: 'ホバー時に画像を拡大します',
+		},
+		{
+			value: 'img-grayscale',
+			label: 'グレースケール',
+			description: '白黒表示します',
+		},
+		{
+			value: 'img-grayscale-hover',
+			label: 'ホバー時にグレースケール解除',
+			description: 'ホバー時に白黒表示を解除します',
+		},
+		{
+			value: 'img-sepia',
+			label: 'セピア',
+			description: 'セピア調にします',
+		},
+		{
+			value: 'img-sepia-hover',
+			label: 'ホバー時にセピア解除',
+			description: 'ホバー時にセピア調を解除します',
+		},
+		{
+			value: 'img-brightness-high',
+			label: '明るさを上げる',
+			description: '明るさを上げます',
+		},
+		{
+			value: 'img-contrast-high',
+			label: 'コントラストを上げる',
+			description: 'コントラストを上げます',
+		},
+		{
+			value: 'img-w-1_4',
+			label: '幅1/4',
+			description: '画像の幅を親要素の1/4にします',
+		},
+		{
+			value: 'img-w-1_3',
+			label: '幅1/3',
+			description: '画像の幅を親要素の1/3にします',
+		},
+		{
+			value: 'img-w-1_2',
+			label: '幅1/2',
+			description: '画像の幅を親要素の1/2にします',
+		},
+		{
+			value: 'img-w-3_4',
+			label: '幅3/4',
+			description: '画像の幅を親要素の3/4にします',
+		},
+		{
+			value: 'img-aspect-square',
+			label: '正方形',
+			description: '画像を正方形にします',
+		},
+		{
+			value: 'img-aspect-video',
+			label: '16:9',
+			description: '画像を16:9のアスペクト比にします',
+		},
+		{
+			value: 'img-aspect-portrait',
+			label: '縦長',
+			description: '画像を縦長にします',
 		},
 	],
 
