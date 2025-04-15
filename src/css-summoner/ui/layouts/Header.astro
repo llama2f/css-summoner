@@ -18,8 +18,8 @@ const { title = siteData.siteName } = Astro.props
 		{/* テーマスイッチャーを先に配置 */}
 		<ThemeSwitcher position='' />
 
-		{/* モバイル用ボタン (md未満で表示) */}
-		<div class='md:hidden flex items-center gap-1'>
+		{/* モバイル用ボタン (lg未満で表示) */}
+		<div class='lg:hidden flex items-center gap-1'>
 			<button
 				id='mobile-palette-button'
 				class='btn btn-icon btn-sm p-1'

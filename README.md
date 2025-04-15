@@ -1,9 +1,5 @@
 # CSS Summoner
 
-![CSS Summonerロゴ](public/logo.png)
-
-> カスタムCSSクラスを視覚的に組み合わせられるツール
-
 ![CSS Summonerのスクリーンショット](public/images/screenShot-PC.png)
 
 ## 🌟 概要
@@ -80,14 +76,11 @@ npm run dev
 ```json
 {
 	"scripts": {
-		"dev": "astro dev",
-		"build": "npm run generate:handlers && npm run generate:all && astro build",
-		"css": "npm run generate:all",
-		"generate:types": "node src/css-summoner/scripts/generate-types.js",
-		"generate:docs": "node src/css-summoner/scripts/generate-docs.js",
-		"generate:astro": "node src/css-summoner/scripts/generate-astro.js",
-		"generate:all": "npm run generate:types && npm run generate:docs && npm run generate:astro",
-		"generate:handlers": "node src/css-summoner/scripts/generate-handler-manifest.js"
+		"dev": "npm run setup && astro dev",
+		"build": "npm run setup && astro build",
+		"map": "node src/css-summoner/scripts/simple-file-mapper.js",
+		"css": "node src/css-summoner-integration.js --all",
+		"setup": "node scripts/setup.js"
 	}
 }
 ```

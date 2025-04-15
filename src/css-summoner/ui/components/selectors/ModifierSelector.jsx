@@ -11,12 +11,14 @@ import React, { useCallback } from 'react'
  * @param {Array} props.selectedModifiers - 現在選択中のモディファイア
  * @param {Function} props.onToggle - 切り替え時のコールバック
  * @param {Function} props.onTooltip - ツールチップ表示コールバック
+ * @param {string} [props.idPrefix=''] - ID属性のプレフィックス（一意性確保のため）
  */
 const ModifierSelector = ({
 	modifiers = [],
 	selectedModifiers = [],
 	onToggle,
 	onTooltip,
+	idPrefix = '', // idPrefixプロップを追加し、デフォルト値を設定
 }) => {
 	if (!modifiers || modifiers.length === 0) {
 		return null
@@ -40,13 +42,13 @@ const ModifierSelector = ({
 					<div key={modifier.value} className='flex items-center'>
 						<input
 							type='checkbox'
-							id={`modifier-${modifier.value}`}
+							id={`modifier-${idPrefix ? `${idPrefix}-` : ''}${modifier.value}`}
 							checked={selectedModifiers.includes(modifier.value)}
 							onChange={() => onToggle(modifier.value)}
 							className='mr-2'
 						/>
 						<label
-							htmlFor={`modifier-${modifier.value}`}
+							htmlFor={`modifier-${idPrefix ? `${idPrefix}-` : ''}${modifier.value}`}
 							className='selector-check'
 							onMouseEnter={(e) => onTooltip(e, modifier.description)}
 							onMouseLeave={() => onTooltip(null, '')}

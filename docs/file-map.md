@@ -1,13 +1,12 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-14T11:30:09.097Z*
+*自動生成: 2025-04-15T03:48:25.263Z*
 
 ## ディレクトリ構造
 
 ```
 .
   ├── configs (設定ファイル群 (クラスビルダーUI用))
-  ├── docs (ドキュメントファイル)
   ├── scripts (ビルド・自動化スクリプト)
   │ ├── generators (scripts/generatorsディレクトリ)
   ├── styles (CSSスタイルファイル)
@@ -59,17 +58,6 @@
 | `modifiers.mjs` | modifiersの設定定義 (UI用) |
 | `sizes.mjs` | sizesの設定定義 (UI用) |
 | `specialClasses.mjs` | specialClassesの設定定義 (UI用) |
-
-### docs/
-
-| ファイル | 役割 |
-|---------|------|
-| `color-system.md` | Markdownドキュメント |
-| `css-summoner-system.md` | Markdownドキュメント |
-| `file-map.md` | Markdownドキュメント |
-| `handler-guide.md` | Markdownドキュメント |
-| `stylingGuide.md` | Markdownドキュメント |
-| `todo.md` | Markdownドキュメント |
 
 ### scripts/
 

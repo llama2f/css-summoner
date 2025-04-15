@@ -96,7 +96,7 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
       <div
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ease-in-out ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        } md:hidden`}
+        } lg:hidden`}
         onClick={onClose}
         aria-hidden={!isOpen}
       />
@@ -106,7 +106,7 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
         ref={menuRef}
         className={`fixed top-0 right-0 h-full w-3/5 max-w-sm bg-neutral-light dark:bg-neutral-dark shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden overflow-y-auto`}
+        } lg:hidden overflow-y-auto`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-menu-title"
@@ -178,6 +178,7 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
             {availableModifiers && availableModifiers.length > 0 && (
               <Accordion title="modifier">
                 <ModifierSelector
+                  idPrefix="mobile" // モバイルビュー用のプレフィックスを追加
                   modifiers={availableModifiers}
                   selectedModifiers={state.selectedModifiers} // useClassBuilder側で配列に変更が必要
                   onToggle={(modifier: string) => dispatch({ type: ACTIONS.TOGGLE_MODIFIER, payload: modifier })} // ACTIONS 定数を使用
@@ -193,6 +194,7 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
                   selectedSpecialClasses={state.selectedSpecialClasses}
                   onToggle={(specialClass: string) => dispatch({ type: ACTIONS.TOGGLE_SPECIAL_CLASS, payload: specialClass })} // ACTIONS 定数を使用
                   onTooltip={handleTooltip}
+                  idPrefix='mobile'
                 />
               </Accordion>
             )}

@@ -189,6 +189,7 @@ const ClassBuilder: React.FC = () => {
 					)}
 					{availableModifiers.length > 0 && (
 						<ModifierSelector
+							idPrefix="desktop" // デスクトップビュー用のプレフィックスを追加
 							modifiers={availableModifiers}
 							selectedModifiers={state.selectedModifiers}
 							onToggle={actions.toggleModifier}

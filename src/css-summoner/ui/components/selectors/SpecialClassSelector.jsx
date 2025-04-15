@@ -11,12 +11,14 @@ import React, { useCallback } from 'react'
  * @param {Array} props.selectedSpecialClasses - 現在選択中の特殊クラス
  * @param {Function} props.onToggle - 切り替え時のコールバック
  * @param {Function} props.onTooltip - ツールチップ表示コールバック
+ * @param {string} props.idPrefix - idの重複を避けるためのプレフィックス
  */
 const SpecialClassSelector = ({
 	specialClasses = [],
 	selectedSpecialClasses = [],
 	onToggle,
 	onTooltip,
+	idPrefix = '',
 }) => {
 	if (!specialClasses || specialClasses.length === 0) {
 		return null
@@ -39,13 +41,13 @@ const SpecialClassSelector = ({
 					<div key={specialClass.value} className='flex items-center'>
 						<input
 							type='checkbox'
-							id={`special-${specialClass.value}`}
+							id={`special-${idPrefix ? `${idPrefix}-` : ''}${specialClass.value}`}
 							checked={selectedSpecialClasses.includes(specialClass.value)}
 							onChange={() => onToggle(specialClass.value)}
 							className='mr-2'
 						/>
 						<label
-							htmlFor={`special-${specialClass.value}`}
+							htmlFor={`special-${idPrefix ? `${idPrefix}-` : ''}${specialClass.value}`}
 							className='selector-check'
 							onMouseEnter={(e) => onTooltip(e, specialClass.description)}
 							onMouseLeave={() => onTooltip(null, '')}

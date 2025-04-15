@@ -9,11 +9,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // 設定
-const PROJECT_ROOT =
-	process.argv[2] || path.resolve(__dirname, '..') // css-summoner ディレクトリを指すように調整
+const PROJECT_ROOT = process.argv[2] || path.resolve(__dirname, '..') // css-summoner ディレクトリを指すように調整
 const OUTPUT_FILE =
-	process.argv[3] ||
-	path.resolve(__dirname, '../docs/file-map.md') // css-summoner/docs を指すように調整
+	process.argv[3] || path.resolve(__dirname, '../../../docs/file-map.md') // /docs を指すように調整
 
 // ファイルタイプの説明マッピング
 const fileTypeDescriptions = {
@@ -32,7 +30,8 @@ const specialFileDescriptions = {
 	'classMappings.js': '設定とマッピングのエントリポイント',
 	'autoClassMappings.js':
 		'CSSアノテーションから自動生成されたコンポーネント情報',
-	'css-summoner.js': 'CSSファイルからアノテーションを抽出/処理するメインスクリプト', // 拡張子変更
+	'css-summoner.js':
+		'CSSファイルからアノテーションを抽出/処理するメインスクリプト', // 拡張子変更
 	'index.js': 'モジュールのエクスポート用ファイル',
 	'registry.jsx': 'コンポーネントハンドラーの登録管理',
 	'templateEngine.jsx': 'テンプレート生成エンジン',
@@ -77,7 +76,10 @@ const directoryDescriptions = {
 // ファイルの簡易分析でパターンベースでの自動説明生成
 function guessFileRole(filePath, fileContent) {
 	const baseName = path.basename(filePath)
-	const relativePath = path.relative(PROJECT_ROOT, path.join(PROJECT_ROOT, filePath)) // プロジェクトルートからの相対パス
+	const relativePath = path.relative(
+		PROJECT_ROOT,
+		path.join(PROJECT_ROOT, filePath)
+	) // プロジェクトルートからの相対パス
 
 	// 特定のファイル名に基づく説明 (優先)
 	if (specialFileDescriptions[baseName]) {
@@ -115,7 +117,10 @@ function guessFileRole(filePath, fileContent) {
 			} else if (relativePath.startsWith('components/')) {
 				description = `React UIコンポーネント - ${baseName.replace('.jsx', '')}`
 			}
-		} else if (relativePath.startsWith('configs/') && (ext === '.js' || ext === '.mjs')) {
+		} else if (
+			relativePath.startsWith('configs/') &&
+			(ext === '.js' || ext === '.mjs')
+		) {
 			const configType = baseName.replace(ext, '')
 			description = `${configType}の設定定義 (UI用)`
 		} else if (ext === '.css' && fileContent.includes('@component')) {
@@ -133,17 +138,20 @@ function guessFileRole(filePath, fileContent) {
 		}
 	} catch (e) {
 		// fileContentが巨大な場合などにエラーになる可能性を考慮
-		console.warn(`Warning: ファイル内容の解析中にエラー ${filePath}: ${e.message}`)
+		console.warn(
+			`Warning: ファイル内容の解析中にエラー ${filePath}: ${e.message}`
+		)
 	}
-
 
 	return description
 }
 
 // 再帰的にディレクトリを探索してファイル一覧を生成
-async function generateFileMap() { // glob.syncをasync版に変更するためasync化
+async function generateFileMap() {
+	// glob.syncをasync版に変更するためasync化
 	// ファイルとディレクトリを収集
-	const files = await glob('**/*.{js,jsx,css,astro,mjs,cjs,ts,md}', { // 拡張子追加
+	const files = await glob('**/*.{js,jsx,css,astro,mjs,cjs,ts,md}', {
+		// 拡張子追加
 		cwd: PROJECT_ROOT,
 		ignore: ['node_modules/**', 'dist/**', '.git/**', 'backups/**'], // backupsを除外
 		nodir: true, // ディレクトリ自体は含めない
@@ -155,7 +163,7 @@ async function generateFileMap() { // glob.syncをasync版に変更するためa
 		if (dir !== '.') {
 			// 親ディレクトリもすべて追加
 			let currentPath = ''
-			dir.split(path.sep).forEach(part => {
+			dir.split(path.sep).forEach((part) => {
 				currentPath = path.join(currentPath, part)
 				directories.add(currentPath)
 			})
@@ -172,34 +180,38 @@ async function generateFileMap() { // glob.syncをasync版に変更するためa
 	const sortedDirs = Array.from(directories).sort()
 	const tree = {}
 
-    sortedDirs.forEach(dir => {
-        let currentLevel = tree;
-        const parts = dir.split(path.sep);
-        parts.forEach((part, index) => {
-            if (!currentLevel[part]) {
-                currentLevel[part] = {};
-            }
-            // 最後の要素でなければ次のレベルへ
-            if (index < parts.length - 1) {
-                 currentLevel = currentLevel[part];
-            } else {
-                // 最後の要素なら説明を追加
-                currentLevel[part].__description = directoryDescriptions[dir] || `${dir}ディレクトリ`;
-            }
-        });
-    });
+	sortedDirs.forEach((dir) => {
+		let currentLevel = tree
+		const parts = dir.split(path.sep)
+		parts.forEach((part, index) => {
+			if (!currentLevel[part]) {
+				currentLevel[part] = {}
+			}
+			// 最後の要素でなければ次のレベルへ
+			if (index < parts.length - 1) {
+				currentLevel = currentLevel[part]
+			} else {
+				// 最後の要素なら説明を追加
+				currentLevel[part].__description =
+					directoryDescriptions[dir] || `${dir}ディレクトリ`
+			}
+		})
+	})
 
 	function printTree(level, indent = '  ') {
-		Object.keys(level).sort().forEach(key => {
-			if (key === '__description') return;
-			const description = level[key].__description ? ` (${level[key].__description})` : '';
-			report += `${indent}├── ${key}${description}\n`;
-			printTree(level[key], indent + '│ ');
-		});
+		Object.keys(level)
+			.sort()
+			.forEach((key) => {
+				if (key === '__description') return
+				const description = level[key].__description
+					? ` (${level[key].__description})`
+					: ''
+				report += `${indent}├── ${key}${description}\n`
+				printTree(level[key], indent + '│ ')
+			})
 	}
-	printTree(tree);
-	report += `\`\`\`\n\n`;
-
+	printTree(tree)
+	report += `\`\`\`\n\n`
 
 	// ファイル一覧（ディレクトリごと）
 	report += `## ファイル詳細\n\n`
@@ -233,7 +245,6 @@ async function generateFileMap() { // glob.syncをasync版に変更するためa
 		report += `\n`
 	}
 
-
 	// 各ディレクトリのファイル
 	sortedDirs.forEach((dir) => {
 		if (fileMapByDir[dir]) {
@@ -258,7 +269,6 @@ async function generateFileMap() { // glob.syncをasync版に変更するためa
 		}
 	})
 
-
 	// 簡易的な利用方法
 	report += `## 使い方\n\n`
 	report += `このドキュメントはプロジェクトの全体像を把握するために自動生成されています。\n`
@@ -281,21 +291,24 @@ try {
 	console.log(`出力ファイル: ${OUTPUT_FILE}`)
 
 	// generateFileMapを呼び出し、完了を待つ
-	generateFileMap().then(report => {
-		// 出力ディレクトリが存在するか確認
-		const outputDir = path.dirname(OUTPUT_FILE)
-		if (!fs.existsSync(outputDir)) {
-			fs.mkdirSync(outputDir, { recursive: true })
-		}
+	generateFileMap()
+		.then((report) => {
+			// 出力ディレクトリが存在するか確認
+			const outputDir = path.dirname(OUTPUT_FILE)
+			if (!fs.existsSync(outputDir)) {
+				fs.mkdirSync(outputDir, { recursive: true })
+			}
 
-		// レポートを書き出し
-		fs.writeFileSync(OUTPUT_FILE, report, 'utf-8')
-		console.log(`ファイルマップが正常に生成されました: ${OUTPUT_FILE}`)
-	}).catch(error => {
-		console.error(`ファイルマップ生成中にエラーが発生しました: ${error.message}`)
-		process.exit(1)
-	})
-
+			// レポートを書き出し
+			fs.writeFileSync(OUTPUT_FILE, report, 'utf-8')
+			console.log(`ファイルマップが正常に生成されました: ${OUTPUT_FILE}`)
+		})
+		.catch((error) => {
+			console.error(
+				`ファイルマップ生成中にエラーが発生しました: ${error.message}`
+			)
+			process.exit(1)
+		})
 } catch (error) {
 	console.error(`スクリプト実行エラー: ${error.message}`)
 	process.exit(1)
