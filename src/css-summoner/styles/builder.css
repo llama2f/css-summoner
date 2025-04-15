@@ -310,10 +310,13 @@
 	}
 
 	.css-var-editor {
+		@apply md:max-h-[70vh];
 		@apply fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 		@apply p-0 bg-white dark:bg-neutral-800 shadow-lg rounded-lg z-50;
 		@apply w-[calc(100%-2rem)] max-w-md;
 		@apply md:fixed md:bottom-4 md:right-4 md:top-auto md:left-auto md:transform-none md:m-0;
 		@apply md:w-auto md:max-w-none;
+		max-height: calc(70vh - 4rem);
+		overflow-y: auto;
 	}
 }

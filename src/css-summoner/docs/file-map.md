@@ -1,6 +1,6 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-11T05:48:03.951Z*
+*自動生成: 2025-04-14T11:30:09.097Z*
 
 ## ディレクトリ構造
 
@@ -75,6 +75,7 @@
 
 | ファイル | 役割 |
 |---------|------|
+| `clean-css-comments.js` | JavaScriptモジュール |
 | `config.js` | スクリプト設定ファイル |
 | `extract-jsx.js` | JavaScriptモジュール |
 | `generate-astro.js` | JavaScriptモジュール |
@@ -140,7 +141,7 @@
 
 | ファイル | 役割 |
 |---------|------|
-| `base.css` | スタイルシート |
+| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
 | `index.css` | スタイルシート |
 | `utilities.css` | スタイルシート |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
@@ -158,9 +159,9 @@
 
 | ファイル | 役割 |
 |---------|------|
-| `base.css` | スタイルシート |
+| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
 | `index.css` | スタイルシート |
-| `utilities.css` | コンポーネントスタイル定義（アノテーション付き） |
+| `utilities.css` | スタイルシート |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 
 ### styles/infobox/
@@ -305,7 +306,6 @@
 | `card.jsx` | Reactコンポーネント |
 | `form.jsx` | Reactコンポーネント |
 | `heading.jsx` | Reactコンポーネント |
-| `image.jsx` | Reactコンポーネント |
 | `img.jsx` | Reactコンポーネント |
 | `infobox.jsx` | Reactコンポーネント |
 | `text.jsx` | Reactコンポーネント |

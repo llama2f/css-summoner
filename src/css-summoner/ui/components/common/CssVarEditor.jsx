@@ -349,10 +349,8 @@ const CssVarEditor = ({ onClose }) => {
 				</div>
 			</div>
 
-			{/* isExpanded 条件を削除 */}
-			<div className='p-4 max-h-[calc(70vh-4rem)] md:max-h-[70vh] overflow-y-auto rounded-b-lg'>
+			<div className='p-4'>
 				{' '}
-				{/* コンテンツ部分 (角丸は構造に合わせて残す) */}
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 					{Object.entries(colorVars).map(([varName, value]) => (
 						<div key={varName} className='flex flex-col'>
