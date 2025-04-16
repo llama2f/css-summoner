@@ -6,32 +6,43 @@ import siteData from '@configs/siteData.json'
 
 <Layout title={siteData.siteName} desc={siteData.siteDescription}>
 	<div class='space-y-4'>
-		<div class='text-sm'>
+		<div class='text-sm space-y-2'>
 			<p>
-				プロジェクト内で定義されたカスタムCSSクラスを視覚的にプレビューしながら組み合わせることができるツールです。
-			</p>
-			<p>
-				適切なクラスの組み合わせを確認し、生成したコードをコピーして実装に活用できます。
+				カスタムCSSクラスをプレビューしながら組み合わせるツールです。
+				クラスの組み合わせを確認し、生成したコードをコピーして実装に活用できます。
 			</p>
 			<p>
 				ついでに内部的にAstroドキュメントページ、Astroコンポーネント、型定義ファイルも生成してます。
 			</p>
-		</div>
 
-		<div class='rounded-lg shadow-sm'>
-			<ClassBuilder client:load />
-		</div>
+			<p>
+				使い方やソースコードは<a
+					href='https://github.com/llama2f/css-summoner'
+					target='_blank'
+					rel='noopener noreferrer'
+					class='underline'
+					title='GitHubリポジトリ'
+					tabindex='0'>GitHubリポジトリ</a
+				>をご覧ください。フィードバックもお待ちしております。
+			</p>
 
-		<div class='p-4 rounded-lg'>
-			<h2 class='font-bold mb-2'>使い方</h2>
-			<ol class='list-decimal list-inside space-y-2 ml-4 text-sm'>
-				<li>左側のパネルからコンポーネントタイプを選択</li>
-				<li>バリアント、サイズ、角丸などを選択して基本スタイルを設定</li>
-				<li>モディファイアでさらにスタイルを追加（影、アニメーションなど）</li>
-				<li>特殊効果クラスを選択して追加効果を適用</li>
-				<li>右側のパネルでリアルタイムにプレビューを確認</li>
-				<li>生成されたクラス文字列やHTMLコードをコピーして使用</li>
-			</ol>
+			<div class='rounded-lg shadow-sm'>
+				<ClassBuilder client:load />
+			</div>
+
+			<div class='p-4 rounded-lg'>
+				<h2 class='font-bold mb-2'>使い方</h2>
+				<ol class='list-decimal list-inside space-y-2 ml-4 text-sm'>
+					<li>左側のパネルからコンポーネントタイプを選択</li>
+					<li>バリアント、サイズ、角丸などを選択して基本スタイルを設定</li>
+					<li>
+						モディファイアでさらにスタイルを追加（影、アニメーションなど）
+					</li>
+					<li>特殊効果クラスを選択して追加効果を適用</li>
+					<li>右側のパネルでリアルタイムにプレビューを確認</li>
+					<li>生成されたクラス文字列やHTMLコードをコピーして使用</li>
+				</ol>
+			</div>
 		</div>
 	</div>
 </Layout>
