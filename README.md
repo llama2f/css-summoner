@@ -14,7 +14,7 @@ CSS Summonerは、プロジェクトで定義されたカスタムCSSクラス�
 
 ### ブラウザ上での視覚的操作
 
-<video src="public/video/css-summoner-demo.mp4"  controls="true" width="600"></video>
+![CSS Summonerのデモ動画](public/video/css-summoner-demo.gif)
 
 - コンポーネント、バリアント、色、サイズなどを選択するだけでリアルタイムにプレビュー表示
 - 生成されたクラス名、適用されるCSSプロパティ、HTMLコードを確認・コピー
