@@ -8,7 +8,7 @@ interface AstroPage {
 
 // import.meta.glob の結果を型アサーション
 const pages = Object.values(
-	import.meta.glob<AstroPage>('../../../pages/css-summoner/*.astro', {
+	import.meta.glob<AstroPage>('../../../pages/component-docs/*.astro', {
 		eager: true,
 	})
 )

@@ -78,7 +78,7 @@ const paths = {
 	output: {
 		cssBuilder: resolveProjectPath('src/css-summoner/'),
 		types: resolveProjectPath('src/css-summoner/dist/types/'), // 型定義
-		docs: resolveProjectPath('src/pages/css-summoner/'), // ドキュメント作成先
+		docs: resolveProjectPath('src/pages/component-docs/'), // ドキュメント作成先
 		components: resolveProjectPath('src/css-summoner/dist/components/'), // Astroコンポーネントは安全な場所に生成
 		backups: resolveProjectPath('src/css-summoner/backups/'),
 	},
