@@ -597,6 +597,10 @@ module.exports = (opts = {}) => {
 			}
 
 			// ベースクラスが見つからないコンポーネントの警告 (構造化後に行う)
+			// CSS-summoner-integrationでファイルごとに処理する場合、
+			// 各ファイルで全てのコンポーネントのベースクラスが見つからないのは正常なので、
+			// このチェックはここでは行わず、全ファイル処理後に行うようにします。
+			/*
 			const missingBaseClasses = Object.keys(
 				structuredData.componentTypes
 			).filter((component) => !structuredData.baseClasses[component])
@@ -609,6 +613,7 @@ module.exports = (opts = {}) => {
 				structuredData.meta.errors.push(warningMsg)
 				result.warn(warningMsg, { plugin: PLUGIN_NAME })
 			}
+			*/
 
 			// 結果をPostCSSのメッセージとして追加
 			result.messages.push({
