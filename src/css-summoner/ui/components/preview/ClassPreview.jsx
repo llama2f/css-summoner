@@ -67,7 +67,7 @@ const ClassPreview = ({
 		<div
 			className={`${previewBg} p-8 flex items-center justify-center rounded-lg min-h-[200px] border border-dashed border-neutral-300`}
 		>
-			<div className='flex flex-col items-center'>
+			<div className='flex flex-col items-center overflow-hidden'>
 				{/* TemplateRenderer を使用してプレビューを表示 */}
 				{componentType ? ( // componentType が選択されている場合のみレンダリング
 					<TemplateRenderer
