@@ -12,6 +12,7 @@ const Accordion = ({
 	initialOpen = false,
 	headerRight = null,
 	contentClassName = '',
+	titleClassName = '',
 }) => {
 	const [isOpen, setIsOpen] = useState(initialOpen)
 
@@ -20,7 +21,7 @@ const Accordion = ({
 			className={`border border-neutral-200 dark:border-neutral-700 rounded-md ${className}`}
 		>
 			<div
-				className='flex items-center justify-between p-3 cursor-pointer bg-neutral-100 dark:bg-neutral-800 rounded-t-md'
+				className={`flex items-center justify-between p-3 cursor-pointer bg-neutral-100 dark:bg-neutral-800 rounded-t-md ${titleClassName}`}
 				onClick={() => setIsOpen(!isOpen)}
 			>
 				<div className='flex items-center gap-2'>

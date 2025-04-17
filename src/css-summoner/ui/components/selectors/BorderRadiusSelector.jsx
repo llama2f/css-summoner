@@ -26,19 +26,21 @@ import React, { useCallback, useMemo } from 'react'
  * @param {Array} props.options - 選択可能な角丸オプションリスト
  * @param {string} props.selectedRadius - 現在選択中の角丸
  * @param {Function} props.onSelect - 選択時のコールバック
+ * @param {boolean} props.showTitle - タイトル表示の有無
  */
 // --- ここまで既存のJSDoc ---
-const BorderRadiusSelector = ({ options = [], selectedRadius, onSelect }) => {
-	// --- レンダリング条件 ---
-	// options 配列が空または存在しない場合は何もレンダリングしない
+const BorderRadiusSelector = ({
+	options = [],
+	selectedRadius,
+	onSelect,
+	showTitle = true,
+}) => {
 	if (!options || options.length === 0) {
 		return null // または適切なフォールバックUI
 	}
 
 	// --- メモ化された値 (useMemo) ---
 	/**
-	 * Propsで受け取った `options` 配列の先頭に「デフォルト」オプションを追加した新しい配列を生成 (メモ化)。
-	 * 「デフォルト」は値が空文字列 '' で、コンポーネントの基本スタイルや他のクラスに依存する角丸を表します。
 	 * @returns {Array<object>} 「デフォルト」を含む全角丸オプションの配列
 	 */
 	const allOptions = useMemo(() => {
@@ -48,8 +50,6 @@ const BorderRadiusSelector = ({ options = [], selectedRadius, onSelect }) => {
 
 	// --- コールバック関数 (useCallback) ---
 	/**
-	 * 角丸選択ボタンがクリックされたときに呼び出されるハンドラ (メモ化)。
-	 * イベントのデフォルト動作（例: フォーム送信など）を防ぎ、`onSelect` コールバックを実行する。
 	 * @param {React.MouseEvent} e - クリックイベントオブジェクト
 	 * @param {string} value - 選択された角丸クラスの値
 	 */
@@ -62,8 +62,6 @@ const BorderRadiusSelector = ({ options = [], selectedRadius, onSelect }) => {
 	) // onSelect コールバック関数が変更されたときのみ再生成
 
 	/**
-	 * 角丸クラスの値に基づいて、ボタン自体の角丸スタイルを決定するヘルパー関数 (メモ化)。
-	 * ボタンの見た目でどの程度の角丸か視覚的に示します。
 	 * @param {string} value - 角丸クラスの値 (例: 'rounded-lg')
 	 * @returns {string} 対応するTailwindの角丸クラス (例: 'rounded-lg', 'rounded-full')
 	 */
@@ -81,17 +79,18 @@ const BorderRadiusSelector = ({ options = [], selectedRadius, onSelect }) => {
 	return (
 		// セレクター全体のコンテナ
 		<div>
-			{/* セクションタイトル */}
-			<h2 className='label-config label-radius text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1 flex items-center gap-x-1.5'>
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					viewBox='0 0 448 512'
-					className='h-4 w-4 fill-current'
-				>
-					<path d='M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z' />
-				</svg>
-				Radius
-			</h2>
+			{showTitle && (
+				<h2 className='label-config label-radius text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1 flex items-center gap-x-1.5'>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='0 0 448 512'
+						className='h-4 w-4 fill-current'
+					>
+						<path d='M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32H32zM64 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64V352zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32H320zM448 352c0-17.7-14.3-32-32-32s-32 14.3-32 32v64H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32V352z' />
+					</svg>
+					Radius
+				</h2>
+			)}
 
 			{/* 角丸選択ボタンを配置するコンテナ */}
 			<div className='container-config container-config-radius flex flex-wrap gap-1'>

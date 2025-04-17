@@ -1,17 +1,21 @@
 // components/selectors/ComponentSelector.jsx
-// コンポーネント選択のUIをアコーディオン方式に変更
 
 import React, { useState, useMemo } from 'react'
 
 /**
- * コンポーネントタイプを選択するセレクター（アコーディオン方式）
  *
  * @param {Object} props
  * @param {Array} props.componentTypes - 選択可能なコンポーネントタイプリスト
  * @param {string} props.selectedComponent - 現在選択中のコンポーネント
  * @param {Function} props.onSelect - 選択時のコールバック
+ * @param {boolean} props.showTitle - セレクターのタイトル表示
  */
-const ComponentSelector = ({ componentTypes, selectedComponent, onSelect }) => {
+const ComponentSelector = ({
+	componentTypes,
+	selectedComponent,
+	onSelect,
+	showTitle = true,
+}) => {
 	// カテゴリの優先順位を定義（指定された順序に表示されます）
 	const categoryOrder = {
 		typography: 1,
@@ -55,22 +59,23 @@ const ComponentSelector = ({ componentTypes, selectedComponent, onSelect }) => {
 			...prev,
 			[category]: !prev[category],
 		}))
-	}, []) // 依存配列が空なので再作成されない
-
+	}, [])
 	return (
 		<div className='space-y-1'>
-			<h2 className='label-config label-component label-config flex items-center gap-x-1.5'>
-				{/* Font Awesome Shapes Icon */}
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					viewBox='0 0 512 512'
-					className='h-4 w-4 fill-current'
-				>
-					{/* Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */}
-					<path d='M315.4 15.5C309.7 5.9 299.2 0 288 0s-21.7 5.9-27.4 15.5l-96 160c-5.9 9.9-6.1 22.2-.4 32.2s16.3 16.2 27.8 16.2l192 0c11.5 0 22.2-6.2 27.8-16.2s5.5-22.3-.4-32.2l-96-160zM288 312l0 144c0 22.1 17.9 40 40 40l144 0c22.1 0 40-17.9 40-40l0-144c0-22.1-17.9-40-40-40l-144 0c-22.1 0-40 17.9-40 40zM128 512a128 128 0 1 0 0-256 128 128 0 1 0 0 256z' />
-				</svg>
-				components
-			</h2>
+			{showTitle && (
+				<h2 className='label-config label-component label-config flex items-center gap-x-1.5'>
+					{/* Font Awesome Shapes Icon */}
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='0 0 512 512'
+						className='h-4 w-4 fill-current'
+					>
+						{/* Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc. */}
+						<path d='M315.4 15.5C309.7 5.9 299.2 0 288 0s-21.7 5.9-27.4 15.5l-96 160c-5.9 9.9-6.1 22.2-.4 32.2s16.3 16.2 27.8 16.2l192 0c11.5 0 22.2-6.2 27.8-16.2s5.5-22.3-.4-32.2l-96-160zM288 312l0 144c0 22.1 17.9 40 40 40l144 0c22.1 0 40-17.9 40-40l0-144c0-22.1-17.9-40-40-40l-144 0c-22.1 0-40 17.9-40 40zM128 512a128 128 0 1 0 0-256 128 128 0 1 0 0 256z' />
+					</svg>
+					components
+				</h2>
+			)}
 
 			{/* カテゴリー別アコーディオン */}
 			<div className='space-y-2'>
@@ -126,5 +131,4 @@ const ComponentSelector = ({ componentTypes, selectedComponent, onSelect }) => {
 	)
 }
 
-// メモ化されたコンポーネント - propsが変更されない限り再レンダリングしない
 export default React.memo(ComponentSelector)

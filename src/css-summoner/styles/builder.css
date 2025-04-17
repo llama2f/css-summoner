@@ -177,6 +177,10 @@
 		}
 	}
 
+	.mobile-menu .container-config {
+		@apply p-1;
+	}
+
 	.category-header {
 		font-weight: 500;
 		border-left: 3px solid transparent;
