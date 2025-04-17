@@ -1,7 +1,6 @@
 // src/css-summoner/ui/ClassBuilder.tsx
-import React, { useState, useEffect, useCallback } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faPalette } from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useCallback } from 'react';
+import { initUI } from '@ui/scripts/ui-controller';
 
 // 独自フック
 import useClassBuilder from '@hooks/useClassBuilder.tsx';
@@ -133,7 +132,30 @@ const ClassBuilder: React.FC = () => {
             window.removeEventListener('dispatch-css-builder-action', handleDispatchAction as EventListener);
         };
     // toggleCssVarEditor は外部フック由来なので依存配列に含める
-    }, [actions.toggleMobileMenu, toggleCssVarEditor, state.isMobileMenuOpen]);
+		}, [actions.toggleMobileMenu, toggleCssVarEditor, state.isMobileMenuOpen]);
+	
+	 // コンポーネントがマウントされたときにコンポーネント用スクリプトを初期化
+  useEffect(() => {
+    // DOMが完全に読み込まれた後に初期化
+    setTimeout(() => {
+      initUI();
+    }, 500); // 少し遅延させることで、DOMが確実に更新された後に実行
+    
+    // また、コンポーネント更新時にも再初期化
+    const observer = new MutationObserver(() => {
+      setTimeout(initUI, 100);
+    });
+    
+    // ClassBuilderのコンテンツを監視
+    const targetNode = document.querySelector('.panel-preview');
+    if (targetNode) {
+      observer.observe(targetNode, { childList: true, subtree: true });
+    }
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
 
     const availableVariants: Option[] = componentVariants[state.componentType as keyof typeof componentVariants] || [];

@@ -1,6 +1,6 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-15T03:48:25.263Z*
+*自動生成: 2025-04-17T01:22:57.887Z*
 
 ## ディレクトリ構造
 
@@ -10,6 +10,7 @@
   ├── scripts (ビルド・自動化スクリプト)
   │ ├── generators (scripts/generatorsディレクトリ)
   ├── styles (CSSスタイルファイル)
+  │ ├── accordion (styles/accordionディレクトリ)
   │ ├── badge (styles/badgeディレクトリ)
   │ ├── button (Buttonコンポーネント用スタイル)
   │ ├── card (Cardコンポーネント用スタイル)
@@ -33,6 +34,9 @@
   │ │ ├── selectors (ui/components/selectorsディレクトリ)
   │ ├── hooks (ui/hooksディレクトリ)
   │ ├── layouts (ui/layoutsディレクトリ)
+  │ ├── scripts (ui/scriptsディレクトリ)
+  │ │ ├── components (ui/scripts/componentsディレクトリ)
+  │ │ ├── utils (ui/scripts/utilsディレクトリ)
   │ ├── templates (ui/templatesディレクトリ)
   │ │ ├── core (ui/templates/coreディレクトリ)
   │ │ ├── handlers (ui/templates/handlersディレクトリ)
@@ -90,6 +94,15 @@
 | `class-builder.css` | スタイルシート |
 | `styles.css` | スタイルシート |
 | `utils.css` | スタイルシート |
+
+### styles/accordion/
+
+| ファイル | 役割 |
+|---------|------|
+| `base.css` | コンポーネントスタイル定義（アノテーション付き） |
+| `index.css` | スタイルシート |
+| `utilities.css` | スタイルシート |
+| `variants-monochrome.css` | コンポーネントスタイル定義（アノテーション付き） |
 
 ### styles/badge/
 
@@ -264,6 +277,24 @@
 | `Layout.astro` | Astroコンポーネント - Layout |
 | `Menu.astro` | Astroコンポーネント - Menu |
 
+### ui/scripts/
+
+| ファイル | 役割 |
+|---------|------|
+| `ui-controller.js` | JavaScriptモジュール |
+
+### ui/scripts/components/
+
+| ファイル | 役割 |
+|---------|------|
+| `accordion-controller.js` | JavaScriptモジュール |
+
+### ui/scripts/utils/
+
+| ファイル | 役割 |
+|---------|------|
+| `a11y-helpers.js` | JavaScriptモジュール |
+
 ### ui/templates/
 
 | ファイル | 役割 |
@@ -289,6 +320,7 @@
 | ファイル | 役割 |
 |---------|------|
 | `_template.jsx` | Reactコンポーネント |
+| `accordion.jsx` | Reactコンポーネント |
 | `badge.jsx` | Reactコンポーネント |
 | `button.jsx` | Reactコンポーネント |
 | `card.jsx` | Reactコンポーネント |

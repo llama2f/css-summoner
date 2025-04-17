@@ -1,0 +1,156 @@
+@layer components {
+	/* 
+	 * @component: accordion
+	 * @variant: default
+	 * @description: デフォルトスタイルのアコーディオン。シンプルな外観で、ヘッダーにホバー効果があります。
+	 * @category: interactive
+	 * @example: <div class="accordion-base accordion-default theme-primary">...</div>
+	 */
+	.accordion-default {
+		background-color: transparent;
+		color: var(--text-color, #333);
+	}
+
+	.accordion-default .accordion-header,
+	.accordion-default summary {
+		color: var(--component-color, #333);
+	}
+
+	.accordion-default .accordion-header:hover,
+	.accordion-default summary:hover {
+		background-color: var(--accordion-bg-hover);
+	}
+
+	.accordion-default .accordion-icon,
+	.accordion-default summary::after {
+		color: var(--component-color, #333);
+	}
+
+	/* 
+	 * @component: accordion
+	 * @variant: solid
+	 * @description: 塗りつぶしスタイルのアコーディオン。ヘッダーに背景色が適用されます。
+	 * @category: interactive
+	 * @example: <div class="accordion-base accordion-solid theme-primary">...</div>
+	 */
+	.accordion-solid {
+		background-color: transparent;
+		color: var(--text-color, #333);
+	}
+
+	.accordion-solid .accordion-header,
+	.accordion-solid summary {
+		background-color: var(--component-color, #333);
+		color: var(--component-text, #fff);
+	}
+
+	.accordion-solid .accordion-header:hover,
+	.accordion-solid summary:hover {
+		background-color: var(
+			--component-hover-color,
+			color-mix(
+				in srgb,
+				var(--component-color, #333),
+				var(--component-mix, #000) var(--hover-amount, 10%)
+			)
+		);
+	}
+
+	.accordion-solid .accordion-icon,
+	.accordion-solid summary::after {
+		color: var(--component-text, #fff);
+	}
+
+	/* 
+	 * @component: accordion
+	 * @variant: outline
+	 * @description: アウトラインスタイルのアコーディオン。枠線のみで、ヘッダーにホバー時に背景色が表示されます。
+	 * @category: interactive
+	 * @example: <div class="accordion-base accordion-outline theme-primary">...</div>
+	 */
+	.accordion-outline {
+		background-color: transparent;
+		color: var(--text-color, #333);
+		border: var(--accordion-border-width) solid var(--component-color, #333);
+	}
+
+	.accordion-outline .accordion-header,
+	.accordion-outline summary {
+		color: var(--component-color, #333);
+	}
+
+	.accordion-outline .accordion-header:hover,
+	.accordion-outline summary:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 90%
+		);
+	}
+
+	.accordion-outline .accordion-item:not(:last-child) {
+		border-bottom: var(--accordion-border-width) solid
+			var(--component-color, #333);
+	}
+
+	/* 
+	 * @component: accordion
+	 * @variant: subtle
+	 * @description: 控えめなアコーディオン。薄い背景色が適用され、ホバー時に色が濃くなります。
+	 * @category: interactive
+	 * @example: <div class="accordion-base accordion-subtle theme-primary">...</div>
+	 */
+	.accordion-subtle {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 95%
+		);
+		color: var(--text-color, #333);
+	}
+
+	.accordion-subtle .accordion-header,
+	.accordion-subtle summary {
+		color: var(--component-color, #333);
+	}
+
+	.accordion-subtle .accordion-header:hover,
+	.accordion-subtle summary:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 85%
+		);
+	}
+
+	.accordion-subtle .accordion-item:not(:last-child) {
+		border-bottom: var(--accordion-border-width) solid
+			color-mix(in srgb, var(--component-color, #333), transparent 80%);
+	}
+
+	/* 
+	 * @component: accordion
+	 * @variant: ghost
+	 * @description: ゴーストスタイルのアコーディオン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。
+	 * @category: interactive
+	 * @example: <div class="accordion-base accordion-ghost theme-primary">...</div>
+	 */
+	.accordion-ghost {
+		background-color: transparent;
+		color: var(--text-color, #333);
+	}
+
+	.accordion-ghost .accordion-header,
+	.accordion-ghost summary {
+		color: var(--component-color, #333);
+	}
+
+	.accordion-ghost .accordion-header:hover,
+	.accordion-ghost summary:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--component-color, #333),
+			transparent 90%
+		);
+	}
+}

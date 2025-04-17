@@ -37,7 +37,7 @@ function generateSafeList() {
 export default {
 	content: [
 		'./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-		'!**/node_modules/**', // node_modulesを除外
+		'!**/node_modules/**',
 		'./public/**/*.html',
 		'./src/css-summoner/styles/**/*.css',
 		'./src/styles/global.css',
@@ -80,29 +80,6 @@ export default {
 				global: 'clamp(1.25rem,1rem + 2vw,2.5rem )',
 				globalX2: 'clamp(40px,2rem + 2vw, 60px)',
 				globalRem: '2rem',
-			},
-			backgroundImage: {
-				// hero フォルダ内のパターン
-				'hero-bank-note': 'var(--bg-hero-bank-note)',
-				'hero-stripes': 'var(--bg-hero-stripes)',
-				'hero-brick-wall': 'var(--bg-hero-brick-wall)',
-				'hero-bubbles': 'var(--bg-hero-bubbles)',
-				'hero-leaf': 'var(--bg-hero-leaf)',
-				'hero-polka-dots': 'var(--bg-hero-polka-dots)',
-				'hero-diagonal-lines': 'var(--bg-hero-diagonal-lines)',
-				'hero-texture': 'var(--bg-hero-texture)',
-				'hero-endless-clouds': 'var(--bg-hero-endless-clouds)',
-				'hero-graph-paper': 'var(--bg-hero-graph-paper)',
-				'hero-diagonal-stripes': 'var(--bg-hero-diagonal-stripes)',
-				'hero-plus': 'var(--bg-hero-plus)',
-
-				// subtle フォルダ内のパターン
-				'subtle-gravel': 'var(--bg-subtle-gravel)',
-				'subtle-worn-dots': 'var(--bg-subtle-worn-dots)',
-				'subtle-naturalwhite': 'var(--bg-subtle-naturalwhite)',
-				'subtle-45degree-fabric': 'var(--bg-subtle-45degree-fabric)',
-				'subtle-tree-bark': 'var(--bg-subtle-tree-bark)',
-				'subtle-geometric-leaves': 'var(--bg-subtle-geometric-leaves)',
 			},
 			fontSize: {
 				base: '1rem', // 16px
@@ -176,8 +153,5 @@ export default {
 			],
 		},
 	},
-	plugins: [
-		require('@tailwindcss/typography'),
-		require('tailwindcss-animate'),
-	],
+	plugins: [require('@tailwindcss/typography'), require('tailwindcss-animate')],
 }

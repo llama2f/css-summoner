@@ -26,6 +26,11 @@
       "category": "form-controls"
     },
     {
+      "value": "accordion",
+      "label": "Accordion",
+      "category": "interactive"
+    },
+    {
       "value": "button",
       "label": "Button",
       "category": "interactive"
@@ -55,7 +60,8 @@
     "form": "form-base",
     "card": "card-base",
     "button": "btn-base",
-    "badge": "badge-base"
+    "badge": "badge-base",
+    "accordion": "accordion-base"
   },
   "componentVariants": {
     "tooltip": [
@@ -353,6 +359,28 @@
       },
       {
         "value": "badge-subtle",
+        "label": "Subtle"
+      }
+    ],
+    "accordion": [
+      {
+        "value": "accordion-default",
+        "label": "Default"
+      },
+      {
+        "value": "accordion-ghost",
+        "label": "Ghost"
+      },
+      {
+        "value": "accordion-outline",
+        "label": "Outline"
+      },
+      {
+        "value": "accordion-solid",
+        "label": "Solid"
+      },
+      {
+        "value": "accordion-subtle",
         "label": "Subtle"
       }
     ]
@@ -831,6 +859,42 @@
       "variant": "base",
       "description": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。色や具体的な形状は含まない。",
       "category": "display"
+    },
+    "accordion-default": {
+      "component": "accordion",
+      "variant": "default",
+      "description": "デフォルトスタイルのアコーディオン。シンプルな外観で、ヘッダーにホバー効果があります。",
+      "category": "interactive"
+    },
+    "accordion-solid": {
+      "component": "accordion",
+      "variant": "solid",
+      "description": "塗りつぶしスタイルのアコーディオン。ヘッダーに背景色が適用されます。",
+      "category": "interactive"
+    },
+    "accordion-outline": {
+      "component": "accordion",
+      "variant": "outline",
+      "description": "アウトラインスタイルのアコーディオン。枠線のみで、ヘッダーにホバー時に背景色が表示されます。",
+      "category": "interactive"
+    },
+    "accordion-subtle": {
+      "component": "accordion",
+      "variant": "subtle",
+      "description": "控えめなアコーディオン。薄い背景色が適用され、ホバー時に色が濃くなります。",
+      "category": "interactive"
+    },
+    "accordion-ghost": {
+      "component": "accordion",
+      "variant": "ghost",
+      "description": "ゴーストスタイルのアコーディオン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
+      "category": "interactive"
+    },
+    "accordion-base": {
+      "component": "accordion",
+      "variant": "base",
+      "description": "すべてのアコーディオンの基本スタイル。折りたたみ可能なコンテンツを表示するための共通のスタイルとレイアウトを提供します。",
+      "category": "interactive"
     }
   },
   "componentExamples": {
@@ -1240,6 +1304,38 @@
         "variant": "base",
         "className": "badge-base",
         "example": "<span class=\"badge-base badge-solid color-primary\">バッジ</span>"
+      }
+    ],
+    "accordion": [
+      {
+        "variant": "default",
+        "className": "accordion-default",
+        "example": "<div class=\"accordion-base accordion-default theme-primary\">...</div>"
+      },
+      {
+        "variant": "solid",
+        "className": "accordion-solid",
+        "example": "<div class=\"accordion-base accordion-solid theme-primary\">...</div>"
+      },
+      {
+        "variant": "outline",
+        "className": "accordion-outline",
+        "example": "<div class=\"accordion-base accordion-outline theme-primary\">...</div>"
+      },
+      {
+        "variant": "subtle",
+        "className": "accordion-subtle",
+        "example": "<div class=\"accordion-base accordion-subtle theme-primary\">...</div>"
+      },
+      {
+        "variant": "ghost",
+        "className": "accordion-ghost",
+        "example": "<div class=\"accordion-base accordion-ghost theme-primary\">...</div>"
+      },
+      {
+        "variant": "base",
+        "className": "accordion-base",
+        "example": "<div class=\"accordion-base accordion-default theme-primary\">...</div>"
       }
     ]
   },
@@ -2019,11 +2115,168 @@
       "selector": ".badge-base",
       "sourceFile": "badge/base.css",
       "relatedRules": []
+    },
+    "accordion-default": {
+      "ruleText": ".accordion-default {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--text-color, #333);\n\t}",
+      "selector": ".accordion-default",
+      "sourceFile": "accordion/variants-monochrome.css",
+      "relatedRules": [
+        {
+          "selector": ".accordion-default .accordion-header,\n\t.accordion-default summary",
+          "ruleText": ".accordion-default .accordion-header,\n\t.accordion-default summary {\n\t\tcolor: var(--component-color, #333);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-default .accordion-header:hover,\n\t.accordion-default summary:hover",
+          "ruleText": ".accordion-default .accordion-header:hover,\n\t.accordion-default summary:hover {\n\t\tbackground-color: var(--accordion-bg-hover);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-default .accordion-icon,\n\t.accordion-default summary::after",
+          "ruleText": ".accordion-default .accordion-icon,\n\t.accordion-default summary::after {\n\t\tcolor: var(--component-color, #333);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        }
+      ]
+    },
+    "accordion-solid": {
+      "ruleText": ".accordion-solid {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--text-color, #333);\n\t}",
+      "selector": ".accordion-solid",
+      "sourceFile": "accordion/variants-monochrome.css",
+      "relatedRules": [
+        {
+          "selector": ".accordion-solid .accordion-header,\n\t.accordion-solid summary",
+          "ruleText": ".accordion-solid .accordion-header,\n\t.accordion-solid summary {\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-solid .accordion-header:hover,\n\t.accordion-solid summary:hover",
+          "ruleText": ".accordion-solid .accordion-header:hover,\n\t.accordion-solid summary:hover {\n\t\tbackground-color: var(\n\t\t\t--component-hover-color,\n\t\t\tcolor-mix(\n\t\t\t\tin srgb,\n\t\t\t\tvar(--component-color, #333),\n\t\t\t\tvar(--component-mix, #000) var(--hover-amount, 10%)\n\t\t\t)\n\t\t);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-solid .accordion-icon,\n\t.accordion-solid summary::after",
+          "ruleText": ".accordion-solid .accordion-icon,\n\t.accordion-solid summary::after {\n\t\tcolor: var(--component-text, #fff);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        }
+      ]
+    },
+    "accordion-outline": {
+      "ruleText": ".accordion-outline {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--text-color, #333);\n\t\tborder: var(--accordion-border-width) solid var(--component-color, #333);\n\t}",
+      "selector": ".accordion-outline",
+      "sourceFile": "accordion/variants-monochrome.css",
+      "relatedRules": [
+        {
+          "selector": ".accordion-outline .accordion-header,\n\t.accordion-outline summary",
+          "ruleText": ".accordion-outline .accordion-header,\n\t.accordion-outline summary {\n\t\tcolor: var(--component-color, #333);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-outline .accordion-header:hover,\n\t.accordion-outline summary:hover",
+          "ruleText": ".accordion-outline .accordion-header:hover,\n\t.accordion-outline summary:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-outline .accordion-item:not(:last-child)",
+          "ruleText": ".accordion-outline .accordion-item:not(:last-child) {\n\t\tborder-bottom: var(--accordion-border-width) solid\n\t\t\tvar(--component-color, #333);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        }
+      ]
+    },
+    "accordion-subtle": {
+      "ruleText": ".accordion-subtle {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 95%\n\t\t);\n\t\tcolor: var(--text-color, #333);\n\t}",
+      "selector": ".accordion-subtle",
+      "sourceFile": "accordion/variants-monochrome.css",
+      "relatedRules": [
+        {
+          "selector": ".accordion-subtle .accordion-header,\n\t.accordion-subtle summary",
+          "ruleText": ".accordion-subtle .accordion-header,\n\t.accordion-subtle summary {\n\t\tcolor: var(--component-color, #333);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-subtle .accordion-header:hover,\n\t.accordion-subtle summary:hover",
+          "ruleText": ".accordion-subtle .accordion-header:hover,\n\t.accordion-subtle summary:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 85%\n\t\t);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-subtle .accordion-item:not(:last-child)",
+          "ruleText": ".accordion-subtle .accordion-item:not(:last-child) {\n\t\tborder-bottom: var(--accordion-border-width) solid\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 80%);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        }
+      ]
+    },
+    "accordion-ghost": {
+      "ruleText": ".accordion-ghost {\n\t\tbackground-color: transparent;\n\t\tcolor: var(--text-color, #333);\n\t}",
+      "selector": ".accordion-ghost",
+      "sourceFile": "accordion/variants-monochrome.css",
+      "relatedRules": [
+        {
+          "selector": ".accordion-ghost .accordion-header,\n\t.accordion-ghost summary",
+          "ruleText": ".accordion-ghost .accordion-header,\n\t.accordion-ghost summary {\n\t\tcolor: var(--component-color, #333);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        },
+        {
+          "selector": ".accordion-ghost .accordion-header:hover,\n\t.accordion-ghost summary:hover",
+          "ruleText": ".accordion-ghost .accordion-header:hover,\n\t.accordion-ghost summary:hover {\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t}",
+          "sourceFile": "accordion/variants-monochrome.css"
+        }
+      ]
+    },
+    "accordion-base": {
+      "ruleText": ".accordion-base {\n\t\t@apply w-full overflow-hidden;\n\t\tfont-family: var(--accordion-font-family);\n\t\tborder-radius: var(--accordion-border-radius);\n\t\ttransition-property: all;\n\t\ttransition-duration: var(--accordion-transition-duration);\n\t}",
+      "selector": ".accordion-base",
+      "sourceFile": "accordion/base.css",
+      "relatedRules": [
+        {
+          "selector": ".accordion-base details",
+          "ruleText": ".accordion-base details {\n\t\t@apply w-full;\n\t}",
+          "sourceFile": "accordion/base.css"
+        },
+        {
+          "selector": ".accordion-base summary",
+          "ruleText": ".accordion-base summary {\n\t\t@apply flex items-center justify-between cursor-pointer;\n\t\t@apply font-medium;\n\t\tpadding: var(--accordion-padding-y-md) var(--accordion-padding-x-md);\n\t\tlist-style: none;\n\t}",
+          "sourceFile": "accordion/base.css"
+        },
+        {
+          "selector": ".accordion-base summary::-webkit-details-marker",
+          "ruleText": ".accordion-base summary::-webkit-details-marker {\n\t\tdisplay: none;\n\t}",
+          "sourceFile": "accordion/base.css"
+        },
+        {
+          "selector": ".accordion-base summary::after",
+          "ruleText": ".accordion-base summary::after {\n\t\tcontent: '';\n\t\twidth: var(--accordion-icon-size);\n\t\theight: var(--accordion-icon-size);\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\");\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-position: center;\n\t\tbackground-size: contain;\n\t\ttransform: rotate(0deg);\n\t\ttransition: transform var(--accordion-transition-duration) ease;\n\t\tcolor: var(--accordion-icon-color);\n\t}",
+          "sourceFile": "accordion/base.css"
+        },
+        {
+          "selector": ".accordion-base details[open] summary::after",
+          "ruleText": ".accordion-base details[open] summary::after {\n\t\ttransform: rotate(180deg);\n\t}",
+          "sourceFile": "accordion/base.css"
+        },
+        {
+          "selector": ".accordion-base .accordion-content",
+          "ruleText": ".accordion-base .accordion-content {\n\t\t@apply overflow-hidden;\n\t\tpadding: 0 var(--accordion-padding-x-md) var(--accordion-padding-y-md);\n\t\ttransition: max-height var(--accordion-content-transition-duration)\n\t\t\tease-in-out;\n\t}",
+          "sourceFile": "accordion/base.css"
+        },
+        {
+          "selector": ".accordion-base .accordion-header",
+          "ruleText": ".accordion-base .accordion-header {\n\t\t@apply flex items-center justify-between cursor-pointer;\n\t\t@apply font-medium;\n\t\tpadding: var(--accordion-padding-y-md) var(--accordion-padding-x-md);\n\t}",
+          "sourceFile": "accordion/base.css"
+        },
+        {
+          "selector": ".accordion-base .accordion-icon",
+          "ruleText": ".accordion-base .accordion-icon {\n\t\twidth: var(--accordion-icon-size);\n\t\theight: var(--accordion-icon-size);\n\t\tbackground-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\");\n\t\tbackground-repeat: no-repeat;\n\t\tbackground-position: center;\n\t\tbackground-size: contain;\n\t\ttransform: rotate(0deg);\n\t\ttransition: transform var(--accordion-transition-duration) ease;\n\t\tcolor: var(--accordion-icon-color);\n\t}",
+          "sourceFile": "accordion/base.css"
+        },
+        {
+          "selector": ".accordion-base .accordion-header:focus-visible",
+          "ruleText": ".accordion-base .accordion-header:focus-visible {\n\t\t@apply outline-none ring-2 ring-offset-2;\n\t\tring-color: var(--component-color, var(--primary, #1a568e));\n\t}",
+          "sourceFile": "accordion/base.css"
+        }
+      ]
     }
   },
   "meta": {
-    "totalFiles": 29,
-    "totalClasses": 79,
+    "totalFiles": 32,
+    "totalClasses": 85,
     "errors": [
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
@@ -2033,7 +2286,8 @@
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: form",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: card",
       "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: button",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: badge"
+      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: badge",
+      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: accordion"
     ],
     "sources": [
       "tooltip/variants.css",
@@ -2064,7 +2318,10 @@
       "button/base.css",
       "badge/variants-monochrome.css",
       "badge/utilities.css",
-      "badge/base.css"
+      "badge/base.css",
+      "accordion/variants-monochrome.css",
+      "accordion/utilities.css",
+      "accordion/base.css"
     ]
   },
   "themeRules": {
@@ -2589,6 +2846,71 @@
       "ruleText": ".badge-icon-only {\n\t\tpadding: 0.5em; \n\t\t\n\t}",
       "selector": ".badge-icon-only",
       "sourceFile": "badge/utilities.css"
+    },
+    "accordion-item": {
+      "ruleText": ".accordion-item.is-open .accordion-icon {\n\ttransform: rotate(180deg);\n\t/* transitionは下で定義 */\n}",
+      "selector": ".accordion-item.is-open .accordion-icon",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-icon": {
+      "ruleText": ".accordion-icon {\n\tdisplay: inline-block; /* transformを適用するために必要 */\n\ttransition: transform 0.3s ease-out;\n\t/* アイコン自体のスタイル（例: Font Awesomeなど）は別途定義 */\n\t/* 例: Font Awesomeを使用する場合 */\n\t/* font-family: 'Font Awesome 5 Free'; */\n\t/* font-weight: 900; */\n\t/* content: '\\f078'; */ /* 下向き矢印 */\n\twidth: 1em; /* アイコンの幅 */\n\theight: 1em; /* アイコンの高さ */\n\tbackground-color: currentColor; /* 親要素の色を継承 */\n\t-webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath d='M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/%3E%3C/svg%3E\")\n\t\tno-repeat center / contain;\n\tmask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath d='M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/%3E%3C/svg%3E\")\n\t\tno-repeat center / contain;\n}",
+      "selector": ".accordion-icon",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-header": {
+      "ruleText": ".accordion-header:focus-visible {\n\toutline: 2px solid var(--focus-ring-color, blue);\n\toutline-offset: 2px;\n}",
+      "selector": ".accordion-header:focus-visible",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-xs": {
+      "ruleText": ".accordion-xs {\n\t\tfont-size: var(--accordion-font-size-xs);\n\t}",
+      "selector": ".accordion-xs",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-sm": {
+      "ruleText": ".accordion-sm {\n\t\tfont-size: var(--accordion-font-size-sm);\n\t}",
+      "selector": ".accordion-sm",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-md": {
+      "ruleText": ".accordion-md {\n\t\tfont-size: var(--accordion-font-size-md);\n\t}",
+      "selector": ".accordion-md",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-lg": {
+      "ruleText": ".accordion-lg {\n\t\tfont-size: var(--accordion-font-size-lg);\n\t}",
+      "selector": ".accordion-lg",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-xl": {
+      "ruleText": ".accordion-xl {\n\t\tfont-size: var(--accordion-font-size-xl);\n\t}",
+      "selector": ".accordion-xl",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-bordered": {
+      "ruleText": ".accordion-bordered {\n\t\tborder: var(--accordion-border-width) solid var(--accordion-border-color);\n\t}",
+      "selector": ".accordion-bordered",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-separated": {
+      "ruleText": ".accordion-separated .accordion-item {\n\t\tborder: var(--accordion-border-width) solid var(--accordion-border-color);\n\t\tborder-radius: var(--accordion-border-radius);\n\t\tmargin-bottom: 0.5rem;\n\t}",
+      "selector": ".accordion-separated .accordion-item",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-icon-left": {
+      "ruleText": ".accordion-icon-left .accordion-header,\n\t.accordion-icon-left summary {\n\t\t@apply flex-row-reverse justify-end;\n\t}",
+      "selector": ".accordion-icon-left .accordion-header,\n\t.accordion-icon-left summary",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-animate-content": {
+      "ruleText": ".accordion-animate-content .accordion-content {\n\t\tmax-height: 0;\n\t\topacity: 0;\n\t\ttransition:\n\t\t\tmax-height var(--accordion-content-transition-duration) ease-in-out,\n\t\t\topacity var(--accordion-content-transition-duration) ease-in-out;\n\t}",
+      "selector": ".accordion-animate-content .accordion-content",
+      "sourceFile": "accordion/utilities.css"
+    },
+    "accordion-base": {
+      "ruleText": ".accordion-base .accordion-header:focus,\n\t.accordion-base summary:focus {\n\t\t@apply outline-none;\n\t}",
+      "selector": ".accordion-base .accordion-header:focus,\n\t.accordion-base summary:focus",
+      "sourceFile": "accordion/utilities.css"
     }
   },
   "originalComponentTypes": {
@@ -2688,6 +3010,14 @@
       "badge-outline",
       "badge-subtle",
       "badge-base"
+    ],
+    "accordion": [
+      "accordion-default",
+      "accordion-solid",
+      "accordion-outline",
+      "accordion-subtle",
+      "accordion-ghost",
+      "accordion-base"
     ]
   },
   "componentsByType": {
@@ -3339,6 +3669,56 @@
         "description": "すべてのバッジの基本スタイル。インラインフレックス、中央揃え、フォントウェイト、トランジションを含む。色や具体的な形状は含まない。",
         "category": "display",
         "sourceFile": "badge/base.css"
+      }
+    ],
+    "accordion": [
+      {
+        "component": "accordion",
+        "variant": "default",
+        "className": "accordion-default",
+        "description": "デフォルトスタイルのアコーディオン。シンプルな外観で、ヘッダーにホバー効果があります。",
+        "category": "interactive",
+        "sourceFile": "accordion/variants-monochrome.css"
+      },
+      {
+        "component": "accordion",
+        "variant": "solid",
+        "className": "accordion-solid",
+        "description": "塗りつぶしスタイルのアコーディオン。ヘッダーに背景色が適用されます。",
+        "category": "interactive",
+        "sourceFile": "accordion/variants-monochrome.css"
+      },
+      {
+        "component": "accordion",
+        "variant": "outline",
+        "className": "accordion-outline",
+        "description": "アウトラインスタイルのアコーディオン。枠線のみで、ヘッダーにホバー時に背景色が表示されます。",
+        "category": "interactive",
+        "sourceFile": "accordion/variants-monochrome.css"
+      },
+      {
+        "component": "accordion",
+        "variant": "subtle",
+        "className": "accordion-subtle",
+        "description": "控えめなアコーディオン。薄い背景色が適用され、ホバー時に色が濃くなります。",
+        "category": "interactive",
+        "sourceFile": "accordion/variants-monochrome.css"
+      },
+      {
+        "component": "accordion",
+        "variant": "ghost",
+        "className": "accordion-ghost",
+        "description": "ゴーストスタイルのアコーディオン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。",
+        "category": "interactive",
+        "sourceFile": "accordion/variants-monochrome.css"
+      },
+      {
+        "component": "accordion",
+        "variant": "base",
+        "className": "accordion-base",
+        "description": "すべてのアコーディオンの基本スタイル。折りたたみ可能なコンテンツを表示するための共通のスタイルとレイアウトを提供します。",
+        "category": "interactive",
+        "sourceFile": "accordion/base.css"
       }
     ]
   }

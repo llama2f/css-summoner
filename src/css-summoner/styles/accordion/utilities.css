@@ -1,0 +1,166 @@
+/* アコーディオン開閉状態に応じたスタイル */
+.accordion-item.is-open .accordion-icon {
+	transform: rotate(180deg);
+	/* transitionは下で定義 */
+}
+
+.accordion-icon {
+	display: inline-block; /* transformを適用するために必要 */
+	transition: transform 0.3s ease-out;
+	/* アイコン自体のスタイル（例: Font Awesomeなど）は別途定義 */
+	/* 例: Font Awesomeを使用する場合 */
+	/* font-family: 'Font Awesome 5 Free'; */
+	/* font-weight: 900; */
+	/* content: '\f078'; */ /* 下向き矢印 */
+	width: 1em; /* アイコンの幅 */
+	height: 1em; /* アイコンの高さ */
+	background-color: currentColor; /* 親要素の色を継承 */
+	-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath d='M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/%3E%3C/svg%3E")
+		no-repeat center / contain;
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath d='M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z'/%3E%3C/svg%3E")
+		no-repeat center / contain;
+}
+
+/* フォーカス時のスタイル（任意） */
+.accordion-header:focus-visible {
+	outline: 2px solid var(--focus-ring-color, blue);
+	outline-offset: 2px;
+}
+
+@layer utilities {
+	/* サイズバリエーション */
+	.accordion-xs {
+		font-size: var(--accordion-font-size-xs);
+	}
+
+	.accordion-xs .accordion-header,
+	.accordion-xs summary {
+		padding: var(--accordion-padding-y-xs) var(--accordion-padding-x-xs);
+	}
+
+	.accordion-xs .accordion-content {
+		padding: 0 var(--accordion-padding-x-xs) var(--accordion-padding-y-xs);
+	}
+
+	.accordion-sm {
+		font-size: var(--accordion-font-size-sm);
+	}
+
+	.accordion-sm .accordion-header,
+	.accordion-sm summary {
+		padding: var(--accordion-padding-y-sm) var(--accordion-padding-x-sm);
+	}
+
+	.accordion-sm .accordion-content {
+		padding: 0 var(--accordion-padding-x-sm) var(--accordion-padding-y-sm);
+	}
+
+	.accordion-md {
+		font-size: var(--accordion-font-size-md);
+	}
+
+	.accordion-md .accordion-header,
+	.accordion-md summary {
+		padding: var(--accordion-padding-y-md) var(--accordion-padding-x-md);
+	}
+
+	.accordion-md .accordion-content {
+		padding: 0 var(--accordion-padding-x-md) var(--accordion-padding-y-md);
+	}
+
+	.accordion-lg {
+		font-size: var(--accordion-font-size-lg);
+	}
+
+	.accordion-lg .accordion-header,
+	.accordion-lg summary {
+		padding: var(--accordion-padding-y-lg) var(--accordion-padding-x-lg);
+	}
+
+	.accordion-lg .accordion-content {
+		padding: 0 var(--accordion-padding-x-lg) var(--accordion-padding-y-lg);
+	}
+
+	.accordion-xl {
+		font-size: var(--accordion-font-size-xl);
+	}
+
+	.accordion-xl .accordion-header,
+	.accordion-xl summary {
+		padding: var(--accordion-padding-y-xl) var(--accordion-padding-x-xl);
+	}
+
+	.accordion-xl .accordion-content {
+		padding: 0 var(--accordion-padding-x-xl) var(--accordion-padding-y-xl);
+	}
+
+	/* 境界線のスタイル */
+	.accordion-bordered {
+		border: var(--accordion-border-width) solid var(--accordion-border-color);
+	}
+
+	.accordion-bordered .accordion-item:not(:last-child) {
+		border-bottom: var(--accordion-border-width) solid
+			var(--accordion-border-color);
+	}
+
+	.accordion-separated .accordion-item {
+		border: var(--accordion-border-width) solid var(--accordion-border-color);
+		border-radius: var(--accordion-border-radius);
+		margin-bottom: 0.5rem;
+	}
+
+	.accordion-separated .accordion-item:last-child {
+		margin-bottom: 0;
+	}
+
+	/* アイコン位置 */
+	.accordion-icon-left .accordion-header,
+	.accordion-icon-left summary {
+		@apply flex-row-reverse justify-end;
+	}
+
+	.accordion-icon-left .accordion-header .accordion-icon,
+	.accordion-icon-left summary::after {
+		margin-right: 0.75rem;
+	}
+
+	/* アニメーション */
+	.accordion-animate-content .accordion-content {
+		max-height: 0;
+		opacity: 0;
+		transition:
+			max-height var(--accordion-content-transition-duration) ease-in-out,
+			opacity var(--accordion-content-transition-duration) ease-in-out;
+	}
+
+	.accordion-animate-content .accordion-item.is-open .accordion-content,
+	.accordion-animate-content details[open] .accordion-content {
+		max-height: 1000px; /* 十分な高さを確保 */
+		opacity: 1;
+	}
+
+	/* アクセシビリティ */
+	.accordion-base .accordion-header:focus,
+	.accordion-base summary:focus {
+		@apply outline-none;
+	}
+
+	.accordion-base .accordion-header:focus-visible,
+	.accordion-base summary:focus-visible {
+		@apply outline-none ring-2 ring-offset-2;
+		ring-color: var(--component-color, var(--primary, #1a568e));
+	}
+}
+
+@media print {
+	.accordion-base .accordion-content {
+		max-height: none !important;
+		opacity: 1 !important;
+		display: block !important;
+	}
+
+	.accordion-base details {
+		@apply open;
+	}
+}

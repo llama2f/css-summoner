@@ -1,0 +1,130 @@
+@layer base {
+	:root.dark {
+		--accordion-border-color: rgba(255, 255, 255, 0.2);
+		--accordion-bg-hover: rgba(255, 255, 255, 0.05);
+		--accordion-icon-color: rgba(255, 255, 255, 0.7);
+	}
+}
+
+@layer base {
+	:root {
+		--accordion-font-family: var(--font, sans-serif);
+
+		--accordion-padding-x-xs: 0.5rem;
+		--accordion-padding-y-xs: 0.25rem;
+		--accordion-padding-x-sm: 0.75rem;
+		--accordion-padding-y-sm: 0.5rem;
+		--accordion-padding-x-md: 1rem;
+		--accordion-padding-y-md: 0.75rem;
+		--accordion-padding-x-lg: 1.25rem;
+		--accordion-padding-y-lg: 1rem;
+		--accordion-padding-x-xl: 1.5rem;
+		--accordion-padding-y-xl: 1.25rem;
+
+		--accordion-font-size-xs: 0.75rem;
+		--accordion-font-size-sm: 0.875rem;
+		--accordion-font-size-md: 1rem;
+		--accordion-font-size-lg: 1.125rem;
+		--accordion-font-size-xl: 1.25rem;
+
+		--accordion-border-width: 1px;
+		--accordion-border-radius: 0.375rem;
+		--accordion-border-color: rgba(0, 0, 0, 0.1);
+
+		--accordion-bg-hover: rgba(0, 0, 0, 0.03);
+		--accordion-bg-active: rgba(0, 0, 0, 0.05);
+
+		--accordion-icon-size: 1.25em;
+		--accordion-icon-color: rgba(0, 0, 0, 0.5);
+
+		--accordion-transition-duration: 200ms;
+		--accordion-content-transition-duration: 300ms;
+	}
+
+	@media print {
+		:root {
+			--accordion-padding-x-md: 0.5rem;
+			--accordion-padding-y-md: 0.25rem;
+			--accordion-border-width: 0.5pt;
+		}
+	}
+
+	/* 
+	 * @component: accordion
+	 * @variant: base
+	 * @description: すべてのアコーディオンの基本スタイル。折りたたみ可能なコンテンツを表示するための共通のスタイルとレイアウトを提供します。
+	 * @category: interactive
+	 * @example: <div class="accordion-base accordion-default theme-primary">...</div>
+	 */
+	.accordion-base {
+		@apply w-full overflow-hidden;
+		font-family: var(--accordion-font-family);
+		border-radius: var(--accordion-border-radius);
+		transition-property: all;
+		transition-duration: var(--accordion-transition-duration);
+	}
+
+	/* details/summary ベースのアコーディオン */
+	.accordion-base details {
+		@apply w-full;
+	}
+
+	.accordion-base summary {
+		@apply flex items-center justify-between cursor-pointer;
+		@apply font-medium;
+		padding: var(--accordion-padding-y-md) var(--accordion-padding-x-md);
+		list-style: none;
+	}
+
+	.accordion-base summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.accordion-base summary::after {
+		content: '';
+		width: var(--accordion-icon-size);
+		height: var(--accordion-icon-size);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		transform: rotate(0deg);
+		transition: transform var(--accordion-transition-duration) ease;
+		color: var(--accordion-icon-color);
+	}
+
+	.accordion-base details[open] summary::after {
+		transform: rotate(180deg);
+	}
+
+	.accordion-base .accordion-content {
+		@apply overflow-hidden;
+		padding: 0 var(--accordion-padding-x-md) var(--accordion-padding-y-md);
+		transition: max-height var(--accordion-content-transition-duration)
+			ease-in-out;
+	}
+
+	/* div ベースのカスタムアコーディオン */
+	.accordion-base .accordion-header {
+		@apply flex items-center justify-between cursor-pointer;
+		@apply font-medium;
+		padding: var(--accordion-padding-y-md) var(--accordion-padding-x-md);
+	}
+
+	.accordion-base .accordion-icon {
+		width: var(--accordion-icon-size);
+		height: var(--accordion-icon-size);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		transform: rotate(0deg);
+		transition: transform var(--accordion-transition-duration) ease;
+		color: var(--accordion-icon-color);
+	}
+
+	.accordion-base .accordion-header:focus-visible {
+		@apply outline-none ring-2 ring-offset-2;
+		ring-color: var(--component-color, var(--primary, #1a568e));
+	}
+}
