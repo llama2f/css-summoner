@@ -2277,18 +2277,7 @@
   "meta": {
     "totalFiles": 32,
     "totalClasses": 85,
-    "errors": [
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: tooltip",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: text",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: infobox",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: img",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: heading",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: form",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: card",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: button",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: badge",
-      "以下のコンポーネントにベースクラス（variant: base）が見つかりませんでした: accordion"
-    ],
+    "errors": [],
     "sources": [
       "tooltip/variants.css",
       "tooltip/utilities.css",
