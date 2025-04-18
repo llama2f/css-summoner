@@ -63,6 +63,7 @@ yarn.lock
 .rooignore
 .roo/
 .roomodes
+ai-database/
 
 handler-manifest.json
 todo.md

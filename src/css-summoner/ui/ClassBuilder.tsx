@@ -186,7 +186,7 @@ const ClassBuilder: React.FC = () => {
 	return (
 		<div className='max-w-7xl mx-auto'>
 			{/* モバイル用ヘッダーは Header.astro に移動済み */}
-			<div className='grid grid-cols-1 lg:grid-cols-10 gap-4 p-4 lg:p-0'>
+			<div className='grid grid-cols-1 lg:grid-cols-10 gap-4 py-6'>
 				{/* 左側: コンポーネント選択 (lg以上) */}
 				<div className='panel panel-components hidden lg:block lg:col-span-2'>
 					<ComponentSelector
