@@ -1,0 +1,13 @@
+@import '../button/index.css';
+@import '../card/index.css';
+@import '../text/index.css';
+@import '../heading/index.css';
+@import '../form/index.css';
+@import '../image/index.css';
+@import '../badge/index.css';
+@import '../tooltip/index.css';
+@import '../infobox/index.css';
+@import '../accordion/index.css';
+
+@import '../colors/color-system.css';
+@import '../colors/custom-color.css';

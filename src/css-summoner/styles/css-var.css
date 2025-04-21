@@ -1,0 +1,71 @@
+@layer base {
+	:root {
+		/* ベースカラートークン - セマンティックな定義 */
+		--primary: #1b6e79;
+		--primary-light: #dae2e2;
+		--primary-dark: #2e4652;
+		--secondary: #5a994d;
+		--secondary-light: #e8f8dd;
+		--secondary-dark: #416435;
+		--accent: #b11b1b;
+		--accent-light: #f5e6e0;
+		--accent-dark: #572911;
+		--neutral: #d4d4d4;
+		--neutral-light: #f0f0f0;
+		--neutral-dark: #333333;
+
+		--success: #0b6a81;
+		--success-rgb: rgb(11, 106, 129);
+		--warning: #eb7f56;
+		--warning-rgb: 235, 127, 86;
+		--error: #c03831;
+		--error-rgb: rgb(192, 56, 49);
+
+		/* コントラスト保証のためのペア - 各色の上に表示するテキスト色 */
+		--on-primary: #ffffff;
+		--on-secondary: #ffffff;
+		--on-accent: #ffffff;
+		--on-neutral: #333333;
+		--on-success: #ffffff;
+		--on-warning: #333333;
+		--on-error: #ffffff;
+
+		/* フォーカス状態用の色 */
+		--focus-ring-color: var(--primary, #1b6e79);
+
+		/* テーマトークン - ライトモード (デフォルト) */
+		--bg-base: var(--neutral-light);
+		--text-base: var(--neutral-dark);
+		--bg-inverse: var(--neutral-dark);
+		--text-inverse: var(--neutral-light);
+
+		/* ホバー効果の設定 */
+		--hover-light-mix: #000; /* 明るい背景のホバー効果 (暗くする) */
+		--hover-dark-mix: #fff; /* 暗い背景のホバー効果 (明るくする) */
+		--hover-amount: 10%; /* ホバー時の混合量 */
+		--active-amount: 20%; /* アクティブ時の混合量 */
+
+		/*その他のベース変数*/
+		--font:
+			'Noto Sans JP', sans-serif, 'Noto Sans', 'Helvetica Neue', 'Helvetica',
+			'Arial', sans-serif;
+		--background: var(--bg-base);
+		--foreground: var(--text-base);
+		--border: var(--neutral);
+		--muted: var(--neutral-light);
+		--muted-foreground: var(--neutral-dark);
+	}
+
+	/* ダークモードのテーマトークン */
+	:root.dark {
+		--bg-base: var(--neutral-dark);
+		--text-base: var(--neutral-light);
+		--bg-inverse: var(--neutral-light);
+		--text-inverse: var(--neutral-dark);
+
+		--background: var(--bg-base);
+		--foreground: var(--text-base);
+		--muted: var(--neutral-dark);
+		--muted-foreground: var(--neutral-light);
+	}
+}

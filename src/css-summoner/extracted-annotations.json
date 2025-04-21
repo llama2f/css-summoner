@@ -2275,7 +2275,7 @@
     }
   },
   "meta": {
-    "totalFiles": 32,
+    "totalFiles": 36,
     "totalClasses": 85,
     "errors": [],
     "sources": [
@@ -2285,6 +2285,10 @@
       "text/variants.css",
       "text/utilities.css",
       "text/base.css",
+      "no-bundle/styles.css",
+      "no-bundle/class-builder.css",
+      "no-bundle/builder.css",
+      "no-bundle/all-components.css",
       "infobox/variants.css",
       "infobox/utilities.css",
       "infobox/base.css",
@@ -2314,6 +2318,16 @@
     ]
   },
   "themeRules": {
+    "theme-light": {
+      "ruleText": ".theme-light {\n\t\t@apply bg-neutral-light text-neutral-dark;\n\t}",
+      "selector": ".theme-light",
+      "sourceFile": "no-bundle/class-builder.css"
+    },
+    "theme-dark": {
+      "ruleText": ".theme-dark {\n\t\t@apply bg-neutral-dark text-neutral-light;\n\t}",
+      "selector": ".theme-dark",
+      "sourceFile": "no-bundle/class-builder.css"
+    },
     "theme-primary": {
       "ruleText": ".theme-primary {\n\t\t--component-color: var(--primary, #1b6e79);\n\t\t--component-text: var(--on-primary, #ffffff);\n\t\t--component-border: var(--primary, #1b6e79);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--primary, #1b6e79),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--primary, #1b6e79),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
       "selector": ".theme-primary",
@@ -2323,6 +2337,11 @@
       "ruleText": ".theme-secondary {\n\t\t--component-color: var(--secondary, #5a994d);\n\t\t--component-text: var(--on-secondary, #ffffff);\n\t\t--component-border: var(--secondary, #5a994d);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--secondary, #5a994d),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--secondary, #5a994d),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
       "selector": ".theme-secondary",
       "sourceFile": "colors/color-system.css"
+    },
+    "theme-transparent": {
+      "ruleText": ".theme-transparent {\n\t\t@apply bg-transparent text-neutral-dark;\n\t}",
+      "selector": ".theme-transparent",
+      "sourceFile": "no-bundle/class-builder.css"
     },
     "theme-accent": {
       "ruleText": ".theme-accent {\n\t\t--component-color: var(--accent, #b11b1b);\n\t\t--component-text: var(--on-accent, #ffffff);\n\t\t--component-border: var(--accent, #b11b1b);\n\t\t--component-hover-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--accent, #b11b1b),\n\t\t\tvar(--hover-light-mix, #000) var(--hover-amount, 20%)\n\t\t);\n\t\t--component-active-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--accent, #b11b1b),\n\t\t\tvar(--hover-light-mix, #000) var(--active-amount, 30%)\n\t\t);\n\t\t--component-mix: var(--hover-light-mix, #000);\n\t}",
@@ -2430,6 +2449,46 @@
       "ruleText": ".text-vertical {\n\t\twriting-mode: vertical-rl;\n\t\ttext-orientation: mixed;\n\t}",
       "selector": ".text-vertical",
       "sourceFile": "text/utilities.css"
+    },
+    "label-color": {
+      "ruleText": ".label-color {\n\t\t@apply font-mono font-normal !p-0;\n\t}",
+      "selector": ".label-color",
+      "sourceFile": "no-bundle/builder.css"
+    },
+    "label-custom": {
+      "ruleText": ".label-custom::after {\n\t\tbackground-color: var(--accent);\n\t}",
+      "selector": ".label-custom::after",
+      "sourceFile": "no-bundle/builder.css"
+    },
+    "label-config": {
+      "ruleText": ".label-config {\n\t\tcolor: var(--foreground);\n\t\tpadding-bottom: 0.3rem;\n\t\tposition: relative;\n\n\t\t@apply text-sm font-bold mb-2;\n\t}",
+      "selector": ".label-config",
+      "sourceFile": "no-bundle/builder.css"
+    },
+    "label-variant": {
+      "ruleText": ".label-variant::after {\n\t\tbackground-color: var(--primary);\n\t}",
+      "selector": ".label-variant::after",
+      "sourceFile": "no-bundle/builder.css"
+    },
+    "label-size": {
+      "ruleText": ".label-size::after {\n\t\tbackground-color: var(--secondary);\n\t}",
+      "selector": ".label-size::after",
+      "sourceFile": "no-bundle/builder.css"
+    },
+    "label-radius": {
+      "ruleText": ".label-radius::after {\n\t\tbackground-color: var(--accent);\n\t}",
+      "selector": ".label-radius::after",
+      "sourceFile": "no-bundle/builder.css"
+    },
+    "label-component": {
+      "ruleText": ".label-component::after {\n\t\tbackground-color: var(--neutral-dark);\n\t}",
+      "selector": ".label-component::after",
+      "sourceFile": "no-bundle/builder.css"
+    },
+    "overflow-y-auto": {
+      "ruleText": ".overflow-y-auto::-webkit-scrollbar {\n\t\twidth: 6px;\n\t}",
+      "selector": ".overflow-y-auto::-webkit-scrollbar",
+      "sourceFile": "no-bundle/builder.css"
     },
     "infobox-hover-ghost": {
       "ruleText": ".infobox-hover-ghost:hover {\n\t\tbackground-color: color-mix(in srgb, currentColor 10%, transparent);\n\t}",

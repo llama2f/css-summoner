@@ -7,7 +7,7 @@ import { faBars, faPalette } from '@fortawesome/free-solid-svg-icons'
 //現在のurlパスを取得
 const currentPath = Astro.url.pathname
 //パスにdocsが含まれているかを判定
-const isDocsPage = currentPath.includes('docs')
+const isDocsPage = currentPath.includes('docs') || currentPath.includes('usage')
 
 const { title = siteData.siteName } = Astro.props
 ---

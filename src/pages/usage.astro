@@ -1,0 +1,129 @@
+---
+import PageLayout from '@layouts/PageLayout.astro'
+---
+
+<PageLayout title='Usage' desc='CSS Summonerの使用方法'>
+	<div class='container mx-auto py-8 space-y-6'>
+		<h1 class='text-3xl font-bold mb-6'>CSS Summonerのスタイルを使う</h1>
+
+		<div>
+			CSS Summonerで生成したカスタムクラスを使用するために必要なもの
+			<ul class='list-disc list-inside'>
+				<li>CSS SummonerのCSSファイルのダウンロード</li>
+				<li>Tailwind CSS(v3)のインストール</li>
+			</ul>
+
+			※Tailwind CSS v4への対応は検討中です。使えるかわかりません
+		</div>
+
+		<section>
+			<h2 class='text-2xl font-semibold mb-4'>CSSファイルのダウンロード</h2>
+			<div>
+				<p>以下のリンクからCSSバンドルファイルをダウンロードできます：</p>
+				<a
+					href='/assets/css-summoner-bundle.min.css'
+					download='css-summoner-bundle.min.css'
+					class='btn-base btn-solid btn-sm theme-primary animate-down shadow my-4 no-default'
+				>
+					Download CSS File (css-summoner-bundle.min.css)
+				</a>
+			</div>
+		</section>
+
+		<section>
+			<h2 class='text-2xl font-semibold mb-4'>HTMLでの使用方法</h2>
+			<div>
+				<p>1. ダウンロードしたCSSファイルをプロジェクトに配置します。</p>
+				<p>2. HTML内で以下のようにリンクします：</p>
+				<pre><code class="hljs">&lt;!-- HTMLファイルのheadタグ内に記述 --&gt;
+&lt;link rel="stylesheet" href="パス/css-summoner-bundle.min.css"&gt;</code></pre>
+			</div>
+		</section>
+
+		<section>
+			<h2 class='text-2xl font-semibold mb-4'>モジュールでの使用方法</h2>
+			<div>
+				<p>
+					フレームワークやビルドシステムを使用している場合は、以下のようにインポートできます：
+				</p>
+				<pre><code class="hljs">import 'パス/css-summoner-bundle.min.css';</code></pre>
+			</div>
+		</section>
+
+		<section>
+			<h2 class='text-2xl font-semibold mb-4'>CSSファイルに含まれるもの</h2>
+			<div>
+				<p>このファイルには以下が含まれています：</p>
+				<ul class='list-disc list-inside py-4'>
+					<li>CSS変数定義</li>
+					<li>コンポーネントスタイル</li>
+					<li>ユーティリティクラス</li>
+				</ul>
+			</div>
+		</section>
+		<section>
+			<h2 class='text-2xl font-semibold mb-4'>Tailwind CSSの設定</h2>
+			<div class='space-y-4'>
+				<p>
+					CSS Summonerのスタイルは、Tailwind
+					CSS（v3）で構築されています。使用するには以下が必要です：
+				</p>
+
+				<div class='mb-4'>
+					<h3 class='text-xl font-medium mb-2'>前提条件</h3>
+					<ul class='list-disc list-inside space-y-1'>
+						<li>Tailwind CSS v3がプロジェクトに導入されていること</li>
+						<li>
+							Tailwindのベーススタイル、コンポーネント、ユーティリティが正しく読み込まれていること
+						</li>
+					</ul>
+				</div>
+
+				<div class='mb-4'>
+					<h3 class='text-xl font-medium mb-2'>使用方法</h3>
+					<p>
+						CSS Summonerのバンドルファイルは<strong
+							>Tailwindの基本スタイル読み込みの後に</strong
+						>インポートしてください。
+					</p>
+
+					<div class='my-4 bg-gray-50 dark:bg-gray-800 p-4 rounded-md'>
+						<p class='font-medium mb-2'>CSSファイルの場合：</p>
+						<pre><code class="hljs">/* 既存のTailwindインポート */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* CSS Summonerをその後にインポート */
+@import 'パス/css-summoner-bundle.min.css';</code></pre>
+					</div>
+
+					<p class='mt-2'>
+						参考：<a
+							href='https://v3.tailwindcss.com/docs/using-with-preprocessors#build-time-imports'
+							target='_blank'
+							tabindex='0'
+							rel='noopener noreferrer'
+							class='underline'
+							>https://v3.tailwindcss.com/docs/using-with-preprocessors#build-time-imports</a
+						>
+					</p>
+
+					<p class='text-sm mt-2 text-gray-600 dark:text-gray-400'>
+						※ Tailwind CSS
+						v4への対応は現在検討中です。互換性については検証が必要です。
+					</p>
+				</div>
+
+				<div>
+					<h3 class='text-xl font-medium mb-2'>備考</h3>
+					<p>
+						CSS Summonerのスタイルは<code class='inline'>@layer</code
+						>構文を使用してTailwindのレイヤーシステムと統合されています。
+						これにより、Tailwindの優先順位システムを維持しながら、独自のカスタムスタイルを追加できます。
+					</p>
+				</div>
+			</div>
+		</section>
+	</div>
+</PageLayout>
