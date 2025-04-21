@@ -16,7 +16,7 @@ export function render(props) {
 	const { reactProps, domProps, commonProps } = separateProps(
 		props,
 		['classString', 'children', 'selectedModifiers', 'icon', 'baseClass'], // Reactプロパティ
-		[] // DOM要素プロパティ (heading特有のものは少ない)
+		[]
 	)
 
 	// Reactプロパティから必要な値を取得
@@ -25,7 +25,6 @@ export function render(props) {
 		children = 'Heading 見出し',
 		selectedModifiers = [],
 		icon = '⭐',
-		// baseClass は className に直接結合しないため、ここでは取得しない
 	} = reactProps
 
 	// DOMプロパティから必要な値を取得
@@ -37,7 +36,6 @@ export function render(props) {
 	const reactElement = (
 		<h2 className={classString} {...restDomProps} {...commonProps}>
 			{' '}
-			{/* classNameには分離したclassStringを、残りは展開 */}
 			{hasIcon && (
 				<span className='heading-icon' role='img' aria-hidden='true'>
 					{icon}

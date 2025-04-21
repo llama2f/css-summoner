@@ -119,6 +119,7 @@ export const separateProps = (props, reactProps = [], domProps = []) => {
 		'forPreview',
 		'isVariant',
 		'variantType',
+		'color',
 	]
 
 	// DOM要素特有のプロパティ
@@ -247,7 +248,7 @@ export const combineClasses = ({
 	radius = '',
 	modifiers = [],
 	specialClasses = [],
-	color = '', // 新規追加：色クラス
+	color = '',
 	additional = '',
 }) => {
 	return [

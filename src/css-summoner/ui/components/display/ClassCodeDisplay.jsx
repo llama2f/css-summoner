@@ -13,8 +13,8 @@ import useAsyncHandler from '@hooks/useAsyncHandler'
 import {
 	classRuleDetails,
 	baseClasses,
-	themeRules, // 追加
-	utilityRules, // 追加
+	themeRules,
+	utilityRules,
 } from '@/css-summoner/extracted-annotations.json' // JSONを直接インポートする場合 (パス確認)
 // もし classMappings.js がラッパーなら:
 // import { classRuleDetails, baseClasses, themeRules, utilityRules } from '@/css-summoner/classMappings'
@@ -33,7 +33,6 @@ const ClassCodeDisplay = ({
 }) => {
 	const [copySuccess, setCopySuccess] = useState('')
 	const [handlerResult, setHandlerResult] = useState(null) // ハンドラー結果を保持する state
-	// const [htmlString, setHtmlString] = useState('<!-- Loading HTML... -->') // handlerResult から導出するため不要に
 	// カスタムフックからハンドラーモジュール、ローディング状態、エラーを取得
 	const {
 		handlerModule,
@@ -114,7 +113,6 @@ const ClassCodeDisplay = ({
 					const result = renderFunction(options)
 					if (isMounted) {
 						setHandlerResult(result) // 結果オブジェクト全体を保存
-						// setHtmlString(...) は不要に
 					}
 				} else {
 					throw new Error('No valid render function found in handler.')
@@ -130,7 +128,7 @@ const ClassCodeDisplay = ({
 					setHandlerResult({
 						htmlString: `<!-- Error rendering ${componentType}: ${err.message} -->`,
 						skipDecoration: true,
-					}) // エラー時は baseClass を追加しない想定
+					})
 				}
 			} finally {
 				if (isMounted) setGeneratingHtml(false)
@@ -325,8 +323,6 @@ const ClassCodeDisplay = ({
 			}
 			return `<!-- Error loading handler: ${handlerError.message} -->`
 		}
-		// htmlError は handlerResult に含めるようにしたので不要
-		// if (htmlError) return `<!-- Error rendering ${componentType}: ${htmlError.message} -->`;
 		if (!componentType) return '<!-- Select a component type -->'
 		return handlerResult?.htmlString || '<!-- Failed to generate HTML -->'
 	}, [

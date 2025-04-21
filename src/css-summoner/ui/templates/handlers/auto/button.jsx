@@ -11,9 +11,19 @@ export const metadata = {
 export function render(props) {
 	const { reactProps, domProps, commonProps } = separateProps(
 		props,
-		['classString', 'children', 'selectedModifiers', 'baseClass', 'onClick'],
+		[
+			'classString',
+			'children',
+			'selectedModifiers',
+			'baseClass',
+			'onClick',
+			'color',
+		],
 		['disabled', 'type']
 	)
+
+	// colorプロパティを共通プロパティから削除（不要なため）
+	const { color, ...filteredCommonProps } = commonProps
 
 	const {
 		classString = '',
@@ -38,7 +48,7 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: sampleIcon }}
-				{...commonProps}
+				{...filteredCommonProps}
 			/>
 		)
 	} else if (hasIconLeft) {
@@ -49,7 +59,7 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: `${sampleIcon} ボタンテキスト` }}
-				{...commonProps}
+				{...filteredCommonProps}
 			/>
 		)
 	} else if (hasIconRight) {
@@ -60,7 +70,7 @@ export function render(props) {
 				type={type}
 				onClick={onClick}
 				dangerouslySetInnerHTML={{ __html: `ボタンテキスト ${sampleIcon}` }}
-				{...commonProps}
+				{...filteredCommonProps}
 			/>
 		)
 	} else {
@@ -70,7 +80,7 @@ export function render(props) {
 				disabled={disabled}
 				type={type}
 				onClick={onClick}
-				{...commonProps}
+				{...filteredCommonProps}
 			>
 				{children}
 			</button>
@@ -83,9 +93,12 @@ export function render(props) {
 export function renderIconButton(props) {
 	const { reactProps, domProps, commonProps } = separateProps(
 		props,
-		['classString', 'icon', 'title', 'onClick'],
+		['classString', 'icon', 'title', 'onClick', 'color'],
 		['disabled', 'type']
 	)
+
+	// colorプロパティを共通プロパティから削除（不要なため）
+	const { color, ...filteredCommonProps } = commonProps
 	const {
 		classString = '',
 		icon = '⚙️',
@@ -101,7 +114,7 @@ export function renderIconButton(props) {
 			disabled={disabled}
 			type={type}
 			onClick={onClick}
-			{...commonProps}
+			{...filteredCommonProps}
 		>
 			{icon}
 		</button>
