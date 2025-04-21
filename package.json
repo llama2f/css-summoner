@@ -16,9 +16,9 @@
 		"setup": "node scripts/setup.js"
 	},
 	"dependencies": {
-		"@astrojs/react": "4.2.2",
+		"@astrojs/react": "4.2.4",
 		"@types/react-dom": "^19.1.2",
-		"astro": "5.5.5",
+		"astro": "5.7.4",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"highlight.js": "^11.11.1",
@@ -31,7 +31,7 @@
 	},
 	"devDependencies": {
 		"@astrojs/sitemap": "^3.3.0",
-		"@astrojs/tailwind": "6.0.2",
+		"@astrojs/tailwind": "^6.0.2",
 		"@astrolib/seo": "^1.0.0-beta.8",
 		"@fortawesome/fontawesome-svg-core": "^6.7.2",
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",

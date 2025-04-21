@@ -2,15 +2,15 @@ import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import react from '@astrojs/react'
 import purgecss from 'astro-purgecss'
+import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
-	site: 'https://your-domain.com',
+	site: 'https://css-summoner.netlify.app',
 	build: {
 		excludePages: ['**/docs/**/*'],
 		inlineStylesheets: 'never',
 	},
 	experimental: {
-		svg: true,
 		preserveScriptOrder: true,
 		headingIdCompat: true,
 	},
@@ -20,6 +20,7 @@ export default defineConfig({
 		}),
 		react(),
 		purgecss(),
+		sitemap(),
 	],
 	vite: {
 		build: {
