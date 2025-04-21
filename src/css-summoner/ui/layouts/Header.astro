@@ -3,11 +3,14 @@ import ThemeSwitcher from '@components/astro/ThemeSwitcher.astro'
 import siteData from '@configs/siteData.json'
 import FontAwesomeIcon from '@components/astro/FontAwesomeIcon.astro'
 import { faBars, faPalette } from '@fortawesome/free-solid-svg-icons'
+import { getPageType } from '@ui-data/navigation'
 
-//現在のurlパスを取得
+// 現在のurlパスを取得
 const currentPath = Astro.url.pathname
-//パスにdocsが含まれているかを判定
-const isDocsPage = currentPath.includes('docs') || currentPath.includes('usage')
+// ページタイプを判定
+const pageType = getPageType(currentPath)
+// メインページかどうか
+const isMainPage = pageType === 'main'
 
 const { title = siteData.siteName } = Astro.props
 ---
@@ -22,13 +25,13 @@ const { title = siteData.siteName } = Astro.props
 	</a>
 
 	<div class='flex items-center gap-2'>
-		{/* テーマスイッチャーを先に配置 */}
+		{/* テーマスイッチャー */}
 		<ThemeSwitcher bgColor='bg-neutral-500/30' position='relative' />
 
-		{/* ドキュメントページ以外でカスタマイズ系ボタン表示 */}
-		{
-			!isDocsPage && (
-				<div class='lg:hidden flex items-center gap-1'>
+		<div class='lg:hidden flex items-center gap-1'>
+			{/* メインページのみパレットボタンを表示 */}
+			{
+				isMainPage && (
 					<button
 						id='mobile-palette-button'
 						class='btn btn-icon btn-sm p-1'
@@ -40,30 +43,31 @@ const { title = siteData.siteName } = Astro.props
 							params={{ classes: ['h-5', 'w-5'] }}
 						/>
 					</button>
-					<button
-						id='mobile-menu-button'
-						class='btn btn-icon btn-sm p-1'
-						aria-label='メニューを開く'
-						title='メニュー'
-						aria-expanded='false'
-					>
-						<FontAwesomeIcon
-							icon={faBars}
-							params={{ classes: ['h-5', 'w-5'] }}
-						/>
-					</button>
-				</div>
-			)
-		}
+				)
+			}
+
+			{/* メニューボタン - ページタイプに応じてIDを変更 */}
+			<button
+				id={isMainPage ? 'mobile-menu-button' : 'nav-menu-button'}
+				class='btn btn-icon btn-sm p-1'
+				aria-label='メニューを開く'
+				title='メニュー'
+				aria-expanded='false'
+				data-page-type={pageType}
+			>
+				<FontAwesomeIcon icon={faBars} params={{ classes: ['h-5', 'w-5'] }} />
+			</button>
+		</div>
 	</div>
 </header>
 
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const menuButton = document.getElementById('mobile-menu-button')
+		const navMenuButton = document.getElementById('nav-menu-button')
 		const paletteButton = document.getElementById('mobile-palette-button')
 
-		// メニューボタンクリック時にカスタムイベントを発行
+		// メインページのメニューボタンクリック時
 		if (menuButton) {
 			menuButton.addEventListener('click', () => {
 				window.dispatchEvent(
@@ -74,7 +78,18 @@ const { title = siteData.siteName } = Astro.props
 			})
 		}
 
-		// パレットボタンクリック時にカスタムイベントを発行
+		// その他ページのナビメニューボタンクリック時
+		if (navMenuButton) {
+			navMenuButton.addEventListener('click', () => {
+				window.dispatchEvent(
+					new CustomEvent('dispatch-css-builder-action', {
+						detail: { action: 'toggleNavMenu' },
+					})
+				)
+			})
+		}
+
+		// パレットボタンクリック時
 		if (paletteButton) {
 			paletteButton.addEventListener('click', () => {
 				window.dispatchEvent(
@@ -95,11 +110,22 @@ const { title = siteData.siteName } = Astro.props
 			}
 			window.addEventListener(
 				'css-builder-mobile-menu-state',
-				updateAriaExpanded as EventListener
+				updateAriaExpanded as unknown as EventListener
 			)
+		}
 
-			// 初期状態を取得するイベントを発行 (ClassBuilder側で対応が必要な場合)
-			// window.dispatchEvent(new CustomEvent('request-css-builder-mobile-menu-state'));
+		// ナビゲーションメニュー状態変更イベントを購読
+		if (navMenuButton) {
+			const updateAriaExpanded = (event: CustomEvent) => {
+				const isOpen = event.detail?.isOpen
+				if (typeof isOpen === 'boolean') {
+					navMenuButton.setAttribute('aria-expanded', String(isOpen))
+				}
+			}
+			window.addEventListener(
+				'css-builder-nav-menu-state',
+				updateAriaExpanded as unknown as EventListener
+			)
 		}
 	})
 </script>

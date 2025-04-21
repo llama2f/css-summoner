@@ -1,0 +1,85 @@
+---
+interface Props {
+	title: string
+	class?: string
+	initiallyExpanded?: boolean
+}
+
+const { title, class: className = '', initiallyExpanded = false } = Astro.props
+---
+
+<div
+	class={`nav-group ${className}`}
+	data-initially-expanded={initiallyExpanded}
+>
+	<button
+		class='nav-group-header w-full text-left flex justify-between items-center px-2 py-1 rounded hover:bg-neutral-700'
+	>
+		<h3 class='text-base font-bold text-neutral-light'>
+			{title}
+		</h3>
+		<span class='toggle-icon'>
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width='16'
+				height='16'
+				viewBox='0 0 24 24'
+				fill='none'
+				stroke='currentColor'
+				stroke-width='2'
+				stroke-linecap='round'
+				stroke-linejoin='round'
+				class='chevron'
+			>
+				<polyline points='6 9 12 15 18 9'></polyline>
+			</svg>
+		</span>
+	</button>
+	<div class='nav-group-content'>
+		<slot />
+	</div>
+</div>
+
+<style>
+	.nav-group {
+		margin-bottom: 1rem;
+		border-radius: 0.25rem;
+	}
+	.nav-group-content {
+		padding-left: 0.5rem;
+		padding-top: 0.5rem;
+		display: none;
+	}
+	.nav-group[data-expanded='true'] .nav-group-content {
+		display: block;
+	}
+	.nav-group[data-expanded='true'] .toggle-icon .chevron {
+		transform: rotate(180deg);
+	}
+	.toggle-icon .chevron {
+		transition: transform 0.2s ease;
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		// すべてのナビゲーショングループを取得
+		const navGroups = document.querySelectorAll('.nav-group')
+
+		navGroups.forEach((group) => {
+			// 初期状態を設定
+			const initiallyExpanded =
+				group.getAttribute('data-initially-expanded') === 'true'
+			group.setAttribute('data-expanded', initiallyExpanded.toString())
+
+			// ヘッダークリックでトグル処理
+			const header = group.querySelector('.nav-group-header')
+			if (header) {
+				header.addEventListener('click', () => {
+					const isExpanded = group.getAttribute('data-expanded') === 'true'
+					group.setAttribute('data-expanded', (!isExpanded).toString())
+				})
+			}
+		})
+	})
+</script>

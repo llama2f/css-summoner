@@ -1,0 +1,61 @@
+---
+import FontAwesomeIcon from '@components/astro/FontAwesomeIcon.astro'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
+interface Props {
+	id?: string
+	title?: string
+	ariaLabel?: string
+	buttonClass?: string
+	iconClass?: string
+}
+
+const {
+	id = 'mobile-menu-button',
+	title = 'メニュー',
+	ariaLabel = 'メニューを開く',
+	buttonClass = 'btn btn-icon btn-sm p-1',
+	iconClass = 'h-5 w-5',
+} = Astro.props
+---
+
+<button
+	id={id}
+	class={buttonClass}
+	aria-label={ariaLabel}
+	title={title}
+	aria-expanded='false'
+>
+	<FontAwesomeIcon icon={faBars} params={{ classes: [iconClass] }} />
+</button>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const menuButton = document.getElementById('mobile-menu-button')
+
+		// メニューボタンクリック時にカスタムイベントを発行
+		if (menuButton) {
+			menuButton.addEventListener('click', () => {
+				window.dispatchEvent(
+					new CustomEvent('dispatch-css-builder-action', {
+						detail: { action: 'toggleNavMenu' },
+					})
+				)
+			})
+		}
+
+		// ナビゲーションメニュー状態変更イベントを購読
+		if (menuButton) {
+			const updateAriaExpanded = (event: CustomEvent) => {
+				const isOpen = event.detail?.isOpen
+				if (typeof isOpen === 'boolean') {
+					menuButton.setAttribute('aria-expanded', String(isOpen))
+				}
+			}
+			window.addEventListener(
+				'css-builder-nav-menu-state',
+				updateAriaExpanded as EventListener
+			)
+		}
+	})
+</script>

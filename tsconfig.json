@@ -22,7 +22,8 @@
 			"@assets/*": ["src/assets/*"],
 			"@images/*": ["src/assets/images/*"],
 			"@/*": ["./src/*"],
-			"@@/*": ["./*"]
+			"@@/*": ["./*"],
+			"@ui-data/*": ["src/css-summoner/ui/data/*"]
 		},
 		"strict": true,
 		"esModuleInterop": true,

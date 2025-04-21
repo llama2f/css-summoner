@@ -1,0 +1,186 @@
+---
+import FontAwesomeIcon from '@components/astro/FontAwesomeIcon.astro'
+import NavGroup from './NavGroup.astro'
+import { getNavigationForPage } from '@ui-data/navigation'
+
+// 型定義
+interface NavItem {
+	label: string
+	href?: string
+	action?: string
+	icon?: any
+	description?: string
+}
+
+interface NavGroupType {
+	title: string
+	showOnlyIn?: string[]
+	items?: NavItem[]
+	dynamicItems?: string
+	icon?: any
+}
+
+// component-docs の情報を取得
+const componentPages = await Astro.glob('/src/pages/component-docs/*.astro')
+const filteredComponentPages = componentPages.filter((page) => {
+	const fileName = page.url?.split('/').pop()
+	return typeof fileName === 'string' && !fileName.startsWith('_')
+})
+
+// 現在のパスを取得
+const currentPath = Astro.url.pathname
+
+// ナビゲーション項目をフィルタリング
+const navigationGroups = getNavigationForPage(currentPath) as NavGroupType[]
+---
+
+<nav class='nav-links'>
+	{
+		navigationGroups.map((group) => (
+			<NavGroup
+				title={group.title}
+				initiallyExpanded={group.title === 'Page Navigation'}
+			>
+				{group.items && (
+					<ul class='nav-items'>
+						{group.items.map((item) => (
+							<li>
+								{item.href ? (
+									<a
+										href={item.href}
+										class={`nav-link ${currentPath === item.href ? 'active' : ''}`}
+										title={item.description || item.label}
+									>
+										{item.icon && (
+											<FontAwesomeIcon
+												icon={item.icon}
+												params={{ classes: ['mr-2', 'h-4', 'w-4'] }}
+											/>
+										)}
+										<span>{item.label}</span>
+									</a>
+								) : (
+									<button
+										class='nav-link action-button'
+										data-action={item.action}
+										title={item.description || item.label}
+									>
+										{item.icon && (
+											<FontAwesomeIcon
+												icon={item.icon}
+												params={{ classes: ['mr-2', 'h-4', 'w-4'] }}
+											/>
+										)}
+										<span>{item.label}</span>
+									</button>
+								)}
+							</li>
+						))}
+					</ul>
+				)}
+				{group.dynamicItems === 'component-docs' && (
+					<ul class='nav-items'>
+						{filteredComponentPages.map((page) => {
+							const fileName =
+								page.url?.split('/').pop()?.replace('.astro', '') || 'unknown'
+							return (
+								<li>
+									<a
+										href={page.url}
+										class={`nav-link ${currentPath === page.url ? 'active' : ''}`}
+									>
+										{group.icon && (
+											<FontAwesomeIcon
+												icon={group.icon}
+												params={{ classes: ['mr-2', 'h-4', 'w-4'] }}
+											/>
+										)}
+										<span>{fileName}</span>
+									</a>
+								</li>
+							)
+						})}
+					</ul>
+				)}
+			</NavGroup>
+		))
+	}
+</nav>
+
+<style>
+	.nav-links {
+		padding: 1rem;
+	}
+
+	.nav-items {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1rem 0;
+	}
+
+	.nav-link {
+		display: flex;
+		align-items: center;
+		padding: 0.5rem;
+		border-radius: 0.25rem;
+		color: var(--neutral-light);
+		text-decoration: none;
+		transition:
+			background-color 0.2s,
+			color 0.2s;
+		margin-bottom: 0.25rem;
+		background: none;
+		border: none;
+		width: 100%;
+		text-align: left;
+		cursor: pointer;
+		font-size: 0.875rem;
+	}
+
+	.nav-link:hover,
+	.nav-link:focus {
+		background-color: var(--color-neutral-700);
+		color: var(--color-primary-light);
+	}
+
+	.nav-link.active {
+		background-color: var(--color-primary-dark);
+		color: var(--color-primary-light);
+		font-weight: 500;
+	}
+
+	:global(.dark) .nav-link {
+		color: var(--neutral-light);
+	}
+
+	:global(.dark) .nav-link:hover,
+	:global(.dark) .nav-link:focus {
+		background-color: var(--color-neutral-700);
+		color: var(--color-primary-light);
+	}
+
+	:global(.dark) .nav-link.active {
+		background-color: var(--color-primary-dark);
+		color: var(--color-primary-light);
+	}
+</style>
+
+<script>
+	// アクションボタンにイベントリスナーを追加
+	document.addEventListener('DOMContentLoaded', () => {
+		const actionButtons = document.querySelectorAll('.action-button')
+
+		actionButtons.forEach((button) => {
+			button.addEventListener('click', () => {
+				const action = button.getAttribute('data-action')
+				if (action) {
+					window.dispatchEvent(
+						new CustomEvent('dispatch-css-builder-action', {
+							detail: { action },
+						})
+					)
+				}
+			})
+		})
+	})
+</script>
