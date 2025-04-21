@@ -50,11 +50,11 @@ core_principles[critical]:
   - id: asked_questions
     description: |
       質問に対する回答は必ず以下の形式で行う：
-        - 提案：[ユーザーの提案]
-        - 根拠：[この提案を支持する具体的な証拠/理由]
-        - 不確実性：[この提案に関する不確実な要素]
-        - 代替案：[考えられる他のアプローチ]
-        - フォローアップ：[この提案に関連する質問や追加情報]
+        - 提案
+        - 根拠
+        - 不確実性
+        - 代替案
+        - フォローアップ
   - id: guess_vs_knowledge
     description: |
       推測と確実な知識を区別し回答する：
@@ -64,7 +64,7 @@ core_principles[critical]:
   - id: git_commits
     description: 日本語でコミットメッセージを記述し、プロンプト履歴を含める
   - id: memory_management
-    description: 会話履歴の重要な論点や決定事項などはSQLiteデータベースに保存する
+    description: 会話の重要な論点や決定事項などはSQLiteデータベースに保存する
   - id: penalties
     description: ユーザーの質問に対する回答が不適切な場合、ペナルティを課す
   - id: unreliable_responses
@@ -87,16 +87,6 @@ tools:
   - name: sqlite
     preference: preferred
     usage: ユーザーとの応答記録のためのデータベース
-
-# 開発フェーズの定義
-development_phase:
-  values:
-    - planning
-    - design
-    - implementation
-    - testing
-    - deployment
-    - maintenance
 
 # コード品質の定義
 code_quality_metric:
@@ -446,212 +436,29 @@ error_handling:
 
 # 会話コンテキスト管理設定
 context_management:
-  # データベース設定
+  # データベース基本設定
   database:
     type: sqlite
-    naming_convention: "project.db"
-    auto_create: true
     path: "{project_path}/ai-database/"
-    backup:
-      enabled: true
-      frequency: daily
-      retention_period: 30d
-    steps:
-      - "execute_command: ls -la {database_directory}"
-      - "execute_command: file {database_path}"
-      - "execute_command: sqlite3 {database_path} .tables"
-    recovery_procedures:
-      - id: use_direct_sqlite
-        condition: "ツール機能でアクセスできない場合"
-        actions:
-          - "execute_commandでsqlite3コマンドを利用"
-          - "結果を解析して対応"
+    auto_create: true
 
-  # 会話履歴の保存設定
-  conversation_logging:
-    enabled: true
-    storage:
-      table_name: conversations
-      schema:
-        - name: id
-          type: INTEGER PRIMARY KEY
-        - name: timestamp
-          type: DATETIME
-        - name: session_id
-          type: TEXT
-        - name: user_message
-          type: TEXT
-        - name: assistant_response
-          type: TEXT
-        - name: category_id
-          type: INTEGER
-        - name: is_keypoint
-          type: BOOLEAN
-    retention_policy:
-      default_period: 90d
-      important_period: 365d
-      detection_criteria:
-        - contains_decision: true
-        - contains_code: true
-        - marked_as_important: true
+  # 保存する主要情報
+  key_storage:
+    - type: conversations
+      important_fields: [user_message, assistant_response, timestamp, category]
+      retention: 90d
 
-  # キーポイントの抽出と保存
-  keypoints:
-    extraction:
-      enabled: true
-      automatic: true
-      triggers:
-        - decisions_made
-        - code_changes
-        - explicit_marking
-        - important_questions
-      detection_phrases:
-        - "決定事項:"
-        - "重要ポイント:"
-        - "合意内容:"
-    storage:
-      table_name: keypoints
-      schema:
-        - name: id
-          type: INTEGER PRIMARY KEY
-        - name: conversation_id
-          type: INTEGER
-        - name: content
-          type: TEXT
-        - name: category_id
-          type: INTEGER
-        - name: importance
-          type: INTEGER # 1-5
+    - type: keypoints
+      important_fields: [content, importance, category]
+      triggers: [decisions_made, code_changes, explicit_marking]
+      detection_phrases: ["決定事項:", "重要ポイント:", "合意内容:"]
+      retention: 365d
 
-  # 自動化トリガー
-  automation:
-    enabled: true
+    - type: categories
+      predefined:
+        [リファクタリング, 構造設計, 新規コーディング, デバッグ, 質問回答]
 
-    # パターン検出のルール (既存の detection_criteria を拡張)
-    detection_patterns:
-      - regex: "(決定事項|重要ポイント|合意内容|要注意点)[:：](.+)"
-        action: save_keypoint
-        importance: 5
-      - regex: "(実装方針|設計方針)[:：](.+)"
-        action: save_keypoint
-        importance: 4
-      - contains: ["最終的に", "結論として", "決定した", "採用する"]
-        action: save_keypoint
-        importance: 3
-
-    # カテゴリ検出ルール (既存の categorization を拡張)
-    category_rules:
-      - keywords: ["リファクタリング", "改善", "パフォーマンス", "最適化"]
-        category_id: 1
-      - keywords: ["設計", "アーキテクチャ", "構造", "パターン"]
-        category_id: 2
-      - keywords: ["実装", "新機能", "コーディング", "開発"]
-        category_id: 3
-      - keywords: ["バグ", "エラー", "問題", "デバッグ", "修正"]
-        category_id: 4
-      - default_category_id: 5
-
-    # 実行のタイミング (新規)
-    execution_timing:
-      after_response: true
-      on_command: true
-
-  # 関連コンテキストの検索と取得
-  context_retrieval:
-    search_methods:
-      - keyword_match:
-          enabled: true
-          weight: 0.4
-      - semantic_similarity:
-          enabled: true
-          weight: 0.6
-          model: "text-embedding-simple"
-    result_count:
-      default: 5
-      maximum: 15
+  # 検索と取得
+  retrieval:
+    methods: [keyword_match, semantic_similarity]
     relevance_threshold: 0.7
-    recency_boost: true
-
-  # コンテキストの圧縮と期限管理
-  compression:
-    enabled: true
-    methods:
-      - type: summarization
-        trigger: token_count > 1000
-        target_ratio: 0.3
-      - type: key_extraction
-        trigger: conversation_age > 30d
-    expiration:
-      general_context: 60d
-      code_explanations: 90d
-      decisions: 365d
-      auto_extend:
-        on_reference: true
-        extension_period: 30d
-
-  # プロジェクト内でのカテゴリ別話題整理
-  categorization:
-    enabled: true
-    automatic_classification: true
-    storage:
-      table_name: categories
-      schema:
-        - name: id
-          type: INTEGER PRIMARY KEY
-        - name: name
-          type: TEXT
-        - name: description
-          type: TEXT
-        - name: parent_id
-          type: INTEGER
-    default_categories:
-      - name: リファクタリング
-        id: 1
-      - name: 構造設計
-        id: 2
-      - name: 新規コーディング
-        id: 3
-      - name: デバッグ
-        id: 4
-      - name: 質問回答
-        id: 5
-    custom_categories:
-      enabled: true
-      max_depth: 3
-    tagging:
-      table_name: tags
-      schema:
-        - name: id
-          type: INTEGER PRIMARY KEY
-        - name: name
-          type: TEXT
-      conversation_tags:
-        table_name: conversation_tags
-        schema:
-          - name: conversation_id
-            type: INTEGER
-          - name: tag_id
-            type: INTEGER
-
-  # ユーザーインターフェイス連携
-  ui_integration:
-    context_panel:
-      enabled: true
-      positions:
-        - sidebar
-        - inline
-      display_modes:
-        - timeline
-        - category_view
-        - tag_cloud
-    commands:
-      - name: save_keypoint
-        syntax: "/save {content}"
-      - name: categorize
-        syntax: "/category {name}"
-      - name: tag
-        syntax: "/tag {name}"
-      - name: find_related
-        syntax: "/find {query}"
-      - name: compress_history
-        syntax: "/compress"
