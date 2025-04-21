@@ -1,7 +1,7 @@
 // src/css-summoner/ui/components/mobile/MobileSideMenu.tsx
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faBook, faCode } from '@fortawesome/free-solid-svg-icons'
 import ComponentSelector from '../selectors/ComponentSelector'
 import ColorSelector from '../selectors/ColorSelector'
 import SizeSelector from '../selectors/SizeSelector'
@@ -31,6 +31,18 @@ interface ComponentType {
 	category?: string
 }
 
+// ドキュメントページの型定義
+interface DocumentPage {
+	name: string
+	url: string
+}
+
+// DocumentPageType の型
+interface DocumentPageType {
+	name: string
+	url: string
+}
+
 interface MobileSideMenuProps {
 	isOpen: boolean
 	onClose: () => void
@@ -46,6 +58,7 @@ interface MobileSideMenuProps {
 	classDescriptions: ClassDescription
 	componentTypes: ComponentType[]
 	onComponentSelect: (type: string) => void
+	documentPages?: DocumentPage[] // ドキュメントページの情報（オプション）
 }
 
 const accordionTitleClass = 'bg-neutral-dark text-neutral-light !p-2'
@@ -65,6 +78,7 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
 	classDescriptions,
 	componentTypes,
 	onComponentSelect,
+	documentPages = [], // デフォルト値を空配列に設定
 }) => {
 	const menuRef = useRef<HTMLDivElement>(null)
 
@@ -132,6 +146,22 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
 
 					{/* --- セレクターコンポーネント --- */}
 					<div className='space-y-4'>
+						<Accordion
+							title='pages'
+							titleClassName={accordionTitleClass}
+							initialOpen={true}
+						>
+							<div className='p-2'>
+								<a
+									href='/usage'
+									className='flex items-center text-neutral-dark dark:text-neutral-light hover:text-primary dark:hover:text-primary-light p-2 rounded transition-colors'
+								>
+									<FontAwesomeIcon icon={faBook} className='mr-2' />
+									<span>Usage</span>
+								</a>
+							</div>
+						</Accordion>
+
 						<Accordion
 							title='component'
 							initialOpen={true}
@@ -240,6 +270,22 @@ const MobileSideMenu: React.FC<MobileSideMenuProps> = ({
 								/>
 							</Accordion>
 						)}
+
+						{/* ドキュメントページのアコーディオン */}
+						<Accordion title='document' titleClassName={accordionTitleClass}>
+							<div className='p-2 space-y-2'>
+								{documentPages.map((doc, index) => (
+									<a
+										key={index}
+										href={doc.url}
+										className='flex items-center text-neutral-dark dark:text-neutral-light hover:text-primary dark:hover:text-primary-light p-2 rounded transition-colors'
+									>
+										<FontAwesomeIcon icon={faCode} className='mr-2' />
+										<span>{doc.name}</span>
+									</a>
+								))}
+							</div>
+						</Accordion>
 					</div>
 					{/* --- セレクターコンポーネント ここまで --- */}
 				</div>

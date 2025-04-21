@@ -2,7 +2,7 @@
 import ThemeSwitcher from '@components/astro/ThemeSwitcher.astro'
 import siteData from '@configs/siteData.json'
 import FontAwesomeIcon from '@components/astro/FontAwesomeIcon.astro'
-import { faBars, faPalette } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faPalette, faBook } from '@fortawesome/free-solid-svg-icons'
 import { getPageType } from '@ui-data/navigation'
 
 // 現在のurlパスを取得
@@ -24,7 +24,17 @@ const { title = siteData.siteName } = Astro.props
 		</h1>
 	</a>
 
-	<div class='flex items-center gap-2'>
+	<div class='flex items-center gap-2 lg:gap-4'>
+		{/* デスクトップのみメニュー */}
+		<a
+			href='./usage'
+			tabindex='0'
+			class='underline text-white no-default hidden lg:flex justify-center items-center gap-1'
+			><FontAwesomeIcon icon={faBook} /><span class='uppercase'>
+				usage
+			</span></a
+		>
+
 		{/* テーマスイッチャー */}
 		<ThemeSwitcher bgColor='bg-neutral-500/30' position='relative' />
 

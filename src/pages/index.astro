@@ -1,7 +1,19 @@
 ---
 import Layout from '@layouts/Layout.astro'
-import ClassBuilder from '@ui/ClassBuilder.jsx'
+import ClassBuilder from '@ui/ClassBuilder.tsx'
 import siteData from '@configs/siteData.json'
+
+// ドキュメントページの情報を取得
+const componentPages = await Astro.glob('/src/pages/component-docs/*.astro')
+const documentPages = componentPages
+	.filter((page) => {
+		const fileName = page.url?.split('/').pop()
+		return typeof fileName === 'string' && !fileName.startsWith('_')
+	})
+	.map((page) => ({
+		name: page.url?.split('/').pop()?.replace('.astro', '') || '',
+		url: page.url || '',
+	}))
 ---
 
 <Layout title={siteData.siteName} desc={siteData.siteDescription}>
@@ -27,7 +39,7 @@ import siteData from '@configs/siteData.json'
 			</p>
 
 			<div class='rounded-lg shadow-sm'>
-				<ClassBuilder client:load />
+				<ClassBuilder client:load documentPages={documentPages} />
 			</div>
 
 			<div class='rounded-lg py-6'>

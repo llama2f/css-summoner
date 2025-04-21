@@ -55,10 +55,23 @@ interface ClassDescriptions {
 	[key: string]: ClassDescriptionDetail
 }
 
+// ドキュメントページの型定義
+interface DocumentPage {
+	name: string
+	url: string
+}
+
+/**
+ * ClassBuilderProps インターフェース
+ */
+interface ClassBuilderProps {
+	documentPages?: DocumentPage[]
+}
+
 /**
  * カスタムクラスビルダーのメインコンポーネント
  */
-const ClassBuilder: React.FC = () => {
+const ClassBuilder: React.FC<ClassBuilderProps> = ({ documentPages = [] }) => {
 	const { state, actions, dispatch } = useClassBuilder() // dispatch を受け取る
 	const { getSizeOptions, getBorderRadiusOptions, getModifierOptions } =
 		useComponentOptions(
@@ -377,6 +390,7 @@ const ClassBuilder: React.FC = () => {
 				classDescriptions={classDescriptions as ClassDescriptions}
 				componentTypes={componentTypes}
 				onComponentSelect={actions.setComponentType}
+				documentPages={documentPages}
 			/>
 		</div>
 	)
