@@ -1310,32 +1310,27 @@
       {
         "variant": "default",
         "className": "accordion-default",
-        "example": "<div class=\"accordion-base accordion-default theme-primary\">...</div>"
+        "example": "<div class=\"accordion-base accordion-default text-xs theme-primary\">\n<div class=\"accordion-item\">\n<div class=\"accordion-header\" tabindex=\"0\" role=\"button\" aria-expanded=\"false\" aria-controls=\"accordion-panel-m4kxjh\" data-accordion-toggle=\"true\">\n<span>アコーディオンタイトル</span>\n<span class=\"accordion-icon\" aria-hidden=\"true\"></span>\n</div>\n<div id=\"accordion-panel-m4kxjh\" class=\"accordion-content\" aria-hidden=\"true\" role=\"region\" data-accordion-content=\"true\">\n<div style=\"padding:1rem\">\n<p>これはアコーディオンの内容です。</p>\n<p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>\n</div>\n</div>\n</div>\n</div>"
       },
       {
         "variant": "solid",
         "className": "accordion-solid",
-        "example": "<div class=\"accordion-base accordion-solid theme-primary\">...</div>"
+        "example": "<div class=\"accordion-base accordion-solid text-xs theme-primary\">\n<div class=\"accordion-item\">\n<div class=\"accordion-header\" tabindex=\"0\" role=\"button\" aria-expanded=\"false\" aria-controls=\"accordion-panel-m4kxjh\" data-accordion-toggle=\"true\">\n<span>アコーディオンタイトル</span>\n<span class=\"accordion-icon\" aria-hidden=\"true\"></span>\n</div>\n<div id=\"accordion-panel-m4kxjh\" class=\"accordion-content\" aria-hidden=\"true\" role=\"region\" data-accordion-content=\"true\">\n<div style=\"padding:1rem\">\n<p>これはアコーディオンの内容です。</p>\n<p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>\n</div>\n</div>\n</div>\n</div>"
       },
       {
         "variant": "outline",
         "className": "accordion-outline",
-        "example": "<div class=\"accordion-base accordion-outline theme-primary\">...</div>"
+        "example": "<div class=\"accordion-base accordion-outline text-xs theme-primary\">\n<div class=\"accordion-item\">\n<div class=\"accordion-header\" tabindex=\"0\" role=\"button\" aria-expanded=\"false\" aria-controls=\"accordion-panel-m4kxjh\" data-accordion-toggle=\"true\">\n<span>アコーディオンタイトル</span>\n<span class=\"accordion-icon\" aria-hidden=\"true\"></span>\n</div>\n<div id=\"accordion-panel-m4kxjh\" class=\"accordion-content\" aria-hidden=\"true\" role=\"region\" data-accordion-content=\"true\">\n<div style=\"padding:1rem\">\n<p>これはアコーディオンの内容です。</p>\n<p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>\n</div>\n</div>\n</div>\n</div>"
       },
       {
         "variant": "subtle",
         "className": "accordion-subtle",
-        "example": "<div class=\"accordion-base accordion-subtle theme-primary\">...</div>"
+        "example": "<div class=\"accordion-base accordion-subtle text-xs theme-primary\">\n<div class=\"accordion-item\">\n<div class=\"accordion-header\" tabindex=\"0\" role=\"button\" aria-expanded=\"false\" aria-controls=\"accordion-panel-m4kxjh\" data-accordion-toggle=\"true\">\n<span>アコーディオンタイトル</span>\n<span class=\"accordion-icon\" aria-hidden=\"true\"></span>\n</div>\n<div id=\"accordion-panel-m4kxjh\" class=\"accordion-content\" aria-hidden=\"true\" role=\"region\" data-accordion-content=\"true\">\n<div style=\"padding:1rem\">\n<p>これはアコーディオンの内容です。</p>\n<p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>\n</div>\n</div>\n</div>\n</div>"
       },
       {
         "variant": "ghost",
         "className": "accordion-ghost",
-        "example": "<div class=\"accordion-base accordion-ghost theme-primary\">...</div>"
-      },
-      {
-        "variant": "base",
-        "className": "accordion-base",
-        "example": "<div class=\"accordion-base accordion-default theme-primary\">...</div>"
+        "example": "<div class=\"accordion-base accordion-ghost text-xs theme-primary\">\n<div class=\"accordion-item\">\n<div class=\"accordion-header\" tabindex=\"0\" role=\"button\" aria-expanded=\"false\" aria-controls=\"accordion-panel-m4kxjh\" data-accordion-toggle=\"true\">\n<span>アコーディオンタイトル</span>\n<span class=\"accordion-icon\" aria-hidden=\"true\"></span>\n</div>\n<div id=\"accordion-panel-m4kxjh\" class=\"accordion-content\" aria-hidden=\"true\" role=\"region\" data-accordion-content=\"true\">\n<div style=\"padding:1rem\">\n<p>これはアコーディオンの内容です。</p>\n<p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>\n</div>\n</div>\n</div>\n</div>"
       }
     ]
   },
@@ -1554,7 +1549,7 @@
       ]
     },
     "heading-formal-primary": {
-      "ruleText": ".heading-formal-primary {\n\t\t@apply heading-base rounded-r;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tpadding-left: calc(var(--heading-padding-x) + var(--heading-border-width));\n\t\tborder-left: var(--heading-border-width) solid var(--component-border, #333);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t}",
+      "ruleText": ".heading-formal-primary {\n\t\t@apply rounded-r;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tpadding-left: calc(var(--heading-padding-x) + var(--heading-border-width));\n\t\tborder-left: var(--heading-border-width) solid var(--component-border, #333);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t}",
       "selector": ".heading-formal-primary",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -1566,7 +1561,7 @@
       "relatedRules": []
     },
     "heading-formal-full": {
-      "ruleText": ".heading-formal-full {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t}",
+      "ruleText": ".heading-formal-full {\n\t\t@apply rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground-color: var(--component-color, #333);\n\t\tcolor: var(--component-text, #fff);\n\t}",
       "selector": ".heading-formal-full",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -1578,7 +1573,7 @@
       "relatedRules": []
     },
     "heading-casual-badge": {
-      "ruleText": ".heading-casual-badge {\n\t\t@apply heading-base inline-block rounded-full;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 2px solid var(--component-border, #aaa);\n\t}",
+      "ruleText": ".heading-casual-badge {\n\t\t@apply inline-block rounded-full;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 90%\n\t\t);\n\t\tcolor: var(--component-color, #333);\n\t\tborder: 2px solid var(--component-border, #aaa);\n\t}",
       "selector": ".heading-casual-badge",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -1590,7 +1585,7 @@
       "relatedRules": []
     },
     "heading-technical-code": {
-      "ruleText": ".heading-technical-code {\n\t\t@apply heading-base font-mono rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 5%\n\t\t);\n\t\tcolor: var(--component-bg, #fafafa);\n\t\tborder: 1px solid var(--component-border, #ccc);\n\t}",
+      "ruleText": ".heading-technical-code {\n\t\t@apply font-mono rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\n\t\tbackground-color: color-mix(\n\t\t\tin srgb,\n\t\t\tvar(--component-color, #333),\n\t\t\ttransparent 5%\n\t\t);\n\t\tcolor: var(--component-bg, #fafafa);\n\t\tborder: 1px solid var(--component-border, #ccc);\n\t}",
       "selector": ".heading-technical-code",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -1625,7 +1620,7 @@
       ]
     },
     "heading-accent-gradient": {
-      "ruleText": ".heading-accent-gradient {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground: linear-gradient(\n\t\t\tto right,\n\t\t\tvar(--component-border, #f00),\n\t\t\ttransparent\n\t\t);\n\n\t\tcolor: var(--component-text, #fff);\n\t}",
+      "ruleText": ".heading-accent-gradient {\n\t\t@apply rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tbackground: linear-gradient(\n\t\t\tto right,\n\t\t\tvar(--component-border, #f00),\n\t\t\ttransparent\n\t\t);\n\n\t\tcolor: var(--component-text, #fff);\n\t}",
       "selector": ".heading-accent-gradient",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -1637,7 +1632,7 @@
       "relatedRules": []
     },
     "heading-accent-stripe": {
-      "ruleText": ".heading-accent-stripe {\n\t\t@apply heading-base relative rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tcolor: var(--component-color, #333);\n\t\tbackground-image: repeating-linear-gradient(\n\t\t\t-45deg,\n\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,\n\t\t\ttransparent 3px,\n\t\t\ttransparent 6px\n\t\t);\n\t}",
+      "ruleText": ".heading-accent-stripe {\n\t\t@apply relative rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tcolor: var(--component-color, #333);\n\t\tbackground-image: repeating-linear-gradient(\n\t\t\t-45deg,\n\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%),\n\t\t\tcolor-mix(in srgb, var(--component-bg, #f0f0f0), #000 5%) 3px,\n\t\t\ttransparent 3px,\n\t\t\ttransparent 6px\n\t\t);\n\t}",
       "selector": ".heading-accent-stripe",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -1649,7 +1644,7 @@
       "relatedRules": []
     },
     "heading-modern-split": {
-      "ruleText": ".heading-modern-split {\n\t\t@apply heading-base relative;\n\t\tpadding: var(--heading-padding-y) 0;\n\t\tcolor: var(--component-color, #333);\n\t\toverflow: hidden;\n\t}",
+      "ruleText": ".heading-modern-split {\n\t\t@apply relative;\n\t\tpadding: var(--heading-padding-y) 0;\n\t\tcolor: var(--component-color, #333);\n\t\toverflow: hidden;\n\t}",
       "selector": ".heading-modern-split",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": [
@@ -1685,7 +1680,7 @@
       "relatedRules": []
     },
     "heading-formal-boxed": {
-      "ruleText": ".heading-formal-boxed {\n\t\t@apply heading-base rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tborder: 1px solid var(--component-border, #333);\n\t\tcolor: var(--component-color, #333);\n\t}",
+      "ruleText": ".heading-formal-boxed {\n\t\t@apply rounded;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tborder: 1px solid var(--component-border, #333);\n\t\tcolor: var(--component-color, #333);\n\t}",
       "selector": ".heading-formal-boxed",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
@@ -1709,13 +1704,13 @@
       "relatedRules": []
     },
     "heading-casual-highlight": {
-      "ruleText": ".heading-casual-highlight {\n\t\t@apply heading-base inline;\n\t\tpadding: 0.2em 0;\n\t\tcolor: var(--component-color, #333);\n\t\tbackground: linear-gradient(\n\t\t\ttransparent 60%,\n\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 50%) 60%\n\t\t);\n\t\tbox-decoration-break: clone;\n\t\t-webkit-box-decoration-break: clone;\n\t}",
+      "ruleText": ".heading-casual-highlight {\n\t\t@apply inline;\n\t\tpadding: 0.2em 0;\n\t\tcolor: var(--component-color, #333);\n\t\tbackground: linear-gradient(\n\t\t\ttransparent 60%,\n\n\t\t\tcolor-mix(in srgb, var(--component-color, #333), transparent 50%) 60%\n\t\t);\n\t\tbox-decoration-break: clone;\n\t\t-webkit-box-decoration-break: clone;\n\t}",
       "selector": ".heading-casual-highlight",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": []
     },
     "heading-technical-comment": {
-      "ruleText": ".heading-technical-comment {\n\t\t@apply heading-base font-mono;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tcolor: var(--component-color, #333);\n\t\tposition: relative;\n\t}",
+      "ruleText": ".heading-technical-comment {\n\t\t@apply font-mono;\n\t\tpadding: var(--heading-padding-y) var(--heading-padding-x);\n\t\tcolor: var(--component-color, #333);\n\t\tposition: relative;\n\t}",
       "selector": ".heading-technical-comment",
       "sourceFile": "heading/variants-monochrome.css",
       "relatedRules": [
@@ -2253,7 +2248,7 @@
         },
         {
           "selector": ".accordion-base .accordion-content",
-          "ruleText": ".accordion-base .accordion-content {\n\t\t@apply overflow-hidden;\n\t\tpadding: 0 var(--accordion-padding-x-md) var(--accordion-padding-y-md);\n\t\ttransition: max-height var(--accordion-content-transition-duration)\n\t\t\tease-in-out;\n\t}",
+          "ruleText": ".accordion-base .accordion-content {\n\t\t@apply overflow-hidden;\n\t\tpadding: 0 var(--accordion-padding-x-md) 0;\n\t\tmax-height: 0;\n\t\ttransition: max-height var(--accordion-content-transition-duration)\n\t\t\tease-in-out;\n\t}",
           "sourceFile": "accordion/base.css"
         },
         {

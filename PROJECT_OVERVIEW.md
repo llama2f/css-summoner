@@ -63,26 +63,87 @@ graph LR
 
 ## 5. ディレクトリ構造の概要 (`src/css-summoner/`)
 
-- `ui/`: UI関連 (ClassBuilder.jsx, components, hooks, layouts, templates)
-- `configs/`: 設定ファイル群
-- `docs/`: ドキュメント
-- `scripts/`: ビルド・自動化スクリプト (generators含む)
-- `styles/`: CSSスタイルファイル
-- `dist/types/`: 生成されたTypeScript型定義
+```
+.
+├── configs/ (設定ファイル群 - クラスビルダーUI用)
+│   ├── borderRadius.mjs
+│   ├── colors.js
+│   ├── index.js (モジュールのエクスポート用)
+│   ├── modifiers.mjs
+│   ├── sizes.mjs
+│   └── specialClasses.mjs
+├── scripts/ (ビルド・自動化スクリプト)
+│   ├── generators/ (コード生成用スクリプト)
+│   │   ├── astroComponentGenerator.js
+│   │   ├── componentInterface.js
+│   │   └── type-generator.js (型定義生成)
+│   ├── clean-css-comments.js
+│   ├── config.js
+│   ├── extract-jsx.js
+│   ├── generate-astro.js
+│   ├── generate-docs.js
+│   ├── generate-handler-manifest.js
+│   ├── generate-types.js
+│   ├── simple-file-mapper.js (ファイルマップ生成)
+│   └── utils.js (スクリプト共通ユーティリティ)
+├── styles/ (CSSスタイルファイル)
+│   ├── accordion/ (Accordionコンポーネント用スタイル)
+│   ├── badge/ (Badgeコンポーネント用スタイル)
+│   ├── button/ (Buttonコンポーネント用スタイル)
+│   ├── card/ (Cardコンポーネント用スタイル)
+│   ├── colors/ (カラーシステム定義)
+│   ├── form/ (Form関連要素用スタイル)
+│   ├── heading/ (Headingコンポーネント用スタイル)
+│   ├── image/ (Image関連要素用スタイル)
+│   ├── infobox/ (Infoboxコンポーネント用スタイル)
+│   ├── no-bundle/ (バンドル対象外のスタイル)
+│   ├── text/ (Text装飾用スタイル)
+│   ├── tooltip/ (Tooltipコンポーネント用スタイル)
+│   ├── css-var.css
+│   └── utils.css
+├── ui/ (UI関連ファイル)
+│   ├── components/ (UIコンポーネント)
+│   │   ├── accessibility/ (アクセシビリティ関連)
+│   │   ├── astro/ (Astroコンポーネント群)
+│   │   ├── color/ (カラー関連UI)
+│   │   ├── color-picker/ (カラーピッカーUI)
+│   │   ├── common/ (共通コンポーネント)
+│   │   ├── display/ (表示用コンポーネント)
+│   │   ├── mobile/ (モバイル用コンポーネント)
+│   │   ├── navigation/ (ナビゲーション関連)
+│   │   ├── preview/ (プレビュー表示コンポーネント)
+│   │   └── selectors/ (各種選択UIコンポーネント)
+│   ├── data/ (UIデータ定義)
+│   ├── hooks/ (Reactカスタムフック)
+│   ├── layouts/ (レイアウトコンポーネント)
+│   ├── scripts/ (UIスクリプト)
+│   │   ├── components/ (コンポーネント固有スクリプト)
+│   │   └── utils/ (UIユーティリティ)
+│   ├── templates/ (テンプレート関連)
+│   │   ├── core/ (コアテンプレートエンジン)
+│   │   ├── handlers/ (ハンドラー関連)
+│   │   │   └── auto/ (自動検出ハンドラー群)
+│   │   ├── componentFactory.jsx
+│   │   └── componentHandlers.jsx
+│   └── ClassBuilder.jsx (メインUIエントリポイント)
+├── utils/ (ユーティリティ関数)
+│   └── contrastUtils.js
+├── classMappings.js (生成物: 設定とマッピングのエントリポイント)
+├── extracted-annotations.json (生成物: CSSアノテーション抽出結果)
+└── handler-manifest.json (生成物: ハンドラー自動検出結果)
+```
+
+主な生成アセット:
+
+- `dist/types/`: 生成されたTypeScript型定義ファイル
 - `dist/components/`: 生成されたAstroコンポーネント
-- `utils/`: ユーティリティ関数
-- `classMappings.js` (生成物)
-- `extracted-annotations.json` (生成物)
-- `handler-manifest.json` (生成物)
+- `src/pages/css-summoner/`: 生成されたAstroドキュメントページ
 
 ## 6. 主な使い方 (スクリプト)
 
-- `npm run dev`: 開発サーバー起動 (UIアクセス用)
-- `npm run build`: 本番ビルド (ハンドラー生成 + Astroビルド)
-- `npm run css`: 型定義、ドキュメント、Astroコンポーネントなどを生成 (実質 `css-all` と同等)
-- `npm run generate:types`: 型定義のみ生成 (`dist/types/`)
-- `npm run generate:docs`: ドキュメントのみ生成 (`src/pages/css-summoner/`)
-- `npm run generate:astro`: Astroコンポーネントのみ生成 (`dist/components/`)。ハンドラーの `generateAstroTemplate` があればそれを使用。
-- `npm run generate:all`: 型定義、ドキュメント、Astroコンポーネントをすべて生成
-- `npm run generate:handlers`: ハンドラーマニフェスト生成
+- `npm run dev`: 開発サーバー起動 (CSSバンドル＆セットアップ)
+- `npm run build`: 本番ビルド (CSSバンドル＆セットアップ + Astroビルド)
+- `npm run css`: 型定義、ドキュメント生成
 - `npm run map`: ファイルマップ (`file-map.md`) 更新
+- `npm run setup`: ハンドラーからの生成、Astroコンポーネント生成
+- `npm run bundle-css`: CSSファイルをバンドル

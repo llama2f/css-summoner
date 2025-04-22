@@ -54,7 +54,6 @@
 	 * @variant: base
 	 * @description: すべてのアコーディオンの基本スタイル。折りたたみ可能なコンテンツを表示するための共通のスタイルとレイアウトを提供します。
 	 * @category: interactive
-	 * @example: <div class="accordion-base accordion-default theme-primary">...</div>
 	 */
 	.accordion-base {
 		@apply w-full overflow-hidden;
@@ -99,7 +98,8 @@
 
 	.accordion-base .accordion-content {
 		@apply overflow-hidden;
-		padding: 0 var(--accordion-padding-x-md) var(--accordion-padding-y-md);
+		padding: 0 var(--accordion-padding-x-md) 0;
+		max-height: 0;
 		transition: max-height var(--accordion-content-transition-duration)
 			ease-in-out;
 	}

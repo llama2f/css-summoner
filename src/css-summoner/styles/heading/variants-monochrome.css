@@ -7,7 +7,7 @@
 	 * @example: <h2 class="heading-base heading-formal-primary theme-primary">プライマリフォーマル見出し</h2>
 	 */
 	.heading-formal-primary {
-		@apply heading-base rounded-r;
+		@apply rounded-r;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		padding-left: calc(var(--heading-padding-x) + var(--heading-border-width));
 		border-left: var(--heading-border-width) solid var(--component-border, #333);
@@ -42,7 +42,7 @@
 	 * @example: <h2 class="heading-base heading-formal-full theme-primary">フルバックグラウンド見出し</h2>
 	 */
 	.heading-formal-full {
-		@apply heading-base rounded;
+		@apply rounded;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		background-color: var(--component-color, #333);
 		color: var(--component-text, #fff);
@@ -70,7 +70,7 @@
 	 * @example: <h2 class="heading-base heading-casual-badge theme-secondary">バッジスタイル見出し</h2>
 	 */
 	.heading-casual-badge {
-		@apply heading-base inline-block rounded-full;
+		@apply inline-block rounded-full;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 
 		background-color: color-mix(
@@ -106,7 +106,7 @@
 	 * @example: <h2 class="heading-base heading-technical-code theme-inverse">コード風見出し</h2>
 	 */
 	.heading-technical-code {
-		@apply heading-base font-mono rounded;
+		@apply font-mono rounded;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 
 		background-color: color-mix(
@@ -169,7 +169,7 @@
 	 * @example: <h2 class="heading-base heading-accent-gradient theme-accent">グラデーション見出し</h2>
 	 */
 	.heading-accent-gradient {
-		@apply heading-base rounded;
+		@apply rounded;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		background: linear-gradient(
 			to right,
@@ -203,7 +203,7 @@
 	 * @example: <h2 class="heading-base heading-accent-stripe theme-accent">ストライプ背景見出し</h2>
 	 */
 	.heading-accent-stripe {
-		@apply heading-base relative rounded;
+		@apply relative rounded;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		color: var(--component-color, #333);
 		background-image: repeating-linear-gradient(
@@ -240,7 +240,7 @@
 	 * @example: <h2 class="heading-base heading-modern-split theme-primary">分割デザインの見出し</h2>
 	 */
 	.heading-modern-split {
-		@apply heading-base relative;
+		@apply relative;
 		padding: var(--heading-padding-y) 0;
 		color: var(--component-color, #333);
 		overflow: hidden;
@@ -329,7 +329,7 @@
 	 * @example: <h2 class="heading-base heading-formal-boxed theme-primary">囲み枠付き見出し</h2>
 	 */
 	.heading-formal-boxed {
-		@apply heading-base rounded;
+		@apply rounded;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		border: 1px solid var(--component-border, #333);
 		color: var(--component-color, #333);
@@ -383,7 +383,7 @@
 	 * @example: <h2 class="heading-base heading-casual-highlight theme-secondary">ハイライト見出し</h2>
 	 */
 	.heading-casual-highlight {
-		@apply heading-base inline;
+		@apply inline;
 		padding: 0.2em 0;
 		color: var(--component-color, #333);
 		background: linear-gradient(
@@ -403,7 +403,7 @@
 	 * @example: <h2 class="heading-base heading-technical-comment theme-inverse">コメント風見出し</h2>
 	 */
 	.heading-technical-comment {
-		@apply heading-base font-mono;
+		@apply font-mono;
 		padding: var(--heading-padding-y) var(--heading-padding-x);
 		color: var(--component-color, #333);
 		position: relative;

@@ -4,7 +4,20 @@
 	 * @variant: default
 	 * @description: デフォルトスタイルのアコーディオン。シンプルな外観で、ヘッダーにホバー効果があります。
 	 * @category: interactive
-	 * @example: <div class="accordion-base accordion-default theme-primary">...</div>
+	 * @example: <div class="accordion-base accordion-default text-xs theme-primary">
+	 *   <div class="accordion-item">
+	 *     <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="accordion-panel-m4kxjh" data-accordion-toggle="true">
+	 *       <span>アコーディオンタイトル</span>
+	 *       <span class="accordion-icon" aria-hidden="true"></span>
+	 *     </div>
+	 *     <div id="accordion-panel-m4kxjh" class="accordion-content" aria-hidden="true" role="region" data-accordion-content="true">
+	 *       <div style="padding:1rem">
+	 *         <p>これはアコーディオンの内容です。</p>
+	 *         <p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>
+	 *       </div>
+	 *     </div>
+	 *   </div>
+	 * </div>
 	 */
 	.accordion-default {
 		background-color: transparent;
@@ -31,7 +44,20 @@
 	 * @variant: solid
 	 * @description: 塗りつぶしスタイルのアコーディオン。ヘッダーに背景色が適用されます。
 	 * @category: interactive
-	 * @example: <div class="accordion-base accordion-solid theme-primary">...</div>
+	 * @example: <div class="accordion-base accordion-solid text-xs theme-primary">
+	 *   <div class="accordion-item">
+	 *     <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="accordion-panel-m4kxjh" data-accordion-toggle="true">
+	 *       <span>アコーディオンタイトル</span>
+	 *       <span class="accordion-icon" aria-hidden="true"></span>
+	 *     </div>
+	 *     <div id="accordion-panel-m4kxjh" class="accordion-content" aria-hidden="true" role="region" data-accordion-content="true">
+	 *       <div style="padding:1rem">
+	 *         <p>これはアコーディオンの内容です。</p>
+	 *         <p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>
+	 *       </div>
+	 *     </div>
+	 *   </div>
+	 * </div>
 	 */
 	.accordion-solid {
 		background-color: transparent;
@@ -66,7 +92,20 @@
 	 * @variant: outline
 	 * @description: アウトラインスタイルのアコーディオン。枠線のみで、ヘッダーにホバー時に背景色が表示されます。
 	 * @category: interactive
-	 * @example: <div class="accordion-base accordion-outline theme-primary">...</div>
+	 * @example: <div class="accordion-base accordion-outline text-xs theme-primary">
+	 *   <div class="accordion-item">
+	 *     <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="accordion-panel-m4kxjh" data-accordion-toggle="true">
+	 *       <span>アコーディオンタイトル</span>
+	 *       <span class="accordion-icon" aria-hidden="true"></span>
+	 *     </div>
+	 *     <div id="accordion-panel-m4kxjh" class="accordion-content" aria-hidden="true" role="region" data-accordion-content="true">
+	 *       <div style="padding:1rem">
+	 *         <p>これはアコーディオンの内容です。</p>
+	 *         <p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>
+	 *       </div>
+	 *     </div>
+	 *   </div>
+	 * </div>
 	 */
 	.accordion-outline {
 		background-color: transparent;
@@ -98,7 +137,20 @@
 	 * @variant: subtle
 	 * @description: 控えめなアコーディオン。薄い背景色が適用され、ホバー時に色が濃くなります。
 	 * @category: interactive
-	 * @example: <div class="accordion-base accordion-subtle theme-primary">...</div>
+	 * @example: <div class="accordion-base accordion-subtle text-xs theme-primary">
+	 *   <div class="accordion-item">
+	 *     <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="accordion-panel-m4kxjh" data-accordion-toggle="true">
+	 *       <span>アコーディオンタイトル</span>
+	 *       <span class="accordion-icon" aria-hidden="true"></span>
+	 *     </div>
+	 *     <div id="accordion-panel-m4kxjh" class="accordion-content" aria-hidden="true" role="region" data-accordion-content="true">
+	 *       <div style="padding:1rem">
+	 *         <p>これはアコーディオンの内容です。</p>
+	 *         <p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>
+	 *       </div>
+	 *     </div>
+	 *   </div>
+	 * </div>
 	 */
 	.accordion-subtle {
 		background-color: color-mix(
@@ -133,7 +185,20 @@
 	 * @variant: ghost
 	 * @description: ゴーストスタイルのアコーディオン。背景色も枠線もなく、ホバー時に薄い背景色が表示されます。
 	 * @category: interactive
-	 * @example: <div class="accordion-base accordion-ghost theme-primary">...</div>
+	 * @example: <div class="accordion-base accordion-ghost text-xs theme-primary">
+	 *   <div class="accordion-item">
+	 *     <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="accordion-panel-m4kxjh" data-accordion-toggle="true">
+	 *       <span>アコーディオンタイトル</span>
+	 *       <span class="accordion-icon" aria-hidden="true"></span>
+	 *     </div>
+	 *     <div id="accordion-panel-m4kxjh" class="accordion-content" aria-hidden="true" role="region" data-accordion-content="true">
+	 *       <div style="padding:1rem">
+	 *         <p>これはアコーディオンの内容です。</p>
+	 *         <p>テキスト、画像、その他のコンポーネントなど様々な要素を含めることができます。</p>
+	 *       </div>
+	 *     </div>
+	 *   </div>
+	 * </div>
 	 */
 	.accordion-ghost {
 		background-color: transparent;

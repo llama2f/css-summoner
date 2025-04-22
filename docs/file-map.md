@@ -1,6 +1,6 @@
 # CSSビルダー ファイル一覧と役割
 
-*自動生成: 2025-04-17T01:22:57.887Z*
+*自動生成: 2025-04-22T02:48:46.911Z*
 
 ## ディレクトリ構造
 
@@ -19,6 +19,7 @@
   │ ├── heading (Headingコンポーネント用スタイル)
   │ ├── image (Image関連要素用スタイル)
   │ ├── infobox (Infoboxコンポーネント用スタイル)
+  │ ├── no-bundle (styles/no-bundleディレクトリ)
   │ ├── text (Text装飾用スタイル)
   │ ├── tooltip (styles/tooltipディレクトリ)
   ├── ui (uiディレクトリ)
@@ -30,8 +31,10 @@
   │ │ ├── common (ui/components/commonディレクトリ)
   │ │ ├── display (ui/components/displayディレクトリ)
   │ │ ├── mobile (ui/components/mobileディレクトリ)
+  │ │ ├── navigation (ui/components/navigationディレクトリ)
   │ │ ├── preview (ui/components/previewディレクトリ)
   │ │ ├── selectors (ui/components/selectorsディレクトリ)
+  │ ├── data (ui/dataディレクトリ)
   │ ├── hooks (ui/hooksディレクトリ)
   │ ├── layouts (ui/layoutsディレクトリ)
   │ ├── scripts (ui/scriptsディレクトリ)
@@ -89,10 +92,7 @@
 
 | ファイル | 役割 |
 |---------|------|
-| `all-components.css` | スタイルシート |
-| `builder.css` | スタイルシート |
-| `class-builder.css` | スタイルシート |
-| `styles.css` | スタイルシート |
+| `css-var.css` | スタイルシート |
 | `utils.css` | スタイルシート |
 
 ### styles/accordion/
@@ -174,6 +174,15 @@
 | `utilities.css` | スタイルシート |
 | `variants.css` | コンポーネントスタイル定義（アノテーション付き） |
 
+### styles/no-bundle/
+
+| ファイル | 役割 |
+|---------|------|
+| `all-components.css` | スタイルシート |
+| `builder.css` | スタイルシート |
+| `class-builder.css` | スタイルシート |
+| `styles.css` | スタイルシート |
+
 ### styles/text/
 
 | ファイル | 役割 |
@@ -242,6 +251,16 @@
 |---------|------|
 | `MobileDrawer.jsx` | Reactコンポーネント |
 
+### ui/components/navigation/
+
+| ファイル | 役割 |
+|---------|------|
+| `MenuButton.astro` | Astroコンポーネント - MenuButton |
+| `NavDrawer.astro` | Astroコンポーネント - NavDrawer |
+| `NavGroup.astro` | Astroコンポーネント - NavGroup |
+| `NavLinks.astro` | Astroコンポーネント - NavLinks |
+| `PageContent.astro` | Astroコンポーネント - PageContent |
+
 ### ui/components/preview/
 
 | ファイル | 役割 |
@@ -258,6 +277,12 @@
 | `ModifierSelector.jsx` | ModifierSelector - 選択UIコンポーネント |
 | `SpecialClassSelector.jsx` | SpecialClassSelector - 選択UIコンポーネント |
 | `VariantSelector.jsx` | VariantSelector - 選択UIコンポーネント |
+
+### ui/data/
+
+| ファイル | 役割 |
+|---------|------|
+| `navigation.js` | JavaScriptモジュール |
 
 ### ui/hooks/
 
@@ -276,6 +301,7 @@
 | `Header.astro` | Astroコンポーネント - Header |
 | `Layout.astro` | Astroコンポーネント - Layout |
 | `Menu.astro` | Astroコンポーネント - Menu |
+| `PageLayout.astro` | Astroコンポーネント - PageLayout |
 
 ### ui/scripts/
 
