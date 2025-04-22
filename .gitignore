@@ -64,6 +64,7 @@ yarn.lock
 .roo/
 .roomodes
 ai-database/
+ai_rules.yaml
 
 handler-manifest.json
 todo.md
